@@ -26,7 +26,7 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" type="text/css" media="screen" href="//assets.ubuntu.com/sites/guidelines/css/responsive/latest/ubuntu-styles.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="../resources/css/mass.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../resources/css/maas.css" />
 
 </head>
 
