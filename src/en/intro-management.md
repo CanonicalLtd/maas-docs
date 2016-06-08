@@ -1,4 +1,4 @@
-Title: MAAS | Practical Examples
+Title: MAAS | Management Summary
 
-# Practical examples
+# Management Summary
 

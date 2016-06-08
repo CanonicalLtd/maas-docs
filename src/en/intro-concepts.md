@@ -1,4 +1,4 @@
-Title: MAAS | Practical Examples
+Title: MAAS | Concepts and Terms
 
-# Practical examples
+# Concepts and terms
 
