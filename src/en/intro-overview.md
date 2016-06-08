@@ -1,6 +1,6 @@
-Title: Functional Overview
+Title: MAAS | Functional Overview
 
-# Functional Overview
+# Functional overview
 
 ## MAAS in Brief
 
