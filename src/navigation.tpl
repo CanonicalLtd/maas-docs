@@ -4,7 +4,7 @@
     	<ul>
        		<li><a href="about.html">What is MAAS?</a></li>
 		<li>Practical Examples</li>
-		<li>Functional Overview</li>
+		<li><a href="orientation.html">Functional Overview</a></li>
 		<li>Management Summary</li>
         	<li>Concepts and Terms</li>
 
