@@ -2,9 +2,9 @@
 <!--- SECTION --->
     <li class="section"><h4 class="header toggle-target">Introduction</h4>
     	<ul>
-       		<li><a href="about.html">What is MAAS?</a></li>
+       		<li><a href="about-maas.html">What is MAAS?</a></li>
 		<li>Practical Examples</li>
-		<li>Functional Overview</li>
+		<li><a href="orientation.html">Functional Overview</a></li>
 		<li>Management Summary</li>
         	<li>Concepts and Terms</li>
 
