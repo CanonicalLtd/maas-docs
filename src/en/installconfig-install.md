@@ -1,12 +1,18 @@
-# Installing MAAS
+Title: Installation
+TODO: Update CLI install
+      Possibly split into sections
+      Update Server install
+      Change local anchors as files are renamed
+	
 
-There are two main ways to install MAAS:
+# Installation
 
--   [From a package repository][pkg-install].
--   [As a fresh install from Ubuntu Server install media.][disc-install]
+There are three main ways to install MAAS:
 
-
-## MAAS Packages and Repositories
+-   [From a package repository.](#maas-packages)
+-   [As a fresh install from Ubuntu Server install
+    media.](#installing-maas-from-ubuntu-server)
+-   [Install MAAS locally with LXC.](#installing-maas-locally-with-lxc)
 
 ### MAAS Packages
 
@@ -16,24 +22,27 @@ many of these have been gathered into a virtual package called 'maas' which
 will install the necessary components for a 'seed cloud', that is a single
 server that will directly control a group of nodes. The main packages are:
 
-> -   `maas` - seed cloud setup, which includes both the region controller and
->     the rack controller below.
-> -   `maas-region-controller` - includes the web UI, API and database.
-> -   `maas-rack-controller` - controls a group of machines under a rack or
->     multiple racks, including DHCP management.
-> -   `maas-dhcp`/`maas-dns` - required when managing dhcp/dns.
-> -   `maas-proxy` - required to provide a MAAS proxy.
+-   `maas` - seed cloud setup, which includes both the region controller and
+    the rack controller below.
+-   `maas-region-controller` - includes the web UI, API and database.
+-   `maas-rack-controller` - controls a group of machines under a rack or
+    multiple racks, including DHCP management.
+-   `maas-dhcp`/`maas-dns` - required when managing dhcp/dns.
+-   `maas-proxy` - required to provide a MAAS proxy.
 
 If you need to separate these services or want to deploy an additional rack
-controller, you should install the corresponding packages individually (see
-the description of a typical setup &lt;setup&gt; for more background on how a
-typical hardware setup might be arranged).
+controller, you should install the corresponding packages individually (see the
+[description of a typical setup](./orientation.html#a-typical-maas-setup) for
+more background on how a typical hardware setup might be arranged).
 
 There are two suggested additional packages 'maas-dhcp' and 'maas-dns'. These
 set up MAAS-controlled DHCP and DNS services which greatly simplify deployment
 if you are running a typical setup where the MAAS controller can run the
-network (Note: These **must** be installed if you later set the options in the
-web interface to have MAAS manage DHCP/DNS).
+network 
+
+
+!!! Note: Both 'maas-dhcp' and 'maas-dns' **must** be installed if you later
+set the options in the web interface to have MAAS manage DHCP/DNS.
 
 ### MAAS Package Repositories
 
@@ -42,31 +51,34 @@ version might not be the latest. However, if you would like to install a newer
 version of MAAS (the latest stable release), this is available in the
 following PPA:
 
-> -   ppa:maas/stable\_
+-   [ppa:maas/stable](https://launchpad.net/~maas/+archive/ubuntu/stable)
 
-> **note**
-
-> The MAAS team also releases the latest development release of MAAS. The
-> development release is available in ppa:maas/next\_. However, this is meant
-> to be used for testing and at your own risk.
+!!! Note: The MAAS team also releases the latest development release of MAAS.
+The development release is available in
+[ppa:maas/next](https://launchpad.net/~maas/+archive/ubuntu/next). 
+However, this is meant to be used for testing and at your own risk.
 
 Adding MAAS package repository is simple. At the command line, type:
 
-    $ sudo add-apt-repository ppa:maas/stable
+```bash
+sudo add-apt-repository ppa:maas/stable
+```
 
 You will be asked to confirm whether you would like to add this repository,
-and its key. Upon configumation, the following needs to be typed at the
+and its key. Upon configuration, the following needs to be typed at the
 command line:
 
-    $ sudo apt-get update
-[pkg-install]
-## Installing MAAS from the command line
+```bash
+sudo apt-get update
+```
 
-### Installing a Single Node MAAS
+## Installing a Single Node MAAS
 
 At the command line, type:
 
-    $ sudo apt-get install maas
+```bash
+sudo apt-get install maas
+```
 
 This will install both the MAAS Region Controller and the MAAS Rack
 Controller, and will select sane defaults for the communication between the
@@ -82,7 +94,7 @@ server, but expect to add about 200MB of files.
 The configuration for the MAAS controller will automatically run and pop up
 this config screen:
 
-![image](media/install_cluster-config.*)
+![image](./media/install_cluster-config.png)
 
 Here you will need to enter the hostname for where the region controller can
 be contacted. In many scenarios, you may be running the region controller
@@ -92,96 +104,174 @@ where a server has several network interfaces.
 ### Adding Rack Controllers
 
 If you would like to add additional MAAS Rack Controllers to your MAAS setup,
-you can do so by following the instructions in rack-configuration.
+you can do so by following the instructions in [Rack Controller
+configuration](./installconfig-rack.html).
 
-## Installing MAAS from Ubuntu Server boot media
+## Installing MAAS from Ubuntu Server
 
 If you are installing MAAS as part of a fresh install it is easiest to choose
 the "Multiple Server install with MAAS" option from the installer and have
 pretty much everything set up for you. Boot from the Ubuntu Server media and
 you will be greeted with the usual language selection screen:
 
-![image](media/install_01.*)
+![image](./media/install_01.png)
 
 On the next screen, you will see there is an entry in the menu called
 "Multiple server install with MAAS". Use the cursor keys to select this and
 then press Enter.
 
-![image](media/install_02.*)
+![image](./media/install_02.png)
 
 The installer then runs through the usual language and keyboard options. Make
 your selections using Tab/Cursor keys/Enter to proceed through the install.
 The installer will then load various drivers, which may take a moment or two.
 
-![image](media/install_03.*)
+![image](./media/install_03.png)
 
 The next screen asks for the hostname for this server. Choose something
 appropriate for your network.
 
-![image](media/install_04.*)
+![image](./media/install_04.png)
 
 Finally we get to the MAAS part! Here there are just two options. We want to
 "Create a new MAAS on this server" so go ahead and choose that one.
 
-![image](media/install_05.*)
+![image](./media/install_05.png)
 
 The install now continues as usual. Next you will be prompted to enter a
 username. This will be the admin user for the actual server that MAAS will be
 running on (not the same as the MAAS admin user!)
 
-![image](media/install_06.*)
+![image](./media/install_06.png)
 
 As usual you will have the chance to encrypt your home directory. Continue to
 make selections based on whatever settings suit your usage.
 
-![image](media/install_07.*)
+![image](./media/install_07.png)
 
 After making selections and partitioning storage, the system software will
 start to be installed. This part should only take a few minutes.
 
-![image](media/install_09.*)
+![image](./media/install_09.png)
 
 Various packages will now be configured, including the package manager and
 update manager. It is important to set these up appropriately so you will
 receive timely updates of the MAAS server software, as well as other essential
 services that may run on this server.
 
-![image](media/install_10.*)
+![image](./media/install_10.png)
 
 The configuration for MAAS will ask you to configure the host address of the
 server. This should be the IP address you will use to connect to the server
 (you may have additional interfaces e.g. to run node subnets)
 
-![image](media/install_cluster-config.*)
+![image](./media/install_cluster-config.png)
 
 The next screen will confirm the web address that will be used to the web
 interface.
 
-![image](media/install_controller-config.*)
+![image](./media/install_controller-config.png)
 
 After configuring any other packages the installer will finally come to and
 end. At this point you should eject the boot media.
 
-![image](media/install_14.*)
+![image](./media/install_14.png)
 
 After restarting, you should be able to login to the new server with the
 information you supplied during the install. The MAAS software will run
 automatically.
 
-![image](media/install_15.*)
+![image](./media/install_15.png)
 
-**NOTE:** The maas-dhcp and maas-dns packages should be installed by default,
+!!! Note: The maas-dhcp and maas-dns packages should be installed by default,
 but on older releases of MAAS they won't be. If you want to have MAAS run DHCP
 and DNS services, you should install these packages. Check whether they are
 installed with:
 
-    $ dpkg -l maas-dhcp maas-dns
+```bash
+dpkg -l maas-dhcp maas-dns
+```
 
 If they are missing, then:
 
-    $ sudo apt-get install maas-dhcp maas-dns
+```bash
+sudo apt-get install maas-dhcp maas-dns
+```
 
-And then proceed to the post-install setup below.
+And then proceed to the post-install setup.
+
+## Installing MAAS locally with LXC
+
+Installing MAAS in a container is a typical setup for those users who would
+like to take advantage of their machine for other users at the same time of
+using MAAS.
+
+In order to setup MAAS, you need some requirements:
+
+-   Create a bridge (for example, it can be br0).
+-   Install LXD and ZFS.
+-   Create a Container profile for MAAS
+
+### Install LXD and ZFS
+
+The first thing to do is to install LXD and ZFS:
+
+```bash
+sudo apt-get install lxd zfsutils-linux
+sudo modprobe zfs
+sudo lxd init
+```
+
+### Create a LXC profile for MAAS
+
+First, lets create a container profile by copying the default:
+
+```bash
+lxc profile copy default maas
+```
+
+Second, bind the NIC inside the container (eth0) against the bridge on the
+physical host (br0):
+
+```bash
+lxc profile device set maas eth0 parent br0
+```
+
+Third, edit the container profile (lxc profile edit maas) with:
+
+```yaml
+    raw.lxc: |-
+      lxc.cgroup.devices.allow = c 10:237 rwm
+      lxc.aa_profile = unconfined
+      lxc.cgroup.devices.allow = b 7:* rwm
+    security.privileged: "true"
+```
+
+And lastly, ensure that the LXC container has loop devices added:
+
+```bash
+for i in `seq 0 7`; do lxc profile device add maas loop$i unix-block path=/dev/loop$i; done
+```
+
+### Launch LXD container
+
+Once the profile has been created, you can now launch the LXC container:
+
+```bash
+lxc launch -p maas ubuntu:16.04 xenial-maas
+```
+
+### Install MAAS
+
+Once the container is running, you can now install MAAS. First you need to
+access the container with:
+
+```bash
+lxc exec bash xenial-maas
+```
+
+And you can proceed with the installation as above,
+From a [package repository](maas-packages). 
 
 # Post-Install tasks
 
@@ -189,7 +279,7 @@ Your MAAS is now installed, but there are a few more things to be done. If you
 now use a web browser to connect to the region controller, you should see that
 MAAS is running, but there will also be some errors on the screen:
 
-![image](media/install_web-init.*)
+![image](./media/install_web-init.png)
 
 The on screen messages will tell you that there are no boot images present,
 and that you can't login because there is no admin user.
@@ -198,7 +288,9 @@ and that you can't login because there is no admin user.
 
 Once MAAS is installed, you'll need to create an administrator account:
 
-    $ sudo maas-region createadmin --username=root --email=MYEMAIL@EXAMPLE.COM
+```bash
+sudo maas createadmin --username=root --email=MYEMAIL@EXAMPLE.COM
+```
 
 Substitute your own email address for <MYEMAIL@EXAMPLE.COM>. You may also use
 a different username for your administrator account, but "root" is a common
@@ -214,7 +306,7 @@ Looking at the region controller's main web page again, you should now see a
 login screen. Log in using the user name and password which you have just
 created.
 
-![image](media/install-login.*)
+![image](./media/install-login.png)
 
 ## Import the boot images
 
@@ -232,7 +324,7 @@ To do it in the web user interface, go to the Images tab, check the boxes to
 say which images you want to import, and click the "Import images" button at
 the bottom of the Ubuntu section.
 
-![image](media/import-images.*)
+![image](./media/import-images.png)
 
 A message will appear to let you know that the import has started, and after a
 while, the warnings about the lack of boot images will disappear.
@@ -244,14 +336,17 @@ import. You can check the progress of the import by hovering over the spinner
 next to each image.
 
 The other way to start the import is through the
-region-controller API &lt;region-controller-api&gt;, which you can invoke most
-conveniently through the command-line interface &lt;cli&gt;.
+[region-controller API](./api.html#regioncontroller)
+, which you can invoke most conveniently through the 
+[command-line interface](./maascli.html#cli).
 
 To do this, connect to the MAAS API using the "maas" command-line client. See
 Logging in &lt;api-key&gt; for how to get set up with this tool. Then, run the
 command:
 
-    $ maas my-maas-session boot-resources import
+```bash
+maas my-maas-session boot-resources import
+```
 
 (Substitute a different profile name for 'my-maas-session' if you have named
 yours something else.) This will initiate the download, just as if you had
@@ -260,24 +355,25 @@ clicked "Import images" in the web user interface.
 By default, the import is configured to download the most recent LTS release
 only for the amd64 architecture. Although this should suit most needs, you can
 change the selections on the Images tab, or over the API. Read
-customise boot sources &lt;/bootsources&gt; to see examples on how to do that.
+customise [boot sources](./bootsources.html) to see examples on how to do that.
 
 ## Speeding up repeated image imports by using a local mirror
 
-See sstreams-mirror for information on how to set up a mirror and configure
-MAAS to use it.
+See [Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
+how to set up a mirror and configure MAAS to use it.
 
 ## Configure DHCP
 
 To enable MAAS to control DHCP, you can either:
 
-1.  Follow the instructions at rack-configuration to use the web UI to set up
-    your rack controller.
+1.  Follow the instructions at [Rack Controller
+configuration](installconfig-rack.html) to use the web UI to set up your rack 
+controller.
 2.  Use the command line interface maas by first
-    logging in to the API &lt;api-key&gt; and then
-    following this procedure &lt;cli-dhcp&gt;
+    logging in to the [API](./maascli.html#apikey) and then
+    [following this procedure]](./maascli.html#cli-dhcp).
 
-## Configure switches on the network
+## Configuring switches on the network
 
 Some switches use Spanning-Tree Protocol (STP) to negotiate a loop-free path
 through a root bridge. While scanning, it can make each port wait up to 50
@@ -290,7 +386,7 @@ To alleviate this problem, you should enable
 for Cisco switches or its equivalent on other vendor equipment, which enables
 the ports to come up almost immediately.
 
-## Traffic between the region contoller and rack controllers
+## Traffic between the region controller and rack controllers
 
 -   Each rack controller must be able to:
     -   Initiate TCP connections (for HTTP) to each region controller on port
@@ -301,5 +397,5 @@ the ports to come up almost immediately.
         processes on each region controller host. At present this is
         not configurable.
 
-Once everything is set up and running, you are ready to start
-enlisting nodes &lt;nodes&gt;
+Once everything is set up and running, you are ready to [start enlisting
+nodes](./nodes.html) 
