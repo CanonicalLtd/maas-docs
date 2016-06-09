@@ -1,5 +1,5 @@
 <ul>
-<!--- SECTION --->
+<!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Introduction</h4>
     	<ul>
        		<li><a href="intro-about-maas.html">About MAAS</a></li>
@@ -10,8 +10,8 @@
 
     	</ul>
     </li>
-<!--- SECTION --->
-    <li class="section"><h4 class="header toggle-target">Install and Configure</h4>
+<!-- SECTION -->
+    <li class="section"><h4 class="header toggle-target">Installing & configuring</h4>
     	<ul>
 		<li class"section"><a class"header" href="installconfig-install.html">Installation</a>
 			<ul class="sub">
@@ -24,25 +24,18 @@ href="installconfig-install.html#installing-maas-locally-with-lxc">Install into 
 		</li>	
    	 </ul>
      </li>
-<!--- SECTION --->
+<!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Managing MAAS</h4>
     	<ul>
     	</ul>
     </li>
-<!--- SECTION --->
+<!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Troubleshooting</h4>
     	<ul>
     	</ul>
     </li>
-<!--- SECTION --->
-    <li class="section"><h4 class="header toggle-target">Developer Guide</h4>
-    	<ul>
-    	</ul>
-    </li>
-    <li class="section"><h4 class="header toggle-target">API Documentation</h4>
-    	<ul>
-    	</ul>
-    </li>
+<li><a href="http://maas.ubuntu.com/docs/index.html#developing-maas">Developer guide</a></li>
+<li><a href="http://maas.ubuntu.com/docs/index.html#api-cli-documentation">API / CLI documentation</a></li>
 <li><a href="contributing.html">Help improve these docs</a></li>
 <li><a href="https://github.com/CanonicalLtd/maas-docs/issues/new">Report a docs issue</a></li>
 </ul>
