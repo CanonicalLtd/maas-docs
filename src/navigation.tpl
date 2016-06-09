@@ -34,4 +34,6 @@
     	<ul>
     	</ul>
     </li>
+<li><a href="contributing.html">Help improve these docs</a></li>
+<li><a href="https://github.com/CanonicalLtd/maas-docs/issues/new">Report a docs issue</a></li>
 </ul>
