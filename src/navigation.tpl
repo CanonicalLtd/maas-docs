@@ -22,6 +22,7 @@ href="installconfig-install.html#installing-maas-from-ubuntu-server">Install fro
 href="installconfig-install.html#installing-maas-locally-with-lxc">Install into LXC</a></li>
 			</ul>	
 		</li>	
+		<li><a href="installconfig-gui">Access the GUI</li>
    	 </ul>
      </li>
 <!-- SECTION -->
