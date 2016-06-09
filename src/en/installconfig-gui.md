@@ -1,10 +1,6 @@
 Title: Access the GUI
 TODO: Update images
-      Possibly split into sections
-      Update Server install
-      Change local anchors as files are renamed
 	
-
 # Access the GUI
 
 Once MAAS is installed, you'll need to create an administrator account:
@@ -92,7 +88,7 @@ configuration](installconfig-rack.html) to use the web UI to set up your rack
 controller.
 2.  Use the command line interface maas by first
     logging in to the [API](./maascli.html#apikey) and then
-    [following this procedure]](./maascli.html#cli-dhcp).
+    [following this procedure](./maascli.html#cli-dhcp).
 
 ## Configuring switches on the network
 

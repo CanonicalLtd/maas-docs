@@ -1,5 +1,6 @@
-Title: Configure DHCP
-TODO: Update images
+Title: Network Configuration
+TODO: Add other network configuration options
+      Update images
 	
 # Configure DHCP
 
