@@ -22,6 +22,19 @@ href="installconfig-install.html#installing-maas-from-ubuntu-server">Install fro
 href="installconfig-install.html#installing-maas-locally-with-lxc">Install into LXC</a></li>
 			</ul>	
 		</li>	
+		<li><a href="installconfig-gui.html">Access the GUI</a></li>
+		<li class"section"><a href="installconfig-network.html">Network Configuration</a>
+			<ul class="sub">
+				<li><a href="installconfig-network.html#configure-dhcp">DHCP</a></li>
+			</ul>
+		</li>
+		<li>Account Configuration</li>
+		<li>Nodes</li>
+		<li class"section"><a href="installconfig-images.html">Images</a>
+			<ul class="sub">
+				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
+			</ul>
+		</li>
    	 </ul>
      </li>
 <!-- SECTION -->
