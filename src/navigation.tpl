@@ -31,6 +31,16 @@ href="installconfig-install.html#installing-maas-locally-with-lxc">Install into 
 		</li>
 		<li>Account Configuration</li>
 		<li>Nodes</li>
+			<ul class="sub">
+				<li><a href="installconfig-rack.html">Rack Controller</a>
+					<ul class="sub">
+						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
+
+						<li><a href="installconfig-rack.html#registration">Registration</a>
+					</ul>
+				</li>
+			</ul>
+
 		<li class"section"><a href="installconfig-images.html">Images</a>
 			<ul class="sub">
 				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
