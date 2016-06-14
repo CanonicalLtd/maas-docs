@@ -1,5 +1,5 @@
 Title: Rack Controller Configuration
-TODO:
+TODO:  Needs splitting, a re-write and re-organising within wider context of MAAS docs (see #24)
 
 # Rack Controller Configuration
 
@@ -16,7 +16,7 @@ immediately noticeable. Make sure you understand the implications of running a
 DHCP server before doing this. If MAAS detects any DHCP servers already
 running on these networks, it will show them on the rack's configuration page.
 
-## Network requirements
+## Network Requirements
 
 The Rack Controller manages DHCP for subnet(s) in the VLAN(s) that it is
 connected to via one of its interfaces defined in MAAS. Rack Controller
@@ -106,14 +106,14 @@ In order for MAAS to be able to manage a machine throughout its lifecycle, it
 needs to provide DHCP for at least one subnet, by configuring the
 corresponding VLAN to which the Rack Controller is connected to.
 
-## Providing DHCP + HA
+## Providing DHCP and HA
 
 In order for MAAS to be able to manage machines on the network, and more
 specifically, in order to be able to enlist, commission and deploy machines it
 needs to provide and manage DHCP. As such, Rack Controller(s) can provide DHCP
 on the different VLANs it is connected to.
 
-### Dynamic range & addresses
+### Dynamic Range and Addresses
 
 Starting from MAAS 2.0, a Dynamic range needs to be defined in order for MAAS
 to be able to provide DHCP for machines. The purpose of the dynamic range is
@@ -174,7 +174,7 @@ You can also do the same configuration via the WebUI on the VLAN details page:
 
 ![image](./media/vlan_provide_dhcp.png)
 
-## Multiple networks
+## Multiple Networks
 
 A single Rack Controller can be connected to more than one VLAN, each from a
 different Rack Controller interface. This allows one Rack Controller to manage
