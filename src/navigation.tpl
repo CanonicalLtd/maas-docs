@@ -35,8 +35,9 @@ href="installconfig-install.html#installing-maas-locally-with-lxc">Install into 
 				<li><a href="installconfig-rack.html">Rack Controller</a>
 					<ul class="sub">
 						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
-
 						<li><a href="installconfig-rack.html#registration">Registration</a>
+						<li><a href="installconfig-rack.html#interface-management">Interface Management</a>
+						<li><a href="installconfig-rack.html#providing-dhcp+haA">Providing DHCP + HA</a>
 					</ul>
 				</li>
 			</ul>

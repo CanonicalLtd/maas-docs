@@ -102,7 +102,7 @@ Controller Fabric information:
 
 ![image](./media/rack-interface-edit.png)
 
-In order for MAAS to be able to manage a machine throught its lifecycle, it
+In order for MAAS to be able to manage a machine throughout its lifecycle, it
 needs to provide DHCP for at least one subnet, by configuring the
 corresponding VLAN to which the Rack Controller is connected to.
 
@@ -119,18 +119,18 @@ Starting from MAAS 2.0, a Dynamic range needs to be defined in order for MAAS
 to be able to provide DHCP for machines. The purpose of the dynamic range is
 to:
 
-> -   provide DHCP for machines that are performing auto-registration (also
->     called enlistment), or
-> -   provide DHCP for machines that are being commissioned.
->
-> This means that when a machine is being enlisted or commissioned, they DHCP
-> from the dynamic range in order to perform those two steps.
->
-> In turn, however, machines that are being deployed will, by default, obtain
-> static IP addresses (DHCP or otherwise) from the section of the subnet that
-> has not been reserved for the Dynamic Range on such VLAN. This allows the
-> machine to obtain IP addresses that will remain allocated to a machine
-> throughout the rest of its deployment.
+-   provide DHCP for machines that are performing auto-registration (also
+    called enlistment), or
+-   provide DHCP for machines that are being commissioned.
+
+This means that when a machine is being enlisted or commissioned, they DHCP
+from the dynamic range in order to perform those two steps.
+
+In turn, however, machines that are being deployed will, by default, obtain
+static IP addresses (DHCP or otherwise) from the section of the subnet that
+has not been reserved for the Dynamic Range on such VLAN. This allows the
+machine to obtain IP addresses that will remain allocated to a machine
+throughout the rest of its deployment.
 
 ### Enabling a DHCP on a VLAN (optional HA)
 
@@ -145,26 +145,34 @@ Controller has access to this VLAN via its 'eth0' interface.
 
 The second step is to create a dynamic range:
 
-    $ maas admin ipranges create type=dynamic start_ip=192.168.10.28 end_ip=192.168.10.100
+```bash
+maas admin ipranges create type=dynamic start_ip=192.168.10.28 end_ip=192.168.10.100
+```
 
 The third, and last step is to enable DHCP on a VLAN. For this to be effective
 we need to at least select the Primary Rack controller that will provide DHCP:
 
-    $ maas admin vlan update fabric-0 untagged dhcp_on=True primary_rack=node01
+```bash
+maas admin vlan update fabric-0 untagged dhcp_on=True primary_rack=node01
+```
 
 If enabling DHCP HA is something you need for your MAAS deployment, then
 following operation would enable HA:
 
-    $ maas admin vlan update fabric-0 untagged dhcp_on=True primary_rack=node01 secondary_rack=node02
+```bash
+maas admin vlan update fabric-0 untagged dhcp_on=True primary_rack=node01 secondary_rack=node02
+```
 
 Note that if you are enabling DHCP over the CLI, but the subnet doesn't have a
 Gateway IP defined, you can define the gateway using:
 
-    $ maas admin subnet update 192.168.10.0/24 gateway_ip=192.168.10.1
+```bash
+maas admin subnet update 192.168.10.0/24 gateway_ip=192.168.10.1
+```
 
 You can also do the same configuration via the WebUI on the VLAN details page:
 
-![image](media/vlan_provide_dhcp.png)
+![image](./media/vlan_provide_dhcp.png)
 
 ## Multiple networks
 
