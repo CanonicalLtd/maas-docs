@@ -36,7 +36,7 @@ Controller interface connected to that VLAN. This is because:
 ## Registration
 
 If you install your first Rack Controller on the same system as the Region
-Controller, as is the case when you install the full "maas" ubuntu package, it
+Controller, as is the case when you install the full "maas" Ubuntu package, it
 will be automatically accepted by default (but not yet configured, see below).
 Any other Rack Controllers you set up will show up automatically after they
 have been manually added to MAAS.
