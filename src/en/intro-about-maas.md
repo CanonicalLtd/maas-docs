@@ -1,5 +1,6 @@
 Title: MAAS | Metal As A Service
 
+
 # What is MAAS?
 
 MAAS is *Metal as a Service*. It lets you treat physical servers like virtual
@@ -21,3 +22,5 @@ onto those machines.
 MAAS is ideal where you want the flexibility of the cloud, and the power and
 hassle-free nature of Juju charms, but you need, or want, to deploy onto bare
 metal.
+
+See a more [Detailed definition of MAAS](./intro-definition-maas.html).
