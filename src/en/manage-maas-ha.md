@@ -263,7 +263,7 @@ sudo maas-region local_config_set --maas-url http://<vip>/MAAS
 sudo systemctl restart maas-regiond
 ```
 
-## Deploying HA with Juju
+## Deploy HA with Juju
 
 Now that you have an understanding of how to configure HA manually, it is
 possible to use Juju to deploy MAAS in an HA configuration. Using Juju allows
