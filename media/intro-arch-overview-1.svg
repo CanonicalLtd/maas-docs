@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="diagram-1a.svg"
+   inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1.png"
+   inkscape:export-xdpi="112.44369"
+   inkscape:export-ydpi="112.44369">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path4822"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-0.74369584 : 568.94748 : 1"
+       inkscape:vp_y="0 : 665.55212 : 0"
+       inkscape:vp_z="745.61389 : 568.94748 : 1"
+       inkscape:persp3d-origin="372.4351 : 452.21383 : 1"
+       id="perspective3822" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.84355469"
+     inkscape:cx="423.50137"
+     inkscape:cy="428.57634"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-nodes="false"
+     inkscape:object-paths="false"
+     inkscape:snap-smooth-nodes="false"
+     inkscape:snap-global="true"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-grids="true"
+     inkscape:window-width="1233"
+     inkscape:window-height="783"
+     inkscape:window-x="351"
+     inkscape:window-y="143"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ff9955;fill-opacity:1;stroke:#e60000;stroke-width:1.72095907;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723, 1.72095908;stroke-dashoffset:0"
+       id="rect2985-9"
+       width="136.20691"
+       height="94.715805"
+       x="202.34894"
+       y="372.56158"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff9955;fill-opacity:1;stroke:#e60000;stroke-width:1.72095907;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723, 1.72095908;stroke-dashoffset:0"
+       id="rect2985-9-7"
+       width="136.20691"
+       height="94.715805"
+       x="226.57449"
+       y="349.67065"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff9955;fill-opacity:1;stroke:#e60000;stroke-width:1.72095907;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723, 1.72095908;stroke-dashoffset:0"
+       id="rect2985-9-1"
+       width="136.20691"
+       height="94.715805"
+       x="257.68726"
+       y="322.92883"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="280.67792"
+       y="359.01373"
+       id="text3852"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369"><tspan
+         sodipodi:role="line"
+         id="tspan3854"
+         x="280.67792"
+         y="359.01373">Region</tspan><tspan
+         sodipodi:role="line"
+         x="280.67792"
+         y="381.51373"
+         id="tspan3856">Controllers</tspan></text>
+    <g
+       id="g4408"
+       transform="translate(4,0)">
+      <rect
+         inkscape:export-ydpi="112.44369"
+         inkscape:export-xdpi="112.44369"
+         inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+         ry="10.412026"
+         rx="13.91775"
+         y="262.89169"
+         x="39.333397"
+         height="113.71294"
+         width="111.34202"
+         id="rect3840"
+         style="fill:#4bb2ea;fill-opacity:1;stroke:#e60000;stroke-width:1.69119012;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.07357026, 1.69119009;stroke-dashoffset:0" />
+      <text
+         inkscape:export-ydpi="112.44369"
+         inkscape:export-xdpi="112.44369"
+         inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+         sodipodi:linespacing="125%"
+         id="text3858"
+         y="303.15173"
+         x="45.367897"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+         xml:space="preserve"><tspan
+           y="303.15173"
+           x="45.367897"
+           id="tspan3860"
+           sodipodi:role="line">Database</tspan><tspan
+           id="tspan3862"
+           y="325.65173"
+           x="45.367897"
+           sodipodi:role="line">(MongoDB)</tspan></text>
+    </g>
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:1.60000002;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.8, 1.6;stroke-dashoffset:0"
+       id="rect3908"
+       width="189.67354"
+       height="23.709181"
+       x="205.25214"
+       y="471.48697"
+       rx="0"
+       ry="5.9272923"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="236.59042"
+       y="487.78519"
+       id="text3910"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369"><tspan
+         sodipodi:role="line"
+         id="tspan3912"
+         x="236.59042"
+         y="487.78519">HAProxy + VIP</tspan></text>
+    <g
+       id="g4054"
+       style="fill:none;stroke-width:1.70000005;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(-6,0)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4034"
+         d="m 458.5258,394.86453 c -24.00285,0 -11.25133,-70.55112 -21.00249,-70.55112 -9.75116,0 -7.50089,1.5678 -7.50089,1.5678"
+         style="fill:none;stroke:#000000;stroke-width:1.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4034-3"
+         d="m 459.82555,394.23863 c -24.00285,0 -11.25134,70.55112 -21.00249,70.55112 -9.75115,0 -7.50089,-1.56781 -7.50089,-1.56781"
+         style="fill:none;stroke:#000000;stroke-width:1.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="464.40936"
+       y="386.05377"
+       id="text4058"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4060"
+         x="464.40936"
+         y="386.05377">DNS</tspan><tspan
+         sodipodi:role="line"
+         x="464.40936"
+         y="408.55377"
+         id="tspan4066">HTTP (API and GUI)</tspan></text>
+    <g
+       transform="matrix(1,0,0,0.66659016,87.78756,290.47538)"
+       id="g4054-5"
+       style="fill:none;stroke-width:1.70000005;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4034-6"
+         d="m 458.5258,394.86453 c -24.00285,0 -11.25133,-70.55112 -21.00249,-70.55112 -9.75116,0 -7.50089,1.5678 -7.50089,1.5678"
+         style="fill:none;stroke:#000000;stroke-width:1.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4034-3-4"
+         d="m 459.82555,394.23863 c -24.00285,0 -11.25134,70.55112 -21.00249,70.55112 -9.75115,0 -7.50089,-1.56781 -7.50089,-1.56781"
+         style="fill:none;stroke:#000000;stroke-width:1.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="556.27875"
+       y="514.09821"
+       id="text4370"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4372"
+         x="556.27875"
+         y="514.09821">DHCP</tspan><tspan
+         sodipodi:role="line"
+         x="556.27875"
+         y="536.59821"
+         id="tspan4376">TFTP</tspan><tspan
+         sodipodi:role="line"
+         x="556.27875"
+         y="559.09821"
+         id="tspan4378">iSCSI</tspan><tspan
+         sodipodi:role="line"
+         x="556.27875"
+         y="581.59821"
+         id="tspan4380">HTTP (images)</tspan><tspan
+         sodipodi:role="line"
+         x="556.27875"
+         y="604.09821"
+         id="tspan4382">Power mgmt</tspan><tspan
+         sodipodi:role="line"
+         x="556.27875"
+         y="626.59821"
+         id="tspan4374" /></text>
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.3560462;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:7.0681391, 2.35604637;stroke-dashoffset:0"
+       id="rect3908-5"
+       width="424.82394"
+       height="22.953135"
+       x="46.364597"
+       y="610.23596"
+       rx="0"
+       ry="5.7382808"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="241.39014"
+       y="626.33856"
+       id="text4404"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4406"
+         x="241.39014"
+         y="626.33856">Fabric 1</tspan></text>
+    <rect
+       style="fill:#b3aca0;fill-opacity:1;stroke:#e60000;stroke-width:1.43328202000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.29984621000000011, 1.43328206999999996;stroke-dashoffset:0"
+       id="rect4414"
+       width="63.117077"
+       height="93.939026"
+       x="66.911011"
+       y="663.24957"
+       rx="9.6236191"
+       ry="10.444015"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:0.92995292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.78985866, 0.92995289;stroke-dashoffset:0"
+       id="rect3908-6"
+       width="62.31395"
+       height="24.379229"
+       x="67.360748"
+       y="761.52289"
+       rx="0"
+       ry="6.0948038"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="75.353088"
+       y="777.64117"
+       id="text4434"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4436"
+         x="75.353088"
+         y="777.64117">BMC</tspan></text>
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.3529253;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:7.05877632, 2.35292544;stroke-dashoffset:0"
+       id="rect3908-5-6"
+       width="423.6416"
+       height="22.956255"
+       x="49.51746"
+       y="790.19128"
+       rx="0"
+       ry="5.7390609"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="244.54457"
+       y="806.29547"
+       id="text4404-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4406-1"
+         x="244.54457"
+         y="806.29547">Fabric 2</tspan></text>
+    <rect
+       style="fill:#b3aca0;fill-opacity:1;stroke:#e60000;stroke-width:1.43328202000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.29984621000000011, 1.43328206999999996;stroke-dashoffset:0"
+       id="rect4414-7"
+       width="63.117077"
+       height="93.939026"
+       x="149.9043"
+       y="662.86212"
+       rx="9.6236191"
+       ry="10.444015"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:0.92995292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.78985866, 0.92995289;stroke-dashoffset:0"
+       id="rect3908-6-4"
+       width="62.31395"
+       height="24.379229"
+       x="150.35403"
+       y="761.13544"
+       rx="0"
+       ry="6.0948038"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="158.34637"
+       y="777.25372"
+       id="text4434-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4436-3"
+         x="158.34637"
+         y="777.25372">BMC</tspan></text>
+    <rect
+       style="fill:#b3aca0;fill-opacity:1;stroke:#e60000;stroke-width:1.43328202000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.29984621000000011, 1.43328206999999996;stroke-dashoffset:0"
+       id="rect4414-6"
+       width="63.117077"
+       height="93.939026"
+       x="231.9043"
+       y="662.86212"
+       rx="9.6236191"
+       ry="10.444015"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:0.92995292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.78985866, 0.92995289;stroke-dashoffset:0"
+       id="rect3908-6-49"
+       width="62.31395"
+       height="24.379229"
+       x="232.35403"
+       y="761.13544"
+       rx="0"
+       ry="6.0948038"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="240.34637"
+       y="777.25372"
+       id="text4434-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4436-1"
+         x="240.34637"
+         y="777.25372">BMC</tspan></text>
+    <rect
+       style="fill:#b3aca0;fill-opacity:1;stroke:#e60000;stroke-width:1.43328202000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.29984621000000011, 1.43328206999999996;stroke-dashoffset:0"
+       id="rect4414-6-5"
+       width="63.117077"
+       height="93.939026"
+       x="398.4072"
+       y="662.64404"
+       rx="9.6236191"
+       ry="10.444015"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:0.92995292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.78985866, 0.92995289;stroke-dashoffset:0"
+       id="rect3908-6-49-9"
+       width="62.31395"
+       height="24.379229"
+       x="398.85693"
+       y="760.91736"
+       rx="0"
+       ry="6.0948038"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="406.84927"
+       y="777.03564"
+       id="text4434-0-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4436-1-2"
+         x="406.84927"
+         y="777.03564">BMC</tspan></text>
+    <rect
+       style="fill:#b3aca0;fill-opacity:1;stroke:#e60000;stroke-width:1.43328202000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.29984621000000011, 1.43328206999999996;stroke-dashoffset:0"
+       id="rect4414-6-1"
+       width="63.117077"
+       height="93.939026"
+       x="314.4072"
+       y="662.64404"
+       rx="9.6236191"
+       ry="10.444015"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:0.92995292;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.78985866, 0.92995289;stroke-dashoffset:0"
+       id="rect3908-6-49-6"
+       width="62.31395"
+       height="24.379229"
+       x="314.85693"
+       y="760.91736"
+       rx="0"
+       ry="6.0948038"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="322.84927"
+       y="777.03564"
+       id="text4434-0-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4436-1-6"
+         x="322.84927"
+         y="777.03564">BMC</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="223.75366"
+       y="654.49878"
+       id="text4566"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4568"
+         x="223.75366"
+         y="654.49878">Machines</tspan></text>
+    <rect
+       style="fill:#f5f1a4;fill-opacity:1;stroke:#e60000;stroke-width:1.72095906999999992;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723000000032, 1.72095908000000009;stroke-dashoffset:0"
+       id="rect2985-9-1-2"
+       width="136.20691"
+       height="94.715805"
+       x="58.719879"
+       y="503.81604"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#f5f1a4;fill-opacity:1;stroke:#e60000;stroke-width:1.72095906999999992;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723000000032, 1.72095908000000009;stroke-dashoffset:0"
+       id="rect2985-9-1-2-2"
+       width="136.20691"
+       height="94.715805"
+       x="143.32974"
+       y="503.18396"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#f5f1a4;fill-opacity:1;stroke:#e60000;stroke-width:1.72095906999999992;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723000000032, 1.72095908000000009;stroke-dashoffset:0"
+       id="rect2985-9-1-2-1"
+       width="136.20691"
+       height="94.715805"
+       x="235.59232"
+       y="502.36942"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <rect
+       style="fill:#f5f1a4;fill-opacity:1;stroke:#e60000;stroke-width:1.72095906999999992;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.16287723000000032, 1.72095908000000009;stroke-dashoffset:0"
+       id="rect2985-9-1-2-28"
+       width="136.20691"
+       height="94.715805"
+       x="343.59232"
+       y="502.36942"
+       ry="19.904045"
+       rx="68.103455"
+       inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1a.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="363.04886"
+       y="533.57452"
+       id="text4755"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4757"
+         x="363.04886"
+         y="533.57452">Rack</tspan><tspan
+         sodipodi:role="line"
+         x="363.04886"
+         y="556.07452"
+         id="tspan4759">Controllers</tspan></text>
+    <rect
+       style="fill:#ff98ed;fill-opacity:1;stroke:#d800e6;stroke-width:0.90371352000000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.71114046000000020, 0.90371349000000001;stroke-dashoffset:0"
+       id="rect3908-9"
+       width="58.78381"
+       height="24.405468"
+       x="413.42032"
+       y="574.69519"
+       rx="0"
+       ry="6.1013637"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="417.65271"
+       y="591.66205"
+       id="text4785"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4787"
+         x="417.65271"
+         y="591.66205">Power</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 471.93279,593.84134 c 33.52986,105.61906 28.50038,148.36963 25.1474,171.84053 -3.35299,23.47091 -20.95617,35.20636 -20.95617,35.20636"
+       id="path4793"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 98.074843,377.57373 c 75.442187,43.58882 100.589587,42.75058 100.589587,42.75058"
+       id="path5795"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
