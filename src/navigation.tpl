@@ -53,6 +53,18 @@ href="installconfig-rack.html#providing-dhcp-and-ha">Providing DHCP and HA</a>
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Manage MAAS</h4>
     	<ul>
+		<li class"section">Storage</li>
+		<li class"section"><a href="manage-maas-ha.html">High Availability (HA)</a>
+			<ul class="sub">
+					<li><a href="manage-maas-ha.html#rack-controller-ha">Rack Controller HA</a></li>
+					<li><a href="manage-maas-ha.html#region-controller-ha">Region Controller HA</a></li>
+					<li><a href="manage-maas-ha.html#deploy-ha-with-juju">Deploy HA with Juju</a></li>
+			</ul>
+		</li>
+		<li class"section">Custom Images</li>
+		<li class"section">Command Line Interface</li>
+		<li class"section">Scripts and the API</li>
+		
     	</ul>
     </li>
 <!-- SECTION -->
