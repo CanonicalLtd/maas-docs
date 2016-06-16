@@ -29,10 +29,10 @@ MAAS supports IPv4 and IPv6 subnets.
 Examples:
 
 ```no-highlight
-    10.0.0.0/8
-    172.16.0.0/12
-    192.168.0.0/16
-    2001:db8:4d41:4153::/64
+10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16
+2001:db8:4d41:4153::/64
 ```
 
 Subnets can be annotated with a descriptive name, their default gateway,
