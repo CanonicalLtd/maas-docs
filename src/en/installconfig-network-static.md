@@ -26,7 +26,7 @@ allocate to the interface.
 
 !["static ip"](./media/maas-gui-staticip.png)
 
-## Unmanaged User-allocated IPs
+## Unmanaged user-allocated IPs
 
 The API allows users to request an IP address for use in any way they
 see fit. The IP is not tied to any node in MAAS and is guaranteed not to be in
