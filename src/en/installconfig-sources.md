@@ -1,7 +1,5 @@
 Title: Boot images import configuration
 TODO: 	Update to use the GUI
-	Check the 'Downloading images' and 'different source' sections for
-	accuracy.	
 
 # Boot images import configuration
 
