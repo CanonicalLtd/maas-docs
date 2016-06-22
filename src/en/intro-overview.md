@@ -1,92 +1,87 @@
 Title: MAAS | Functional Overview
 
+
 # Functional overview
 
-## MAAS in Brief
+This section provides an overview of MAAS that will allow you to decide whether
+you can benefit from MAAS. It also explains minimal requirements for a simple
+MAAS installation. Later sections will cover the inner workings of MAAS and
+how to install and configure it.
 
-Canonical’s MAAS brings the dynamism of cloud computing to the world of
-physical provisioning and Ubuntu. Connect, commission and deploy physical
-servers in record time, re-allocate nodes between services dynamically, and
-keep them up to date and in due course, retire them from use.
 
-MAAS is a new way of thinking about physical infrastructure. Compute, storage
-and network are commodities in the virtual world, and for large-scale
-deployments the same is true of the metal. “Metal as a service” lets you treat
-farms of servers as a malleable resource for allocation to specific problems,
-and re-allocation on a dynamic basis.
+## What MAAS offers
 
-In conjunction with the Juju service orchestration software (see
-<https://juju.ubuntu.com/docs/>), MAAS will enable you to get the most out of
-your physical hardware and dynamically deploy complex services with ease and
-confidence.
+MAAS provides management of a large number of physical machines by creating a
+single resource pool out of them. Participating machines can then be
+provisioned automatically (Debian preseed) and used as normal. When those
+machines are no longer required they are "released" back into the pool. MAAS
+integrates all the tools you require in one smooth experience. It includes:
 
-## Do I Need MAAS?
+- a beautiful web UI
+- full API/CLI support
+- high availability (optional)
+- IPv6 support
+- open source IP address management (IPAM)
+- Ubuntu, CentOS, or Windows installation support
+- inventory of components
+- DHCP and DNS for other devices on the network
+- VLAN and fabric support
 
-MAAS certainly isn't for everyone, but why not ask yourself these questions?
+MAAS works with any configuration system, and is recommended by the teams
+behind both [Chef](https://www.chef.io/chef) and
+[Juju](https://jujucharms.com/docs/stable/about-juju) as a physical
+provisioning system.
 
-You probably *SHOULD* use MAAS if any or all of the following statements are
-true:
 
--   You are trying to manage many physical servers.
--   You want to deploy services with the minimum fuss.
--   You need to get the most from your resources.
--   You want things to work, repeatably and reliably.
+## A simple MAAS setup
 
-You probably don't need MAAS if any or all of these statements are true:
+The key components of a MAAS installation are:
 
--   You don't need to manage physical hardware
--   You relish time spent in the server room
--   You like trying to set up complicated, critical services without any help
+- Region controller(s)
+- Rack controller(s)
+- MAAS machines (nodes)
 
-## A Typical MAAS setup
+For a small setup, it is typical to have a single region controller and a
+single rack controller. In addition, both can reside on the same system. This
+is easy to achieve by simply installing the `maas` software package. It is only
+worth having multiple region and rack controllers if you need to organise your
+nodes into different subnets and you want high availability and/or load
+balancing.
 
-MAAS is designed to work with your physical hardware, whether your setup
-includes thousands of server boxes or only a few. The key components of the
-MAAS software are:
 
--   Region controller
--   Cluster controller(s)
--   Nodes
+## How MAAS works
 
-The nodes are the computers you manage using MAAS. These can range from just a
-handful to many thousands of systems.
+MAAS manages a pool of nodes. After registering ("Enlisting" state) a new
+system and preparing it for service ("Commissioning" state), the system joins
+the pool and is available for use ("Ready" state).
 
-For small (in terms of number of nodes) setups, you will probably just install
-the Region controller and a cluster controller on the same server - it is only
-worth having multiple region controllers if you need to organise your nodes
-into different subnets (e.g. if you have a lot of nodes). If you install the
-`maas` package, it will include both a region controller and a cluster
-controller, and they will be automatically set up to work together.
+MAAS controls machines through IPMI (or another BMC) or converged chassis
+controller such as Cisco UCS. 
 
-![image](media/orientation_architecture-diagram.*)
+!!! Warning: A machine destined for MAAS will have its disk space overwritten.
+A node in the pool is under MAAS's sole control and should not be provisioned
+using other methods.
 
-## How MAAS is used
+Users of the MAAS then allocate them for their own use ("Acquire") when they go
+into use. Any subsequently installed operating system will contain the user's
+SSH public key for remote access (the user's MAAS account first needs to import
+the key). The GUI also allows for manual allocation in the sense of reserving
+hardware to specific users for later use.
 
-MAAS manages a pool of nodes. After registering a new system with the MAAS and
-preparing it for service ("commissioning"), the new system joins this pool.
+When allocating from the API/CLI, you can specify requirements ("constraints")
+for a machine. Common constraints are: memory, CPU cores, connected networks,
+and what physical zone they should be in.
 
-From the moment a node is accepted into the MAAS, any operating system,
-software, or data that it may have had installed before is meant to be
-overwritten. A node in the pool is under MAAS's sole control, and off-limits
-to users.
+An allocated MAAS node is not like a virtual instance in a cloud: you get
+complete control, including hardware drivers and root access. To upgrade a
+BIOS, for example, an administrator could allocate a node to themselves, and
+run a vendor-supplied upgrade utility.
 
-Once you have nodes in the pool, users of the MAAS can allocate them for their
-own use. At that point, the nodes are installed with the selected operating
-system and set up with the user's login credentials for remote access. This is
-referred to as "starting" a node in the browser interface, and as "acquiring"
-(and, as a separate step, "starting") a node in the API.
+Once you are done with a node you have allocated you send it back to the pool
+for re-use.
 
-When allocating from the API, you can specify constraints such as how much
-memory you need, how many CPUs, what networks the node should be connected to,
-what physical zone they should be in, and so on. API commands can also be
-issued through the `maas` command-line utility.
-
-An allocated node is not like a virtual instance in a cloud: you get complete
-control, including hardware drivers and root access. To upgrade a BIOS, for
-example, an administrator could allocate a node to themselves, and run a
-vendor-supplied upgrade utility. Needless to say, you also get full hardware
-performance and tweaking!
-
-Once you are done with a node you have allocated, you can release it back to
-the pool. Once again any data, software, or operating system will no longer be
-available.
+Note that [Juju](https://jujucharms.com/docs/stable/about-juju) is designed to
+work with MAAS. In this case, MAAS becomes a sort of backend (resource pool)
+for Juju, or a "cloud provider" in Juju terminology. However, everything that
+was stated earlier still applies. For instance, if Juju removes a machine then
+MAAS will, in turn, release that machine to the pool.
