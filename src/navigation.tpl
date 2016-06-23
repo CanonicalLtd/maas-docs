@@ -70,6 +70,8 @@ href="installconfig-rack.html#providing-dhcp-and-ha">Providing DHCP and HA</a>
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Troubleshoot</h4>
     	<ul>
+       		<li><a href="troubleshoot-main.html">Troubleshooting techniques</a></li>
+       		<li><a href="troubleshoot-getting-help.html">Getting help</a></li>
     	</ul>
     </li>
 <li><a href="http://maas.ubuntu.com/docs/index.html#developing-maas">Developer
