@@ -42,7 +42,7 @@ href="installconfig-install.html">Install</a>
 				</li>
 			</ul>
 
-		<li class"section"><a href="installconfig-images.html">Images</a>
+		<li class"section">Images
 			<ul class="sub">
 				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
 				<li><a href="installconfig-sources.html">Import Configuration</a></li>
