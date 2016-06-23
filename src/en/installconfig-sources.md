@@ -1,7 +1,7 @@
-Title: Boot images import configuration
+Title: Import Images Configuration
 TODO: 	Update to use the GUI
 
-# Boot images import configuration
+# Import Images Configuration
 
 The configuration for where a Region Controller downloads its images is defined
 by a set of "sources". Each "source" defines a Simplestreams repository
