@@ -16,17 +16,17 @@
 		<li class"section"><a class"header"
 href="installconfig-install.html">Install</a>
 			<ul class="sub">
+				<li><a href="installconfig-install.html#installing-maas-from-ubuntu-server">Install from Ubuntu Server</a></li>
 				<li><a href="installconfig-install.html#maas-packages">Install from CLI</a></li>
-				<li><a
-href="installconfig-install.html#installing-maas-from-ubuntu-server">Install from Ubuntu Server</a></li>
-				<li><a
-href="installconfig-install.html#installing-maas-locally-with-lxc">Install into LXC</a></li>
+				<li><a href="installconfig-install.html#installing-maas-locally-with-lxc">Install into LXC</a></li>
 			</ul>	
 		</li>	
 		<li><a href="installconfig-gui.html">Access the GUI</a></li>
-		<li class"section"><a href="installconfig-network.html">Network Configuration</a>
+		<li class"section">Network Configuration
 			<ul class="sub">
 				<li><a href="installconfig-network-dhcp.html#configure-dhcp">DHCP</a></li>
+				<li><a href="installconfig-network-static.html">Static IPs</a></li>
+				<li><a href="installconfig-network-ipv6.html">IPv6</a></li>
 			</ul>
 		</li>
 		<li>Account Configuration</li>
@@ -37,15 +37,15 @@ href="installconfig-install.html#installing-maas-locally-with-lxc">Install into 
 						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
 						<li><a href="installconfig-rack.html#registration">Registration</a>
 						<li><a href="installconfig-rack.html#interface-management">Interface Management</a>
-						<li><a
-href="installconfig-rack.html#providing-dhcp-and-ha">Providing DHCP and HA</a>
+						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">DHCP and HA</a>
 					</ul>
 				</li>
 			</ul>
 
-		<li class"section"><a href="installconfig-images.html">Images</a>
+		<li class"section">Images
 			<ul class="sub">
 				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
+				<li><a href="installconfig-sources.html">Import Configuration</a></li>
 			</ul>
 		</li>
    	 </ul>
