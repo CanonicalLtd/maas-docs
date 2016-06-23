@@ -37,7 +37,7 @@ href="installconfig-install.html">Install</a>
 						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
 						<li><a href="installconfig-rack.html#registration">Registration</a>
 						<li><a href="installconfig-rack.html#interface-management">Interface Management</a>
-						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">Providing DHCP and HA</a>
+						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">DHCP and HA</a>
 					</ul>
 				</li>
 			</ul>
