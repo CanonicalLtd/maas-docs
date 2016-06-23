@@ -87,7 +87,7 @@ Machine-readable output follows:
 
 ```
 
-## Restricting the images being downloaded
+## Restrict download images
 
 Let's say you want to add a previous LTS release to images being downloaded.
 Starting from the configuration described above, the following command will add
@@ -108,7 +108,7 @@ The output from this command will inform you that the import of boot resources
 has started, and you can check on progress from the 'Images' page of the MAAS
 GUI.
 
-## Downloading the images from a different source
+## Images from a different source
 
 Let's say you want to import the images from a different location. You would
 need to to change the source's URL and keyring. The keyring can be defined by
