@@ -1,9 +1,6 @@
-# Using hardware-enablement kernels
+Title: Hardware-enablement kernels
 
-> **note**
->
-> As of MAAS 1.9 this feature is configured by setting the hwe\_kernel
-> variable instead of the architecture variable.
+# Hardware-enablement kernels
 
 MAAS allows you to use hardware enablement kernels when booting nodes with
 Ubuntu that require them.
@@ -16,13 +13,13 @@ MAAS or Ubuntu. Hardware Enablement (HWE) is all about keeping pace with the
 new hardware.
 
 Ubuntu's solution to this is to offer newer kernels for older releases. There
-are at least two kernels on offer for Ubuntu releases: the "generic" kernel --
-i.e. the kernel released with the current series --and the Hardware Enablement
-kernel, which is the most recent kernel release.
+are at least two kernels on offer for Ubuntu releases: the "generic" kernel,
+i.e. the kernel released with the current series, and the HWE kernel, which is
+the most recent kernel release.
 
 There are separate HWE kernels for each release of Ubuntu, referred to as
-`hwe-<release letter>`. So, the 14.04 / Trusty Tahr HWE kernel is called
-`hwe-t`, the 12.10 / Quantal Quetzal HWE kernel is called `hwe-q` and so on.
+`hwe-<release letter>`. So, the 16.04 / Xenial HWE kernel is called
+`hwe-x`, the 14.10 / Trusty Tahr kernel is called `hwe-t` and so on.
 This allows you to use newer kernels with older releases, for example running
 Precise with a Saucy (hwe-s) kernel.
 
@@ -41,28 +38,31 @@ to be deployed uses a kernel version at or above the value of
 min\_hwe\_kernel. For example if min\_hwe\_kernel is set to hwe-t when
 deploying any release before Trusty the hwe-t kernel will be used. For any
 release after Trusty the default kernel for that release will be used. If
-hwe-t or newer is not availible for the specified release MAAS will not allow
+hwe-t or newer is not available for the specified release MAAS will not allow
 that release to be deployed and throw an error.
 
-min\_hwe\_kernel can be set by running the command:
+min\_hwe\_kernel can be set by running following the command (we're setting
+`hwe-t` is the minimum kernel version):
 
-    $ maas <profile-name> node update <system-id>
-      min_hwe_kernel=hwe-<release letter>
+```bash
+maas admin machine update <system-id> min_hwe_kernel=hwe-t
+```
 
 It's also possible to set the min\_hwe\_kernel from the MAAS web UI, by
-visiting the Node's page and clicking `Edit node`. Under the Minimum Kernel
-field, you will be able to select any HWE kernels that have been imported onto
-that node's cluster controller.
+visiting the node's page and clicking the `Edit` button alongside the 'Machine
+summary' pane. Under the Minimum Kernel field, you will be able to select any HWE
+kernels that have been imported onto that node's cluster controller.
 
-![image](media/min_hwe_kernel.png)
+![image](./media/min_hwe_kernel.png)
 
 You can also set the hwe\_kernel during deployment. MAAS checks that the
-specified kernel is avalible for the release specified before deploying the
+specified kernel is available for the release specified before deploying the
 node. You can set the hwe\_kernel when deploying by using the command:
 
-    $ maas <profile-name> node start <system-id> distro_series=<distro>
-    hwe_kernel=hwe-<release letter>
+```bash
+maas admin machine deploy <system-id> distro_series=xenial hwe_kernel=hwe-x
+```
 
 Or through the web interface as seen below.
 
-![image](media/hwe_kernel.png)
+![image](./media/hwe_kernel.png)
