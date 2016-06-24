@@ -44,7 +44,7 @@ If you know the MAC address of a node, you can manually enter details about
 the node through the web interface. Click the `Add Node` button to be taken to
 the "Add Node" form:
 
-![image](media/add-node.png)
+![image](./media/add-node.png)
 
 ## Virtual machine nodes
 
@@ -73,7 +73,7 @@ or:
 qemu:///system
 ```
 
-![image](media/virsh-config.png)
+![image](./media/virsh-config.png)
 
 If you want to use ssh you'll need to generate a ssh key pair for the maas
 user. By default there is no home directory created for the maas user:
