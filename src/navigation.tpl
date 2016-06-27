@@ -47,6 +47,7 @@ href="installconfig-install.html">Install</a>
 			<ul class="sub">
 				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
 				<li><a href="installconfig-sources.html">Import Configuration</a></li>
+				<li><a href="installconfig-images-mirror.html">Local Image Mirror</a></li>
 			</ul>
 		</li>
    	 </ul>
