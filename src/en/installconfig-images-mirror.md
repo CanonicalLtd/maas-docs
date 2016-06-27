@@ -1,4 +1,4 @@
-Title: Local Mirror of Images 
+Title: Local Image Mirror
 TODO: Review needed
 
 # Local Image Mirror
