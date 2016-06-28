@@ -1,8 +1,6 @@
 Title: Kernel Boot Options
 TODO: Review
       Add examples of why you'd need to change kernel boot options
- 
-
 
 # Kernel Boot Options
 
