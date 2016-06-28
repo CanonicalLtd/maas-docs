@@ -40,6 +40,7 @@ href="installconfig-install.html">Install</a>
 						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">DHCP and HA</a>
 					</ul>
 				</li>
+				<li><a href="installconfig-kernel.html">Kernel Boot Options</a></li>
 				<li><a href="installconfig-he-kernels.html">Hardware-enablement kernels</a></li>
 			</ul>
 
