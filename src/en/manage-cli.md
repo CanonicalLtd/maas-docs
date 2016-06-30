@@ -1,11 +1,14 @@
 Title: MAAS CLI
+TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
+       Decide whether explicit examples are needed
+       Decide whether foldouts should be used
 
 
-# Introduction to the CLI
+# Using the CLI
 
 Everything that can be done in the web interface can be done with the CLI. This
 is achieved with the `maas` command that, in turn, connects to the API. What
-follows is a summary of the common MAAS management tasks. See the full
+follows is a list of common MAAS management tasks. See the full
 [API documentation](http://maas.ubuntu.com/docs2.0/index.html#api-cli-documentation)
 for details.
 
@@ -14,94 +17,215 @@ for details.
 
 To use the CLI you must first log in to the API server.
 
-To do this, you need the API key that was geneerated when your MAAS account was
-created.
-
-To obtain it from the web interface, click on your user name in the top right
-corner of the page, and select 'Account'.
-
-To obtain it through the command line, run this command on the region
-controller (i.e. where the 'maas-region-controller' package was installed):
+You will need the API key that was geneerated when your MAAS account was
+created. To obtain it, run this command on the region controller (i.e. where
+the 'maas-region-controller' package was installed):
 
 ```bash
-sudo maas-region-admin apikey --username=<my-username>
+sudo maas-region apikey --username=$USERNAME
 ```
+
+!!! Note: The API key can also be obtained from the web interface. Click on
+'username' in the top right corner, and select 'Account'.
 
 Finally, log in with:
 
 ```bash
-maas login <profile-name> <hostname> [<key>]
+maas login $PROFILE $API_SERVER [$API_KEY]
 ```
 
-Note that 'username' and 'profile-name' are the same.
+Notes:
 
-For example, if you're logging in with the initial superuser account whose
-username is 'admin':
+- The terms 'username' and 'profile' are effectively equivalent.
+- The API server is the region controller.
+- If the API key is not supplied the user will be prompted for it.
+
+For example, to log in with the account whose username is 'admin' and where
+the region controller is on the localhost:
 
 ```bash
 maas login admin http://localhost/MAAS/api/2.0
 ```
 
-!!! Note: If the key is not supplied, you will be prompted for it.
-
 
 ## List nodes
 
-maas <profile-name> nodes read
-maas <profile-name> nodes read | grep hostname
+To list all nodes (and their characteristics) in the MAAS cluster:
+
+```bash
+maas $PROFILE nodes read
+```
+
+Add a filter to get just their hostnames:
+
+```bash
+maas $PROFILE nodes read | grep hostname
+```
 
 
-## Log out `logout <profile>`
+## Set dynamic IP address range
+
+To set a range of dynamic IP addresses:
+
+```bash
+maas $PROFILE ipranges create type=dynamic \
+	start_ip=$IP_DYNAMIC_RANGE_LOW end_ip=$IP_DYNAMIC_RANGE_HIGH
+```
+
+
+## Set reserved IP address range
+
+To set a range of reserved IP addresses:
+
+```bash
+maas $PROFILE ipranges create type=reserved \
+	start_ip=$IP_RESERVED_RANGE_LOW end_ip=$IP_RESERVED_RANGE_HIGH
+```
+
+
+## Determine a fabric ID
+
+To determine a fabric ID based on a subnet address:
+
+```bash
+FABRIC_ID=$(maas $PROFILE subnet read $SUBNET_CIDR \
+	| grep fabric | cut -d ' ' -f 10 | cut -d '"' -f 2)
+```
+
+
+## Enable DHCP
+
+To enable DHCP on a fabric:
+
+```bash
+maas $PROFILE vlan update $FABRIC_ID untagged \
+	dhcp_on=True primary_rack=$RACK_CONTROLLER
+```
+
+
+## Set DNS forwarder
+
+To set a DNS forwarder:
+
+```bash
+maas $PROFILE maas set-config name=upstream_dns value=$MY_UPSTREAM_DNS
+```
+
+
+## Set node proxy
+
+To set a node proxy:
+
+```bash
+maas $PROFILE maas set-config name=http_proxy value=$MY_PROXY
+```
+
+
+## Set default gateway
+
+To set the default gateway for a subnet:
+
+```bash
+maas $PROFILE subnet update $SUBNET_CIDR gateway_ip=$MY_GATEWAY
+```
+
+
+## Set DNS server
+
+To set the DNS server for a subnet:
+
+```bash
+maas $PROFILE subnet update $SUBNET_CIDR dns_servers=$MY_NAMESERVER
+```
+
+
+## Set zone description
+
+To set a description for a physical zone:
+
+```bash
+maas $PROFILE zone update default \
+	description="This zone was configured by a script."
+```
+
+
+## Add public SSH key
+
+To add a public SSH key to a MAAS user account:
+
+```bash
+maas $PROFILE sshkeys create "key=$SSH_KEY"
+```
+
+
+## Select install images
+
+To select install images (here Trusty amd64 with Xenial HWE kernel) to be later
+imported:
+
+```bash
+maas $PROFILE boot-source-selections create 1 \
+	os="ubuntu" release="trusty" arches="amd64" \
+	subarches="hwe-x" labels="*"
+```
+
+
+## Import install images
+
+To import previously selected install images:
+
+```bash
+maas $PROFILE boot-resources import
+```
+
+
+## Determine hostname
+
+To determine the hostname based on a node's MAC address:
+
+```bash
+HOSTNAME=$(maas $PROFILE nodes read mac_address=$MAC \
+	| grep hostname | cut -d '"' -f 4)
+```
+
+
+## Determine system ID
+
+To determine the system ID based on a node's hostname:
+
+```bash
+SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
+	| grep system_id | cut -d '"' -f 4)
+```
+
+
+## Update node hostname and power parameters
+
+To update the hostname and power parameters of a (KVM) node based on its
+system ID:
+
+```bash
+maas $PROFILE machine update $SYSTEM_ID \
+	hostname=$HOSTNAME \
+	power_type=virsh \
+	power_parameters_power_address=qemu+ssh://ubuntu@$KVM_HOST/system \
+	power_parameters_power_id=$HOSTNAME
+```
+
+
+## Commission node
+
+To commission a node based on its system ID:
+
+```bash
+maas $PROFILE machine commission $SYSTEM_ID
+```
+
+
+## Log out
 
 Logs out from the given profile, flushing the stored credentials.
 
 ```bash
-maas logout <profile-name>
+maas logout $PROFILE
 ```
-
-
-
-maas $MAAS_SUPERUSER ipranges create type=dynamic
-start_ip=$MAAS_IP_DYNAMIC_RANGE_LOW end_ip=$MAAS_IP_DYNAMIC_RANGE_HIGH && echo
-"Dynamic IP range set"
-
-maas $MAAS_SUPERUSER ipranges create type=reserved
-start_ip=$MAAS_IP_RESERVED_RANGE_LOW end_ip=$MAAS_IP_RESERVED_RANGE_HIGH &&
-echo "Reserved IP range set"
-
-FABRIC_ID=\$(maas $MAAS_SUPERUSER subnet read $INSTANCE_SUBNET_CIDR | grep
-fabric | cut -d ' ' -f 10 | cut -d '"' -f 2)
-maas $MAAS_SUPERUSER vlan update \$FABRIC_ID untagged dhcp_on=True
-primary_rack=$MAAS_INSTANCE >/dev/null && echo "DHCP enabled on \$FABRIC_ID"
-
-maas $MAAS_SUPERUSER maas set-config name=upstream_dns
-value=$MY_STSSTACK_BASTION && echo "DNS forwarder set"
-
-maas $MAAS_SUPERUSER maas set-config name=http_proxy value=$MY_STSSTACK_PROXY
-&& echo "Node proxy set"
-
-maas $MAAS_SUPERUSER subnet update $INSTANCE_SUBNET_CIDR
-gateway_ip=$MAAS_INTERNAL_IP && echo "Default gateway set"
-
-maas $MAAS_SUPERUSER subnet update $INSTANCE_SUBNET_CIDR
-dns_servers=$MAAS_INTERNAL_IP && echo "DNS server set"
-
-maas $MAAS_SUPERUSER zone update default description="This zone was configured
-by Golem." && echo "Zone description set"
-
-maas $MAAS_SUPERUSER sshkeys create "key=\$KEY" && echo "A public SSH key was
-added to MAAS superuser '$MAAS_SUPERUSER' account"
-
-maas $MAAS_SUPERUSER boot-source-selections create 1 os="ubuntu"
-release="trusty" arches="amd64" subarches="hwe-x" labels="*" && echo "Trusty
-amd64 images selected for download"
-
-maas $MAAS_SUPERUSER boot-resources import
-
-                HOSTNAME=\$(maas $MAAS_SUPERUSER nodes read mac_address=\$MAC |
-grep hostname | cut -d '"' -f 4)
-                nodeSystemIDs[\$i]=\$(maas $MAAS_SUPERUSER nodes read
-hostname=\$HOSTNAME | grep system_id | cut -d '"' -f 4)
-                maas $MAAS_SUPERUSER machine update \${nodeSystemIDs[\$i]} \
-
-maas $MAAS_SUPERUSER machine commission \${nodeSystemIDs[\$i]} >/dev/null

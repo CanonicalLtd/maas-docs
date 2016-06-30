@@ -64,15 +64,13 @@ href="installconfig-install.html">Install</a>
 			</ul>
 		</li>
 		<li class"section">Custom Images</li>
-		<li class"section">Command Line Interface</li>
-		<li class"section">Scripts and the API</li>
-		
+		<li class"section"><a href="manage-cli.html">Using the CLI</a>
     	</ul>
     </li>
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Troubleshoot</h4>
     	<ul>
-       		<li><a href="troubleshoot-main.html">Troubleshooting techniques</a></li>
+       		<li><a href="troubleshoot-faq.html">FAQ</a></li>
        		<li><a href="troubleshoot-getting-help.html">Getting help</a></li>
     	</ul>
     </li>
