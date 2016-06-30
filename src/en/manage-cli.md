@@ -2,6 +2,7 @@ Title: MAAS CLI
 TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
        Decide whether explicit examples are needed
        Decide whether foldouts should be used
+       Consider a way to explain how an API call is converted to a CLI command
 
 
 # Using the CLI
@@ -17,7 +18,7 @@ for details.
 
 To use the CLI you must first log in to the API server.
 
-You will need the API key that was geneerated when your MAAS account was
+You will need the API key that was generated when your MAAS account was
 created. To obtain it, run this command on the region controller (i.e. where
 the 'maas-region-controller' package was installed):
 
