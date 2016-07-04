@@ -37,6 +37,12 @@ href="installconfig-install.html">Install</a>
 						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
 						<li><a href="installconfig-rack.html#registration">Registration</a>
 						<li><a href="installconfig-rack.html#interface-management">Interface Management</a>
+						<li class"section"><a href="installconfig-storage.html">Storage</a>
+							<ul class="sub">
+								<li><a href="installconfig-block.html">Block Devices</a></li>
+								<li><a href="installconfig-partitions.html">Partitions</a></li>
+							</ul>
+						</li>
 						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">DHCP and HA</a>
 					</ul>
 				</li>
@@ -57,7 +63,6 @@ href="installconfig-install.html">Install</a>
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Manage MAAS</h4>
     	<ul>
-		<li class"section">Storage</li>
 		<li class"section"><a href="manage-maas-ha.html">High Availability (HA)</a>
 			<ul class="sub">
 					<li><a href="manage-maas-ha.html#rack-controller-ha">Rack Controller HA</a></li>
