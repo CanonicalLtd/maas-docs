@@ -13,8 +13,7 @@
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Install & Configure</h4>
     	<ul>
-		<li class"section"><a class"header"
-href="installconfig-install.html">Install</a>
+		<li class"section"><a class"header" href="installconfig-install.html">Install</a>
 			<ul class="sub">
 				<li><a href="installconfig-install.html#installing-maas-from-ubuntu-server">Install from Ubuntu Server</a></li>
 				<li><a href="installconfig-install.html#maas-packages">Install from CLI</a></li>
@@ -22,9 +21,10 @@ href="installconfig-install.html">Install</a>
 			</ul>	
 		</li>	
 		<li><a href="installconfig-gui.html">Access the GUI</a></li>
-		<li class"section">Network Configuration
+		<li><a href="installconfig-zones.html">Configure zones</a></li>
+		<li class"section"><a class"header" href="installconfig-network2.html">Configure network</a>
 			<ul class="sub">
-				<li><a href="installconfig-network-dhcp.html#configure-dhcp">DHCP</a></li>
+				<li><a href="installconfig-network-dhcp.html">DHCP</a></li>
 				<li><a href="installconfig-network-static.html">Static IPs</a></li>
 				<li><a href="installconfig-network-ipv6.html">IPv6</a></li>
 			</ul>
