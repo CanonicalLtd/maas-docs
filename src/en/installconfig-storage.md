@@ -7,7 +7,7 @@ MAAS doesn't just do simple partitioning - it supports complex storage layouts,
 including setting up and configuring Bcache, RAID, and LVM. It also offers
 fine-grained control over the creation, deletion, formatting and mounting of
 both [block devices](installconfig-block.html) and
-[partitions](installconfig-paritions.html). This gives users unlimited
+[partitions](installconfig-partitions.html). This gives users unlimited
 possibilities on the storage configurations they want to deploy.
 
 ## Layouts
