@@ -1,7 +1,8 @@
-Title: Devices
+Title: Other Devices
 TODO:  This information should probably be part of a larger document or provide
        further details on specific devices.
-# Devices
+
+# Other devices
 
 In addition to nodes, a MAAS cluster controller can manage *devices*. Devices
 represent non-installable machines. This feature can be used to track routers,
