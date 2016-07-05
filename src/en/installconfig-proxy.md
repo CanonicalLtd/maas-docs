@@ -35,9 +35,13 @@ the Region Controller.
 
 If you want to use an external proxy, you can define its URL using the web
 interface by selecting Settings>General and scrolling down to the 'Proxy for
-APT and HTTP/HTTPS' section:
+APT and HTTP/HTTPS' section.
 
 ![image](./media/external-proxy.png)
+
+!!! Note: Despite the web interface labelling the external proxy field 
+'Proxy for APT and HTTP/HTTPS', the proxy is only for APT and not for
+HTTP/HTTPS as implied.
 
 Alternatively, the command line API call will specify squid.example.com as the
 proxy, using port 3128:
