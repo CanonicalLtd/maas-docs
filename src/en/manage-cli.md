@@ -68,6 +68,10 @@ maas $PROFILE nodes read | grep hostname
 
 To set a default minimum kernel for all machines:
 
+```bash
+maas $PROFILE nodes
+```
+
 
 ## Set a minimum kernel for a machine
 
