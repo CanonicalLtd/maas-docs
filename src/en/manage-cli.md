@@ -64,6 +64,38 @@ maas $PROFILE nodes read | grep hostname
 ```
 
 
+## Set a default minimum kernel
+
+To set a default minimum kernel for all machines:
+
+
+## Set a minimum kernel for a machine
+
+are specified by using min\_hwe\_kernel or hwe\_kernel variables.
+
+The min\_hwe\_kernel variable is used to instruct MAAS to ensure the release to
+be deployed uses a kernel version at or above the value of min\_hwe\_kernel.
+For example, if min\_hwe\_kernel is set to 'hwe-x' when deploying any release
+before Xenial the 'hwe-x' kernel will be used. For any release after Xenial the
+default kernel for that release will be used.
+
+Variable min\_hwe\_kernel can be set (to Xenial) by running following the command:
+
+```bash
+maas admin machine update <system-id> min_hwe_kernel=hwe-x
+```
+
+
+## Set a specific kernel during deployment
+
+To set a specific kernel during deployment. MAAS checks that the
+specified kernel is available for the release specified before deploying the
+node. You can set the hwe\_kernel when deploying by using the command:
+
+```bash
+maas admin machine deploy <system-id> distro_series=xenial hwe_kernel=hwe-x
+```
+
 ## Set dynamic IP address range
 
 To set a range of dynamic IP addresses:
