@@ -2,7 +2,7 @@ Title: MAAS CLI
 TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
        Decide whether explicit examples are needed
        Decide whether foldouts should be used
-       Consider a way to explain how an API call is converted to a CLI command
+       Consider explaining how an API call is converted to a CLI command
 
 
 # Using the CLI
@@ -61,6 +61,15 @@ Add a filter to get just their hostnames:
 
 ```bash
 maas $PROFILE nodes read | grep hostname
+```
+
+
+## Commission all machines
+
+To commission all machines in the 'Ready' state:
+
+```bash
+maas $PROFILE machines accept-all
 ```
 
 
