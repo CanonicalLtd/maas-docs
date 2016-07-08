@@ -1,8 +1,12 @@
-Title: Add Nodes to the System
+Title: Add Nodes
 TODO: Review needed
       Update/replace API references with GUI
+      Clarify terms: discovery, enlistment, accept, commission
+      There should be a "commission" section (i.e. not bundled with "discovery")
+      AFAIK, user 'maas' has a default home directory of /var/lib/maas
 
-# Add Nodes to the System
+
+# Add Nodes
 
 Now that the MAAS controller is running, we need to make the nodes aware of
 MAAS and vice-versa. If you have set up DHCP correctly, and your nodes can
@@ -11,32 +15,28 @@ then things really couldn't be much easier and you can use the [automatic
 discovery procedure](#automatic-discovery), below. You do not need to install
 Ubuntu on nodes that you wish to add to MAAS prior to enlistment.
 
-To learn more about setting up DHCP, read our [Rack Controller
-]( installconfig-rack.html) documentation.
+To learn more about setting up DHCP, read the
+[Rack Controller](./installconfig-rack.html) documentation.
+
 
 ## Automatic discovery
 
-With nodes set to boot from a PXE image, they will:
+A node configured to boot over the network (PXE) will:
 
-1. Start
-2. Look for a DHCP server
-3. Receive the PXE boot details
-4. Boot the image
-5. Contact the MAAS server
-6. Shut down.
+1. Contact a DHCP server
+1. Receive an image over TFTP and boot from it
+1. Contact the MAAS server
+1. Shut down
 
-During this process, the MAAS server will be passed information about the
-node, including the architecture, MAC address and other details which will be
-stored in the database of nodes. You can accept and commission the nodes via
-the web interface. After the nodes have been accepted, the selected series of
-Ubuntu will be installed.
+During this process, the MAAS server will be passed information about the node,
+including the architecture, MAC address and other details which will be stored
+in the database. You can accept and commission the nodes via the web interface.
+After the nodes have been accepted, the selected series of Ubuntu will be
+installed.
 
-To save time, you can also accept and commission all nodes from the
-command line:
+See [Using the CLI](./manage-cli.html#commission-all-machines) for how to
+commission all machines from the CLI.
 
-```bash
-maas admin machines accept-all
-```
 
 ## Manually add nodes
 
@@ -46,63 +46,60 @@ the "Add Node" form:
 
 ![image](./media/add-node.png)
 
-## Virtual machine nodes
 
-If you're setting up virtual machines to use as nodes with MAAS, you need to
-configure the power type as `virsh`. For MAAS to be able to use virsh, make
-sure you have the `libvirt-bin` package installed.
+## KVM guest nodes
 
-!!! Note: If you are assembling a set of VMs for testing or development, make
-sure they have at least 512 MB (768 MB If you are deploying 15.10) to avoid
-failures during deployment.
+If your MAAS nodes will be backed by KVM guests, ensure the `virsh` binary is
+available to the rack controller via the `libvirt-bin` package. In the UI,
+the power type will be 'virsh'.
+
+!!! Note: The minimum amount of memory per guest should be 768 MB.
 
 The virsh power type takes two parameters:
 
-`Power ID`: The Power ID is the name of the virtual machine shown by:
+`Power ID`: This is the name of the virtual machine (libvirt "domain") shown
+by:
 
 ```bash
-sudo virsh list --all`
+sudo virsh list --all
 ```
 
 `Address:` This is a libvirt connection string, such as:
+
 ```nohighlight
 qemu+ssh://ubuntu@10.0.0.2/system
-```
-or:
-```nohighlight
-qemu:///system
 ```
 
 ![image](./media/virsh-config.png)
 
-If you want to use ssh you'll need to generate a ssh key pair for the maas
-user. By default there is no home directory created for the maas user:
+For SSH, you'll need to generate an SSH keypair for the 'maas' user. A home
+directory and a login shell will also need to be set up:
 
 ```bash
 sudo mkdir /home/maas
 sudo chown maas:maas /home/maas
-```
-Add a login shell for the maas user:
-
-```bash
 sudo chsh -s /bin/bash maas
 ```
 
-Become the maas user and generate a SSH keypair:
+Become the 'maas' user and generate a keypair with the private key having a
+null passphrase:
 
 ```bash
 sudo su - maas
 ssh-keygen -f ~/.ssh/id_rsa -N ''
-
 ```
-Then add the public key to `/ubuntu/.ssh/authorized_keys` on the vm server so
-virsh can use ssh without a password:
+
+Add the public key to `/ubuntu/.ssh/authorized_keys` on the KVM host. Because
+the private key is passphraseless, virsh will be able to connect seemlessly:
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa ubuntu@10.0.0.2
 ```
 
-As the maas user, test virsh commands against libvirt at 10.0.0.2:
+!!! Note: You may need to (temporarily) configure sshd on the KVM host to
+honour password authentication for the `ssh-copy-id` command to be useful.
+
+Still as user 'maas', test connecting to the KVM host with virsh:
 
 ```bash
 virsh -c qemu+ssh://ubuntu@10.0.0.2/system list --all
