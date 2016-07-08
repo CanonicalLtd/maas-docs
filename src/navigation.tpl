@@ -54,10 +54,9 @@
 				<li><a href="installconfig-hwe-kernels.html">HWE kernels</a></li>
 			</ul>
 
-		<li class"section">Images
+		<li class"section"><a href="installconfig-images.html">Images</a>
 			<ul class="sub">
-				<li><a href="installconfig-images.html#import-boot-images">Import Boot Images</a></li>
-				<li><a href="installconfig-sources.html">Import Configuration</a></li>
+				<li><a href="installconfig-images-import.html">Import Boot Images</a></li>
 				<li><a href="installconfig-images-mirror.html">Local Image Mirror</a></li>
 				<li><a href="installconfig-os-support.html">Operating System Support</a></li>
 			</ul>
@@ -76,6 +75,11 @@
 		</li>
 		<li class"section">Custom Images</li>
 		<li class"section"><a href="manage-cli.html">Using the CLI</a>
+			<ul class="sub">
+					<li><a href="manage-cli-common.html">Common Tasks</a></li>
+					<li><a href="manage-cli-advanced.html">Advanced Tasks</a></li>
+			</ul>
+		</li>
     	</ul>
     </li>
 <!-- SECTION -->
