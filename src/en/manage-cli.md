@@ -1,7 +1,7 @@
 Title: MAAS CLI
 TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
-       Decide whether explicit examples are needed
-       Decide whether foldouts should be used
+       Decide whether explicit examples are needed everywhere
+       Foldouts cannot be used due to bug: https://git.io/vwbCz
        Consider a way to explain how an API call is converted to a CLI command
 
 
@@ -29,17 +29,18 @@ sudo maas-region apikey --username=$USERNAME
 !!! Note: The API key can also be obtained from the web interface. Click on
 'username' in the top right corner, and select 'Account'.
 
-Finally, log in with:
+Finally, log in with either of:
 
 ```bash
 maas login $PROFILE $API_SERVER [$API_KEY]
+maas login $PROFILE $API_SERVER - < $API_KEY_FILE
 ```
 
 Notes:
 
 - The terms 'username' and 'profile' are effectively equivalent.
 - The API server is the region controller.
-- If the API key is not supplied the user will be prompted for it.
+- If the API key is not supplied (in the first form) the user will be prompted for it.
 
 For example, to log in with the account whose username is 'admin' and where
 the region controller is on the localhost:
@@ -62,6 +63,37 @@ Add a filter to get just their hostnames:
 ```bash
 maas $PROFILE nodes read | grep hostname
 ```
+
+
+## Set a default minimum HWE kernel
+
+To set a default minimum HWE kernel for all machines:
+
+```bash
+maas $PROFILE maas set-config name=default_min_hwe_kernel value=$HWE_KERNEL
+```
+
+
+## Set a minimum HWE kernel for a machine
+
+To set the minimum HWE kernel on a machine basis:
+
+```bash
+maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=$HWE_KERNEL
+```
+
+
+## Set a specific HWE kernel during machine deployment
+
+To set a specific HWE kernel during the deployment of a machine:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES \
+	hwe_kernel=$HWE_KERNEL
+```
+
+MAAS verifies that the specified kernel is available for the given Ubuntu
+release (series) before deploying the node. 
 
 
 ## Set dynamic IP address range
@@ -161,13 +193,21 @@ maas $PROFILE sshkeys create "key=$SSH_KEY"
 
 ## Select install images
 
-To select install images (here Trusty amd64 with Xenial HWE kernel) to be later
-imported:
+To select Ubuntu install images by specifying series; architecture; and HWE
+kernel:
+
+```bash
+maas $PROFILE boot-source-selections create 1 \
+	os="ubuntu" release="$SERIES" arches="$ARCH" \
+	subarches="$HWE_KERNEL" labels="*"
+```
+
+For example:
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
 	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="hwe-x" labels="*"
+	subarches="hwe-v" subarches="hwe-w" labels="*"
 ```
 
 
