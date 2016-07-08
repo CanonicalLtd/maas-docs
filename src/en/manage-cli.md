@@ -1,7 +1,7 @@
 Title: MAAS CLI
 TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
-       Decide whether explicit examples are needed
-       Decide whether foldouts should be used
+       Decide whether explicit examples are needed everywhere
+       Foldouts cannot be used due to bug: https://git.io/vwbCz
        Consider explaining how an API call is converted to a CLI command
 
 
@@ -29,17 +29,18 @@ sudo maas-region apikey --username=$USERNAME
 !!! Note: The API key can also be obtained from the web interface. Click on
 'username' in the top right corner, and select 'Account'.
 
-Finally, log in with:
+Finally, log in with either of:
 
 ```bash
 maas login $PROFILE $API_SERVER [$API_KEY]
+maas login $PROFILE $API_SERVER - < $API_KEY_FILE
 ```
 
 Notes:
 
 - The terms 'username' and 'profile' are effectively equivalent.
 - The API server is the region controller.
-- If the API key is not supplied the user will be prompted for it.
+- If the API key is not supplied (in the first form) the user will be prompted for it.
 
 For example, to log in with the account whose username is 'admin' and where
 the region controller is on the localhost:
@@ -64,6 +65,25 @@ maas $PROFILE nodes read | grep hostname
 ```
 
 
+## Determine a system ID
+
+To determine the system ID based on a node's hostname:
+
+```bash
+SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
+	| grep system_id | cut -d '"' -f 4)
+```
+
+
+## Commission a machine
+
+To commission a machine based on its system ID:
+
+```bash
+maas $PROFILE machine commission $SYSTEM_ID
+```
+
+
 ## Commission all machines
 
 To commission all machines in the 'Ready' state:
@@ -73,7 +93,38 @@ maas $PROFILE machines accept-all
 ```
 
 
-## Set dynamic IP address range
+## Set a default minimum HWE kernel
+
+To set a default minimum HWE kernel for all machines:
+
+```bash
+maas $PROFILE maas set-config name=default_min_hwe_kernel value=$HWE_KERNEL
+```
+
+
+## Set a minimum HWE kernel for a machine
+
+To set the minimum HWE kernel on a machine basis:
+
+```bash
+maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=$HWE_KERNEL
+```
+
+
+## Set a specific HWE kernel during machine deployment
+
+To set a specific HWE kernel during the deployment of a machine:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES \
+	hwe_kernel=$HWE_KERNEL
+```
+
+MAAS verifies that the specified kernel is available for the given Ubuntu
+release (series) before deploying the node. 
+
+
+## Set a dynamic IP address range
 
 To set a range of dynamic IP addresses:
 
@@ -83,7 +134,7 @@ maas $PROFILE ipranges create type=dynamic \
 ```
 
 
-## Set reserved IP address range
+## Set a reserved IP address range
 
 To set a range of reserved IP addresses:
 
@@ -113,7 +164,7 @@ maas $PROFILE vlan update $FABRIC_ID untagged \
 ```
 
 
-## Set DNS forwarder
+## Set a DNS forwarder
 
 To set a DNS forwarder:
 
@@ -122,7 +173,7 @@ maas $PROFILE maas set-config name=upstream_dns value=$MY_UPSTREAM_DNS
 ```
 
 
-## Set node proxy
+## Set a node proxy
 
 To set a node proxy:
 
@@ -131,7 +182,7 @@ maas $PROFILE maas set-config name=http_proxy value=$MY_PROXY
 ```
 
 
-## Set default gateway
+## Set a default gateway
 
 To set the default gateway for a subnet:
 
@@ -140,7 +191,7 @@ maas $PROFILE subnet update $SUBNET_CIDR gateway_ip=$MY_GATEWAY
 ```
 
 
-## Set DNS server
+## Set a DNS server
 
 To set the DNS server for a subnet:
 
@@ -149,7 +200,7 @@ maas $PROFILE subnet update $SUBNET_CIDR dns_servers=$MY_NAMESERVER
 ```
 
 
-## Set zone description
+## Set a zone description
 
 To set a description for a physical zone:
 
@@ -159,7 +210,7 @@ maas $PROFILE zone update default \
 ```
 
 
-## Add public SSH key
+## Add a public SSH key
 
 To add a public SSH key to a MAAS user account:
 
@@ -170,13 +221,21 @@ maas $PROFILE sshkeys create "key=$SSH_KEY"
 
 ## Select install images
 
-To select install images (here Trusty amd64 with Xenial HWE kernel) to be later
-imported:
+To select Ubuntu install images by specifying series; architecture; and HWE
+kernel:
+
+```bash
+maas $PROFILE boot-source-selections create 1 \
+	os="ubuntu" release="$SERIES" arches="$ARCH" \
+	subarches="$HWE_KERNEL" labels="*"
+```
+
+For example:
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
 	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="hwe-x" labels="*"
+	subarches="hwe-v" subarches="hwe-w" labels="*"
 ```
 
 
@@ -189,23 +248,13 @@ maas $PROFILE boot-resources import
 ```
 
 
-## Determine hostname
+## Determine a hostname
 
 To determine the hostname based on a node's MAC address:
 
 ```bash
 HOSTNAME=$(maas $PROFILE nodes read mac_address=$MAC \
 	| grep hostname | cut -d '"' -f 4)
-```
-
-
-## Determine system ID
-
-To determine the system ID based on a node's hostname:
-
-```bash
-SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
-	| grep system_id | cut -d '"' -f 4)
 ```
 
 
@@ -220,15 +269,6 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_type=virsh \
 	power_parameters_power_address=qemu+ssh://ubuntu@$KVM_HOST/system \
 	power_parameters_power_id=$HOSTNAME
-```
-
-
-## Commission node
-
-To commission a node based on its system ID:
-
-```bash
-maas $PROFILE machine commission $SYSTEM_ID
 ```
 
 

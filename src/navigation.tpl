@@ -49,8 +49,9 @@
 					</ul>
 				</li>
 				<li><a href="installconfig-add-nodes.html">Add Nodes</a></li>
+				<li><a href="installconfig-tags.html">Tags</a></li>
 				<li><a href="installconfig-kernel.html">Kernel Boot Options</a></li>
-				<li><a href="installconfig-he-kernels.html">Hardware-enablement kernels</a></li>
+				<li><a href="installconfig-hwe-kernels.html">HWE kernels</a></li>
 			</ul>
 
 		<li class"section">Images
