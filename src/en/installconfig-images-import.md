@@ -1,8 +1,12 @@
-Title: Import Images
+Title: MAAS | Import Images
 TODO: Update images (pictures)
+      i (pmatulis) don't understand the mirror thing, images are already stored locally
 
 
-# Import images
+# Select and Import Images
+
+This page explains how to select and import images MAAS uses to provision its
+nodes.
 
 By default, the most recent LTS release (and amd64 architecture) are selected.
 To change the selections go to the Images tab, select any other images (by
@@ -15,7 +19,9 @@ Depending on available bandwidth, any warnings about the lack of images
 will eventually disappear once the download has finished.
 
 
-## Speeding up repeated image imports by using a local mirror
+## Using a local mirror
 
-See [Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
+A local mirror can be used to store MAAS images. This will reduce download
+times for repeated image imports. See
+[Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
 how to set up a mirror and configure MAAS to use it.

@@ -1,17 +1,20 @@
 Title: MAAS CLI
 TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
-       Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
        Consider explaining how an API call is converted to a CLI command
 
 
-# Using the CLI
+# MAAS CLI
 
-Everything that can be done in the web interface can be done with the CLI. This
-is achieved with the `maas` command that, in turn, connects to the API. What
-follows is a list of common MAAS management tasks. See the full
-[API documentation](http://maas.ubuntu.com/docs2.0/index.html#api-cli-documentation)
-for details.
+The MAAS CLI can do everything that the web UI can do, and more. The CLI uses
+the `maas` command exclusively which, in turn, connects to the API.
+
+This page explains what is needed to get going with the CLI. Tasks are then
+separated into common, image management, and advanced.
+
+Note that we do not provide complete coverage of the MAAS CLI. For an
+exhaustive treatment, see the
+[API documentation](http://maas.ubuntu.com/docs2.0/index.html#api-cli-documentation).
 
 
 ## Log in (required)
@@ -29,7 +32,7 @@ sudo maas-region apikey --username=$USERNAME
 !!! Note: The API key can also be obtained from the web interface. Click on
 'username' in the top right corner, and select 'Account'.
 
-Finally, log in with either of:
+Log in with either of:
 
 ```bash
 maas login $PROFILE $API_SERVER [$API_KEY]
@@ -50,232 +53,20 @@ maas login admin http://localhost/MAAS/api/2.0
 ```
 
 
-## List nodes
-
-To list all nodes (and their characteristics) in the MAAS cluster:
-
-```bash
-maas $PROFILE nodes read
-```
-
-Add a filter to get just their hostnames:
-
-```bash
-maas $PROFILE nodes read | grep hostname
-```
-
-
-## Determine a system ID
-
-To determine the system ID based on a node's hostname:
-
-```bash
-SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
-	| grep system_id | cut -d '"' -f 4)
-```
-
-
-## Commission a machine
-
-To commission a machine based on its system ID:
-
-```bash
-maas $PROFILE machine commission $SYSTEM_ID
-```
-
-
-## Commission all machines
-
-To commission all machines in the 'Ready' state:
-
-```bash
-maas $PROFILE machines accept-all
-```
-
-
-## Set a default minimum HWE kernel
-
-To set a default minimum HWE kernel for all machines:
-
-```bash
-maas $PROFILE maas set-config name=default_min_hwe_kernel value=$HWE_KERNEL
-```
-
-
-## Set a minimum HWE kernel for a machine
-
-To set the minimum HWE kernel on a machine basis:
-
-```bash
-maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=$HWE_KERNEL
-```
-
-
-## Set a specific HWE kernel during machine deployment
-
-To set a specific HWE kernel during the deployment of a machine:
-
-```bash
-maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES \
-	hwe_kernel=$HWE_KERNEL
-```
-
-MAAS verifies that the specified kernel is available for the given Ubuntu
-release (series) before deploying the node. 
-
-
-## Set a dynamic IP address range
-
-To set a range of dynamic IP addresses:
-
-```bash
-maas $PROFILE ipranges create type=dynamic \
-	start_ip=$IP_DYNAMIC_RANGE_LOW end_ip=$IP_DYNAMIC_RANGE_HIGH
-```
-
-
-## Set a reserved IP address range
-
-To set a range of reserved IP addresses:
-
-```bash
-maas $PROFILE ipranges create type=reserved \
-	start_ip=$IP_RESERVED_RANGE_LOW end_ip=$IP_RESERVED_RANGE_HIGH
-```
-
-
-## Determine a fabric ID
-
-To determine a fabric ID based on a subnet address:
-
-```bash
-FABRIC_ID=$(maas $PROFILE subnet read $SUBNET_CIDR \
-	| grep fabric | cut -d ' ' -f 10 | cut -d '"' -f 2)
-```
-
-
-## Enable DHCP
-
-To enable DHCP on a fabric:
-
-```bash
-maas $PROFILE vlan update $FABRIC_ID untagged \
-	dhcp_on=True primary_rack=$RACK_CONTROLLER
-```
-
-
-## Set a DNS forwarder
-
-To set a DNS forwarder:
-
-```bash
-maas $PROFILE maas set-config name=upstream_dns value=$MY_UPSTREAM_DNS
-```
-
-
-## Set a node proxy
-
-To set a node proxy:
-
-```bash
-maas $PROFILE maas set-config name=http_proxy value=$MY_PROXY
-```
-
-
-## Set a default gateway
-
-To set the default gateway for a subnet:
-
-```bash
-maas $PROFILE subnet update $SUBNET_CIDR gateway_ip=$MY_GATEWAY
-```
-
-
-## Set a DNS server
-
-To set the DNS server for a subnet:
-
-```bash
-maas $PROFILE subnet update $SUBNET_CIDR dns_servers=$MY_NAMESERVER
-```
-
-
-## Set a zone description
-
-To set a description for a physical zone:
-
-```bash
-maas $PROFILE zone update default \
-	description="This zone was configured by a script."
-```
-
-
-## Add a public SSH key
-
-To add a public SSH key to a MAAS user account:
-
-```bash
-maas $PROFILE sshkeys create "key=$SSH_KEY"
-```
-
-
-## Select install images
-
-To select Ubuntu install images by specifying series; architecture; and HWE
-kernel:
-
-```bash
-maas $PROFILE boot-source-selections create 1 \
-	os="ubuntu" release="$SERIES" arches="$ARCH" \
-	subarches="$HWE_KERNEL" labels="*"
-```
-
-For example:
-
-```bash
-maas $PROFILE boot-source-selections create 1 \
-	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="hwe-v" subarches="hwe-w" labels="*"
-```
-
-
-## Import install images
-
-To import previously selected install images:
-
-```bash
-maas $PROFILE boot-resources import
-```
-
-
-## Determine a hostname
-
-To determine the hostname based on a node's MAC address:
-
-```bash
-HOSTNAME=$(maas $PROFILE nodes read mac_address=$MAC \
-	| grep hostname | cut -d '"' -f 4)
-```
-
-
-## Update node hostname and power parameters
-
-To update the hostname and power parameters of a (KVM) node based on its
-system ID:
-
-```bash
-maas $PROFILE machine update $SYSTEM_ID \
-	hostname=$HOSTNAME \
-	power_type=virsh \
-	power_parameters_power_address=qemu+ssh://ubuntu@$KVM_HOST/system \
-	power_parameters_power_id=$HOSTNAME
-```
-
-
 ## Log out
 
-Logs out from the given profile, flushing the stored credentials.
+Once you are done with the CLI you can log out from the given profile, flushing
+the stored credentials.
 
 ```bash
 maas logout $PROFILE
 ```
+
+
+## Next steps
+
+To continue with the CLI, explore the following links:
+
+- [Common tasks](./manage-cli-common.html)
+- [Image management](./manage-cli-images.html)
+- [Advanced tasks](./manage-cli-advanced.html)

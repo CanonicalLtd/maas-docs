@@ -56,7 +56,7 @@
 
 		<li class"section"><a href="installconfig-images.html">Images</a>
 			<ul class="sub">
-				<li><a href="installconfig-images-import.html">Import Boot Images</a></li>
+				<li><a href="installconfig-images-import.html">Selection and Import</a></li>
 				<li><a href="installconfig-images-mirror.html">Local Image Mirror</a></li>
 				<li><a href="installconfig-os-support.html">Operating System Support</a></li>
 			</ul>
@@ -74,9 +74,10 @@
 			</ul>
 		</li>
 		<li class"section">Custom Images</li>
-		<li class"section"><a href="manage-cli.html">Using the CLI</a>
+		<li class"section"><a href="manage-cli.html">MAAS CLI</a>
 			<ul class="sub">
 					<li><a href="manage-cli-common.html">Common Tasks</a></li>
+					<li><a href="manage-cli-images.html">Image Management</a></li>
 					<li><a href="manage-cli-advanced.html">Advanced Tasks</a></li>
 			</ul>
 		</li>
