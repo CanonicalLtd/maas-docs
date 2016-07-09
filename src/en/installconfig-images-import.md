@@ -5,8 +5,9 @@ TODO: Update images (pictures)
 
 # Select and Import Images
 
-This page explains how to select and import images MAAS uses to provision its
-nodes.
+This page uses the web UI to explain how to select and import images MAAS uses
+to provision its nodes. Note that the [MAAS CLI](./manage-cli-images.html) can
+also be used for image management.
 
 By default, the most recent LTS release (and amd64 architecture) are selected.
 To change the selections go to the Images tab, select any other images (by
