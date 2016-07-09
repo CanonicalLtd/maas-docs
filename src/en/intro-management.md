@@ -25,8 +25,7 @@ with the MAAS software. See
 The CLI consists of the `maas` wrapper command that interacts with the API. See
 [maas command](http://maas.ubuntu.com/docs/man/maas.8.html).
 
-Examples of some common configuration tasks are provided in
-[Using the CLI](./managing-cli-usage.html).
+To get a sense of what is possible with the CLI see [MAAS CLI](./managing-cli.html).
 
 
 ## API
