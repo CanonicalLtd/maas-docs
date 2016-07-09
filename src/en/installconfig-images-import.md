@@ -14,9 +14,7 @@ choosing 'Release' and 'Architecture'), and click the 'Import images' button.
 
 ![image](./media/import-images.png)
 
-A message will appear to indicate that the import process has started. 
-Depending on available bandwidth, any warnings about the lack of images
-will eventually disappear once the download has finished.
+A message will appear to indicate that the import process has started.
 
 
 ## Using a local mirror

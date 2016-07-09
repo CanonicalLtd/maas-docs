@@ -25,7 +25,7 @@ It is located at https://images.maas.io/ephemeral-v2/releases/.
 MAAS is only useful once it has images available to provision its nodes with.
 Therefore, the first major task once MAAS is installed is to select and import
 some from a configured source. Once images have been imported MAAS will
-regularly update them on an hourly basis.
+update them on an hourly basis.
 
 See [Select and Import Images](./installconfig-images-import.html) to get
 started with images!
