@@ -68,7 +68,5 @@ And then initiate the download with:
 maas admin boot-resources import
 ```
 
-See [Import Images Configuration](installconfig-sources.html) for more details.
-
-The import is initiated from the MAAS web GUI by browsing to the Images tab
-and following the instructions on that page.
+See [Images](./installconfig-images.html) for an overview of images and how to
+manage them.

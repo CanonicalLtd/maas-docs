@@ -1,56 +1,31 @@
-Title: Import Boot Images
-TODO: Update images
-	
-# Import Boot Images
+Title: MAAS Images
 
-Since version 1.7, MAAS stores the boot images in the region controller's
-database, from where the rack controllers will synchronise with the region and
-pull images from the region to the rack's local disk. This process is
-automatic and MAAS will check for and download new Ubuntu images every hour.
 
-However, on a new installation you'll need to start the import process
-manually once you have set up your MAAS region controller. There are two ways
-to start the import: through the web user interface, or through the remote
-API.
+# MAAS Images
 
-To do it in the web user interface, go to the Images tab, check the boxes to
-say which images you want to import, and click the "Import images" button at
-the bottom of the Ubuntu section.
+MAAS stores its images in the region controller's database, from where the rack
+controller will automatically pull them onto its local disk. 
 
-![image](./media/import-images.png)
+See [CLI Image Management](./manage-cli-images.html) for information on
+advanced image management.
 
-A message will appear to let you know that the import has started, and after a
-while, the warnings about the lack of boot images will disappear.
 
-It may take a long time, depending on the speed of your Internet connection
-for import process to complete, as the images are several hundred megabytes.
-The import process will only download images that have changed since last
-import. You can check the progress of the import by hovering over the spinner
-next to each image.
+## Sources
 
-The other way to start the import is through the
-[region-controller API](./api.html#regioncontroller)
-, which you can invoke most conveniently through the 
-[command-line interface](./maascli.html#cli).
+The place from where a region controller downloads its images is known as an
+image *source*. Each source has a location (URL) and a keyring (index and image
+validation).
 
-To do this, connect to the MAAS API using the "maas" command-line client. See
-Logging in &lt;api-key&gt; for how to get set up with this tool. Then, run the
-command:
+MAAS comes configured with an image source that should suffice for most users.
+It is located at https://images.maas.io/ephemeral-v2/releases/.
 
-```bash
-maas my-maas-session boot-resources import
-```
 
-(Substitute a different profile name for 'my-maas-session' if you have named
-yours something else.) This will initiate the download, just as if you had
-clicked "Import images" in the web user interface.
+## Select and import
 
-By default, the import is configured to download the most recent LTS release
-only for the amd64 architecture. Although this should suit most needs, you can
-change the selections on the Images tab, or over the API. Read
-customise [boot sources](./bootsources.html) to see examples on how to do that.
+MAAS is only useful once it has images available to provision its nodes with.
+Therefore, the first major task once MAAS is installed is to select and import
+some from a configured source. Once images have been imported MAAS will
+update them on an hourly basis.
 
-## Speeding up repeated image imports by using a local mirror
-
-See [Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
-how to set up a mirror and configure MAAS to use it.
+See [Select and Import Images](./installconfig-images-import.html) to get
+started with images!
