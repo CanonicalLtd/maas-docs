@@ -1,6 +1,5 @@
-Title: MAAS | Import Images
+Title: MAAS | Select and Import Images
 TODO: Update images (pictures)
-      i (pmatulis) don't understand the mirror thing, images are already stored locally
 
 
 # Select and Import Images
@@ -20,7 +19,8 @@ A message will appear to indicate that the import process has started.
 
 ## Using a local mirror
 
-A local mirror can be used to store MAAS images. This will reduce download
-times for repeated image imports. See
-[Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
-how to set up a mirror and configure MAAS to use it.
+Optionally, a local mirror can be set up to store images. MAAS will then use it
+instead of the standard internet-based server. This will reduce the time
+required to complete the image import step significantly.
+See [Local image mirror](./installconfig-images-mirror.html) for instructions
+on doing this.

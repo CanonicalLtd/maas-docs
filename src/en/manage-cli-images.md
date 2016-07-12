@@ -9,6 +9,8 @@ TODO:  Decide whether explicit examples are needed everywhere
 This is a list of image management tasks to perform with the MAAS CLI. See
 [MAAS CLI](./manage-cli.html) on how to get started.
 
+!!! WARNING: Modifying image sources with the CLI does not alter the web UI.
+
 
 ## List current image sources
 
@@ -112,6 +114,11 @@ maas $PROFILE boot-source update $SOURCE_ID \
 
 ## Add an image source
 
+!!! Note: To avoid unecessary complexity, you should probably delete the
+existing source before adding a new one.
+
+This example also covers the case of a local image mirror. It is just a matter
+of a different URL
 Add a custom source with its own location and keyring:
 
 ```bash
@@ -134,5 +141,5 @@ maas $PROFILE boot-sources create \
 
 Where,
 
-- URL=https://images.maas.io/ephemeral-v2/releases/
+- URL=https://images.maas.io/ephemeral-v2/daily/
 - KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
