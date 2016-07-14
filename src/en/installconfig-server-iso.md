@@ -19,7 +19,7 @@ need to select a language, select a geographical location, configure the
 keyboard and define a hostname, just as you would normally. 
 
 After these steps have completed, you'll see either a page entitled 'Install
-your Metal as a Servicei (MAAS)' for a 'Region Controller' installation, or
+your Metal as a Service (MAAS)' for a 'Region Controller' installation, or
 'Install your Metal as a Service (MAAS) rack controller.'
 
 ![region controller install](./media/iso-install-region_01.png)
