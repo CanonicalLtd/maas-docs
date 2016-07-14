@@ -1,10 +1,10 @@
-Title: Rack Controller Configuration
+Title: rack controller Configuration
 TODO:  Needs splitting, a re-write and re-organising within wider context of MAAS docs (see #24)
 
 # Rack Controller Configuration
 
-Managing a VLAN normally means that MAAS will serve DHCP from the Rack
-Controller, for the purpose of providing IP address to machines that are being
+Managing a VLAN normally means that MAAS will serve DHCP from the rack
+controller, for the purpose of providing IP address to machines that are being
 enlisted or commissioned. Also, any other DHCP client that is on the VLAN will
 obtain a dynamic IP address from the MAAS DHCP server.
 
@@ -18,16 +18,16 @@ running on these networks, it will show them on the rack's configuration page.
 
 ## Network Requirements
 
-The Rack Controller manages DHCP for subnet(s) in the VLAN(s) that it is
-connected to via one of its interfaces defined in MAAS. Rack Controller
+The rack controller manages DHCP for subnet(s) in the VLAN(s) that it is
+connected to via one of its interfaces defined in MAAS. rack controller
 interfaces are discovered automatically when MAAS is installed and any
 future changes are automatically communicated to the region.
 
-When a Rack Controller manages machines on the network through one of the
+When a rack controller manages machines on the network through one of the
 VLANs it is connected to, the machines must be in the same subnet as the Rack
 Controller interface connected to that VLAN. This is because:
 
-1.  If the VLAN that the Rack Controller is connected to is configured to
+1.  If the VLAN that the rack controller is connected to is configured to
     provide DHCP, the nodes must be able to configure their own network
     interfaces using MAAS's DHCP server. This means that either they must be
     on the same subnet, or that DHCP packets are being specially routed
@@ -35,68 +35,47 @@ Controller interface connected to that VLAN. This is because:
 
 ## Registration
 
-If you install your first Rack Controller on the same system as the Region
-Controller, as is the case when you install the full "maas" Ubuntu package, it
+If your rack controller is installed on the same system as your region
+controller, as is the case when you install the full "maas" Ubuntu package, it
 will be automatically accepted by default (but not yet configured, see below).
-Any other Rack Controllers you set up will show up automatically after they
-have been manually added to MAAS.
 
-To install a new MAAS Rack Controller, at the command line, type:
-
-```bash
-sudo apt install maas-rack-controller
-```
-
-Once installed, you will need to input the shared secret, in order to allow
-the Rack Controller to authenticate with the Region Controller. You can obtain
-the shared secret from the Region Controller. The shared secret can be copied
-from the Region Controller in `/var/lib/maas/secret`.
-
-Once you have copied the secret, you can install it in the Rack Controller. At
-the command line, type:
-
-```bash
-sudo maas-rack install-shared-secret
-```
-
-Once installed, you will need to reconfigure the Rack Controller to correctly
-point to the API hostname or IP address of the Region Controller that's on the
-same network as the Rack Controller:
+Any other rack controllers you set up will show up automatically after they
+have been manually added to MAAS by running the following command:
 
 ```bash
 sudo dpkg-reconfigure maas-rack-controller
 ```
 
-The configuration for the MAAS Rack Controller will automatically run and pop
-up this config screen:
+You will first be asked for the IP address or hostname of your region
+controller, followed by a prompt for the 'shared secret'. The shared secret can
+be found within the `/var/lib/maas/secret` file held on the region controller.
 
-![image](./media/install_cluster-config.png)
+![reconfigure rack](./media/install_cluster-config.png)
 
-This is where the MAAS Rack Controller is prompting for the URL of the MAAS
-Region Controller. Once entered, the Rack Controller configuration will be
-complete.
+Once these two details have been entered, the rack controller configuration
+will be complete.
 
 ## Interface Management
 
-MAAS automatically recognises the network interfaces on each Rack Controller.
+MAAS automatically recognises the network interfaces on each rack controller.
 Some (though not necessarily all) of these will be connected to subnets on a
-VLAN inside a Fabric. In other words, the Rack Controllers will be connected
+VLAN inside a Fabric. In other words, the rack controllers will be connected
 to VLANs, and the subnets being served on these.
 
-Once a new Rack Controller is connected, it will try to autodetect in what
+Once a new rack controller is connected, it will try to autodetect in what
 Subnet, VLAN and even Fabric the interface is connected to. If these have not
 being created, new Subnets, VLAN's and Fabrics and Spaces will be created.
 
 If Fabrics, VLANs and Subnets are already created, once MAAS automatically
-recognises the Rack Controller network interfaces, it will try to determine to
+recognises the rack controller network interfaces, it will try to determine to
 which these are connected to before being able to provide services.
 
-As such, each Rack Controller interface will determine whether a Rack
+As such, each rack controller interface will determine whether a Rack
 Controller can provide DHCP on an specific VLAN, or for advanced
-configuration, a Rack Controller interface will determine whether a Rack
+configuration, a rack controller interface will determine whether a Rack
 Controller can be a primary or backup Rack on an HA configuration.
 
-If for any reason, the Rack Controller interfaces are mis-identified and are
+If for any reason, the rack controller interfaces are mis-identified and are
 in the correct fabric, the user can manually change that by editing the Rack
 Controller Fabric information:
 
@@ -104,13 +83,13 @@ Controller Fabric information:
 
 In order for MAAS to be able to manage a machine throughout its lifecycle, it
 needs to provide DHCP for at least one subnet, by configuring the
-corresponding VLAN to which the Rack Controller is connected to.
+corresponding VLAN to which the rack controller is connected to.
 
 ## Providing DHCP and HA
 
 In order for MAAS to be able to manage machines on the network, and more
 specifically, in order to be able to enlist, commission and deploy machines it
-needs to provide and manage DHCP. As such, Rack Controller(s) can provide DHCP
+needs to provide and manage DHCP. As such, rack controller(s) can provide DHCP
 on the different VLANs it is connected to.
 
 ### Dynamic Range and Addresses
@@ -134,7 +113,7 @@ throughout the rest of its deployment.
 
 ### Enabling a DHCP on a VLAN (optional HA)
 
-As an example, we will configure MAAS to provide DHCP on a Rack Controller.
+As an example, we will configure MAAS to provide DHCP on a rack controller.
 
 The first thing that we need to do is select in what VLAN and subnet we would
 like to configure DHCP. In this case, in order to be able to PXE boot
@@ -176,7 +155,7 @@ You can also do the same configuration via the WebUI on the VLAN details page:
 
 ## Multiple Networks
 
-A single Rack Controller can be connected to more than one VLAN, each from a
-different Rack Controller interface. This allows one Rack Controller to manage
-different subnets to help scale your Rack Controller or to satisfy your
+A single rack controller can be connected to more than one VLAN, each from a
+different rack controller interface. This allows one rack controller to manage
+different subnets to help scale your rack controller or to satisfy your
 network architecture.
