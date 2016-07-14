@@ -10,22 +10,26 @@ See [CLI Image Management](./manage-cli-images.html) for information on
 advanced image management.
 
 
-## Sources
+## Boot image sources
 
-The place from where a region controller downloads its images is known as an
-image *source*. Each source has a location (URL) and a keyring (index and image
-validation).
+The place from where a region controller downloads its images is known as a
+*boot image source*. The main characteristics of a boot source are its location
+(URL) its associated GPG public keyring.
 
-MAAS comes configured with an image source that should suffice for most users.
+MAAS comes configured with a boot source that should suffice for most users.
 It is located at https://images.maas.io/ephemeral-v2/releases/.
+
+Although the backend supports multiple boot sources, MAAS itself uses a single
+source. If multiple sources are detected the web UI will print a warning and
+will no longer be able to manage images.
 
 
 ## Select and import
 
 MAAS is only useful once it has images available to provision its nodes with.
-Therefore, the first major task once MAAS is installed is to select and import
-some from a configured source. Once images have been imported MAAS will
-update them on an hourly basis.
+Therefore, one key task once MAAS is installed is to select and import
+images from the primary boot source. Once images have been imported MAAS will
+update them on an hourly basis (a sync mechanism is enabled by default).
 
 See [Select and Import Images](./installconfig-images-import.html) to get
 started with images!
