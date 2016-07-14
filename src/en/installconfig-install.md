@@ -11,7 +11,7 @@ TODO: Update CLI install
 There are three main ways to install MAAS:
 
 - [From Ubuntu Server](installconfig-server-iso.html)
-- [From a package repository](#maas-packages)
+- [From a package repository](installconfig-package-install.html)
 - [Locally with LXC.](#installing-maas-locally-with-lxc)
 
 ### MAAS Packages
