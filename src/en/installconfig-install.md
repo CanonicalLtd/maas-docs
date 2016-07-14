@@ -12,7 +12,7 @@ There are three main ways to install MAAS:
 
 - [From Ubuntu Server](installconfig-server-iso.html)
 - [From a package repository](installconfig-package-install.html)
-- [Locally with LXC.](#installing-maas-locally-with-lxc)
+- [Locally with LXD.](installconfig-lxd-install.html)
 
 ### MAAS Packages
 
