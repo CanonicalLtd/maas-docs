@@ -3,7 +3,9 @@ TODO: Update images
 	
 # Access the GUI
 
-Once MAAS is installed, you'll need to create an administrator account:
+Unless you installed MAAS via [Ubuntu Server](installconfig-server-iso.html),
+you'll need to create an administrator account before you can access the web
+interface:
 
 ```bash
 sudo maas createadmin --username=root --email=MYEMAIL@EXAMPLE.COM
