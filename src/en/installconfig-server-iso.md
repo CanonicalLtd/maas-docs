@@ -1,96 +1,72 @@
 Title: Ubuntu Server
 TODO:	
 
-# Install MAAS from Ubuntu Server
+# Install from Ubuntu Server
 
-If you are installing MAAS as part of a fresh install it is easiest to choose
-the "Multiple Server install with MAAS" option from the installer and have
-pretty much everything set up for you. Boot from the Ubuntu Server media and
-you will be greeted with the usual language selection screen:
+The [Ubuntu Server](http://www.ubuntu.com/download/server) (16.04 LTS)
+installer offers the opportunity to pre-configure the server as either a MAAS
+Region Controller or a MAAS Rack Controller. 
 
-![image](./media/install_01.png)
+!["server install menu"](./media/iso-install_01.png)
 
-On the next screen, you will see there is an entry in the menu called
-"Multiple server install with MAAS". Use the cursor keys to select this and
-then press Enter.
+!!! Note: see '[Concepts and terms](intro-concepts.html#controllers)' for the
+differences between region controller and rack controller.
 
-![image](./media/install_02.png)
+There is very little difference between the install procedure of a generic
+Ubuntu Server, and a server pre-configured for MAAS. After selecting either the
+rack controller or the region controller from the installation menu, you will
+need to select a language, select a geographical location, configure the
+keyboard and define a hostname, just as you would normally. 
 
-The installer then runs through the usual language and keyboard options. Make
-your selections using Tab/Cursor keys/Enter to proceed through the install.
-The installer will then load various drivers, which may take a moment or two.
+After these steps have completed, you'll see either a page entitled 'Install
+your Metal as a Servicei (MAAS)' for a 'Region Controller' installation, or
+'Install your Metal as a Service (MAAS) rack controller.'
 
-![image](./media/install_03.png)
+![region controller install](./media/iso-install-region_01.png)
 
-The next screen asks for the hostname for this server. Choose something
-appropriate for your network.
+The region controller installation will ask for a username followed by a password
+for the MAAS administrator. If these are not provided, an administrator account
+will need to be create manually before you can use MAAS. 
 
-![image](./media/install_04.png)
 
-Finally we get to the MAAS part! Here there are just two options. We want to
-"Create a new MAAS on this server" so go ahead and choose that one.
+![rack controller install](./media/iso-install-rack_01.png)
 
-![image](./media/install_05.png)
+The rack controller installation requires no further MAAS-specific input, and
+the Ubuntu Server installation will proceed normally:
 
-The install now continues as usual. Next you will be prompted to enter a
-username. This will be the admin user for the actual server that MAAS will be
-running on (not the same as the MAAS admin user!)
+Enter a username and password to create a user account for the server. This
+account is separate from the administrator account created for the MAAS Region
+Controller. You will then be asked whether you wish to encrypt the home
+directory and asked for the server's time zone. 
 
-![image](./media/install_06.png)
+The next stage configures storage and partitions before the system software will
+start to be installed. After this has completed you get the option to define an
+HTTP proxy server, which may be needed for your MAAS server to access the
+internet, and how you want updates delivered. The choice is between 'No
+automatic updates', 'Install security updates automatically' and 'Manage system
+with Landscape'. 
 
-As usual you will have the chance to encrypt your home directory. Continue to
-make selections based on whatever settings suit your usage.
+![rack updates](./media/iso-install-region-updates.png)
 
-![image](./media/install_07.png)
+!!! Note: [Landscape](https://landscape.canonical.com) is Canonical's leading
+system management tool.
 
-After making selections and partitioning storage, the system software will
-start to be installed. This part should only take a few minutes.
+It is important to set updates appropriately so you will receive timely
+updates of the MAAS server software, as well as other essential services that
+may run on this server.
 
-![image](./media/install_09.png)
+The final two steps install the Grub boot loader and set the time. You will
+then be notified that installation is complete and you should restart the
+server.
 
-Various packages will now be configured, including the package manager and
-update manager. It is important to set these up appropriately so you will
-receive timely updates of the MAAS server software, as well as other essential
-services that may run on this server.
+When the server is back online, the web interface for the region controller
+is accessible from `http://$SERVER_IP/MAAS`. You will be asked to login
+with the MAAS administrator username and password you created earlier. See [Add
+Nodes](installconfig-add-nodes.html) for details on adding resources to MAAS.
 
-![image](./media/install_10.png)
+The rack controller can be accessed from its local terminal where you can login
+with the account credentials configured during installation. See [Rack
+Controller Configuration](installconfig-rack.html) for details on registering
+and configuring the rack controller with the region controller. 
 
-The configuration for MAAS will ask you to configure the host address of the
-server. This should be the IP address you will use to connect to the server
-(you may have additional interfaces e.g. to run node subnets)
-
-![image](./media/install_cluster-config.png)
-
-The next screen will confirm the web address that will be used to the web
-interface.
-
-![image](./media/install_controller-config.png)
-
-After configuring any other packages the installer will finally come to and
-end. At this point you should eject the boot media.
-
-![image](./media/install_14.png)
-
-After restarting, you should be able to login to the new server with the
-information you supplied during the install. The MAAS software will run
-automatically.
-
-![image](./media/install_15.png)
-
-!!! Note: The maas-dhcp and maas-dns packages should be installed by default,
-but on older releases of MAAS they won't be. If you want to have MAAS run DHCP
-and DNS services, you should install these packages. Check whether they are
-installed with:
-
-```bash
-dpkg -l maas-dhcp maas-dns
-```
-
-If they are missing, then:
-
-```bash
-sudo apt-get install maas-dhcp maas-dns
-```
-
-And then proceed to the post-install setup.
-
+!!! Note: An SSH server isn't installed on the rack controller by default. 
