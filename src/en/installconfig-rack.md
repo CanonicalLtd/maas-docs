@@ -1,4 +1,4 @@
-Title: rack controller Configuration
+Title: Rack Controller Configuration
 TODO:  Needs splitting, a re-write and re-organising within wider context of MAAS docs (see #24)
 
 # Rack Controller Configuration
