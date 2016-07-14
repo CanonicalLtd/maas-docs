@@ -1,12 +1,13 @@
 Title: Install Locally with LXD
+TODO:  Text needs a review
 
 # Install locally with LXD
 
 Installing MAAS in a container is a typical setup for those users who would
-like to take advantage of their machine for other users at the same time of
-using MAAS.
+like test MAAS, or would like to use their their machine for other tasks at the
+same time. 
 
-In order to setup MAAS, you need some requirements:
+MAAS running with LXD has the following requirements:
 
 -   Create a bridge (for example, it can be br0).
 -   Install LXD and ZFS.
