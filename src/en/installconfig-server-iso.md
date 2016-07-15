@@ -1,7 +1,7 @@
-Title: Ubuntu Server
+Title: Install from Ubuntu Server ISO
 TODO:	
 
-# Install from Ubuntu Server
+# Install from Ubuntu Server ISO
 
 The [Ubuntu Server](http://www.ubuntu.com/download/server) (16.04 LTS)
 installer offers the opportunity to pre-configure the server as either a MAAS

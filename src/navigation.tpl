@@ -13,11 +13,11 @@
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Install & Configure</h4>
     	<ul>
-		<li class"section"><a class"header" href="installconfig-install.html">Install</a>
+		<li class"section"><a class"header" href="installconfig-install.html">Installation</a>
 			<ul class="sub">
-				<li><a href="installconfig-install.html#installing-maas-from-ubuntu-server">Install from Ubuntu Server</a></li>
-				<li><a href="installconfig-install.html#maas-packages">Install from CLI</a></li>
-				<li><a href="installconfig-install.html#installing-maas-locally-with-lxc">Install into LXC</a></li>
+				<li><a href="installconfig-server-iso.html">Install from Ubuntu Server ISO</a></li>
+				<li><a href="installconfig-package-install.html">Install from CLI</a></li>
+				<li><a href="installconfig-lxd-install.html">Install into LXD</a></li>
 			</ul>	
 		</li>	
 		<li><a href="installconfig-gui.html">Access the GUI</a></li>
