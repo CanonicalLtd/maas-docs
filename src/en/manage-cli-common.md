@@ -87,9 +87,19 @@ FABRIC_ID=$(maas $PROFILE subnet read $SUBNET_CIDR \
 To enable DHCP on a fabric:
 
 ```bash
-maas $PROFILE vlan update $FABRIC_ID untagged \
-	dhcp_on=True primary_rack=$RACK_CONTROLLER
+maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+	primary_rack=$PRIMARY_RACK_CONTROLLER
 ```
+
+To enable DHCP HA on a fabric:
+
+```bash
+maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+	primary_rack=$PRIMARY_RACK_CONTROLLER \
+	secondary_rack=$SECONDARY_RACK_CONTROLLER 
+```
+
+For DHCP, you should also [set a default gateway](#set-a-default-gateway).
 
 
 ## Set a DNS forwarder
