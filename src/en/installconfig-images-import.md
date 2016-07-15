@@ -5,8 +5,11 @@ TODO: Update images (pictures)
 # Select and Import Images
 
 This page explains how to use the web UI to select and import the images that
-MAAS requires in order to provision its nodes. Note that the
-[MAAS CLI](./manage-cli-images.html) can also be used for image management.
+MAAS requires in order to provision its nodes.
+
+Note that the MAAS CLI can also be used for image management.
+You must [Select images](./manage-cli-images.html#select-images) and 
+[Import newly-selected images](./manage-cli-images.html#import-newly-selected-images).
 
 By default, the most recent LTS release (and amd64 architecture) are selected.
 To change the selections go to the Images tab, select any other images (by
