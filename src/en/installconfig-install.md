@@ -10,7 +10,7 @@ TODO: Update CLI install
 
 There are three main ways to install MAAS:
 
-- [From Ubuntu Server](installconfig-server-iso.html). Easily configure a
+- [From Ubuntu Server ISO](installconfig-server-iso.html). Easily configure a
   server as either a region controller or a rack controller from a new Ubuntu
   Server installation. 
 
