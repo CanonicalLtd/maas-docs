@@ -90,7 +90,7 @@ needs to provide DHCP for at least one subnet, by configuring the corresponding
 VLAN to which the rack controller is connected to.
 
 
-## Providing DHCP and HA
+## Providing DHCP
 
 In order for MAAS to be able to manage machines on the network, and more
 specifically, in order to be able to enlist, commission and deploy machines it
@@ -111,20 +111,22 @@ from the part of the subnet that is not included in the dynamic range. This
 allows machines to obtain addresses that will remain allocated to them throughout
 their deployment lifecycle.
 
-### Enabling a DHCP on a VLAN (optional HA)
+### Enabling DHCP
 
-Under the 'Networks' tab choose an 'untagged' VLAN and perform the following steps:
+Under the 'Networks' tab choose an 'untagged' VLAN and enable DHCP:
 
-1. Create a dynamic range.
-1. Enable DHCP. Select at least the primary rack controller. For DHCP HA, select
-both the primary and the secondary.
-1. Ensure a default gateway is set for the subnet corresponding to the chosen
-VLAN. Subnets are configured under the 'Networks' tab.
+1. Under the 'Take action' button select 'Provide DHCP'. A new window will
+appear.
+1. Select the primary rack controller. For DHCP **HA**, select both the primary
+and the secondary.
+1. Create a dynamic IP range. Fill in the fields 'Dynamic range start IP' and
+'Dynamic range end IP'.
+1. Configure a default gateway. Fill in the field 'Gateway IP'.
+1. Apply your changes with the 'Provide DHCP' button.
 
 ![image](./media/vlan_provide_dhcp.png)
 
-See [MAAS CLI](./manage-cli-common.html) for instructions on accomplishing
-these tasks with the CLI.
+See [MAAS CLI](./manage-cli-common.html#enable-dhcp) for doing this with the CLI.
 
 
 ## Multiple Networks
