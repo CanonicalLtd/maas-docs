@@ -145,6 +145,28 @@ supports IPv4 and IPv6 subnets. Examples:
 
 In MAAS, a subnet is always associated with a single space.
 
+### IP ranges
+
+MAAS assumes it can allocate all unreserved IPs in a subnet. For example, if a node's
+interface is configured as `Auto Assign`, MAAS will automatically
+assign IP addresses out of the unreserved pool. 
+
+IP addresses can be reserved by adding one or more *reserved ranges* to your
+subnet configuration, and there are two types of possible ranges that can be
+defined:
+
+- **Reserve range** Defines a set of static IP addresses that you
+can use for other devices on your network (e.g. managed switches or
+routers).
+
+- **Reserve dynamic range** Defines a set of IP addresses that you plan to
+hand out using a DHCP server. If you enable DHCP on your subnet's VLAN, MAAS
+will provide a DHCP for IP addresses in this range, otherwise you are
+responsible for proving an external DHCP server for this range.
+
+!!! Note: If you have nodes that require DHCP to network boot (e.g. PXE
+clients), or nodes with an interfaces IP address type of 'DHCP', an active DHCP
+configuration is required.
 
 ## VLANs
 
