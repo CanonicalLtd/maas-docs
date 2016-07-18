@@ -68,7 +68,7 @@ to VLANs, and the subnets being served on these.
 
 Once a new rack controller is connected, it will try to autodetect in what
 subnet, VLAN and even fabric the interface is connected to. If these have not
-being created, new subnets, VLAN's and fabrics and spaces will be created.
+being created, new subnets, VLANs and fabrics and spaces will be created.
 
 If fabrics, VLANs and subnets are already created, once MAAS automatically
 recognises the rack controller network interfaces, it will try to determine to
