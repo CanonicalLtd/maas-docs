@@ -4,6 +4,9 @@ TODO: Review needed
       Clarify terms: discovery, enlistment, accept, commission
       There should be a "commission" section (i.e. not bundled with "discovery")
       AFAIK, user 'maas' has a default home directory of /var/lib/maas
+      This is the wrong place for node interface configuration, but until we
+      migrate to the new structure, I can't think of a better place at the
+      moment. 
 
 
 # Add Nodes
@@ -70,7 +73,7 @@ sudo virsh list --all
 qemu+ssh://ubuntu@10.0.0.2/system
 ```
 
-![image](./media/virsh-config.png)
+![qemu ssh power](./media/virsh-config.png)
 
 For SSH, you'll need to generate an SSH keypair for the 'maas' user. A home
 directory and a login shell will also need to be set up:
@@ -104,3 +107,37 @@ Still as user 'maas', test connecting to the KVM host with virsh:
 ```bash
 virsh -c qemu+ssh://ubuntu@10.0.0.2/system list --all
 ```
+##Interfaces
+
+After a node has been commissioned, its interface(s) can be configured within
+MAAS's web interface by selecting a specific node. When a node's state is
+either *Ready* or *Broken*, network interfaces can be added or removed,
+attached to a fabric and linked to a subnet. 
+
+![node interface](./media/node-interface-ip.png)
+
+There are four further options for how an interface's IP addresses is assigned:
+
+**Auto Assign**
+
+Interfaces configured as "Auto assign" will be deployed with a static
+(non-DHCP) network configuration. MAAS will choose an IP from the subnet
+that does not fall into a defined reserved range.
+
+**Static**
+
+When an interface is configured as "Static", you will be asked to provide an
+IP address for that interface to use when deployed.
+
+**DHCP**
+
+Interfaces configured as "DHCP" will use DHCP to request configuration
+information at boot. In order for the interface to successfully configure, you
+will need to ensure that a [dynamic range](intro-concepts.html#ip-ranges) has
+been reserved on the associated subnet, and that either you have configured
+MAAS to provide DHCP services on the associated VLAN, or that you have provided
+an external DHCP server to do so.
+
+**(Unconfigured)**
+
+These interfaces will be left unconfigured.
