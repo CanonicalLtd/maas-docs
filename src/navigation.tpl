@@ -73,6 +73,7 @@
 					<li><a href="manage-maas-ha.html#deploy-ha-with-juju">Deploy HA with Juju</a></li>
 			</ul>
 		</li>
+		<li><a href="manage-power.html">Power Driver Capabilities</a></li>
 		<li class"section">Custom Images</li>
 		<li class"section"><a href="manage-cli.html">MAAS CLI</a>
 			<ul class="sub">
