@@ -41,11 +41,12 @@ lxc profile device set maas eth0 parent br0
 Third, edit the container profile (lxc profile edit maas) with:
 
 ```yaml
-    raw.lxc: |-
-      lxc.cgroup.devices.allow = c 10:237 rwm
-      lxc.aa_profile = unconfined
-      lxc.cgroup.devices.allow = b 7:* rwm
-    security.privileged: "true"
+config:
+  raw.lxc: |-
+    lxc.cgroup.devices.allow = c 10:237 rwm
+    lxc.aa_profile = unconfined
+    lxc.cgroup.devices.allow = b 7:* rwm
+  security.privileged: "true"
 ```
 
 And lastly, ensure that the LXC container has loop devices added:
@@ -68,7 +69,7 @@ Once the container is running, you can now install MAAS. First you need to
 access the container with:
 
 ```bash
-lxc exec bash xenial-maas
+lxc exec xenial-maas bash
 ```
 You can now proceed with the [standard package
 installation](installconfig-package-install.html). 
