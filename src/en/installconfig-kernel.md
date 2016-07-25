@@ -11,14 +11,16 @@ basis and a per-node basis.
 
 ## Global kernel options
 
-Global kernel options can be changed within the web UI. As an admin, open
-the 'Settings' page and scroll down to the `Global Kernel Parameters` section, as
-shown here:
+To set kernel options globally, as an admin, open the 'Settings' page and
+scroll down to the `Global Kernel Parameters` section, as shown here:
 
 ![image](media/global_kernel_opts.png)
 
 Type in the desired options and click 'Save'. The contents of the field will be
 used as-is. Do not use extra characters.
+
+See [MAAS CLI](./manage-cli-advanced.html#set-the-default-kernel-boot-options)
+for how to do this with the CLI.
 
 
 ## Per-node kernel options

@@ -11,10 +11,18 @@ This is a list of advanced tasks to perform with the MAAS CLI. See
 [MAAS CLI](./manage-cli.html) on how to get started.
 
 
+## Set the default kernel boot options
+
+To set kernel boot options that will be applied to all machines:
+
+```bash
+maas $PROFILE maas set-config name=kernel_opts value='$KERNEL_OPTIONS'
+```
+
 ## Specify kernel boot options for a machine
 
 To specify kernel boot options for an individual machine a tag needs to be
-created with the appropriate `kernel_opts` value set:
+created:
 
 ```bash
 maas $PROFILE tags create name='$TAG_NAME' \
