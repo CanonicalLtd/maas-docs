@@ -52,6 +52,18 @@ maas $PROFILE machines accept-all
 ```
 
 
+## Assign a tag to a node
+
+To assign a tag to a node:
+
+```bash
+maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
+```
+
+Multiple `add=` arguments (and their values) can be used to apply a tag to
+multiple nodes. 
+
+
 ## Set a dynamic IP address range
 
 To set a range of dynamic IP addresses:
