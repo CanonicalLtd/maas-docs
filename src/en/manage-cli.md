@@ -53,6 +53,22 @@ maas login admin http://localhost/MAAS/api/2.0
 ```
 
 
+## Get help
+
+To access command help:
+
+```bash
+maas $PROFILE -h
+```
+
+Further examples:
+
+```bash
+maas $PROFILE tags -h
+maas $PROFILE tags read -h
+```
+
+
 ## Log out
 
 Once you are done with the CLI you can log out from the given profile, flushing
