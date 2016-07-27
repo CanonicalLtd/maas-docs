@@ -1,12 +1,47 @@
 Title: MAAS CLI | Advanced Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
+       Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
+       Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
 
 
 # Advanced CLI Tasks
 
 This is a list of advanced tasks to perform with the MAAS CLI. See
 [MAAS CLI](./manage-cli.html) on how to get started.
+
+
+## Set the default kernel boot options
+
+To set kernel boot options that will be applied to all machines:
+
+```bash
+maas $PROFILE maas set-config name=kernel_opts value='$KERNEL_OPTIONS'
+```
+
+## Specify kernel boot options for a machine
+
+To specify kernel boot options for an individual machine a tag needs to be
+created:
+
+```bash
+maas $PROFILE tags create name='$TAG_NAME' \
+	comment='$COMMENT' kernel_opts='$KERNEL_OPTIONS'
+```
+
+For example:
+
+```bash
+maas $PROFILE tags create name='nomodeset' \
+	comment='nomodeset kernel option' kernel_opts='nomodeset vga'
+```
+
+The tag must then be assigned to the machine in question. This can be done
+with the web UI or with the CLI. For the latter, see [assign a tag to a
+node](./manage-cli-common.html#assign-a-tag-to-a-node).
+
+If multiple tags attached to a node have the `kernel_opts` defined, the first
+one (ordered alphabetically) is used.
 
 
 ## Set a default minimum HWE kernel

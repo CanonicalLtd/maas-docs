@@ -53,6 +53,18 @@ maas $PROFILE machines accept-all
 ```
 
 
+## Assign a tag to a node
+
+To assign a tag to a node:
+
+```bash
+maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
+```
+
+Multiple `add=` arguments (and their values) can be used to apply a tag to
+multiple nodes. 
+
+
 ## Reserve IP addresses
 
 To reserve a range of dynamic IP addresses that will be used by MAAS for
@@ -99,22 +111,24 @@ FABRIC_ID=$(maas $PROFILE subnet read $SUBNET_CIDR \
 
 ## Enable DHCP
 
-To enable DHCP on a VLAN choose an 'untagged' one on a fabric:
+To enable DHCP on a VLAN on a certain fabric:
 
 ```bash
-maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 	primary_rack=$PRIMARY_RACK_CONTROLLER
 ```
 
 To enable DHCP HA you will need both a primary and a secondary controller:
 
 ```bash
-maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 	primary_rack=$PRIMARY_RACK_CONTROLLER \
 	secondary_rack=$SECONDARY_RACK_CONTROLLER 
 ```
 
 You will also need to [set a default gateway](#set-a-default-gateway).
+
+!!! Note: DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
 
 ## Set a DNS forwarder
