@@ -103,21 +103,25 @@ A dynamic IP range is needed in order for MAAS to be able to provide
 DHCP for machines. Addresses in the range get assigned to machines that are
 being:
 
-- auto-registered (also called enlistment)
+- auto-registered (also called enlisted)
 - commissioned
 
-Deployed machines will, by default, obtain IP addresses (DHCP or otherwise)
-from the part of the subnet that is not included in the dynamic range. This
-allows machines to obtain addresses that will remain allocated to them throughout
-their deployment lifecycle.
+Deployed machines will obtain IP addresses from the part of the subnet that is
+*not* included in the above dynamic range. Such a "deployment IP range" does
+not need to be specified. These addresses will remain allocated to machines
+throughout their deployment lifecycle.
 
 ### Enabling DHCP
 
-Under the 'Networks' tab choose an 'untagged' VLAN and enable DHCP:
+In order for machines to PXE boot, a requirement for MAAS provisioning, DHCP
+must be enabled on at least one untagged VLAN. DHCP servicing deployed machines,
+howerver, can use a tagged VLAN. Below, enable DHCP for your desired scenario.
+
+Under the 'Networks' tab choose a VLAN and enable DHCP:
 
 1. Under the 'Take action' button select 'Provide DHCP'. A new window will
 appear.
-1. Select the primary rack controller. For DHCP **HA**, select both the primary
+1. Select the primary rack controller. For DHCP HA, select both the primary
 and the secondary.
 1. Create a dynamic IP range. Fill in the fields 'Dynamic range start IP' and
 'Dynamic range end IP'.
@@ -127,6 +131,14 @@ and the secondary.
 ![image](./media/vlan_provide_dhcp.png)
 
 See [MAAS CLI](./manage-cli-common.html#enable-dhcp) for doing this with the CLI.
+
+If necessary, it is possible to add further portions of the subnet to the
+dynamic IP range (see
+[Reserved IP addresses](./installconfig-network-static.html#reserved-ip-addresses)
+). Furthermore, since DHCP is enabled on a VLAN basis and a VLAN can contain
+mulitple subnets, it is possible to add a portion from those subnets as well.
+Just select the subnet under the 'Networks' tab and reserve a dynamic range.
+DHCP will be enabled automatically.
 
 
 ## Multiple Networks
