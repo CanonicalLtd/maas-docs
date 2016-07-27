@@ -115,7 +115,7 @@ throughout their deployment lifecycle.
 
 In order for machines to PXE boot, a requirement for MAAS provisioning, DHCP
 must be enabled on at least one untagged VLAN. DHCP servicing deployed machines,
-howerver, can use a tagged VLAN. Below, enable DHCP for your desired scenario.
+however, can use a tagged VLAN. Below, enable DHCP for your desired scenario.
 
 Under the 'Networks' tab choose a VLAN and enable DHCP:
 
@@ -136,7 +136,7 @@ If necessary, it is possible to add further portions of the subnet to the
 dynamic IP range (see
 [Reserved IP addresses](./installconfig-network-static.html#reserved-ip-addresses)
 ). Furthermore, since DHCP is enabled on a VLAN basis and a VLAN can contain
-mulitple subnets, it is possible to add a portion from those subnets as well.
+multiple subnets, it is possible to add a portion from those subnets as well.
 Just select the subnet under the 'Networks' tab and reserve a dynamic range.
 DHCP will be enabled automatically.
 

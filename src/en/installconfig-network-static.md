@@ -39,7 +39,7 @@ process of [providing DHCP](./installconfig-rack.html#providing-dhcp). Having
 to do so manually is usually because the initial IP range can no longer satisfy
 current demands.
 
-As an admin user, open the 'Settings' page and select the appropriate subnet.
+As an admin user, open the 'Networks' page and select the appropriate subnet.
 Scroll down to the 'Reserved' section and choose 'Reserved range' or 'Reserved
 dynamic range' depending on whether your reserved addresses will be static or
 dynamic. If the latter is chosen, MAAS will automatically provide DHCP for
