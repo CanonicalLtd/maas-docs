@@ -1,6 +1,7 @@
 Title: MAAS CLI | Common Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
+       There is a nuance between a single reserved address and a single address in a range (start and end addresses being the same). this could use some digging
 
 
 # Common CLI Tasks
@@ -64,23 +65,37 @@ Multiple `add=` arguments (and their values) can be used to apply a tag to
 multiple nodes. 
 
 
-## Set a dynamic IP address range
+## Reserve IP addresses
 
-To set a range of dynamic IP addresses:
+To reserve a range of dynamic IP addresses that will be used by MAAS for
+node enlistment and commissioning:
 
 ```bash
 maas $PROFILE ipranges create type=dynamic \
 	start_ip=$IP_DYNAMIC_RANGE_LOW end_ip=$IP_DYNAMIC_RANGE_HIGH
 ```
 
+See
+[Rack Controller Configuration](./installconfig-rack.html#dynamic-ip-ranges)
+for an explination of dynamic IP ranges.
 
-## Set a reserved IP address range
-
-To set a range of reserved IP addresses:
+To reserve a range of IP addresses that will not be used by MAAS:
 
 ```bash
 maas $PROFILE ipranges create type=reserved \
-	start_ip=$IP_RESERVED_RANGE_LOW end_ip=$IP_RESERVED_RANGE_HIGH
+	start_ip=$IP_STATIC_RANGE_LOW end_ip=$IP_STATIC_RANGE_HIGH
+```
+
+To reserve a single IP address that will not be used by MAAS:
+
+```bash
+maas $PROFILE ipaddresses reserve ip_address=$IP_STATIC_SINGLE
+```
+
+To remove such a single reserved IP address:
+
+```bash
+maas $PROFILE ipaddresses release ip=$IP_STATIC_SINGLE
 ```
 
 
@@ -96,22 +111,24 @@ FABRIC_ID=$(maas $PROFILE subnet read $SUBNET_CIDR \
 
 ## Enable DHCP
 
-To enable DHCP on a VLAN choose an 'untagged' one on a fabric:
+To enable DHCP on a VLAN on a certain fabric:
 
 ```bash
-maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 	primary_rack=$PRIMARY_RACK_CONTROLLER
 ```
 
 To enable DHCP HA you will need both a primary and a secondary controller:
 
 ```bash
-maas $PROFILE vlan update $FABRIC_ID untagged dhcp_on=True \
+maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 	primary_rack=$PRIMARY_RACK_CONTROLLER \
 	secondary_rack=$SECONDARY_RACK_CONTROLLER 
 ```
 
 You will also need to [set a default gateway](#set-a-default-gateway).
+
+!!! Note: DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
 
 ## Set a DNS forwarder
