@@ -24,4 +24,4 @@ Looking at the region controller's main web page again, you should now see a
 login screen. Log in using the user name and password which you have just
 created.
 
-![image](./media/install-login.png)
+![web account login](./media/install-login.png)
