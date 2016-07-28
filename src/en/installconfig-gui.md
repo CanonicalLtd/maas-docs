@@ -15,8 +15,9 @@ a different username for your administrator account, but "root" is a common
 convention and easy to remember. The command will prompt for a password to
 assign to the new user.
 
-You can run this command again for any further administrator accounts you may
-wish to create, but you need at least one.
+Additional administrator accounts can be created from the [web
+UI](installconfig-account.html), or by running the above
+command again, but you will always need at least one account.
 
 ## Log in on the server
 
