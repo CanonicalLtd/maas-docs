@@ -31,7 +31,7 @@
 				<li><a href="installconfig-proxy.html">Proxy Server</a></li>
 			</ul>
 		</li>
-		<li>Account Configuration</li>
+		<li><a href="installconfig-account.html">Account Configuration</a></li>
 		<li>Nodes</li>
 			<ul class="sub">
 				<li><a href="installconfig-rack.html">Rack Controller</a>
