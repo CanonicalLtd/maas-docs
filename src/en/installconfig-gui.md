@@ -1,5 +1,4 @@
 Title: Access the GUI
-TODO: Update images
 	
 # Access the GUI
 
