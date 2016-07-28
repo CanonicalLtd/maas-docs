@@ -58,7 +58,6 @@
 			<ul class="sub">
 				<li><a href="installconfig-images-import.html">Selection and Import</a></li>
 				<li><a href="installconfig-images-mirror.html">Local Image Mirror</a></li>
-				<li><a href="installconfig-os-support.html">Operating System Support</a></li>
 			</ul>
 		</li>
    	 </ul>
