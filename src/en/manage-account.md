@@ -1,6 +1,6 @@
-Title: Account Configuration
+Title: User Accounts
 
-# Account Configuration
+# User Accounts
 
 User accounts can be created, edited and deleted from the 'Users and Keys'
 section at the top of the general 'Settings' page of the web UI.  Moving the
