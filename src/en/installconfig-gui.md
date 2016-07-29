@@ -16,7 +16,7 @@ convention and easy to remember. The command will prompt for a password to
 assign to the new user.
 
 Additional administrator accounts can be created from the [web
-UI](installconfig-account.html), or by running the above
+UI](manage-account.html), or by running the above
 command again, but you will always need at least one account.
 
 ## Log in on the server
