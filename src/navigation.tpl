@@ -31,7 +31,6 @@
 				<li><a href="installconfig-proxy.html">Proxy Server</a></li>
 			</ul>
 		</li>
-		<li><a href="installconfig-account.html">Account Configuration</a></li>
 		<li>Nodes</li>
 			<ul class="sub">
 				<li><a href="installconfig-rack.html">Rack Controller</a>
@@ -65,6 +64,14 @@
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Manage MAAS</h4>
     	<ul>
+		<li><a href="manage-account.html">User Accounts</a>
+			<ul class="sub">
+				<li><a href="manage-account.html#add-a-user">Add User</a></li> 
+				<li><a href="manage-account.html#ssh-keys">SSH Keys</a></li> 
+				<li><a href="manage-account.html#api-key">API Key</a></li> 
+				<li><a href="manage-account.html#change-the-password">Change the password</a></li> 
+			</ul>
+		</li>	
 		<li class"section"><a href="manage-maas-ha.html">High Availability (HA)</a>
 			<ul class="sub">
 					<li><a href="manage-maas-ha.html#rack-controller-ha">Rack Controller HA</a></li>
