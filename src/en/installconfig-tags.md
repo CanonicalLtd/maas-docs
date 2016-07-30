@@ -15,21 +15,25 @@ For instance, a tag could identify nodes which possess fast GPUs. Such a tag
 would help if you were planning to deploy software which used GPU-accelerated
 CUDA or OpenCL libraries. 
 
+Newly-created tags immediately become available as a filter in the nodes view
+in the web UI. 
+
 
 ## Tag definitions
 
 A *tag definition* is the criteria by which nodes are labelled by the
 corresponding tag. During node enlistment MAAS collects hardware information
-using the [lshw](http://ezix.org/project/wiki/HardwareLiSter) utility, which
-returns detailed information in XML format. The definition used in creating a
-tag is then constructed using XPath expressions. See
-[w3schools documentation](http://www.w3schools.com/xpath/xpath_syntax.asp) for
-details on XPath expressions. 
+using the [lshw](http://ezix.org/project/wiki/HardwareLiSter) utility. The
+definition used in creating a tag is then constructed using an *XPath
+expression*. See
+[w3schools documentation](http://www.w3schools.com/xsl/xpath_intro.asp) for
+details on XPath. 
 
-The XML output for each node, available in the web UI, is parsed for the
-desired property. In this example, the property is a GPU with a clock speed
-greater than 1GHz. In this case, the output will be labelled 'display' with a
-property of 'clock'. After adding the speed criteria we end up with:
+The lshw data for each node, available (in both XML and YAML) in the web UI, is
+inspected by you for the desired property. In this example, the property is a
+GPU with a clock speed greater than 1GHz. In this case, the output will be
+labelled 'display' with a property of 'clock'. After adding the speed criteria
+we end up with:
 
 ```nohighlight
 //node[@id="display"]/clock > 1000000000
@@ -38,26 +42,30 @@ property of 'clock'. After adding the speed criteria we end up with:
 This is what can be used a tag definition.
 
 
-## Create a tag
+## Tag creation and automatic assignment
 
-Create the tag with the `maas` command:
+When a definition is supplied during tag creation the tag is automatically
+applied to the nodes that satisfy the definition: 
 
 ```bash
 maas $PROFILE tags create name='gpu' comment='GPU with clock speed >1GHz for running CUDA type operations.' definition='//node[@id="display"]/clock > 1000000000'
 ```
 
-A newly-created tag will become available as a filter in the nodes view in the
-web UI. 
+We recommend that each tag have a short name but a comment that fully
+describes it. Having both will help in terms of, respectively, ease of use
+and keeping track of a tag's actual meaning.
 
-We recommend that each tag have a short name but a fully descriptive comment.
-Doing both will help in terms of, respectively, ease of use and keeping track
-of a tag's actual meaning.
-
-To see what nodes this tag applies to:
+To see what nodes (or machines) this tag applies to:
 
 ```bash
 maas $PROFILE tag nodes gpu
+maas $PROFILE tag machines gpu
 ```
+
+
+## List all tags
+
+maas $PROFILE tags read
 
 
 ## Use a tag
@@ -79,43 +87,39 @@ juju deploy --constraints "mem=1024 tags=gpu,intel" cuda
 ```
 
 
-## Assign a tag
+## Manual tag assignment
 
-MAAS supports the creation of arbitrary tags which don't depend on XPath
-definitions - you may want to tag nodes which make a lot of noise, for
-instance. If a tag is created without specifying the definition parameter then
-it will simply be ignored by the tag refresh mechanism, yet the MAAS
-administrator will be able to manually add and remove the tag from specific
-nodes.
-
-Create a tag called 'my\_tag':
+It is possible to assign tags to nodes manually by simply omitting the
+definition:
 
 ```bash
 maas $PROFILE tags create name='my_tag' comment='nodes which go ping'
 ```
 
-The above line creates a new tag but omits the definition, so no nodes are
-automatically added to it. The following command applies that tag to a specific
-node referenced by its node id property:
+Now apply the tag to a specific node referenced by its system id:
 
 ```bash
-maas $PROFILE tag update-nodes my_tag add="<node-id>"
+maas $PROFILE tag update-nodes my_tag add=$SYSTEM_ID
 ```
 
-You can remove a tag from a particular node or both add and remove for
+A tag can be removed from a particular node or both added and removed for
 different nodes:
 
 ```bash
-maas $PROFILE tag update-nodes my_tag add=<system_id_1> add=<system_id_2> add=<system_id_3> remove=<system_id_4>
+maas $PROFILE tag update-nodes my_tag add=$SYSTEM_ID_1 add=$SYSTEM_ID_2 remove=$SYSTEM_ID_3
 ```
 
-!!! Note: If you both add and remove a tag for the same node in one operation,
-the node will have the tag removed.
+!!! Note: If a tag is both added and removed for the same node in one
+operation, the node will have the tag removed.
+
+
+## Hybrid tag assignment
 
 It is also possible to create a tag with a definition (thereby mapping to
-certain nodes), removing the definition, and then adding the tag manually to
-specific nodes. This is useful if you have hardware which is conceptually
-similar but don't perfectly fit within a single tag definition.
+certain nodes), removing the definition (but keeping the mapping), and then
+adding the tag manually to specific nodes. This is useful if you have hardware
+which is conceptually similar but doesn't perfectly fit within a tag
+definition.
 
 For example, below we will create a tag with a definition (Intel network
 hardware), remove the definition, and manually add the tag to an extra node:
