@@ -22,5 +22,5 @@ A message will appear to indicate that the import process has started.
 
 A local mirror can be used to store MAAS images. This will reduce download
 times for repeated image imports. See
-[Local Mirroring of Boot Images](./sstreams-mirror.html) for information on
+[Local Mirroring of Boot Images](./installconfig-images-mirror.html) for information on
 how to set up a mirror and configure MAAS to use it.
