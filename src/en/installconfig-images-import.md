@@ -1,6 +1,5 @@
 Title: MAAS | Import Images
-TODO: Update images (pictures)
-      i (pmatulis) don't understand the mirror thing, images are already stored locally
+TODO: i (pmatulis) don't understand the mirror thing, images are already stored locally
 
 # Select and Import Images
 
