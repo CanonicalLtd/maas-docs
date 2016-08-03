@@ -1,141 +1,133 @@
 Title: MAAS Tags
-TODO:  Cover how tags are used in the web GUI (including XML output for a node)
-       Expand to listing and deleting tags
-       This text needs a review
+TODO:  Cover how tags are used in the web UI (including XML output for a node)
+       Track bug: https://bugs.launchpad.net/maas/+bug/1608629 (UI and tags)
 
 
 # Tags
 
-MAAS implements a system of tags based on the physical properties of the
-nodes. During service deployment, the tags can be used to identify machines
-most appropriate for that service. Noteworthy is the fact that Juju honours
-MAAS tags.
+MAAS tags are used to identify machines under its control. The main purpose of
+tags is to be able to easily deploy services onto machines that meet certain
+criteria. 
 
 For instance, a tag could identify nodes which possess fast GPUs. Such a tag
 would help if you were planning to deploy software which used GPU-accelerated
 CUDA or OpenCL libraries. 
 
-Newly-created tags immediately become available as a filter in the nodes view
-in the web UI. 
+Because MAAS was designed to work well with
+[Juju](https://jujucharms.com/docs/devel/about-juju.html), the latter supports
+MAAS tags for application deployments. Juju is the recommended way to deploy
+services onto machines managed by MAAS.
+
+!!! Note: Newly-created tags immediately become available as a filter in the
+'Nodes' tab in the web UI. 
 
 
 ## Tag definitions
 
-A *tag definition* is the criteria by which nodes are labelled by the
+A *tag definition* is the criteria by which nodes are auto-labelled by the
 corresponding tag. During node enlistment MAAS collects hardware information
-using the [lshw](http://ezix.org/project/wiki/HardwareLiSter) utility. The
+(using the [lshw](http://ezix.org/project/wiki/HardwareLiSter) utility). The
 definition used in creating a tag is then constructed using an *XPath
-expression*. See
+expression* based on that information. See
 [w3schools documentation](http://www.w3schools.com/xsl/xpath_intro.asp) for
 details on XPath. 
 
-The lshw data for each node, available (in both XML and YAML) in the web UI, is
-inspected by you for the desired property. In this example, the property is a
-GPU with a clock speed greater than 1GHz. In this case, the output will be
-labelled 'display' with a property of 'clock'. After adding the speed criteria
-we end up with:
+The collected data for each node, viewaable (in both XML and YAML) in the web
+UI, is inspected by you for the desired property. Building on the example
+alluded to above, a property can be a GPU with a clock speed greater than 1GHz.
+In this case, the following excerpt from a node's data (in XML format) is
+pertinent:
 
 ```nohighlight
-//node[@id="display"]/clock > 1000000000
+      <lshw:node id="display" class="display" handle="PCI:0000:00:02.0">
+       <lshw:description>VGA compatible controller</lshw:description>
+       <lshw:product>GD 5446</lshw:product>
+       <lshw:vendor>Cirrus Logic</lshw:vendor>
+       <lshw:physid>2</lshw:physid>
+       <lshw:businfo>pci@0000:00:02.0</lshw:businfo>
+       <lshw:version>00</lshw:version>
+       <lshw:width units="bits">32</lshw:width>
+       <lshw:clock units="Hz">33000000</lshw:clock>
+       <lshw:configuration>
+        <lshw:setting id="latency" value="0"/>
+       </lshw:configuration>
+       <lshw:capabilities>
+        <lshw:capability id="vga_controller"/>
+       </lshw:capabilities>
+       <lshw:resources>
+        <lshw:resource type="memory" value="fc000000-fdffffff"/>
+        <lshw:resource type="memory" value="febd0000-febd0fff"/>
+        <lshw:resource type="memory" value="febc0000-febcffff"/>
+       </lshw:resources>
+      </lshw:node>
 ```
 
-This is what can be used a tag definition.
+MAAS nodes will be selected based on these XPath *predicates*:
 
+- *element* of 'node'
+- with an *attribute* of 'id'
+- whose *value* is 'display'
+- and has a *child element* of 'clock units="Hz"'
 
-## Tag creation and automatic assignment
+After adding the speed criteria via an XPath *operator* we end up with this as
+our tag definition:
 
-When a definition is supplied during tag creation the tag is automatically
-applied to the nodes that satisfy the definition: 
-
-```bash
-maas $PROFILE tags create name='gpu' comment='GPU with clock speed >1GHz for running CUDA type operations.' definition='//node[@id="display"]/clock > 1000000000'
+```nohighlight
+//node[@id="display"]/'clock units="Hz"' > 1000000000
 ```
 
-We recommend that each tag have a short name but a comment that fully
-describes it. Having both will help in terms of, respectively, ease of use
-and keeping track of a tag's actual meaning.
-
-To see what nodes (or machines) this tag applies to:
-
-```bash
-maas $PROFILE tag nodes gpu
-maas $PROFILE tag machines gpu
-```
+This definition is used in a CLI example
+[here](./manage-cli-tags.html#tag-creation-and-auto-assignment).
 
 
-## List all tags
+## Tag listing and tags as search filters
 
-maas $PROFILE tags read
+To list all tags visit the 'Nodes' tab and expand the 'Tags' subsection in the
+left pane.
 
+This view is also where one can use tags as node search filters. Select one, or
+several, tags. The nodes that satisfy all selected tags will display on the
+right pane. Notice there is a search field at the top of the right pane. This
+is where one can type in a search expression.
 
-## Use a tag
+Below, tags 'gpu2' and 'virtual' have been selected by mouse-clicking. The
+search field automatically reflects this. Nine nodes satisfy this search
+filter.
 
-You can use a tag in the web UI as a node search filter but the main
-significance of it is when using Juju to deploy applications.
+![tags: search filters](./media/installconfig-tags_image-tags-search.png)
 
-For example, to use the 'gpu' tag to deploy a (hypothetical) service called
-'cuda':
-
-```bash
-juju deploy --constraints tags=gpu cuda
-```
-
-You can also use multiple tags in addition to the normal Juju constraints:
-
-```bash
-juju deploy --constraints "mem=1024 tags=gpu,intel" cuda
-```
+Remove a tag from the search filter by either hitting the 'x' character
+alongside a tag or editing the search expression.
 
 
-## Manual tag assignment
+## Tag assignment
 
-It is possible to assign tags to nodes manually by simply omitting the
-definition:
+To view a node's currently assigned tags stay on the 'Nodes' tab and select the
+node in question. Tags that are currently assigned will be displayed.
 
-```bash
-maas $PROFILE tags create name='my_tag' comment='nodes which go ping'
-```
+The following three actions are done while in a node's edit mode (click the
+'Edit' button). Changes are saved by pressing the 'Save changes' button.
 
-Now apply the tag to a specific node referenced by its system id:
+- To unassign a tag hit the 'x' character alongside a tag.
+- To create a rudimentary tag type the name of the new tag in the 'Add a tag'
+  field and hit Enter. The tag will be created and automatically assigned to the
+  node. Repeat if desired.
+- To assign an existing tag type at least three characters to trigger a
+  real-time search. Any resulting tags will show up in a drop-down menu.
+  Select as desired.
 
-```bash
-maas $PROFILE tag update-nodes my_tag add=$SYSTEM_ID
-```
-
-A tag can be removed from a particular node or both added and removed for
-different nodes:
-
-```bash
-maas $PROFILE tag update-nodes my_tag add=$SYSTEM_ID_1 add=$SYSTEM_ID_2 remove=$SYSTEM_ID_3
-```
-
-!!! Note: If a tag is both added and removed for the same node in one
-operation, the node will have the tag removed.
+![tags: add & remove](./media/installconfig-tags_image-tags-add_remove.png)
 
 
-## Hybrid tag assignment
+## Tag management
 
-It is also possible to create a tag with a definition (thereby mapping to
-certain nodes), removing the definition (but keeping the mapping), and then
-adding the tag manually to specific nodes. This is useful if you have hardware
-which is conceptually similar but doesn't perfectly fit within a tag
-definition.
+With the exception of tag assignment (as shown above), at this time tag
+management, such as creation, deletion, and advanced operations, can only be
+performed via the CLI. See [MAAS CLI](./manage-cli-tags.html) for tag
+management. Also covered there is how to use tags in conjunction with Juju (to
+deploy services) and all tag features available with the web UI (listing and
+searching).
 
-For example, below we will create a tag with a definition (Intel network
-hardware), remove the definition, and manually add the tag to an extra node:
-
-```bash
-maas $PROFILE tags create name='new_tag' comment='nodes I like' definition='contains(//node[@id=network]/vendor, "Intel")'
-```
-
-Remove the definition:
-
-```bash
-maas $PROFILE tag update new_tag definition=''
-```
-
-Then apply the tag to the extra node:
-
-```bash
-maas $PROFILE tag update-nodes new_tag add=<node-id>
-```
+As was shown in the above section, rudimentary tag creation *is* possible in the
+web UI but such tags lack any intelligence. They should be regarded more as node
+aliases.
