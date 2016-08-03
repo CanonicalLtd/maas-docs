@@ -1,5 +1,4 @@
 Title: MAAS | Import Images
-TODO: i (pmatulis) don't understand the mirror thing, images are already stored locally
 
 # Select and Import Images
 
