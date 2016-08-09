@@ -109,6 +109,11 @@ maas $PROFILE boot-source update $SOURCE_ID \
 	url=$URL keyring_filename="" keyring_data@=$KEYRING_FILE
 ```
 
+At this time MAAS only supports an image source containing official MAAS
+images. This implies that an image source would only be edited if a mirror of
+such images has been set up. Therefore, the keyring file and the source ID are
+constants and the location is the sole variable to be changed.
+
 
 ## Add an image source
 
@@ -121,6 +126,11 @@ maas $PROFILE boot-sources create \
 
 The output will include a new numeric ID that identifies the source
 ($SOURCE_ID).
+
+Since MAAS can only practically work with a single image source this scenario
+implies that any existing sources have first been deleted, or will be deleted.
+In addition, as is the case with editing a source, the location (URL) is the
+only acting variable.
 
 
 ## Recreate the default image source
