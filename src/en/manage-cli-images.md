@@ -89,48 +89,42 @@ maas $PROFILE boot-source delete $SOURCE_ID
 
 ## Edit an image source
 
-To edit an existing source the keyring can be defined with a custom location
-($URL) and a custom keyring file (path of $KEYRING_FILE) with contents like:
+An existing source can be edited by changing the GPG keyring file
+(KEYRING_FILE) and/or the location (URL).
 
-```nohighlight
-{
-    "url": "$URL",
-    "keyring_data": "base64 encoded content of $KEYRING_FILE",
-    "resource_uri": "$URL",
-    "keyring_filename": "",
-    "id": $SOURCE_ID
-}
-```
-
-Then update the source:
+Update the source:
 
 ```bash
 maas $PROFILE boot-source update $SOURCE_ID \
-	url=$URL keyring_filename="" keyring_data@=$KEYRING_FILE
+	url=$URL keyring_filename=$KEYRING_FILE
 ```
 
-At this time MAAS only supports an image source containing official MAAS
-images. This implies that an image source would only be edited if a mirror of
-such images has been set up. Therefore, the keyring file and the source ID are
-constants and the location is the sole variable to be changed.
+At this time MAAS only fully supports a source containing official MAAS images.
+This implies that an image source would only be edited if a mirror of such
+images has been set up. The location can change but the keyring remains
+constant:
+
+KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 
 
 ## Add an image source
 
-Add a custom source with its own location and keyring:
+Add a custom source:
 
 ```bash
 maas $PROFILE boot-sources create \
-	url=$URL keyring_filename="" keyring_data@=$KEYRING_FILE
+	url=$URL keyring_filename=$KEYRING_FILE
 ```
 
 The output will include a new numeric ID that identifies the source
-($SOURCE_ID).
+(SOURCE_ID).
 
 Since MAAS can only practically work with a single image source this scenario
 implies that any existing sources have first been deleted, or will be deleted.
 In addition, as is the case with editing a source, the location (URL) is the
-only acting variable.
+only acting variable. The only supported keyring is:
+
+KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 
 
 ## Recreate the default image source
