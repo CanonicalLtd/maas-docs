@@ -16,6 +16,25 @@ Note that we do not provide complete coverage of the MAAS CLI. For an
 exhaustive treatment, see the
 [API documentation](http://maas.ubuntu.com/docs2.0/index.html#api-cli-documentation).
 
+Values are represented as uppercase variables preceded with the '$' character
+(e.g. $PROFILE and $EMAIL_ADDRESS). These are to be replaced with actual
+values.
+
+
+## Create an administrator
+
+MAAS requires an initial administrator, sometimes called a MAAS "superuser".
+When the web UI is accessed for the first time you will be prompted to create
+this user:
+
+```bash
+sudo maas createadmin --username=$PROFILE --email=$EMAIL_ADDRESS
+```
+
+Extra administrators can be created in the same way. See
+[here](./manage-cli-common.html#create-a-regular-user) for creating regular
+users with the CLI.
+
 
 ## Log in (required)
 

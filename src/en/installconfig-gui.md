@@ -1,28 +1,37 @@
-Title: Access the GUI
+Title: MAAS | Access the GUI
+
 	
 # Access the GUI
 
-Unless you installed MAAS via [Ubuntu Server](installconfig-server-iso.html),
-you'll need to create an administrator account before you can access the web
-interface:
+Unless MAAS was installed from the
+[Ubuntu Server ISO](./installconfig-server-iso.html), you'll need to create a
+user in order to access the web UI. This initial user is a MAAS administrator:
 
 ```bash
-sudo maas createadmin --username=root --email=MYEMAIL@EXAMPLE.COM
+sudo maas createadmin --username=$PROFILE --email=$EMAIL_ADDRESS
 ```
 
-Substitute your own email address for <MYEMAIL@EXAMPLE.COM>. You may also use
-a different username for your administrator account, but "root" is a common
-convention and easy to remember. The command will prompt for a password to
-assign to the new user.
+For example:
 
-Additional administrator accounts can be created from the [web
-UI](manage-account.html), or by running the above
-command again, but you will always need at least one account.
+```bash
+sudo maas createadmin --username=admin --email=admin@example.com
+```
 
-## Log in on the server
+The username can be anything. You will also be prompted to supply a password
+for the user. There is a command option ('--password=$PASSWORD') that can be
+used to specify one but depending on your environment this may pose a security
+risk.
 
-Looking at the region controller's main web page again, you should now see a
-login screen. Log in using the user name and password which you have just
-created.
+!!! Note: At this time MAAS does not make use of the email address. However, it
+may do so in the future.
+
+You can now log in to the web UI.
 
 ![web account login](./media/install-login.png)
+
+Once logged in to the UI an administrator can use it to create regular users as
+well as additional administrators. See [User Accounts](./manage-account.html)
+for this.
+
+See [MAAS CLI](./manage-cli.html) for logging in via the CLI and working with
+the CLI.
