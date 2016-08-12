@@ -204,3 +204,7 @@ To create a regular user:
 maas $PROFILE users create username=$USERNAME \
 	email=$EMAIL_ADDRESS password=$PASSWORD is_superuser=0
 ```
+
+All the options are necessary. Note that stipulating a password on the CLI may
+be a security hazard, depending on your environment. If unsure, use the web UI.
+See [User Accounts](./manage-account.html) for the latter.
