@@ -25,7 +25,7 @@ risk.
 !!! Note: At this time MAAS does not make use of the email address. However, it
 may do so in the future.
 
-You can now log in to the web UI.
+You can now log in here: <http://<region controller address\>/MAAS>
 
 ![web account login](./media/install-login.png)
 
