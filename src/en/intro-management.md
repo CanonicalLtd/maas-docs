@@ -17,7 +17,7 @@ future chapters.
 
 The web-based GUI is how most people will interact with MAAS. It gets installed along
 with the MAAS software. See
-[Accessing the GUI](./installconfig-gui-access.html).
+[Accessing the GUI](./installconfig-gui.html).
 
 
 ## CLI

@@ -4,7 +4,7 @@
     	<ul>
        		<li><a href="intro-about-maas.html">About MAAS</a></li>
 		<li><a href="intro-overview.html">Functional overview</a></li>
-		<li><a href="intro-examples.html">Practical examples</a></li>
+<!--		<li><a href="intro-examples.html">Practical examples</a></li> -->
 		<li><a href="intro-management.html">Management summary</a></li>
 		<li><a href="intro-concepts.html">Concepts and terms</a></li>
                 <li><a href="intro-architecture.html">Architectural overview</a></li>
