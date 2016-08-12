@@ -17,9 +17,10 @@ For example:
 sudo maas createadmin --username=admin --email=admin@example.com
 ```
 
-You will be prompted to supply a password for the user. There is also a
-command option ('--password=$PASSWORD') that can be used to specify one but
-depending on your environment this may pose a security risk.
+The username can be anything. You will also be prompted to supply a password
+for the user. There is a command option ('--password=$PASSWORD') that can be
+used to specify one but depending on your environment this may pose a security
+risk.
 
 !!! Note: At this time MAAS does not make use of the email address. However, it
 may do so in the future.
