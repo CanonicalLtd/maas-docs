@@ -194,3 +194,13 @@ To determine the hostname based on a node's MAC address:
 HOSTNAME=$(maas $PROFILE nodes read mac_address=$MAC \
 	| grep hostname | cut -d '"' -f 4)
 ```
+
+
+## Create a regular user
+
+To create a regular user:
+
+```bash
+maas $PROFILE users create username=$USERNAME \
+	email=$EMAIL_ADDRESS password=$PASSWORD is_superuser=0
+```
