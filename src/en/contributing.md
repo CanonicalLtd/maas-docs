@@ -101,7 +101,7 @@ Callouts are used to notify the user of additional information or warn them of
 potential pitfalls. This will create a notification resembling the following in
 the docs:
 
-![callout](media/note.png)
+![callout](./media/note.png)
 
 To implement this callout, use the following syntax:
 
@@ -142,8 +142,8 @@ description of the new page and why it is needed!
 
 ## Adding screenshots
 
-When adding screenshots place them in `htmldocs/media`. To reference them in
-your page use the syntax `![description](media/picture.png)`
+When adding screenshots place them in `media`. To reference them in
+your page use the syntax `![description](./media/picture.png)`
 
 
 # Testing or deploying locally
@@ -185,10 +185,9 @@ python -m SimpleHTTPServer
 We are putting together a more comprehensive style guide, but for the moment the
 following are good guidelines:
 
- - Resist being overly formal. The documentation should be like having a 
-   conversation with a knowledgeable friend
- - Remember the readers are *users* not necessarily Juju developers
- - Spell things properly! (see below)
+ - Resist being overly formal. 
+ - Remember the readers are *users* not necessarily Juju developers.
+ - Spell things properly! (see below).
  - We use British English (en-GB). See
    [language details](./contributing-en-GB.html), including a comparison with
    American English (en-US).
