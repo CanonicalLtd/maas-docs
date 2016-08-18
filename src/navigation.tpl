@@ -97,8 +97,8 @@
        		<li><a href="troubleshoot-getting-help.html">Getting help</a></li>
     	</ul>
     </li>
-<li><a href="http://maas.ubuntu.com/docs/index.html#developing-maas">Developer
-Guide</a></li>
+<li><a href="ref-release-notes.html">Release notes</a></li>
+<li><a href="http://maas.ubuntu.com/docs/index.html#developing-maas">Developer Guide</a></li>
 <li><a href="http://maas.ubuntu.com/docs/index.html#api-cli-documentation">API / CLI Documentation</a></li>
 <li><a href="contributing.html">Help improve these docs</a></li>
 <li><a href="https://github.com/CanonicalLtd/maas-docs/issues/new">Report a docs issue</a></li>
