@@ -52,12 +52,21 @@ maas $PROFILE boot-source-selections create $SOURCE_ID \
 	subarches="$HWE_KERNEL" labels="*"
 ```
 
-For example:
+For example, to select all HWE kernels for 64-bit Trusty:
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
 	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="hwe-v" subarches="hwe-w" labels="*"
+	subarches="*" labels="*"
+```
+
+Often users would simply want the latest HWE kernel available for Trusty,
+which, at time of writing, is from Xenial:
+
+```bash
+maas $PROFILE boot-source-selections create 1 \
+	os="ubuntu" release="trusty" arches="amd64" \
+	subarches="hwe-x" labels="*"
 ```
 
 After new images are selected MAAS will need to import them.
