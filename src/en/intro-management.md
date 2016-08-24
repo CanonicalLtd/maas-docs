@@ -1,4 +1,5 @@
 Title: MAAS | Management Summary
+TODO:  Add link for CLI docs when they are updated (in navigation too)
 
 
 # Management summary
@@ -26,8 +27,12 @@ Some advanced functionality is only available with the CLI. See below.
 
 ## CLI
 
+<!--
 The CLI consists of the `maas` wrapper command that interacts with the API. To
 get a sense of what is possible with the CLI see [MAAS CLI](./manage-cli.html).
+-->
+
+The CLI consists of the `maas` wrapper command that interacts with the API.
 
 
 ## API
