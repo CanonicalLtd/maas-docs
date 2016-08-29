@@ -61,15 +61,17 @@ Preferences in the drop down menu which appears when clicking your username in
 the top-right of the page).
 
 
-## Forgot MAAS superuser password
+## Forgot MAAS administrator password
 
-As long as you have sudo privileges, this is not a disaster. You can use the
-`maas` command to change the password for the MAAS superuser on the MAAS
-server:
+As long as you have sudo privileges the
+`maas` command can be used to change the password for a MAAS administrator on the MAAS
+region controller:
 
 ```bash
-sudo maas changepassword root
+sudo maas changepassword $PROFILE
 ```
+
+where $PROFILE is the name of the user.
 
 
 ## Need to reconfigure server IP address

@@ -32,8 +32,8 @@ By default, when using the web UI, MAAS imports all available HWE kernels along
 with its generic boot images. So if Trusty images are imported then the
 following HWE kernels are included: `hwe-u`, `hwe-v`, and `hwe-w`.
 
-See [Using the CLI](./manage-cli.html#select-install-images) for how to
-target specific HWE kernels when selecting install images.
+See [MAAS CLI](./manage-cli-images.html#select-images) for how to target
+specific HWE kernels when selecting install images.
 
 See the [LTS Enablement
 Stack](https://wiki.ubuntu.com/Kernel/LTSEnablementStack) Ubuntu wiki for
@@ -50,10 +50,10 @@ done in three ways:
 - per machine (minimum kernel)
 - per machine during deployment (specific kernel)
 
-!!! Note: MAAS will emit an error if a configured minimum kernel version (or newer) is
-not available for the machine's Ubuntu release.
+!!! Note: MAAS will emit an error if a configured minimum kernel version (or
+newer) is not available for the machine's Ubuntu release.
 
-See [Using the CLI](./manage-cli.html#set-a-default-minimum-kernel) for how to
+See [MAAS CLI](./manage-cli.html#set-a-default-minimum-kernel) for how to
 perform these three configurations from the CLI.
 
 ### Default minimum kernel

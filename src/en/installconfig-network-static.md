@@ -1,4 +1,6 @@
 Title: Static IPs
+TODO:  This page is improperly titled; reserving addresses should not be associated with static addresses
+
 
 # Static IPs
 
@@ -24,62 +26,35 @@ Assign`, `DHCP` and `Unconfigured`. Selecting `Static Assign` will add a new
 field beneath the menu where you can enter the IP address you'd like to
 allocate to the interface. 
 
-!["static ip"](./media/maas-gui-staticip.png)
+![static IP address](./media/maas-gui-staticip.png)
 
-## Unmanaged user-allocated IPs
 
-The API allows users to request an IP address for use in any way they
-see fit. The IP is not tied to any node in MAAS and is guaranteed not to be in
-use by MAAS itself. You can specify either a subnet or a specific IP address
-within a subnet. 
+## Reserved IP addresses
 
-To reserve a specific IP address from the command line, enter the following:
+It is possible to reserve a portion of a subnet which MAAS will not lease for
+deployed nodes. This is for when you have machines on the subnet that are not
+managed by MAAS (use 'reserved') or when you want MAAS to provide DHCP for
+provisioning (use 'reserved-dynamic'). Note that the latter is part of the
+process of [providing DHCP](./installconfig-rack.html#providing-dhcp). Having
+to do so manually is usually because the initial IP range can no longer satisfy
+current demands.
 
-```bash
-maas admin ipaddresses reserve ip_address=192.168.122.149
-```
+As an admin user, open the 'Networks' page and select the appropriate subnet.
+Scroll down to the 'Reserved' section and choose 'Reserved range' or 'Reserved
+dynamic range' depending on whether your reserved addresses will be static or
+dynamic. If the latter is chosen, MAAS will automatically provide DHCP for
+enlistment and commissioning provided that the associated VLAN has DHCP
+enabled.
 
-Successful output would look similar to the following:
+When either of those two options are chosen a window will appear allowing you
+to enter start and end addresses for the range as well as a comment.
 
-```yaml
-Success.
-Machine-readable output follows:
-{
-    "created": "2016-06-17T17:44:25.073",
-    "resource_uri": "/MAAS/api/2.0/ipaddresses/",
-    "subnet": {
-        "vlan": {
-            "dhcp_on": true,
-            "secondary_rack": null,
-            "vid": 0,
-            "mtu": 1500,
-            "fabric": "fabric-0",
-            "name": "untagged",
-            "external_dhcp": null,
-            "resource_uri": "/MAAS/api/2.0/vlans/5001/",
-            "primary_rack": "4y3h7n",
-            "id": 5001
-        },
-        "dns_servers": [],
-        "cidr": "192.168.122.0/24",
-        "name": "192.168.122.0/24",
-        "allow_proxy": true,
-        "space": "space-0",
-        "gateway_ip": "192.168.122.1",
-        "resource_uri": "/MAAS/api/2.0/subnets/1/",
-        "rdns_mode": 2,
-        "id": 1
-    },
-    "ip": "192.168.122.149",
-    "alloc_type": 4
-}
-```
+Below is an example window when creating a 'Reserved range' (both windows are
+actually identical):
 
-To remove the IP address, use the `release` operation:
+![reserved IP range](./media/installconfig-network-static_image-reserved-range.png)
 
-```bash
-maas admin ipaddresses release ip=192.168.122.149
-```
+Click the 'Reserve' button when done.
 
-Further details on assigning and removing IP addresses can be found within the
-full [API documentation](https://maas.ubuntu.com/docs/api.html).
+See [MAAS CLI](./manage-cli-common.html#reserve-ip-addresses) for doing this
+with the CLI.
