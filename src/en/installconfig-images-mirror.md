@@ -4,16 +4,16 @@ Title: Local Image Mirror
 # Local Image Mirror
 
 Images are delivered to MAAS via the SimpleStreams protocol and the mirroring
-of these images is worthy of consideration. This option is especially
-interesting when your environment has a slow or unreliable internet link. In
-such cases, when the images are requested they will be instantly available and
-the disadvantaged link will be less readily apparent.
+of these images is worthy of consideration. This option is especially useful
+when your environment has a slow or unreliable internet link. In such cases,
+when the images are requested they will be instantly available and the
+disadvantaged link will be less readily apparent.
 
 Begin by installing the necessary software on the host that will house the
 mirror:
 
 ```bash
-sudo apt install simplestreams ubuntu-cloudimage-keyring apache2
+sudo apt install simplestreams
 ```
 
 First define some variables to unclutter eventual CLI commands:
@@ -44,19 +44,16 @@ want to save bandwidth and time due to possible mis-selections, include the
 download.
 
 The images will be written to disk in the directory defined by the variable
-'IMAGE_DIR' above. Their availability over the network can be verified by
-visiting:
+'IMAGE_DIR' above and the 'location' of the new boot source will be:
 
-`http://<myserver>/maas/images/ephemeral-v2/daily/streams/v1/index.sjson`
+`URL=http://<myserver>/maas/images/ephemeral-v2/daily/`
 
 Where `<myserver>` identifies your server's hostname or IP address.
 
-The final `sstream-mirror` command should now be invoked at regular intervals
-(i.e. with `cron`) to ensure the images are up-to-date.
+Verify the availability of the images by visiting the above URL.
 
-The 'location' of the new boot source is:
-
-`URL=http://<myserver>/maas/images/ephemeral-v2/daily/`
+The final `sstream-mirror` command should be invoked at regular intervals (i.e.
+with `cron`) to ensure the mirror contains the latest images.
 
 
 ## Configure MAAS to use the local mirror
