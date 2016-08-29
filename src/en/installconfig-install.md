@@ -1,9 +1,4 @@
 Title: Installation
-TODO: Update CLI install
-      Update images
-      Possibly split into sections
-      Update Server install
-      Change local anchors as files are renamed
 	
 
 # Installation
