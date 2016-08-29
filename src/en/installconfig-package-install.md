@@ -5,7 +5,7 @@ TODO:  Explain MAAS proxy
 
 # Install from Packages
 
-There are several packages required for MAAS:
+There are several packages to choose from:
 
 - `maas-region-controller` - includes the web UI, API and database.
 - `maas-rack-controller` - controls a group of machines under a rack or
