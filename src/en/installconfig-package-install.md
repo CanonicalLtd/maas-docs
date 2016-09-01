@@ -35,7 +35,7 @@ UI to have MAAS manage DHCP/DNS.
 
 While MAAS is available in the normal Ubuntu archives, the available packages
 may be lagging behind non-archive, but still stable, versions. To install a newer
-stable version the follosing PPA can be used:
+stable version the following PPA can be used:
 
 - [ppa:maas/stable](https://launchpad.net/~maas/+archive/ubuntu/stable)
 

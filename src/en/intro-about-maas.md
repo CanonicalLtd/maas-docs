@@ -12,11 +12,14 @@ Machines can be quickly provisioned and then destroyed again as easily as you
 can with instances in a public cloud like Amazon AWS, Google GCE, and Microsoft
 Azure, among others.
 
-MAAS can work as a standalone PXE/preseed service or it can be integrated with
+MAAS can act as a standalone PXE/preseed service or it can be integrated with
 other technologies. In particular, it is designed to work especially well with
 [Juju](https://jujucharms.com/docs/stable/about-juju), the service and model
 management service. It's a perfect arrangement: MAAS manages the machines and
 Juju manages the services running on those machines.
+
+!!! Note: KVM guests can also act as MAAS nodes as long as they are set to boot
+from the network (PXE).
 
 
 ## What MAAS offers
@@ -96,3 +99,16 @@ worth having multiple region and rack controllers if you need to organise your
 nodes into different subnets and you want high availability and/or load
 balancing. Consideration of DHCP is recommended if your network is already
 providing this service.
+
+
+## Installation methods
+
+There are three ways to install MAAS:
+
+- From the Ubuntu Server ISO. A dialog is included for installing either a
+  region or rack controller
+- From software packages ("debs")
+- As a self-contained LXD environment
+
+These methods, and their respective advantages, are fleshed out on the
+[Installation](./installconfig-install.html) page.
