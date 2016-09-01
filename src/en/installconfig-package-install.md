@@ -1,93 +1,73 @@
-Title: Install from MAAS Packages
+Title: Install from Packages
+TODO:  Explain MAAS proxy
+       Mention danger of conflicting DHCP on the network
 
-# Install from MAAS Packages
 
-Installing MAAS from packages is straightforward. There are actually several
-packages that go into making up a working MAAS install, but for convenience,
-many of these have been gathered into a virtual package called 'maas' which
-will install the necessary components for a 'seed cloud', that is a single
-server that will directly control a group of nodes. The main packages are:
+# Install from Packages
 
--   `maas` - seed cloud setup, which includes both the region controller and
-    the rack controller below.
--   `maas-region-controller` - includes the web UI, API and database.
--   `maas-rack-controller` - controls a group of machines under a rack or
-    multiple racks, including DHCP management.
--   `maas-dhcp`/`maas-dns` - required when managing dhcp/dns.
--   `maas-proxy` - required to provide a MAAS proxy.
+There are several packages to choose from:
 
-If you need to separate these services or want to deploy an additional rack
-controller, you should install the corresponding packages individually (see the
-[description of a typical setup](./orientation.html#a-typical-maas-setup) for
-more background on how a typical hardware setup might be arranged).
+- `maas-region-controller` - includes the web UI, API and database.
+- `maas-rack-controller` - controls a group of machines under a rack or
+   multiple racks, including DHCP management.
+- `maas-dhcp`/`maas-dns` - required when managing DHCP/DNS.
+- `maas-proxy` - required to provide a MAAS proxy.
 
-There are two suggested additional packages 'maas-dhcp' and 'maas-dns'. These
-set up MAAS-controlled DHCP and DNS services which greatly simplify deployment
-if you are running a typical setup where the MAAS controller can run the
-network 
+For convenience, the 'maas' metapackage will install all the above packages
+onto the localhost. This will provide all the services necessary to manage
+your machines with MAAS. See
+[A simple MAAS setup](./intro-about-maas.html#a-simple-maas-setup) for a little
+more detail on the all-in-one MAAS solution. It is the ideal design for trying
+out MAAS for the first time.
 
-!!! Note: Both 'maas-dhcp' and 'maas-dns' **must** be installed if you later
-set the options in the web interface to have MAAS manage DHCP/DNS.
+If you want to distribute these services on several machines (or want to deploy
+an additional rack controller), you will need to install packages individually
+on those machines.
 
-### MAAS Package Repositories
+Packages 'maas-dhcp' and 'maas-dns' provide MAAS-controlled DHCP and DNS
+services which greatly simplify deployment. This is the recommended design and
+should be chosen if your local network policies allow it. Note that these
+packages **must** be installed if you later configure the web
+UI to have MAAS manage DHCP/DNS.
 
-While MAAS is available in the Ubuntu Archives per each release of Ubuntu, the
-version might not be the latest. However, if you would like to install a newer
-version of MAAS (the latest stable release), this is available in the
-following PPA:
 
--   [ppa:maas/stable](https://launchpad.net/~maas/+archive/ubuntu/stable)
+## Package repositories
 
-!!! Note: The MAAS team also releases the latest development release of MAAS.
-The development release is available in
-[ppa:maas/next](https://launchpad.net/~maas/+archive/ubuntu/next). 
-However, this is meant to be used for testing and at your own risk.
+While MAAS is available in the normal Ubuntu archives, the available packages
+may be lagging behind non-archive, but still stable, versions. To install a newer
+stable version the following PPA can be used:
 
-Adding MAAS package repository is simple. At the command line, type:
+- [ppa:maas/stable](https://launchpad.net/~maas/+archive/ubuntu/stable)
 
-```bash
-sudo add-apt-repository ppa:maas/stable
-```
+Development releases (not meant for production) are available here:
 
-You will be asked to confirm whether you would like to add this repository,
-and its key. Upon configuration, the following needs to be typed at the
-command line:
+- [ppa:maas/next](https://launchpad.net/~maas/+archive/ubuntu/next)
+
+To add a PPA, type:
 
 ```bash
-sudo apt-get update
+sudo apt-add-repository -y ppa:maas/stable
+sudo apt update
 ```
 
-## Installing a Single Node MAAS
+## All-in-one solution
 
-At the command line, type:
+As described above, to put everything on one machine:
 
 ```bash
-sudo apt-get install maas
+sudo apt install maas
 ```
 
-This will install both the MAAS Region Controller and the MAAS Rack
-Controller, and will select sane defaults for the communication between the
-Rack Controller and the Region Controller. After installation, you can access
-the Web Interface. Then, there are just a few more setup steps post\_install
-
-### Reconfiguring a MAAS Installation
-
-You will see a list of packages and a confirmation message to proceed. The
-exact list will obviously depend on what you already have installed on your
-server, but expect to add about 200MB of files.
-
-The configuration for the MAAS controller will automatically run and pop up
-this config screen:
+The below dialog will appear:
 
 ![image](./media/install_cluster-config.png)
 
-Here you will need to enter the hostname for where the region controller can
-be contacted. In many scenarios, you may be running the region controller
-(i.e. the web and API interface) from a different network address, for example
-where a server has several network interfaces.
+Enter the IP address of the region controller. In some cases, the machine
+running the region controller (i.e. the web and API interface) may have several
+network interfaces. Choose the address according to your design.
 
-### Adding Rack Controllers
 
-If you would like to add additional MAAS Rack Controllers to your MAAS setup,
-you can do so by following the instructions in [Rack Controller
-configuration](./installconfig-rack.html).
+## Adding rack controllers
+
+To add additional rack controllers, see the instructions in
+[Rack controller configuration](./installconfig-rack.html).

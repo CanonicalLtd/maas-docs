@@ -1,23 +1,26 @@
 Title: Installation
-TODO: Update CLI install
-      Update images
-      Possibly split into sections
-      Update Server install
-      Change local anchors as files are renamed
-	
+
 
 # Installation
 
-There are three main ways to install MAAS:
+There are three ways to install MAAS:
 
-- [From an Ubuntu Server ISO](installconfig-server-iso.html). Easily configure a
-  server as either a region controller or a rack controller from a new Ubuntu
-  Server installation. 
+- [From an Ubuntu Server ISO](installconfig-server-iso.html). Install and
+  configure a region controller or a rack controller during the ISO
+  installation of Ubuntu Server.
+  - Recommended for new MAAS environments with a distributed design
+  - Enables you to get started as quickly as possible 
 
-- [From a package repository](installconfig-package-install.html). Add MAAS
-  packages for region and rack controllers to a system already running Ubuntu. 
+- [From packages](installconfig-package-install.html). Install packages for
+  individual MAAS components.
+  - Versatile: Put components where you want them (centralized or distributed)
+  - Can access developmental versions of MAAS
 
-- [Locally with LXD](installconfig-lxd-install.html). Create a local MAAS
-  environment within a container that is capable of running the region
-  controller, the rack controller and multiple nodes.  
+- [Locally with LXD](installconfig-lxd-install.html). Create a self-contained
+  MAAS environment with LXD containers.
+  - MAAS nodes also run as local containers
+  - Ideal for testing and experimenting with MAAS
+  - Can access developmental versions of MAAS
 
+If you're new to MAAS, and have a distributed design, we recommend installing
+from an [Ubuntu Server ISO](installconfig-server-iso.html).

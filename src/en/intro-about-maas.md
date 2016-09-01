@@ -1,4 +1,5 @@
 Title: MAAS | Metal As A Service
+TODO:  Elaborate on 'Careful with DHCP' (section 'A simple MAAS setup')
 
 
 # What is MAAS?
@@ -11,27 +12,15 @@ Machines can be quickly provisioned and then destroyed again as easily as you
 can with instances in a public cloud like Amazon AWS, Google GCE, and Microsoft
 Azure, among others.
 
-MAAS can work as a standalone PXE/preseed service or it can be integrated with
+MAAS can act as a standalone PXE/preseed service or it can be integrated with
 other technologies. In particular, it is designed to work especially well with
 [Juju](https://jujucharms.com/docs/stable/about-juju), the service and model
 management service. It's a perfect arrangement: MAAS manages the machines and
 Juju manages the services running on those machines.
 
-## Installation
+!!! Note: KVM guests can also act as MAAS nodes as long as they are set to boot
+from the network (PXE).
 
-There are three main ways to install MAAS:
-
-- [From an Ubuntu Server ISO](installconfig-server-iso.html). Easily configure
-  a
-  server as either a region controller or a rack controller from a new Ubuntu
-  Server installation.
-
-- [From a package repository](installconfig-package-install.html). Add MAAS
-  packages for region and rack controllers to a system already running Ubuntu.
-
-- [Locally with LXD](installconfig-lxd-install.html). Create a local MAAS
-  environment within a container that is capable of running the region
-  controller, the rack controller and multiple nodes.
 
 ## What MAAS offers
 
@@ -55,6 +44,7 @@ MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef](https://www.chef.io/chef) and
 [Juju](https://jujucharms.com/docs/stable/about-juju) as a physical
 provisioning system.
+
 
 ## How MAAS works
 
@@ -93,6 +83,7 @@ for Juju, or a "cloud provider" in Juju terminology. However, everything that
 was stated earlier still applies. For instance, if Juju removes a machine then
 MAAS will, in turn, release that machine to the pool.
 
+
 ## A simple MAAS setup
 
 The key components of a MAAS installation are:
@@ -103,7 +94,21 @@ The key components of a MAAS installation are:
 
 For a small setup, it is typical to have a single region controller and a
 single rack controller. In addition, both can reside on the same system. This
-is easy to achieve by simply installing the `maas` software package. It is only
+is easy to achieve by simply installing the `maas` metapackage. It is only
 worth having multiple region and rack controllers if you need to organise your
 nodes into different subnets and you want high availability and/or load
-balancing.
+balancing. Consideration of DHCP is recommended if your network is already
+providing this service.
+
+
+## Installation methods
+
+There are three ways to install MAAS:
+
+- From the Ubuntu Server ISO. A dialog is included for installing either a
+  region or rack controller
+- From software packages ("debs")
+- As a self-contained LXD environment
+
+These methods, and their respective advantages, are fleshed out on the
+[Installation](./installconfig-install.html) page.

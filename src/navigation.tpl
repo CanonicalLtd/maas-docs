@@ -16,7 +16,7 @@
 		<li class"section"><a class"header" href="installconfig-install.html">Installation</a>
 			<ul class="sub">
 				<li><a href="installconfig-server-iso.html">Install from Ubuntu Server ISO</a></li>
-				<li><a href="installconfig-package-install.html">Install from CLI</a></li>
+				<li><a href="installconfig-package-install.html">Install from packages</a></li>
 				<li><a href="installconfig-lxd-install.html">Install into LXD</a></li>
 			</ul>	
 		</li>	
