@@ -1,72 +1,67 @@
 Title: Local Image Mirror
-TODO: Review needed
+
 
 # Local Image Mirror
 
-Boot images are delivered to MAAS via the simplestreams protocol. It is useful
-in some situations, such as testing, to mirror the images locally so that you
-don't need to repeatedly pull them down over a slower Internet link.
+Images are delivered to MAAS via the SimpleStreams protocol and the mirroring
+of these images is worthy of consideration. This option is especially useful
+when your environment has a slow or unreliable internet link. In such cases,
+when the images are requested they will be instantly available and the
+disadvantaged link will be less readily apparent.
 
-First, install the required packages on the host where you wish to store the
-mirrored images:
-
-```bash
-sudo apt install simplestreams ubuntu-cloudimage-keyring apache2
-```
-
-Now you can pull the images over using the mirroring tools for simplestreams.
-This example gets the daily trusty (14.04) and precise (12.04) images for the
-amd64/generic and amd64/hwe-t architectures:
+Begin by installing the necessary software on the host that will house the
+mirror:
 
 ```bash
-sudo sstream-mirror --keyring=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg https://images.maas.io/ephemeral-v2/daily/ /var/www/html/maas/images/ephemeral-v2/daily 'arch=amd64' 'subarch~(generic|hwe-t)' 'release~(trusty|precise)' --max=1
+sudo apt install simplestreams
 ```
 
-The above example downloads 722Mb of data. The images will be written to the
-local disk and you can verify their presence by browsing to
-`http://<server>/maas/images/ephemeral-v2/daily/streams/v1/index.sjson`
-(replace `<server>` with your own server's name).
+First define some variables to unclutter eventual CLI commands:
 
-It is a good idea to configure a `cron` job to repeat this import on a regular
-basis to keep your mirror up-to-date.
+```bash
+KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+IMAGE_SRC=https://images.maas.io/ephemeral-v2/daily/
+IMAGE_DIR=/var/www/html/maas/images/ephemeral-v2/daily
+```
+
+!!! Note: If you wish to use older images (which change far less frequently,
+but which will lack security updates), you can use the 'releases' stream.
+Simply replace the word 'daily' with 'releases' in two of the above variables.
+
+The below example is a good choice for the year 2016. It selects all available
+kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
+(Xenial) for the amd64 architecture, representing a download of approximately
+2.3 GB:
+
+```bash
+sudo sstream-mirror --keyring=$KEYRING_FILE $IMAGE_SRC $IMAGE_DIR \
+	'arch=amd64' 'release~(trusty|xenial)' --max=1 --progress
+```
+
+To know in advance what the `sstream-mirror` command will grab and/or if you
+want to save bandwidth and time due to possible mis-selections, include the
+`--dry-run` option. When you are satisfied, remove that option to initiate the
+download.
+
+The images will be written to disk in the directory defined by the variable
+'IMAGE_DIR' above and the 'location' of the new boot source will be:
+
+`URL=http://<myserver>/maas/images/ephemeral-v2/daily/`
+
+Where `<myserver>` identifies your server's hostname or IP address.
+
+Verify the availability of the images by visiting the above URL.
+
+The final `sstream-mirror` command should be invoked at regular intervals (i.e.
+with `cron`) to ensure the mirror contains the latest images.
+
 
 ## Configure MAAS to use the local mirror
 
-You can do this using the API or the web UI. To do this via the API you can
-use the `maas` command (see [Command Line Interface](manage-cli.html)), logged in as the admin user:
+To point MAAS to the local image server (mirror) using the web UI navigate to
+the Settings tab and scroll down to the 'Boot Images' section. Then fill in the
+fields 'Sync URL' and 'Keyring Path' using the values, respectively, for
+variables 'URL' and 'KEYRING_FILE' from above.
 
-```bash
-maas admin boot-sources create url=http://<server>/images/ephemeral-v2/daily/ keyring_filename=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-```
-
-The output from the above command will look something like the following:
-
-```nohighlight
-Success.
-Machine-readable output follows:
-{
-    "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
-    "resource_uri": "/MAAS/api/2.0/boot-sources/2/",
-    "id": 2,
-    "url": "http://192.168.122.143/images/ephemeral-v2/daily/",
-    "updated": "2016-06-27T15:48:29.254",
-    "keyring_data": "",
-    "created": "2016-06-27T15:48:29.254"
-}
-```
-
-If you wish to use older images (which change far less frequently, but will be
-lacking security updates), you can use the `releases` stream, such as:
-
-```bash
-maas admin boot-sources create url=http://<server>/images/ephemeral-v2/releases/ keyring_filename=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-```
-
-And then initiate the download with:
-
-```bash
-maas admin boot-resources import
-```
-
-See [Images](./installconfig-images.html) for an overview of images and how to
-manage them.
+See [CLI Image Management](./manage-cli-images.html#add-an-image-source) for
+instructions on how to do this with the CLI.

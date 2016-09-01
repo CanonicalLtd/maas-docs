@@ -1,13 +1,18 @@
-Title: MAAS | Import Images
+Title: MAAS | Select and Import Images
+TODO: Update images (pictures)
+
 
 # Select and Import Images
 
-This page uses the web UI to explain how to select and import images MAAS uses
-to provision its nodes. Note that the [MAAS CLI](./manage-cli-images.html) can
-also be used for image management.
+This page explains how to use the web UI to select and import the images that
+MAAS requires in order to provision its nodes.
+
+Note that the MAAS CLI can also be used for image management. You must
+[Select images](./manage-cli-images.html#select-images) and 
+[Import newly-selected images](./manage-cli-images.html#import-newly-selected-images).
 
 By default, the most recent Ubuntu LTS release (and amd64 architecture) are
-selected.  To change the selections go to the Images tab, select any other
+selected. To change the selections go to the Images tab, select any other
 images (by choosing 'Release' and 'Architecture'), and click the 'Import
 images' button.
 
@@ -22,6 +27,7 @@ the import process has completed.
 
 To remove an image, simply deselect it and click 'Apply Changes'.
 
+
 ## Other images
 
 It is also possible to import and provision images other than Ubuntu. Images
@@ -31,9 +37,11 @@ available and these can be imported and used just like the Ubuntu images above.
 
 ![import image complete](./media/import-images-other.png)
 
+
 ## Using a local mirror
 
-A local mirror can be used to store MAAS images. This will reduce download
-times for repeated image imports. See
-[Local Mirroring of Boot Images](./installconfig-images-mirror.html) for information on
-how to set up a mirror and configure MAAS to use it.
+Optionally, a local mirror can be set up as the boot source. MAAS will then use
+it instead of the standard internet-based server. This will reduce the time
+required to complete the image import step significantly. See
+[Local image mirror](./installconfig-images-mirror.html) for instructions on
+doing this.
