@@ -15,10 +15,9 @@ MAAS database and MAAS configuration will be migrated to the latest MAAS
 version as part of the upgrade process.
 
 Before you start, make sure all your packages are updated (`sudo apt update &&
-sudo apt full-upgrade`). Backups should [also be
-made](https://help.ubuntu.com/14.04/serverguide/backups.html) , and we'd
-recommend upgrading a test environment that mirrors your production
-environment first, to pre-empt any issues.
+sudo apt full-upgrade`). Backups should also be made, and we'd recommend
+upgrading a test environment that mirrors your production environment first, to
+pre-empt any issues.
 
 See the '[Upgrading from Ubuntu 14.04 LTS or
 15.10](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10)' 
