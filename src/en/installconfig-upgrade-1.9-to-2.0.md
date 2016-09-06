@@ -1,6 +1,6 @@
-Title: Upgrade from MAAS 1.9
+Title: Upgrade from 1.9 to 2.0
 
-# Upgrade from MAAS 1.9
+# Upgrade from 1.9 to 2.0
 
 MAAS 2 is only supported on Ubuntu 16.04 LTS (Xenial Xerus). This is because 
 Ubuntu 16.04 defaults to Python 3, whereas previous versions of Ubuntu defaulted
