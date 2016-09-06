@@ -14,16 +14,18 @@ distribution upgrade from Ubuntu 14.04 (or Ubuntu 15.10) to Ubuntu 16.04. The
 MAAS database and MAAS configuration will be migrated to the latest MAAS
 version as part of the upgrade process.
 
+Before you start, make sure all your packages are updated (`sudo apt update &&
+sudo apt full-upgrade`). Backups should [also be
+made](https://help.ubuntu.com/14.04/serverguide/backups.html) , and we'd
+recommend upgrading a test environment that mirrors your production
+environment first, to pre-empt any issues.
+
 See the '[Upgrading from Ubuntu 14.04 LTS or
 15.10](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10)' 
 section in the release notes for Ubuntu 16.04 LTS (Xenial Xerus) for
 instructions on the upgrade process.
 
 ## Troubleshooting
-
-Before you start, make sure you've updated your current Ubuntu series to the
-latest packages. You may also need to add both 'apt' and 'dpkg' packages, if
-not installed already, as these are needed by the upgrade process.
 
 The upgrade process can be complex, and depending on your installation, may
 require manual intervention. In particular, you may be asked whether you want
@@ -37,7 +39,7 @@ At the end of the upgrade, if you see processing errors with the `maas`,
 complains about unmet dependencies with the MAAS packages, try the following:
 
 ```bash
-sudo apt-get -f install
+sudo apt -f install
 sudo apt autoremove
 sudo apt upgrade
 ```
