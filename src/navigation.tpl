@@ -18,6 +18,7 @@
 				<li><a href="installconfig-server-iso.html">Install from Ubuntu Server ISO</a></li>
 				<li><a href="installconfig-package-install.html">Install from packages</a></li>
 				<li><a href="installconfig-lxd-install.html">Install into LXD</a></li>
+				<li><a href="installconfig-upgrade-1.9-to-2.0.html">Upgrade from 1.9 to 2.0</a></li>
 			</ul>	
 		</li>	
 		<li><a href="installconfig-gui.html">Access the GUI</a></li>
