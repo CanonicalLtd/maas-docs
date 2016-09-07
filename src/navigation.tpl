@@ -81,7 +81,7 @@
 			</ul>
 		</li>
 		<li><a href="manage-power.html">Power Driver Capabilities</a></li>
-		<li class"section">Custom Images</li>
+<!--            <li class"section">Custom Images</li> -->
 		<li class"section"><a href="manage-cli.html">MAAS CLI</a>
 			<ul class="sub">
 					<li><a href="manage-cli-common.html">Common Tasks</a></li>
