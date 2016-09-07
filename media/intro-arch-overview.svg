@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="diagram-1a.svg"
-   inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1.png"
+   sodipodi:docname="diagram-1b.svg"
+   inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1b.png"
    inkscape:export-xdpi="112.44369"
    inkscape:export-ydpi="112.44369">
   <defs
@@ -48,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.84355469"
-     inkscape:cx="423.50137"
-     inkscape:cy="428.57634"
+     inkscape:zoom="1.18"
+     inkscape:cx="397.42424"
+     inkscape:cy="539.1673"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -64,7 +64,11 @@
      inkscape:window-height="783"
      inkscape:window-x="351"
      inkscape:window-y="143"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3079" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -135,40 +139,32 @@
          x="280.67792"
          y="381.51373"
          id="tspan3856">Controllers</tspan></text>
-    <g
-       id="g4408"
-       transform="translate(4,0)">
-      <rect
-         inkscape:export-ydpi="112.44369"
-         inkscape:export-xdpi="112.44369"
-         inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
-         ry="10.412026"
-         rx="13.91775"
-         y="262.89169"
-         x="39.333397"
-         height="113.71294"
-         width="111.34202"
-         id="rect3840"
-         style="fill:#4bb2ea;fill-opacity:1;stroke:#e60000;stroke-width:1.69119012;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.07357026, 1.69119009;stroke-dashoffset:0" />
-      <text
-         inkscape:export-ydpi="112.44369"
-         inkscape:export-xdpi="112.44369"
-         inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
-         sodipodi:linespacing="125%"
-         id="text3858"
-         y="303.15173"
-         x="45.367897"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
-         xml:space="preserve"><tspan
-           y="303.15173"
-           x="45.367897"
-           id="tspan3860"
-           sodipodi:role="line">Database</tspan><tspan
-           id="tspan3862"
-           y="325.65173"
-           x="45.367897"
-           sodipodi:role="line">(MongoDB)</tspan></text>
-    </g>
+    <rect
+       style="fill:#4bb2ea;fill-opacity:1;stroke:#e60000;stroke-width:1.62143624;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.86430853, 1.62143618;stroke-dashoffset:0"
+       id="rect3840"
+       width="111.41177"
+       height="104.46066"
+       x="43.298519"
+       y="272.17886"
+       rx="13.92647"
+       ry="9.5648499"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369" />
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="49.367897"
+       y="315.15173"
+       id="text3858"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
+       inkscape:export-xdpi="112.44369"
+       inkscape:export-ydpi="112.44369"><tspan
+         sodipodi:role="line"
+         x="49.367897"
+         y="315.15173"
+         id="tspan3862">PostgreSQL</tspan></text>
     <rect
        style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:1.60000002;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.8, 1.6;stroke-dashoffset:0"
        id="rect3908"
@@ -272,14 +268,14 @@
          y="626.59821"
          id="tspan4374" /></text>
     <rect
-       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.3560462;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:7.0681391, 2.35604637;stroke-dashoffset:0"
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.30182338;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6.90547028, 2.30182343;stroke-dashoffset:0"
        id="rect3908-5"
-       width="424.82394"
-       height="22.953135"
-       x="46.364597"
-       y="610.23596"
+       width="404.53918"
+       height="23.007357"
+       x="66.676468"
+       y="610.20886"
        rx="0"
-       ry="5.7382808"
+       ry="5.7518363"
        inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
        inkscape:export-xdpi="112.44369"
        inkscape:export-ydpi="112.44369" />
@@ -330,14 +326,14 @@
          x="75.353088"
          y="777.64117">BMC</tspan></text>
     <rect
-       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.3529253;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:7.05877632, 2.35292544;stroke-dashoffset:0"
+       style="fill:#ff8080;fill-opacity:1;stroke:#e60000;stroke-width:2.30090952;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6.90272967, 2.30090989;stroke-dashoffset:0"
        id="rect3908-5-6"
-       width="423.6416"
-       height="22.956255"
-       x="49.51746"
-       y="790.19128"
+       width="404.20212"
+       height="23.008272"
+       x="65.593147"
+       y="790.16528"
        rx="0"
-       ry="5.7390609"
+       ry="5.7520652"
        inkscape:export-filename="/home/peter/data/system/tmp/maas-diagram.png"
        inkscape:export-xdpi="112.44369"
        inkscape:export-ydpi="112.44369" />
