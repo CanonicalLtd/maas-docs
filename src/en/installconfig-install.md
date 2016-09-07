@@ -26,5 +26,5 @@ If you're new to MAAS, and have a distributed design, we recommend installing
 from an [Ubuntu Server ISO](installconfig-server-iso.html).
 
 Ubuntu 14.04 systems running MAAS 1.9 and 1.9.x can [upgrade to MAAS
-2.0](installconfig-upgrade-1.9-to-2.0.html) via the system-wide upgrade to Ubuntu 16.04.
+2.0](installconfig-upgrade-to-2.html) via the system-wide upgrade to Ubuntu 16.04.
 
