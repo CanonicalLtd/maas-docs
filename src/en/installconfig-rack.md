@@ -1,5 +1,5 @@
 Title: Rack Controller Configuration
-TODO:  Needs splitting, a re-write and re-organising within wider context of MAAS docs (see #24)
+TODO:  URGENT: Needs review, rewrite, and refactoring (see GH#24: https://git.io/viCzJ)
 
 
 # Rack Controller Configuration
@@ -34,6 +34,18 @@ provide DHCP, the nodes must be able to configure their own network
 interfaces using MAAS's DHCP server. This means that either they must be
 on the same subnet, or that DHCP packets are being specially routed
 between the machine's subnet and MAAS' DHCP server.
+
+
+## Traffic between the region controller and rack controllers
+
+- Each rack controller must be able to:
+  - Initiate TCP connections (for HTTP) to each region controller on port
+    80 or port 5240, the choice of which depends on the setting of the
+    MAAS URL.
+  - Initiate TCP connections (for RPC) to each region controller between
+    port 5250 and 5259 inclusive. This permits up to 10 `maas-regiond`
+    processes on each region controller host. At present this is
+    not configurable.
 
 
 ## Registration
