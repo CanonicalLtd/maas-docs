@@ -16,7 +16,7 @@ There are several packages to choose from:
 For convenience, the 'maas' metapackage will install all the above packages
 onto the localhost. This will provide all the services necessary to manage
 your machines with MAAS. See
-[A simple MAAS setup](./intro-about-maas.html#a-simple-maas-setup) for a little
+[A simple MAAS setup](./index.html#a-simple-maas-setup) for a little
 more detail on the all-in-one MAAS solution. It is the ideal design for trying
 out MAAS for the first time.
 
