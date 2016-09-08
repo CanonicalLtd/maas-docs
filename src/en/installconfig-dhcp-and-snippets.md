@@ -1,23 +1,29 @@
-Title: DHCP Snippets
+Title: DHCP and Snippets
 TODO:  Include working example parameters for a DHCP snippet
 
-# DHCP Snippets
+
+# DHCP and Snippets
+
+To have MAAS provide and manage DHCP follow the instructions at
+[Rack controller configuration](./installconfig-rack.html#providing-dhcp).
+
+
+## DHCP Snippets
+
+When DHCP is managed from within MAAS, it can be configured through the use of
+*DHCP snippets*. These are user defined configuration options that can be
+applied either globally, per subnet, or per node. For information on what
+options to use refer to standard
+[`dhcpd.conf` documentation](http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf).
 
 !!! Note: This feature is available in MAAS versions 2.0 and above.
-Modifications made directly to dhcpd.conf.template or dhcpd6.conf.template are
+Modifications made directly to `dhcpd.conf.template` or `dhcpd6.conf.template` are
 no longer supported.
 
-MAAS allows customizing `dhcpd.conf` and `dhcpd6.conf` through the use of DHCP
-snippets. DHCP snippets are user defined `dhcpd.conf` configuration options
-which are inserted into `/var/lib/maas/dhcpd.conf` and
-`/var/lib/maas/dhcpd6.conf` by MAAS. Custom `dhcpd.conf` configuration options
-can be inserted either globally, on a subnet, or on a node. For information
-about `dhcpd.conf` options refer to the `dhcpd.conf` man or info pages.
+### Create a snippet
 
-## Create a snippet
-
-Administrators can create DHCP Snippets over the API using the following
-command::
+Administrators can create snippets over the API using the following
+command:
 
 ```bash
 maas admin dhcpsnippets create name=<DHCP Snippet Name> value=<DHCP configuration options>

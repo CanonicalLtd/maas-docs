@@ -25,11 +25,11 @@
 		<li><a href="installconfig-zones.html">Configure zones</a></li>
 		<li class"section"><a class"header" href="installconfig-network2.html">Configure network</a>
 			<ul class="sub">
-				<li><a href="installconfig-network-dhcp.html">DHCP</a></li>
-				<li><a href="installconfig-snippets.html">DHCP Snippets</a></li>
+				<li><a href="installconfig-dhcp-and-snippets.html">DHCP and snippets</a></li>
 				<li><a href="installconfig-network-static.html">Static IPs</a></li>
 				<li><a href="installconfig-network-ipv6.html">IPv6</a></li>
 				<li><a href="installconfig-proxy.html">Proxy Server</a></li>
+				<li><a href="installconfig-network-stp.html">STP</a></li>
 			</ul>
 		</li>
 		<li>Nodes</li>
