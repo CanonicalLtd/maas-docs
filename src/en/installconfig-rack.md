@@ -1,74 +1,48 @@
-Title: Rack Controller Configuration
-TODO:  URGENT: Needs review, rewrite, and refactoring (see GH#24: https://git.io/viCzJ)
+Title: Rack Controller
+TODO:  Needs review (see GH#24: https://git.io/viCzJ)
 
 
-# Rack Controller Configuration
+# Rack Controller
 
-Managing a VLAN normally means that MAAS will serve DHCP from the rack
-controller, for the purpose of providing IP address to machines that are being
-enlisted or commissioned. Also, any other DHCP client that is on the VLAN will
-obtain a dynamic IP address from the MAAS DHCP server.
+A single rack controller can be connected to more than one VLAN, each from a
+different rack controller interface. This allows one rack controller to manage
+different subnets to help scale your rack controller or to satisfy your
+network architecture.
 
-**Do this only on a network that was set up with this in mind**. Enabling your
-own DHCP server that competes with an existing one that's being managed by
-MAAS can cause serious disruption, and it can be hard for administrator to
-track the source of the problem. Worse, the problems may not become
-immediately noticeable. Make sure you understand the implications of running a
-DHCP server before doing this. If MAAS detects any DHCP servers already
-running on these networks, it will show them on the rack's configuration page.
+In regards to region controller and rack controller communication, each rack
+controller must be able to:
 
-
-## Network Requirements
-
-The rack controller manages DHCP for subnet(s) in the VLAN(s) that it is
-connected to via one of its interfaces defined in MAAS. rack controller
-interfaces are discovered automatically when MAAS is installed and any
-future changes are automatically communicated to the region.
-
-When a rack controller manages machines on the network through one of the
-VLANs it is connected to, the machines must be in the same subnet as the Rack
-Controller interface connected to that VLAN. This is because:
-
-If the VLAN that the rack controller is connected to is configured to
-provide DHCP, the nodes must be able to configure their own network
-interfaces using MAAS's DHCP server. This means that either they must be
-on the same subnet, or that DHCP packets are being specially routed
-between the machine's subnet and MAAS' DHCP server.
+- Initiate TCP connections (for HTTP) to each region controller on port 80 or
+  port 5240, the choice of which depends on the setting of the MAAS URL.
+- Initiate TCP connections (for RPC) to each region controller between port
+  5250 and 5259 inclusive. This permits up to 10 `maas-regiond` processes on
+  each region controller host. At present this is not configurable.
 
 
-## Traffic between the region controller and rack controllers
+## Add a rack controller
 
-- Each rack controller must be able to:
-  - Initiate TCP connections (for HTTP) to each region controller on port
-    80 or port 5240, the choice of which depends on the setting of the
-    MAAS URL.
-  - Initiate TCP connections (for RPC) to each region controller between
-    port 5250 and 5259 inclusive. This permits up to 10 `maas-regiond`
-    processes on each region controller host. At present this is
-    not configurable.
+When a rack controller is installed on the same system as the region controller
+it will be added (registered) to MAAS automatically. Otherwise it will need to
+be added manually.
+
+One reason to add extra rack controllers is to achieve DHCP high availability
+(DHCP HA).
+
+To install and register a rack controller you can either use the Ubuntu Server
+ISO or work from the command line. See
+[MAAS CLI](./manage-cli-advanced.html#add-a-rack-controller) on how to do the
+latter.
+
+Once registered, the new, secondary, controller will appear immediately in the
+web UI and begin to sync with the primary controller:
+
+![add controller](./media/installconfig-rack__add-controller2.png)
 
 
-## Registration
+<!--
 
-If your rack controller is installed on the same system as your region
-controller, as is the case when you install the full "maas" Ubuntu package, it
-will be automatically accepted by default (but not yet configured, see below).
-
-Any other rack controllers you set up will show up automatically after they
-have been manually added to MAAS by running the following command:
-
-```bash
-sudo dpkg-reconfigure maas-rack-controller
-```
-
-You will first be asked for the IP address or hostname of your region
-controller, followed by a prompt for the 'shared secret'. The shared secret can
-be found within the `/var/lib/maas/secret` file held on the region controller.
-
-![reconfigure rack](./media/install_cluster-config.png)
-
-Once these two details have been entered, the rack controller configuration
-will be complete.
+THIS IS MIND-NUMBING. IT READS LIKE DEVELOPERS' NOTES.
+LET'S TAKE THIS OUT FOR NOW.
 
 
 ## Interface management
@@ -97,65 +71,4 @@ Controller Fabric information:
 
 ![image](./media/rack-interface-edit.png)
 
-In order for MAAS to be able to manage a machine throughout its lifecycle, it
-needs to provide DHCP for at least one subnet, by configuring the corresponding
-VLAN to which the rack controller is connected to.
-
-
-## Providing DHCP
-
-In order for MAAS to be able to manage machines on the network, and more
-specifically, in order to be able to enlist, commission and deploy machines it
-needs to provide and manage DHCP. As such, rack controller(s) can provide DHCP
-on the different VLANs it is connected to.
-
-### Dynamic IP ranges
-
-A dynamic IP range is needed in order for MAAS to be able to provide
-DHCP for machines. Addresses in the range get assigned to machines that are
-being:
-
-- auto-registered (also called enlisted)
-- commissioned
-
-Deployed machines will obtain IP addresses from the part of the subnet that is
-*not* included in the above dynamic range. Such a "deployment IP range" does
-not need to be specified. These addresses will remain allocated to machines
-throughout their deployment lifecycle.
-
-### Enabling DHCP
-
-In order for machines to PXE boot, a requirement for MAAS provisioning, DHCP
-must be enabled on at least one untagged VLAN. DHCP servicing deployed machines,
-however, can use a tagged VLAN. Below, enable DHCP for your desired scenario.
-
-Under the 'Networks' tab choose a VLAN and enable DHCP:
-
-1. Under the 'Take action' button select 'Provide DHCP'. A new window will
-appear.
-1. Select the primary rack controller. For DHCP HA, select both the primary
-and the secondary.
-1. Create a dynamic IP range. Fill in the fields 'Dynamic range start IP' and
-'Dynamic range end IP'.
-1. Configure a default gateway. Fill in the field 'Gateway IP'.
-1. Apply your changes with the 'Provide DHCP' button.
-
-![image](./media/vlan_provide_dhcp.png)
-
-See [MAAS CLI](./manage-cli-common.html#enable-dhcp) for doing this with the CLI.
-
-If necessary, it is possible to add further portions of the subnet to the
-dynamic IP range (see
-[Reserved IP addresses](./installconfig-network-static.html#reserved-ip-addresses)
-). Furthermore, since DHCP is enabled on a VLAN basis and a VLAN can contain
-multiple subnets, it is possible to add a portion from those subnets as well.
-Just select the subnet under the 'Networks' tab and reserve a dynamic range.
-DHCP will be enabled automatically.
-
-
-## Multiple Networks
-
-A single rack controller can be connected to more than one VLAN, each from a
-different rack controller interface. This allows one rack controller to manage
-different subnets to help scale your rack controller or to satisfy your
-network architecture.
+-->

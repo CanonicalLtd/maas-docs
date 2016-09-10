@@ -87,3 +87,29 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_parameters_power_address=qemu+ssh://ubuntu@$KVM_HOST/system \
 	power_parameters_power_id=$HOSTNAME
 ```
+
+## Add a rack controller
+
+To install and register a rack controller with the MAAS:
+
+```bash
+sudo apt install maas-rack-controller
+sudo maas-rack register
+```
+
+You will be asked for the URL of the region controller. If you provide a
+hostname ensure it is resolvable. Next, you will be prompted for the secret key
+that is stored in file `/var/lib/maas/secret` on the region controller.
+
+You can get the above information from the web UI by visiting the 'Nodes' tab,
+then the Controller sub-tab, and clicking the button 'Add rack controller'.
+Here is an example of what you may see:
+
+![add controller](./media/installconfig-rack__add-controller.png)
+
+Based on the above, then, we could have also entered:
+
+```bash
+sudo maas-rack register --url http://10.248.0.3/MAAS \
+	--secret 30e5413d5b684620700b3105b02965c0
+```
