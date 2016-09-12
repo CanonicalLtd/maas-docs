@@ -25,7 +25,6 @@
 		<li><a href="installconfig-zones.html">Configure zones</a></li>
 		<li class"section"><a class"header" href="installconfig-network2.html">Configure network</a>
 			<ul class="sub">
-				<li><a href="installconfig-dhcp-and-snippets.html">DHCP and snippets</a></li>
 				<li><a href="installconfig-network-static.html">Static IPs</a></li>
 				<li><a href="installconfig-network-ipv6.html">IPv6</a></li>
 				<li><a href="installconfig-proxy.html">Proxy Server</a></li>
@@ -36,16 +35,13 @@
 			<ul class="sub">
 				<li><a href="installconfig-rack.html">Rack Controller</a>
 					<ul class="sub">
-						<li><a href="installconfig-rack.html#network-requirements">Network Requirements</a>
-						<li><a href="installconfig-rack.html#registration">Registration</a>
-						<li><a href="installconfig-rack.html#interface-management">Interface Management</a>
+						<li><a href="installconfig-dhcp.html">DHCP</a></li>
 						<li class"section"><a href="installconfig-storage.html">Storage</a>
 							<ul class="sub">
 								<li><a href="installconfig-block.html">Block Devices</a></li>
 								<li><a href="installconfig-partitions.html">Partitions</a></li>
 							</ul>
 						</li>
-						<li><a href="installconfig-rack.html#providing-dhcp-and-ha">DHCP and HA</a>
 					</ul>
 				</li>
 				<li><a href="installconfig-add-nodes.html">Add Nodes</a></li>

@@ -11,9 +11,9 @@ for the API, WebUI, DNS, and APT proxy.
 
 ## Rack Controller HA
 
-Rack controller HA is provided for BMCs out of the box. MAAS will
-automatically identify which rack controllers can communicate to which BMCs
-and pass BMC actions to the correct rack controllers.
+Rack controller HA is provided for BMCs out of the box. MAAS will automatically
+identify which rack controllers can communicate to which BMCs and pass BMC
+actions to the correct rack controllers.
 
 To provide HA for deploying machines, DHCP HA must be turned on. DHCP HA in
 MAAS allows a primary and a secondary DHCP server to run on the same VLAN.
@@ -22,17 +22,8 @@ server (primary first) for PXE booting. The responding rack controller will
 then handle PXE booting the machine and loading the required files to complete
 the deployment. All lease information will be replicated between the primary
 and secondary rack controller, allowing one rack controller to fail without
-interrupting MAAS operation.
-
-### Enabling DHCP HA
-
-DHCP works at the VLAN level, providing interfaces connected to that VLAN the
-ability to get an IP address on a subnet. This requires a subnet be defined on
-the VLAN where DHCP will be enabled, along with a range of IPs that will be
-assigned to unknown interfaces (called the 'dynamic range'). Enabling DHCP HA
-is the same as enabling DHCP without HA; setting a secondary rack controller
-will turn DHCP HA on. Follow the instructions for [rack
-configuration](./installconfig-rack.html) to enable DHCP HA.
+interrupting MAAS operation. See [DHCP](./installconfig-dhcp.html) for enabling
+DHCP HA.
 
 ## Region Controller HA
 

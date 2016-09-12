@@ -1,5 +1,4 @@
 Title: MAAS | Metal As A Service
-TODO:  Elaborate on 'Careful with DHCP' (section 'A simple MAAS setup')
 
 
 # What is MAAS?
@@ -97,8 +96,12 @@ single rack controller. In addition, both can reside on the same system. This
 is easy to achieve by simply installing the `maas` metapackage. It is only
 worth having multiple region and rack controllers if you need to organise your
 nodes into different subnets and you want high availability and/or load
-balancing. Consideration of DHCP is recommended if your network is already
-providing this service.
+balancing.
+
+It's important to note that installing the `maas` package will provide a DHCP
+service.  Review your existing network design in order to determine whether
+this will cause problems. See
+[DHCP](./installconfig-dhcp.html#competing-dhcp) for more on this subject.
 
 
 ## Installation methods

@@ -1,6 +1,5 @@
 Title: Install from Packages
 TODO:  Explain MAAS proxy
-       Mention danger of conflicting DHCP on the network
 
 
 # Install from Packages
@@ -20,15 +19,15 @@ your machines with MAAS. See
 more detail on the all-in-one MAAS solution. It is the ideal design for trying
 out MAAS for the first time.
 
-If you want to distribute these services on several machines (or want to deploy
-an additional rack controller), you will need to install packages individually
-on those machines.
+If you want to distribute these services on several machines (or want to
+[deploy extra rack controllers](./installconfig-rack.html#add-a-rack-controller)),
+you will need to install packages individually on those machines.
 
 Packages 'maas-dhcp' and 'maas-dns' provide MAAS-controlled DHCP and DNS
 services which greatly simplify deployment. This is the recommended design and
 should be chosen if your local network policies allow it. Note that these
-packages **must** be installed if you later configure the web
-UI to have MAAS manage DHCP/DNS.
+packages **must** be installed if you later configure MAAS to manage DHCP/DNS
+via the web UI.
 
 
 ## Package repositories
@@ -65,9 +64,3 @@ The below dialog will appear:
 Enter the IP address of the region controller. In some cases, the machine
 running the region controller (i.e. the web and API interface) may have several
 network interfaces. Choose the address according to your design.
-
-
-## Adding rack controllers
-
-To add additional rack controllers, see the instructions in
-[Rack controller configuration](./installconfig-rack.html).
