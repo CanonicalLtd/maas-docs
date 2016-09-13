@@ -1,5 +1,6 @@
 Title: MAAS CLI | DHCP snippets
 TODO:  Include non-trivial examples of DHCP snippets
+       Bug check: https://bugs.launchpad.net/maas/+bug/1623192
 
 
 # CLI DHCP Snippet Management
@@ -7,12 +8,15 @@ TODO:  Include non-trivial examples of DHCP snippets
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
 See [MAAS CLI](./manage-cli.html) on how to get started.
 
-See [DHCP](./installconfig-dhcp.html#dhcp-snippets) for an overview of DHCP snippets.
+See [DHCP](./installconfig-dhcp.html#dhcp-snippets) for an overview of DHCP
+snippets.
 
 
 ## Create a snippet
 
-To create a global snippet:
+When a snippet is created, it is enabled by default.
+
+To create a **global** snippet:
 
 ```bash
 maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
@@ -20,7 +24,7 @@ maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
 	global_snippet=true
 ```
 
-To create a snippet for a subnet:
+To create a **subnet** snippet:
 
 ```bash
 maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
@@ -30,7 +34,7 @@ maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
 
 A subnet given in CIDR format can also be used in place of the subnet ID.
 
-To create a snippet for a node:
+To create a **node** snippet:
 
 ```bash
 maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
@@ -41,37 +45,55 @@ maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME \
 A hostname can also be used in place of the node ID.
 
 
-## Enable or disable a snippet
-
-DHCP Snippets can be turned off by passing `false` to the enabled flag option
-as follows:
-
-```bash
-maas $PROFILE dhcpsnippets create name=$DHCP_SNIPPET_NAME value=$DHCP_CONFIG enabled=false
-```
-
 ## List snippets
 
-To list all snippets in the MAAS:
+To list all snippets (and their characteristics) in the MAAS:
 
 ```bash
 maas $PROFILE dhcpsnippets read
 ```
 
-To list a particular DHCP Snippet use the following command.:
+To list a specific snippet:
 
 ```bash
-maas $PROFILE dhcpsnippet read <DHCP Snippet id or name>
+maas $PROFILE dhcpsnippet read id=$DHCP_SNIPPET_ID
 ```
+
+The snippet name can also be used instead of its ID:
+
+```bash
+maas $PROFILE dhcpsnippet read name=$DHCP_SNIPPET_NAME
+```
+
+
 
 ## Update a snippet
 
-$PROFILEistrators can update the DHCP Snippet attributes using the following
-command:
+Update a snippet attribute:
 
 ```bash
-maas $PROFILE dhcpsnippet update <DHCP Snippet id or name> <options>
+maas $PROFILE dhcpsnippet update $DHCP_SNIPPET_ID <option=value>
 ```
+
+The snippet name can also be used in place of its ID.
+
+
+## Enable or disable a snippet
+
+Enabling and disabling a snippet is considered a snippet update. Below a
+snippet is disabled:
+
+```bash
+maas $PROFILE dhcpsnippet update $DHCP_SNIPPET_ID enabled=false
+```
+
+The disabling of a snippet removes the text that was added to the dhcpd.conf
+file when it was created/enabled.
+
+<!--
+
+THE USEFULNESS OF THIS IS QUESTIONABLE. IT MAY BELONG IN THE DEFINITIVE CLI
+DOCUMENTATION. LET'S LEAVE THIS OUT FOR NOW.
 
 ## DHCP Snippet value history
 
@@ -90,10 +112,14 @@ negative number representing how many revisions to go back:
 maas $PROFILE dhcpsnippet revert <DHCP Snippet id or name> to=<value id or negative number>
 ```
 
+-->
+
 ## Delete a snippet
 
-$PROFILEistrators can delete a DHCP Snippet using the following command:
+To delete a snippet:
 
 ```bash
-maas $PROFILE dhcpsnippet delete <DHCP Snippet id or name>
+maas $PROFILE dhcpsnippet delete $DHCP_SNIPPET_ID
 ```
+
+The snippet name can also be used in place of its ID.

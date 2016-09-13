@@ -12,7 +12,7 @@ This is a list of common tasks to perform with the MAAS CLI. See
 
 ## List nodes
 
-To list all nodes (and their characteristics) in the MAAS cluster:
+To list all nodes (and their characteristics) in the MAAS:
 
 ```bash
 maas $PROFILE nodes read
