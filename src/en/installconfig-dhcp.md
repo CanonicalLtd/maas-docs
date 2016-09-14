@@ -80,4 +80,4 @@ To manage snippets, as an admin, open the 'Settings' page and click on the
 
 ![Manage DHCP snippets](./media/installconfig-dhcp__dhcp-snippets.png)
 
-See [MAAS CLI](./manage-cli-dhcp-snippets.html) for doin this with the CLI.
+See [MAAS CLI](./manage-cli-dhcp-snippets.html) for doing this with the CLI.
