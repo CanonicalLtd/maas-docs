@@ -80,7 +80,7 @@ The snippet name can also be used in place of its ID.
 
 ## Enable or disable a snippet
 
-Enabling and disabling a snippet is considered a snippet update. Below a
+Enabling and disabling a snippet is considered a snippet update. This is how a
 snippet is disabled:
 
 ```bash
