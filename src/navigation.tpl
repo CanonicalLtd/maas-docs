@@ -82,6 +82,7 @@
 			<ul class="sub">
 					<li><a href="manage-cli-common.html">Common Tasks</a></li>
 					<li><a href="manage-cli-images.html">Image Management</a></li>
+					<li><a href="manage-cli-dhcp-snippets.html">DHCP Snippets</a></li>
 					<li><a href="manage-cli-advanced.html">Advanced Tasks</a></li>
 			</ul>
 		</li>
