@@ -56,11 +56,3 @@ As described above, to put everything on one machine:
 ```bash
 sudo apt install maas
 ```
-
-The below dialog will appear:
-
-![image](./media/install_cluster-config.png)
-
-Enter the IP address of the region controller. In some cases, the machine
-running the region controller (i.e. the web and API interface) may have several
-network interfaces. Choose the address according to your design.
