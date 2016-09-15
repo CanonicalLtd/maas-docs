@@ -18,11 +18,11 @@ three options and enabling/disabling proxying on a specific subnet.
 
 ## Internal proxy (MAAS proxy)
 
-Although the proxy is set up to work well with APT/package requests, it is
-essentially an HTTP proxy. If the region controller is configured in MAAS as
-the default gateway for the machines it manages then the proxy will work
-transparently (on TCP port 3128). Otherwise machines will need to access it on
-TCP port 8000.
+MAAS provides an internal proxy server. Although it is set up to work well with
+APT/package requests, it is effectively a HTTP caching proxy server. If the
+region controller is configured in MAAS as the default gateway for the machines
+it manages then the proxy will work transparently (on TCP port 3128).
+Otherwise machines will need to access it on TCP port 8000.
 
 By default, the proxy is available to all hosts residing in any subnet detected
 by MAAS, not just MAAS-managed machines. It is therefore recommended to disable
