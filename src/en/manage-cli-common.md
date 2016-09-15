@@ -140,12 +140,38 @@ maas $PROFILE maas set-config name=upstream_dns value=$MY_UPSTREAM_DNS
 ```
 
 
-## Set a node proxy
+## Configure proxying
 
-To set a node proxy:
+Enabling and disabling proxying in general is done via a boolean option ('true'
+or 'false'). This is how proxying is disabled completely:
 
 ```bash
-maas $PROFILE maas set-config name=http_proxy value=$MY_PROXY
+maas $PROFILE maas set-config name=enable_http_proxy value=false
+```
+
+To set an external proxy:
+
+```bash
+maas $PROFILE maas set-config name=http_proxy value=$EXTERNAL_PROXY
+```
+
+For example,
+
+```bash
+maas $PROFILE maas set-config name=http_proxy value=http://squid.example.com:3128/
+```
+
+Enabling and disabling proxying per subnet is done via a boolean option ('true'
+or 'false'). This is how proxying is disabled per subnet:
+
+```bash
+maas $PROFILE subnet update $SUBNET_CIDR allow_proxy=false
+```
+
+For example,
+
+```bash
+maas $PROFILE subnet update 192.168.0.0/22 allow_proxy=false
 ```
 
 

@@ -27,7 +27,7 @@
 			<ul class="sub">
 				<li><a href="installconfig-network-static.html">Static IPs</a></li>
 				<li><a href="installconfig-network-ipv6.html">IPv6</a></li>
-				<li><a href="installconfig-proxy.html">Proxy Server</a></li>
+				<li><a href="installconfig-proxy.html">Proxying</a></li>
 				<li><a href="installconfig-network-stp.html">STP</a></li>
 			</ul>
 		</li>
