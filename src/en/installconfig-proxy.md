@@ -24,8 +24,8 @@ the default gateway for the machines it manages then the proxy will work
 transparently (on TCP port 3128). Otherwise machines will need to access it on
 TCP port 8000.
 
-By default, the internal proxy is available to hosts (not just MAAS-managed
-machines) residing in any subnet detected by MAAS. It is recommended to disable
+By default, the proxy is available to all hosts residing in any subnet detected
+by MAAS, not just MAAS-managed machines. It is therefore recommended to disable
 access to those subnets that represent untrusted networks.
 
 MAAS manages its proxy. So although the active configuration, located in file
