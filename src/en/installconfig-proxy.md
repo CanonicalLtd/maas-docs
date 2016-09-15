@@ -1,95 +1,50 @@
-Title: Proxy Server
+Title: MAAS APT Proxy
 TODO:  Needs to be rewritten for clarity
 
-# Proxy Server
 
-In most cases, the machines deployed in a MAAS installation will use an
-internal proxy server to access the archive. Alternatively, MAAS can be told to
-use an externally configured proxy, or none at all.
+# MAAS APT Proxy
 
-As of MAAS 2.0, the default MAAS region controller configuration will create a
-maas-proxy configuration that explicitly allows all of the subnets in the
-configuration to use it for a proxy.
+MAAS provides a way for its machines to use a proxy server when they need to
+access the Ubuntu package archive.
 
-## Assumptions
+There are three possible options:
 
-It is generally assumed that the MAAS region controller is not exposed to
-untrusted networks (there's a firewall between the MAAS region
-controller and any such networks). Prior to MAAS 2.0, the only option if this
-was not the case was to manually edit `/etc/maas/maas-proxy.conf`, or use
-iptables to create a firewall on the host.
+- internal proxy (default)
+- external proxy
+- no proxy
 
-As of MAAS 2.0, permission to use the proxy can be managed on a per-subnet
-basis, with the default to allow proxying.
+The internal proxy (via the 'maas-proxy' package) must be installed on the same
+host as the region controller.
 
-!!! Warning: If your MAAS Region is connected to an untrusted network, you
-should disable that subnet in the proxy, as shown below.
+By default, the internal proxy is available to hosts residing in any subnet
+detected by MAAS. It is recommended to disable access to subnets that
+represent untrusted networks.
 
-## MAAS Proxy Installation
+Configuring proxying with MAAS consists of enabling/disabling one of the above
+three options and enabling/disabling proxying on a specific subnet.
 
-When you install a Region Controller, maas-proxy will be installed. The
-configuration of the proxy relies on maas-proxy being on the same machine as
-the Region Controller.
+See the [MAAS CLI](./manage-cli-common.html#configure-proxying) for how to
+configure proxying with the CLI. Note that per-subnet proxy configuration can
+only be accomplished via the CLI.
 
-### Using an external proxy
 
-If you want to use an external proxy, you can define its URL using the web
-interface by selecting Settings>General and scrolling down to the 'Proxy for
-APT and HTTP/HTTPS' section.
+## Configure proxying
+
+To configure proxying visit the 'Settings' page, select the 'General' tab and
+scroll down to the 'Network Configuration' section. Any changes need to be
+applied by pressing the 'Save' button.
 
 ![image](./media/external-proxy.png)
 
-!!! Note: Despite the web interface labelling the external proxy field 
-'Proxy for APT and HTTP/HTTPS', the proxy is only for APT and not for
-HTTP/HTTPS as implied.
+To enable the internal proxy, ensure that the checkbox (for 'Enable the use of
+an APT and HTTP/HTTPS proxy') is checked. This is the default configuration.
 
-Alternatively, the command line API call will specify squid.example.com as the
-proxy, using port 3128:
+To enable an external proxy, ensure that the checkbox is checked and define the
+proxy's URL (and port if necessary) in the field 'Proxy for APT and
+HTTP/HTTPS'.
 
-```bash
-maas admin maas set-config name=http_proxy value=http://squid.example.com:3128/
-```
-You should see the following output after entering the command:
-```nonighlight
-Success.
-Machine-readable output follows:
-OK
-```
-### Subnet configuration
+!!! Note: Despite the web UI labelling the external proxy field 'Proxy for APT
+and HTTP/HTTPS', the proxy is only for APT and not for general HTTP/HTTPS
+requests as implied.
 
-You can disable the use of the proxy for a specific subnet with the following
-command:
-
-```bash
-maas admin subnet update 192.168.0.0/22 allow_proxy=False
-```
-
-And re-enabling the proxy for a subnet requires the allow_proxy argument to
-be set to `True`:
-
-```bash
-maas admin subnet update 192.168.0.0/22 allow_proxy=True
-```
-You can create a simple subnet with the following command:
-
-```bash
-maas admin subnets create cidr=192.168.100.0/23
-```
-
-You may wish to set other parameters on the subnet. But as MAAS defaults to
-allow proxying, any new subnet will inherit the proxy configuration.
-
-## Disabling proxying
-
-If you do not need a proxy, the proxy can be disabled from the web interface.
-Select Settings>General and scroll down to the 'Proxy for APT and HTTP/HTTPS'
-section and disable the checkbox. Settings are applied after clicking 'Save'
-
-![image](./media/no-proxy.png)
-
-Alternatively, the following command will disable the proxy:
-
-```bash
-maas admin maas set-config name=enable_http_proxy value=False
-```
-
+To disable proxying completely ensure that the checkbox is unchecked.

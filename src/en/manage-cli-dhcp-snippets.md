@@ -66,7 +66,6 @@ maas $PROFILE dhcpsnippet read name=$DHCP_SNIPPET_NAME
 ```
 
 
-
 ## Update a snippet
 
 Update a snippet attribute:
@@ -80,8 +79,8 @@ The snippet name can also be used in place of its ID.
 
 ## Enable or disable a snippet
 
-Enabling and disabling a snippet is considered a snippet update. This is how a
-snippet is disabled:
+Enabling and disabling a snippet is considered a snippet update and is done via
+a boolean option ('true' or 'false'). This is how a snippet is disabled:
 
 ```bash
 maas $PROFILE dhcpsnippet update $DHCP_SNIPPET_ID enabled=false
