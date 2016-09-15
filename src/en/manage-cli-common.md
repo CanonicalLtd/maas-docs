@@ -149,7 +149,8 @@ or 'false'). This is how proxying is disabled completely:
 maas $PROFILE maas set-config name=enable_http_proxy value=false
 ```
 
-To set an external proxy:
+To set an external proxy, ensure proxying is enabled (see above) and then
+define it:
 
 ```bash
 maas $PROFILE maas set-config name=http_proxy value=$EXTERNAL_PROXY
@@ -158,6 +159,7 @@ maas $PROFILE maas set-config name=http_proxy value=$EXTERNAL_PROXY
 For example,
 
 ```bash
+maas $PROFILE maas set-config name=enable_http_proxy value=true
 maas $PROFILE maas set-config name=http_proxy value=http://squid.example.com:3128/
 ```
 
