@@ -8,7 +8,7 @@ The [Ubuntu Server](http://www.ubuntu.com/download/server) (16.04 LTS) ISO
 offers to have the server-to-be-installed host a complete MAAS environment or
 to house a single rack controller. 
 
-!["server install menu"](./media/iso-install_01.png)
+!["server install menu"](../../media/iso-install_01.png)
 
 Note that choosing option **Install MAAS Region Controller** will actually
 install an entire MAAS environment. That is, it is equivalent to installing the
@@ -24,13 +24,13 @@ After these steps have completed, you'll see either a page entitled 'Install
 your Metal as a Service (MAAS)' for a 'Region Controller' installation, or
 'Install your Metal as a Service (MAAS) rack controller.'
 
-![region controller install](./media/iso-install-region_01.png)
+![region controller install](../../media/iso-install-region_01.png)
 
 The region controller installation will ask for a username followed by a password
 for the MAAS administrator. If these are not provided, an administrator account
 will need to be create manually before you can use MAAS. 
 
-![rack controller install](./media/iso-install-rack_01.png)
+![rack controller install](../../media/iso-install-rack_01.png)
 
 The rack controller installation requires no further MAAS-specific input, and
 the Ubuntu Server installation will proceed normally:
@@ -47,7 +47,7 @@ internet, and how you want updates delivered. The choice is between 'No
 automatic updates', 'Install security updates automatically' and 'Manage system
 with Landscape'. 
 
-![rack updates](./media/iso-install-region-updates.png)
+![rack updates](../../media/iso-install-region-updates.png)
 
 !!! Note: [Landscape](https://landscape.canonical.com) is Canonical's leading
 system management tool.

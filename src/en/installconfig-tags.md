@@ -94,7 +94,7 @@ Below, tags 'gpu2' and 'virtual' have been selected by mouse-clicking. The
 search field automatically reflects this. Nine nodes satisfy this search
 filter.
 
-![tags: search filters](./media/installconfig-tags_image-tags-search.png)
+![tags: search filters](../../media/installconfig-tags_image-tags-search.png)
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
@@ -116,7 +116,7 @@ The following three actions are done while in a node's edit mode (click the
   real-time search. Any resulting tags will show up in a drop-down menu.
   Select as desired.
 
-![tags: add & remove](./media/installconfig-tags_image-tags-add_remove.png)
+![tags: add & remove](../../media/installconfig-tags_image-tags-add_remove.png)
 
 
 ## Tag management

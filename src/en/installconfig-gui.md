@@ -27,7 +27,7 @@ may do so in the future.
 
 You can now log in here: <http://<region controller address\>/MAAS>
 
-![web account login](./media/install-login.png)
+![web account login](../../media/install-login.png)
 
 Once logged in to the UI an administrator can use it to create regular users as
 well as additional administrators. See [User Accounts](./manage-account.html)

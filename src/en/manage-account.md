@@ -7,7 +7,7 @@ section at the top of the general 'Settings' page of the web UI.  Moving the
 cursor over an existing account will show icons to allow either the editing or
 deletion of an account.
 
-![user management](./media/add-user.png)
+![user management](../../media/add-user.png)
 
 !!! Note: you can't delete the account you're using from the web UI
 
@@ -17,7 +17,7 @@ Clicking the 'Add User' button will open a pane asking for details on the new
 user, including their username, email address and password. A checkbox is used
 to define whether a user is a MAAS administrator or not.
 
-![add user details](./media/add-user-details.png)
+![add user details](../../media/add-user-details.png)
 
 A MAAS administrator can manage all aspects of MAAS, whereas a
 non-administrator user can perform a subset of tasks on machines they acquire
@@ -38,7 +38,7 @@ SSH key file (usually `$HOME/ssh/id_rsa.pub`) into the box and select 'Add
 key'. SSH keys can be viewed and removed from the 'SSH keys'
 section of the user preferences page. 
 
-![add SSH public key](./media/add-user-ssh.png)
+![add SSH public key](../../media/add-user-ssh.png)
 
 ## API key
 
@@ -58,4 +58,4 @@ An administrator can also change a user's password by selecting 'edit' against a
 account in the 'Users and Keys' section of the general settings page and
 providing a new password.
 
-![change user password](./media/add-user-password.png)
+![change user password](../../media/add-user-password.png)

@@ -62,7 +62,7 @@ To set the default minimum HWE kernel for all machines visit the 'Settings' page
 and select a HWE kernel in the 'Default Minimum Kernel Version' field. Don't
 forget to click 'Save'.
 
-![image](./media/default_min_hwe_kernel.png)
+![image](../../media/default_min_hwe_kernel.png)
 
 ### Machine minimum kernel
 
@@ -70,7 +70,7 @@ To set the minimum HWE kernel on a machine basis visit the machine's page and cl
 the `Edit` button in the 'Machine summary' pane. Then select a HWE kernel in the
 'Minimum Kernel' field and 'Save changes'.
 
-![image](./media/min_hwe_kernel.png)
+![image](../../media/min_hwe_kernel.png)
 
 ### Machine kernel during deployment
 
@@ -78,7 +78,7 @@ To set a specific HWE kernel during deployment visit the machine's page and choo
 `Deploy` under 'Take action'. Then select a HWE kernel in the 'Default
 kernel' field. Hit 'Go' to initiate the deployment.
 
-![image](./media/hwe_kernel.png)
+![image](../../media/hwe_kernel.png)
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
 release (series) before deploying the node. 

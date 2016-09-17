@@ -14,7 +14,7 @@ basis and a per-node basis.
 To set kernel options globally, as an admin, open the 'Settings' page and
 scroll down to the `Global Kernel Parameters` section, as shown here:
 
-![image](./media/global_kernel_opts.png)
+![image](../../media/global_kernel_opts.png)
 
 Type in the desired options and click 'Save'. The contents of the field will be
 used as-is. Do not use extra characters.

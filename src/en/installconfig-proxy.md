@@ -45,7 +45,7 @@ In the web UI, visit the 'Settings' page, select the 'General' tab and scroll
 down to the 'Network Configuration' section. Any changes made are applied by
 pressing the 'Save' button.
 
-![image](./media/external-proxy.png)
+![image](../../media/external-proxy.png)
 
 To enable the internal proxy, ensure that the checkbox (for 'Enable the use of
 an APT and HTTP/HTTPS proxy') is checked. This is the default configuration.

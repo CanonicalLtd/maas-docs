@@ -48,7 +48,7 @@ and the secondary.
 1. Configure a default gateway. Fill in the field 'Gateway IP'.
 1. Apply your changes with the 'Provide DHCP' button.
 
-![Enable DHCP](./media/vlan_provide_dhcp.png)
+![Enable DHCP](../../media/vlan_provide_dhcp.png)
 
 See [MAAS CLI](./manage-cli-common.html#enable-dhcp) for doing this with the CLI.
 
@@ -78,6 +78,6 @@ no longer supported.
 To manage snippets, as an admin, open the 'Settings' page and click on the
 'DHCP Snippets' tab.
 
-![Manage DHCP snippets](./media/installconfig-dhcp__dhcp-snippets.png)
+![Manage DHCP snippets](../../media/installconfig-dhcp__dhcp-snippets.png)
 
 See [MAAS CLI](./manage-cli-dhcp-snippets.html) for doing this with the CLI.

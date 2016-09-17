@@ -63,7 +63,7 @@ To define a network in the user interface, click on `Networks` in the top bar.
 This will take you to the listing of known networks. Click the `Add network`
 button to start entering your network's information.
 
-![image](./media/add-network.png)
+![image](../../media/add-network.png)
 
 Assign each network a short name for easy reference, and optionally, a more
 detailed description. Fill out the other fields as detailed below. Click `Add
@@ -113,7 +113,7 @@ On the network add/edit pages, you will see a selection box where you can
 select which network interfaces are connected to that network, as well as the
 nodes to which they belong.
 
-![image](./media/connect-nodes-to-network.png)
+![image](../../media/connect-nodes-to-network.png)
 
 The box lets you select multiple network interfaces, even if they belong to the
 same node. Click "Save network" to make your changes permanent.

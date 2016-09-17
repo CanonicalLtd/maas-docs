@@ -26,7 +26,7 @@ Assign`, `DHCP` and `Unconfigured`. Selecting `Static Assign` will add a new
 field beneath the menu where you can enter the IP address you'd like to
 allocate to the interface. 
 
-![static IP address](./media/maas-gui-staticip.png)
+![static IP address](../../media/maas-gui-staticip.png)
 
 
 ## Reserved IP addresses
@@ -52,7 +52,7 @@ to enter start and end addresses for the range as well as a comment.
 Below is an example window when creating a 'Reserved range' (both windows are
 actually identical):
 
-![reserved IP range](./media/installconfig-network-static_image-reserved-range.png)
+![reserved IP range](../../media/installconfig-network-static_image-reserved-range.png)
 
 Click the 'Reserve' button when done.
 

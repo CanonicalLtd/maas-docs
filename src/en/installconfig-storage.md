@@ -139,7 +139,7 @@ The global default storage layout can be set using either the API or the web
 interface. From the web interface, for example, look for 'Default Storage Layout' on the
 settings page:
 
-![default storage](./media/storage_global_layout.png)
+![default storage](../../media/storage_global_layout.png)
 
 To change the default storage layout from the command line, you would enter the
 following:
