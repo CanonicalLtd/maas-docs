@@ -1,5 +1,5 @@
 Title: Install from Packages
-TODO:  Mention HA and link to HA page (manage-maas-ha.html)
+TODO:  Mention HA and link to HA page (manage-maas-ha.md)
        Revert .html extensions on links (at the bottom)? build process did not remove them
 
 

@@ -26,7 +26,7 @@ If automatice discovery doesn't work for you it is possible to
 
 Once a node is added to MAAS its *status* will be one of *New*. The next step
 will be to *commission* it (see
-[Commission nodes](./installconfig-commission-nodes.html)).
+[Commission nodes](installconfig-commission-nodes.md)).
 
 
 ## Automatic discovery

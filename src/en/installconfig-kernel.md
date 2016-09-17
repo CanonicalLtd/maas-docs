@@ -19,14 +19,14 @@ scroll down to the `Global Kernel Parameters` section, as shown here:
 Type in the desired options and click 'Save'. The contents of the field will be
 used as-is. Do not use extra characters.
 
-See [MAAS CLI](./manage-cli-advanced.html#set-the-default-kernel-boot-options)
+See [MAAS CLI](manage-cli-advanced.md#set-the-default-kernel-boot-options)
 for how to do this with the CLI.
 
 
 ## Per-node kernel options
 
 Per-node kernel options are set using the CLI. See
-[MAAS CLI](./manage-cli-advanced.html#specify-kernel-boot-options-for-a-machine) for
+[MAAS CLI](manage-cli-advanced.md#specify-kernel-boot-options-for-a-machine) for
 instructions.
 
 Note that per-node kernel options take precedence to global options.

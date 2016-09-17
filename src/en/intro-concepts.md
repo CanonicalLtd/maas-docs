@@ -49,7 +49,7 @@ iSCSI, and v) power management. You need a rack controller attached to each
 each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
-as made highly available. See [MAAS HA](./manage-maas-ha.html) for high
+as made highly available. See [MAAS HA](manage-maas-ha.md) for high
 availability.
 
 ### Machines

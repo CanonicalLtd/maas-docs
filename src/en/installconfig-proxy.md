@@ -37,7 +37,7 @@ The proxy must be installed on the same host as the region controller (via the
 
 ## Configure proxying
 
-See the [MAAS CLI](./manage-cli-common.html#configure-proxying) for how to
+See the [MAAS CLI](manage-cli-common.md#configure-proxying) for how to
 configure proxying with the CLI. Note that per-subnet proxy configuration can
 only be accomplished via the CLI.
 

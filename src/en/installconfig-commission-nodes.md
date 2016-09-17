@@ -28,17 +28,17 @@ finalize the directive by hitting 'Go'.
 
 While a node is commissioning its status will change to *Commissioning*. 
 
-See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
+See [MAAS CLI](manage-cli-common.md#commission-all-machines) for how to
 commission all machines with the 'New' status.
 
 !!! Note: If your node has more than one network interface you may need to tell
 MAAS which one to use. Do this by marking it *Broken* (see next section).
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
-the time to [tag your nodes](./installconfig-tags.html).
+the time to [tag your nodes](installconfig-tags.md).
 
 The next step will be to *deploy* it (see
-[Deploy nodes](./installconfig-deploy-nodes.html)).
+[Deploy nodes](installconfig-deploy-nodes.md)).
 
 
 
@@ -64,5 +64,5 @@ assigned when the node is eventually deployed:
 
 - **Unconfigured** The interface will be left unconfigured.
 
-See [Concepts and terms](./intro-concepts.html#ip-ranges) for definitions of
+See [Concepts and terms](intro-concepts.md#ip-ranges) for definitions of
 reserved ranges and reserved dynamic ranges.

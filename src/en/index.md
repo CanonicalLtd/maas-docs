@@ -87,7 +87,7 @@ MAAS will, in turn, release that machine to the pool.
 ## Key components and colocation of all services
 
 The key components of a MAAS installation are the region controller and the
-rack controller. See [Concepts and terms](intro-concepts.html#controllers) for
+rack controller. See [Concepts and terms](intro-concepts.md#controllers) for
 how each are defined.
 
 Unless there is specific reason not to, it is recommended to have both
@@ -100,7 +100,7 @@ into different subnets and high availability and/or load balancing is desired.
 It's important to note that the all-in-one solution will provide a DHCP
 service. Review your existing network design in order to determine whether this
 will cause problems. See
-[DHCP](./installconfig-dhcp.html#competing-dhcp) for more on this subject.
+[DHCP](installconfig-dhcp.md#competing-dhcp) for more on this subject.
 
 
 ## Installation methods

@@ -7,7 +7,7 @@ TODO:  Decide whether explicit examples are needed everywhere
 # Common CLI Tasks
 
 This is a list of common tasks to perform with the MAAS CLI. See
-[MAAS CLI](./manage-cli.html) on how to get started.
+[MAAS CLI](manage-cli.md) on how to get started.
 
 
 ## List nodes
@@ -76,7 +76,7 @@ maas $PROFILE ipranges create type=dynamic \
 ```
 
 See
-[Rack Controller Configuration](./installconfig-rack.html#dynamic-ip-ranges)
+[Rack Controller Configuration](installconfig-rack.md#dynamic-ip-ranges)
 for an explination of dynamic IP ranges.
 
 To reserve a range of IP addresses that will not be used by MAAS:
@@ -235,4 +235,4 @@ maas $PROFILE users create username=$USERNAME \
 
 All the options are necessary. Note that stipulating a password on the CLI may
 be a security hazard, depending on your environment. If unsure, use the web UI.
-See [User Accounts](./manage-account.html) for the latter.
+See [User Accounts](manage-account.md) for the latter.

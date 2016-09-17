@@ -4,7 +4,7 @@ Title: MAAS | Access the GUI
 # Access the GUI
 
 Unless MAAS was installed from the
-[Ubuntu Server ISO](./installconfig-server-iso.html), you'll need to create a
+[Ubuntu Server ISO](installconfig-server-iso.md), you'll need to create a
 user in order to access the web UI. This initial user is a MAAS administrator:
 
 ```bash
@@ -30,8 +30,8 @@ You can now log in here: <http://<region controller address\>/MAAS>
 ![web account login](../../media/install-login.png)
 
 Once logged in to the UI an administrator can use it to create regular users as
-well as additional administrators. See [User Accounts](./manage-account.html)
+well as additional administrators. See [User Accounts](manage-account.md)
 for this.
 
-See [MAAS CLI](./manage-cli.html) for logging in via the CLI and working with
+See [MAAS CLI](manage-cli.md) for logging in via the CLI and working with
 the CLI.

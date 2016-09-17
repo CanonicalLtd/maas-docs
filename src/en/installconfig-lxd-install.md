@@ -72,4 +72,4 @@ access the container with:
 lxc exec xenial-maas bash
 ```
 You can now proceed with the [standard package
-installation](installconfig-package-install.html). 
+installation](installconfig-package-install.md). 

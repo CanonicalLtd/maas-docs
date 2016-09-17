@@ -32,7 +32,7 @@ sudo maas createadmin --username=$PROFILE --email=$EMAIL_ADDRESS
 ```
 
 Extra administrators can be created in the same way. See
-[here](./manage-cli-common.html#create-a-regular-user) for creating regular
+[here](manage-cli-common.md#create-a-regular-user) for creating regular
 users with the CLI.
 
 
@@ -102,6 +102,6 @@ maas logout $PROFILE
 
 To continue with the CLI, explore the following links:
 
-- [Common tasks](./manage-cli-common.html)
-- [Image management](./manage-cli-images.html)
-- [Advanced tasks](./manage-cli-advanced.html)
+- [Common tasks](manage-cli-common.md)
+- [Image management](manage-cli-images.md)
+- [Advanced tasks](manage-cli-advanced.md)

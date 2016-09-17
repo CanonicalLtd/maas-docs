@@ -6,7 +6,7 @@ TODO:  Decide whether explicit examples are needed everywhere
 # Tag management
 
 This is a list of advanced tasks to perform with the MAAS CLI. See
-[MAAS CLI](./manage-cli.html) on how to get started.
+[MAAS CLI](manage-cli.md) on how to get started.
 
 
 ## Tag creation and auto-assignment

@@ -2,7 +2,7 @@ Title: Partitions
 
 # Partitions
 
-As with [block devices](installconfig-block.html), MAAS and its API offers
+As with [block devices](installconfig-block.md), MAAS and its API offers
 a great deal of control over the creation, formatting, mounting and deletion of
 partitions.
 

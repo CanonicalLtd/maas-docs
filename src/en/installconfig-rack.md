@@ -28,7 +28,7 @@ manually:
 
 To install and register a rack controller you can either use the Ubuntu Server
 ISO or work from the command line. See
-[MAAS CLI](./manage-cli-advanced.html#install-a-rack-controller) on how to do
+[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller) on how to do
 the latter.
 
 Once registered, if this is an extra rack controller, it will appear

@@ -11,7 +11,7 @@ and requested an address, and had race conditions when the lease expired and
 another machine was looking for its own IP.
 
 MAAS now defines an additional range on the cluster for static IPs that are
-allocated by MAAS itself (see [rack-configuration](./installconfig-rack.html)
+allocated by MAAS itself (see [rack-configuration](installconfig-rack.md)
 for more information about this).
 
 In normal operation, MAAS will automatically choose and allocate a static IP
@@ -35,7 +35,7 @@ It is possible to reserve a portion of a subnet which MAAS will not lease for
 deployed nodes. This is for when you have machines on the subnet that are not
 managed by MAAS (use 'reserved') or when you want MAAS to provide DHCP for
 provisioning (use 'reserved-dynamic'). Note that the latter is part of the
-process of [providing DHCP](./installconfig-rack.html#providing-dhcp). Having
+process of [providing DHCP](installconfig-rack.md#providing-dhcp). Having
 to do so manually is usually because the initial IP range can no longer satisfy
 current demands.
 
@@ -56,5 +56,5 @@ actually identical):
 
 Click the 'Reserve' button when done.
 
-See [MAAS CLI](./manage-cli-common.html#reserve-ip-addresses) for doing this
+See [MAAS CLI](manage-cli-common.md#reserve-ip-addresses) for doing this
 with the CLI.

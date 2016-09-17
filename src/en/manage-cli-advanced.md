@@ -8,7 +8,7 @@ TODO:  Decide whether explicit examples are needed everywhere
 # Advanced CLI Tasks
 
 This is a list of advanced tasks to perform with the MAAS CLI. See
-[MAAS CLI](./manage-cli.html) on how to get started.
+[MAAS CLI](manage-cli.md) on how to get started.
 
 
 ## Set the default kernel boot options
@@ -38,7 +38,7 @@ maas $PROFILE tags create name='nomodeset' \
 
 The tag must then be assigned to the machine in question. This can be done
 with the web UI or with the CLI. For the latter, see [assign a tag to a
-node](./manage-cli-common.html#assign-a-tag-to-a-node).
+node](manage-cli-common.md#assign-a-tag-to-a-node).
 
 If multiple tags attached to a node have the `kernel_opts` defined, the first
 one (ordered alphabetically) is used.

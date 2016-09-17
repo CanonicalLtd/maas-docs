@@ -6,9 +6,9 @@ TODO:  Decide whether explicit examples are needed everywhere
 # CLI Image Management
 
 This is a list of image management tasks to perform with the MAAS CLI. See
-[MAAS CLI](./manage-cli.html) on how to get started.
+[MAAS CLI](manage-cli.md) on how to get started.
 
-See [MAAS Images](./installconfig-images.html) for an overview of images.
+See [MAAS Images](installconfig-images.md) for an overview of images.
 
 
 ## List image sources
@@ -150,12 +150,12 @@ If the source that was added is now the sole boot source then the fields
 'Sync URL' and 'Keyring Path' in the web UI will reflect its values.
 
 Once the source is added, proceed to the
-[Select and Import](installconfig-images-import.html) images step.
+[Select and Import](installconfig-images-import.md) images step.
 
 ### Using a local image mirror
 
 Once the mirror is set up according to 
-[Local Image Mirror](./installconfig-images-mirror.html) it is just a matter of
+[Local Image Mirror](installconfig-images-mirror.md) it is just a matter of
 specifying the mirror location (URL). Since the images come from the default
 source the default keyring should be used. If the aforementioned mirror
 document was followed, the variable values should be:

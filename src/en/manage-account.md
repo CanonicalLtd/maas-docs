@@ -44,7 +44,7 @@ section of the user preferences page.
 
 The user preferences page includes an API key for the currently active user.
 This can be copied and regenerated as needed. The API key is currently used to
-login to the API from the [command line](manage-cli.html), and by Canonical's
+login to the API from the [command line](manage-cli.md), and by Canonical's
 application and service modelling tool,
 [Juju](https://jujucharms.com/docs/stable/clouds-maas). 
 

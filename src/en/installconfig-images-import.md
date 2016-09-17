@@ -8,8 +8,8 @@ This page explains how to use the web UI to select and import the images that
 MAAS requires in order to provision its nodes.
 
 Note that the MAAS CLI can also be used for image management. You must
-[Select images](./manage-cli-images.html#select-images) and 
-[Import newly-selected images](./manage-cli-images.html#import-newly-selected-images).
+[Select images](manage-cli-images.md#select-images) and 
+[Import newly-selected images](manage-cli-images.md#import-newly-selected-images).
 
 By default, the most recent Ubuntu LTS release (and amd64 architecture) are
 selected. To change the selections go to the Images tab, select any other
@@ -43,5 +43,5 @@ available and these can be imported and used just like the Ubuntu images above.
 Optionally, a local mirror can be set up as the boot source. MAAS will then use
 it instead of the standard internet-based server. This will reduce the time
 required to complete the image import step significantly. See
-[Local image mirror](./installconfig-images-mirror.html) for instructions on
+[Local image mirror](installconfig-images-mirror.md) for instructions on
 doing this.

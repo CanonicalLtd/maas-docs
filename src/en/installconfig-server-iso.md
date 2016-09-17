@@ -63,11 +63,11 @@ server.
 When the server is back online, the web interface for the region controller
 is accessible from `http://$SERVER_IP/MAAS`. You will be asked to login
 with the MAAS administrator username and password you created earlier. See [Add
-Nodes](installconfig-add-nodes.html) for details on adding resources to MAAS.
+Nodes](installconfig-add-nodes.md) for details on adding resources to MAAS.
 
 The rack controller can be accessed from its local terminal where you can login
 with the account credentials configured during installation. See [Rack
-Controller Configuration](installconfig-rack.html) for details on registering
+Controller Configuration](installconfig-rack.md) for details on registering
 and configuring the rack controller with the region controller. 
 
 !!! Note: An SSH server isn't installed on the rack controller by default. 

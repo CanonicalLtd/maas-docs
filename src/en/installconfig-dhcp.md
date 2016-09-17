@@ -50,11 +50,11 @@ and the secondary.
 
 ![Enable DHCP](../../media/vlan_provide_dhcp.png)
 
-See [MAAS CLI](./manage-cli-common.html#enable-dhcp) for doing this with the CLI.
+See [MAAS CLI](manage-cli-common.md#enable-dhcp) for doing this with the CLI.
 
 If necessary, it is possible to add further portions of the subnet to the
 dynamic IP range (see
-[Reserved IP addresses](./installconfig-network-static.html#reserved-ip-addresses)
+[Reserved IP addresses](installconfig-network-static.md#reserved-ip-addresses)
 ). Furthermore, since DHCP is enabled on a VLAN basis and a VLAN can contain
 multiple subnets, it is possible to add a portion from those subnets as well.
 Just select the subnet under the 'Networks' tab and reserve a dynamic range.
@@ -80,4 +80,4 @@ To manage snippets, as an admin, open the 'Settings' page and click on the
 
 ![Manage DHCP snippets](../../media/installconfig-dhcp__dhcp-snippets.png)
 
-See [MAAS CLI](./manage-cli-dhcp-snippets.html) for doing this with the CLI.
+See [MAAS CLI](manage-cli-dhcp-snippets.md) for doing this with the CLI.

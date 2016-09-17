@@ -77,7 +77,7 @@ our tag definition:
 ```
 
 This definition is used in a CLI example
-[here](./manage-cli-tags.html#tag-creation-and-auto-assignment).
+[here](manage-cli-tags.md#tag-creation-and-auto-assignment).
 
 
 ## Tag listing and tags as search filters
@@ -123,7 +123,7 @@ The following three actions are done while in a node's edit mode (click the
 
 With the exception of tag assignment (as shown above), at this time tag
 management, such as creation, deletion, and advanced operations, can only be
-performed via the CLI. See [MAAS CLI](./manage-cli-tags.html) for tag
+performed via the CLI. See [MAAS CLI](manage-cli-tags.md) for tag
 management. Also covered there is how to use tags in conjunction with Juju (to
 deploy services) and all tag features available with the web UI (listing and
 searching).
