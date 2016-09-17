@@ -112,4 +112,4 @@ There are three ways to install MAAS:
 - As a self-contained LXD environment
 
 These methods, and their respective advantages, are fleshed out on the
-[Installation](installconfig-install) page.
+[Installation](installconfig-install.md) page.
