@@ -4,14 +4,15 @@ TODO:
 
 # Install from Ubuntu Server ISO
 
-The [Ubuntu Server](http://www.ubuntu.com/download/server) (16.04 LTS)
-installer offers the opportunity to pre-configure the server as either a MAAS
-Region Controller or a MAAS Rack Controller. 
+The [Ubuntu Server](http://www.ubuntu.com/download/server) (16.04 LTS) ISO
+offers to have the server-to-be-installed host a complete MAAS environment or
+to house a single rack controller. 
 
 !["server install menu"](./media/iso-install_01.png)
 
-!!! Note: see '[Concepts and terms](intro-concepts.html#controllers)' for the
-differences between region controller and rack controller.
+Note that choosing option **Install MAAS Region Controller** will actually
+install an entire MAAS environment. That is, it is equivalent to installing the
+'maas' metapackage. This will probably change in a future printing of the ISO.
 
 There is very little difference between the install procedure of a generic
 Ubuntu Server, and a server pre-configured for MAAS. After selecting either the
@@ -28,7 +29,6 @@ your Metal as a Service (MAAS)' for a 'Region Controller' installation, or
 The region controller installation will ask for a username followed by a password
 for the MAAS administrator. If these are not provided, an administrator account
 will need to be create manually before you can use MAAS. 
-
 
 ![rack controller install](./media/iso-install-rack_01.png)
 

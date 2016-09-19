@@ -40,8 +40,8 @@ There are two types of controllers: a *region controller* and a *rack
 controller*.
 
 A region controller consists of i) the REST API server, ii) the PostgreSQL
-database, iii) DNS, iv) proxy (HAProxy), and v) HTTP (GUI). A region controller
-can be thought of being responsible for a data centre.
+database, iii) DNS, iv) caching HTTP proxy, and v) a web UI. A region
+controller can be thought of as being responsible for a data centre.
 
 A rack controller provides i) DHCP, ii) TFTP, iii) HTTP (for images), iv)
 iSCSI, and v) power management. You need a rack controller attached to each
