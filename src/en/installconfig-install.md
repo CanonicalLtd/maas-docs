@@ -1,6 +1,5 @@
 Title: Installation
 TODO:  Need minimum requirements/specifications (all-in-one, rack-controller)
-       Need to mention 
 
 
 # Installation

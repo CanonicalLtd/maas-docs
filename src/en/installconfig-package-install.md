@@ -1,6 +1,5 @@
 Title: Install from Packages
-TODO:  Explain MAAS proxy
-       Mention HA and link to HA page (manage-maas-ha.html)
+TODO:  Mention HA and link to HA page (manage-maas-ha.html)
 
 
 # Install from Packages
