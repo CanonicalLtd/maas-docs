@@ -1,4 +1,5 @@
 Title: MAAS | Metal As A Service
+TODO:  Review paragraph "Multiple region and rack controllers are required if..." 
 
 
 # What is MAAS?
@@ -91,8 +92,7 @@ how each are defined.
 
 Unless there is specific reason not to, it is recommended to have both
 controllers residing on the same system. A no-fuss way to achieve this is by
-installing the `maas` metapackage (or while installing Ubuntu Server with an
-ISO).
+installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
 
 Multiple region and rack controllers are required if nodes need to be organised
 into different subnets and high availability and/or load balancing is desired.

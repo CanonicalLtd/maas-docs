@@ -17,7 +17,7 @@ in other MAAS packages not listed above. The full list of MAAS packages can be
 obtained with the command:
 
 ```bash
-apt-cache search maas-
+apt-cache search maas
 ```
 
 The 'maas' package is the recommended way to install MAAS. See
