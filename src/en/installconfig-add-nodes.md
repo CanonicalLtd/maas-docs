@@ -6,24 +6,33 @@ TODO: Review needed
       This is the wrong place for node interface configuration, but until we
       migrate to the new structure, I can't think of a better place at the
       moment. 
+      Need instructions on commissioning
+      Need instructions on deploying directly
 
 
 # Add Nodes
 
-Now that MAAS is installed, we need to make the nodes aware of
-MAAS and vice-versa. If you have set up DHCP correctly, and your nodes can
-boot via [PXE](http://en.wikipedia.org/wiki/Preboot_Execution_Environment)
-then things really couldn't be much easier and you can use the [automatic
-discovery procedure](#automatic-discovery), below. You do not need to install
-Ubuntu on nodes that you wish to add to MAAS prior to enlistment.
+Adding a node to MAAS means having MAAS acquire a system that is ready and
+willing to become a member of the pool of resources that MAAS manages. This is
+typically done via a combination of DHCP (and TFTP), which should now be
+enabled in your MAAS environment, and PXE, which you tell the system in
+question to use when it boots. This manner of acquiring nodes is what MAAS
+calls *automatic discovery*.
 
-To learn more about setting up DHCP, read the
-[Rack Controller](./installconfig-rack.html) documentation.
+!!! Note: Configuring a computer to boot over PXE is done via its BIOS and is
+often referred to as "netboot" or "network boot".
+
+There are no other requirements for the system other than telling it to boot
+from the network. In particular, there is no need to install an operating
+system on it.
+
+If automatice discovery doesn't work for you it is possible to
+[add a node manually](#add-a-node-manually).
 
 
 ## Automatic discovery
 
-A node configured to boot over the network (PXE) will:
+A node configured to boot via PXE will:
 
 1. Contact a DHCP server
 1. Receive an image over TFTP and boot from it
@@ -38,15 +47,6 @@ installed.
 
 See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
 commission all machines.
-
-
-## Manually add nodes
-
-If you know the MAC address of a node, you can manually enter details about
-the node through the web interface. Click the `Add Node` button to be taken to
-the "Add Node" form:
-
-![image](./media/add-node.png)
 
 
 ## KVM guest nodes
@@ -106,7 +106,18 @@ Still as user 'maas', test connecting to the KVM host with virsh:
 ```bash
 virsh -c qemu+ssh://ubuntu@10.0.0.2/system list --all
 ```
-##Interfaces
+
+
+## Add a node manually
+
+If you know the MAC address of a node, you can manually enter details about
+the node through the web interface. Click the `Add Node` button to be taken to
+the "Add Node" form:
+
+![image](./media/add-node.png)
+
+
+## Interfaces
 
 After a node has been commissioned, its interface(s) can be configured within
 MAAS's web interface by selecting a specific node. When a node's state is
