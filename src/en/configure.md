@@ -84,7 +84,7 @@ manually, or on the node page when the node has been automatically
 discovered but before it is accepted, there is a drop down menu to
 select the version of Ubuntu you wish to install.
 
-![](../images/series.png)
+![Selecting the release series](./media/series.png)
 
 The menu will always list all the currently available series according
 to which boot images are available.
@@ -202,12 +202,12 @@ standard install of the MAAS region controller includes a cluster
 controller, but it is possible to add additional cluster controllers to
 the configuration, as shown in the diagram below:
 
-![](../images/orientation_architecture-diagram.png)
+![Additional cluster controllers diagram](./media/orientation_architecture-diagram.png)
 
 Each cluster controller will need to run on a separate Ubuntu server.
 Installing and configuring the software is straightforward though:
 
-```bash 
+```bash
 sudo apt-get install maas-cluster-controller
 ```
 
@@ -229,7 +229,7 @@ configure the software:
 dpkg-reconfigure maas-cluster-controller
 ```
 
-![](../images/cluster-config.png)
+![maas-cluster-controller configuration prompt](./media/cluster-config.png)
 
 The configuration script should then bring up a screen where you can
 enter the IP address of the region controller. Additionally, you will
@@ -267,5 +267,3 @@ host running the MAAS DNS server.
 
 However, for hosts using the `resolvconf` package,
 please read its documentation for more information.
-
-

@@ -34,7 +34,7 @@ that’s been configured to use the fast installer, visit the node’s page
 as an administrator and click the `Use the Debian installer`{.docutils
 .literal} button.
 
-![](../media/node-page-use-default-installer.png)
+![A node with the default installer option](./media/node-page-use-default-installer.png)
 
 To set multiple nodes to use the Debian installer, select the
 `Mark nodes as using the Debian installer` option
@@ -53,7 +53,7 @@ installer](#debian-installer).
 
 The fast installer is enabled by default for newly enlisted nodes.
 
-![](../media/node-page-use-fast-installer.png)
+![A node with the fast installer option](./media/node-page-use-fast-installer.png)
 
 To set multiple nodes to use the fast installer, select the
 `Mark nodes as using the fast installer` option from
