@@ -127,7 +127,7 @@ detected subnets.
 A *tag* (not to be confused with VLAN tags) is user-created and associated with
 nodes based on their physical properties. These can then be used to identify
 nodes with particular abilities which can be useful during the deployment of
-serivces.
+services.
 
 
 ## Subnets
