@@ -1,13 +1,8 @@
 Title: Add Nodes
-TODO: Review needed
-      Clarify terms: discovery, enlistment, accept, commission
-      There should be a "commission" section (i.e. not bundled with "discovery")
+TODO: Clarify terms: discovery, enlistment, accept, commission
       AFAIK, user 'maas' has a default home directory of /var/lib/maas
-      This is the wrong place for node interface configuration, but until we
-      migrate to the new structure, I can't think of a better place at the
-      moment. 
-      Need instructions on commissioning
       Need instructions on deploying directly
+      KVM stuff needs to be integrated better into this page
 
 
 # Add Nodes
@@ -29,6 +24,10 @@ system on it.
 If automatice discovery doesn't work for you it is possible to
 [add a node manually](#add-a-node-manually).
 
+Once a node is added to MAAS its *status* will be one of *New*. The next step
+will be to *commission* it (see
+[Commission nodes](./installconfig-commission-nodes.html)).
+
 
 ## Automatic discovery
 
@@ -41,12 +40,7 @@ A node configured to boot via PXE will:
 
 During this process, the MAAS server will be passed information about the node,
 including the architecture, MAC address and other details which will be stored
-in the database. You can accept and commission the nodes via the web interface.
-After the nodes have been accepted, the selected series of Ubuntu will be
-installed.
-
-See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
-commission all machines.
+in the database.
 
 
 ## KVM guest nodes
@@ -115,39 +109,3 @@ the node through the web interface. Click the `Add Node` button to be taken to
 the "Add Node" form:
 
 ![image](./media/add-node.png)
-
-
-## Interfaces
-
-After a node has been commissioned, its interface(s) can be configured within
-MAAS's web interface by selecting a specific node. When a node's state is
-either *Ready* or *Broken*, network interfaces can be added or removed,
-attached to a fabric and linked to a subnet. 
-
-![node interface](./media/node-interface-ip.png)
-
-There are four further options for how an interface's IP addresses is assigned:
-
-**Auto Assign**
-
-Interfaces configured as "Auto assign" will be deployed with a static
-(non-DHCP) network configuration. MAAS will choose an IP from the subnet
-that does not fall into a defined reserved range.
-
-**Static**
-
-When an interface is configured as "Static", you will be asked to provide an
-IP address for that interface to use when deployed.
-
-**DHCP**
-
-Interfaces configured as "DHCP" will use DHCP to request configuration
-information at boot. In order for the interface to successfully configure, you
-will need to ensure that a [dynamic range](intro-concepts.html#ip-ranges) has
-been reserved on the associated subnet, and that either you have configured
-MAAS to provide DHCP services on the associated VLAN, or that you have provided
-an external DHCP server to do so.
-
-**(Unconfigured)**
-
-These interfaces will be left unconfigured.
