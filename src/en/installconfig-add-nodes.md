@@ -1,6 +1,5 @@
 Title: Add Nodes
 TODO: Review needed
-      Update/replace API references with GUI
       Clarify terms: discovery, enlistment, accept, commission
       There should be a "commission" section (i.e. not bundled with "discovery")
       AFAIK, user 'maas' has a default home directory of /var/lib/maas
@@ -11,7 +10,7 @@ TODO: Review needed
 
 # Add Nodes
 
-Now that the MAAS controller is running, we need to make the nodes aware of
+Now that MAAS is installed, we need to make the nodes aware of
 MAAS and vice-versa. If you have set up DHCP correctly, and your nodes can
 boot via [PXE](http://en.wikipedia.org/wiki/Preboot_Execution_Environment)
 then things really couldn't be much easier and you can use the [automatic
@@ -37,8 +36,8 @@ in the database. You can accept and commission the nodes via the web interface.
 After the nodes have been accepted, the selected series of Ubuntu will be
 installed.
 
-See [Using the CLI](./manage-cli.html#commission-all-machines) for how to
-commission all machines from the CLI.
+See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
+commission all machines.
 
 
 ## Manually add nodes

@@ -3,6 +3,12 @@ Title: Installation
 
 # Installation
 
+As explained [here][index] the installation of MAAS consists of the
+installation of a rack controller and a region controller which, in turn,
+provide a multitude of services. The most evident of these, post-install,
+confers the ability to acquire PXE-bootable systems as MAAS nodes (via DHCP and
+TFTP).
+
 There are three ways to install MAAS:
 
 - [From an Ubuntu Server ISO](installconfig-server-iso.html). Install and
@@ -28,3 +34,6 @@ from an [Ubuntu Server ISO](installconfig-server-iso.html).
 Ubuntu 14.04 systems running MAAS 1.9 and 1.9.x can [upgrade to MAAS
 2.0](installconfig-upgrade-to-2.html) via the system-wide upgrade to Ubuntu 16.04.
 
+
+<!-- LINKS -->
+[index]: ./index.html#key-components-and-colocation-of-all-services)
