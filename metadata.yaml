@@ -1,0 +1,176 @@
+navigation:
+  - title: Introduction
+
+    children:
+      - title: About MAAS
+        location: /
+
+      - title: Management summary
+        location: /intro-management
+
+      - title: Concepts and terms
+        location: /intro-concepts
+
+      - title: Architectural overview
+        location: /intro-architecture
+
+  - title: Install & Configure
+
+    children:
+      - title: Installation
+        location: /installconfig-install
+
+        children:
+          - title: Install from Ubuntu Server ISO
+            location: /installconfig-server-iso
+
+          - title: Install from packages
+            location: /installconfig-package-install
+
+          - title: Install into LXD
+            location: /installconfig-lxd-install
+
+          - title: Upgrade from 1.9 to 2.0
+            location: /installconfig-upgrade-to-2
+
+      - title: Access the GUI
+        location: /installconfig-gui
+
+      - title: Configure zones
+        location: /installconfig-zones
+
+      - title: Configure network
+        location: /installconfig-network2
+
+        children:
+          - title: Static IPs
+            location: /installconfig-network-static
+
+          - title: IPv6
+            location: /installconfig-network-ipv6
+
+          - title: Proxy
+            location: /installconfig-proxy
+
+          - title: STP
+            location: /installconfig-network-stp
+
+      - title: Nodes
+
+        children:
+          - title: Rack Controller
+            location: /installconfig-rack
+
+            children:
+              - title: DHCP
+                location: /installconfig-dhcp
+
+              - title: Storage
+                location: /installconfig-storage
+
+                children:
+                  - title: Block Devices
+                    location: /installconfig-block
+
+                  - title: Partitions
+                    location: /installconfig-partitions
+
+          - title: Add Nodes
+            location: /installconfig-add-nodes
+
+          - title: Tags
+            location: /installconfig-tags
+
+          - title: Kernel Boot Options
+            location: /installconfig-kernel
+
+          - title: HWE kernels
+            location: /installconfig-hwe-kernels
+
+      - title: Images
+        location: /installconfig-images
+
+        children:
+          - title: Selection and Import
+            location: /installconfig-images-import
+
+          - title: Local Image Mirror
+            location: /installconfig-images-mirror
+
+  - title: Manage MAAS
+
+    children:
+      - title: User Accounts
+        location: /manage-account
+
+        children:
+          - title: Add User
+            location: /manage-account#add-a-user
+
+          - title: SSH Keys
+            location: /manage-account#ssh-keys
+
+          - title: API Key
+            location: /manage-account#api-key
+
+          - title: Change the password
+            location: /manage-account#change-the-password
+
+      - title: High Availability (HA)
+        location: /manage-maas-ha
+
+        children:
+            - title: Rack Controller HA
+              location: /manage-maas-ha#rack-controller-ha
+
+            - title: Region Controller HA
+              location: /manage-maas-ha#region-controller-ha
+
+            - title: Deploy HA with Juju
+              location: /manage-maas-ha#deploy-ha-with-juju
+
+      - title: Power Driver Capabilities
+        location: /manage-power
+
+      - title: MAAS CLI
+        location: /manage-cli
+
+        children:
+            - title: Common Tasks
+              location: /manage-cli-common
+
+            - title: Image Management
+              location: /manage-cli-images
+
+            - title: DHCP Snippets
+              location: /manage-cli-dhcp-snippets
+
+            - title: Advanced Tasks
+              location: /manage-cli-advanced
+
+  - title: Troubleshoot
+
+    children:
+      - title: FAQ
+        location: /troubleshoot-faq
+
+      - title: Getting help
+        location: /troubleshoot-getting-help
+
+  - title: Release notes
+    location: /ref-release-notes
+
+  - title: Developer Guide
+    location: http://maas.ubuntu.com/docs/index.html#developing-maas
+
+  - title: API Documentation
+    location: http://maas.ubuntu.com/docs/api.html
+
+  - title: Help improve these docs
+    location: /contributing
+
+  - title: Report a docs issue
+    location: https://github.com/CanonicalLtd/maas-docs/issues/new
+
+mystring: str
+mystring: str = "hello2
