@@ -1,4 +1,5 @@
 Title: MAAS | Metal As A Service
+TODO:  Review paragraph "Multiple region and rack controllers are required if..." 
 
 
 # What is MAAS?
@@ -83,24 +84,22 @@ was stated earlier still applies. For instance, if Juju removes a machine then
 MAAS will, in turn, release that machine to the pool.
 
 
-## A simple MAAS setup
+## Key components and colocation of all services
 
-The key components of a MAAS installation are:
+The key components of a MAAS installation are the region controller and the
+rack controller. See [Concepts and terms](intro-concepts.html#controllers) for
+how each are defined.
 
-- Region controller(s)
-- Rack controller(s)
-- MAAS machines (nodes)
+Unless there is specific reason not to, it is recommended to have both
+controllers residing on the same system. A no-fuss way to achieve this is by
+installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
 
-For a small setup, it is typical to have a single region controller and a
-single rack controller. In addition, both can reside on the same system. This
-is easy to achieve by simply installing the `maas` metapackage. It is only
-worth having multiple region and rack controllers if you need to organise your
-nodes into different subnets and you want high availability and/or load
-balancing.
+Multiple region and rack controllers are required if nodes need to be organised
+into different subnets and high availability and/or load balancing is desired.
 
-It's important to note that installing the `maas` package will provide a DHCP
-service.  Review your existing network design in order to determine whether
-this will cause problems. See
+It's important to note that the all-in-one solution will provide a DHCP
+service. Review your existing network design in order to determine whether this
+will cause problems. See
 [DHCP](./installconfig-dhcp.html#competing-dhcp) for more on this subject.
 
 
@@ -108,8 +107,7 @@ this will cause problems. See
 
 There are three ways to install MAAS:
 
-- From the Ubuntu Server ISO. A dialog is included for installing either a
-  region or rack controller
+- From the Ubuntu Server ISO
 - From software packages ("debs")
 - As a self-contained LXD environment
 

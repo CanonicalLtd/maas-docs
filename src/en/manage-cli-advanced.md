@@ -88,7 +88,7 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_parameters_power_id=$HOSTNAME
 ```
 
-## Add a rack controller
+## Install a rack controller
 
 To install and register a rack controller with the MAAS:
 
@@ -96,6 +96,9 @@ To install and register a rack controller with the MAAS:
 sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
+
+!!! Note: The register command is only needed if the rack controller is not
+being added to a system that already houses a region controller.
 
 You will be asked for the URL of the region controller. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key

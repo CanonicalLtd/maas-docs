@@ -1,33 +1,38 @@
 Title: Install from Packages
-TODO:  Explain MAAS proxy
+TODO:  Mention HA and link to HA page (manage-maas-ha.html)
 
 
 # Install from Packages
 
-There are several packages to choose from:
+There are three packages to consider when installing MAAS:
 
-- `maas-region-controller` - includes the web UI, API and database.
-- `maas-rack-controller` - controls a group of machines under a rack or
-   multiple racks, including DHCP management.
-- `maas-dhcp`/`maas-dns` - required when managing DHCP/DNS.
-- `maas-proxy` - required to provide a MAAS proxy.
+- `maas-region-controller` - region API server, database, DNS,
+  [HTTP proxy][proxy], and [web UI][web-ui]
+- `maas-rack-controller` - [rack controller][rack] and [DHCP][dhcp]
+- `maas` - a metapackage that installs both the above packages to provide a complete
+  MAAS environment
 
-For convenience, the 'maas' metapackage will install all the above packages
-onto the localhost. This will provide all the services necessary to manage
-your machines with MAAS. See
-[A simple MAAS setup](./index.html#a-simple-maas-setup) for a little
-more detail on the all-in-one MAAS solution. It is the ideal design for trying
-out MAAS for the first time.
+Each of the above packages has its own dependencies. That is, each will bring
+in other MAAS packages not listed above. The full list of MAAS packages can be
+obtained with the command:
 
-If you want to distribute these services on several machines (or want to
-[deploy extra rack controllers](./installconfig-rack.html#add-a-rack-controller)),
-you will need to install packages individually on those machines.
+```bash
+apt-cache search maas
+```
 
-Packages 'maas-dhcp' and 'maas-dns' provide MAAS-controlled DHCP and DNS
-services which greatly simplify deployment. This is the recommended design and
-should be chosen if your local network policies allow it. Note that these
-packages **must** be installed if you later configure MAAS to manage DHCP/DNS
-via the web UI.
+The 'maas' package is the recommended way to install MAAS. See
+[here][all-in-one] for more detail on colocating all services on a single host.
+
+Note that [installing an extra rack controller][add-rack] will add DHCP
+intelligently; DHCP HA will become available as an option.
+
+<!-- LINKS -->
+[proxy]: ./installconfig-proxy.html
+[web-ui]: ./installconfig-gui.html
+[rack]: ./installconfig-rack.html
+[dhcp]: ./installconfig-dhcp.html
+[all-in-one]: ./index.html#key-components-and-colocation-of-all-services
+[add-rack]: ./installconfig-rack.html#install-a-rack-controller
 
 
 ## Package repositories
@@ -42,17 +47,34 @@ Development releases (not meant for production) are available here:
 
 - [ppa:maas/next](https://launchpad.net/~maas/+archive/ubuntu/next)
 
-To add a PPA, type:
+For example, to add the 'stable' PPA, type:
 
 ```bash
 sudo apt-add-repository -y ppa:maas/stable
 sudo apt update
 ```
 
-## All-in-one solution
+## Installation scenarios
 
-As described above, to put everything on one machine:
+The recommended way to set up an initial MAAS environment is to put everything
+on one machine:
 
 ```bash
 sudo apt install maas
 ```
+
+For a more distributed environment, the region controller can be place on one
+machine:
+
+```bash
+sudo apt install maas-region-controller
+```
+
+and the rack controller on another:
+
+```bash
+sudo apt install maas-rack-controller
+sudo maas-rack register
+```
+
+See [installing a rack controller][add-rack] for details.

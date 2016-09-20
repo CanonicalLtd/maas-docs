@@ -1,5 +1,5 @@
 Title: Rack Controller
-TODO:  Needs review (see GH#24: https://git.io/viCzJ)
+TODO:  Link to installing rack via ISO
 
 
 # Rack Controller
@@ -19,25 +19,24 @@ controller must be able to:
   each region controller host. At present this is not configurable.
 
 
-## Add a rack controller
+## Install a rack controller
 
 When a rack controller is installed on the same system as the region controller
-it will be added (registered) to MAAS automatically. Otherwise it will need to
-be added manually.
-
-One reason to add extra rack controllers is to achieve DHCP high availability
-(DHCP HA).
+it will be registered to MAAS automatically. Otherwise it will need to be done
+manually.
 
 To install and register a rack controller you can either use the Ubuntu Server
 ISO or work from the command line. See
-[MAAS CLI](./manage-cli-advanced.html#add-a-rack-controller) on how to do the
-latter.
+[MAAS CLI](./manage-cli-advanced.html#install-a-rack-controller) on how to do
+the latter.
 
-Once registered, the new, secondary, controller will appear immediately in the
-web UI and begin to sync with the primary controller:
+Once registered, if this is an extra rack controller, it will appear
+immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller](./media/installconfig-rack__add-controller2.png)
 
+One reason to add extra rack controllers is to achieve DHCP high availability
+(DHCP HA).
 
 <!--
 
