@@ -15,19 +15,24 @@ default user account 'ubuntu' if
 The agent that triggers deployment varies depending on how the nodes are
 intended to be used in the long term. For instance, if the nodes are destined
 to be running complex, inter-related services that may involve scaling up or
-down, that is, they will be regarded as a "cloud" resource, then
+down, that is, if they will be regarded as a "cloud" resource, then
 [Juju](https://jujucharms.com/docs/devel/getting-started) is the recommeded
 deploy agent (it will also install & configure services on the deployed nodes).
 If you simply want to use MAAS to install a base operating system and work on
-the machines manually then MAAS itself can be that agent.
+the machines manually then you can deploy a node directly with the web UI.
+
+Before deploying you should review and possibly set the
+[kernel boot options](./installconfig-kernel.html) and
+[HWE kernels](./installconfig-hwe-kernels.html) that may get used by deployed
+nodes.
 
 To deploy directly from MAAS simply select any given node and press the
 'Deploy' button.
 
 ![deploy](./media/installconfig-deploy-nodes__deploy.png)
 
-You have the option of changing from the default OS, release, and kernel. When
-ready, press 'Go'.
+You then have the option of deviating from the default OS, release, and kernel.
+When ready, press 'Go'.
 
 ![deploy go](./media/installconfig-deploy-nodes__deploy-go.png)
 

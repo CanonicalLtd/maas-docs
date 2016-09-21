@@ -35,8 +35,12 @@ commission all machines with the 'New' status.
 MAAS which one to use. Do this by marking it *Broken* and proceeding similarly to
 what is shown below.
 
-Once a node is commissioned its status will change to *Ready*. The next step
-will be to *deploy* it (see [Deploy nodes](./installconfig-deploy-nodes.html)).
+Once a node is commissioned its status will change to *Ready*. Consider taking
+the time to [tag](./installconfig-tags.html) your nodes.
+
+The next step will be to *deploy* it (see
+[Deploy nodes](./installconfig-deploy-nodes.html)).
+
 
 
 ## Post-commission configuration
