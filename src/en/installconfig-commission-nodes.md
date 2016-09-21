@@ -36,7 +36,7 @@ MAAS which one to use. Do this by marking it *Broken* and proceeding similarly t
 what is shown below.
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
-the time to [tag](./installconfig-tags.html) your nodes.
+the time to [tag your nodes](./installconfig-tags.html).
 
 The next step will be to *deploy* it (see
 [Deploy nodes](./installconfig-deploy-nodes.html)).
