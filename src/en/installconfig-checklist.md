@@ -94,12 +94,11 @@ just not there and/or you want to quickly test things out you can use the web
 UI to [deploy a node][deploy-nodes] directly.
 
 
-## Connect to the deployed node
+## SSH to the node
 
-Once the node is deployed it should have a status of *Deployed*. If you
-imported your SSH key then you should be able to log in. The node's page in the
-web UI will inform you of its IP address. Connect to the 'ubuntu' account.
-Congratulations!
+If you [imported your SSH key][ssh-keys] then you should now be able to ssh to
+it by connecting to the 'ubuntu' account. The node's page in the web UI will
+inform you of its IP address. Congratulations!
 
 
 <!-- LINKS -->
@@ -115,3 +114,4 @@ Congratulations!
 [commission-nodes]: ./installconfig-commission-nodes.html
 [juju-getting-started]: https://jujucharms.com/docs/stable/getting-started
 [deploy-nodes]: ./installconfig-deploy-nodes.html
+[ssh-keys]: ./manage-account.html#ssh-keys
