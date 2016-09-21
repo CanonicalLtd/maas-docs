@@ -32,21 +32,22 @@
 				<li><a href="installconfig-network-stp.html">STP</a></li>
 			</ul>
 		</li>
-		<li>Nodes</li>
+		<li><a href="installconfig-rack.html">Rack Controller</a>
 			<ul class="sub">
-				<li><a href="installconfig-rack.html">Rack Controller</a>
+				<li><a href="installconfig-dhcp.html">DHCP</a></li>
+				<li class"section"><a href="installconfig-storage.html">Storage</a>
 					<ul class="sub">
-						<li><a href="installconfig-dhcp.html">DHCP</a></li>
-						<li class"section"><a href="installconfig-storage.html">Storage</a>
-							<ul class="sub">
-								<li><a href="installconfig-block.html">Block Devices</a></li>
-								<li><a href="installconfig-partitions.html">Partitions</a></li>
-							</ul>
-						</li>
+						<li><a href="installconfig-block.html">Block Devices</a></li>
+						<li><a href="installconfig-partitions.html">Partitions</a></li>
 					</ul>
 				</li>
+			</ul>
+		</li>
+		<li>Nodes</li>
+			<ul class="sub">
 				<li><a href="installconfig-add-nodes.html">Add Nodes</a></li>
 				<li><a href="installconfig-commission-nodes.html">Commission Nodes</a></li>
+				<li><a href="installconfig-deploy-nodes.html">Deploy Nodes</a></li>
 				<li><a href="installconfig-tags.html">Tags</a></li>
 				<li><a href="installconfig-kernel.html">Kernel Boot Options</a></li>
 				<li><a href="installconfig-hwe-kernels.html">HWE kernels</a></li>

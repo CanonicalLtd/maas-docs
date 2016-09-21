@@ -1,7 +1,7 @@
 Title: Commission Nodes
 TODO:  Add CLI for IP address assignment methods
        Add CLI for image/kernel to use for commissioning (?)
-       Add Deploy page and link to it
+       Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
 
 
 # Commission Nodes
@@ -17,19 +17,26 @@ require changing. However, it can be configured in the web UI in the 'Settings'
 page.
 
 To commission a node, select it and choose 'Commission' under the 'Take action'
-dropdown menu (orange button). Its status will change to *Commissioning*. 
+dropdown menu (orange button).
+
+![commission](./media/installconfig-commission-nodes__commission.png)
+
+You have the option of selecting some extra parameters (checkboxes). Then
+finalize the directive by hitting 'Go'.
+
+![commission go](./media/installconfig-commission-nodes__commission-go.png)
+
+While a node is commissioning its status will change to *Commissioning*. 
 
 See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
-commission all machines with the 'Ready' status.
+commission all machines with the 'New' status.
 
 !!! Note: If your node has more than one network interface you may need to tell
 MAAS which one to use. Do this by marking it *Broken* and proceeding similarly to
 what is shown below.
 
 Once a node is commissioned its status will change to *Ready*. The next step
-will be to *deploy* it.
-
-<!--  (see [Deploy nodes](./installconfig-deploy-nodes.html)). -->>
+will be to *deploy* it (see [Deploy nodes](./installconfig-deploy-nodes.html)).
 
 
 ## Post-commission configuration
