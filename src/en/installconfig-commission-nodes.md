@@ -1,5 +1,6 @@
 Title: Commission Nodes
 TODO:  Add CLI for IP address assignment methods
+       Add CLI for image/kernel to use for commissioning (?)
        Add Deploy page and link to it
 
 
@@ -7,10 +8,13 @@ TODO:  Add CLI for IP address assignment methods
 
 Once a node is added to MAAS the next logical step is to *commission* it.
 
-It does this by installing Ubuntu onto the node with a minimal boot image and
-uses scripts to talk to the region API server. The purpose of this is to ensure
-that everything is in working order and that eventual deployment will actually
-work.
+It does this by putting a minimal Ubuntu install onto the node and using scripts
+to talk to the region API server. The purpose of this is to ensure that
+everything is in working order and that eventual deployment will actually work.
+
+The image used is, by default, the latest Ubuntu LTS release and should not
+require changing. However, it can be configured in the web UI in the 'Settings'
+page.
 
 To commission a node, select it and choose 'Commission' under the 'Take action'
 dropdown menu (orange button). Its status will change to *Commissioning*. 
