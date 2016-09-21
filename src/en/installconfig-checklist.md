@@ -85,15 +85,13 @@ communicate properly with the region API server. [Commission][commission-nodes]
 your node now.
 
 
-## Deploy a node directly
+## Deploy a node
 
 Lots of folks would have [Juju][juju-getting-started] take over at this point.
 Juju acts as a sort of command & control centre for adding
 services/applications on top of MAAS nodes (among other "clouds"). If you're
-just not there and/or you want to quickly test things out you can tell MAAS to
-deploy a node directly.
-
-To deploy a node simply select it and choose 'Deploy'.
+just not there and/or you want to quickly test things out you can use the web
+UI to [deploy a node][deploy-nodes] directly.
 
 
 ## Connect to the deployed node
@@ -116,3 +114,4 @@ Congratulations!
 [user-accounts]: ./manage-account.html
 [commission-nodes]: ./installconfig-commission-nodes.html
 [juju-getting-started]: https://jujucharms.com/docs/stable/getting-started
+[deploy-nodes]: ./installconfig-deploy-nodes.html
