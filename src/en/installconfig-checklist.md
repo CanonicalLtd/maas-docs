@@ -3,9 +3,9 @@ Title: Installation and Configuration Checklist
 
 # Installation and Configuration Checklist
 
-This is a list of required and/or important steps that require fulfilling in
-order to get a working MAAS. Once you perform a step come back here (using the
-menu in the left pane) to continue to the next step.
+This is a guide that you can use to achieve a working MAAS environment. Once
+you perform a step come back here (using the menu in the left pane) to continue
+on to the next one.
 
 
 ## Software installation
