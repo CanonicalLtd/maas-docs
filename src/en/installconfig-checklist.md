@@ -80,15 +80,9 @@ you're still a rock star!
 
 ## Commission a node
 
-Commissioning a node means that MAAS tests it to ensure that it is able to
-communicate properly with the region API server. It does this with a minimal
-boot image and some scripting.
-
-Select the node and choose 'Commission' under the 'Take action' dropdown menu
-(orange button). If your node has more than one network interface you may need
-to tell MAAS which one to use.
-
-Its status will change to *Commissioning* and will eventually turn to *Ready*. 
+Commissioning a node involves MAAS testing it to ensure that it is able to
+communicate properly with the region API server. [Commission][commission-nodes]
+your node now.
 
 
 ## Deploy a node directly
@@ -120,4 +114,5 @@ Congratulations!
 [dhcp]: ./installconfig-dhcp.html
 [add-nodes]: ./installconfig-add-nodes.html
 [user-accounts]: ./manage-account.html
+[commission-nodes]: ./installconfig-commission-nodes.html
 [juju-getting-started]: https://jujucharms.com/docs/stable/getting-started

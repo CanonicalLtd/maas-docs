@@ -13,6 +13,7 @@
 <!-- SECTION -->
     <li class="section"><h4 class="header toggle-target">Install & Configure</h4>
     	<ul>
+		<li><a href="installconfig-checklist.html">Checklist</a></li>
 		<li class"section"><a class"header" href="installconfig-install.html">Installation</a>
 			<ul class="sub">
 				<li><a href="installconfig-server-iso.html">Install from Ubuntu Server ISO</a></li>
@@ -45,6 +46,7 @@
 					</ul>
 				</li>
 				<li><a href="installconfig-add-nodes.html">Add Nodes</a></li>
+				<li><a href="installconfig-commission-nodes.html">Commission Nodes</a></li>
 				<li><a href="installconfig-tags.html">Tags</a></li>
 				<li><a href="installconfig-kernel.html">Kernel Boot Options</a></li>
 				<li><a href="installconfig-hwe-kernels.html">HWE kernels</a></li>
