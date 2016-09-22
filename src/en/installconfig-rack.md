@@ -23,8 +23,8 @@ controller must be able to:
 ## Install a rack controller
 
 When a rack controller is installed on the same host as the region API server
-it will register itself to it automatically. Otherwise it will need to be done
-manually.
+it will register itself automatically. Otherwise this will need to be done
+manually:
 
 To install and register a rack controller you can either use the Ubuntu Server
 ISO or work from the command line. See
@@ -49,14 +49,15 @@ you would only do to an *extra* one you may have added, you will need to
 To do so, navigate to the 'Nodes' page and then the 'Controller' tab. Enter the
 controller's page by clicking on the machine you want to delete and select
 'Delete' from the dropdown (and then 'Go'). MAAS will do the right thing if the
-controller was used for DHCP HA.
+controller was used for DHCP HA (i.e. DHCP HA will no longer be enabled since
+there is no longer the possiblity of having it).
 
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
-!!! Note: Such a machine will re-instate itself as a rack controller if it's
-ever rebooted *in-situ*. This behaviour may change with future versions of
-MAAS.
+!!! Note: Unless the software on this machine is removed, rebooting it will
+cause the machine to re-instate itself as a rack controller. This behaviour may
+change with future versions of MAAS.
 
 
 <!--
