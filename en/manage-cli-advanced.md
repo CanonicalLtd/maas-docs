@@ -108,7 +108,7 @@ You can get the above information from the web UI by visiting the 'Nodes' tab,
 then the Controller sub-tab, and clicking the button 'Add rack controller'.
 Here is an example of what you may see:
 
-![add controller](../../media/installconfig-rack__add-controller.png)
+![add controller](../media/installconfig-rack__add-controller.png)
 
 Based on the above, then, we could have also entered:
 
