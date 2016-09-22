@@ -3,9 +3,9 @@ Title: Installation and Configuration Checklist
 
 # Installation and Configuration Checklist
 
-This is a list of required and/or important steps that require fulfilling in
-order to get a working MAAS. Once you perform a step come back here (using the
-menu in the left pane) to continue to the next step.
+This is a guide that you can use to achieve a working MAAS environment. Once
+you perform a step come back here (using the menu in the left pane) to continue
+on to the next one.
 
 
 ## Software installation
@@ -85,23 +85,20 @@ communicate properly with the region API server. [Commission][commission-nodes]
 your node now.
 
 
-## Deploy a node directly
+## Deploy a node
 
-Lots of folks would have [Juju][juju-getting-started] take over at this point.
-Juju acts as a sort of command & control centre for adding
-services/applications on top of MAAS nodes (among other "clouds"). If you're
-just not there and/or you want to quickly test things out you can tell MAAS to
-deploy a node directly.
-
-To deploy a node simply select it and choose 'Deploy'.
+Lots of folks would have [Juju][juju-site] take over at this point. Juju acts
+as a sort of command & control centre for adding services/applications on top
+of MAAS nodes (among other "clouds"). If you're just not there and/or you want
+to quickly test things out you can use the web UI to
+[deploy a node][deploy-nodes] directly.
 
 
-## Connect to the deployed node
+## SSH to the node
 
-Once the node is deployed it should have a status of *Deployed*. If you
-imported your SSH key then you should be able to log in. The node's page in the
-web UI will inform you of its IP address. Connect to the 'ubuntu' account.
-Congratulations!
+If you [imported your SSH key][ssh-keys] then you should now be able to ssh to
+the deployed node by connecting to the 'ubuntu' account. The node's page in the
+web UI will inform you of its IP address. Congratulations!
 
 
 <!-- LINKS -->
@@ -115,4 +112,6 @@ Congratulations!
 [add-nodes]: ./installconfig-add-nodes.html
 [user-accounts]: ./manage-account.html
 [commission-nodes]: ./installconfig-commission-nodes.html
-[juju-getting-started]: https://jujucharms.com/docs/stable/getting-started
+[juju-site]: https://jujucharms.com/docs/
+[deploy-nodes]: ./installconfig-deploy-nodes.html
+[ssh-keys]: ./manage-account.html#ssh-keys
