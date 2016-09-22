@@ -22,8 +22,8 @@ controller must be able to:
 
 ## Install a rack controller
 
-When a rack controller is installed on the same system as the region API server
-it will become registered it automatically. Otherwise it will need to be done
+When a rack controller is installed on the same host as the region API server
+it will register itself to it automatically. Otherwise it will need to be done
 manually.
 
 To install and register a rack controller you can either use the Ubuntu Server
