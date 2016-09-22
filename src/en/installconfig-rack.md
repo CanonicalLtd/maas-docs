@@ -1,5 +1,6 @@
 Title: Rack Controller
 TODO:  Link to installing rack via ISO
+       Add CLI for deleting a rack controller
 
 
 # Rack Controller
@@ -21,8 +22,8 @@ controller must be able to:
 
 ## Install a rack controller
 
-When a rack controller is installed on the same system as the region controller
-it will be registered to MAAS automatically. Otherwise it will need to be done
+When a rack controller is installed on the same system as the region API server
+it will become registered it automatically. Otherwise it will need to be done
 manually.
 
 To install and register a rack controller you can either use the Ubuntu Server
@@ -37,6 +38,26 @@ immediately in the web UI and begin to sync with the primary controller:
 
 One reason to add extra rack controllers is to achieve DHCP high availability
 (DHCP HA).
+
+
+## Unregister a rack controller
+
+If you ever want to unregister a rack controller, which is probably something
+you would only do to an *extra* one you may have added, you will need to
+*delete* it from the region API server; there is no 'unregister' command.
+
+To do so, navigate to the 'Nodes' page and then the 'Controller' tab. Enter the
+controller's page by clicking on the machine you want to delete and select
+'Delete' from the dropdown (and then 'Go'). MAAS will do the right thing if the
+controller was used for DHCP HA.
+
+Although similar, this is not conceptually equivalent to deleting a MAAS node.
+Here, you are deleting a machine that is a part of MAAS itself.
+
+!!! Note: Such a machine will re-instate itself as a rack controller if it's
+ever rebooted *in-situ*. This behaviour may change with future versions of
+MAAS.
+
 
 <!--
 
