@@ -32,8 +32,7 @@ See [MAAS CLI](./manage-cli-common.html#commission-all-machines) for how to
 commission all machines with the 'New' status.
 
 !!! Note: If your node has more than one network interface you may need to tell
-MAAS which one to use. Do this by marking it *Broken* and proceeding similarly to
-what is shown below.
+MAAS which one to use. Do this by marking it *Broken* (see next section).
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
 the time to [tag your nodes](./installconfig-tags.html).
