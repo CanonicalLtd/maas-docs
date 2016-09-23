@@ -3,162 +3,162 @@ navigation:
 
     children:
       - title: About MAAS
-        location: /
+        location: /en/
 
       - title: Management summary
-        location: /intro-management
+        location: /en/intro-management
 
       - title: Concepts and terms
-        location: /intro-concepts
+        location: /en/intro-concepts
 
       - title: Architectural overview
-        location: /intro-architecture
+        location: /en/intro-architecture
 
   - title: Install & Configure
 
     children:
       - title: Installation
-        location: /installconfig-install
+        location: /en/installconfig-install
 
         children:
           - title: Install from Ubuntu Server ISO
-            location: /installconfig-server-iso
+            location: /en/installconfig-server-iso
 
           - title: Install from packages
-            location: /installconfig-package-install
+            location: /en/installconfig-package-install
 
           - title: Install into LXD
-            location: /installconfig-lxd-install
+            location: /en/installconfig-lxd-install
 
           - title: Upgrade from 1.9 to 2.0
-            location: /installconfig-upgrade-to-2
+            location: /en/installconfig-upgrade-to-2
 
       - title: Access the GUI
-        location: /installconfig-gui
+        location: /en/installconfig-gui
 
       - title: Configure zones
-        location: /installconfig-zones
+        location: /en/installconfig-zones
 
       - title: Configure network
-        location: /installconfig-network2
+        location: /en/installconfig-network2
 
         children:
           - title: Static IPs
-            location: /installconfig-network-static
+            location: /en/installconfig-network-static
 
           - title: IPv6
-            location: /installconfig-network-ipv6
+            location: /en/installconfig-network-ipv6
 
           - title: Proxy
-            location: /installconfig-proxy
+            location: /en/installconfig-proxy
 
           - title: STP
-            location: /installconfig-network-stp
+            location: /en/installconfig-network-stp
 
       - title: Nodes
 
         children:
           - title: Rack Controller
-            location: /installconfig-rack
+            location: /en/installconfig-rack
 
             children:
               - title: DHCP
-                location: /installconfig-dhcp
+                location: /en/installconfig-dhcp
 
               - title: Storage
-                location: /installconfig-storage
+                location: /en/installconfig-storage
 
                 children:
                   - title: Block Devices
-                    location: /installconfig-block
+                    location: /en/installconfig-block
 
                   - title: Partitions
-                    location: /installconfig-partitions
+                    location: /en/installconfig-partitions
 
           - title: Add Nodes
-            location: /installconfig-add-nodes
+            location: /en/installconfig-add-nodes
 
           - title: Tags
-            location: /installconfig-tags
+            location: /en/installconfig-tags
 
           - title: Kernel Boot Options
-            location: /installconfig-kernel
+            location: /en/installconfig-kernel
 
           - title: HWE kernels
-            location: /installconfig-hwe-kernels
+            location: /en/installconfig-hwe-kernels
 
       - title: Images
-        location: /installconfig-images
+        location: /en/installconfig-images
 
         children:
           - title: Selection and Import
-            location: /installconfig-images-import
+            location: /en/installconfig-images-import
 
           - title: Local Image Mirror
-            location: /installconfig-images-mirror
+            location: /en/installconfig-images-mirror
 
   - title: Manage MAAS
 
     children:
       - title: User Accounts
-        location: /manage-account
+        location: /en/manage-account
 
         children:
           - title: Add User
-            location: /manage-account#add-a-user
+            location: /en/manage-account#add-a-user
 
           - title: SSH Keys
-            location: /manage-account#ssh-keys
+            location: /en/manage-account#ssh-keys
 
           - title: API Key
-            location: /manage-account#api-key
+            location: /en/manage-account#api-key
 
           - title: Change the password
-            location: /manage-account#change-the-password
+            location: /en/manage-account#change-the-password
 
       - title: High Availability (HA)
-        location: /manage-maas-ha
+        location: /en/manage-maas-ha
 
         children:
             - title: Rack Controller HA
-              location: /manage-maas-ha#rack-controller-ha
+              location: /en/manage-maas-ha#rack-controller-ha
 
             - title: Region Controller HA
-              location: /manage-maas-ha#region-controller-ha
+              location: /en/manage-maas-ha#region-controller-ha
 
             - title: Deploy HA with Juju
-              location: /manage-maas-ha#deploy-ha-with-juju
+              location: /en/manage-maas-ha#deploy-ha-with-juju
 
       - title: Power Driver Capabilities
-        location: /manage-power
+        location: /en/manage-power
 
       - title: MAAS CLI
-        location: /manage-cli
+        location: /en/manage-cli
 
         children:
             - title: Common Tasks
-              location: /manage-cli-common
+              location: /en/manage-cli-common
 
             - title: Image Management
-              location: /manage-cli-images
+              location: /en/manage-cli-images
 
             - title: DHCP Snippets
-              location: /manage-cli-dhcp-snippets
+              location: /en/manage-cli-dhcp-snippets
 
             - title: Advanced Tasks
-              location: /manage-cli-advanced
+              location: /en/manage-cli-advanced
 
   - title: Troubleshoot
 
     children:
       - title: FAQ
-        location: /troubleshoot-faq
+        location: /en/troubleshoot-faq
 
       - title: Getting help
-        location: /troubleshoot-getting-help
+        location: /en/troubleshoot-getting-help
 
   - title: Release notes
-    location: /ref-release-notes
+    location: /en/ref-release-notes
 
   - title: Developer Guide
     location: http://maas.ubuntu.com/docs/index.html#developing-maas
@@ -167,8 +167,7 @@ navigation:
     location: http://maas.ubuntu.com/docs/api.html
 
   - title: Help improve these docs
-    location: /contributing
+    location: /en/contributing
 
   - title: Report a docs issue
     location: https://github.com/CanonicalLtd/maas-docs/issues/new
-
