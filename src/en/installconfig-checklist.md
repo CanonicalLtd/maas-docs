@@ -1,4 +1,5 @@
 Title: Installation and Configuration Checklist
+TODO:  Revert .html extensions on links (at the bottom)? build process did not remove them
 
 
 # Installation and Configuration Checklist
@@ -102,16 +103,16 @@ web UI will inform you of its IP address. Congratulations!
 
 
 <!-- LINKS -->
-[about-maas]: ./index.html#key-components-and-colocation-of-all-services
-[install-maas]: ./installconfig-install.html
-[web-ui]: ./installconfig-gui.html
-[zones]: ./installconfig-zones.html
-[networks]: ./installconfig-network2.html
-[images]: ./installconfig-images.html
-[dhcp]: ./installconfig-dhcp.html
-[add-nodes]: ./installconfig-add-nodes.html
-[user-accounts]: ./manage-account.html
-[commission-nodes]: ./installconfig-commission-nodes.html
+[about-maas]: ./index#key-components-and-colocation-of-all-services
+[install-maas]: ./installconfig-install
+[web-ui]: ./installconfig-gui
+[zones]: ./installconfig-zones
+[networks]: ./installconfig-network2
+[images]: ./installconfig-images
+[dhcp]: ./installconfig-dhcp
+[add-nodes]: ./installconfig-add-nodes
+[user-accounts]: ./manage-account
+[commission-nodes]: ./installconfig-commission-nodes
 [juju-site]: https://jujucharms.com/docs/
-[deploy-nodes]: ./installconfig-deploy-nodes.html
-[ssh-keys]: ./manage-account.html#ssh-keys
+[deploy-nodes]: ./installconfig-deploy-nodes
+[ssh-keys]: ./manage-account#ssh-keys

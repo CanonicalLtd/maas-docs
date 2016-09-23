@@ -1,5 +1,6 @@
 Title: Install from Packages
 TODO:  Mention HA and link to HA page (manage-maas-ha.html)
+       Revert .html extensions on links (at the bottom)? build process did not remove them
 
 
 # Install from Packages
@@ -27,12 +28,12 @@ Note that [installing an extra rack controller][add-rack] will add DHCP
 intelligently; DHCP HA will become available as an option.
 
 <!-- LINKS -->
-[proxy]: ./installconfig-proxy.html
-[web-ui]: ./installconfig-gui.html
-[rack]: ./installconfig-rack.html
-[dhcp]: ./installconfig-dhcp.html
-[all-in-one]: ./index.html#key-components-and-colocation-of-all-services
-[add-rack]: ./installconfig-rack.html#install-a-rack-controller
+[proxy]: ./installconfig-proxy
+[web-ui]: ./installconfig-gui
+[rack]: ./installconfig-rack
+[dhcp]: ./installconfig-dhcp
+[all-in-one]: ./index#key-components-and-colocation-of-all-services
+[add-rack]: ./installconfig-rack#install-a-rack-controller
 
 
 ## Package repositories
