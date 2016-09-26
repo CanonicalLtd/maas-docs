@@ -86,8 +86,9 @@ may verify that the rack controller shows up in the web UI.  You can always
 [register the rack controller manually](./manage-cli-advanced.html#install-a-rack-controller)
 (after the server has rebooted) if a mistake was made.
 
-You can choose to see the typed secret in cleartext. This can help prevent
-mis-typing and thus avoiding a failed registration.
+You can choose to display the typed secret (necessary for registering the rack
+controller) in cleartext. This can help prevent mis-typing and thus avoiding a
+failed registration.
 
 An SSH server is not installed on the rack controller by default. Near the end
 of the generic Server install there will be the opportunity to install optional
