@@ -19,12 +19,12 @@ page.
 To commission a node, select it and choose 'Commission' under the 'Take action'
 dropdown menu (orange button).
 
-![commission](./media/installconfig-commission-nodes__commission.png)
+![commission](../media/installconfig-commission-nodes__commission.png)
 
 You have the option of selecting some extra parameters (checkboxes). Then
 finalize the directive by hitting 'Go'.
 
-![commission go](./media/installconfig-commission-nodes__commission-go.png)
+![commission go](../media/installconfig-commission-nodes__commission-go.png)
 
 While a node is commissioning its status will change to *Commissioning*. 
 
@@ -48,7 +48,7 @@ Once a node has been commissioned, its interface(s) can be configured.
 Specifically, when a node's status is either 'Ready' or 'Broken', network
 interfaces can be added/removed, attached to a fabric and linked to a subnet. 
 
-![node interface](./media/node-interface-ip.png)
+![node interface](../media/node-interface-ip.png)
 
 There are four methods to choose from that determines how an IP address gets
 assigned when the node is eventually deployed:

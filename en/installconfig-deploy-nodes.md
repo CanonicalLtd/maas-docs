@@ -29,12 +29,12 @@ nodes.
 To deploy directly from MAAS simply select any given node and press the
 'Deploy' button.
 
-![deploy](./media/installconfig-deploy-nodes__deploy.png)
+![deploy](../media/installconfig-deploy-nodes__deploy.png)
 
 You then have the option of deviating from the default OS, release, and kernel.
 When ready, press 'Go'.
 
-![deploy go](./media/installconfig-deploy-nodes__deploy-go.png)
+![deploy go](../media/installconfig-deploy-nodes__deploy-go.png)
 
 While a node is deploying its status will change to *Deploying*.
 

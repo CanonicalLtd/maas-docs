@@ -103,16 +103,16 @@ web UI will inform you of its IP address. Congratulations!
 
 
 <!-- LINKS -->
-[about-maas]: ./index#key-components-and-colocation-of-all-services
-[install-maas]: ./installconfig-install
-[web-ui]: ./installconfig-gui
-[zones]: ./installconfig-zones
-[networks]: ./installconfig-network2
-[images]: ./installconfig-images
-[dhcp]: ./installconfig-dhcp
-[add-nodes]: ./installconfig-add-nodes
-[user-accounts]: ./manage-account
-[commission-nodes]: ./installconfig-commission-nodes
+[about-maas]: index.md#key-components-and-colocation-of-all-services
+[install-maas]: installconfig-install.md
+[web-ui]: installconfig-gui.md
+[zones]: installconfig-zones.md
+[networks]: installconfig-network2.md
+[images]: installconfig-images.md
+[dhcp]: installconfig-dhcp.md
+[add-nodes]: installconfig-add-nodes.md
+[user-accounts]: manage-account.md
+[commission-nodes]: installconfig-commission-nodes.md
 [juju-site]: https://jujucharms.com/docs/
-[deploy-nodes]: ./installconfig-deploy-nodes
-[ssh-keys]: ./manage-account#ssh-keys
+[deploy-nodes]: installconfig-deploy-nodes.md
+[ssh-keys]: manage-account.md#ssh-keys

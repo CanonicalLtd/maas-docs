@@ -28,12 +28,12 @@ Note that [installing an extra rack controller][add-rack] will add DHCP
 intelligently; DHCP HA will become available as an option.
 
 <!-- LINKS -->
-[proxy]: ./installconfig-proxy
-[web-ui]: ./installconfig-gui
-[rack]: ./installconfig-rack
-[dhcp]: ./installconfig-dhcp
-[all-in-one]: ./index#key-components-and-colocation-of-all-services
-[add-rack]: ./installconfig-rack#install-a-rack-controller
+[proxy]: installconfig-proxy.md
+[web-ui]: installconfig-gui.md
+[rack]: installconfig-rack.md
+[dhcp]: installconfig-dhcp.md
+[all-in-one]: index.md#key-components-and-colocation-of-all-services
+[add-rack]: installconfig-rack.md#install-a-rack-controller
 
 
 ## Package repositories
