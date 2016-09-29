@@ -30,7 +30,7 @@ Server install procedure. This page covers these extra dialogs only. See
 for details on installing a generic Ubuntu Server.
 
 
-## Choosing region controller
+## Region controller
 
 After having chosen to install a region controller, three consecutive dialog
 boxes will appear in order to do the following:
@@ -57,7 +57,7 @@ is needed for the server itself. This is separate from the
 [proxy feature](./installconfig-proxy.html) that MAAS provides to its nodes.
 
 
-## Choosing rack controller
+## Rack controller
 
 After having chosen to install a rack controller, three consecutive dialog
 boxes will appear in order to do the following:
@@ -79,7 +79,7 @@ boxes will appear in order to do the following:
   on the region API server.
   ![rack controller install dialog 3](./media/iso-install-rack_03.png)
 
-The final dialog will not confirm whether registeration was successful. Once
+The final dialog will not confirm whether registration was successful. Once
 Ubuntu Server is fully installed and rebooted you should inspect
 `/var/log/maas/rackd.log` for any possible error messages.  Alternatively, you
 may verify that the rack controller shows up in the web UI.  You can always
