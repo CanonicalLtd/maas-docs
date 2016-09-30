@@ -179,7 +179,7 @@ Below are a few helpful aliases that have been suggested:
 [githubaccount]: https://git.wiki.kernel.org/index.php/Aliases
 [configuregit]:https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 [authtoken]: https://help.github.com/articles/creating-an-access-token-for-command-line-use/
-[cachepassword]:ttps://help.github.com/articles/caching-your-github-password-in-git/
-[remotebranch]: ttps://github.com/webmat/git_remote_branch
+[cachepassword]: https://help.github.com/articles/caching-your-github-password-in-git/
+[remotebranch]: https://github.com/webmat/git_remote_branch
 [gitalias]: https://git.wiki.kernel.org/index.php/Aliases
 [docsbuilder]: https://github.com/CanonicalLtd/documentation-builder
