@@ -1,6 +1,0 @@
-html2text==2015.11.4
-Markdown==2.6.5
-mdx-anchors-away==1.0.1
-mdx-callouts==1.0.0
-mdx-foldouts==1.0.0
-wheel==0.24.0
