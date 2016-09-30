@@ -8,7 +8,7 @@ The latest version of these docs live at:
 - [maas.io/docs/](http://maas.io/docs/) - Rendered docs.
 
 For advice on contributing to the docs (please!), see the
-[contributing](contributing) page in this project. This has important
+[contributing](http://maas.io/docs/contributing) page in this project. This has important
 information on style, the use of Markdown and other useful tips.
 
 ## Docs structure
@@ -30,7 +30,7 @@ current supported versions of documentation. Many tools rely on this list, it
 should not be changed by anyone but the docs team!
 
 To build the documentation locally, you will need to use the [Ubuntu
-documentation builder](docbuilder). 
+documentation builder](https://github.com/CanonicalLtd/documentation-builder). 
 
 ## Typical Github workflow
 
@@ -38,10 +38,9 @@ Github, and git, allow you to use many different styles of workflow, but it is
 tricky to get your head around initially, so here is an example of how to use it
 easily for our documentation.
 
-1. Make sure you have a Github account! [https://github.com/join](githubaccount)
-2. Fork the [CanonicalLtd/maas-docs](githubmaas) Github repository. This 
- creates your own version of the repository (which you can then find online at
- `https://github.com/{yourusername}/maas-docs`)
+1. Make sure you have a Github account! [https://github.com/join](https://github.com/join)
+2. Fork the [CanonicalLtd/maas-docs](https://github.com/CanonicalLtd/maas-docs) Github repository. This 
+   creates your own version of the repository (which you can then find online at `https://github.com/{yourusername}/maas-docs`)
 3. Create a local copy:
 
         git clone https://github.com/{yourusername}/maas-docs 
@@ -86,9 +85,9 @@ easily for our documentation.
    Do not be alarmed if you are asked for your username/password, it is part of
    the authentication, though you can make things easier by any of:
     
-    - [configuring git](configuregit) properly
-    - using an [authentication token](authtoken)
-    - caching your [password] (cachepassword)
+    - [configuring git](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) properly
+    - using an [authentication token](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
+    - caching your [password](https://help.github.com/articles/caching-your-github-password-in-git/)
 
 9. Create a pull request. This is easily done in the web interface of Github:
    navigate to your branch on the web interface and hit the compare button - 
@@ -143,7 +142,7 @@ To fetch and merge with the upstream branch:
 ### Tools
 
 
-[Git Remote Branch](remotebranch) - A tool to 
+[Git Remote Branch](https://github.com/webmat/git_remote_branch) - A tool to 
 simplify working with remote branches (Detailed installation instructions are
 in their README).
 
@@ -155,7 +154,7 @@ commands. These are located in your ``.gitconfig`` file under the
 ``[alias]`` section.
 
 If you would like more details on Git aliases, You can find out more
-information here: [How to add Git aliases](gitalias)
+information here: [How to add Git aliases](https://git.wiki.kernel.org/index.php/Aliases)
 
 Below are a few helpful aliases that have been suggested:
 
@@ -173,13 +172,3 @@ Below are a few helpful aliases that have been suggested:
     # for the pull request.
     # git qa-pr maas-docs 6 qa-sticky-headers
     qa-pr = "!sh -c 'git checkout develop; git pull $0 develop; git checkout -b $2; git fetch-pr $0 $1; git merge pr/$1'"
-
-[contributing]: http://maas.io/docs/contributing
-[githubmaas]: https://github.com/CanonicalLtd/maas-docs
-[githubaccount]: https://git.wiki.kernel.org/index.php/Aliases
-[configuregit]:https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
-[authtoken]: https://help.github.com/articles/creating-an-access-token-for-command-line-use/
-[cachepassword]: https://help.github.com/articles/caching-your-github-password-in-git/
-[remotebranch]: https://github.com/webmat/git_remote_branch
-[gitalias]: https://git.wiki.kernel.org/index.php/Aliases
-[docsbuilder]: https://github.com/CanonicalLtd/documentation-builder
