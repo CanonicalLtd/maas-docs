@@ -40,7 +40,6 @@ navigation:
         location: installconfig-zones.html
 
       - title: Configure network
-        location: installconfig-network2.html
 
         children:
           - title: Static IPs

@@ -23,11 +23,11 @@ around! Proceed to the [web UI][web-ui] now. This will involve the creation of
 an administrator user.
 
 
-## Zones and networks
+## Zones
 
-Reading time. Many people won't need to actually change anything here but it is
-still worth reading about [zones][zones] and [networks][networks]. Don't let it
-slow you down too much.
+Reading time. Many people won't need to actually change anything here as a
+default zone is provided out of the box. However, it they are still worth
+reading about, especially if the default does not suffice. See [zones][zones].
 
 
 ## Import boot images
