@@ -1,5 +1,6 @@
 Title: Installation and Configuration Checklist
 TODO:  Revert .html extensions on links (at the bottom)? build process did not remove them
+       Make a page/link for 'Configure network' and link to it here (installconfig-network2.md was removed)
 
 
 # Installation and Configuration Checklist
@@ -23,11 +24,19 @@ around! Proceed to the [web UI][web-ui] now. This will involve the creation of
 an administrator user.
 
 
-## Zones
+## Zones and networks
 
-Reading time. Many people won't need to actually change anything here as a
-default zone is provided out of the box. However, it they are still worth
-reading about, especially if the default does not suffice. See [zones][zones].
+For [zones][zones], many people won't need to change anything as a default zone
+is provided out of the box. However, they are still worth reading about,
+especially if the default one does not suffice.
+
+For networks, there are some items that you may find interesting under
+'Configure network' in the menu.
+
+<!--
+[networks][networks] (points to skeleton page installconfig-network.md)
+Lots of stuff can be added to it - see https://git.io/vPLHk
+-->
 
 
 ## Import boot images
@@ -107,7 +116,7 @@ web UI will inform you of its IP address. Congratulations!
 [install-maas]: installconfig-install.md
 [web-ui]: installconfig-gui.md
 [zones]: installconfig-zones.md
-[networks]: installconfig-network2.md
+[networks]: installconfig-network.md
 [images]: installconfig-images.md
 [dhcp]: installconfig-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
