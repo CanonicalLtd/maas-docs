@@ -1,6 +1,5 @@
 Title: Install from Ubuntu Server ISO
-TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff
-appropriately
+TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff appropriately
 
 
 # Install from Ubuntu Server ISO
