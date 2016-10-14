@@ -1,6 +1,5 @@
 Title: Install from Ubuntu Server ISO
-TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff
-appropriately
+TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff appropriately
 
 
 # Install from Ubuntu Server ISO
@@ -48,11 +47,11 @@ boxes will appear in order to do the following:
   Provide the name of the initial MAAS administrator. It can be anything but in
   this example 'admin' was chosen. This account is distinct from the system
   account that will be created later as part of the generic Ubuntu Server
-install.
+  install.
   ![region controller install dialog 2](../media/iso-install-region_02.png)
   
   Complete the creation of the MAAS administrator account by supplying a
-password.
+  password.
   ![region controller install dialog 3](../media/iso-install-region_03.png)
 
 During one step of the generic Server install you will be asked whether a proxy

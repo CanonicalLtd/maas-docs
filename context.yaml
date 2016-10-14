@@ -1,3 +1,6 @@
+site_title: MAAS documentation
+logo_path: /static/media/maas-logo.svg
+
 navigation:
   - title: Introduction
 
