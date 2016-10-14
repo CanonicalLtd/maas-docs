@@ -80,6 +80,9 @@ navigation:
           - title: Add Nodes
             location: installconfig-add-nodes.html
 
+          - title: Power types
+            location: installconfig-power-types.html
+
           - title: Tags
             location: installconfig-tags.html
 
@@ -130,9 +133,6 @@ navigation:
 
             - title: Deploy HA with Juju
               location: manage-maas-ha.html#deploy-ha-with-juju
-
-      - title: Power Driver Capabilities
-        location: manage-power.html
 
       - title: MAAS CLI
         location: manage-cli.html

@@ -91,8 +91,8 @@ you're still a rock star!
 ## Edit power type
 
 A node needs to power cycle while being managed by MAAS. The next step is
-therefore to tell MAAS about how to do this. That is, you need to [edit the
-power type][power-type] of the node.
+therefore to tell MAAS how to do this. That is, you need to
+[edit the power type][power-type] of the node.
 
 
 ## Commission a node
@@ -128,7 +128,7 @@ web UI will inform you of its IP address. Congratulations!
 [dhcp]: installconfig-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [user-accounts]: manage-account.md
-[power-type]: installconfig-power-type.md
+[power-type]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
 [juju-site]: https://jujucharms.com/docs/
 [deploy-nodes]: installconfig-deploy-nodes.md
