@@ -20,6 +20,10 @@ navigation:
   - title: Install & Configure
 
     children:
+      - title: Checklist
+        location: installconfig-checklist.html
+
+    children:
       - title: Installation
         location: installconfig-install.html
 
