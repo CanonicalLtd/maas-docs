@@ -11,8 +11,8 @@ its power type has been configured. Since each BMC card is different, the
 required information to provide MAAS will vary.
 
 To configure a power type, visit the 'Nodes' page, select the node in question
-and scroll down to the 'Power' section. There, should see MAAS prompting you to
-set up the power type:
+and scroll down to the 'Power' section. There, you should see MAAS prompting
+you to set up the power type:
 
 ![power section](../media/installconfig-power-types__section.png)
 
@@ -23,8 +23,8 @@ Choosing the 'Edit' button will reveal a list of avaiable power types:
 Below, the example node is backed by KVM so 'Power type' `Virsh` has been
 selected. The 'Power address' of `qemu+ssh://ubuntu@10.248.64.4/system` has
 been entered based on the IP address of the KVM host. Finally, and out of
-necessity for virsh, the value of `Power ID` is the KVM domain (guest) name,
-here `node1`.
+necessity for virsh, the value of 'Power ID' is the KVM domain (guest) name,
+here `node`.
 
 ![power example virsh](../media/installconfig-power-types__example-virsh.png)
 
