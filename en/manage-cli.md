@@ -104,5 +104,5 @@ To continue with the CLI, explore the following areas:
 
 - [Common tasks](manage-cli-common.md)
 - [Image management](manage-cli-images.md)
-- [DHCP snippets](manage-cli-dhcp-snippets.md)
+- [DHCP snippet management](manage-cli-dhcp-snippets.md)
 - [Advanced tasks](manage-cli-advanced.md)
