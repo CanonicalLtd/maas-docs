@@ -6,7 +6,7 @@ Title: Zone Examples | MAAS
 This page provides examples of how MAAS zones can be used.
 
 See [Concepts and Terms](intro-concepts.md#zones) for what zones are and
-[Using Zones](installconfig-using-zones.md) for how to work with them.
+[Zones](manage-zones.md) for how to work with them.
 
 
 ## Fault tolerance
