@@ -188,6 +188,7 @@ navigation:
 
   - title: API documentation
     location: http://maas.ubuntu.com/docs/api.html
+    location: http://maas.ubuntu.com/docs2.0/api.html
 
   - title: Help improve these docs
     location: contributing.html

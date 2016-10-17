@@ -128,6 +128,7 @@ web UI will inform you of its IP address. Congratulations!
 [dhcp]: installconfig-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [user-accounts]: manage-account.md
+[power-type]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
 [juju-site]: https://jujucharms.com/docs/
 [deploy-nodes]: installconfig-deploy-nodes.md
