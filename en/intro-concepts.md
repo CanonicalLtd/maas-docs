@@ -69,19 +69,24 @@ parent node is deleted or released. This is designed to model and manage the
 virtual machines or containers running inside a MAAS-deployed node.
 
 
-## Zones (physical zones)
+## Zones
 
 A *physical zone*, or just *zone*, is an organizational unit that contains
-nodes. Zones are most useful when they represent portions of your
-infrastructure but they can also be used to simply keep track of where systems
-are located. In an HA context, they can be regarded as availability zones
-(AZs).
+nodes where each node is in one, and only one, zone. Later, while in
+production, a node can be taken (allocated) from a specific zone (or not from a
+specific zone). Since zones, by nature, are custom-designed (with the exception
+of the 'default' zone), they provide more flexibility than a similar feature
+offered by a public cloud service (ex: availability zones).
 
-Each node is in one and only one zone and MAAS gets installed with a default
-zone in which all nodes get placed.
+Some prime examples of how zones can be put to use include fault-tolerance,
+service performance, and power management. See
+[Zone Examples](intro-concepts-zones.md) for an elaboration.
 
-Zones can assist with fault-tolerance and performance of services running on
-the associated machines.
+A newly installed MAAS comes with a default zone, and unless a new zone is
+created all nodes get placed within it. You can therefore safely ignore the
+entire concept if you're not interested in leveraging zones.
+
+The 'default' zone cannot be removed and its name cannot be edited.
 
 
 ## Regions
