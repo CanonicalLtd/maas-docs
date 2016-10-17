@@ -73,7 +73,7 @@ navigation:
             location: installconfig-storage.html
 
             children:
-              - title: Block Devices
+              - title: Block devices
                 location: installconfig-block.html
 
               - title: Partitions
@@ -83,13 +83,16 @@ navigation:
 
         children:
 
-          - title: Add Nodes
+          - title: Add nodes
             location: installconfig-add-nodes.html
 
-          - title: Commission Nodes
+          - title: BMC power types
+            location: installconfig-power-types.html
+
+          - title: Commission nodes
             location: installconfig-commission-nodes.html
 
-          - title: Deploy Nodes
+          - title: Deploy nodes
             location: installconfig-deploy-nodes.html
 
           - title: Tags
@@ -124,16 +127,16 @@ navigation:
 
         children:
 
-          - title: Add User
+          - title: Add user
             location: manage-account.html#add-a-user
 
-          - title: SSH Keys
+          - title: SSH keys
             location: manage-account.html#ssh-keys
 
-          - title: API Key
+          - title: API key
             location: manage-account.html#api-key
 
-          - title: Change the password
+          - title: Change password
             location: manage-account.html#change-the-password
 
       - title: High availability (HA)
@@ -150,24 +153,21 @@ navigation:
           - title: Deploy HA with Juju
             location: manage-maas-ha.html#deploy-ha-with-juju
 
-      - title: Power Driver Capabilities
-        location: manage-power.html
-
       - title: MAAS CLI
         location: manage-cli.html
 
         children:
 
-          - title: Common Tasks
+          - title: Common tasks
             location: manage-cli-common.html
 
-          - title: Image Management
+          - title: Image management
             location: manage-cli-images.html
 
-          - title: DHCP Snippets
+          - title: DHCP snippets
             location: manage-cli-dhcp-snippets.html
 
-          - title: Advanced Tasks
+          - title: Advanced tasks
             location: manage-cli-advanced.html
 
   - title: Troubleshoot
@@ -183,10 +183,10 @@ navigation:
   - title: Release notes
     location: ref-release-notes.html
 
-  - title: Developer Guide
+  - title: Developer guide
     location: http://maas.ubuntu.com/docs/index.html#developing-maas
 
-  - title: API Documentation
+  - title: API documentation
     location: http://maas.ubuntu.com/docs/api.html
 
   - title: Help improve these docs
