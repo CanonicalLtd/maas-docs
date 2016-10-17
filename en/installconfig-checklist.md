@@ -88,6 +88,13 @@ appear there with a status of *New*. It will also have a funny name. Whatever,
 you're still a rock star!
 
 
+## Edit power type
+
+A node needs to power cycle while being managed by MAAS. The next step is
+therefore to tell MAAS how to do this. That is, you need to
+[edit the power type][power-type] of the node's BMC.
+
+
 ## Commission a node
 
 Commissioning a node involves MAAS testing it to ensure that it is able to

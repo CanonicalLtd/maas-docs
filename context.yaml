@@ -5,6 +5,7 @@ navigation:
   - title: Introduction
 
     children:
+
       - title: About MAAS
         location: index.html
 
@@ -20,10 +21,15 @@ navigation:
   - title: Install & Configure
 
     children:
+
+      - title: Checklist
+        location: installconfig-checklist.html
+
       - title: Installation
         location: installconfig-install.html
 
         children:
+
           - title: Install from Ubuntu Server ISO
             location: installconfig-server-iso.html
 
@@ -42,6 +48,7 @@ navigation:
       - title: Configure network
 
         children:
+
           - title: Static IPs
             location: installconfig-network-static.html
 
@@ -54,33 +61,44 @@ navigation:
           - title: STP
             location: installconfig-network-stp.html
 
+      - title: Rack controller
+        location: installconfig-rack.html
+
+        children:
+
+          - title: DHCP
+            location: installconfig-dhcp.html
+
+          - title: Storage
+            location: installconfig-storage.html
+
+            children:
+              - title: Block devices
+                location: installconfig-block.html
+
+              - title: Partitions
+                location: installconfig-partitions.html
+
       - title: Nodes
 
         children:
-          - title: Rack Controller
-            location: installconfig-rack.html
 
-            children:
-              - title: DHCP
-                location: installconfig-dhcp.html
-
-              - title: Storage
-                location: installconfig-storage.html
-
-                children:
-                  - title: Block Devices
-                    location: installconfig-block.html
-
-                  - title: Partitions
-                    location: installconfig-partitions.html
-
-          - title: Add Nodes
+          - title: Add nodes
             location: installconfig-add-nodes.html
+
+          - title: BMC power types
+            location: installconfig-power-types.html
+
+          - title: Commission nodes
+            location: installconfig-commission-nodes.html
+
+          - title: Deploy nodes
+            location: installconfig-deploy-nodes.html
 
           - title: Tags
             location: installconfig-tags.html
 
-          - title: Kernel Boot Options
+          - title: Kernel boot options
             location: installconfig-kernel.html
 
           - title: HWE kernels
@@ -90,70 +108,72 @@ navigation:
         location: installconfig-images.html
 
         children:
-          - title: Selection and Import
+
+          - title: Selection and import
             location: installconfig-images-import.html
 
-          - title: Local Image Mirror
+          - title: Local image mirror
             location: installconfig-images-mirror.html
 
   - title: Manage MAAS
 
     children:
+
       - title: Zones
         location: manage-zones.html
 
-    children:
-      - title: User Accounts
+      - title: User accounts
         location: manage-account.html
 
         children:
-          - title: Add User
+
+          - title: Add user
             location: manage-account.html#add-a-user
 
-          - title: SSH Keys
+          - title: SSH keys
             location: manage-account.html#ssh-keys
 
-          - title: API Key
+          - title: API key
             location: manage-account.html#api-key
 
-          - title: Change the password
+          - title: Change password
             location: manage-account.html#change-the-password
 
-      - title: High Availability (HA)
+      - title: High availability (HA)
         location: manage-maas-ha.html
 
         children:
-            - title: Rack Controller HA
-              location: manage-maas-ha.html#rack-controller-ha
 
-            - title: Region Controller HA
-              location: manage-maas-ha.html#region-controller-ha
+          - title: Rack controller HA
+            location: manage-maas-ha.html#rack-controller-ha
 
-            - title: Deploy HA with Juju
-              location: manage-maas-ha.html#deploy-ha-with-juju
+          - title: Region controller HA
+            location: manage-maas-ha.html#region-controller-ha
 
-      - title: Power Driver Capabilities
-        location: manage-power.html
+          - title: Deploy HA with Juju
+            location: manage-maas-ha.html#deploy-ha-with-juju
 
       - title: MAAS CLI
         location: manage-cli.html
 
         children:
-            - title: Common Tasks
-              location: manage-cli-common.html
 
-            - title: Image Management
-              location: manage-cli-images.html
+          - title: Common tasks
+            location: manage-cli-common.html
 
-            - title: DHCP Snippets
-              location: manage-cli-dhcp-snippets.html
+          - title: Image management
+            location: manage-cli-images.html
 
-            - title: Advanced Tasks
-              location: manage-cli-advanced.html
+          - title: DHCP snippets
+            location: manage-cli-dhcp-snippets.html
+
+          - title: Advanced tasks
+            location: manage-cli-advanced.html
 
   - title: Troubleshoot
 
     children:
+
       - title: FAQ
         location: troubleshoot-faq.html
 
@@ -163,10 +183,10 @@ navigation:
   - title: Release notes
     location: ref-release-notes.html
 
-  - title: Developer Guide
+  - title: Developer guide
     location: http://maas.ubuntu.com/docs/index.html#developing-maas
 
-  - title: API Documentation
+  - title: API documentation
     location: http://maas.ubuntu.com/docs/api.html
 
   - title: Help improve these docs
