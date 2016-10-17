@@ -92,7 +92,7 @@ you're still a rock star!
 
 A node needs to power cycle while being managed by MAAS. The next step is
 therefore to tell MAAS how to do this. That is, you need to
-[edit the power type][power-type] of the node.
+[edit the power type][power-type] of the node's BMC.
 
 
 ## Commission a node
