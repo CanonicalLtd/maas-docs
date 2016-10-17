@@ -43,9 +43,6 @@ navigation:
       - title: Access the GUI
         location: installconfig-gui.html
 
-      - title: Configure zones
-        location: installconfig-zones.html
-
       - title: Configure network
 
         children:
@@ -107,6 +104,10 @@ navigation:
             location: installconfig-images-mirror.html
 
   - title: Manage MAAS
+
+    children:
+      - title: Zones
+        location: manage-zones.html
 
     children:
       - title: User Accounts
