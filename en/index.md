@@ -100,7 +100,7 @@ into different subnets and high availability and/or load balancing is desired.
 It's important to note that the all-in-one solution will provide a DHCP
 service. Review your existing network design in order to determine whether this
 will cause problems. See
-[DHCP](installconfig-dhcp.md#competing-dhcp) for more on this subject.
+[DHCP](installconfig-subnets-dhcp.md#competing-dhcp) for more on this subject.
 
 
 ## Installation methods

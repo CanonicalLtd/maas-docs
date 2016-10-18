@@ -125,7 +125,7 @@ web UI will inform you of its IP address. Congratulations!
 [zones]: installconfig-zones.md
 [networks]: installconfig-network.md
 [images]: installconfig-images.md
-[dhcp]: installconfig-dhcp.md
+[dhcp]: installconfig-subnets-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [user-accounts]: manage-account.md
 [power-type]: installconfig-power-types.md
