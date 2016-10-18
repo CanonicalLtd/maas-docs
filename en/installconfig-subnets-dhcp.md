@@ -5,12 +5,20 @@ Title: DHCP
 
 In order for MAAS to manage machines, and more specifically, in order to
 enlist, commission and deploy machines, it needs to provide DHCP (and PXE
-booting) on at least one untagged VLAN. However, an external DHCP instance can
+booting) on at least one untagged VLAN. However, an external DHCP server can
 still be used on a tagged VLAN in order to service already deployed machines. 
-
+ 
 Normally the machine subnet is on the above VLAN, but if this is not the case
 then DHCP packets will need to be specially routed between the subnet and the
 MAAS-provided DHCP subnet. 
+
+It may be theoretically possible to use an external DHCP server for enlistment
+and commissioning but this is not supported. By doing so you also forfeit the
+IP management ability of MAAS since it will no longer be able to sync with the
+DHCP server (e.g. notify it that leases should be squashed when a node is
+returned to the pool). [High availabiblity](./manage-maas-ha.md) is also
+dependent upon MAAS-managed DHCP. **This documentation assumes that
+MAAS-managed DHCP is being used to enlist and commission nodes.**
 
 
 ## Competing DHCP
@@ -18,21 +26,22 @@ MAAS-provided DHCP subnet.
 Enabling your own DHCP server that competes with one that's being managed by
 MAAS can cause serious disruption. Make sure you understand the implications of
 running a DHCP server before doing this. If MAAS detects external DHCP servers
-on its networks, it will show them on the rack controller page in the web UI.
+on its networks, it will display them on the rack controller page in the web UI.
 
 
-## Dynamic IP ranges
+## Reserved dynamic IP ranges
 
-A dynamic IP range is needed in order for MAAS to be able to provide DHCP for
-machines. Addresses in the range get assigned to machines that are being:
+A *reserved dynamic IP range* is needed in order for MAAS to provide DHCP for
+machines. Addresses in this range **always** get assigned to machines that are
+being:
 
 - auto-registered (also called enlisted)
 - commissioned
 
-Deployed machines will obtain IP addresses from the part of the subnet that is
-*not* included in the above dynamic range. Such a "deployment IP range" does
-not need to be specified. These addresses will remain allocated to machines
-throughout their deployment lifecycle.
+If a machine being **deployed** has been configured to use DHCP then
+an address in this range will also be used. See
+[Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
+for IP assignment modes other than DHCP.
 
 
 ## Enabling DHCP
@@ -54,7 +63,7 @@ See [MAAS CLI](manage-cli-common.md#enable-dhcp) for doing this with the CLI.
 
 If necessary, it is possible to add further portions of the subnet to the
 dynamic IP range (see
-[Reserved IP addresses](installconfig-network-static.md#reserved-ip-addresses)
+[Reserved IP addresses](installconfig-subnets-ipranges.md)
 ). Furthermore, since DHCP is enabled on a VLAN basis and a VLAN can contain
 multiple subnets, it is possible to add a portion from those subnets as well.
 Just select the subnet under the 'Networks' tab and reserve a dynamic range.
