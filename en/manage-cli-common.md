@@ -65,14 +65,14 @@ Multiple `add=` arguments (and their values) can be used to apply a tag to
 multiple nodes. 
 
 
-## Reserve IP addresses
+## Create a reserved IP range
 
 See
 [Concepts and terms](intro-concepts.md#ip-ranges)
-for an explination of the two kinds of reserve IP ranges MAAS uses.
+for an explination of the two kinds of reserved IP ranges MAAS uses.
 
-To reserve a range of dynamic IP addresses that will be used by MAAS for
-node enlistment and commissioning:
+To create a range of dynamic IP addresses that will be used by MAAS for
+node enlistment, commissioning, and possibly deployment:
 
 ```bash
 maas $PROFILE ipranges create type=dynamic \
@@ -80,7 +80,7 @@ maas $PROFILE ipranges create type=dynamic \
 	comment='This is a reserved dynamic range'
 ```
 
-To reserve a range of IP addresses that will not be used by MAAS:
+To create a range of IP addresses that will not be used by MAAS:
 
 ```bash
 maas $PROFILE ipranges create type=reserved \

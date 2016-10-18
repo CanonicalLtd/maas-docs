@@ -33,8 +33,8 @@ actually identical):
 
 Click the 'Reserve' button when done.
 
-See [MAAS CLI](manage-cli-common.md#reserve-ip-addresses) for doing this with
-the CLI.
+See [MAAS CLI](manage-cli-common.md#create-a-reserved-ip-range) for doing this
+with the CLI.
 
 
 ## Edit a range
