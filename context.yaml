@@ -164,7 +164,7 @@ navigation:
           - title: Image management
             location: manage-cli-images.html
 
-          - title: DHCP snippets
+          - title: DHCP snippet management
             location: manage-cli-dhcp-snippets.html
 
           - title: Advanced tasks
