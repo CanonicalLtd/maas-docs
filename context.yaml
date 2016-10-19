@@ -59,10 +59,15 @@ navigation:
           - title: Local image mirror
             location: installconfig-images-mirror.html
 
-      - title: Network
-        location: 
+      - title: Networking
 
         children:
+
+          - title: Reserved IP ranges
+            location: installconfig-subnets-ipranges.html
+
+          - title: DHCP
+            location: installconfig-subnets-dhcp.html
 
           - title: IPv6
             location: installconfig-network-ipv6.html
@@ -72,17 +77,6 @@ navigation:
 
           - title: STP
             location: installconfig-network-stp.html
-
-      - title: Subnets
-        location: installconfig-subnets.html
-
-        children:
-
-          - title: Reserved IP ranges
-            location: installconfig-subnets-ipranges.html
-
-          - title: DHCP
-            location: installconfig-subnets-dhcp.html
 
       - title: Storage
         location: installconfig-storage.html
@@ -128,20 +122,6 @@ navigation:
 
       - title: User accounts
         location: manage-account.html
-
-        children:
-
-          - title: Add user
-            location: manage-account.html#add-a-user
-
-          - title: SSH keys
-            location: manage-account.html#ssh-keys
-
-          - title: API key
-            location: manage-account.html#api-key
-
-          - title: Change password
-            location: manage-account.html#change-the-password
 
       - title: High availability (HA)
         location: manage-maas-ha.html
