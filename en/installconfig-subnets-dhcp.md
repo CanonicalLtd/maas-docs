@@ -28,7 +28,8 @@ commission nodes.**
 Enabling your own DHCP server that competes with one that's being managed by
 MAAS can cause serious disruption. Make sure you understand the implications of
 running a DHCP server before doing this. If MAAS detects external DHCP servers
-on its networks, it will display them on the rack controller page in the web UI.
+on its networks, it will display them on the rack controller's page ('Nodes'
+page > 'Controller' tab > select rack controller) in the web UI.
 
 
 ## Reserved dynamic IP ranges

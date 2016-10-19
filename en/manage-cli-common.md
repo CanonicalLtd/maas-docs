@@ -69,7 +69,7 @@ multiple nodes.
 
 See
 [Concepts and terms](intro-concepts.md#ip-ranges)
-for an explination of the two kinds of reserved IP ranges MAAS uses.
+for an explanation of the two kinds of reserved IP ranges MAAS uses.
 
 To create a range of dynamic IP addresses that will be used by MAAS for
 node enlistment, commissioning, and possibly deployment:

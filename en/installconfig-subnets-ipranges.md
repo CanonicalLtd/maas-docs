@@ -19,7 +19,7 @@ All three actions require administrative privileges and begin by accessing the
 
 ## Create a range
 
-Choose 'Reserved range' or 'Reserved dynamic range'. If the latter is chosen,
+Choose 'Reserve range' or 'Reserve dynamic range'. If the latter is chosen,
 MAAS will automatically provide DHCP for enlistment and commissioning provided
 that the associated VLAN has [DHCP enabled](installconfig-subnets-dhcp.md).
 
