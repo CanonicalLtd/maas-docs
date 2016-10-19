@@ -3,22 +3,24 @@ Title: DHCP
 
 # DHCP
 
-In order for MAAS to manage machines, and more specifically, in order to
-enlist, commission and deploy machines, it needs to provide DHCP (and PXE
-booting) on at least one untagged VLAN. However, an external DHCP server can
-still be used on a tagged VLAN in order to service already deployed machines. 
+In order for MAAS to enlist and commission machines, it needs to provide its
+own DHCP server on an untagged VLAN. Although a MAAS-managed DHCP service can
+also be part of the deploy phase, an external DHCP server can optionally be
+used instead for this purpose (on a tagged VLAN).
  
-Normally the machine subnet is on the above VLAN, but if this is not the case
+Normally the machine subnet is on the untagged VLAN, but if this is not the case
 then DHCP packets will need to be specially routed between the subnet and the
 MAAS-provided DHCP subnet. 
 
 It may be theoretically possible to use an external DHCP server for enlistment
 and commissioning but this is not supported. By doing so you also forfeit the
-IP management ability of MAAS since it will no longer be able to sync with the
-DHCP server (e.g. notify it that leases should be squashed when a node is
-returned to the pool). [High availabiblity](./manage-maas-ha.md) is also
-dependent upon MAAS-managed DHCP. **This documentation assumes that
-MAAS-managed DHCP is being used to enlist and commission nodes.**
+IP management ability of MAAS since synchronization (e.g. notifications that
+leases should be squashed when a node is returned to the pool) between it and
+the DHCP server will be severed. [High availability](./manage-maas-ha.md) is
+also dependent upon MAAS-managed DHCP.
+
+**This documentation assumes that MAAS-managed DHCP is being used to enlist and
+commission nodes.**
 
 
 ## Competing DHCP
