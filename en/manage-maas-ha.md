@@ -22,8 +22,8 @@ server (primary first) for PXE booting. The responding rack controller will
 then handle PXE booting the machine and loading the required files to complete
 the deployment. All lease information will be replicated between the primary
 and secondary rack controller, allowing one rack controller to fail without
-interrupting MAAS operation. See [DHCP](installconfig-dhcp.md) for enabling
-DHCP HA.
+interrupting MAAS operation. See [DHCP](installconfig-subnets-dhcp.md) for
+enabling DHCP HA.
 
 ## Region Controller HA
 

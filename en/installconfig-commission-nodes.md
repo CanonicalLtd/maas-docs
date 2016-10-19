@@ -44,25 +44,32 @@ The next step will be to *deploy* it (see
 
 ## Post-commission configuration
 
-Once a node has been commissioned, its interface(s) can be configured.
-Specifically, when a node's status is either 'Ready' or 'Broken', network
-interfaces can be added/removed, attached to a fabric and linked to a subnet. 
+Once a node has been commissioned, its network interface(s) can be configured.
+Specifically, when a node's status is either 'Ready' or 'Broken', interfaces
+can be added/removed, attached to a fabric and linked to a subnet, and provided
+an IP assignment mode. 
 
 ![node interface](../media/node-interface-ip.png)
 
-There are four methods to choose from that determines how an IP address gets
-assigned when the node is eventually deployed:
+There are four modes to choose from that determine how an address on the subnet
+gets assigned when the node is eventually deployed:
 
-- **Auto Assign** A random non-DHCP address from the subnet that does not fall
-  into a *reserved range*.
+- **Auto assign** MAAS will assign a random static address 
+  (`iface eth0 inet static`) from among the addresses that do not fall within a
+  *reserved range*.
 
-- **Static** A static address that the user will enter in a secondary field.
+- **Static assign** The administrator will specify a static address using a
+  secondary field.
 
-- **DHCP** A dynamic address DHCP. A *reserved dynamic range* on the associated
-  subnet is a requirement. DHCP must be available on the associated VLAN and can
-  be internal (MAAS managed) or external.
+- **DHCP** A dynamic address will be leased via either MAAS-managed DHCP or an
+  external DHCP server. For the former case, a *reserved dynamic range* is a
+  requirement.
 
 - **Unconfigured** The interface will be left unconfigured.
 
-See [Concepts and terms](intro-concepts.md#ip-ranges) for definitions of
-reserved ranges and reserved dynamic ranges.
+!!! Warning: If `Auto assign` is used within the context of an external DHCP
+server, ensure you have defined the external DHCP IP range as a *reserved
+range* to avoid IP address conflicts on the network.
+
+See [Concepts and terms](intro-concepts.md#ip-ranges) for the definitions of
+reserved range types used in MAAS.

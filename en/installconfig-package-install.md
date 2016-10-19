@@ -31,7 +31,7 @@ intelligently; DHCP HA will become available as an option.
 [proxy]: installconfig-proxy.md
 [web-ui]: installconfig-gui.md
 [rack]: installconfig-rack.md
-[dhcp]: installconfig-dhcp.md
+[dhcp]: installconfig-subnets-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
 [add-rack]: installconfig-rack.md#install-a-rack-controller
 

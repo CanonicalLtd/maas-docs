@@ -8,7 +8,7 @@ TODO:  Include non-trivial examples of DHCP snippets
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
 See [MAAS CLI](manage-cli.md) on how to get started.
 
-See [DHCP](installconfig-dhcp.md#dhcp-snippets) for an overview of DHCP
+See [DHCP](installconfig-subnets-dhcp.md#dhcp-snippets) for an overview of DHCP
 snippets.
 
 

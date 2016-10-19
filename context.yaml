@@ -25,7 +25,7 @@ navigation:
       - title: Checklist
         location: installconfig-checklist.html
 
-      - title: Installation
+      - title: Install MAAS
         location: installconfig-install.html
 
         children:
@@ -42,15 +42,27 @@ navigation:
           - title: Upgrade from 1.9 to 2.0
             location: installconfig-upgrade-to-2.html
 
-      - title: Access the GUI
+      - title: Rack controller
+        location: installconfig-rack.html
+
+      - title: Web UI
         location: installconfig-gui.html
 
-      - title: Configure network
+      - title: Images
+        location: installconfig-images.html
 
         children:
 
-          - title: Static IPs
-            location: installconfig-network-static.html
+          - title: Selection and import
+            location: installconfig-images-import.html
+
+          - title: Local image mirror
+            location: installconfig-images-mirror.html
+
+      - title: Network
+        location: 
+
+        children:
 
           - title: IPv6
             location: installconfig-network-ipv6.html
@@ -61,23 +73,26 @@ navigation:
           - title: STP
             location: installconfig-network-stp.html
 
-      - title: Rack controller
-        location: installconfig-rack.html
+      - title: Subnets
+        location: installconfig-subnets.html
 
         children:
 
+          - title: Reserved IP ranges
+            location: installconfig-subnets-ipranges.html
+
           - title: DHCP
-            location: installconfig-dhcp.html
+            location: installconfig-subnets-dhcp.html
 
-          - title: Storage
-            location: installconfig-storage.html
+      - title: Storage
+        location: installconfig-storage.html
 
-            children:
-              - title: Block devices
-                location: installconfig-block.html
+        children:
+          - title: Block devices
+            location: installconfig-block.html
 
-              - title: Partitions
-                location: installconfig-partitions.html
+          - title: Partitions
+            location: installconfig-partitions.html
 
       - title: Nodes
 
@@ -103,17 +118,6 @@ navigation:
 
           - title: HWE kernels
             location: installconfig-hwe-kernels.html
-
-      - title: Images
-        location: installconfig-images.html
-
-        children:
-
-          - title: Selection and import
-            location: installconfig-images-import.html
-
-          - title: Local image mirror
-            location: installconfig-images-mirror.html
 
   - title: Manage MAAS
 
