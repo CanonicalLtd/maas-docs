@@ -1,12 +1,13 @@
 Title: Zones | MAAS
 TODO:  Fix/add CLI equivalents
+       Abstract the links
 
 
 # Zones
 
-The concept of a *zone*, and examples of how they can be used, were given in the
-[Concepts and terms](intro-concepts.md#zones) page. The current page covers how
-to use a zone. Specifically, it will show how to:
+The concept of a *zone*, and examples of how they can be used, are provided in
+the [Concepts and terms](intro-concepts.md#zones) page. The current page covers
+how to use a zone. Specifically, it will show how to:
 
 - Create a zone
 - Edit a zone
