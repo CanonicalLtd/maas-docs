@@ -36,7 +36,7 @@ page > 'Controller' tab > select rack controller) in the web UI.
 
 A *reserved dynamic IP range* is needed in order for MAAS to provide DHCP for
 machines. The creation of such a range is part of the process of enabling DHCP
-(see below) so do not create one in advance. See
+via the web UI (see below) so do not create one in advance. See
 [Concepts and terms](intro-concepts.md#ip-ranges) for an explanation of
 reserved IP ranges used in MAAS.
 
