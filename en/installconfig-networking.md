@@ -32,14 +32,14 @@ names and descriptions can be altered. A VLAN, however, can additionally have
 its MTU changed and also has an action available for
 [enabling DHCP](installconfig-subnets-dhcp.md) (see 'Take action' button).
 
-Subnets, on the other hand, can be configured considerably and their windows
-also show information pertinent to the day-to-day running of MAAS. For these
-reasons, a subnet will be examined in more detail.
+A subnet, on the other hand, can be configured considerably and its window also
+shows information pertinent to the day-to-day operation of MAAS. For these
+reasons, a subnet will now be examined in more detail.
 
-### Subnet view
+### Subnet window
 
 Clicking a subnet (here `10.248.64.0/19`) will display its window. We'll look
-at this example by sections.
+at this example window by sections.
 
 The **Subnet summary** section:
 

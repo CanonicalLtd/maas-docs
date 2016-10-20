@@ -35,8 +35,12 @@ page > 'Controller' tab > select rack controller) in the web UI.
 ## Reserved dynamic IP ranges
 
 A *reserved dynamic IP range* is needed in order for MAAS to provide DHCP for
-machines. Addresses in this range **always** get assigned to machines that are
-being:
+machines. The creation of such a range is part of the process of enabling DHCP
+(see below) so do not create one in advance. See
+[Concepts and terms](intro-concepts.md#ip-ranges) for an explanation of
+reserved IP ranges used in MAAS.
+
+Addresses in this range **always** get assigned to machines that are being:
 
 - auto-registered (also called enlisted)
 - commissioned
@@ -55,8 +59,8 @@ Under the 'Networks' tab choose a VLAN and enable DHCP:
 appear.
 1. Select the primary rack controller. For DHCP HA, select both the primary
 and the secondary.
-1. Create a dynamic IP range. Fill in the fields 'Dynamic range start IP' and
-'Dynamic range end IP'.
+1. Create a reserved dynamic IP range. Fill in the fields 'Dynamic range start
+IP' and 'Dynamic range end IP'.
 1. Configure a default gateway. Fill in the field 'Gateway IP'.
 1. Apply your changes with the 'Provide DHCP' button.
 

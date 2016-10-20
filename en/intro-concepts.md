@@ -161,7 +161,8 @@ subnet configuration. There are two types of ranges that can be defined:
 
 - **Reserved dynamic range** An IP range that MAAS will use for enlisting,
   commissioning and deploying nodes via MAAS-managed DHCP enabled on the
-  subnet's VLAN.
+  subnet's VLAN. An initial range is created as part of the DHCP enablement
+  process.
 
 See
 [IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created
