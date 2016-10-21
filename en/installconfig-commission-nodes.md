@@ -56,20 +56,15 @@ gets assigned when the node is eventually deployed:
 
 - **Auto assign** MAAS will assign a random static address 
   (`iface eth0 inet static`) from among the addresses that do not fall within a
-  *reserved range*.
+  *reserved dynamic range* or a *reserved range*.
 
 - **Static assign** The administrator will specify a static address using a
   secondary field.
 
 - **DHCP** A dynamic address will be leased via either MAAS-managed DHCP or an
-  external DHCP server. For the former case, a *reserved dynamic range* is a
-  requirement.
+  external DHCP server.
 
 - **Unconfigured** The interface will be left unconfigured.
-
-!!! Warning: If `Auto assign` is used within the context of an external DHCP
-server, ensure you have defined the external DHCP IP range as a *reserved
-range* to avoid IP address conflicts on the network.
 
 See [Concepts and terms](intro-concepts.md#ip-ranges) for the definitions of
 reserved range types used in MAAS.

@@ -60,6 +60,7 @@ navigation:
             location: installconfig-images-mirror.html
 
       - title: Networking
+        location: installconfig-networking.html
 
         children:
 

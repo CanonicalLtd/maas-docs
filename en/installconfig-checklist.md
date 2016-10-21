@@ -1,6 +1,4 @@
 Title: Installation and Configuration Checklist
-TODO:  Revert .html extensions on links (at the bottom)? build process did not remove them
-       Make a page/link for 'Configure network' and link to it here (installconfig-network2.md was removed)
 
 
 # Installation and Configuration Checklist
@@ -24,14 +22,21 @@ around! Proceed to the [web UI][web-ui] now. This will involve the creation of
 an administrator user.
 
 
-## Zones and networks
+## Zones
 
 For [zones][zones], many people won't need to change anything as a default zone
 is provided out of the box. However, they are still worth reading about,
 especially if the default one does not suffice.
 
-For networks, there are some items that you may find interesting under
-'Configure network' in the menu.
+
+## Networking
+
+Firstly, in terms of IP addresses, understand what a *reserved range* is by
+reading [Concepts and terms](intro-concepts.md#ip-ranges). Create one (not
+*reserved dynamic range*) if you need one.
+
+Secondly, configure a default gateway and a nameserver that your nodes will
+use. See [Networking](installconfig-networking.md) for how to do this.
 
 <!--
 [networks][networks] (points to skeleton page installconfig-network.md)
@@ -45,6 +50,9 @@ While you were in the web UI you may have seen a hint to *import boot images*.
 [Read up on images][images] as they're quite important. Continue reading until
 you have discovered how to import them. You will see that you have the choice
 to use the CLI to do this. Either way: achievement unlocked!
+
+!!! Note: The import process can take a while. Consider moving on and coming
+back. Just ensure that the import has completed prior to adding a node.
 
 
 ## Access the MAAS CLI
@@ -79,9 +87,10 @@ will automatically have that key installed.
 
 ## Add a node
 
-It's time to actually do something. MAAS manages nodes, but at this time it
+It's time to actually do something! MAAS manages nodes, but at this time it
 doesn't have any. Go forth and [add a node][add-nodes] now. Obviously, you need
-a spare physical system (but KVM works too!).
+a spare physical system (but KVM works too). In the web UI, confirm that the
+import of images has finished!
 
 Go to the 'Nodes' page in the web UI. A successfully added node will soon
 appear there with a status of *New*. It will also have a funny name. Whatever,
@@ -115,7 +124,7 @@ to quickly test things out you can use the web UI to
 
 If you [imported your SSH key][ssh-keys] then you should now be able to ssh to
 the deployed node by connecting to the 'ubuntu' account. The node's page in the
-web UI will inform you of its IP address. Congratulations!
+web UI will inform you of its IP address. Mission accomplished!
 
 
 <!-- LINKS -->
@@ -123,7 +132,7 @@ web UI will inform you of its IP address. Congratulations!
 [install-maas]: installconfig-install.md
 [web-ui]: installconfig-gui.md
 [zones]: installconfig-zones.md
-[networks]: installconfig-network.md
+[networks]: installconfig-networking.md
 [images]: installconfig-images.md
 [dhcp]: installconfig-subnets-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
