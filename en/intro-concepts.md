@@ -1,5 +1,6 @@
 Title: MAAS | Concepts and Terms
 TODO: For "Zones", Refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
+      Consider CLI commands for every node action and link from here
 
 
 # Concepts and terms
@@ -218,3 +219,45 @@ the node is connected to is authorized to access it.
 *Unknown interfaces* are sometimes discovered by MAAS. For example, a new DHCP
 lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
+
+
+## Node actions
+
+Nodes *actions* are essentially: "things you can do with nodes". They can be
+triggered via the web UI or the MAAS CLI. In the web UI, they are found by
+using the 'Take action' button in the top right corner. Below is the full list
+of possible actions and their meaning, arranged alphabetically.
+
+### Abort
+???
+
+### Acquire
+Allocates (reserves) a node to the MAAS user performing the action (and
+currently logged in).
+
+### Commission
+Changes a node's status from 'New' to 'Ready'.
+
+### Delete
+Removes a node from MAAS. The underlying machine is not affected.
+
+### Deploy
+Changes a node's status from 'Ready' to 'Deployed'.
+
+### Mark broken
+Changes a node's status from '?' to 'Broken'. FIND OUT
+
+### Mark fixed
+Changes a node's status from 'Broken' to 'New'. CHECK THIS
+
+### Power off
+Turns a node off.
+
+### Power on
+Turns a node on.
+
+### Release
+Changes a node's status from 'Deployed' to 'Ready'.
+
+### Set Zone
+Puts the node in a specific zone.
