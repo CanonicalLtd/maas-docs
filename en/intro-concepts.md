@@ -160,9 +160,9 @@ subnet configuration. There are two types of ranges that can be defined:
   DHCP, or the namespace for an OpenStack cloud you will be building).
 
 - **Reserved dynamic range** An IP range that MAAS will use for enlisting,
-  commissioning and deploying nodes via MAAS-managed DHCP enabled on the
-  subnet's VLAN. An initial range is created as part of the DHCP enablement
-  process.
+  commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during
+  commissioning, deploying. An initial range is created as part of the DHCP
+  enablement process if done with the web UI.
 
 See
 [IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created

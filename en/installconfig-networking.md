@@ -48,10 +48,15 @@ The **Subnet summary** section:
 !!! Warning: The fields in this section are immediately editable and changes
 are applied instantly.
 
-Here, values for *gateway*, *DNS*, and *description* can be entered. Gateway
-and DNS values are passed to deployed nodes unless an external DHCP server is
-being used for deployment. There is also the option of changing the subnet's
+Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
+'Description', should be entered. Gateway
+and DNS values are passed to deployed nodes unless an external DHCP server will
+be used to *deploy* nodes. There is also the option of changing the subnet's
 fabric, VLAN, and space providing your network topology allows for it.
+
+Even if an external DHCP server will be used it is highly recommended that
+values for gateway and nameserver be entered in case you later remove your
+external DHCP and/or choose an IP assignment mode other than 'DHCP'.
 
 The **Utilisation** section:
 

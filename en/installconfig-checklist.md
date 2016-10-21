@@ -35,9 +35,7 @@ Firstly, in terms of IP addresses, understand what a *reserved range* is by
 reading [Concepts and terms](intro-concepts.md#ip-ranges). Create one (not
 *reserved dynamic range*) if you need one.
 
-Secondly, unless you will be using an external DHCP server to *deploy* nodes
-(not to enlist or commission nodes, for this MAAS-managed DHCP *must* be used)
-then you have to configure a default gateway and a nameserver for your nodes to
+Secondly, configure a default gateway and a nameserver that your nodes will
 use. See [Networking](installconfig-networking.md) for how to do this.
 
 <!--
@@ -91,7 +89,8 @@ will automatically have that key installed.
 
 It's time to actually do something! MAAS manages nodes, but at this time it
 doesn't have any. Go forth and [add a node][add-nodes] now. Obviously, you need
-a spare physical system (but KVM works too!).
+a spare physical system (but KVM works too). In the web UI, confirm that the
+import of images has finished!
 
 Go to the 'Nodes' page in the web UI. A successfully added node will soon
 appear there with a status of *New*. It will also have a funny name. Whatever,
@@ -125,7 +124,7 @@ to quickly test things out you can use the web UI to
 
 If you [imported your SSH key][ssh-keys] then you should now be able to ssh to
 the deployed node by connecting to the 'ubuntu' account. The node's page in the
-web UI will inform you of its IP address. Congratulations!
+web UI will inform you of its IP address. Mission accomplished!
 
 
 <!-- LINKS -->
