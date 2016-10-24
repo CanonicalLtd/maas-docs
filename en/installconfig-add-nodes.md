@@ -21,7 +21,7 @@ There are no other requirements for the system other than telling it to boot
 from the network. In particular, there is no need to install an operating
 system on it.
 
-If automatice discovery doesn't work for you it is possible to
+If automatic discovery doesn't work for you it is possible to
 [add a node manually](#add-a-node-manually).
 
 Once a node is added to MAAS its *status* will be one of *New*. The next step
