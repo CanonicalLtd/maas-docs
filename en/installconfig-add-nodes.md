@@ -1,6 +1,5 @@
 Title: Add Nodes
-TODO: KVM stuff needs to be integrated better into this page
-      Verify instructions re adding a node manually
+TODO: Verify instructions re adding a node manually
 
 
 # Add Nodes
