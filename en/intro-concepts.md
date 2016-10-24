@@ -1,5 +1,9 @@
 Title: MAAS | Concepts and Terms
-TODO: For "Zones", Refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
+TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
+       Consider CLI commands for every node action and link from here
+       Redo odd 'Deploy' definition beginning
+       QA node actions
+       Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
 
 
 # Concepts and terms
@@ -32,7 +36,6 @@ Nodes include:
 - Controllers
 - Machines
 - Devices
-
 
 ### Controllers
 
@@ -219,3 +222,65 @@ the node is connected to is authorized to access it.
 *Unknown interfaces* are sometimes discovered by MAAS. For example, a new DHCP
 lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
+
+
+## Node actions
+
+Node *actions* are essentially: "things you can do with nodes". They can be
+triggered via the web UI or the MAAS CLI. With the former, they are managed
+with the 'Take action' button in the top right corner. Below is the full list
+of possible actions and their meaning, arranged alphabetically.
+
+### Abort
+Abort any action that can be retried. This currently applies to Commission and
+Deploy.
+
+### Acquire
+Allocates (reserves) a node to the MAAS user performing the action (and
+currently logged in). Changes a node's status from 'Ready' to 'Allocated'.
+
+### Commission
+Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
+'Ready'. If unsuccessful, the status becomes 'Failed commissioning'.
+
+Any time a node's underlying networking or disk subsystem has changed it should
+be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
+implement maintenance, and then Commission.
+
+### Delete
+Removes a node from MAAS. The underlying machine remains unaffected.
+
+### Deploy
+Deploys a node. Changes a node's status from 'Ready' to 'Deploying' to
+'Deployed'. If unsuccessful, the status becomes 'Failed deployment'.
+
+### Mark broken
+Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
+if any action has failed (such as Commission and Deploy). Marking it broken
+guarantees that the node will not get used in any way. This would normally be
+followed by some level of investigation so as to determine the source of the
+problem.
+
+This action can also be used to indicate that hardware maintenance is being, or
+will be, performed that would affect MAAS, such as modifications at the
+networking or disk subsystem level.
+
+Finally, some aspects of a node can only be edited when a node's status is
+'Broken'. For example, a node's network interface can only be edited via MAAS
+if the node has a status of either 'Ready' or 'Broken'.
+
+### Mark fixed
+Fixes a broken node. Changes a node's status from 'Broken' to 'New'.
+
+### Power off
+Turns a node's underlying machine off.
+
+### Power on
+Turns a node's underlying machine on.
+
+### Release
+Releases a node back into the pool of available nodes. Changes a node's status
+from 'Deployed' (or 'Allocated') to 'Ready'. 
+
+### Set Zone
+Puts the node in a specific zone.
