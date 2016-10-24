@@ -16,7 +16,7 @@ you to set up the power type:
 
 ![power section](../media/installconfig-power-types__section.png)
 
-Choosing the 'Edit' button will reveal a list of avaiable power types:
+Choosing the 'Edit' button will reveal a list of available power types:
 
 ![power types](../media/installconfig-power-types__types.png)
 
