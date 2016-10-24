@@ -219,3 +219,40 @@ the node is connected to is authorized to access it.
 *Unknown interfaces* are sometimes discovered by MAAS. For example, a new DHCP
 lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
+
+
+## Node statuses
+
+Node *statuses* are labels used to describe the general state of a node as
+known to MAAS. A node will undergo various manipulations during their time
+spent in MAAS and its status will change accordingly. A status is typically
+caused by an *action* (see next section) that is applied to the node. Below is
+the full list of statuses and their meaning, arranged alphabetically.
+
+### Allocated
+The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
+
+### Broken
+The node is broken. See node action 'Mark broken'.
+
+### Commissioning
+The node is in the process of commissioning. See node action 'Commission'.
+
+### Deployed
+The node is deployed. See node action 'Deploy'.
+
+### Deploying
+The node is in the process of deploying. See node action 'Deploy'.
+
+### Failed Commissioning
+The node failed to commission.
+
+### Failed Deployment
+The node failed to deploy.
+
+### New
+The first stage of a node's life in MAAS. Typically, a node with this status
+has just been added to MAAS.
+
+### Ready
+The node has been commissioned and is ready for use.
