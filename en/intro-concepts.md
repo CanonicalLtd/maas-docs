@@ -2,7 +2,7 @@ Title: MAAS | Concepts and Terms
 TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
        Consider CLI commands for every node action and link from here
        Redo odd 'Deploy' definition beginning
-       QA node statuses
+       QA node actions
        Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
 
 
