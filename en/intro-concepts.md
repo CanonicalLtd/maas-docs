@@ -213,8 +213,8 @@ switch (using Link Aggregation and Control Protocol, or LACP), or independently
 
 ### VLAN
 
-A *VLAN interface* can be used to connect to a tagged VLAN providing the switch
-port the node is connected to is authorized to access it.
+A *VLAN interface* can be used to connect to a tagged VLAN, if the switch port
+the node is connected to is authorized to access it.
 
 ### Unknown
 
