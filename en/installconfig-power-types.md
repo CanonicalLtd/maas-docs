@@ -21,6 +21,23 @@ Choosing the 'Edit' button will reveal a list of avaiable power types:
 ![power types](../media/installconfig-power-types__types.png)
 
 
+## Example: Virsh (KVM) power type
+
+Consider a node backed by KVM. Below, a 'Power type' of `Virsh` has been
+selected and the 'Power address' of `qemu+ssh://ubuntu@10.248.64.2/system` has
+been entered (replace values as appropriate). Finally, and out of necessity for
+virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node`.
+
+![power example virsh](../media/installconfig-power-types__example-virsh.png)
+
+See
+[MAAS CLI](manage-cli-advanced.md#update-node-hostname-and-power-parameters)
+for an example of how to edit a power type with the CLI.
+
+See [Add Nodes](installconfig-add-nodes.md#kvm-guest-nodes) for help in setting
+up MAAS and KVM to work together.
+
+
 ## BMC driver support
 
 MAAS supports many types of BMC hardware yet not all the drivers have the same
@@ -49,20 +66,3 @@ currently supported by MAAS.
   | Sentry Switch CDU - PDU               |             |           |               |                 |            |
   | VMWare                                |      X      |     X     |       X       |                 |            |
   | Virsh (virtual systems)               |      X      |     X     |       X       |                 |            |
-
-
-## Example: Virsh (KVM) power type
-
-Consider a node backed by KVM. Below, a 'Power type' of `Virsh` has therefore
-been selected and the 'Power address' of `qemu+ssh://ubuntu@10.248.64.2/system`
-has been entered (replace values as appropriate). Finally, and out of necessity
-for virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node`.
-
-![power example virsh](../media/installconfig-power-types__example-virsh.png)
-
-See
-[MAAS CLI](manage-cli-advanced.md#update-node-hostname-and-power-parameters)
-for an example of how to edit a power type with the CLI.
-
-See [Add Nodes](installconfig-add-nodes.md#kvm-guest-nodes) for help in setting
-up MAAS and KVM to work together.
