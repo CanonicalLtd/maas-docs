@@ -1,7 +1,6 @@
 Title: MAAS | Concepts and Terms
 TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
        Consider CLI commands for every node action and link from here
-       Redo odd 'Deploy' definition beginning
        QA node actions
        Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
 
@@ -10,20 +9,6 @@ TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault t
 
 Here are some common terms that are essential to grasp in order to fully enjoy
 MAAS, not to mention the rest of this documentation.
-
-
-## Deploy
-
-To *deploy*, in a MAAS context, is to "utilize". Something that is deployable
-is the resource that MAAS ultimately provides that leads to software getting
-installed in order to offer up services.
-
-There is an action, in the GUI, called "Deploy" that should not be confused
-with the above general notion. This action simply installs an operating system,
-typically Ubuntu.
-
-Note that Juju, often used in conjunction with MAAS, also uses the term
-"deploy" to mean "deploy a service or an application".
 
 
 ## Nodes
@@ -228,9 +213,9 @@ cannot be user-created.
 
 Node *statuses* are labels used to describe the general state of a node as
 known to MAAS. A node will undergo various manipulations during their time
-spent in MAAS and its status will change accordingly. A status is typically
-caused by an *action* (see next section) that is applied to the node. Below is
-the full list of statuses and their meaning, arranged alphabetically.
+spent in MAAS and its status will change accordingly. A status change is
+usually caused by an *action* (see next section) that is applied to the node.
+Below is the full list of statuses and their meaning, arranged alphabetically.
 
 ### Allocated
 The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
@@ -265,8 +250,9 @@ The node has been commissioned and is ready for use.
 
 Node *actions* are essentially: "things you can do with nodes". They can be
 triggered via the web UI or the MAAS CLI. With the former, they are managed
-with the 'Take action' button in the top right corner. Below is the full list
-of possible actions and their meaning, arranged alphabetically.
+with the 'Take action' button in the top right corner. An action usually
+changes the *status* (see above section) of a node. Below is the full list of
+possible actions and their meaning, arranged alphabetically.
 
 ### Abort
 Abort any action that can be retried. This currently applies to Commission and
@@ -278,7 +264,9 @@ currently logged in). Changes a node's status from 'Ready' to 'Allocated'.
 
 ### Commission
 Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
-'Ready'. If unsuccessful, the status becomes 'Failed commissioning'.
+'Ready'.
+
+If unsuccessful, the status becomes 'Failed commissioning'.
 
 Any time a node's underlying networking or disk subsystem has changed it should
 be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
@@ -289,7 +277,12 @@ Removes a node from MAAS. The underlying machine remains unaffected.
 
 ### Deploy
 Deploys a node. Changes a node's status from 'Ready' to 'Deploying' to
-'Deployed'. If unsuccessful, the status becomes 'Failed deployment'.
+'Deployed'. Includes action 'Power on'.
+
+If unsuccessful, the status becomes 'Failed deployment'.
+
+Note that Juju, often used in conjunction with MAAS, also uses the term
+"deploy" to mean "deploy an application".
 
 ### Mark broken
 Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
@@ -317,7 +310,7 @@ Turns a node's underlying machine on.
 
 ### Release
 Releases a node back into the pool of available nodes. Changes a node's status
-from 'Deployed' (or 'Allocated') to 'Ready'. 
+from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 
 ### Set Zone
 Puts the node in a specific zone.
