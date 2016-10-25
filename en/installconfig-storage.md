@@ -3,23 +3,26 @@ Title: Storage | MAAS
 
 # Storage
 
-MAAS has the ability to configure any storage layout during node deployment.
-MAAS doesn't just do simple partitioning - it supports complex storage layouts,
-including setting up and configuring Bcache, RAID, and LVM. It also offers
-fine-grained control over the creation, deletion, formatting and mounting of
-both block devices and partitions (see [Block devices][block-devices] and
-[Partitions][partitions]).
-
+MAAS has the ability to configure the storage of a deployed node. It supports
+standard partitioning as well as more complex storage options such as Bcache,
+RAID, and LVM. It also offers fine-grained control over the creation, deletion,
+formatting and mounting of both [block devices](installconfig-block.md) and
+[partitions](installconfig-partitions.md).
 
 ## Layouts
 
-When a node is acquired by a user it gets a default storage layout. This
-layout provides the basic storage configuration to allow a node to deploy
-successfully. The default storage layout can also be adjusted allowing an
-administrator to make the decision on which layout will be the default.
+The configuration that gets assigned to a node is known as a storage *layout*.
+Specifically, a layout can be applied to a node only once it has been
+commissioned.
+There are three such layout types:
 
-The users deploying nodes are not limited by the default. They can set an
-explicit storage layout when they acquire a node or after they have acquired a
+- LVM layout
+- Flat layout
+- Bcache layout
+
+A MAAS administrator can set which layout will be the default if one is not
+explicitly set for a node by the user.
+they acquire a node or after they have acquired a
 node with the set-storage-layout API. The user acquiring a node or performing
 the set-storage-layout API calls can also customize the layout generation.
 Each layout has a set of options that can be set to adjust the generated
