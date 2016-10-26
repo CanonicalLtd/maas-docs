@@ -58,9 +58,9 @@ back. Just ensure that the import has completed prior to adding a node.
 ## Access the MAAS CLI
 
 Even if you've imported images with the web UI, it would be wise (and cool?) to
-give the CLI a spin in case you ever need to use it later. Although we strive
-to make the UI feature-equivalent to the CLI, some things can still only be
-done with the CLI.
+give the [CLI](manage-cli.md) a spin in case you ever need to use it later.
+Although we strive to make the web UI feature-equivalent to the CLI, some
+things can still only be done with the CLI.
 
 
 ## Enable DHCP

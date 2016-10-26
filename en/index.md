@@ -62,7 +62,7 @@ using other methods.
 Users of the MAAS then allocate them for their own use ("Acquire") when they go
 into use. Any subsequently installed operating system will contain the user's
 SSH public key for remote access (the user's MAAS account first needs to import
-the key). The GUI also allows for manual allocation in the sense of reserving
+the key). The web UI also allows for manual allocation in the sense of reserving
 hardware to specific users for later use.
 
 When allocating from the API/CLI, you can specify requirements ("constraints")
