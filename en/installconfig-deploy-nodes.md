@@ -21,10 +21,13 @@ deploy agent (it will also install & configure services on the deployed nodes).
 If you simply want to use MAAS to install a base operating system and work on
 the machines manually then you can deploy a node directly with the web UI.
 
-Before deploying you should review and possibly set the
-[kernel boot options](installconfig-kernel.md) and
-[HWE kernels](installconfig-hwe-kernels.md) that may get used by deployed
-nodes.
+Before deploying you should:
+
+- review and possibly set the [kernel boot options](installconfig-kernel.md)
+  and [HWE kernels](installconfig-hwe-kernels.md) that may get used by deployed
+  nodes.
+- ensure any pertinent [SSH keys are imported](manage-account.md#ssh-keys) to
+  MAAS so connections can be made to the deployed node.
 
 To deploy directly from MAAS simply select any given node and press the
 'Deploy' button.
@@ -38,4 +41,6 @@ When ready, press 'Go'.
 
 While a node is deploying its status will change to *Deploying*.
 
-Once a node has finished deploying its status will change to *Deployed*.
+Once a node has finished deploying its status will change to *Deployed*. The
+node now has an operating system installed and will accept SSH public key
+authentication requests to the 'ubuntu' account.

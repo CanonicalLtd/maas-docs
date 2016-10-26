@@ -6,7 +6,8 @@ TODO:  Add CLI for IP address assignment methods
 
 # Commission Nodes
 
-Once a node is added to MAAS the next logical step is to *commission* it.
+Once a node is [added to MAAS](installconfig-add-nodes.md) the next logical
+step is to *commission* it.
 
 It does this by putting a minimal Ubuntu install onto the node and using scripts
 to talk to the region API server. The purpose of this is to ensure that
@@ -37,9 +38,8 @@ MAAS which one to use. Do this by marking it *Broken* (see next section).
 Once a node is commissioned its status will change to *Ready*. Consider taking
 the time to [tag your nodes](installconfig-tags.md).
 
-The next step will be to *deploy* it (see
-[Deploy nodes](installconfig-deploy-nodes.md)).
-
+The next step will be to *deploy* it. See
+[Deploy nodes](installconfig-deploy-nodes.md).
 
 
 ## Post-commission configuration
