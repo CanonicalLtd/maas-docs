@@ -26,10 +26,13 @@ When a rack controller is installed on the same host as the region API server
 it will register itself automatically. Otherwise this will need to be done
 manually:
 
-To install and register a rack controller you can either use the Ubuntu Server
-ISO or work from the command line. See
-[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller) on how to do
-the latter.
+To install and register a rack controller you can either use the [Ubuntu Server
+ISO](installconfig-server-iso.md#rack-controller) or the
+[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
+require the URL of the region API server. For nodes on an
+[IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
+instead of an IP address and it must resolve to both IPv4 and IPv6 addresses,
+both on the rack controller and on the nodes.
 
 Once registered, if this is an extra rack controller, it will appear
 immediately in the web UI and begin to sync with the primary controller:
@@ -50,7 +53,7 @@ To do so, navigate to the 'Nodes' page and then the 'Controller' tab. Enter the
 controller's page by clicking on the machine you want to delete and select
 'Delete' from the dropdown (and then 'Go'). MAAS will do the right thing if the
 controller was used for DHCP HA (i.e. DHCP HA will no longer be enabled since
-there is no longer the possiblity of having it).
+there is no longer the possibility of having it).
 
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.

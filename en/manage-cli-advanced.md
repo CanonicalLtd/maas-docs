@@ -100,7 +100,7 @@ sudo maas-rack register
 !!! Note: The register command is only needed if the rack controller is not
 being added to a system that already houses a region controller.
 
-You will be asked for the URL of the region controller. If you provide a
+You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
 that is stored in file `/var/lib/maas/secret` on the region controller.
 

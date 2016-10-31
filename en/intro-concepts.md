@@ -3,6 +3,7 @@ TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault t
        Consider CLI commands for every node action and link from here
        QA node actions
        Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
+table_of_contents: True
 
 
 # Concepts and terms
