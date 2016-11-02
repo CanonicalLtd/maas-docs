@@ -1,7 +1,7 @@
-Title: MAAS | Access the GUI
+Title: web UI | MAAS
 
 	
-# Access the GUI
+# Access the web UI
 
 Unless MAAS was installed from the
 [Ubuntu Server ISO](installconfig-server-iso.md), you'll need to create a
@@ -25,7 +25,7 @@ risk.
 !!! Note: At this time MAAS does not make use of the email address. However, it
 may do so in the future.
 
-You can now log in here: <http://<region controller address\>/MAAS>
+You can now log in here: <http://<region controller address\>:5240/MAAS>
 
 ![web account login](../media/install-login.png)
 

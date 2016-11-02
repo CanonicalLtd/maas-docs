@@ -22,7 +22,7 @@ To use an IPv6 address in a URL surround it with square brackets. For example,
 on the local machine (`::1`, the IPv6 equivalent of `localhost`):
 
 ```nohighlight
-http://[::1]/MAAS/
+http://[::1]:5240/MAAS/
 ```
 
 !!! Note: Most BMCs can only be controlled over IPv4.

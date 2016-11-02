@@ -1,5 +1,6 @@
-Title: High Availability (HA) Configuration
-TODO:  URGENT: Needs a rewrite (and rename file)
+Title: HA | MAAS
+TODO:  URGENT: Needs a rewrite (and file rename)
+
 
 # High Availability (HA) Configuration
 
@@ -7,7 +8,7 @@ MAAS 2.0+ supports high availability (HA) across its entire architecture. HA
 can be enabled at the rack controller level allowing the ability for
 controlling BMCs, providing DHCP, and deploying machines to span across
 multiple rack controllers. At the region controller level, HA can be provided
-for the API, WebUI, DNS, and APT proxy.
+for the API, web UI, DNS, and HTTP proxy.
 
 ## Rack Controller HA
 
@@ -243,14 +244,14 @@ ensure that all clients and machines use that IP address for communication.
 To adjust the rack controller:
 
 ```bash
-sudo maas-rack config --region-url http://<vip>/MAAS
+sudo maas-rack config --region-url http://<vip>:5240/MAAS
 sudo systemctl restart maas-rackd
 ```
 
 To adjust the region controller: 
 
 ```bash
-sudo maas-region local_config_set --maas-url http://<vip>/MAAS
+sudo maas-region local_config_set --maas-url http://<vip>:5240/MAAS
 sudo systemctl restart maas-regiond
 ```
 

@@ -3,6 +3,7 @@ TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
+       Bug check: https://goo.gl/cnNy8L - remove Note and change image (and possibly the example command) when resolved (installconfig-rack__add-controller.png)
 
 
 # Advanced CLI Tasks
@@ -113,6 +114,9 @@ Here is an example of what you may see:
 Based on the above, then, we could have also entered:
 
 ```bash
-sudo maas-rack register --url http://10.248.0.3/MAAS \
+sudo maas-rack register --url http://10.248.0.3:5240/MAAS \
 	--secret 30e5413d5b684620700b3105b02965c0
 ```
+
+!!! Note: The web UI example does not refer to port 5240 but this should be
+fixed soon.

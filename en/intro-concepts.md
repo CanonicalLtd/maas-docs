@@ -28,14 +28,26 @@ Nodes include:
 There are two types of controllers: a *region controller* and a *rack
 controller*.
 
-A region controller consists of i) the REST API server, ii) the PostgreSQL
-database, iii) DNS, iv) caching HTTP proxy, and v) a web UI. A region
-controller can be thought of as being responsible for a data centre.
+A region controller consists of:
 
-A rack controller provides i) DHCP, ii) TFTP, iii) HTTP (for images), iv)
-iSCSI, and v) power management. You need a rack controller attached to each
-"fabric". As the name implies, a common setup is to have a rack controller in
-each data centre server rack.
+- REST API server (TCP port 5240)
+- PostgreSQL database
+- DNS
+- caching HTTP proxy
+- web UI
+
+A region controller can be thought of as being responsible for a data centre.
+
+A rack controller provides:
+
+- DHCP
+- TFTP
+- HTTP (for images)
+- iSCSI
+- power management
+
+A rack controller is attached to each "fabric". As the name implies, a common
+setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA](manage-maas-ha.md) for high
