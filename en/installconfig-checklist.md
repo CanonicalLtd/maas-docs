@@ -19,7 +19,11 @@ provide a multitude of services. Go ahead and [install MAAS][install-maas]!
 
 You *will* be using the web UI so now is the time to log in and take a look
 around! Proceed to the [web UI][web-ui] now. This will involve the creation of
-an administrator user.
+an administrator user. Notice how the web UI (API server) is accessed via port
+5240 and not port 80.
+
+!!! Note: Although the web UI may be accessed via port 80, this is not
+guaranteed to work in future versions of MAAS.
 
 
 ## Zones

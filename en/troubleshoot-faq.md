@@ -1,8 +1,8 @@
-Title: MAAS | Troubleshooting
+Title: Troubleshooting | MAAS
 TODO:  review soon
 
 
-# MAAS Troubleshooting
+# Troubleshooting
 
 This section covers some of the most commonly encountered problems and attempts
 to resolve them.
@@ -84,9 +84,9 @@ sudo dpkg-reconfigure maas-region-controller
 ```
 
 
-## Can't find MAAS webpage
+## Can't find MAAS web UI
 
-The default webpage is located at `http://<hostname>/MAAS/`. If you can't
+By default, the web UI is located at `http://<hostname>:5240/MAAS/`. If you can't
 access it, there are a few things to try:
 
 1. Check that the webserver is running - By default the web interface uses
@@ -96,7 +96,7 @@ access it, there are a few things to try:
    the hostname is being resolved properly. Try running a browser (even a
    text mode one like `elinks`) on the same box as the MAAS server and
    navigating to the page. If that doesn't work, try
-   `http://127.0.0.1/MAAS/`, which will always point at the local server.
+   `http://127.0.0.1:5240/MAAS/`, which will always point at the local server.
 3. If you are still getting "404 - Page not found" errors, check that the
    MAAS web interface has been installed in the right place. There should
    be a file present called `/usr/share/maas/maas/urls.py`.
@@ -169,7 +169,7 @@ Now get the metadata\_url from there:
 
 ```bash
 url=$(sudo awk '$1 == "metadata_url:" { print $2 }' $cfg)
-echo $url http://10.55.60.194/MAAS/metadata/enlist
+echo $url http://10.55.60.194:5240/MAAS/metadata/enlist
 ```
 
 Invoke the client `/usr/share/pyshared/cloudinit/sources/DataSourceMAAS.py`.
@@ -178,7 +178,7 @@ The client has --help usage also, but here is an example of how to use it:
 ```bash
 maasds="/usr/share/pyshared/cloudinit/sources/DataSourceMAAS.py"
 sudo python $maasds --config=$cfg get $url
-== http://10.55.60.194/MAAS/metadata/enlist ==
+== http://10.55.60.194:5240/MAAS/metadata/enlist ==
 2012-03-01
 latest
 sudo python $maasds --config=$cfg get $url/latest/meta-data/local-hostname

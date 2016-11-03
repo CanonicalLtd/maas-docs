@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="diagram-1b.svg"
-   inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/diagram-1b.png"
+   sodipodi:docname="intro-arch-overview.svg"
+   inkscape:export-filename="/home/peter/data/sync/canonical/work/doc_maas/intro-arch-overview.png"
    inkscape:export-xdpi="112.44369"
    inkscape:export-ydpi="112.44369">
   <defs
@@ -48,7 +48,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.18"
+     inkscape:zoom="1"
      inkscape:cx="397.42424"
      inkscape:cy="539.1673"
      inkscape:document-units="px"
@@ -220,7 +220,11 @@
          sodipodi:role="line"
          x="464.40936"
          y="408.55377"
-         id="tspan4066">HTTP (API and GUI)</tspan></text>
+         id="tspan4066">HTTP/port 5240</tspan><tspan
+         sodipodi:role="line"
+         x="464.40936"
+         y="431.05377"
+         id="tspan5251">     (API and web UI)</tspan></text>
     <g
        transform="matrix(1,0,0,0.66659016,87.78756,290.47538)"
        id="g4054-5"

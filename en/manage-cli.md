@@ -68,7 +68,7 @@ For example, to log in with the account whose username is 'admin' and where
 the region controller is on the localhost:
 
 ```bash
-maas login admin http://localhost/MAAS/api/2.0
+maas login admin http://localhost:5240/MAAS/api/2.0
 ```
 
 
