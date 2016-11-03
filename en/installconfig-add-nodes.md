@@ -1,4 +1,4 @@
-Title: Add Nodes
+Title: Add Nodes | MAAS
 TODO: Verify instructions re adding a node manually
 
 
@@ -11,9 +11,6 @@ adding a node is called *enlistment*.
 
 !!! Note: Configuring a computer to boot over PXE is done via its BIOS and is
 often referred to as "netboot" or "network boot".
-
-If enlistment doesn't work for you it is possible to
-[add a node manually](#add-a-node-manually).
 
 Regardless of how a node is added, there are no special requirements for the
 underlying machine. In particular, there is no need to install an operating
@@ -30,17 +27,27 @@ Typically, the next step will be to *commission* the node. See
 ## Enlistment
 
 As explained, to enlist, the underlying machine needs to be configured to
-netboot. Such a machine will:
+netboot. Such a machine will undergo the following process:
 
-1. Contact a DHCP server
-1. Receive an image over TFTP and boot from it
-1. Contact the MAAS server
-1. Shut down
+1. DHCP server is contacted
+1. kernel and initrd are received over TFTP
+1. machine boots
+1. initrd mounts a Squashfs image ephemerally over iSCSI
+1. cloud-init runs enlistment scripts
+1. machine shuts down
 
-During this process, the MAAS server will be passed information about the node,
-including the architecture, MAC address and other details which will be stored
-in the database. This information-gathering process is known as *automatic
-discovery*.
+The enlistment scripts will send the region API server information about the
+machine, including the architecture, MAC address and other details which will
+be stored in the database. This information-gathering process is known as
+*automatic discovery*.
+
+Since any system booting off the network can enlist, the enlistment and
+commission steps are separate. This allows an administrator to "accept" an
+enlisted machine into MAAS.
+
+As an alternative to enlistment, an administrator can
+[add a node manually](#add-a-node-manually) (below). Typically this is done
+when enlistment doesn't work for some reason.
 
 
 ## KVM guest nodes

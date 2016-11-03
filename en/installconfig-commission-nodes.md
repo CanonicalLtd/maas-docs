@@ -1,7 +1,8 @@
-Title: Commission Nodes
+Title: Commission Nodes | MAAS
 TODO:  Add CLI for IP address assignment methods
        Add CLI for image/kernel to use for commissioning (?)
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
+       Why can't enlistment and commissioning be combined into one step? This need to be clarified (is it network interface attach/configure?)
 
 
 # Commission Nodes
@@ -9,9 +10,19 @@ TODO:  Add CLI for IP address assignment methods
 Once a node is [added to MAAS](installconfig-add-nodes.md) the next logical
 step is to *commission* it.
 
-It does this by putting a minimal Ubuntu install onto the node and using scripts
-to talk to the region API server. The purpose of this is to ensure that
-everything is in working order and that eventual deployment will actually work.
+To commission, the underlying machine needs to be configured to netboot (this
+should already have been done during the enlistment stage). Such a machine will
+undergo the following process:
+
+1. DHCP server is contacted
+1. kernel and initrd are received over TFTP
+1. machine boots
+1. initrd mounts a Squashfs image ephemerally over iSCSI
+1. cloud-init runs commissioning scripts
+1. machine shuts down
+
+The commissioning scripts will talk to the region API server to ensure that
+everything is in order and that eventual deployment will succeed.
 
 The image used is, by default, the latest Ubuntu LTS release and should not
 require changing. However, it can be configured in the web UI in the 'Settings'
@@ -36,7 +47,7 @@ commission all machines with the 'New' status.
 MAAS which one to use. Do this by marking it *Broken* (see next section).
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
-the time to [tag your nodes](installconfig-tags.md).
+this time to [tag your node](installconfig-tags.md).
 
 The next step will be to *deploy* it. See
 [Deploy nodes](installconfig-deploy-nodes.md).
