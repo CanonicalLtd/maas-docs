@@ -2,7 +2,6 @@ Title: Commission Nodes | MAAS
 TODO:  Add CLI for IP address assignment methods
        Add CLI for image/kernel to use for commissioning (?)
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
-       Why can't enlistment and commissioning be combined into one step? This need to be clarified (is it network interface attach/configure?)
 
 
 # Commission Nodes
