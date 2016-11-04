@@ -25,12 +25,12 @@ upon MAAS-managed DHCP.
 **This documentation presupposes that MAAS-managed DHCP is used to enlist and
 commission nodes.**
 
-To fully understand this page you should first read:
+Required reading before continuing:
 
 - [Concepts and terms](intro-concepts.md#ip-ranges) for an explanation of
-  reserved IP ranges.
+  reserved IP ranges
 - [Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-  to understand IP assignment modes.
+  for an explanation of IP assignment modes
 
 
 ## Enabling DHCP

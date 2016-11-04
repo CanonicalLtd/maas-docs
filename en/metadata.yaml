@@ -121,19 +121,8 @@ navigation:
       - title: User accounts
         location: manage-account.md
 
-      - title: High availability (HA)
-        location: manage-maas-ha.md
-
-        children:
-
-          - title: Rack controller HA
-            location: manage-maas-ha.md#rack-controller-ha
-
-          - title: Region controller HA
-            location: manage-maas-ha.md#region-controller-ha
-
-          - title: Deploy HA with Juju
-            location: manage-maas-ha.md#deploy-ha-with-juju
+      - title: High availability
+        location: manage-ha.md
 
       - title: MAAS CLI
         location: manage-cli.md

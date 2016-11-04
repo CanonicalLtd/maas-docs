@@ -1,6 +1,5 @@
-Title: Rack Controller
-TODO:  Link to installing rack via ISO
-       Add CLI for deleting a rack controller
+Title: Rack Controller | MAAS
+TODO:  Add CLI for deleting a rack controller
 
 
 # Rack Controller
@@ -26,8 +25,8 @@ When a rack controller is installed on the same host as the region API server
 it will register itself automatically. Otherwise this will need to be done
 manually:
 
-To install and register a rack controller you can either use the [Ubuntu Server
-ISO](installconfig-server-iso.md#rack-controller) or the
+To install and register a rack controller you can either use the
+[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
 [MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
 require the URL of the region API server. For nodes on an
 [IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
@@ -39,8 +38,8 @@ immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller](../media/installconfig-rack__add-controller2.png)
 
-One reason to add extra rack controllers is to achieve DHCP high availability
-(DHCP HA).
+One reason to have multiple rack controllers is to achieve DHCP high
+availability (DHCP HA).
 
 
 ## Unregister a rack controller

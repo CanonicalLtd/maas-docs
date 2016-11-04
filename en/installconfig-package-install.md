@@ -1,6 +1,4 @@
-Title: Install from Packages
-TODO:  Mention HA and link to HA page (manage-maas-ha.md)
-       Revert .html extensions on links (at the bottom)? build process did not remove them
+Title: Install from Packages | MAAS
 
 
 # Install from Packages
@@ -24,8 +22,8 @@ apt-cache search maas
 The 'maas' package is the recommended way to install MAAS. See
 [here][all-in-one] for more detail on colocating all services on a single host.
 
-Note that [installing an extra rack controller][add-rack] will add DHCP
-intelligently; DHCP HA will become available as an option.
+High availability with MAAS involves installing multiple region controllers
+and/or multiple rack controllers. See [MAAS HA][ha-maas].
 
 <!-- LINKS -->
 [proxy]: installconfig-proxy.md
@@ -34,6 +32,7 @@ intelligently; DHCP HA will become available as an option.
 [dhcp]: installconfig-subnets-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
 [add-rack]: installconfig-rack.md#install-a-rack-controller
+[ha-maas]: manage-ha.md
 
 
 ## Package repositories

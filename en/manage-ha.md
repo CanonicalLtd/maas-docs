@@ -1,0 +1,267 @@
+Title: High Availability | MAAS
+TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
+       Can DHCP HA involve more than 2 DHCP instances?
+       Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
+
+
+# High Availability
+
+MAAS has support for high availability (HA) at both the rack controller level
+and the region controller level. See
+[Concepts and Terms](intro-concepts.md#controllers) for detailed information on
+what services are provided by each of those levels.
+
+
+## Rack controller HA
+
+Although DHCP is handled at the rack controller level one should not worry
+about a second DHCP service coming online and causing disruption. DHCP software
+is added intelligently and DHCP HA will become available as an option.
+
+Install a second rack controller by reading
+[Rack controller](installconfig-rack.md#install-a-rack-controller).
+
+### BMC
+
+HA for BMC control is provided out of the box once a second rack controller is
+present. MAAS will automatically identify which rack controller is responsible
+for a BMC and communication will be set up accordingly.
+
+### DHCP
+
+To provide HA for nodes (enlistment, commissioning and deployment), DHCP HA
+must be turned on. This enables a primary and a secondary DHCP instance to
+serve the same VLAN. All lease information will be replicated between the rack
+controllers, allowing one to fail without interrupting MAAS operations. DHCP
+needs to be MAAS-managed in order for DHCP HA to work with MAAS.
+
+Enable DHCP HA by reading [DHCP](installconfig-subnets-dhcp.md#enabling-dhcp).
+
+
+## Region Controller HA
+
+For region controller HA any number of region controllers can be present as
+long as each connects to the same PostgreSQL database instance.
+
+### PostgreSQL HA
+
+MAAS stores all state information in the PostgreSQL database. It is therefore
+crucial to run it in HA mode. PostgreSQL supports several HA configurations but
+"hot standby" is the MAAS-recommended one.
+
+Configure a hot standby for PostgreSQL using this
+[upstream guide](https://wiki.postgresql.org/wiki/Hot_Standb).
+
+### Secondary region controller
+
+Since PostgreSQL HA has been accomplished, adding a secondary region controller
+must not involve installing a new database (such as what was probably done for
+the initial region controller). This can be achieved by installing a few
+carefully chosen packages:
+
+```bash
+sudo apt install maas-region-api maas-dns
+```
+
+The `/etc/maas/regiond.conf` file from the initial region controller will be
+needed to allow the secondary region controller to connect to the existing
+database. Adjust the `database_host` in that file to point to the primary
+database for PostgreSQL:
+
+```bash
+sudo systemctl stop maas-regiond
+sudo rm /var/lib/maas/{maas_id,secret}
+sudo scp $USER@$ORIGINAL_REGION_CONTROLLER:/etc/maas/regiond.conf /etc/maas/regiond.conf
+sudo chown root:maas /etc/maas/regiond.conf
+sudo chmod 640 /etc/maas/regiond.conf
+sudo maas-region local_config_set --database-host $PRIMARY_POSTGRESQL-IP
+sudo systemctl restart maas-regiond
+```
+
+However, the `bind9` DNS service will refuse to start because both bind9 and
+MAAS define some of the same options in their respective configuration files.
+Options from the bind9 side will need to therefore be migrated to the MAAS
+side. Do this with the following commands:
+
+```bash
+sudo maas-region edit_named_options --migrate-conflicting-options
+sudo systemctl restart bind9
+```
+
+Region controller HA is now complete. The API and the web UI will show a second
+fully functional region controller.
+
+### Load balancing between regions (optional)
+
+With multiple region controllers, there are several options for load balancing.
+One approach is to use one region controller all the time, and fail over to
+another one using a virtual IP (VIP). Another approach is to use a
+load-balancer and a VIP to distribute the workload across all active region
+controllers. Here, we will use `haproxy` to do the latter.
+
+Firstly, on each region controller, before haproxy is installed, `apache2`
+needs to be disabled. This is because both apache2 and haproxy listen on
+the same port (TCP 80).
+
+```bash
+sudo systemctl stop apache2
+sudo systemctl disable apache2
+sudo apt install haproxy
+```
+
+To create a configuration file, copy the following into
+`/etc/haproxy/haproxy.cfg`, changing &lt;server-name&gt; and &lt;server-ip&gt;
+to match your infrastructure:
+
+```yaml
+frontend maas
+    bind    *:80
+    retries 3
+    option  redispatch
+    option  http-server-close
+    default_backend maas
+
+backend maas
+    timeout server 30s
+    balance roundrobin
+    server localhost localhost:5240 check
+    server <server-name-1> <server-ip-1>:5240 check
+    server <server-name-2> <server-ip-2>:5240 check
+```
+
+Finally, launch `haproxy`:
+
+```bash
+sudo systemctl restart haproxy
+```
+
+!!! Note: We recommended running a load-balancer on every region controller
+server and place a VIP between the servers. This will ensure that the load is
+balanced between the servers and ensure that (if a failure occurs) the VIP
+moves over to the other server (which could then distribute requests to the
+remaining servers).
+
+### VIP between the regions
+
+Whether a load-balancer has been configured or not, a VIP (virtual IP) is
+needed.  The VIP will be used by the rack controllers (and the deploying
+machines) to access the region controller API endpoint. In this example, we
+will show how to use `keepalived` to configure a VIP.
+
+Install the software, load its associated kernel module, set this to load
+upon reboot and configure the systemd environment:
+
+```bash
+sudo apt install keepalived
+sudo modprobe ip_vs
+sudo sh -c 'echo modprobe ip_vs >> /etc/modules'
+sudo sh -c 'echo net.ipv4.ip_nonlocal_bind=1' > /etc/sysctl.d/60-keepalived-nonlocal.conf
+sudo systemctl restart procps
+```
+
+The file `/etc/keepalived/keepalived.conf` will also need to be created. Adjust
+the example below for either `apache2` or `haproxy`, depending on your
+environment. The values for `interface_name`, `random_password`, the VIP
+address and the `priority` should also be changed. The priority needs to be
+between 1-255 (a larger value indicates a greater preference for the server to
+claim the VIP).
+
+```no-highlight
+### Un-comment this section if using haproxy
+#vrrp_script chk_haproxy {
+#    script "killall -0 haproxy"
+#    interval 2
+#}
+
+### Un-comment this section if using apache2
+#vrrp_script chk_apache2 {
+#    script "killall -0 apache2"
+#    interval 2
+#}
+
+vrrp_script chk_named {
+    script "killall -0 named"
+    interval 2
+}
+
+vrrp_instance maas_region {
+    state MASTER
+    interface <interface_name>
+    priority <priority>
+    virtual_router_id 51
+     authentication {
+        auth_type PASS
+        auth_pass <random_password>
+    }
+     track_script {
+        # Un-comment when using haproxy
+        #chk_haproxy
+        # Un-comment when using apache2
+        #chk_apache2
+        chk_named
+    }
+     virtual_ipaddress {
+        <vip>
+    }
+}
+```
+
+Finally, start the daemon with:
+
+```bash
+sudo systemctl restart keepalived
+```
+
+!!! Note: If you are enabling this inside of a container, the host of the
+container needs the ip\_vs module loaded and the sysctl change. A restart of
+the container is required once the change has been made in the host.
+
+Once `keepalived` has been configured you will want to adjust the MAAS\_URL on
+all region controllers and rack controllers to point to that VIP. This will
+ensure that all clients and machines use that IP address for communication.
+
+To adjust the rack controller:
+
+```bash
+sudo maas-rack config --region-url http://<vip>:5240/MAAS
+sudo systemctl restart maas-rackd
+```
+
+To adjust the region controller: 
+
+```bash
+sudo maas-region local_config_set --maas-url http://<vip>:5240/MAAS
+sudo systemctl restart maas-regiond
+```
+
+## Deploy HA with Juju
+
+It is possible to use Juju to deploy MAAS in an HA configuration. However, this
+is not typically how Juju is used. Normally, MAAS would be installed first and
+*then* have Juju deploy services on the MAAS nodes.
+
+In the following example, a Juju controller is created with manual
+provisioning, the machines intended to be used for MAAS services are added, and
+the applications are deployed and linked together. Be sure to adjust the given
+numbers based on what you see in the "juju status" command.
+
+<!-- What about load balancing? -->
+Here is how to install MAAS with HA at both the region controller level and
+rack controller level.
+
+```bash
+juju bootstrap maas manual/<ip-of-server>
+juju add-machine ssh:<ip-of-server>
+. add required machines ...
+juju deploy postgresql --to 0
+juju add-unit postgresql --to 1
+juju deploy maas-region --to 0
+juju add-unit maas-region --to 1
+juju add-relation maas-region:db postgresql:db
+juju deploy maas-rack --to 3
+juju add-unit maas-rack --to 4
+juju add-relation maas-region:rpc maas-rack:rpc
+```
+
+See [Juju](https://jujucharms.com/docs/devel/getting-started) for more on how
+to use Juju.
