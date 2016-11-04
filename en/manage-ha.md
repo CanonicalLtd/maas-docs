@@ -2,6 +2,7 @@ Title: High Availability | MAAS
 TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
        Can DHCP HA involve more than 2 DHCP instances?
        Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
+table_of_contents: True
 
 
 # High Availability
