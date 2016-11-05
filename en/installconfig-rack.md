@@ -4,10 +4,9 @@ TODO:  Add CLI for deleting a rack controller
 
 # Rack Controller
 
-A single rack controller can be connected to more than one VLAN, each from a
-different rack controller interface. This allows one rack controller to manage
-different subnets to help scale your rack controller or to satisfy your
-network architecture.
+A rack controller can be connected to multiple VLANs, each from a different
+network interface. This provides a scaling factor that can help as a network
+architecture grows in size.
 
 In regards to region controller and rack controller communication, each rack
 controller must be able to:
@@ -38,8 +37,12 @@ immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller](../media/installconfig-rack__add-controller2.png)
 
-One reason to have multiple rack controllers is to achieve DHCP high
-availability (DHCP HA).
+Multiple rack controllers are needed in order to achieve specific types of
+[high availability](manage-ha.md).
+
+!!! Note: If you will be using KVM-backed nodes you will need to install the
+`libvirt-bin` package on the rack controller. See
+[KVM guest nodes](installconfig-add-nodes.md#kvm-guest-nodes).
 
 
 ## Unregister a rack controller

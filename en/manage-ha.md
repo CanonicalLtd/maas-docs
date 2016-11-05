@@ -22,21 +22,24 @@ is added intelligently and DHCP HA will become available as an option.
 Install a second rack controller by reading
 [Rack controller](installconfig-rack.md#install-a-rack-controller).
 
-### BMC
+### BMC HA
 
-HA for BMC control is provided out of the box once a second rack controller is
-present. MAAS will automatically identify which rack controller is responsible
-for a BMC and communication will be set up accordingly.
+HA for BMC control (node power cycling) is provided out of the box once a
+second rack controller is present. MAAS will automatically identify which rack
+controller is responsible for a BMC and communication will be set up
+accordingly.
 
-### DHCP
+### DHCP HA
 
-To provide HA for nodes (enlistment, commissioning and deployment), DHCP HA
-must be turned on. This enables a primary and a secondary DHCP instance to
-serve the same VLAN. All lease information will be replicated between the rack
-controllers, allowing one to fail without interrupting MAAS operations. DHCP
+DHCP HA affects node management (enlistment, commissioning and deployment) and
+it is turned on automatically if the initial rack controller already has DHCP
+enabled. If DHCP is being enabled for the first time after a second rack
+controller is added then enable it according to
+[Enabling DHCP](installconfig-subnets-dhcp.md#enabling-dhcp).
+
+DHCP HA enables a primary and a secondary DHCP instance to serve the same VLAN
+where all lease information is replicated between rack controllers. DHCP
 needs to be MAAS-managed in order for DHCP HA to work with MAAS.
-
-Enable DHCP HA by reading [DHCP](installconfig-subnets-dhcp.md#enabling-dhcp).
 
 
 ## Region Controller HA
@@ -47,18 +50,18 @@ long as each connects to the same PostgreSQL database instance.
 ### PostgreSQL HA
 
 MAAS stores all state information in the PostgreSQL database. It is therefore
-crucial to run it in HA mode. PostgreSQL supports several HA configurations but
-"hot standby" is the MAAS-recommended one.
+recommended to run it in HA mode. PostgreSQL supports several HA configurations
+but the "hot standby" method is what is recommended with MAAS.
 
 Configure a hot standby for PostgreSQL using this
-[upstream guide](https://wiki.postgresql.org/wiki/Hot_Standb).
+[upstream guide](https://wiki.postgresql.org/wiki/Hot_Standby).
 
 ### Secondary region controller
 
-Since PostgreSQL HA has been accomplished, adding a secondary region controller
-must not involve installing a new database (such as what was probably done for
-the initial region controller). This can be achieved by installing a few
-carefully chosen packages:
+Assuming that PostgreSQL HA has been set up, adding a secondary region
+controller must not involve installing a new database (such as what was
+probably done for the initial region controller). This can be achieved by
+installing a few carefully chosen packages:
 
 ```bash
 sudo apt install maas-region-api maas-dns
