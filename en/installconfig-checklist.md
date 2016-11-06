@@ -135,7 +135,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [about-maas]: index.md#key-components-and-colocation-of-all-services
 [install-maas]: installconfig-install.md
 [web-ui]: installconfig-gui.md
-[zones]: installconfig-zones.md
+[zones]: manage-zones.md
 [networks]: installconfig-networking.md
 [images]: installconfig-images.md
 [dhcp]: installconfig-subnets-dhcp.md
