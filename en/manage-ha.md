@@ -50,11 +50,15 @@ long as each connects to the same PostgreSQL database instance.
 ### PostgreSQL HA
 
 MAAS stores all state information in the PostgreSQL database. It is therefore
-recommended to run it in HA mode. PostgreSQL supports several HA configurations
-but the "hot standby" method is what is recommended with MAAS.
+recommended to run it in HA mode. Configuring HA for PostgreSQL is external to
+MAAS. You will therefore need to study the
+[PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
+and implement the variant of HA that you feel most comfortable with.
 
-Configure a hot standby for PostgreSQL using this
-[upstream guide](https://wiki.postgresql.org/wiki/Hot_Standby).
+A quick treatment of [PostgreSQL HA: hot standby](manage-ha-postgresql.md) has
+been provided here as a convenience only. Its purpose is to give an idea of
+what's involved at the command line level when implementing one particular form
+of HA.
 
 ### Secondary region controller
 
