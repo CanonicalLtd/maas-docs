@@ -91,7 +91,7 @@ files out of the way and replace them with a copy of the primary database
 files. You will be prompted for the password of the replication user.
 
 ```bash
-sudo apt -y install postgresql
+sudo apt install postgresql
 sudo service postgresql stop
 sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.old
 sudo -u postgres pg_basebackup -h $PRIMARY_IP -D /var/lib/postgresql/9.5/main -U $REP_USER -v -P --xlog-method=stream

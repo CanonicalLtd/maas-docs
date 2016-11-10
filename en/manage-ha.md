@@ -55,10 +55,10 @@ MAAS. You will therefore need to study the
 [PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
 and implement the variant of HA that you feel most comfortable with.
 
-A quick treatment of [PostgreSQL HA: hot standby](manage-ha-postgresql.md) has
-been provided here as a convenience only. Its purpose is to give an idea of
-what's involved at the command line level when implementing one particular form
-of HA.
+A quick treatment of [PostgreSQL HA: hot standby](manage-ha-postgresql.md) is
+provided here for convenience only. Its purpose is to give an idea of what's
+involved at the command line level when implementing one particular form of HA
+with PostgreSQL.
 
 ### Secondary region controller
 
@@ -89,15 +89,14 @@ sudo systemctl restart maas-regiond
 However, the `bind9` DNS service will refuse to start because both bind9 and
 MAAS define some of the same options in their respective configuration files.
 Options from the bind9 side will need to therefore be migrated to the MAAS
-side. Do this with the following commands:
+side:
 
 ```bash
 sudo maas-region edit_named_options --migrate-conflicting-options
 sudo systemctl restart bind9
 ```
 
-Region controller HA is now complete. The API and the web UI will show a second
-fully functional region controller.
+The setup of region controller HA is now complete.
 
 ### Load balancing between regions (optional)
 
