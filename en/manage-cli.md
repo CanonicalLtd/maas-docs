@@ -14,7 +14,7 @@ separated into common, image management, and advanced.
 
 Note that we do not provide complete coverage of the MAAS CLI. For an
 exhaustive treatment, see the
-[API documentation](http://maas.ubuntu.com/docs2.0/index.html#api-cli-documentation).
+[API documentation](http://docs.maas.io/2.0/api.html).
 
 Values are represented as uppercase variables preceded with the '$' character
 (e.g. $PROFILE and $EMAIL_ADDRESS). These are to be replaced with actual

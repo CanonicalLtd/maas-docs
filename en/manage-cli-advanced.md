@@ -38,8 +38,8 @@ maas $PROFILE tags create name='nomodeset' \
 ```
 
 The tag must then be assigned to the machine in question. This can be done
-with the web UI or with the CLI. For the latter, see [assign a tag to a
-node](manage-cli-common.md#assign-a-tag-to-a-node).
+with the web UI or with the CLI. For the latter, see
+[assign a tag to a node](manage-cli-common.md#assign-a-tag-to-a-node).
 
 If multiple tags attached to a node have the `kernel_opts` defined, the first
 one (ordered alphabetically) is used.
@@ -68,8 +68,7 @@ maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=$HWE_KERNEL
 To set a specific HWE kernel during the deployment of a machine:
 
 ```bash
-maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES \
-	hwe_kernel=$HWE_KERNEL
+maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES hwe_kernel=$HWE_KERNEL
 ```
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
@@ -99,11 +98,11 @@ sudo maas-rack register
 ```
 
 !!! Note: The register command is only needed if the rack controller is not
-being added to a system that already houses a region controller.
+being added to a system that already houses an API server.
 
 You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
-that is stored in file `/var/lib/maas/secret` on the region controller.
+that is stored in file `/var/lib/maas/secret` on the API server.
 
 You can get the above information from the web UI by visiting the 'Nodes' tab,
 then the Controller sub-tab, and clicking the button 'Add rack controller'.
@@ -114,8 +113,7 @@ Here is an example of what you may see:
 Based on the above, then, we could have also entered:
 
 ```bash
-sudo maas-rack register --url http://10.248.0.3:5240/MAAS \
-	--secret 30e5413d5b684620700b3105b02965c0
+sudo maas-rack register --url http://10.248.0.3:5240/MAAS --secret 30e5413d5b684620700b3105b02965c0
 ```
 
 !!! Note: The web UI example does not refer to port 5240 but this should be

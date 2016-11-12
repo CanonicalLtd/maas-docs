@@ -155,11 +155,10 @@ navigation:
     location: ref-release-notes.md
 
   - title: Developer guide
-    location: http://maas.ubuntu.com/docs/index.html#developing-maas
+    location: http://docs.maas.io/2.0/index.html#developing-maas
 
   - title: API documentation
-    location: http://maas.ubuntu.com/docs/api.html
-    location: http://maas.ubuntu.com/docs2.0/api.html
+    location: http://docs.maas.io/2.0/api.html
 
   - title: Help improve these docs
     location: contributing.md
