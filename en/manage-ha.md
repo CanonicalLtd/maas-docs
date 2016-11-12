@@ -41,6 +41,8 @@ DHCP HA enables a primary and a secondary DHCP instance to serve the same VLAN
 where all lease information is replicated between rack controllers. DHCP
 needs to be MAAS-managed in order for DHCP HA to work with MAAS.
 
+The setup of rack controller HA is now complete.
+
 
 ## Region Controller HA
 
@@ -60,43 +62,59 @@ provided here for convenience only. Its purpose is to give an idea of what's
 involved at the command line level when implementing one particular form of HA
 with PostgreSQL.
 
-### Secondary region controller
+### Secondary API server
 
-Assuming that PostgreSQL HA has been set up, adding a secondary region
-controller must not involve installing a new database (such as what was
-probably done for the initial region controller). This can be achieved by
-installing a few carefully chosen packages:
+This section assumes that PostgreSQL HA has been set up.
+
+Begin by allowing the (eventual) secondary API server to contact the primary PostgreSQL
+database. On the primary database host then, edit file
+`/etc/postgresql/9.5/main/pg_hba.conf` and include the line:
+
+```no-highlight
+host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
+```
+
+!!! Note: It is very common for the primary database server and the primary API
+server to reside on the same host.
+
+Then apply this change by restarting the database:
+
+```bash
+sudo systemctl restart postgresql
+```
+
+On the host set aside for the new API server, add it by installing a few
+carefully chosen packages:
 
 ```bash
 sudo apt install maas-region-api maas-dns
 ```
 
-The `/etc/maas/regiond.conf` file from the initial region controller will be
-needed to allow the secondary region controller to connect to the existing
-database. Adjust the `database_host` in that file to point to the primary
-database for PostgreSQL:
+The `/etc/maas/regiond.conf` file from the primary API server will be needed.
+Below, we assume it can be copied (scp) from the 'ubuntu' account home
+directory using password authentication (adjust otherwise). The
+`local_config_set` command will edit that file by pointing to the host that
+contains the primary PostgreSQL database. DNS (`bind9`) configuration options
+are also rationalized between bind9 itself and the same options within MAAS:
 
 ```bash
 sudo systemctl stop maas-regiond
-sudo rm /var/lib/maas/{maas_id,secret}
-sudo scp $USER@$ORIGINAL_REGION_CONTROLLER:/etc/maas/regiond.conf /etc/maas/regiond.conf
+sudo scp ubuntu@$PRIMARY_API_SERVER:regiond.conf /etc/maas/regiond.conf
 sudo chown root:maas /etc/maas/regiond.conf
 sudo chmod 640 /etc/maas/regiond.conf
-sudo maas-region local_config_set --database-host $PRIMARY_POSTGRESQL-IP
-sudo systemctl restart maas-regiond
-```
-
-However, the `bind9` DNS service will refuse to start because both bind9 and
-MAAS define some of the same options in their respective configuration files.
-Options from the bind9 side will need to therefore be migrated to the MAAS
-side:
-
-```bash
+sudo maas-region local_config_set --database-host $PRIMARY_PG_SERVER
 sudo maas-region edit_named_options --migrate-conflicting-options
 sudo systemctl restart bind9
+sudo systemctl start maas-regiond
 ```
 
 The setup of region controller HA is now complete.
+
+Check the log files for any errors:
+
+- `/var/log/maas/regiond.log`
+- `/var/log/maas/maas.log`
+- `/var/log/syslog`
 
 ### Load balancing between regions (optional)
 

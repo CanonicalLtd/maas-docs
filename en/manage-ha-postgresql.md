@@ -28,8 +28,8 @@ sudo -u postgres psql -x -c "select * from pg_stat_replication;"
 
 The following variables are used on this page:
 
-- PRIMARY_IP: The IP address of the host that contains the primary database.
-- SECONDARY_IP: The IP address of the host that contains the secondary database.
+- PRIMARY_PG_IP: The IP address of the host that contains the primary database.
+- SECONDARY_PG_IP: The IP address of the host that contains the secondary database.
 - REP_USER: The internal database user that manages replication on the primary. 
 - REP_USER_PW: The password of the replication user.
 
@@ -60,7 +60,7 @@ sudo chown postgres /pgsql/archive
 contact this primary host.
 
 ```no-highlight
-host    replication     $REP_USER	$SECONDARY_IP/32         md5
+host    replication     $REP_USER	$SECONDARY_PG_IP/32         md5
 ```
 
 4) Edit `/etc/postgresql/9.5/main/postgresql.conf` to listen on more than just
@@ -78,7 +78,7 @@ max_wal_senders = 3
 5) Restart the database to apply the above changes:
 
 ```bash
-sudo service postgresql restart
+sudo systemctl restart postgresql
 ```
 
 
@@ -92,9 +92,9 @@ files. You will be prompted for the password of the replication user.
 
 ```bash
 sudo apt install postgresql
-sudo service postgresql stop
+sudo systemctl stop postgresql
 sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.old
-sudo -u postgres pg_basebackup -h $PRIMARY_IP -D /var/lib/postgresql/9.5/main -U $REP_USER -v -P --xlog-method=stream
+sudo -u postgres pg_basebackup -h $PRIMARY_PG_IP -D /var/lib/postgresql/9.5/main -U $REP_USER -v -P --xlog-method=stream
 Password: 
 ```
 
@@ -116,11 +116,11 @@ and enter the information necessary for contacting the primary:
 
 ```no-highlight
 standby_mode = on
-primary_conninfo = 'host=$PRIMARY_IP port=5432 user=$REP_USER password=$REP_USER_PW'
+primary_conninfo = 'host=$PRIMARY_PG_IP port=5432 user=$REP_USER password=$REP_USER_PW'
 ```
 
 5) Start the database:
 
 ```bash
-sudo service postgresql start
+sudo systemctl start postgresql
 ```
