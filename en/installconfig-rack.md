@@ -26,8 +26,8 @@ When a rack controller is installed on the same host as the region API server
 it will register itself automatically. Otherwise this will need to be done
 manually:
 
-To install and register a rack controller you can either use the [Ubuntu Server
-ISO](installconfig-server-iso.md#rack-controller) or the
+To install and register a rack controller you can either use the
+[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
 [MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
 require the URL of the region API server. For nodes on an
 [IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
