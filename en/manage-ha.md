@@ -44,10 +44,15 @@ needs to be MAAS-managed in order for DHCP HA to work with MAAS.
 The setup of rack controller HA is now complete.
 
 
-## Region Controller HA
+## Region controller HA
 
-For region controller HA any number of region controllers can be present as
-long as each connects to the same PostgreSQL database instance.
+Implementing region controller HA involves setting up:
+
+- PostgreSQL HA
+- Secondary API server(s)
+- Virtual IP address
+
+Load balancing is optional.
 
 ### PostgreSQL HA
 
@@ -66,9 +71,13 @@ with PostgreSQL.
 
 This section assumes that PostgreSQL HA has been set up.
 
-Begin by allowing the (eventual) secondary API server to contact the primary PostgreSQL
-database. On the primary database host then, edit file
-`/etc/postgresql/9.5/main/pg_hba.conf` and include the line:
+!!! Note: Any number of API servers can be present as long as each connects to
+the same PostgreSQL database.
+
+On the primary database host, edit file `/etc/postgresql/9.5/main/pg_hba.conf`
+to allow the secondary API server to contact the primary PostgreSQL database.
+Include the below line, replacing $SECONDARY_API_SERVER_IP with the IP address
+of the host that will contain the secondary API server:
 
 ```no-highlight
 host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
@@ -77,7 +86,7 @@ host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
 !!! Note: It is very common for the primary database server and the primary API
 server to reside on the same host.
 
-Then apply this change by restarting the database:
+Apply this change by restarting the database:
 
 ```bash
 sudo systemctl restart postgresql
@@ -108,25 +117,20 @@ sudo systemctl restart bind9
 sudo systemctl start maas-regiond
 ```
 
-The setup of region controller HA is now complete.
-
 Check the log files for any errors:
 
 - `/var/log/maas/regiond.log`
 - `/var/log/maas/maas.log`
 - `/var/log/syslog`
 
-### Load balancing between regions (optional)
+### Load balancing (optional)
 
-With multiple region controllers, there are several options for load balancing.
-One approach is to use one region controller all the time, and fail over to
-another one using a virtual IP (VIP). Another approach is to use a
-load-balancer and a VIP to distribute the workload across all active region
-controllers. Here, we will use `haproxy` to do the latter.
+Load balancing can be added with the `happroxy` load balancer and a virtual IP
+(VIP).
 
-Firstly, on each region controller, before haproxy is installed, `apache2`
-needs to be disabled. This is because both apache2 and haproxy listen on
-the same port (TCP 80).
+On each API server host, before haproxy is installed, `apache2` needs to be
+disabled. This is because both apache2 and haproxy listen on the same port (TCP
+80):
 
 ```bash
 sudo systemctl stop apache2
@@ -134,9 +138,10 @@ sudo systemctl disable apache2
 sudo apt install haproxy
 ```
 
-To create a configuration file, copy the following into
-`/etc/haproxy/haproxy.cfg`, changing &lt;server-name&gt; and &lt;server-ip&gt;
-to match your infrastructure:
+Configure each API server host's load balancer by copying the following into
+`/etc/haproxy/haproxy.cfg`, replacing $PRIMARY_API_SERVER_NAME,
+$PRIMARY_API_SERVER_IP, $SECONDARY_API_SERVER_NAME, and
+$SECONDARY_API_SERVER_IP with their respective names and IP addresses:
 
 ```yaml
 frontend maas
@@ -150,46 +155,40 @@ backend maas
     timeout server 30s
     balance roundrobin
     server localhost localhost:5240 check
-    server <server-name-1> <server-ip-1>:5240 check
-    server <server-name-2> <server-ip-2>:5240 check
+    server $PRIMARY_API_SERVER_NAME $PRIMARY_API_SERVER_IP:5240 check
+    server $SECONDARY_API_SERVER_NAME $SECONDARY_API_SERVER_IP:5240 check
 ```
 
-Finally, launch `haproxy`:
+Now restart the load balancer:
 
 ```bash
 sudo systemctl restart haproxy
 ```
 
-!!! Note: We recommended running a load-balancer on every region controller
-server and place a VIP between the servers. This will ensure that the load is
-balanced between the servers and ensure that (if a failure occurs) the VIP
-moves over to the other server (which could then distribute requests to the
-remaining servers).
+### Virtual IP
 
-### VIP between the regions
+The virtual IP (VIP) will be used by the rack controller(s) and the deploying
+machines to access the region controller API endpoint. Here, this will be done
+with the use of the [Keepalived](http://www.keepalived.org/) routing software.
 
-Whether a load-balancer has been configured or not, a VIP (virtual IP) is
-needed.  The VIP will be used by the rack controllers (and the deploying
-machines) to access the region controller API endpoint. In this example, we
-will show how to use `keepalived` to configure a VIP.
-
-Install the software, load its associated kernel module, set this to load
-upon reboot and configure the systemd environment:
+On each API server host, install the software, load a kernel module, set it to
+load upon reboot and pass a kernel option:
 
 ```bash
 sudo apt install keepalived
 sudo modprobe ip_vs
-sudo sh -c 'echo modprobe ip_vs >> /etc/modules'
-sudo sh -c 'echo net.ipv4.ip_nonlocal_bind=1' > /etc/sysctl.d/60-keepalived-nonlocal.conf
+echo 'echo modprobe ip_vs' | sudo tee -a /etc/modules
+echo 'net.ipv4.ip_nonlocal_bind=1' | sudo tee /etc/sysctl.d/60-keepalived-nonlocal.conf 
 sudo systemctl restart procps
 ```
 
-The file `/etc/keepalived/keepalived.conf` will also need to be created. Adjust
-the example below for either `apache2` or `haproxy`, depending on your
-environment. The values for `interface_name`, `random_password`, the VIP
-address and the `priority` should also be changed. The priority needs to be
-between 1-255 (a larger value indicates a greater preference for the server to
-claim the VIP).
+Create the file `/etc/keepalived/keepalived.conf` based on the example below.
+Either `apache2` or `haproxy` will be mentioned, depending on whether load
+balancing was implemented or not.
+
+The values for `interface_name`, `random_password`, the VIP address and the
+`priority` should also be changed. The priority needs to be between 1-255 (a
+larger value indicates a greater preference for the server to claim the VIP).
 
 ```no-highlight
 ### Un-comment this section if using haproxy
@@ -231,33 +230,36 @@ vrrp_instance maas_region {
 }
 ```
 
-Finally, start the daemon with:
+Finally, restart the daemon:
 
 ```bash
 sudo systemctl restart keepalived
 ```
 
-!!! Note: If you are enabling this inside of a container, the host of the
-container needs the ip\_vs module loaded and the sysctl change. A restart of
-the container is required once the change has been made in the host.
+!!! Note: If you are enabling this inside of a container, the container host
+needs the ip\_vs module loaded and the sysctl change. A restart of the
+container is required once these changes have been made.
 
-Once `keepalived` has been configured you will want to adjust the MAAS\_URL on
-all region controllers and rack controllers to point to that VIP. This will
-ensure that all clients and machines use that IP address for communication.
+Once keepalived has been configured adjust the MAAS\_URL on all region
+controllers and rack controllers to point to the VIP. This will ensure that
+all clients and machines use that IP address for communication.
 
 To adjust the rack controller:
 
 ```bash
-sudo maas-rack config --region-url http://<vip>:5240/MAAS
+sudo maas-rack config --region-url http://$VIP:5240/MAAS
 sudo systemctl restart maas-rackd
 ```
 
 To adjust the region controller: 
 
 ```bash
-sudo maas-region local_config_set --maas-url http://<vip>:5240/MAAS
+sudo maas-region local_config_set --maas-url http://$VIP:5240/MAAS
 sudo systemctl restart maas-regiond
 ```
+
+The configuration of region controller HA is now complete.
+
 
 ## Deploy HA with Juju
 
