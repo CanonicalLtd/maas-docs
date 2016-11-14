@@ -7,10 +7,16 @@ table_of_contents: True
 
 # High Availability
 
-MAAS has support for high availability (HA) at both the rack controller level
-and the region controller level. See
+This page will describe how to provide high availability (HA) for MAAS at both
+the rack controller level and the region controller level. See
 [Concepts and Terms](intro-concepts.md#controllers) for detailed information on
 what services are provided by each of those levels.
+
+It is possible to use [Juju](https://jujucharms.com/docs/devel/about-juju.html)
+to deploy MAAS in an HA configuration. See
+[Deploy HA with Juju](manage-ha-juju.md) for how to do this. Note that this is
+not how Juju would normally be used in a MAAS context. Normally, Juju would be
+applied to an existing MAAS.
 
 
 ## Rack controller HA
@@ -259,36 +265,3 @@ sudo systemctl restart maas-regiond
 ```
 
 The configuration of region controller HA is now complete.
-
-
-## Deploy HA with Juju
-
-It is possible to use Juju to deploy MAAS in an HA configuration. However, this
-is not typically how Juju is used. Normally, MAAS would be installed first and
-*then* have Juju deploy services on the MAAS nodes.
-
-In the following example, a Juju controller is created with manual
-provisioning, the machines intended to be used for MAAS services are added, and
-the applications are deployed and linked together. Be sure to adjust the given
-numbers based on what you see in the "juju status" command.
-
-<!-- What about load balancing? -->
-Here is how to install MAAS with HA at both the region controller level and
-rack controller level.
-
-```bash
-juju bootstrap maas manual/<ip-of-server>
-juju add-machine ssh:<ip-of-server>
-. add required machines ...
-juju deploy postgresql --to 0
-juju add-unit postgresql --to 1
-juju deploy maas-region --to 0
-juju add-unit maas-region --to 1
-juju add-relation maas-region:db postgresql:db
-juju deploy maas-rack --to 3
-juju add-unit maas-rack --to 4
-juju add-relation maas-region:rpc maas-rack:rpc
-```
-
-See [Juju](https://jujucharms.com/docs/devel/getting-started) for more on how
-to use Juju.
