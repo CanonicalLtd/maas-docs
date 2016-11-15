@@ -1,17 +1,17 @@
 Title: Deploy HA with Juju | MAAS
 TODO:  This procedure needs to be understood and verified, with text added as a consequence.
+       Does this include load balancing?
 
 
 # Deploy HA with Juju
 
-<!-- What about load balancing? -->
-This page provides a quick overview of how to implement HA with MAAS at both
+This page provides an overview on how to use Juju to implement MAAS HA at both
 the region controller and rack controller levels.
 
 Below, a Juju controller is created with manual provisioning, the machines
 intended as MAAS nodes are added, and the applications deployed & linked
-together. Be sure to adjust the given numbers based on the local environment.
-To aid with the latter, see the output to the `juju status` command.
+together. Adjust the given numbers based on your local environment. To aid
+with the latter, see the output to the `juju status` command.
 
 ```bash
 juju bootstrap maas manual/<ip-of-server>
@@ -27,7 +27,7 @@ juju add-unit maas-rack --to 4
 juju add-relation maas-region:rpc maas-rack:rpc
 ```
 
-See [Juju documentation][juju-site] for how to use Juju.
+See [Juju documentation][juju-site] for in-depth guidance on using Juju.
 
 <!-- LINKS -->
 [juju-site]: https://jujucharms.com/docs/
