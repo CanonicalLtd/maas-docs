@@ -3,10 +3,10 @@ Title: PostgreSQL HA notes | MAAS
 
 # PostgreSQL HA: hot standby
 
-**Disclaimer: The contents of this page do not constitute documentation. They
-are *notes* that the reader can peruse to get an idea of what may be involved
-at the command line level when setting up 'hot standby' HA mode in PostgreSQL.
-These notes are not regularly tested. Please use the
+**Disclaimer: These are *notes* that the reader can peruse to get an idea of
+what may be involved at the command line level when setting up 'hot standby' HA
+mode in PostgreSQL. The below procedures are not regularly tested. Please use
+the
 [PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
 when setting up HA on PostgreSQL.**
 
