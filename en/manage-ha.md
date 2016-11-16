@@ -1,9 +1,22 @@
 Title: High Availability | MAAS
 TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
-       Can DHCP HA involve more than 2 DHCP instances?
        Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
+       Remove comment about 80:5240 redirect once apache/redirect is removed from MAAS
+       Update link to HAProxy upstream manual if haproxy 1.6 not used by default
+       See expanded comment on ports in this document (it's important; no pun intended)
 table_of_contents: True
 
+<!-- NOTES
+Comment on ports
+
+Since the apache redirect will eventually be removed, every occurrence of the
+MAAS URL in the documentation will require a caveat (use port 80 in an HA
+environment, otherwise use port 5240). It would be better to replace the apache
+redirect with a lighter weight mechanism (e.g. socat) which the admin can
+disable when they enable HA. The admin should move things around so that things
+work with HA; it should remain transparent to end users. See last line in this
+page.
+-->
 
 # High Availability
 
@@ -135,8 +148,9 @@ Load balancing can be added with the [HAProxy](http://www.haproxy.org/) load
 balancer software.
 
 On each API server host, before `haproxy` is installed, `apache2` needs to be
-disabled. This is because both apache2 and haproxy listen on the same port (TCP
-80):
+stopped (and disabled). This is because both apache2 and haproxy listen on the
+same port (TCP 80). Recall that apache2 is only used to redirect port 80 to
+port 5240.
 
 ```bash
 sudo systemctl stop apache2
@@ -144,9 +158,11 @@ sudo systemctl disable apache2
 sudo apt install haproxy
 ```
 
-Configure each API server host's load balancer by copying the following into
-`/etc/haproxy/haproxy.cfg`, replacing $PRIMARY_API_SERVER_IP and
-$SECONDARY_API_SERVER_IP with their respective IP addresses:
+Configure each API server's load balancer by copying the following into
+`/etc/haproxy/haproxy.cfg` (see the
+[upstream configuration manual](http://cbonte.github.io/haproxy-dconv/1.6/configuration.html)
+as a reference). Replace $PRIMARY_API_SERVER_IP and $SECONDARY_API_SERVER_IP
+with their respective IP addresses:
 
 ```yaml
 frontend maas
@@ -166,7 +182,7 @@ backend maas
 
 Where `maas-api-1` and `maas-api-2` are arbitrary server labels.
 
-Now restart the load balancer:
+Now restart the load balancer to have these changes take effect:
 
 ```bash
 sudo systemctl restart haproxy
@@ -189,22 +205,36 @@ echo 'net.ipv4.ip_nonlocal_bind=1' | sudo tee /etc/sysctl.d/60-keepalived-nonloc
 sudo systemctl restart procps
 ```
 
-Create the file `/etc/keepalived/keepalived.conf` based on the example below.
-Either `apache2` or `haproxy` will be referred to, depending on whether load
-balancing was implemented or not (see previous section).
+Create the file `/etc/keepalived/keepalived.conf` (see the
+[keepalived.conf man page](http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf)
+as a reference) based on the example below. Either `apache2` or `haproxy` will
+be referred to, depending on whether load balancing was implemented or not (see
+previous section).
 
-The values for $INTERFACE, $PASSWORD (arbitrary), $VIP and $PRIORITY will vary
-according to the local environment. The priority is an integer between 1-255 (a
-larger value indicates a greater preference for the server to claim the VIP).
+The following variables are used:
+
+- INTERFACE: The network interface name (e.g. eth0) of the corresponding API
+  server from which it can be reached by MAAS clients.
+- PASSWORD: This example uses a cleartext password (auth_type PASS).
+  Participating servers authenticate with one another in order to synchronize.
+  They must all use the same (arbitrarily chosen) password.
+- VIP: The virtual IP. This is any IP address available on the subnet.
+- PRIORITY: An integer (1-255) that indicates a preference for the
+  corresponding API server to claim the VIP. A larger value indicates a greater
+  preference. For example, the preferred primary could have 150 while the
+  preferred secondary could have 100.
+
+Their values are represented when they are preceded with the '$' character
+(e.g. $VIP). These are to be replaced with actual values in the file.
 
 ```no-highlight
-### Un-comment this section if using haproxy
+### Un-comment next 4 lines if using haproxy
 #vrrp_script chk_haproxy {
 #    script "killall -0 haproxy"
 #    interval 2
 #}
 
-### Un-comment this section if using apache2
+### Un-comment next 4 lines if using apache2
 #vrrp_script chk_apache2 {
 #    script "killall -0 apache2"
 #    interval 2
@@ -225,9 +255,9 @@ vrrp_instance maas_region {
         auth_pass $PASSWORD
     }
      track_script {
-        # Un-comment when using haproxy
+        ### Un-comment next line if using haproxy
         #chk_haproxy
-        # Un-comment when using apache2
+        ### Un-comment next line if using apache2
         #chk_apache2
         chk_named
     }
@@ -253,15 +283,18 @@ with that of the VIP. Then inform all rack controllers of that change.
 To adjust an API server: 
 
 ```bash
-sudo maas-region local_config_set --maas-url http://$VIP:5240/MAAS
+sudo maas-region local_config_set --maas-url http://$VIP/MAAS
 sudo systemctl restart maas-regiond
 ```
 
 To adjust a rack controller:
 
 ```bash
-sudo maas-rack config --region-url http://$VIP:5240/MAAS
+sudo maas-rack config --region-url http://$VIP/MAAS
 sudo systemctl restart maas-rackd
 ```
 
 The configuration of region controller HA is now complete.
+
+**The API server(s) must be now be referenced (e.g. web UI, MAAS CLI) using
+port 80 (as opposed to port 5240).**
