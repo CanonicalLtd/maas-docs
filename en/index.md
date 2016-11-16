@@ -1,6 +1,6 @@
 Title: MAAS | Metal As A Service
 TODO:  Review paragraph "Multiple region and rack controllers are required if..." 
-
+table_of_contents: True
 
 # What is MAAS?
 
@@ -94,8 +94,8 @@ Unless there is specific reason not to, it is recommended to have both
 controllers residing on the same system. A no-fuss way to achieve this is by
 installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
 
-Multiple region and rack controllers are required if nodes need to be organised
-into different subnets and high availability and/or load balancing is desired.
+Multiple region and rack controllers are required if
+[high availability](manage-ha.md) and/or load balancing (see HA page) is desired.
 
 It's important to note that the all-in-one solution will provide a DHCP
 service. Review your existing network design in order to determine whether this
@@ -113,3 +113,63 @@ There are three ways to install MAAS:
 
 These methods, and their respective advantages, are fleshed out on the
 [Installation](installconfig-install.md) page.
+
+
+## Minimum requirements
+
+The minimum requirements for the machines that run MAAS vary widely depending
+on:
+
+ - the number of connecting clients (client activity)
+ - the manner in which services are distributed
+ - whether [high availability](manage-ha.md) is used
+ - whether load balancing is used
+ - the number of images that are stored (disk space affecting PostgreSQL and
+   the rack controller)
+
+Below, resource estimates are provided based on MAAS components, operating
+system (Ubuntu Server), and *two* complete sets of images (latest two LTS
+releases) for a *single* architecture. Three different "client activity"
+scenarios are examined.
+
+These figures are for the MAAS infrastructure only. That is, they do not
+cover resources needed on the nodes that will subsequently be added to MAAS.
+
+
+**Low client activity**
+
+This is a proof of concept scenario. The approximate requirements if installing
+all components on a single system are: 2 GB memory, 2 GHz CPU, and ??
+diskspace.
+
+|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
+| --------------------------------------------------- | ----------- | --------- | --------- |
+| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
+| PostgreSQL                                          |  512        | 0.5       | ??        |
+| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
+| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
+
+
+**Medium client activity**
+
+|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
+| --------------------------------------------------- | ----------- | --------- | --------- |
+| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
+| PostgreSQL                                          |  512        | 0.5       | ??        |
+| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
+| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
+
+
+**High client activity**
+
+|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
+| --------------------------------------------------- | ----------- | --------- | --------- |
+| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
+| PostgreSQL                                          |  512        | 0.5       | ??        |
+| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
+| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
+
+
+<!-- LINKS -->
+
+[controllers]: intro-concepts.md#controllers
