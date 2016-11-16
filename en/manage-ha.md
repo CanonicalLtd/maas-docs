@@ -4,6 +4,7 @@ TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
        Remove comment about 80:5240 redirect once apache/redirect is removed from MAAS
        Update link to HAProxy upstream manual if haproxy 1.6 not used by default
        See expanded comment on ports in this document (it's important; no pun intended)
+       There should be a section devoted to verifying that the various aspects of HA are working
 table_of_contents: True
 
 <!-- NOTES
