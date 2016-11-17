@@ -128,9 +128,9 @@ on:
    the rack controller)
 
 Below, resource estimates are provided based on MAAS components, operating
-system (Ubuntu Server), and *two* complete sets of images (latest two LTS
-releases) for a *single* architecture. Three different "client activity"
-scenarios are considered.
+system (Ubuntu Server), and *two* complete sets of images (latest two Ubuntu
+LTS releases) for a *single* architecture. A test and a production environment
+are considered.
 
 These figures are for the MAAS infrastructure only. That is, they do not
 cover resources needed on the nodes that will subsequently be added to MAAS.
@@ -147,7 +147,7 @@ so further independent rack controllers will be needed with each one servicing
 its own subnet(s).
 
 
-^# Low client activity
+^# Test (or proof of concept) environment
 
    This is a proof of concept scenario where all MAAS components are installed
    on a single host.
@@ -162,7 +162,7 @@ its own subnet(s).
    Therefore, the approximate requirements for this scenario are: 2 GB memory,
    2 GHz CPU, and ?? GB of disk space.
 
-
+<!-- TOO SIMILAR TO THE ABOVE
 ^# Medium client activity
 
    This is a production scenario that is not designed to handle a significant
@@ -179,9 +179,10 @@ its own subnet(s).
 
    Therefore, the approximate requirements for this scenario are: 3.5 GB memory,
    3.5 GHz CPU, and ?? GB of disk space.
+-->
 
 
-^# High client activity
+^# Production environment
 
    This is a production scenario that is designed to handle a high number of
    sustained client connections. Both high availability (region and rack) and
