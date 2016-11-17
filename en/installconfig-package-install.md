@@ -31,7 +31,6 @@ and/or multiple rack controllers. See [MAAS HA][ha-maas].
 [rack]: installconfig-rack.md
 [dhcp]: installconfig-subnets-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
-[add-rack]: installconfig-rack.md#install-a-rack-controller
 [ha-maas]: manage-ha.md
 
 

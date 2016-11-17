@@ -10,22 +10,6 @@ the
 [PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
 when setting up HA on PostgreSQL.**
 
-<!-- NOTES
-
-https://www.postgresql.org/docs/9.5/static/high-availability.html
-https://jujucharms.com/postgresql/
-
-CREATETABLE guestbook (visitor_email text, vistor_id serial, date timestamp, message text);
-INSERT INTO guestbook (visitor_email, date, message) VALUES ( 'jim@gmail.com', current_date, 'This is a test.');
-INSERT INTO guestbook (visitor_email, date, message) VALUES ( 'jim@gmail.com', current_date, 'Now we are replicating.');
-SELECT * from guestbook;
-
-Primary host:
-This should change over time ('*_location' values):
-sudo -u postgres psql -x -c "select * from pg_stat_replication;"
-
--->
-
 The following variables are used on this page:
 
 - PRIMARY_PG_IP: The IP address of the host that contains the primary database.

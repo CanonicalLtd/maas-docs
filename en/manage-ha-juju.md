@@ -1,5 +1,6 @@
 Title: Deploy HA with Juju | MAAS
 TODO:  This procedure needs to be verified, with text added as a consequence. It didn't work for me (pmatulis): https://goo.gl/IheOKw ; https://goo.gl/dm5AkK
+       Include a diagram or a screenshot of juju gui
 
 
 # Deploy HA with Juju

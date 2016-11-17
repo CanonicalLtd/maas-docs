@@ -7,17 +7,6 @@ TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
        There should be a section devoted to verifying that the various aspects of HA are working
 table_of_contents: True
 
-<!-- NOTES
-Comment on ports
-
-Since the apache redirect will eventually be removed, every occurrence of the
-MAAS URL in the documentation will require a caveat (use port 80 in an HA
-environment, otherwise use port 5240). It would be better to replace the apache
-redirect with a lighter weight mechanism (e.g. socat) which the admin can
-disable when they enable HA. The admin should move things around so that things
-work with HA; it should remain transparent to end users. See last line in this
-page.
--->
 
 # High Availability
 
@@ -26,18 +15,13 @@ the rack controller level and the region controller level. See
 [Concepts and Terms](intro-concepts.md#controllers) for detailed information on
 what services are provided by each of those levels.
 
-It is possible to use [Juju](https://jujucharms.com/docs/devel/about-juju.html)
-to deploy MAAS in an HA configuration. See
-[Deploy HA with Juju](manage-ha-juju.md) for how to do this. Note that this is
-not how Juju would normally be used in a MAAS context. Normally, Juju would be
-applied to an existing MAAS.
-
 
 ## Rack controller HA
 
 Although DHCP is handled at the rack controller level one should not worry
-about a second DHCP service coming online and causing disruption. DHCP software
-is added intelligently and DHCP HA will become available as an option.
+about a second MAAS-managed DHCP service coming online and causing disruption.
+DHCP software is added intelligently when a new rack controller is installed
+and DHCP HA will become available as an option.
 
 Install a second rack controller by reading
 [Rack controller](installconfig-rack.md#install-a-rack-controller).
