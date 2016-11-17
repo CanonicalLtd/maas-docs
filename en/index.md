@@ -123,51 +123,78 @@ on:
  - the number of connecting clients (client activity)
  - the manner in which services are distributed
  - whether [high availability](manage-ha.md) is used
- - whether load balancing is used
+ - whether [load balancing](manage-ha.md#load-balancing-(optional)) is used
  - the number of images that are stored (disk space affecting PostgreSQL and
    the rack controller)
 
 Below, resource estimates are provided based on MAAS components, operating
 system (Ubuntu Server), and *two* complete sets of images (latest two LTS
 releases) for a *single* architecture. Three different "client activity"
-scenarios are examined.
+scenarios are considered.
 
 These figures are for the MAAS infrastructure only. That is, they do not
 cover resources needed on the nodes that will subsequently be added to MAAS.
+Equally not taken into account is a possible
+[local image mirror](installconfig-images-mirror.md).
 
 
-**Low client activity**
+^# Low client activity
 
-This is a proof of concept scenario. The approximate requirements if installing
-all components on a single system are: 2 GB memory, 2 GHz CPU, and ??
-diskspace.
+   This is a proof of concept scenario where all MAAS components are installed
+   on a single host.
+   
+   |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
+   | --------------------------------------------------- | ----------- | --------- | --------- |
+   | [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       |  5        |
+   | PostgreSQL                                          |  512        | 0.5       | ??        |
+   | [Rack controller][controllers]                      |  512        | 0.5       | ??        |
+   | Ubuntu Server (including logs)                      |  512        | 0.5       |  5        |
 
-|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
-| --------------------------------------------------- | ----------- | --------- | --------- |
-| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
-| PostgreSQL                                          |  512        | 0.5       | ??        |
-| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
-| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
-
-
-**Medium client activity**
-
-|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
-| --------------------------------------------------- | ----------- | --------- | --------- |
-| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
-| PostgreSQL                                          |  512        | 0.5       | ??        |
-| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
-| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
+   Therefore, the approximate requirements for this scenario are: 2 GB memory,
+   2 GHz CPU, and ?? GB of disk space.
 
 
-**High client activity**
+^# Medium client activity
 
-|                                                     | Memory (GB) | CPU (GHz) | Disk (GB) |
-| --------------------------------------------------- | ----------- | --------- | --------- |
-| [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       | 5         |
-| PostgreSQL                                          |  512        | 0.5       | ??        |
-| [Rack controller][controllers]                      |  512        | 0.5       | 100       |
-| Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
+   This is a production scenario that is not designed to handle a significant
+   number of concurrent client connections nor is the install deemed important
+   enough for high availability. All components still reside on a single
+   system.
+
+   |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
+   | --------------------------------------------------- | ----------- | --------- | --------- |
+   | [Region controller][controllers] (minus PostgreSQL) | 1024        | 1.0       |  5        |
+   | PostgreSQL                                          | 1024        | 1.0       | ??        |
+   | [Rack controller][controllers]                      | 1024        | 1.0       | ??        |
+   | Ubuntu Server (including logs)                      | 1024        | 1.0       | 10        |
+
+   Therefore, the approximate requirements for this scenario are: 4 GB memory,
+   4 GHz CPU, and ?? GB of disk space.
+
+
+^# High client activity
+
+   This is a production scenario that is designed to handle a high number of
+   sustained client connections. Both high availability and load balancing have
+   been implemented.
+
+   |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
+   | --------------------------------------------------- | ----------- | --------- | --------- |
+   | [Region controller][controllers] (minus PostgreSQL) | 2048        | 2.0       |  5        |
+   | PostgreSQL                                          | 2048        | 2.0       | ??        |
+   | [Rack controller][controllers]                      | 2048        | 2.0       | ??        |
+   | Ubuntu Server (including logs)                      | 1024        | 1.0       | 20        |
+
+   Therefore, the approximate requirements for this scenario are:
+
+   - A region controller (including PostgreSQL) is installed on one host: 5 GB
+     memory, 5 GHz CPU, and ?? GB of disk space.
+   - A region controller (including PostgreSQL) is duplicated on a second
+     host: 5 GB memory, 5 GHz CPU, and ?? GB of disk space.
+   - A rack controller is installed on a third host: 3 GB memory, 3 GHz CPU,
+     and ?? GB of disk space.
+   - A rack controller is duplicated on a fourth host: 3 GB memory, 3 GHz CPU,
+     and ?? GB of disk space.
 
 
 <!-- LINKS -->
