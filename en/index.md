@@ -134,8 +134,17 @@ scenarios are considered.
 
 These figures are for the MAAS infrastructure only. That is, they do not
 cover resources needed on the nodes that will subsequently be added to MAAS.
+That said, node machines should have IPMI-based BMC controllers for power
+cycling, see [BMC Power Types](installconfig-power-types.md).
+
 Equally not taken into account is a possible
-[local image mirror](installconfig-images-mirror.md).
+[local image mirror](installconfig-images-mirror.md) which would be a large
+consumer of disk space.
+
+One rack controller should not be used to service more than 1000 nodes (whether
+on the same or multiple subnets). There is no load balancing at the rack level
+so further independent rack controllers will be needed with each one servicing
+its own subnet(s).
 
 
 ^# Low client activity
@@ -166,34 +175,34 @@ Equally not taken into account is a possible
    | [Region controller][controllers] (minus PostgreSQL) | 1024        | 1.0       |  5        |
    | PostgreSQL                                          | 1024        | 1.0       | ??        |
    | [Rack controller][controllers]                      | 1024        | 1.0       | ??        |
-   | Ubuntu Server (including logs)                      | 1024        | 1.0       | 10        |
+   | Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
 
-   Therefore, the approximate requirements for this scenario are: 4 GB memory,
-   4 GHz CPU, and ?? GB of disk space.
+   Therefore, the approximate requirements for this scenario are: 3.5 GB memory,
+   3.5 GHz CPU, and ?? GB of disk space.
 
 
 ^# High client activity
 
    This is a production scenario that is designed to handle a high number of
-   sustained client connections. Both high availability and load balancing have
-   been implemented.
+   sustained client connections. Both high availability (region and rack) and
+   load balancing (region) have been implemented.
 
    |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
    | --------------------------------------------------- | ----------- | --------- | --------- |
    | [Region controller][controllers] (minus PostgreSQL) | 2048        | 2.0       |  5        |
    | PostgreSQL                                          | 2048        | 2.0       | ??        |
    | [Rack controller][controllers]                      | 2048        | 2.0       | ??        |
-   | Ubuntu Server (including logs)                      | 1024        | 1.0       | 20        |
+   | Ubuntu Server (including logs)                      |  512        | 0.5       | 20        |
 
    Therefore, the approximate requirements for this scenario are:
 
-   - A region controller (including PostgreSQL) is installed on one host: 5 GB
-     memory, 5 GHz CPU, and ?? GB of disk space.
+   - A region controller (including PostgreSQL) is installed on one host: 4.5 GB
+     memory, 4.5 GHz CPU, and ?? GB of disk space.
    - A region controller (including PostgreSQL) is duplicated on a second
-     host: 5 GB memory, 5 GHz CPU, and ?? GB of disk space.
-   - A rack controller is installed on a third host: 3 GB memory, 3 GHz CPU,
+     host: 4.5 GB memory, 4.5 GHz CPU, and ?? GB of disk space.
+   - A rack controller is installed on a third host: 2.5 GB memory, 2.5 GHz CPU,
      and ?? GB of disk space.
-   - A rack controller is duplicated on a fourth host: 3 GB memory, 3 GHz CPU,
+   - A rack controller is duplicated on a fourth host: 2.5 GB memory, 2.5 GHz CPU,
      and ?? GB of disk space.
 
 
