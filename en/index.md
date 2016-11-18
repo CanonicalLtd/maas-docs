@@ -122,11 +122,11 @@ on local implementation and usage.
 
 Below, resource estimates are provided based on MAAS components, operating
 system (Ubuntu Server), and *two* complete sets of images (latest two Ubuntu
-LTS releases) for a *single* architecture. A test and a production environment
-are considered.
+LTS releases) for a *single* architecture. A test (or proof of concept) and a
+production environment are considered.
 
 
-^# Test (or proof of concept) environment
+^# Test environment
 
    This is a proof of concept scenario where all MAAS components are installed
    on a single host.
