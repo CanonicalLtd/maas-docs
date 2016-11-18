@@ -118,33 +118,12 @@ These methods, and their respective advantages, are fleshed out on the
 ## Minimum requirements
 
 The minimum requirements for the machines that run MAAS vary widely depending
-on:
-
- - the number of connecting clients (client activity)
- - the manner in which services are distributed
- - whether [high availability](manage-ha.md) is used
- - whether [load balancing](manage-ha.md#load-balancing-(optional)) is used
- - the number of images that are stored (disk space affecting PostgreSQL and
-   the rack controller)
+on local implementation and usage.
 
 Below, resource estimates are provided based on MAAS components, operating
 system (Ubuntu Server), and *two* complete sets of images (latest two Ubuntu
 LTS releases) for a *single* architecture. A test and a production environment
 are considered.
-
-These figures are for the MAAS infrastructure only. That is, they do not
-cover resources needed on the nodes that will subsequently be added to MAAS.
-That said, node machines should have IPMI-based BMC controllers for power
-cycling, see [BMC Power Types](installconfig-power-types.md).
-
-Equally not taken into account is a possible
-[local image mirror](installconfig-images-mirror.md) which would be a large
-consumer of disk space.
-
-One rack controller should not be used to service more than 1000 nodes (whether
-on the same or multiple subnets). There is no load balancing at the rack level
-so further independent rack controllers will be needed with each one servicing
-its own subnet(s).
 
 
 ^# Test (or proof of concept) environment
@@ -204,7 +183,30 @@ its own subnet(s).
    - A rack controller is installed on a third host: 2.5 GB memory, 2.5 GHz CPU,
      and ?? GB of disk space.
    - A rack controller is duplicated on a fourth host: 2.5 GB memory, 2.5 GHz CPU,
-     and ?? GB of disk space.
+     and ?? GB of disk space.  
+  
+!!! Note: Figures in the above two tables are for the MAAS infrastructure only. That is,
+they do not cover resources needed on the nodes that will subsequently be added
+to MAAS. That said, node machines should have IPMI-based BMC controllers for
+power cycling, see [BMC Power Types](installconfig-power-types.md).
+
+Examples of factors that influence hardware specifications include:
+
+ - the number of connecting clients (client activity)
+ - the manner in which services are distributed
+ - whether [high availability](manage-ha.md) is used
+ - whether [load balancing](manage-ha.md#load-balancing-(optional)) is used
+ - the number of images that are stored (disk space affecting PostgreSQL and
+   the rack controller)
+
+Equally not taken into account is a possible
+[local image mirror](installconfig-images-mirror.md) which would be a large
+consumer of disk space.
+
+One rack controller should not be used to service more than 1000 nodes (whether
+on the same or multiple subnets). There is no load balancing at the rack level
+so further independent rack controllers will be needed with each one servicing
+its own subnet(s).
 
 
 <!-- LINKS -->
