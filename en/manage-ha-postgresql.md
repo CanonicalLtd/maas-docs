@@ -26,30 +26,37 @@ and files below.
 
 Perform these actions on the primary host.
 
-1) Create an internal database user to manage replication. You will be prompted
-to supply a password ($REP_USER_PW) for this new user:
+### Create internal database user
+
+Create an internal database user to manage replication. You will be prompted to
+supply a password ($REP_USER_PW) for this new user:
 
 ```bash
 sudo -u postgres createuser -U postgres $REP_USER -P -c 5 --replication
 ```
 
-2) Set up a place to store replication files:
+### Set up replication file storage
+
+Set up a place to store replication files:
 
 ```bash
 sudo mkdir -p /pgsql/archive
 sudo chown postgres /pgsql/archive
 ```
 
-3) Edit `/etc/postgresql/9.5/main/pg_hba.conf` to allow the secondary host to
+### Allow secondary host to connect
+
+Edit `/etc/postgresql/9.5/main/pg_hba.conf` to allow the secondary host to
 contact this primary host.
 
 ```no-highlight
 host    replication     $REP_USER	$SECONDARY_PG_IP/32         md5
 ```
 
-4) Edit `/etc/postgresql/9.5/main/postgresql.conf` to listen on more than just
-its localhost interface, turn on replication, and point to the archive
-directory:
+### Configure for replication
+
+Edit `/etc/postgresql/9.5/main/postgresql.conf` to listen on more than just its
+localhost interface, turn on replication, and point to the archive directory:
 
 ```no-highlight
 listen_addresses = '*'
@@ -59,7 +66,9 @@ archive_command = 'test ! -f /pgsql/archive/%f && cp %p /pgsql/archive/%f'
 max_wal_senders = 3
 ```
 
-5) Restart the database to apply the above changes:
+### Restart the database
+
+Restart the database to apply the above changes:
 
 ```bash
 sudo systemctl restart postgresql
@@ -70,40 +79,57 @@ sudo systemctl restart postgresql
 
 Perform these actions on the secondary host.
 
-1) Install PostgreSQL and stop the service. Then move the default database
-files out of the way and replace them with a copy of the primary database
-files. You will be prompted for the password of the replication user.
+### Install PostgreSQL and stop the service
+
+Install PostgreSQL and stop the service: 
 
 ```bash
 sudo apt install postgresql
 sudo systemctl stop postgresql
+```
+
+### Copy over primary database files
+
+Move the default database files out of the way and replace them with a copy of
+the primary database files. You will be prompted for the password of the
+replication user.
+
+```bash
 sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.old
 sudo -u postgres pg_basebackup -h $PRIMARY_PG_IP -D /var/lib/postgresql/9.5/main -U $REP_USER -v -P --xlog-method=stream
 Password: 
 ```
 
-2) Edit `/etc/postgresql/9.5/main/postgresql.conf` and put this secondary host
-in hot standby mode:
+### Place database in hot standby mode
+
+Edit `/etc/postgresql/9.5/main/postgresql.conf` and put this secondary host in
+hot standby mode:
 
 ```no-highlight
 hot_standby = on
 ```
 
-3) Copy a sample recovery configuration file into place:
+### Set up recovery configuration file
+
+Copy a sample recovery configuration file into place:
 
 ```bash
 sudo cp /usr/share/postgresql/9.5/recovery.conf.sample /var/lib/postgresql/9.5/main/recovery.conf
 ```
 
-4) Edit `/var/lib/postgresql/9.5/main/recovery.conf`. Specify hot standby mode
-and enter the information necessary for contacting the primary:
+### Configure for recovery
+
+Edit `/var/lib/postgresql/9.5/main/recovery.conf`. Specify hot standby mode and
+enter the information necessary for contacting the primary:
 
 ```no-highlight
 standby_mode = on
 primary_conninfo = 'host=$PRIMARY_PG_IP port=5432 user=$REP_USER password=$REP_USER_PW'
 ```
 
-5) Start the database:
+### Start the database
+
+Start the database:
 
 ```bash
 sudo systemctl start postgresql
