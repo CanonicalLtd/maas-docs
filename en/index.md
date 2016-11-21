@@ -120,75 +120,61 @@ These methods, and their respective advantages, are fleshed out on the
 The minimum requirements for the machines that run MAAS vary widely depending
 on local implementation and usage.
 
-Below, resource estimates are provided based on MAAS components, operating
-system (Ubuntu Server), and *two* complete sets of images (latest two Ubuntu
-LTS releases) for a *single* architecture. A test (or proof of concept) and a
-production environment are considered.
+Below, resource estimates are provided based on MAAS components and operating
+system (Ubuntu Server). A test (or proof of concept) and a production
+environment are considered.
 
 
 ^# Test environment
 
    This is a proof of concept scenario where all MAAS components are installed
-   on a single host.
+   on a single host. *Two* complete sets of images (latest two Ubuntu
+   LTS releases) for a *single* architecture (amd64) have been assumed.
    
    |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
    | --------------------------------------------------- | ----------- | --------- | --------- |
    | [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       |  5        |
-   | PostgreSQL                                          |  512        | 0.5       | ??        |
-   | [Rack controller][controllers]                      |  512        | 0.5       | ??        |
+   | PostgreSQL                                          |  512        | 0.5       |  5        |
+   | [Rack controller][controllers]                      |  512        | 0.5       |  5        |
    | Ubuntu Server (including logs)                      |  512        | 0.5       |  5        |
 
    Therefore, the approximate requirements for this scenario are: 2 GB memory,
-   2 GHz CPU, and ?? GB of disk space.
-
-<!-- TOO SIMILAR TO THE ABOVE
-^# Medium client activity
-
-   This is a production scenario that is not designed to handle a significant
-   number of concurrent client connections nor is the install deemed important
-   enough for high availability. All components still reside on a single
-   system.
-
-   |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
-   | --------------------------------------------------- | ----------- | --------- | --------- |
-   | [Region controller][controllers] (minus PostgreSQL) | 1024        | 1.0       |  5        |
-   | PostgreSQL                                          | 1024        | 1.0       | ??        |
-   | [Rack controller][controllers]                      | 1024        | 1.0       | ??        |
-   | Ubuntu Server (including logs)                      |  512        | 0.5       | 10        |
-
-   Therefore, the approximate requirements for this scenario are: 3.5 GB memory,
-   3.5 GHz CPU, and ?? GB of disk space.
--->
+   2 GHz CPU, and 20 GB of disk space.
 
 
 ^# Production environment
 
    This is a production scenario that is designed to handle a high number of
-   sustained client connections. Both high availability (region and rack) and
-   load balancing (region) have been implemented.
+   sustained client connections. Both high availability (region and rack) and load
+   balancing (region) have been implemented.
 
+   Even though extra space has been reserved for images (database and rack
+   controller) some images such as those for Microsoft Windows may require a lot
+   more (plan accordingly).
+ 
    |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
    | --------------------------------------------------- | ----------- | --------- | --------- |
    | [Region controller][controllers] (minus PostgreSQL) | 2048        | 2.0       |  5        |
-   | PostgreSQL                                          | 2048        | 2.0       | ??        |
-   | [Rack controller][controllers]                      | 2048        | 2.0       | ??        |
+   | PostgreSQL                                          | 2048        | 2.0       | 20        |
+   | [Rack controller][controllers]                      | 2048        | 2.0       | 20        |
    | Ubuntu Server (including logs)                      |  512        | 0.5       | 20        |
 
    Therefore, the approximate requirements for this scenario are:
 
    - A region controller (including PostgreSQL) is installed on one host: 4.5 GB
-     memory, 4.5 GHz CPU, and ?? GB of disk space.
+     memory, 4.5 GHz CPU, and 45 GB of disk space.
    - A region controller (including PostgreSQL) is duplicated on a second
-     host: 4.5 GB memory, 4.5 GHz CPU, and ?? GB of disk space.
+     host: 4.5 GB memory, 4.5 GHz CPU, and 45 GB of disk space.
    - A rack controller is installed on a third host: 2.5 GB memory, 2.5 GHz CPU,
-     and ?? GB of disk space.
+     and 40 GB of disk space.
    - A rack controller is duplicated on a fourth host: 2.5 GB memory, 2.5 GHz CPU,
-     and ?? GB of disk space.  
-  
-!!! Note: Figures in the above two tables are for the MAAS infrastructure only. That is,
-they do not cover resources needed on the nodes that will subsequently be added
-to MAAS. That said, node machines should have IPMI-based BMC controllers for
-power cycling, see [BMC Power Types](installconfig-power-types.md).
+     and 40 GB of disk space.  
+ 
+!!! Note: Figures in the above two tables are for the MAAS infrastructure only.
+That is, they do not cover resources needed on the nodes that will subsequently
+be added to MAAS. That said, node machines should have IPMI-based BMC
+controllers for power cycling, see
+[BMC Power Types](installconfig-power-types.md).
 
 Examples of factors that influence hardware specifications include:
 
