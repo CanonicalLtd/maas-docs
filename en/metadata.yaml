@@ -152,7 +152,7 @@ navigation:
         location: troubleshoot-getting-help.md
 
   - title: Release notes
-    location: ref-release-notes.md
+    location: 2.1-release-notes.md
 
   - title: Developer guide
     location: http://docs.maas.io/2.0/index.html#developing-maas
