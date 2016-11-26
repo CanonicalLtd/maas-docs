@@ -1,4 +1,6 @@
-Title: Local Image Mirror
+Title: Local Image Mirror | MAAS
+TODO:  Hardcoded text: Update suggested mirror selections "for the year 2016"
+       Missing information: 2.1 mirror needs to cover bootloaders but i don't know how to do that. email sent to MAAS crew
 
 
 # Local Image Mirror
@@ -20,8 +22,8 @@ First define some variables to unclutter eventual CLI commands:
 
 ```bash
 KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-IMAGE_SRC=https://images.maas.io/ephemeral-v2/daily/
-IMAGE_DIR=/var/www/html/maas/images/ephemeral-v2/daily
+IMAGE_SRC=https://images.maas.io/ephemeral-v3/daily/
+IMAGE_DIR=/var/www/html/maas/images/ephemeral-v3/daily
 ```
 
 !!! Note: If you wish to use older images (which change far less frequently,
@@ -30,8 +32,8 @@ Simply replace the word 'daily' with 'releases' in two of the above variables.
 
 The below example is a good choice for the year 2016. It selects all available
 kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
-(Xenial) for the amd64 architecture, representing a download of approximately
-2.3 GB:
+(Xenial) for the amd64 architecture, resulting in a download of approximately
+3.1 GB:
 
 ```bash
 sudo sstream-mirror --keyring=$KEYRING_FILE $IMAGE_SRC $IMAGE_DIR \
@@ -46,7 +48,7 @@ download.
 The images will be written to disk in the directory defined by the variable
 'IMAGE_DIR' above and the 'location' of the new boot source will be:
 
-`URL=http://<myserver>/maas/images/ephemeral-v2/daily/`
+`URL=http://<myserver>/maas/images/ephemeral-v3/daily/`
 
 Where `<myserver>` identifies your server's hostname or IP address.
 
