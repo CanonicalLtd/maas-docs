@@ -33,11 +33,13 @@ Simply replace the word 'daily' with 'releases' in two of the above variables.
 The below example is a good choice for the year 2016. It selects all available
 kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
 (Xenial) for the amd64 architecture, resulting in a download of approximately
-3.1 GB:
+3.1 GB. The second command mirrors the bootloaders.
 
 ```bash
 sudo sstream-mirror --keyring=$KEYRING_FILE $IMAGE_SRC $IMAGE_DIR \
 	'arch=amd64' 'release~(trusty|xenial)' --max=1 --progress
+sudo sstream-mirror --keyring=$KEYRING_FILE $IMAGE_SRC $IMAGE_DIR \
+	'os~(grub*|pxelinux)' --max=1 --progress
 ```
 
 To know in advance what the `sstream-mirror` command will grab and/or if you
