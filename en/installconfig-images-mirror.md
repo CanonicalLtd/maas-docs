@@ -1,6 +1,5 @@
 Title: Local Image Mirror | MAAS
 TODO:  Hardcoded text: Update suggested mirror selections "for the year 2016"
-       Missing information: 2.1 mirror needs to cover bootloaders but i don't know how to do that. email sent to MAAS crew
 
 
 # Local Image Mirror
