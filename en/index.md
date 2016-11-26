@@ -1,6 +1,6 @@
 Title: MAAS | Metal As A Service
-TODO:  Review paragraph "Multiple region and rack controllers are required if..." 
 table_of_contents: True
+
 
 # What is MAAS?
 
@@ -39,6 +39,7 @@ integrates all the tools you require in one smooth experience. It includes:
 - inventory of components
 - DHCP and DNS for other devices on the network
 - VLAN and fabric support
+- NTP for the entire infrastructure
 
 MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef](https://www.chef.io/chef) and
