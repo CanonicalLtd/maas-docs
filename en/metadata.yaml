@@ -56,6 +56,9 @@ navigation:
           - title: Local image mirror
             location: installconfig-images-mirror.md
 
+      - title: NTP
+        location: installconfig-ntp.md
+
       - title: Networking
         location: installconfig-networking.md
 
