@@ -10,6 +10,7 @@ RAID, and LVM. It also offers fine-grained control over the creation, deletion,
 formatting and mounting of both [block devices](installconfig-block.md) and
 [partitions](installconfig-partitions.md).
 
+
 ## Layouts
 
 The configuration that gets assigned to a node is known as a storage *layout*.
@@ -133,6 +134,7 @@ used as the cache.
 !!! Note: The /boot/efi partition on all layouts will only be created on nodes
 that deploy with UEFI.
 
+
 ## Setting the Layout
 
 It's also possible to change the storage layout either globally, on acquire, or
@@ -171,5 +173,6 @@ If a node is already acquired and you want to adjust the storage layout the
 ```bash
 maas admin machine set-storage-layout <node-id> storage_layout=lvm lv_size=<size>
 ```
+
 !!! Warning: This will completely remove any previous storage configuration on all
 block devices.
