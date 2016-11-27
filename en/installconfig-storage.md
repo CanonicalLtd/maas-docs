@@ -1,4 +1,5 @@
-Title: Storage
+Title: Storage | MAAS
+
 
 # Storage
 
@@ -9,6 +10,7 @@ fine-grained control over the creation, deletion, formatting and mounting of
 both [block devices](installconfig-block.md) and
 [partitions](installconfig-partitions.md). This gives users unlimited
 possibilities on the storage configurations they want to deploy.
+
 
 ## Layouts
 
@@ -127,6 +129,7 @@ used as the cache.
 
 !!! Note: The /boot/efi partition on all layouts will only be created on nodes
 that deploy with UEFI.
+
 
 ## Setting the Layout
 
