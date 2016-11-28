@@ -1,5 +1,6 @@
 Title: Select and Import Images | MAAS 
 TODO:  Be consistent with final version of installconfig-hwe-kernels.md (see TODO)
+       There is rumor of changing the image sync frequency. 1 hr is deemed too frequent
 
 
 # Select and Import Images
@@ -18,6 +19,10 @@ releases (and amd64 architecture) are selected:
 
 In the top-right corner there is a toggle switch for automatic syncing of
 images. It is highly recommended to keep this enabled.
+
+!!! Note: Image sync occurs hourly and the availability of new images is
+influenced by the image stream MAAS is configured to use. See
+[Boot image sources](installconfig-images.md#boot-image-sources).
 
 To change the selections select any other images (by choosing 'Release' and
 'Architecture'), and click the 'Save selection' button to initiate the import.

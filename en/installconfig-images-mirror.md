@@ -1,5 +1,6 @@
 Title: Local Image Mirror | MAAS
 TODO:  Hardcoded text: Update suggested mirror selections "for the year 2016"
+       Check whether v3 format still only offers a 'daily' stream
 
 
 # Local Image Mirror
@@ -25,9 +26,9 @@ IMAGE_SRC=https://images.maas.io/ephemeral-v3/daily/
 IMAGE_DIR=/var/www/html/maas/images/ephemeral-v3/daily
 ```
 
-!!! Note: If you wish to use older images (which change far less frequently,
-but which will lack security updates), you can use the 'releases' stream.
-Simply replace the word 'daily' with 'releases' in two of the above variables.
+!!! Note: The new v3 format currently only offers a 'daily' stream whereas in
+previous versions a 'releases' stream was available. The latter changes far
+less frequently but lacks security and bug fixes.
 
 The below example is a good choice for the year 2016. It selects all available
 kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
