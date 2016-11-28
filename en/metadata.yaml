@@ -114,7 +114,7 @@ navigation:
           - title: Kernel boot options
             location: installconfig-kernel.md
 
-          - title: HWE kernels
+          - title: Ubuntu kernels
             location: installconfig-hwe-kernels.md
 
   - title: Manage MAAS
