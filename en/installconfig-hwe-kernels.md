@@ -108,17 +108,17 @@ forget to click 'Save'.
 
 ### Machine minimum kernel
 
-To set the minimum kernel on a machine basis visit the machine's page and click
-the `Edit` button in the 'Machine summary' pane. Then select a kernel in the
-'Minimum Kernel' field and 'Save changes'.
+To set the minimum kernel on a machine basis, select a machine from the Nodes
+page and click the `Edit` button in the 'Machine summary' pane. Then select a
+kernel in the 'Minimum Kernel' field and 'Save changes'.
 
 ![image](../media/min_hwe_kernel.png)
 
 ### Machine kernel during deployment
 
-To set a specific kernel during deployment visit the machine's page and choose
-`Deploy` under 'Take action'. Then select a kernel in the 'Default kernel'
-field. Hit 'Go' to initiate the deployment.
+To set a specific kernel during deployment, select a machine from the Nodes
+page and choose `Deploy` under 'Take action'. Then select a kernel in the
+'Default kernel' field. Hit 'Go' to initiate the deployment.
 
 ![image](../media/hwe_kernel.png)
 
