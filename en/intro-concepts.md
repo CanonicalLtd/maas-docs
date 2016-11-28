@@ -2,7 +2,6 @@ Title: MAAS | Concepts and Terms
 TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
        Consider CLI commands for every node action and link from here
        QA node actions
-       Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
 table_of_contents: True
 
 
@@ -325,5 +324,11 @@ Turns a node's underlying machine on.
 Releases a node back into the pool of available nodes. Changes a node's status
 from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 
+The user has the opportunity to erase the node's storage (disks) before
+confirming the action. A default erasure setting can be configured on the
+Settings page. See [Disk erasure](installconfig-storage-erasure.md) for
+details.
+
+ 
 ### Set Zone
 Puts the node in a specific zone.
