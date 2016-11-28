@@ -1,41 +1,47 @@
-Title: MAAS | Select and Import Images
-TODO: Update images (pictures)
+Title: Select and Import Images | MAAS 
+TODO:  Be consistent with final version of installconfig-hwe-kernels.md (see TODO)
+       There is rumor of changing the image sync frequency. 1 hr is deemed too frequent
 
 
 # Select and Import Images
 
-This page explains how to use the web UI to select and import the images that
-MAAS requires in order to provision its nodes.
+This page explains how to select and import the images that MAAS requires in
+order to provision its nodes.
 
 Note that the MAAS CLI can also be used for image management. You must
 [Select images](manage-cli-images.md#select-images) and 
 [Import newly-selected images](manage-cli-images.md#import-newly-selected-images).
 
-By default, the most recent Ubuntu LTS release (and amd64 architecture) are
-selected. To change the selections go to the Images tab, select any other
-images (by choosing 'Release' and 'Architecture'), and click the 'Import
-images' button.
+On the Images page, you will see, by default, the three most recent Ubuntu LTS
+releases (and amd64 architecture) are selected:
 
-![import image selection](../media/import-images.png)
+![import image selection](../media/installconfig-images-import__main.png)
 
-After the import process has started, imported images will be listed beneath
-the selection area, alongside details on the image size, last update date and
-the number of nodes used by an image. A busy indicator will also appear until
-the import process has completed. 
+In the top-right corner there is a toggle switch for automatic syncing of
+images. It is highly recommended to keep this enabled.
 
-![import image complete](../media/import-images-list.png)
+!!! Note: Image sync occurs hourly and the availability of new images is
+influenced by the image stream MAAS is configured to use. See
+[Boot image sources](installconfig-images.md#boot-image-sources).
 
-To remove an image, simply deselect it and click 'Apply Changes'.
+To change the selections select any other images (by choosing 'Release' and
+'Architecture'), and click the 'Save selection' button to initiate the import.
+Existing images will be shown in addition to the newly selected ones. The
+latter will have their status updated as the import is processed:
+
+![import image selection](../media/installconfig-images-import__selection.png)
+
+To remove an image, simply unselect it and click 'Save selection'.
 
 
 ## Other images
 
 It is also possible to import and provision images other than Ubuntu. Images
-supported and provided by MAAS will appear beneath the 'Other Images' section
-of the web UI. Currently, images for both CentOS 6.6 and CentOS 7.0 are
-available and these can be imported and used just like the Ubuntu images above.
+supported and provided by MAAS will appear beneath the 'Other Images' section.
+Currently, images for both CentOS 6.6 and CentOS 7.0 are available and these
+can be imported and used just like the Ubuntu images above.
 
-![import image complete](../media/import-images-other.png)
+![import image selection](../media/installconfig-images-import__other-images.png)
 
 
 ## Using a local mirror
