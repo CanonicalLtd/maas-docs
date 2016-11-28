@@ -5,15 +5,13 @@ Title: Disk Erasure | MAAS
 
 Disk erasure pertains to the erasing of data on a node's disks when the node
 has been released (the [Release](intro-concepts.md#release) action) back into
-the pool of available nodes.
-
-There are various erasure types available for the user to choose before
-confirming the Release action. A default erasure configuration can also
+the pool of available nodes. The user can choose from among three erasure types
+before confirming the Release action. A default erasure configuration can also
 be set.
 
 ## Erasure types
 
-There are three types of erasure:
+The three types of erasure types are:
 
 - Standard erase
 - Secure erase
