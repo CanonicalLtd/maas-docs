@@ -2,7 +2,6 @@ Title: MAAS | Concepts and Terms
 TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
        Consider CLI commands for every node action and link from here
        QA node actions
-       For Release action, link to Storage page when it's finished. It should include explanation of disk erasing options
 table_of_contents: True
 
 
