@@ -3,11 +3,12 @@ Title: Disk Erasure | MAAS
 
 # Disk Erasure
 
-Disk erasure pertains to the erasing of data on a node's disks when the node
-has been released (the [Release](intro-concepts.md#release) action) back into
-the pool of available nodes. The user can choose from among three erasure types
-before confirming the Release action. A default erasure configuration can also
-be set.
+Disk erasure pertains to the erasing of data on each of a node's disks when the
+node has been released (the [Release](intro-concepts.md#release) action) back
+into the pool of available nodes. The user can choose from among three erasure
+types before confirming the Release action. A default erasure configuration can
+also be set.
+
 
 ## Erasure types
 
@@ -17,18 +18,24 @@ The three types of erasure types are:
 - Secure erase
 - Quick erase
 
-Each of these will be explained below.
+Each of these are explained below.
 
 ### Standard erase
 
-Write over all data on the disk with zeros.
+Overwrites all data with zeros.
 
 ### Secure erase
 
-Internal firmware on the disk performs the erasing. Much faster than
-overwriting the disk with zero's.
+Although effectively equivalent to Standard erase, Secure erase is much faster
+because the disk's firmware performs the operation. Because of this, however,
+some disks may not be able to perform this erasure type (SCSI, SAS, and FC
+disks in particular).
 
 ### Quick erase
+
+Same as Standard erase but only targets the first 1 MB and the last 1 MB of
+each disk. This removes the partition tables and/or superblock from the disk,
+making data recovery difficult but not impossible.
 
 
 ## Default configuration
@@ -52,8 +59,8 @@ Where 'secure erase' and 'quick erase' can then be configured by the user.
 
 ## Order of preference
 
-If all three options are left checked when the node is released the following
-order of preference is applied:
+If all three options are checked when the node is released the following order
+of preference is applied:
 
 1. Use 'secure erase' if the disk supports it
 1. If it does not then use 'quick erase'
