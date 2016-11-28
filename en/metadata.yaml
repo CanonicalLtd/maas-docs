@@ -86,6 +86,9 @@ navigation:
           - title: Partitions
             location: installconfig-partitions.md
 
+          - title: Disk erasure
+            location: installconfig-storage-erasure.md
+
       - title: Nodes
 
         children:
