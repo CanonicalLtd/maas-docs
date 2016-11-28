@@ -244,6 +244,14 @@ The node is deployed. See node action 'Deploy'.
 ### Deploying
 The node is in the process of deploying. See node action 'Deploy'.
 
+### Entering rescue mode
+The node is in the process of entering rescue mode. See node action 'Rescue
+mode'.
+
+### Exiting rescue mode
+The node is in the process of exiting rescue mode. See node action 'Exit rescue
+mode'.
+
 ### Failed Commissioning
 The node failed to commission.
 
@@ -256,6 +264,10 @@ has just been added to MAAS.
 
 ### Ready
 The node has been commissioned and is ready for use.
+
+### Rescue mode
+The node is in rescue mode and is ready to accept SSH connections. See node
+action 'Rescue mode'.
 
 
 ## Node actions
@@ -296,6 +308,12 @@ If unsuccessful, the status becomes 'Failed deployment'.
 Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
 
+### Exit rescue mode
+
+Changes a node's status from 'Rescue mode' to the 'Exiting rescue mode'
+transitory status and then back to its original status when the operation is
+complete.
+
 ### Mark broken
 Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
 if any action has failed (such as Commission and Deploy). Marking it broken
@@ -329,6 +347,14 @@ confirming the action. A default erasure setting can be configured on the
 Settings page. See [Disk erasure](installconfig-storage-erasure.md) for
 details.
 
+### Rescue mode
+
+Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
+This allows a user SSH to the machine for maintenance purposes. This can be
+done for a Deployed or Broken node as well as for a node that failed to deploy.
  
+The node status is changed to the 'Entering rescue mode' transitory status and
+then to 'Rescue mode' when the operation is complete.
+
 ### Set Zone
 Puts the node in a specific zone.
