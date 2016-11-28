@@ -21,9 +21,12 @@ Each of these will be explained below.
 
 ### Standard erase
 
+Write over all data on the disk with zeros.
 
 ### Secure erase
 
+Internal firmware on the disk performs the erasing. Much faster than
+overwriting the disk with zero's.
 
 ### Quick erase
 
