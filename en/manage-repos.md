@@ -84,9 +84,7 @@ Launchpad page: 'Technical details about this PPA' > '1024R/9360754F' >
 '9360754F'.
 
 To add this PPA, then, hit the 'Add repository' button and fill in the
-fields using the gathered information.
-
-Before saving, the form should look something like this:
+fields. Before saving, the form should look something like this:
 
 ![PPA repository config](../media/manage-repos__add-ppa.png)
 
