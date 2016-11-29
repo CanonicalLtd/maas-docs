@@ -1,12 +1,10 @@
-Title: MAAS | Concepts and Terms
-TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
-       Consider CLI commands for every node action and link from here
+Title: Concepts and Terms | MAAS 
+TODO:  Consider CLI commands for every node action and link from here
        QA node actions
-       Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
 table_of_contents: True
 
 
-# Concepts and terms
+# Concepts and Terms
 
 Here are some common terms that are essential to grasp in order to fully enjoy
 MAAS, not to mention the rest of this documentation.
@@ -298,11 +296,13 @@ Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
 
 ### Mark broken
-Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
-if any action has failed (such as Commission and Deploy). Marking it broken
-guarantees that the node will not get used in any way. This would normally be
-followed by some level of investigation so as to determine the source of the
-problem.
+Marks a node as broken. Changes a node's status to 'Broken'. Includes action
+'Power off'.
+
+This can be chosen if any action has failed (such as Commission and Deploy).
+Marking it broken guarantees that the node will not get used in any way. This
+would normally be followed by some level of investigation so as to determine
+the source of the problem.
 
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
