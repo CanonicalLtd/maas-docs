@@ -122,8 +122,7 @@ The following three actions are done while in a node's edit mode (click the
 
 Alongside tags for an entire node, it's also possible to assign tags to
 specific network interfaces. These tags can be used when searching for nodes
-within the web UI and when allocating machines from the API, and may be useful
-indicate specific network connections. 
+within the web UI and when allocating machines from the API. 
 
 Network interface tags can only be assigned when a node is in either a 'Ready' or
 'Broken' a state. With the machine selected from the 'Nodes' tab, find the
