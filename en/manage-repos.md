@@ -24,7 +24,7 @@ right of it.
 
 ## Ubuntu package repositories
 
-A Ubuntu package repository is a repository that makes available Ubuntu
+An Ubuntu package repository is a repository that makes available Ubuntu
 packages to computers able to connect to it over the network, whether that
 network is private or public (e.g. the Internet).
 
@@ -36,7 +36,7 @@ well as the equivalent for architectures other than i386 and amd64:
 
 Adding a third-party repository is elementary. Begin basing the configuration
 on a line you would normally place in a system's `/etc/apt/sources.list` file.
-For instance, for the Google Chrome repository the line would like like:
+For instance, for the Google Chrome repository the line would look like:
 
 `deb http://dl.google.com/linux/chrome/deb stable main`
 
