@@ -76,6 +76,9 @@ navigation:
           - title: Proxy
             location: installconfig-proxy.md
 
+          - title: Device discovery
+            location: installconfig-network-dev-discovery.md
+
           - title: STP
             location: installconfig-network-stp.md
 
