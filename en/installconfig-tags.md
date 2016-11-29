@@ -130,7 +130,7 @@ a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
 interface to expand its details. To add a tag, enter its name into the 'Add a
 tag' field. Use the small 'x' next to a tag to unassign it.
 
-![tags: net interface](../media/installconfig-tags_image-tags-net-iface.png)
+![tags: net interface](../media/installconfig-tags__tags-net-iface.png)
 
 
 ## Tag management
