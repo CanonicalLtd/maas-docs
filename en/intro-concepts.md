@@ -297,11 +297,13 @@ Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
 
 ### Mark broken
-Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
-if any action has failed (such as Commission and Deploy). Marking it broken
-guarantees that the node will not get used in any way. This would normally be
-followed by some level of investigation so as to determine the source of the
-problem.
+Marks a node as broken. Changes a node's status to 'Broken'. Includes action
+'Power off'.
+
+This can be chosen if any action has failed (such as Commission and Deploy).
+Marking it broken guarantees that the node will not get used in any way. This
+would normally be followed by some level of investigation so as to determine
+the source of the problem.
 
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
