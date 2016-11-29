@@ -118,6 +118,20 @@ The following three actions are done while in a node's edit mode (click the
 
 ![tags: add & remove](../media/installconfig-tags_image-tags-add_remove.png)
 
+### Tags for network interfaces
+
+Alongside tags for an entire node, it's also possible to assign tags to
+specific network interfaces. These tags can be used when searching for nodes
+within the web UI and when allocating machines from the API. 
+
+Network interface tags can only be assigned when a node is in either a 'Ready' or
+a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
+'Interfaces' section and use the 'Edit' button on the far right of a listed
+interface to expand its details. To add a tag, enter its name into the 'Add a
+tag' field. Use the small 'x' next to a tag to unassign it.
+
+![tags: net interface](../media/installconfig-tags__tags-net-iface.png)
+
 
 ## Tag management
 
