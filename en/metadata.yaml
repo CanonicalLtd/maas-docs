@@ -127,6 +127,9 @@ navigation:
       - title: User accounts
         location: manage-account.md
 
+      - title: Package repositories
+        location: manage-repos.md
+
       - title: High availability
         location: manage-ha.md
 
