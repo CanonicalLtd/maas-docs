@@ -57,7 +57,9 @@ The next step will be to *deploy* it. See
 Once a node has been commissioned, its network interface(s) can be configured.
 Specifically, when a node's status is either 'Ready' or 'Broken', interfaces
 can be added/removed, attached to a fabric and linked to a subnet, and provided
-an IP assignment mode. 
+an IP assignment mode. Tags [can also be
+assigned](installconfig-tags.html#tags-for-network-interfaces) to specific
+network interfaces.
 
 ![node interface](../media/node-interface-ip.png)
 
