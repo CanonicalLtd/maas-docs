@@ -128,7 +128,7 @@ Network interface tags can only be assigned when a node is in either a 'Ready' o
 a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
 'Interfaces' section and use the 'Edit' button on the far right of a listed
 interface to expand its details. To add a tag, enter its name into the 'Add a
-tag' field. Use the small 'x' next to an already define tag to unassign it.
+tag' field. Use the small 'x' next to a tag to unassign it.
 
 ![tags: net interface](../media/installconfig-tags_image-tags-net-iface.png)
 
