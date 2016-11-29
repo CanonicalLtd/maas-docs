@@ -125,7 +125,7 @@ specific network interfaces. These tags can be used when searching for nodes
 within the web UI and when allocating machines from the API. 
 
 Network interface tags can only be assigned when a node is in either a 'Ready' or
-'Broken' a state. With the machine selected from the 'Nodes' tab, find the
+a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
 'Interfaces' section and use the 'Edit' button on the far right of a listed
 interface to expand its details. To add a tag, enter its name into the 'Add a
 tag' field. Use the small 'x' next to an already define tag to unassign it.
