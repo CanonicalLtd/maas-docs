@@ -80,3 +80,18 @@ gets assigned when the node is eventually deployed:
 
 See [Concepts and terms](intro-concepts.md#ip-ranges) for the definitions of
 reserved range types used in MAAS.
+
+### Bridge interfaces
+
+MAAS supports the creation of a bridge interface from a single network
+interface. This may be useful if you eventually deploy virtual machines or
+containers on the machine. 
+
+A bridge is created by first selecting a single interface followed by clicking
+the now-enabled 'Create bridge' button. A new pane will appear where you can
+enter a MAC address for the bridge, an optional STP forward delay, and a tag. 
+
+![bridge interface](../media/installconfig-commission-nodes__bridge-iface.png)
+
+Automatic bridge creation on all configured interfaces can also be performed at
+allocation time using the API.

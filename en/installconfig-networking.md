@@ -58,6 +58,24 @@ Even if an external DHCP server will be used it is highly recommended that
 values for gateway and nameserver be entered in case you later remove your
 external DHCP and/or choose an IP assignment mode other than 'DHCP'.
 
+When the 'Active mapping' checkbox is enabled, MAAS will scan the subnet every
+3 hours to discover hosts that have not been discovered passively. 
+
+The **Static Routes** section:
+
+This section can be used to define a static route between two subnets, allowing
+administrators to configure reachability to a subnet from a source subnet. A
+route is defined on a per-subnet basis to use a particular gateway, using a
+configured destination and metric.
+
+To create a static route, click the 'Add static route' button to reveal the
+edit pane. Enter a Gateway IP address, select a destination subnet from the
+'Destination' drop-down list, and edit the routing metric value if needed.
+Clicking 'Add' will activate the route. Routes can be edited and removed using
+the icons to the right of each entry. 
+
+![networking static routes configuration](../media/installconfig-networking__static-routes.png)
+
 The **Utilisation** section:
 
 ![networking subnets page utilisation](../media/installconfig-networking__subnets-utilisation.png)
