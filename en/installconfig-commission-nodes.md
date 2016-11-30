@@ -91,7 +91,7 @@ A bridge is created by first selecting a single interface followed by clicking
 the now-enabled 'Create bridge' button. A new pane will appear where you can
 enter a MAC address for the bridge, an optional STP forward delay, and a tag. 
 
-[bridge interface](../media/installconfig-commission-nodes__bridge-iface.png)
+![bridge interface](../media/installconfig-commission-nodes__bridge-iface.png)
 
 Automatic bridge creation on all configured interfaces can also be performed at
 allocation time using the API.
