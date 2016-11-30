@@ -7,7 +7,7 @@ TODO:  Hardcoded text: Update suggested mirror selections "for the year 2016"
 
 Images are delivered to MAAS via the SimpleStreams protocol and the mirroring
 of these images is worthy of consideration. This option is especially useful
-when your environment has a slow or unreliable internet link. In such cases,
+when your environment has a slow or unreliable Internet link. In such cases,
 when the images are requested they will be instantly available and the
 disadvantaged link will be less readily apparent.
 

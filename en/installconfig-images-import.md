@@ -12,8 +12,10 @@ Note that the MAAS CLI can also be used for image management. You must
 [Select images](manage-cli-images.md#select-images) and 
 [Import newly-selected images](manage-cli-images.md#import-newly-selected-images).
 
-On the Images page, you will see, by default, the three most recent Ubuntu LTS
-releases (and amd64 architecture) are selected:
+The Images page shows what images and architectures have been selected and
+downloaded. By default, MAAS will automatically grab the most recent Ubuntu LTS
+releases (and amd64 architecture). Below, two additional releases have been
+selected:
 
 ![import image selection](../media/installconfig-images-import__main.png)
 

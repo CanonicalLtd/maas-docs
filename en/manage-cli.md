@@ -38,37 +38,36 @@ users with the CLI.
 
 ## Log in (required)
 
-To use the CLI you must first log in to the API server.
+To use the CLI you must first log in to the API server (region controller).
 
 You will need the API key that was generated when your MAAS account was
 created. To obtain it, run this command on the region controller (i.e. where
 the 'maas-region-controller' package was installed):
 
 ```bash
-sudo maas-region apikey --username=$USERNAME
+sudo maas-region apikey --username=$PROFILE > $API_KEY_FILE
 ```
 
-!!! Note: The API key can also be obtained from the web interface. Click on
-'username' in the top right corner, and select 'Account'.
+!!! Note: A user's API key can also be obtained from the web interface. Click
+on 'username' in the top right corner, and select 'Account'.
 
-Log in with either of:
+Log in. You will be prompted for the API key:
 
 ```bash
-maas login $PROFILE $API_SERVER [$API_KEY]
-maas login $PROFILE $API_SERVER - < $API_KEY_FILE
+maas login $PROFILE $API_SERVER
 ```
-
-Notes:
-
-- The terms 'username' and 'profile' are effectively equivalent.
-- The API server is the region controller.
-- If the API key is not supplied (in the first form) the user will be prompted for it.
 
 For example, to log in with the account whose username is 'admin' and where
 the region controller is on the localhost:
 
 ```bash
 maas login admin http://localhost:5240/MAAS/api/2.0
+```
+
+To log in by referring to the API key file created earlier:
+
+```bash
+maas login $PROFILE $API_SERVER - < $API_KEY_FILE
 ```
 
 
