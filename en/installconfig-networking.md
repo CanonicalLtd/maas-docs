@@ -58,6 +58,9 @@ Even if an external DHCP server will be used it is highly recommended that
 values for gateway and nameserver be entered in case you later remove your
 external DHCP and/or choose an IP assignment mode other than 'DHCP'.
 
+When the 'Active mapping' checkbox is enabled, MAAS will scan the subnet every
+3 hours to discover hosts that have not been discovered passively. 
+
 The **Static Routes** section:
 
 This section can be used to define a static route between two subnets, allowing
