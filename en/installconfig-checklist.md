@@ -1,4 +1,4 @@
-Title: Installation and Configuration Checklist
+Title: Installation and Configuration Checklist | MAAS
 
 
 # Installation and Configuration Checklist
@@ -25,6 +25,10 @@ an administrator user. Notice how the web UI (API server) is accessed via port
 !!! Note: Although the web UI may be accessed via port 80, this is not
 guaranteed to work in future versions of MAAS.
 
+The initial access of the web UI will kick off a
+[configuration journey](installconfig-webui-conf-journey.md) whose
+purpose is to get you up and running quickly.
+
 
 ## Zones
 
@@ -41,11 +45,6 @@ reading [Concepts and terms](intro-concepts.md#ip-ranges). Create one (not
 
 Secondly, configure a default gateway and a nameserver that your nodes will
 use. See [Networking](installconfig-networking.md) for how to do this.
-
-<!--
-[networks][networks] (points to skeleton page installconfig-network.md)
-Lots of stuff can be added to it - see https://git.io/vPLHk
--->
 
 
 ## Import boot images
