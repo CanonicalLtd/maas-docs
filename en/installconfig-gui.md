@@ -1,6 +1,4 @@
 Title: Web UI | MAAS
-TODO:  Link to page Device discovery when it is ready
-       Link to Checklist that will explain the configuration journey when it is ready
  
 
 # Web UI
@@ -40,8 +38,9 @@ You can now log in here: <http://<region controller address\>:5240/MAAS>
 ![web UI login](../media/installconfig-webui__login.png)
 
 The initial administrator will be shown the MAAS Dashboard after they log in
-for the first time. Here, they are prompted to answer a few questions in
-order to get MAAS up and running quickly.
+for the first time. Here, they have the option of embarking on a
+[configuration journey](installconfig-webui-conf-journey.md) in order to get
+MAAS up and running quickly.
 
 Once logged in, an administrator can create regular users as well as additional
 administrators. See [User Accounts](manage-account.md) for this.
@@ -55,12 +54,9 @@ the CLI.
 The Dashboard will be a central hub for the user to branch out to other parts
 of the web UI to perform certain operations. For now, it points to the main
 pages of the web UI such as Nodes, Images, and Subnets. It is also where the
-results of Device discovery are recorded.
+results of [Device discovery](installconfig-network-dev-discovery.md) are
+recorded.
 
 The Dashboard is available by clicking the top-left MAAS icon. Its URL is:
 
 <http://<region controller address\>:5240/MAAS/#/dashboard>
-
-<!--
-[Device discovery](installconfig-network-dev-discovery.md)
--->

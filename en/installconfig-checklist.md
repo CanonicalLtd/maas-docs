@@ -25,9 +25,12 @@ an administrator user. Notice how the web UI (API server) is accessed via port
 !!! Note: Although the web UI may be accessed via port 80, this is not
 guaranteed to work in future versions of MAAS.
 
-The initial access of the web UI will kick off a
+The initial access of the web UI will kick off an optional
 [configuration journey](installconfig-webui-conf-journey.md) whose
-purpose is to get you up and running quickly.
+purpose is to get the essential aspects of MAAS configured right away.
+
+Completing the journey will remove the need to perform equivalent deeds below
+so you'll need to adjust accordingly.
 
 
 ## Zones
@@ -49,13 +52,15 @@ use. See [Networking](installconfig-networking.md) for how to do this.
 
 ## Import boot images
 
-While you were in the web UI you may have seen a hint to *import boot images*.
 [Read up on images][images] as they're quite important. Continue reading until
 you have discovered how to import them. You will see that you have the choice
 to use the CLI to do this. Either way: achievement unlocked!
 
-!!! Note: The import process can take a while. Consider moving on and coming
-back. Just ensure that the import has completed prior to adding a node.
+The import process can take a while. Consider moving on and coming back. Just
+ensure that the import has completed prior to adding a node.
+
+!!! Note: Once installed, by default, MAAS will begin downloading images for
+the latest Ubuntu LTS.
 
 
 ## Access the MAAS CLI
@@ -84,8 +89,8 @@ Additionally, in order for a user to log into a MAAS-deployed machine that user
 *must* have their public SSH key installed on it.
 
 Study [user accounts][user-accounts] to learn about how to create more users
-and how to add their SSH keys to MAAS. Once that's done, every deployed machine
-will automatically have that key installed.
+and how to add their public SSH keys to MAAS. Once that's done, every deployed
+machine will automatically have that key installed.
 
 
 ## Add a node
