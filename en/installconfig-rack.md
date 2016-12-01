@@ -41,8 +41,8 @@ immediately in the web UI and begin to sync with the primary controller:
 Multiple rack controllers are needed in order to achieve specific types of
 [high availability](manage-ha.md).
 
-!!! Note: If you will be using KVM-backed nodes you will need to install the
-`libvirt-bin` package on the rack controller. See
+!!! Note: If you will be using KVM-backed nodes you must ensure that the new
+rack controller can communicate with the KVM host. See
 [KVM guest nodes](installconfig-add-nodes.md#kvm-guest-nodes).
 
 

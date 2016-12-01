@@ -54,12 +54,18 @@ when enlistment doesn't work for some reason.
 ## KVM guest nodes
 
 KVM-backed nodes are common and so a little extra guidance is provided here.
-Begin by ensuring the `virsh` binary is available to the rack controller via
-the `libvirt-bin` package.
+The following actions are performed on the rack controller.
 
-The 'maas' user will need an SSH keypair (with a null passphrase) so MAAS will
-be able to query and manage KVM guests remotely. A login shell will also be
-useful when becoming user 'maas':
+Begin by ensuring the `virsh` binary is available to the rack controller by
+installing the `libvirt-bin` package:
+
+```bash
+sudo apt install libvirt-bin
+```
+
+Next, the 'maas' user will need an SSH keypair (with a null passphrase) so the
+rack controller can query and manage KVM guests remotely. A login shell will
+also be necessary when becoming user 'maas':
 
 ```bash
 sudo chsh -s /bin/bash maas
