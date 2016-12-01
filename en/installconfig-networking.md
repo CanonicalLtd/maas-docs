@@ -1,6 +1,5 @@
 Title: Networking | MAAS
-TODO:  In 2.1, the 'Networks' page is renamed to 'Subnets'
-       Bug check: https://goo.gl/mPKBRl
+TODO:  Bug check: https://goo.gl/mPKBRl
        Not sure about the purpose of "deleting" a subnet. Won't it reappear eventually?
 
 
@@ -15,7 +14,7 @@ It also links to some important networking sub-topics. See
 
 To access the main networking view visit the 'Networks' page:
 
-![networking main page](../media/installconfig-networking__main.png)
+![networking main page](../media/installconfig-networking__2.1_main.png)
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
