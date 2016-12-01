@@ -40,7 +40,7 @@ least enlist and commission nodes and the creation of such a range is part of
 the process of enabling DHCP with the web UI. See
 [MAAS CLI](manage-cli-common.md#enable-dhcp) for doing this with the CLI.
 
-To enable MASS-managed DHCP, under the 'Networks' page select the desired VLAN
+To enable MAAS-managed DHCP, under the 'Networks' page select the desired VLAN
 and then:
 
 1. Under the 'Take action' button select 'Provide DHCP'. A new window will

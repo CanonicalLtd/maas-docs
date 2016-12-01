@@ -9,13 +9,14 @@ network interface. This provides a scaling factor that can help as a network
 architecture grows in size.
 
 In regards to region controller and rack controller communication, each rack
-controller must be able to:
+controller must be able to initiate TCP connections:
 
-- Initiate TCP connections (for HTTP) to each region controller on port 80 or
-  port 5240, the choice of which depends on the setting of the MAAS URL.
-- Initiate TCP connections (for RPC) to each region controller between port
-  5250 and 5259 inclusive. This permits up to 10 `maas-regiond` processes on
-  each region controller host. At present this is not configurable.
+- for HTTP, to each region controller on port 5240. If
+  [high availability](manage-ha.md) is implemented then this will typically
+  become port 80.
+- for RPC, to each region controller between port 5250 and 5259 inclusive. This
+  permits up to 10 `maas-regiond` processes on each region controller host. At
+  present this is not configurable.
 
 
 ## Install a rack controller
