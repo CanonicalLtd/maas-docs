@@ -6,8 +6,8 @@ TODO:  Bug check: https://goo.gl/mPKBRl
 # Networking
 
 This page shows where to view and edit the main networking elements in MAAS.
-It also links to some important networking sub-topics. See
-[Concepts and terms](intro-concepts.md) for networking element definitions.
+See [Concepts and terms](intro-concepts.md) for the definitions of networking
+objects.
 
 
 ## Main view
@@ -48,14 +48,10 @@ The **Subnet summary** section:
 are applied instantly.
 
 Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
-'Description', should be entered. Gateway
-and DNS values are passed to deployed nodes unless an external DHCP server will
-be used to *deploy* nodes. There is also the option of changing the subnet's
-fabric, VLAN, and space providing your network topology allows for it.
-
-Even if an external DHCP server will be used it is highly recommended that
-values for gateway and nameserver be entered in case you later remove your
-external DHCP and/or choose an IP assignment mode other than 'DHCP'.
+'Description', are entered. Gateway and DNS values are passed to nodes for
+commissioning and, if DHCP is MAAS-managed, for deploying too. There is also
+the option of changing the subnet's fabric, VLAN, and space providing your
+network topology allows for it.
 
 When the 'Active mapping' checkbox is enabled, MAAS will scan the subnet every
 3 hours to discover hosts that have not been discovered passively. 

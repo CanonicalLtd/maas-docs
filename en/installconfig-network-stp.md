@@ -1,6 +1,7 @@
-Title: STP | Network Configuration
+Title: STP | MAAS
 
-# Switches and STP
+
+# STP
 
 Some switches use Spanning-Tree Protocol (STP) to negotiate a loop-free path
 through a root bridge. While scanning, it can make each port wait up to 50

@@ -56,28 +56,28 @@ navigation:
           - title: Local image mirror
             location: installconfig-images-mirror.md
 
-      - title: NTP
-        location: installconfig-ntp.md
-
       - title: Networking
         location: installconfig-networking.md
 
         children:
 
-          - title: Reserved IP ranges
-            location: installconfig-subnets-ipranges.md
-
           - title: DHCP
             location: installconfig-subnets-dhcp.md
 
-          - title: IPv6
-            location: installconfig-network-ipv6.md
+          - title: Reserved IP ranges
+            location: installconfig-subnets-ipranges.md
 
           - title: Proxy
             location: installconfig-proxy.md
 
+          - title: NTP
+            location: installconfig-ntp.md
+
           - title: Device discovery
             location: installconfig-network-dev-discovery.md
+
+          - title: IPv6
+            location: installconfig-network-ipv6.md
 
           - title: STP
             location: installconfig-network-stp.md
