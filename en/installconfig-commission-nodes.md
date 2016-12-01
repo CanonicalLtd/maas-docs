@@ -27,10 +27,10 @@ The image used is, by default, the latest Ubuntu LTS release and should not
 require changing. However, it can be configured in the web UI in the 'Settings'
 page.
 
-To commission a node, select it and choose 'Commission' under the 'Take action'
-dropdown menu (orange button).
+To commission, on the 'Nodes' page, select a node and choose 'Commission' under
+the 'Take action' dropdown menu (orange button).
 
-![commission](../media/installconfig-commission-nodes__commission.png)
+![commission](../media/installconfig-nodes-commission-nodes__2.1_commission.png)
 
 You have the option of selecting some extra parameters (checkboxes). Then
 finalize the directive by hitting 'Go'.

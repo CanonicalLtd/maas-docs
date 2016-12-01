@@ -1,4 +1,4 @@
-Title: MAAS Tags
+Title: Tags | MAAS
 TODO:  Cover how tags are used in the web UI (including XML output for a node)
        Track bug: https://bugs.launchpad.net/maas/+bug/1608629 (UI and tags)
 
@@ -91,10 +91,10 @@ right pane. Notice there is a search field at the top of the right pane. This
 is where one can type in a search expression.
 
 Below, tags 'gpu2' and 'virtual' have been selected by mouse-clicking. The
-search field automatically reflects this. Nine nodes satisfy this search
-filter.
+search field automatically reflects this. Three nodes satisfy this search
+filter (they have either of these tags).
 
-![tags: search filters](../media/installconfig-tags_image-tags-search.png)
+![tags: search](../media/installconfig-nodes-tags__2.1_tags-filter.png)
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
@@ -102,8 +102,8 @@ alongside a tag or editing the search expression.
 
 ## Tag assignment
 
-To view a node's currently assigned tags stay on the 'Nodes' tab and select the
-node in question. Tags that are currently assigned will be displayed.
+To view a node's currently assigned tags stay on the 'Nodes' page and select
+the node in question. Tags that are currently assigned will be displayed.
 
 The following three actions are done while in a node's edit mode (click the
 'Edit' button). Changes are saved by pressing the 'Save changes' button.
@@ -116,7 +116,7 @@ The following three actions are done while in a node's edit mode (click the
   real-time search. Any resulting tags will show up in a drop-down menu.
   Select as desired.
 
-![tags: add & remove](../media/installconfig-tags_image-tags-add_remove.png)
+![tags: add & remove](../media/installconfig-nodes-tags__2.1_tags-add_remove.png)
 
 ### Tags for network interfaces
 

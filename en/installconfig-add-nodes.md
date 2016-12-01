@@ -1,5 +1,6 @@
 Title: Add Nodes | MAAS
-TODO: Verify instructions re adding a node manually
+TODO: Need instructions on adding a chassis
+      See if 2.0 branch is using file virsh-config.png , delete if not
 
 
 # Add Nodes
@@ -104,12 +105,11 @@ See
 
 ## Add a node manually
 
-If you know the MAC address of a node, you can manually enter details about
-the node through the web interface. Click the `Add Node` button to be taken to
-the "Add Node" form:
+Enlistment can be done manually if the hardware specifications of the
+underlying machine are known. On the 'Nodes' page click the 'Add hardware'
+button and then select 'Machine'.
 
-![image](../media/add-node.png)
+Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
+being added:
 
-<!-- MAYBE THIS CAN BE USED LATER
-![qemu ssh power](../media/virsh-config.png)
-->>
+![image](../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png)
