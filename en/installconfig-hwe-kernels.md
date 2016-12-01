@@ -84,9 +84,9 @@ MAAS denotes a low latency kernel in a few ways:
 
 ## Using kernels
 
-The kernel installed on a node is, by default, the Ubuntu release's native
-kernel. However, it is possible to tell MAAS to use a HWE kernel. This can be
-done in three ways:
+The kernel installed on a node during deployment is, by default, the Ubuntu
+release's native kernel. However, it is possible to tell MAAS to use a
+different kernel. This can be done in three ways:
 
 - globally (default minimum kernel)
 - per machine (minimum kernel)
@@ -104,23 +104,23 @@ To set the default minimum kernel for all machines visit the 'Settings' page
 and select a kernel in the 'Default Minimum Kernel Version' field. Don't
 forget to click 'Save'.
 
-![image](../media/default_min_hwe_kernel.png)
+![image](../media/installconfig-kernels__2.1_default-minimum-kernel.png)
 
 ### Machine minimum kernel
 
-To set the minimum kernel on a machine basis, select a machine from the Nodes
+To set the minimum kernel on a machine basis, select a machine from the 'Nodes'
 page and click the `Edit` button in the 'Machine summary' pane. Then select a
 kernel in the 'Minimum Kernel' field and 'Save changes'.
 
-![image](../media/min_hwe_kernel.png)
+![image](../media/installconfig-kernels__2.1_machine-minimum-kernel.png)
 
 ### Machine kernel during deployment
 
-To set a specific kernel during deployment, select a machine from the Nodes
+To set a specific kernel during deployment, select a machine from the 'Nodes'
 page and choose `Deploy` under 'Take action'. Then select a kernel in the
 'Default kernel' field. Hit 'Go' to initiate the deployment.
 
-![image](../media/hwe_kernel.png)
+![image](../media/installconfig-kernels__2.1_machine-during-deploy-kernel.png)
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
 release (series) before deploying the node. 

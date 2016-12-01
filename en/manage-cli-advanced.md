@@ -1,9 +1,8 @@
-Title: MAAS CLI | Advanced Tasks
+Title: Advanced CLI Tasks | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
-       Bug check: https://goo.gl/cnNy8L - remove Note and change image (and possibly the example command) when resolved (installconfig-rack__add-controller.png)
 
 
 # Advanced CLI Tasks
@@ -104,17 +103,14 @@ You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
 that is stored in file `/var/lib/maas/secret` on the API server.
 
-You can get the above information from the web UI by visiting the 'Nodes' tab,
-then the Controller sub-tab, and clicking the button 'Add rack controller'.
-Here is an example of what you may see:
+You can get the above information from the web UI by visiting the 'Nodes' page,
+then the Controller tab, and clicking the button 'Add rack controller'. Here
+is an example of what you may see:
 
-![add controller](../media/installconfig-rack__add-controller.png)
+![add controller](../media/manage-maas-cli-advanced__2.1_add-controller.png)
 
 Based on the above, then, we could have also entered:
 
 ```bash
-sudo maas-rack register --url http://10.248.0.3:5240/MAAS --secret 30e5413d5b684620700b3105b02965c0
+sudo maas-rack register --url http://10.5.1.5:5240/MAAS --secret 9500bf4c56558346c925c5d17819f878
 ```
-
-!!! Note: The web UI example does not refer to port 5240 but this should be
-fixed soon.
