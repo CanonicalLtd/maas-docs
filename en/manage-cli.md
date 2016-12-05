@@ -1,5 +1,5 @@
 Title: MAAS CLI | MAAS
-TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR
+TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR (affects all CLI pages)
        Consider explaining how an API call is converted to a CLI command
 table_of_contents: True
 
