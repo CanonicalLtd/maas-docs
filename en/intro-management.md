@@ -1,8 +1,8 @@
-Title: MAAS | Management Summary
+Title: Management Summary | MAAS
 TODO:  Add link for CLI docs (authoritative) to navigation when those docs are available and updated
 
 
-# Management summary
+# Management Summary
 
 MAAS can be managed, typically by a systems administrator, in the following
 ways:
@@ -34,4 +34,4 @@ get a sense of what is possible with the CLI see [MAAS CLI](manage-cli.md).
 ## API
 
 The API is typically reserved for large-scale automization. See
-[API documentation](http://docs.maas.io/2.0/api.html).
+[API documentation](http://docs.maas.io/2.1/api.html).
