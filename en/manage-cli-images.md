@@ -1,6 +1,6 @@
 Title: CLI Image Management | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
+table_of_contents: True
 
 
 # CLI Image Management
