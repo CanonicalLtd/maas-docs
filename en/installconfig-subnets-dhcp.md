@@ -1,5 +1,6 @@
 Title: DHCP | MAAS
 TODO:  Maybe create a bug for why the enablement of DHCP in the web UI asks for a gateway IP and not a nameserver
+table_of_contents: True
 
 
 # DHCP

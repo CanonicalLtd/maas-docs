@@ -1,4 +1,5 @@
 Title: Installation and Configuration Checklist | MAAS
+table_of_contents: True
 
 
 # Installation and Configuration Checklist

@@ -2,6 +2,7 @@ Title: Ubuntu Kernels | MAAS
 TODO:  Review required. There is still confusion about selecting kernels: https://goo.gl/VTbH0X
        it also appears that some kernels are hardcoded; i can't get rid of them. all very shoddy
        the 'releases' type of v3 stream does not exist at time of writing and it may never (requires rewording if this is the case)
+table_of_contents: True
 
 
 # Ubuntu Kernels
