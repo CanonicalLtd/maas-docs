@@ -1,7 +1,7 @@
-Title: MAAS CLI
-TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
+Title: MAAS CLI | MAAS
+TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR (affects all CLI pages)
        Consider explaining how an API call is converted to a CLI command
+table_of_contents: True
 
 
 # MAAS CLI
