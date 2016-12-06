@@ -1,11 +1,10 @@
-Title: MAAS | Concepts and Terms
-TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
-       Consider CLI commands for every node action and link from here
+Title: Concepts and Terms | MAAS 
+TODO:  Consider CLI commands for every node action and link from here
        QA node actions
 table_of_contents: True
 
 
-# Concepts and terms
+# Concepts and Terms
 
 Here are some common terms that are essential to grasp in order to fully enjoy
 MAAS, not to mention the rest of this documentation.
