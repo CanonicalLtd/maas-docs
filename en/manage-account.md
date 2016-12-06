@@ -51,9 +51,9 @@ application and service modelling tool,
 
 ## Change the password
 
-The password for the current user can be easily changed from the bottom of the
-user preferences page by entering the old password, entering a new password and
-a confirming the new password. 
+The password for the current user can be changed at the bottom of the user
+preferences page by entering the old password, entering a new password, and
+then confirming. 
 
 An administrator can also change a user's password by selecting 'edit' against
 a user account in the 'Users and Keys' section of the general settings page and
