@@ -1,8 +1,8 @@
 Title: Advanced CLI Tasks | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
+table_of_contents: True
 
 
 # Advanced CLI Tasks

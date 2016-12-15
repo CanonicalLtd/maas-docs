@@ -1,6 +1,7 @@
 Title: Add Nodes | MAAS
 TODO: Need instructions on adding a chassis
       See if 2.0 branch is using file virsh-config.png , delete if not
+table_of_contents: True
 
 
 # Add Nodes

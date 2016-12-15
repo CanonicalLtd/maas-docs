@@ -1,7 +1,7 @@
-Title: MAAS CLI | Common Tasks
+Title: Common CLI Tasks | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
        There is a nuance between a single reserved address and a single address in a range (start and end addresses being the same). this could use some digging
+table_of_contents: True
 
 
 # Common CLI Tasks
