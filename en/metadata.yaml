@@ -79,6 +79,9 @@ navigation:
           - title: IPv6
             location: installconfig-network-ipv6.md
 
+          - title: SSL
+            location: installconfig-network-ssl.md
+
           - title: STP
             location: installconfig-network-stp.md
 
