@@ -53,6 +53,23 @@ maas $PROFILE machines accept-all
 ```
 
 
+## Control subnet management
+
+To enable or disable subnet management:
+
+```bash
+maas $PROFILE subnet update $SUBNET_CIDR managed=false|true
+```
+
+For example, to disable:
+
+```bash
+maas $PROFILE subnet update 192.168.1.0/24 managed=false
+```
+
+The subnet's ID can also be used in place of the CIDR address.
+
+
 ## Assign a tag to a node
 
 To assign a tag to a node:

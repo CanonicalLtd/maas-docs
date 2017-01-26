@@ -57,9 +57,9 @@ The next step will be to *deploy* it. See
 Once a node has been commissioned, its network interface(s) can be configured.
 Specifically, when a node's status is either 'Ready' or 'Broken', interfaces
 can be added/removed, attached to a fabric and linked to a subnet, and provided
-an IP assignment mode. Tags [can also be
-assigned](installconfig-tags.html#tags-for-network-interfaces) to specific
-network interfaces.
+an IP assignment mode. Tags
+[can also be assigned](installconfig-tags.html#tags-for-network-interfaces) to
+specific network interfaces.
 
 ![node interface](../media/node-interface-ip.png)
 
@@ -67,8 +67,9 @@ There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
 
 - **Auto assign** MAAS will assign a random static address 
-  (`iface eth0 inet static`) from among the addresses that do not fall within a
-  *reserved dynamic range* or a *reserved range*.
+  (`iface eth0 inet static`). The pool of available addresses depends on
+  whether the subnet is managed or unmanaged (see
+  [Subnet management](installconfig-network-subnet-management.md)).
 
 - **Static assign** The administrator will specify a static address using a
   secondary field.
