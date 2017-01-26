@@ -38,6 +38,8 @@ select the subnet. There is a slide switch labelled 'Managed allocation'. Click
 the label (or the switch icon itself) to toggle between enabled (green) and
 disabled.
 
+![Management toggle](../media/installconfig-network-subnet-management__2.2_management-toggle.png)
+
 See [MAAS CLI](manage-cli-common.md#control-subnet-management) for how to do this
 with the CLI.
 
