@@ -151,23 +151,27 @@ In MAAS, a subnet is always associated with a single space.
 
 ### IP ranges
 
-IP addresses can be reserved by adding one or more *reserved ranges* to your
+IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
 - **Reserved range** An IP range that MAAS will never use. You can use it for
   anything you want (e.g. infrastructure systems, network hardware, external
-  DHCP, or the namespace for an OpenStack cloud you will be building).
+  DHCP, or the namespace for an OpenStack cloud you will be building). For an
+  unmanaged subnet, only addresses in this range are used.
 
 - **Reserved dynamic range** An IP range that MAAS will use for enlisting,
   commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during
   commissioning, deploying. An initial range is created as part of the DHCP
-  enablement process if done with the web UI.
+  enablement process if done with the web UI. For an unmanaged subnet, this
+  range is never used.
 
 See
 [IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created
 and 
 [Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-for how they get used.
+for how they get used and
+[Subnet management](installconfig-network-subnet-management.md) for information
+on managed vs. unmanaged subnets.
 
 
 ## VLANs
