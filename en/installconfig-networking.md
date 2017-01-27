@@ -12,15 +12,16 @@ objects.
 
 ## Main view
 
-To access the main networking view visit the 'Networks' page:
+To access the main networking view visit the 'Subnets' page:
 
 ![networking main page](../media/installconfig-networking__2.1_main.png)
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
 topology being represented here, some elements are used multiple times. To be
-clear, in this example there are 3 fabrics, 1 VLAN, 3 subnets, and 1 space and
-they should all be detected automatically by MAAS.
+clear, in this example there are 3 fabrics, 1 VLAN, 3 subnets, and 1 space. All
+such elements should be detected automatically by MAAS but if they're not each
+can be added manually using the 'Add' button. 
 
 This main view can also be filtered either by fabrics or by spaces through the
 use of the 'Group by' dropdown.

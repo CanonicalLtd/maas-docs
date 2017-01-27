@@ -120,10 +120,13 @@ communication. A fabric is a logical grouping of unique VLANs. A default fabric
 
 ## Spaces
 
-A *space* is a logical grouping of subnets that are able to communicate
-with each other. Subnets within each space need not belong to the same fabric.
-A default space ('space-0') is created when MAAS is installed and includes all
-detected subnets.
+A *space* is a logical grouping of VLANs whose subnets are able to communicate
+with one another. VLANs within each space need not belong to the same fabric.
+A default space is not created when MAAS is installed.
+
+A space's main purpose is to facilitate machine acquisition for
+[Juju](https://jujucharms.com/docs/stable/about-juju). Specifically, see
+[here](https://jujucharms.com/docs/2.0/network-spaces).
 
 
 ## Tags
@@ -147,7 +150,6 @@ supports IPv4 and IPv6 subnets. Examples:
 2001:db8:4d41:4153::/64
 ```
 
-In MAAS, a subnet is always associated with a single space.
 
 ### IP ranges
 
