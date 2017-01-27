@@ -125,7 +125,9 @@ with one another. VLANs within each space need not belong to the same fabric.
 A default space is not created when MAAS is installed.
 
 A space's main purpose is to facilitate machine acquisition for
-[Juju](https://jujucharms.com/docs/stable/about-juju).
+[Juju](https://jujucharms.com/docs/stable/about-juju). Specifically, see
+[here](https://jujucharms.com/docs/2.0/network-spaces).
+
 
 ## Tags
 
