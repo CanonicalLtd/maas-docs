@@ -4,8 +4,13 @@ Title: Subnet Management | MAAS
 # Subnet Management 
 
 The topic of subnet management pertains to whether MAAS is in full control of a
-subnet or not. By default, a subnet is *managed* by MAAS but the administrator
-has the option of disabling this mode.
+subnet or not. When a subnet is *managed*, all aspects of IP address allocation
+is handled by MAAS. This includes DHCP leases and assigned static addresses.
+Typically MAAS would have one managed subnet, but any additional subnets can be
+*unmanaged*. This allows for more control over which subnet gets used for DHCP
+and which ones do not. Additionally, as detailed below, an unmanaged subnet
+treats reserved IP ranges differently, and in a way that some administrators
+find more intuitive.
 
 
 ## Managed subnets
@@ -32,6 +37,8 @@ DHCP will never lease addresses from an unmanaged subnet.
 
 
 ## Controlling subnet management
+
+By default, a subnet is managed, but it is easy to change this.
 
 To disable (or re-enable) subnet management navigate to the 'Subnets' page and
 select the subnet. There is a slide switch labelled 'Managed allocation'. Click
