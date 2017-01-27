@@ -20,7 +20,7 @@ See
 [Concepts and terms](intro-concepts.md#ip-ranges)
 for an explanation of the two kinds of reserved IP ranges MAAS uses and
 [Post-commission configuration](installconfig-commission-nodes.md#post-commission-configuration)
-on IP allocation modes.
+for information on IP allocation modes.
 
 
 ## Unmanaged subnets
