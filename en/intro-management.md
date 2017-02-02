@@ -20,7 +20,7 @@ future chapters.
 The web UI gets installed along with the MAAS software. This documentation
 regards the web UI as the primary means for configuring and managing MAAS and
 will use it as the preferred method in all instructions and examples. See
-[Access the web UI](installconfig-gui.md) once MAAS is installed.
+[Web UI](installconfig-gui.md) once MAAS is installed.
 
 Some advanced functionality is only available with the CLI. See below.
 

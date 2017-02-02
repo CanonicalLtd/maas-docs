@@ -10,7 +10,7 @@ The MAAS CLI can do everything that the web UI can do, and more. The CLI uses
 the `maas` command exclusively which, in turn, connects to the API.
 
 This page explains what is needed to get going with the CLI. Tasks are then
-separated into common, image management, and advanced.
+separated into common, image management, DHCP snippet management, and advanced.
 
 Note that we do not provide complete coverage of the MAAS CLI. For an
 exhaustive treatment, see the
