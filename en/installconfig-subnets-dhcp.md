@@ -14,7 +14,8 @@ server it will display it on the rack controller's page ('Nodes' page >
 
 Normally the machine subnet is on the untagged VLAN, but if this is not the case
 then DHCP packets will need to be specially routed between the subnet and the
-MAAS-provided DHCP subnet. 
+MAAS-provided DHCP subnet. It is also possible to relay DHCP from one VLAN to
+another using an external DHCP relay.
 
 Using an external DHCP server for enlistment and commissioning may work but
 this is not supported. By doing so you also forfeit the IP management ability
@@ -60,6 +61,12 @@ either enlisted or commissioned.
 In addition, if a node being deployed has an interface connected to the
 untagged VLAN and it has an IP assignment mode set to 'DHCP' then it will also
 get an address in this range.
+
+
+## Enabling DHCP via relay
+
+To enable DHCP on another VLAN and relay from the current VLAN the 'Relay DHCP'
+action is chosen instead of the 'Provide DHCP' action.
 
 
 ## Extending a reserved dynamic IP range
