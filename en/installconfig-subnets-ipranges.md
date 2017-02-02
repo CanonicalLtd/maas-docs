@@ -13,7 +13,7 @@ to manage them. Specifically, it will show how to:
 - Delete a range
 
 All three actions require administrative privileges and begin by accessing the
-'Networks' page, selecting the desired subnet, and scrolling down to the
+'Subnets' page, selecting the desired subnet, and scrolling down to the
 'Reserved' section.
 
 
