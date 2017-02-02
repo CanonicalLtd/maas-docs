@@ -79,6 +79,9 @@ navigation:
           - title: IPv6
             location: installconfig-network-ipv6.md
 
+          - title: SSL
+            location: installconfig-network-ssl.md
+
           - title: STP
             location: installconfig-network-stp.md
 
@@ -167,10 +170,10 @@ navigation:
     location: 2.1-release-notes.md
 
   - title: Developer guide
-    location: http://docs.maas.io/2.0/index.html#developing-maas
+    location: http://docs.maas.io/2.1/index.html#developing-maas
 
   - title: API documentation
-    location: http://docs.maas.io/2.0/api.html
+    location: http://docs.maas.io/2.1/api.html
 
   - title: Help improve these docs
     location: contributing.md

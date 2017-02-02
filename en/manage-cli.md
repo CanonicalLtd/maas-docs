@@ -1,7 +1,7 @@
-Title: MAAS CLI
-TODO:  Provide links to definitions of the entities (e.g. fabric, dynamic address range)
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
+Title: MAAS CLI | MAAS
+TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR (affects all CLI pages)
        Consider explaining how an API call is converted to a CLI command
+table_of_contents: True
 
 
 # MAAS CLI
@@ -14,7 +14,7 @@ separated into common, image management, DHCP snippet management, and advanced.
 
 Note that we do not provide complete coverage of the MAAS CLI. For an
 exhaustive treatment, see the
-[API documentation](http://docs.maas.io/2.0/api.html).
+[API documentation](http://docs.maas.io/2.1/api.html).
 
 Values are represented as uppercase variables preceded with the '$' character
 (e.g. $PROFILE and $EMAIL_ADDRESS). These are to be replaced with actual

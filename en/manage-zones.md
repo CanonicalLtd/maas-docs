@@ -1,5 +1,6 @@
 Title: Zones | MAAS
 TODO:  Fix/add CLI equivalents
+table_of_contents: True
 
 
 # Zones

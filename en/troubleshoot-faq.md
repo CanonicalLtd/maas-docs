@@ -1,5 +1,6 @@
 Title: Troubleshooting | MAAS
 TODO:  review soon
+table_of_contents: True
 
 
 # Troubleshooting

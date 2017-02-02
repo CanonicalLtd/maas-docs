@@ -1,4 +1,4 @@
-Title: MAAS | Metal As A Service
+Title: What is MAAS?
 table_of_contents: True
 
 
@@ -26,9 +26,9 @@ from the network (PXE).
 
 MAAS provides management of a large number of physical machines by creating a
 single resource pool out of them. Participating machines can then be
-provisioned automatically (Debian preseed) and used as normal. When those
-machines are no longer required they are "released" back into the pool. MAAS
-integrates all the tools you require in one smooth experience. It includes:
+provisioned automatically and used as normal. When those machines are no longer
+required they are "released" back into the pool. MAAS integrates all the tools
+you require in one smooth experience. It includes:
 
 - a beautiful web UI
 - full API/CLI support
