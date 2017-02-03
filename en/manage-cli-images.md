@@ -1,6 +1,6 @@
-Title: MAAS CLI | Image Management
+Title: CLI Image Management | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
+table_of_contents: True
 
 
 # CLI Image Management
@@ -41,15 +41,16 @@ maas $PROFILE boot-resources read
 ## Select images
 
 To select images from an image source by specifying series; architecture; and
-HWE kernel:
+kernel:
 
 ```bash
 maas $PROFILE boot-source-selections create $SOURCE_ID \
 	os="ubuntu" release="$SERIES" arches="$ARCH" \
-	subarches="$HWE_KERNEL" labels="*"
+	subarches="$KERNEL" labels="*"
 ```
 
-For example, to select all HWE kernels for 64-bit Trusty:
+For example, to select all kernels for 64-bit Trusty from boot source with an
+id of '1':
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
@@ -57,14 +58,24 @@ maas $PROFILE boot-source-selections create 1 \
 	subarches="*" labels="*"
 ```
 
-Often users would simply want the latest HWE kernel available for Trusty,
-which, at time of writing, is from Xenial:
+To get just the latest amd64 HWE kernel available for Trusty, which, at time of
+writing, is from Xenial:
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
 	os="ubuntu" release="trusty" arches="amd64" \
 	subarches="hwe-x" labels="*"
 ```
+
+For Xenial kernels (and starting with MAAS 2.1), notation has changed. To
+select the latest amd64 HWE kernel available for Xenial:
+
+```bash
+maas $PROFILE boot-source-selections create 1 \
+	os="ubuntu" release="xenial" arches="amd64" \
+	subarches="hwe-16.04" labels="*"
+```
+
 
 After new images are selected MAAS will need to import them.
 
@@ -125,10 +136,6 @@ Presented below are two use cases for adding an image source:
 1. Use a local image mirror (official images)
 1. Recreate the default image source (if it was ever deleted)
 
-<!--
-1. Use a custom image source (custom images)
--->
-
 The general syntax is:
 
 ```bash
@@ -160,7 +167,7 @@ specifying the mirror location (URL). Since the images come from the default
 source the default keyring should be used. If the aforementioned mirror
 document was followed, the variable values should be:
 
-- URL=https://myserver/maas/images/ephemeral-v2/daily/
+- URL=https://myserver/maas/images/ephemeral-v3/daily/
 - KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 
 Where `myserver` identifies your mirror server's hostname or IP address.
@@ -170,5 +177,5 @@ Where `myserver` identifies your mirror server's hostname or IP address.
 Recreate the default image source if it was ever deleted using the following
 variable values:
 
-- URL=https://images.maas.io/ephemeral-v2/daily/
+- URL=https://images.maas.io/ephemeral-v3/daily/
 - KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg

@@ -61,17 +61,26 @@ navigation:
 
         children:
 
+          - title: DHCP
+            location: installconfig-subnets-dhcp.md
+
           - title: Reserved IP ranges
             location: installconfig-subnets-ipranges.md
 
-          - title: DHCP
-            location: installconfig-subnets-dhcp.md
+          - title: Proxy
+            location: installconfig-proxy.md
+
+          - title: NTP
+            location: installconfig-ntp.md
+
+          - title: Device discovery
+            location: installconfig-network-dev-discovery.md
 
           - title: IPv6
             location: installconfig-network-ipv6.md
 
-          - title: Proxy
-            location: installconfig-proxy.md
+          - title: SSL
+            location: installconfig-network-ssl.md
 
           - title: STP
             location: installconfig-network-stp.md
@@ -85,6 +94,9 @@ navigation:
 
           - title: Partitions
             location: installconfig-partitions.md
+
+          - title: Disk erasure
+            location: installconfig-storage-erasure.md
 
       - title: Nodes
 
@@ -108,7 +120,7 @@ navigation:
           - title: Kernel boot options
             location: installconfig-kernel.md
 
-          - title: HWE kernels
+          - title: Ubuntu kernels
             location: installconfig-hwe-kernels.md
 
   - title: Manage MAAS
@@ -120,6 +132,9 @@ navigation:
 
       - title: User accounts
         location: manage-account.md
+
+      - title: Package repositories
+        location: manage-repos.md
 
       - title: High availability
         location: manage-ha.md
@@ -152,13 +167,16 @@ navigation:
         location: troubleshoot-getting-help.md
 
   - title: Release notes
-    location: ref-release-notes.md
+    location: 2.1-release-notes.md
 
   - title: Developer guide
-    location: http://docs.maas.io/2.0/index.html#developing-maas
+    location: http://docs.maas.io/2.1/index.html#developing-maas
 
   - title: API documentation
-    location: http://docs.maas.io/2.0/api.html
+    location: http://docs.maas.io/2.1/api.html
+
+  - title: MAAS 1.9 docs
+    location: /maas/1.9/en/
 
   - title: MAAS 1.9 docs
     location: /maas/1.9/en/

@@ -1,6 +1,6 @@
-Title: MAAS | Metal As A Service
-TODO:  Review paragraph "Multiple region and rack controllers are required if..." 
+Title: What is MAAS?
 table_of_contents: True
+
 
 # What is MAAS?
 
@@ -26,9 +26,9 @@ from the network (PXE).
 
 MAAS provides management of a large number of physical machines by creating a
 single resource pool out of them. Participating machines can then be
-provisioned automatically (Debian preseed) and used as normal. When those
-machines are no longer required they are "released" back into the pool. MAAS
-integrates all the tools you require in one smooth experience. It includes:
+provisioned automatically and used as normal. When those machines are no longer
+required they are "released" back into the pool. MAAS integrates all the tools
+you require in one smooth experience. It includes:
 
 - a beautiful web UI
 - full API/CLI support
@@ -39,6 +39,7 @@ integrates all the tools you require in one smooth experience. It includes:
 - inventory of components
 - DHCP and DNS for other devices on the network
 - VLAN and fabric support
+- NTP for the entire infrastructure
 
 MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef](https://www.chef.io/chef) and

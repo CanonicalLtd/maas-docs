@@ -1,7 +1,7 @@
-Title: MAAS Images
+Title: Images | MAAS
 
 
-# MAAS Images
+# Images
 
 MAAS stores its images in the region controller's database, from where the rack
 controller will automatically pull them onto its local disk. 
@@ -17,7 +17,11 @@ The place from where a region controller downloads its images is known as a
 (URL) and its associated GPG public keyring.
 
 MAAS comes configured with a boot source that should suffice for most users.
-It is located at https://images.maas.io/ephemeral-v2/releases/.
+It is located at https://images.maas.io/ephemeral-v3/daily/.
+
+The above URL points to the 'daily' stream (for the v3 format). See
+[Local image mirror](installconfig-images-mirror.md) for some explanation
+regarding the availability of other streams.
 
 Although the backend supports multiple boot sources, MAAS itself uses a single
 source. If multiple sources are detected the web UI will print a warning and

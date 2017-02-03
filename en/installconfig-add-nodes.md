@@ -1,5 +1,7 @@
 Title: Add Nodes | MAAS
-TODO: Verify instructions re adding a node manually
+TODO: Need instructions on adding a chassis
+      See if 2.0 branch is using file virsh-config.png , delete if not
+table_of_contents: True
 
 
 # Add Nodes
@@ -53,12 +55,18 @@ when enlistment doesn't work for some reason.
 ## KVM guest nodes
 
 KVM-backed nodes are common and so a little extra guidance is provided here.
-Begin by ensuring the `virsh` binary is available to the rack controller via
-the `libvirt-bin` package.
+The following actions are performed on the rack controller.
 
-The 'maas' user will need an SSH keypair (with a null passphrase) so MAAS will
-be able to query and manage KVM guests remotely. A login shell will also be
-useful when becoming user 'maas':
+Begin by ensuring the `virsh` binary is available to the rack controller by
+installing the `libvirt-bin` package:
+
+```bash
+sudo apt install libvirt-bin
+```
+
+Next, the 'maas' user will need an SSH keypair (with a null passphrase) so the
+rack controller can query and manage KVM guests remotely. A login shell will
+also be necessary when becoming user 'maas':
 
 ```bash
 sudo chsh -s /bin/bash maas
@@ -98,12 +106,11 @@ See
 
 ## Add a node manually
 
-If you know the MAC address of a node, you can manually enter details about
-the node through the web interface. Click the `Add Node` button to be taken to
-the "Add Node" form:
+Enlistment can be done manually if the hardware specifications of the
+underlying machine are known. On the 'Nodes' page click the 'Add hardware'
+button and then select 'Machine'.
 
-![image](../media/add-node.png)
+Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
+being added:
 
-<!-- MAYBE THIS CAN BE USED LATER
-![qemu ssh power](../media/virsh-config.png)
-->>
+![image](../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png)

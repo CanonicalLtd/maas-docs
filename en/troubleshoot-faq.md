@@ -1,5 +1,6 @@
 Title: Troubleshooting | MAAS
 TODO:  review soon
+table_of_contents: True
 
 
 # Troubleshooting
@@ -29,6 +30,36 @@ source drivers are available for the network hardware.
 **SOLUTION:** The best fix for this problem is to install a Linux-friendly
 network adapter. It *is* theoretically possible to modify the boot image to
 include proprietary drivers, but it is not a straightforward task.
+
+
+## Node deployment fails
+
+When deployment fails the [Rescue mode](intro-concepts.md#rescue-mode) action 
+can be used to boot ephemerally into the node, followed by an investigation. 
+
+As an example, an improperly configured PPA was added to MAAS which caused
+nodes to fail deployment. After entering Rescue mode and connecting via SSH,
+the following was discovered in file `/var/log/cloud-init-output.log`:
+
+```no-highlight
+2016-11-28 18:21:48,982 - cc_apt_configure.py[ERROR]: failed to add apt GPG Key
+to apt keyring
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/cloudinit/config/cc_apt_configure.py",
+line 540, in add_apt_key_raw
+    util.subp(['apt-key', 'add', '-'], data=key.encode(), target=target)
+  File "/usr/lib/python3/dist-packages/cloudinit/util.py", line 1836, in subp
+    cmd=args)
+cloudinit.util.ProcessExecutionError: Unexpected error while running command.
+Command: ['apt-key', 'add', '-']
+Exit code: 2
+Reason: -
+Stdout: ''
+Stderr: 'gpg: no valid OpenPGP data found.\n'
+```
+
+In this instance, the GPG fingerprint was used instead of the GPG key. After
+rectifying this oversight, nodes were again able to successfully deploy.
 
 
 ## Nodes fail to PXE boot
