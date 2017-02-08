@@ -89,9 +89,8 @@ range. It should correspond to the lease range of the external server.
 DHCP relaying in MAAS is an advanced feature and should not be implemented
 without sufficient planning and study. In particular, MAAS does not provide the
 actual relay. It must be set up as an external service by the administrator.
-What MAAS does provide is the DHCP configuration that the MAAS-managed DHCP
-service requires once client requests on the relayed VLAN do get forwarded to
-it.
+What MAAS does provide is the DHCP configuration that MAAS-managed DHCP
+requires in order to satisfy any client requests relayed from another VLAN.
 
 To relay from one VLAN (source) to another VLAN (target):
 
