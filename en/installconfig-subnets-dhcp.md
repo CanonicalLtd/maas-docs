@@ -21,7 +21,7 @@ Using an external DHCP server for enlistment and commissioning may work but
 this is not supported. By doing so you also forfeit the IP management ability
 of MAAS since synchronization (e.g. notifications that leases should be
 squashed when a node is returned to the pool) between it and the DHCP server
-will be severed. [High availability](./manage-maas-ha.md) is also dependent
+will be severed. [High availability](./manage-ha.md) is also dependent
 upon MAAS-managed DHCP.
 
 **This documentation presupposes that MAAS-managed DHCP is used to enlist and

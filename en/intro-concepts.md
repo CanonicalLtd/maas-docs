@@ -48,7 +48,7 @@ A rack controller is attached to each "fabric". As the name implies, a common
 setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
-as made highly available. See [MAAS HA](manage-maas-ha.md) for high
+as made highly available. See [MAAS HA](manage-ha.md) for high
 availability.
 
 ### Machines
