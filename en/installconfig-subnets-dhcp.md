@@ -14,8 +14,8 @@ server it will display it on the rack controller's page ('Nodes' page >
 
 Normally the machine subnet is on the untagged VLAN, but if this is not the case
 then DHCP packets will need to be specially routed between the subnet and the
-MAAS-provided DHCP subnet. It is also possible to relay DHCP from one VLAN to
-another using an external DHCP relay.
+MAAS-provided DHCP subnet. It is also possible to forward DHCP traffic from one
+VLAN to another using an external DHCP relay service.
 
 Using an external DHCP server for enlistment and commissioning may work but
 this is not supported. By doing so you also forfeit the IP management ability
