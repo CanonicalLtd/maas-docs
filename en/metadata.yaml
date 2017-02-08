@@ -158,7 +158,7 @@ navigation:
     location: http://docs.maas.io/2.0/index.html#developing-maas
 
   - title: API documentation
-    location: http://docs.maas.io/2.0/api.html
+    location: api.md
 
   - title: MAAS 1.9 docs
     location: /maas/1.9/en/
