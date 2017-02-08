@@ -38,6 +38,7 @@ you require in one smooth experience. It includes:
 - Ubuntu, CentOS, or Windows installation support
 - inventory of components
 - DHCP and DNS for other devices on the network
+- DHCP relay integration
 - VLAN and fabric support
 - NTP for the entire infrastructure
 

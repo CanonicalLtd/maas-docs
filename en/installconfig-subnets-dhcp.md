@@ -21,8 +21,8 @@ Using an external DHCP server for enlistment and commissioning may work but
 this is not supported. By doing so you also forfeit the IP management ability
 of MAAS since synchronization (e.g. notifications that leases should be
 squashed when a node is returned to the pool) between it and the DHCP server
-will be severed. [High availability](./manage-ha.md) is also dependent
-upon MAAS-managed DHCP.
+will be severed. [High availability](./manage-ha.md) and DHCP relay integration
+(see below) are also dependent upon MAAS-managed DHCP.
 
 **This documentation presupposes that MAAS-managed DHCP is used to enlist and
 commission nodes.**
@@ -63,12 +63,6 @@ untagged VLAN and it has an IP assignment mode set to 'DHCP' then it will also
 get an address in this range.
 
 
-## Enabling DHCP via relay
-
-To enable DHCP on another VLAN and relay from the current VLAN the 'Relay DHCP'
-action is chosen instead of the 'Provide DHCP' action.
-
-
 ## Extending a reserved dynamic IP range
 
 If necessary, it is possible to add further portions of the subnet to the
@@ -88,6 +82,32 @@ For instance, address conflicts may occur if a node's IP assignment mode is set
 to 'Auto assign' in the context of an external DHCP server. See
 [Reserved IP addresses](installconfig-subnets-ipranges.md) to create such a
 range. It should correspond to the lease range of the external server.
+
+
+## DHCP relay
+
+DHCP relaying in MAAS is an advanced feature and should not be implemented
+without sufficient planning and study. In particular, MAAS does not provide the
+actual relay. It must be set up as an external service by the administrator.
+What MAAS does provide is the DHCP configuration that the MAAS-managed DHCP
+service requires once client requests on the relayed VLAN do get forwarded to
+it.
+
+To relay from one VLAN (source) to another VLAN (target):
+
+1.  Ensure the target VLAN has DHCP enabled  
+
+1.  Set up the external relay  
+    This is done independently from MAAS. See
+    [DHCP relay](intro-concepts.md#dhcp-relay) for software suggestions.
+
+1.  Configure MAAS-managed DHCP  
+    Navigate to the source VLAN page and select the 'Relay DHCP' action. Fill in the
+    fields in the resulting form. The crucial setting is the target VLAN ('relay
+    VLAN'). Press the 'Relay DHCP' button to finish. See
+    [MAAS CLI](manage-cli-advanced.md#relay-dhcp) for how to do this with the CLI.
+
+![Relay DHCP](../media/installconfig-networking-dhcp__2.2_relay-dhcp.png)
 
 
 ## DHCP Snippets
