@@ -196,6 +196,16 @@ object in the fabric will be associated with by default (unless specified
 otherwise).
 
 
+## DHCP relay
+
+A DHCP relay, or relay agent, is a network device that forwards requests and
+replies between a DHCP client and a DHCP server when both are not on the same
+physical subnet.
+
+Two common software implementations are [isc-dhcp-relay][isc-dhcp-relay] and 
+[dhcp-helper][dhcp-helper].
+
+
 ## Interfaces
 
 ### Physical
@@ -369,3 +379,8 @@ then to 'Rescue mode' when the operation is complete.
 
 ### Set Zone
 Puts the node in a specific zone.
+
+
+<!-- LINKS -->
+[isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
+[dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper

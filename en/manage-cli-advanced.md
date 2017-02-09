@@ -87,6 +87,22 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_parameters_power_id=$HOSTNAME
 ```
 
+
+## Relay DHCP
+
+To relay DHCP traffic for a VLAN (source) through another VLAN (target):
+
+```bash
+maas $PROFILE vlan update $FABRIC_ID $VLAN_VID_SRC relay_vlan=$VLAN_ID_TARGET
+```
+
+For example, to relay VLAN with vid 0 (on fabric-2) through VLAN with id 5002 :
+
+```bash
+maas $PROFILE vlan update 2 0 relay_van=5002
+```
+
+
 ## Install a rack controller
 
 To install and register a rack controller with the MAAS:
