@@ -169,9 +169,6 @@ navigation:
   - title: Release notes
     location: 2.1-release-notes.md
 
-  - title: Developer guide
-    location: http://docs.maas.io/2.1/index.html#developing-maas
-
   - title: API documentation
     location: api.md
 
