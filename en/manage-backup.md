@@ -17,7 +17,7 @@ its requirements below.
 The following MAAS components on each region and rack controller need to be
 backed-up and restored to recreate a working environment:
 
-1. The Postgresql database
+1. The PostgreSQL database
 1. The configuration files in `/etc/maas`
 1. The configuration files in `/var/lib/maas`
 
@@ -30,7 +30,7 @@ Other configuration files, such as those used by Apache or your network
 configuration (`/etc/network/interfaces`, for example) will need to be
 backed-up and restored according to your specific deployment requirements. 
 
-### Postgresql export
+### PostgreSQL export
 
 As an overview, the following steps can be taken to backup and restore a
 MAAS deployment with the following assumptions:
@@ -39,7 +39,7 @@ MAAS deployment with the following assumptions:
 - MAAS 2.1 is installed on Ubuntu 16.04 LTS (Xenial) and up-to-date
 - Restoration will be to identical hardware, including the network configuration
 
-To backup your Postgresql database to a file called `dump.sql` in your home
+To backup your PostgreSQL database to a file called `dump.sql` in your home
 folder, enter the following:
 
 ```bash
@@ -77,7 +77,7 @@ which we'll cover now.
 
 With a fresh and updated installation of Ubuntu on identical hardware, where
 MAAS has already been installed (`sudo apt install maas`), stop the following
-services (Postgresql needs to stay running):
+services (PostgreSQL needs to stay running):
 
 - apache2.service
 - maas-dhcpd.service
