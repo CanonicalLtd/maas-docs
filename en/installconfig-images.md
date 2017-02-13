@@ -3,7 +3,11 @@ Title: Images | MAAS
 
 # Images
 
-MAAS stores its images in the region controller's database, from where the rack
+MAAS supports Ubuntu and CentOS images out of the box.
+[Ubuntu Advantage][ubuntu-advantage] is needed in order to use Windows, RHEL
+and SUSE images or in order to build a custom image for any operating system.
+
+Images are stored in the region controller's database, from where the rack
 controller will automatically pull them onto its local disk. 
 
 See [CLI Image Management](manage-cli-images.md) for information on
@@ -37,3 +41,8 @@ an hourly basis (a sync mechanism is enabled by default).
 
 See [Select and Import Images](installconfig-images-import.md) to get
 started with images!
+
+
+<!-- LINKS -->
+
+[ubuntu-advantage]: https://www.ubuntu.com/support
