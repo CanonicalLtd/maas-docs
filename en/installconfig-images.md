@@ -21,9 +21,9 @@ The place from where a region controller downloads its images is known as a
 (URL) and its associated GPG public keyring.
 
 MAAS comes configured with a boot source that should suffice for most users.
-It is located at https://images.maas.io/ephemeral-v3/daily/.
+It is located at https://images.maas.io/ephemeral-v2/daily/.
 
-The above URL points to the 'daily' stream (for the v3 format). See
+The above URL points to the 'daily' stream (for the v2 format). See
 [Local image mirror](installconfig-images-mirror.md) for some explanation
 regarding the availability of other streams.
 

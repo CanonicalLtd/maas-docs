@@ -39,7 +39,6 @@ you require in one smooth experience. It includes:
 - inventory of components
 - DHCP and DNS for other devices on the network
 - VLAN and fabric support
-- NTP for the entire infrastructure
 
 MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef][about-chef] and [Juju][about-juju] as a physical
