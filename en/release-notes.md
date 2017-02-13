@@ -2,7 +2,8 @@ Title: 2.2 Release Notes | MAAS
 table_of_contents: True
 
 
-**Historical release notes:** [2.2][2.2-release-notes] | [2.1][2.1-release-notes] | [2.0][2.0-release-notes]
+See [Historical release notes][historical-release-notes] for release notes for
+all versions.
 
 
 # 2.2 Release Notes
@@ -112,6 +113,4 @@ Cannot add a device with parent from the dashboard
 
 <!-- LINKS -->
 
-[2.2-release-notes]: 2.2-release-notes.md
-[2.1-release-notes]: 2.1-release-notes.md
-[2.0-release-notes]: 2.0-release-notes.md
+[historical-release-notes]: release-notes-all.md
