@@ -14,9 +14,9 @@ Azure, among others.
 
 MAAS can act as a standalone PXE/preseed service or it can be integrated with
 other technologies. In particular, it is designed to work especially well with
-[Juju](https://jujucharms.com/docs/stable/about-juju), the service and model
-management service. It's a perfect arrangement: MAAS manages the machines and
-Juju manages the services running on those machines.
+[Juju][about-juju], the service and model management service. It's a perfect
+arrangement: MAAS manages the machines and Juju manages the services running on
+those machines.
 
 !!! Note: KVM guests can also act as MAAS nodes as long as they are set to boot
 from the network (PXE).
@@ -35,16 +35,19 @@ you require in one smooth experience. It includes:
 - high availability (optional)
 - IPv6 support
 - open source IP address management (IPAM)
-- Ubuntu, CentOS, or Windows installation support
+- Ubuntu, CentOS, Windows, RHEL and SUSE installation support
 - inventory of components
 - DHCP and DNS for other devices on the network
+- DHCP relay integration
 - VLAN and fabric support
 - NTP for the entire infrastructure
 
 MAAS works with any configuration system, and is recommended by the teams
-behind both [Chef](https://www.chef.io/chef) and
-[Juju](https://jujucharms.com/docs/stable/about-juju) as a physical
+behind both [Chef][about-chef] and [Juju][about-juju] as a physical
 provisioning system.
+
+!!! Note: Windows, RHEL and SUSE images require
+[Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
 
 
 ## How MAAS works
@@ -78,18 +81,18 @@ run a vendor-supplied upgrade utility.
 Once you are done with a node you have allocated you send it back to the pool
 for re-use.
 
-Note that [Juju](https://jujucharms.com/docs/stable/about-juju) is designed to
-work with MAAS. In this case, MAAS becomes a sort of backend (resource pool)
-for Juju, or a "cloud provider" in Juju terminology. However, everything that
-was stated earlier still applies. For instance, if Juju removes a machine then
-MAAS will, in turn, release that machine to the pool.
+Note that [Juju][about-juju] is designed to work with MAAS. In this case, MAAS
+becomes a sort of backend (resource pool) for Juju, or a "cloud provider" in
+Juju terminology. However, everything that was stated earlier still applies.
+For instance, if Juju removes a machine then MAAS will, in turn, release that
+machine to the pool.
 
 
 ## Key components and colocation of all services
 
 The key components of a MAAS installation are the region controller and the
-rack controller. See [Concepts and terms](intro-concepts.md#controllers) for
-how each are defined.
+rack controller. See [Concepts and terms][controllers] for how each are
+defined.
 
 Unless there is specific reason not to, it is recommended to have both
 controllers residing on the same system. A no-fuss way to achieve this is by
@@ -198,4 +201,8 @@ its own subnet(s).
 
 <!-- LINKS -->
 
+[about-chef]: https://www.chef.io/chef
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
+[controllers]: intro-concepts.md#controllers
+[ubuntu-advantage]: https://www.ubuntu.com/support
 [controllers]: intro-concepts.md#controllers
