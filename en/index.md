@@ -38,7 +38,6 @@ you require in one smooth experience. It includes:
 - Ubuntu, CentOS, Windows, RHEL and SUSE installation support
 - inventory of components
 - DHCP and DNS for other devices on the network
-- DHCP relay integration
 - VLAN and fabric support
 - NTP for the entire infrastructure
 
