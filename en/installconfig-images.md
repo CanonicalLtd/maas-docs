@@ -1,9 +1,13 @@
-Title: MAAS Images
+Title: Images | MAAS
 
 
-# MAAS Images
+# Images
 
-MAAS stores its images in the region controller's database, from where the rack
+MAAS supports Ubuntu and CentOS images out of the box.
+[Ubuntu Advantage][ubuntu-advantage] is needed in order to use Windows, RHEL
+and SUSE images or in order to build a custom image for any operating system.
+
+Images are stored in the region controller's database, from where the rack
 controller will automatically pull them onto its local disk. 
 
 See [CLI Image Management](manage-cli-images.md) for information on
@@ -17,7 +21,11 @@ The place from where a region controller downloads its images is known as a
 (URL) and its associated GPG public keyring.
 
 MAAS comes configured with a boot source that should suffice for most users.
-It is located at https://images.maas.io/ephemeral-v2/releases/.
+It is located at https://images.maas.io/ephemeral-v2/daily/.
+
+The above URL points to the 'daily' stream (for the v2 format). See
+[Local image mirror](installconfig-images-mirror.md) for some explanation
+regarding the availability of other streams.
 
 Although the backend supports multiple boot sources, MAAS itself uses a single
 source. If multiple sources are detected the web UI will print a warning and
@@ -33,3 +41,8 @@ an hourly basis (a sync mechanism is enabled by default).
 
 See [Select and Import Images](installconfig-images-import.md) to get
 started with images!
+
+
+<!-- LINKS -->
+
+[ubuntu-advantage]: https://www.ubuntu.com/support
