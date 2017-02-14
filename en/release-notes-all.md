@@ -1,5 +1,5 @@
 Title: Historical Release Notes | MAAS
-table_of_contents: True
+table_of_contents: False
 
 
 # 2.2 Release Notes
