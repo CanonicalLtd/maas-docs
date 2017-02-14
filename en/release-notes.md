@@ -2,6 +2,10 @@ Title: 2.1 Release Notes | MAAS
 table_of_contents: True
 
 
+See [Historical release notes][historical-release-notes] for release notes for
+all versions.
+
+
 # 2.1 Release Notes
 
 ## Important changes
@@ -275,3 +279,8 @@ contributions in this area.
 ### Networks page renamed
 
 The Networks page has been renamed to Subnets.
+
+
+<!-- LINKS -->
+
+[historical-release-notes]: release-notes-all.md
