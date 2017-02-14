@@ -2,6 +2,10 @@ Title: 2.2 Release Notes | MAAS
 table_of_contents: True
 
 
+See [Historical release notes][historical-release-notes] for release notes for
+all versions.
+
+
 # 2.2 Release Notes
 
 ## Important announcements
@@ -105,3 +109,8 @@ Cannot add a device from the dashboard
 https://bugs.launchpad.net/maas/+bug/1659959
 
 Cannot add a device with parent from the dashboard
+
+
+<!-- LINKS -->
+
+[historical-release-notes]: release-notes-all.md
