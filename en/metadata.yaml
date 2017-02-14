@@ -152,7 +152,7 @@ navigation:
         location: troubleshoot-getting-help.md
 
   - title: Release notes
-    location: ref-release-notes.md
+    location: release-notes.md
 
   - title: API documentation
     location: api.md
