@@ -139,6 +139,9 @@ navigation:
       - title: High availability
         location: manage-ha.md
 
+      - title: Backup
+        location: manage-backup.md
+
       - title: MAAS CLI
         location: manage-cli.md
 
