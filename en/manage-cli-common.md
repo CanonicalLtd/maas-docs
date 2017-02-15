@@ -31,7 +31,7 @@ To determine the system ID based on a node's hostname:
 
 ```bash
 SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
-	| grep system_id | cut -d '"' -f 4)
+	| grep system_id -m 1 | cut -d '"' -f 4)
 ```
 
 
