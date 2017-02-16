@@ -1,27 +1,27 @@
 Title: Networking | MAAS
-TODO:  In 2.1, the 'Networks' page is renamed to 'Subnets'
-       Bug check: https://goo.gl/mPKBRl
+TODO:  Bug check: https://goo.gl/mPKBRl
        Not sure about the purpose of "deleting" a subnet. Won't it reappear eventually?
 
 
 # Networking
 
 This page shows where to view and edit the main networking elements in MAAS.
-It also links to some important networking sub-topics. See
-[Concepts and terms](intro-concepts.md) for networking element definitions.
+See [Concepts and terms](intro-concepts.md) for the definitions of networking
+objects.
 
 
 ## Main view
 
-To access the main networking view visit the 'Networks' page:
+To access the main networking view visit the 'Subnets' page:
 
-![networking main page](../media/installconfig-networking__main.png)
+![networking main page](../media/installconfig-networking__2.1_main.png)
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
 topology being represented here, some elements are used multiple times. To be
-clear, in this example there are 3 fabrics, 1 VLAN, 3 subnets, and 1 space and
-they should all be detected automatically by MAAS.
+clear, in this example there are 3 fabrics, 1 VLAN, 3 subnets, and 1 space. All
+such elements should be detected automatically by MAAS but if they're not each
+can be added manually using the 'Add' button. 
 
 This main view can also be filtered either by fabrics or by spaces through the
 use of the 'Group by' dropdown.
@@ -49,14 +49,28 @@ The **Subnet summary** section:
 are applied instantly.
 
 Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
-'Description', should be entered. Gateway
-and DNS values are passed to deployed nodes unless an external DHCP server will
-be used to *deploy* nodes. There is also the option of changing the subnet's
-fabric, VLAN, and space providing your network topology allows for it.
+'Description', are entered. Gateway and DNS values are passed to nodes for
+commissioning and, if DHCP is MAAS-managed, for deploying too. There is also
+the option of changing the subnet's fabric, VLAN, and space providing your
+network topology allows for it.
 
-Even if an external DHCP server will be used it is highly recommended that
-values for gateway and nameserver be entered in case you later remove your
-external DHCP and/or choose an IP assignment mode other than 'DHCP'.
+When the 'Active mapping' checkbox is enabled, MAAS will scan the subnet every
+3 hours to discover hosts that have not been discovered passively. 
+
+The **Static Routes** section:
+
+This section can be used to define a static route between two subnets, allowing
+administrators to configure reachability to a subnet from a source subnet. A
+route is defined on a per-subnet basis to use a particular gateway, using a
+configured destination and metric.
+
+To create a static route, click the 'Add static route' button to reveal the
+edit pane. Enter a Gateway IP address, select a destination subnet from the
+'Destination' drop-down list, and edit the routing metric value if needed.
+Clicking 'Add' will activate the route. Routes can be edited and removed using
+the icons to the right of each entry. 
+
+![networking static routes configuration](../media/installconfig-networking__static-routes.png)
 
 The **Utilisation** section:
 

@@ -1,0 +1,188 @@
+navigation:
+  - title: Introduction
+
+    children:
+
+      - title: About MAAS
+        location: index.md
+
+      - title: Management summary
+        location: intro-management.md
+
+      - title: Concepts and terms
+        location: intro-concepts.md
+
+      - title: Architectural overview
+        location: intro-architecture.md
+
+  - title: Install & Configure
+
+    children:
+
+      - title: Checklist
+        location: installconfig-checklist.md
+
+      - title: Install MAAS
+        location: installconfig-install.md
+
+        children:
+
+          - title: Install from Ubuntu Server ISO
+            location: installconfig-server-iso.md
+
+          - title: Install from packages
+            location: installconfig-package-install.md
+
+          - title: Install into LXD
+            location: installconfig-lxd-install.md
+
+          - title: Upgrade from 1.9 to 2.0
+            location: installconfig-upgrade-to-2.md
+
+      - title: Rack controller
+        location: installconfig-rack.md
+
+      - title: Web UI
+        location: installconfig-gui.md
+
+      - title: Images
+        location: installconfig-images.md
+
+        children:
+
+          - title: Selection and import
+            location: installconfig-images-import.md
+
+          - title: Local image mirror
+            location: installconfig-images-mirror.md
+
+      - title: Networking
+        location: installconfig-networking.md
+
+        children:
+
+          - title: Subnet management
+            location: installconfig-network-subnet-management.md
+
+          - title: DHCP
+            location: installconfig-subnets-dhcp.md
+
+          - title: Reserved IP ranges
+            location: installconfig-subnets-ipranges.md
+
+          - title: Proxy
+            location: installconfig-proxy.md
+
+          - title: NTP
+            location: installconfig-ntp.md
+
+          - title: Device discovery
+            location: installconfig-network-dev-discovery.md
+
+          - title: IPv6
+            location: installconfig-network-ipv6.md
+
+          - title: SSL
+            location: installconfig-network-ssl.md
+
+          - title: STP
+            location: installconfig-network-stp.md
+
+      - title: Storage
+        location: installconfig-storage.md
+
+        children:
+          - title: Block devices
+            location: installconfig-block.md
+
+          - title: Partitions
+            location: installconfig-partitions.md
+
+          - title: Disk erasure
+            location: installconfig-storage-erasure.md
+
+      - title: Nodes
+
+        children:
+
+          - title: Add nodes
+            location: installconfig-add-nodes.md
+
+          - title: BMC power types
+            location: installconfig-power-types.md
+
+          - title: Commission nodes
+            location: installconfig-commission-nodes.md
+
+          - title: Deploy nodes
+            location: installconfig-deploy-nodes.md
+
+          - title: Tags
+            location: installconfig-tags.md
+
+          - title: Kernel boot options
+            location: installconfig-kernel.md
+
+          - title: Ubuntu kernels
+            location: installconfig-hwe-kernels.md
+
+  - title: Manage MAAS
+
+    children:
+
+      - title: Zones
+        location: manage-zones.md
+
+      - title: User accounts
+        location: manage-account.md
+
+      - title: Package repositories
+        location: manage-repos.md
+
+      - title: High availability
+        location: manage-ha.md
+
+      - title: Backup
+        location: manage-backup.md
+
+      - title: MAAS CLI
+        location: manage-cli.md
+
+        children:
+
+          - title: Common tasks
+            location: manage-cli-common.md
+
+          - title: Image management
+            location: manage-cli-images.md
+
+          - title: DHCP snippet management
+            location: manage-cli-dhcp-snippets.md
+
+          - title: Advanced tasks
+            location: manage-cli-advanced.md
+
+  - title: Troubleshoot
+
+    children:
+
+      - title: FAQ
+        location: troubleshoot-faq.md
+
+      - title: Getting help
+        location: troubleshoot-getting-help.md
+
+  - title: Release notes
+    location: release-notes.md
+
+  - title: API documentation
+    location: api.md
+
+  - title: MAAS 1.9 docs
+    location: /maas/1.9/en/
+
+  - title: Help improve these docs
+    location: contributing.md
+
+  - title: Report a docs issue
+    location: https://github.com/CanonicalLtd/maas-docs/issues/new

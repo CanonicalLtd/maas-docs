@@ -1,8 +1,8 @@
-Title: MAAS CLI | Advanced Tasks
+Title: Advanced CLI Tasks | MAAS
 TODO:  Decide whether explicit examples are needed everywhere
-       Foldouts cannot be used due to bug: https://git.io/vwbCz
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
+table_of_contents: True
 
 
 # Advanced CLI Tasks
@@ -37,8 +37,8 @@ maas $PROFILE tags create name='nomodeset' \
 ```
 
 The tag must then be assigned to the machine in question. This can be done
-with the web UI or with the CLI. For the latter, see [assign a tag to a
-node](manage-cli-common.md#assign-a-tag-to-a-node).
+with the web UI or with the CLI. For the latter, see
+[assign a tag to a node](manage-cli-common.md#assign-a-tag-to-a-node).
 
 If multiple tags attached to a node have the `kernel_opts` defined, the first
 one (ordered alphabetically) is used.
@@ -67,8 +67,7 @@ maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=$HWE_KERNEL
 To set a specific HWE kernel during the deployment of a machine:
 
 ```bash
-maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES \
-	hwe_kernel=$HWE_KERNEL
+maas $PROFILE machine deploy $SYSTEM_ID distro_series=$SERIES hwe_kernel=$HWE_KERNEL
 ```
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
@@ -88,6 +87,22 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_parameters_power_id=$HOSTNAME
 ```
 
+
+## Relay DHCP
+
+To relay DHCP traffic for a VLAN (source) through another VLAN (target):
+
+```bash
+maas $PROFILE vlan update $FABRIC_ID $VLAN_VID_SRC relay_vlan=$VLAN_ID_TARGET
+```
+
+For example, to relay VLAN with vid 0 (on fabric-2) through VLAN with id 5002 :
+
+```bash
+maas $PROFILE vlan update 2 0 relay_van=5002
+```
+
+
 ## Install a rack controller
 
 To install and register a rack controller with the MAAS:
@@ -98,21 +113,20 @@ sudo maas-rack register
 ```
 
 !!! Note: The register command is only needed if the rack controller is not
-being added to a system that already houses a region controller.
+being added to a system that already houses an API server.
 
-You will be asked for the URL of the region controller. If you provide a
+You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
-that is stored in file `/var/lib/maas/secret` on the region controller.
+that is stored in file `/var/lib/maas/secret` on the API server.
 
-You can get the above information from the web UI by visiting the 'Nodes' tab,
-then the Controller sub-tab, and clicking the button 'Add rack controller'.
-Here is an example of what you may see:
+You can get the above information from the web UI by visiting the 'Nodes' page,
+then the Controller tab, and clicking the button 'Add rack controller'. Here
+is an example of what you may see:
 
-![add controller](../media/installconfig-rack__add-controller.png)
+![add controller](../media/manage-maas-cli-advanced__2.1_add-controller.png)
 
 Based on the above, then, we could have also entered:
 
 ```bash
-sudo maas-rack register --url http://10.248.0.3/MAAS \
-	--secret 30e5413d5b684620700b3105b02965c0
+sudo maas-rack register --url http://10.5.1.5:5240/MAAS --secret 9500bf4c56558346c925c5d17819f878
 ```

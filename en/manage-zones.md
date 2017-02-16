@@ -1,6 +1,6 @@
 Title: Zones | MAAS
 TODO:  Fix/add CLI equivalents
-       Abstract the links
+table_of_contents: True
 
 
 # Zones
@@ -24,7 +24,7 @@ To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
 The resulting window will allow for the name and, optionally, a description of
 the new zone.
 
-![image](../media/add-zone.png)
+![image](../media/manage-zones__2.1_create-zone.png)
 
 
 ## Edit a zone

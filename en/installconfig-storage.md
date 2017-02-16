@@ -11,6 +11,7 @@ formatting and mounting of both [block devices](installconfig-block.md) and
 [partitions](installconfig-partitions.md).
 
 
+
 ## Layouts
 
 The configuration that gets assigned to a node is known as a storage *layout*.

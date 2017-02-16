@@ -1,5 +1,7 @@
-Title: Add Nodes
-TODO: Verify instructions re adding a node manually
+Title: Add Nodes | MAAS
+TODO: Need instructions on adding a chassis
+      See if 2.0 branch is using file virsh-config.png , delete if not
+table_of_contents: True
 
 
 # Add Nodes
@@ -11,9 +13,6 @@ adding a node is called *enlistment*.
 
 !!! Note: Configuring a computer to boot over PXE is done via its BIOS and is
 often referred to as "netboot" or "network boot".
-
-If enlistment doesn't work for you it is possible to
-[add a node manually](#add-a-node-manually).
 
 Regardless of how a node is added, there are no special requirements for the
 underlying machine. In particular, there is no need to install an operating
@@ -30,28 +29,44 @@ Typically, the next step will be to *commission* the node. See
 ## Enlistment
 
 As explained, to enlist, the underlying machine needs to be configured to
-netboot. Such a machine will:
+netboot. Such a machine will undergo the following process:
 
-1. Contact a DHCP server
-1. Receive an image over TFTP and boot from it
-1. Contact the MAAS server
-1. Shut down
+1. DHCP server is contacted
+1. kernel and initrd are received over TFTP
+1. machine boots
+1. initrd mounts a Squashfs image ephemerally over iSCSI
+1. cloud-init runs enlistment scripts
+1. machine shuts down
 
-During this process, the MAAS server will be passed information about the node,
-including the architecture, MAC address and other details which will be stored
-in the database. This information-gathering process is known as *automatic
-discovery*.
+The enlistment scripts will send the region API server information about the
+machine, including the architecture, MAC address and other details which will
+be stored in the database. This information-gathering process is known as
+*automatic discovery*.
+
+Since any system booting off the network can enlist, the enlistment and
+commission steps are separate. This allows an administrator to "accept" an
+enlisted machine into MAAS.
+
+As an alternative to enlistment, an administrator can
+[add a node manually](#add-a-node-manually) (below). Typically this is done
+when enlistment doesn't work for some reason.
 
 
 ## KVM guest nodes
 
 KVM-backed nodes are common and so a little extra guidance is provided here.
-Begin by ensuring the `virsh` binary is available to the rack controller via
-the `libvirt-bin` package.
+The following actions are performed on the rack controller.
 
-The 'maas' user will need an SSH keypair (with a null passphrase) so MAAS will
-be able to query and manage KVM guests remotely. A login shell will also be
-useful when becoming user 'maas':
+Begin by ensuring the `virsh` binary is available to the rack controller by
+installing the `libvirt-bin` package:
+
+```bash
+sudo apt install libvirt-bin
+```
+
+Next, the 'maas' user will need an SSH keypair (with a null passphrase) so the
+rack controller can query and manage KVM guests remotely. A login shell will
+also be necessary when becoming user 'maas':
 
 ```bash
 sudo chsh -s /bin/bash maas
@@ -91,12 +106,11 @@ See
 
 ## Add a node manually
 
-If you know the MAC address of a node, you can manually enter details about
-the node through the web interface. Click the `Add Node` button to be taken to
-the "Add Node" form:
+Enlistment can be done manually if the hardware specifications of the
+underlying machine are known. On the 'Nodes' page click the 'Add hardware'
+button and then select 'Machine'.
 
-![image](../media/add-node.png)
+Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
+being added:
 
-<!-- MAYBE THIS CAN BE USED LATER
-![qemu ssh power](../media/virsh-config.png)
-->>
+![image](../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png)

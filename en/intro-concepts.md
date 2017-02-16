@@ -1,11 +1,10 @@
-Title: MAAS | Concepts and Terms
-TODO:  For "Zones", refer to page equivalent to physical-zones.rst (e.g. fault tolerance)
-       Consider CLI commands for every node action and link from here
+Title: Concepts and Terms | MAAS 
+TODO:  Consider CLI commands for every node action and link from here
        QA node actions
-       Nodes status of 'Release' adds functionality in 2.1 (can optionally wipe storage in certain ways)
+table_of_contents: True
 
 
-# Concepts and terms
+# Concepts and Terms
 
 Here are some common terms that are essential to grasp in order to fully enjoy
 MAAS, not to mention the rest of this documentation.
@@ -27,17 +26,29 @@ Nodes include:
 There are two types of controllers: a *region controller* and a *rack
 controller*.
 
-A region controller consists of i) the REST API server, ii) the PostgreSQL
-database, iii) DNS, iv) caching HTTP proxy, and v) a web UI. A region
-controller can be thought of as being responsible for a data centre.
+A region controller consists of:
 
-A rack controller provides i) DHCP, ii) TFTP, iii) HTTP (for images), iv)
-iSCSI, and v) power management. You need a rack controller attached to each
-"fabric". As the name implies, a common setup is to have a rack controller in
-each data centre server rack.
+- REST API server (TCP port 5240)
+- PostgreSQL database
+- DNS
+- caching HTTP proxy
+- web UI
+
+A region controller can be thought of as being responsible for a data centre.
+
+A rack controller provides:
+
+- DHCP
+- TFTP
+- HTTP (for images)
+- iSCSI
+- power management
+
+A rack controller is attached to each "fabric". As the name implies, a common
+setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
-as made highly available. See [MAAS HA](manage-maas-ha.md) for high
+as made highly available. See [MAAS HA](manage-ha.md) for high
 availability.
 
 ### Machines
@@ -109,10 +120,13 @@ communication. A fabric is a logical grouping of unique VLANs. A default fabric
 
 ## Spaces
 
-A *space* is a logical grouping of subnets that are able to communicate
-with each other. Subnets within each space need not belong to the same fabric.
-A default space ('space-0') is created when MAAS is installed and includes all
-detected subnets.
+A *space* is a logical grouping of VLANs whose subnets are able to communicate
+with one another. VLANs within each space need not belong to the same fabric.
+A default space is not created when MAAS is installed.
+
+A space's main purpose is to facilitate machine acquisition for
+[Juju](https://jujucharms.com/docs/stable/about-juju). Specifically, see
+[here](https://jujucharms.com/docs/2.0/network-spaces).
 
 
 ## Tags
@@ -136,27 +150,30 @@ supports IPv4 and IPv6 subnets. Examples:
 2001:db8:4d41:4153::/64
 ```
 
-In MAAS, a subnet is always associated with a single space.
 
 ### IP ranges
 
-IP addresses can be reserved by adding one or more *reserved ranges* to your
+IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
 - **Reserved range** An IP range that MAAS will never use. You can use it for
   anything you want (e.g. infrastructure systems, network hardware, external
-  DHCP, or the namespace for an OpenStack cloud you will be building).
+  DHCP, or the namespace for an OpenStack cloud you will be building). For an
+  unmanaged subnet, only addresses in this range are used.
 
 - **Reserved dynamic range** An IP range that MAAS will use for enlisting,
   commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during
   commissioning, deploying. An initial range is created as part of the DHCP
-  enablement process if done with the web UI.
+  enablement process if done with the web UI. For an unmanaged subnet, this
+  range is never used.
 
 See
 [IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created
 and 
 [Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-for how they get used.
+for how they get used and
+[Subnet management](installconfig-network-subnet-management.md) for information
+on managed vs. unmanaged subnets.
 
 
 ## VLANs
@@ -177,6 +194,16 @@ interfaces, so that the deployed node can make use of them.
 A "Default VLAN" is created for every fabric, to which every new VLAN-aware
 object in the fabric will be associated with by default (unless specified
 otherwise).
+
+
+## DHCP relay
+
+A DHCP relay, or relay agent, is a network device that forwards requests and
+replies between a DHCP client and a DHCP server when both are not on the same
+physical subnet.
+
+Two common software implementations are [isc-dhcp-relay][isc-dhcp-relay] and 
+[dhcp-helper][dhcp-helper].
 
 
 ## Interfaces
@@ -239,6 +266,14 @@ The node is deployed. See node action 'Deploy'.
 ### Deploying
 The node is in the process of deploying. See node action 'Deploy'.
 
+### Entering rescue mode
+The node is in the process of entering rescue mode. See node action 'Rescue
+mode'.
+
+### Exiting rescue mode
+The node is in the process of exiting rescue mode. See node action 'Exit rescue
+mode'.
+
 ### Failed Commissioning
 The node failed to commission.
 
@@ -251,6 +286,10 @@ has just been added to MAAS.
 
 ### Ready
 The node has been commissioned and is ready for use.
+
+### Rescue mode
+The node is in rescue mode and is ready to accept SSH connections. See node
+action 'Rescue mode'.
 
 
 ## Node actions
@@ -291,12 +330,20 @@ If unsuccessful, the status becomes 'Failed deployment'.
 Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
 
+### Exit rescue mode
+
+Changes a node's status from 'Rescue mode' to the 'Exiting rescue mode'
+transitory status and then back to its original status when the operation is
+complete.
+
 ### Mark broken
-Marks a node as broken. Changes a node's status to 'Broken'. This can be chosen
-if any action has failed (such as Commission and Deploy). Marking it broken
-guarantees that the node will not get used in any way. This would normally be
-followed by some level of investigation so as to determine the source of the
-problem.
+Marks a node as broken. Changes a node's status to 'Broken'. Includes action
+'Power off'.
+
+This can be chosen if any action has failed (such as Commission and Deploy).
+Marking it broken guarantees that the node will not get used in any way. This
+would normally be followed by some level of investigation so as to determine
+the source of the problem.
 
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
@@ -326,5 +373,28 @@ is a global setting.
 from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 >>>>>>> 5d9804bd4bcdbbb06ec7e08e4433bf51982f6c79
 
+The user has the opportunity to erase the node's storage (disks) before
+confirming the action. A default erasure setting can be configured on the
+Settings page. See [Disk erasure](installconfig-storage-erasure.md) for
+details.
+
+### Rescue mode
+
+Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
+This allows a user SSH to the machine for maintenance purposes. This can be
+done for a Deployed or Broken node as well as for a node that failed to deploy.
+
+Authentication and access to the node's storage works the same way it would as
+if the node was deployed. The fact that Ubuntu is running ephemerally is
+completely transparent to the user.
+ 
+The node status is changed to the 'Entering rescue mode' transitory status and
+then to 'Rescue mode' when the operation is complete.
+
 ### Set Zone
 Puts the node in a specific zone.
+
+
+<!-- LINKS -->
+[isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
+[dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
