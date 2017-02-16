@@ -1,12 +1,12 @@
 Title: 2.2 Release Notes | MAAS
-table_of_contents: True
+table_of_contents: False
 
 
 See [Historical release notes][historical-release-notes] for release notes for
 all versions.
 
 
-# 2.2 Release Notes
+# 2.2.0 (beta1) Release Notes
 
 ## Important announcements
 
