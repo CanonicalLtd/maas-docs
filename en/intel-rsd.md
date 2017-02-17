@@ -35,6 +35,16 @@ for re-use as part of the MAAS machine lifecycle.
   for MAAS’s control through a single endpoint.
 
 
+## Getting started with Intel RSD
+
+Functionality for Intel RSD appeared in MAAS 2.2.0 Beta2. See
+[MAAS 2.2.0 (beta2) release notes][release-notes] for how to install the
+requisite version of MAAS.
+
+Such functionality is accessed via the MAAS CLI only. See [MAAS CLI][maas-cli]
+for how to get started.
+
+
 ## List all Pods
 
 List all Pods:
@@ -160,3 +170,9 @@ To delete a Pod:
 ```bash
 maas $PROFILE pod delete $POD_ID
 ```
+
+
+<!-- LINKS -->
+
+[release-notes]: release-notes.md
+[maas-cli]: manage-cli.md
