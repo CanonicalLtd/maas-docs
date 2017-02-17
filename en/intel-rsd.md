@@ -6,7 +6,6 @@ Title: Intel RSD | MAAS
 
 ## Introduction
 
-### Preamble
 Intel Rack Scale Design (RSD) is a hardware architecture that allows the
 dynamic composition of physical systems from a pool of available hardware
 resources. MAAS is a cloud-like, scale-out bare-metal provisioning system, that
@@ -20,31 +19,25 @@ This document describes how to use MAAS to manage an Intel Rack Scale Design
 composition of machines, from available pool of resources, to be made available
 for re-use as part of the MAAS machine lifecycle.
 
-### Definitions for MAAS
-Intel Rack Scale Design
-Intel® Rack Scale Design (RSD) is a logical architecture that disaggregates
-compute, storage, and network resources, and introduces the ability to more
-efficiently pool and utilize these resources.
 
-Composed System
-An Intel RSD term used to represent a system that has been created for usage as
-an actual machine in MAAS.
+## Definitions
 
-Uncomposed System
-An Intel RSD term used to represent a system that has not been created for
-usage as an actual usable system.
-
-Pod
-A MAAS term to represent a set of machines or a pool of hardware available for
-MAAS’s control through a single endpoint.
-
-Orchestrator
-A workload orchestrator tool, such as Juju, Chef, or another consumer of the
-MAAS API.
-
-Fabric
-A switch or a combination of switches that are trunked, all providing the same
-VLANs.
+- Intel Rack Scale Design  
+  Intel® Rack Scale Design (RSD) is a logical architecture that disaggregates
+  compute, storage, and network resources, and introduces the ability to more
+  efficiently pool and utilize these resources.
+  
+- Composed System  
+  An Intel RSD term. Used to represent a system that has been created for usage
+  as an actual machine in MAAS.
+  
+- Uncomposed System  
+  An Intel RSD term. Used to represent a system that has not been created for
+  usage as an actual usable system.
+  
+- Pod  
+  A MAAS term. Use to represent a set of machines or a pool of hardware available
+  for MAAS’s control through a single endpoint.
 
 
 ## MAAS Release Notes
@@ -87,12 +80,15 @@ MAAS is listing the architectures field multiple times.  MAAS will need to
 address this and only list the supported architectures once.  
 
 
-Section 3 - Registration and Resource Discovery
-Registration
-An RSD Pod can be registered in MAAS via the API (with login of admin):
+## Registration and Resource Discovery
 
-maas admin pods create type="rsd" power_address="<ip_address|url:port>"
-power_user="<username>" power_pass="<password>"
+### Registration
+An RSD Pod can be registered in MAAS via the API:
+
+```bash
+maas $PROFILE pods create type="rsd" power_address="<ip_address|url:port>" \
+	power_user="<username>" power_pass="<password>"
+```
 
 Example output for creating an RSD Pod:
 
@@ -143,7 +139,9 @@ from the API.
 
 To read the Pod resources:
 
-maas admin pod read <pod_id>
+```bash
+maas $PROFILE pod read <pod_id>
+```
 
 Example output of reading pod:
 
@@ -188,7 +186,9 @@ state.
 
 To read the Pods power parameters:
 
-maas admin pod parameters <pod_id>
+```bash
+maas $PROFILE pod parameters <pod_id>
+```
 
 Example output of pod parameters:
 
@@ -202,13 +202,13 @@ Machine-readable output follows:
 }
 
 
-Section 4 - Machine Composition
-Composition
-Composing RSD Pod machines via the API.
+## Machine Composition
 
-Default compose:
+To compose RSD Pod machines via the API:
 
+```bash
 maas admin pod compose <pod_id>
+```
 
 Example output for default composing:
 
@@ -598,11 +598,13 @@ Machine-readable output follows:
 }
 
 
-Section 5 - Machine Decomposition
-Decomposition
-Decomposing RSD Pod machines via the API by deleting the machine itself:
+## Machine Decomposition
 
-maas admin machine delete <system_id>
+To decompose RSD Pod machines by deleting the machine itself:
+
+```bash
+maas $PROFILE machine delete <system_id>
+```
 
 Example output for deleting pod machine:
 
@@ -614,11 +616,13 @@ If we did another read of the RSD Pod, we would see that the resources for this
 machine are available and no longer used.
 
 
-Section 6 - Pod Deletion
-Deleting a Pod
-Deleting an RSD Pod via the API:
+## Pod Deletion
 
+To delete an RSD Pod:
+
+```bash
 maas admin pod delete <pod_id>
+```
 
 Example output of Pod deletion:
 

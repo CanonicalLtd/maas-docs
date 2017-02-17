@@ -8,6 +8,14 @@ all versions.
 
 # 2.2.0 (beta2) Release Notes
 
+MAAS 2.2 Beta 2 is available on the MAAS Next PPA (ppa:maas/next). To Install
+MAAS:
+
+```bash
+sudo add-apt-repository -yu ppa:maas/next
+sudo apt install maas
+```
+
 ## Important announcements
 
 ### Composable hardware
