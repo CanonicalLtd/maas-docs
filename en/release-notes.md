@@ -1,12 +1,88 @@
 Title: 2.2 Release Notes | MAAS
-table_of_contents: True
+table_of_contents: False
 
 
 See [Historical release notes][historical-release-notes] for release notes for
 all versions.
 
 
-# 2.2 Release Notes
+# 2.2.0 (beta2) Release Notes
+
+MAAS 2.2 Beta 2 is available on the MAAS Next PPA (ppa:maas/next). To Install
+MAAS:
+
+```bash
+sudo add-apt-repository -yu ppa:maas/next
+sudo apt install maas
+```
+
+## Important announcements
+
+### Composable hardware
+
+MAAS now supports composable hardware - The Intel Rack Scale Design
+The MAAS team is excited to announce the support for the Intel Rack Scale
+Design (RSD). Intel Rack Scale Design (RSD) is a hardware architecture that
+allows the dynamic composition of physical systems from a pool of available
+hardware resources. 
+
+MAAS, as a cloud-like, scale-out bare-metal provisioning system, will leverage
+the use of Intel RSD to compose (create) and provision systems. With the
+support for RSD, MAAS introduces the ability to manually or dynamically compose
+(create) new machines from an available pool of resources. It will allow
+administrators to request machines with specific resources on demand and be
+able to deploy their workloads on them.
+
+
+## Major new features
+
+### MAAS support for Intel RSD - API only
+
+MAAS 2.2b2 introduces initial support for Intel RSD. It provides the ability
+to :
+
+- Add a new Intel RSD POD into MAAS, allowing users to have a full view of the
+  available and used resources. 
+- Add the ability to discover pre-composed resources, allowing MAAS to discover
+  machines that have been created before adding the Intel RSD POD into MAAS.
+- Add the ability to create (compose) new machines.
+
+### Notifications
+
+MAAS 2.2b2 introduces a new notification system. The notification system
+surfaces various messages to the user via the web UI, allowing to have more
+visibility as to what’s going on with the system. Initially, users will be
+notified when :
+
+- When Rack Controllers get disconnected
+- When image import fails on your region controller.
+- When Rack Controllers have images that the Region Controller does not.
+
+### Web UI Visual updates
+
+MAAS 2.2b2 now has an updated web UI that includes:
+
+- Updated all icons and colour set within the framework. This will keep inline
+  with the Vanilla Framework and the new visual update which is going across
+  all products
+- Links have changed from black to blue. This keeps MAAS inline with Juju and
+  other Cloud products also improves the visual UX.
+- Improved the responsive nature of MAAS. Tables especially have been improved.
+- The new card view and label using aria-label improves the readability and
+  uses on mobile / small screens.
+- Navigation responsive issues have been resolved.
+- Flash messages has been removed and now replaced with the improved
+  notification pattern.
+- New utility classes u-display--mobile & u-display--desktop have been added
+  for extra responsive development / design flexibility.
+- Accordion styles have been improved. Removing the cross style and keeping it
+  consistent with our remove style.
+
+
+<!-- ===================================================================== -->
+
+
+# 2.2.0 (beta1) Release Notes
 
 ## Important announcements
 

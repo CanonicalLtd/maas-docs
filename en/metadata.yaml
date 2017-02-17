@@ -172,6 +172,9 @@ navigation:
       - title: Getting help
         location: troubleshoot-getting-help.md
 
+  - title: Intel RSD
+    location: intel-rsd.md
+
   - title: Release notes
     location: release-notes.md
 
