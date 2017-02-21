@@ -143,7 +143,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [zones]: manage-zones.md
 [networks]: installconfig-networking.md
 [images]: installconfig-images.md
-[dhcp]: installconfig-subnets-dhcp.md
+[dhcp]: installconfig-network-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [user-accounts]: manage-account.md
 [power-type]: installconfig-power-types.md

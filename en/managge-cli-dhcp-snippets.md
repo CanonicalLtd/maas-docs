@@ -1,14 +1,15 @@
-Title: CLI DHCP Snippet Management | MAAS
+Title: MAAS CLI | DHCP snippets
 TODO:  Include non-trivial examples of DHCP snippets
        Bug check: https://bugs.launchpad.net/maas/+bug/1623192
-table_of_contents: True
 
 
 # CLI DHCP Snippet Management
 
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
-See [MAAS CLI][maas-cli](manage-cli.md) to get started with the CLI and
-[DHCP][dhcp-snippets] for an overview of DHCP snippets.
+See [MAAS CLI](manage-cli.md) on how to get started.
+
+See [DHCP](installconfig-network-dhcp.md#dhcp-snippets) for an overview of DHCP
+snippets.
 
 
 ## Create a snippet
@@ -121,9 +122,3 @@ maas $PROFILE dhcpsnippet delete $DHCP_SNIPPET_ID
 ```
 
 The snippet name can also be used in place of its ID.
-
-
-<!-- LINKS -->
-
-[maas-cli]: manage-cli.md
-[dhcp-snippets]: installconfig-network-dhcp.md#dhcp-snippets
