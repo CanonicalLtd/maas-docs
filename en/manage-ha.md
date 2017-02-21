@@ -12,8 +12,8 @@ table_of_contents: True
 
 This page will describe how to provide high availability (HA) for MAAS at both
 the rack controller level and the region controller level. See
-[Concepts and terms][controllers] for detailed information on what services are
-provided by each of those levels.
+[Concepts and terms][concepts-controllers] for detailed information on what
+services are provided by each of those levels.
 
 
 ## Rack controller HA
@@ -284,7 +284,7 @@ port 80 (as opposed to port 5240).**
 
 <!-- LINKS -->
 
-[controllers]: intro-concepts.md#controllers
+[concepts-controllers]: intro-concepts.md#controllers
 [install-rackd]: installconfig-rack.md#install-a-rack-controller
 [enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
 [keepalived-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf
