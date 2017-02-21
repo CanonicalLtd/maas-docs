@@ -165,18 +165,8 @@ subnet configuration. There are two types of ranges that can be defined:
   commissioning, deploying. An initial range is created as part of the DHCP
   enablement process if done with the web UI.
 
-<<<<<<< HEAD
-See
-[IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created
-and 
-[Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-for how they get used.
-=======
 See [IP ranges][ip-ranges] for how these ranges get created and 
-[Commission nodes][post-commission-configuration] for how they get used and
-[Subnet management][subnet-management] for information on managed vs. unmanaged
-subnets.
->>>>>>> d3da562... more on standardized filenames; affecting ipranges, some abstract linking
+[Commission nodes][post-commission-configuration] for how they get used.
 
 
 ## VLANs
@@ -371,8 +361,6 @@ then to 'Rescue mode' when the operation is complete.
 
 ### Set Zone
 Puts the node in a specific zone.
-<<<<<<< HEAD
-=======
 
 
 <!-- LINKS -->
@@ -385,6 +373,3 @@ Puts the node in a specific zone.
 [dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
 [ip-ranges]: installconfig-network-ipranges.md
 [post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
-[subnet-management]: installconfig-network-subnet-management.md
-[storage-erasure]: installconfig-storage-erasure.md
->>>>>>> d3da562... more on standardized filenames; affecting ipranges, some abstract linking
