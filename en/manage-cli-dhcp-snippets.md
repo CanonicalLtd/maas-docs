@@ -7,7 +7,7 @@ table_of_contents: True
 # CLI DHCP Snippet Management
 
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
-See [MAAS CLI][maas-cli](manage-cli.md) to get started with the CLI and
+See [MAAS CLI][manage-cli] to get started with the CLI and
 [DHCP][dhcp-snippets] for an overview of DHCP snippets.
 
 
@@ -125,5 +125,5 @@ The snippet name can also be used in place of its ID.
 
 <!-- LINKS -->
 
-[maas-cli]: manage-cli.md
+[manage-cli]: manage-cli.md
 [dhcp-snippets]: installconfig-network-dhcp.md#dhcp-snippets
