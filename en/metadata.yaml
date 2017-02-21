@@ -68,7 +68,7 @@ navigation:
             location: installconfig-network-dhcp.md
 
           - title: Reserved IP ranges
-            location: installconfig-subnets-ipranges.md
+            location: installconfig-network-ipranges.md
 
           - title: Proxy
             location: installconfig-network-proxy.md

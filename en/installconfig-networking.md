@@ -86,7 +86,7 @@ The **Reserved** section:
 ![networking subnets page reserved](../media/installconfig-networking__subnets-reserved.png)
 
 This shows the *reserved IP ranges*. This is an important subject and is
-treated separately in [IP ranges](installconfig-subnets-ipranges.md).
+treated separately in [IP ranges](installconfig-network-ipranges.md).
 
 The **Used** section:
 
