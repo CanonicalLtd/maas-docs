@@ -74,14 +74,14 @@ sudo su - maas
 ssh-keygen -f ~/.ssh/id_rsa -N ''
 ```
 
-Add the public key to file `/home/<USER>/.ssh/authorized_keys` on the KVM host:
+Add the public key to file `/home/$USER/.ssh/authorized_keys` on the KVM host:
 
 ```bash
-ssh-copy-id -i ~/.ssh/id_rsa <USER>@<KVM_HOST>
+ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
 ```
 
-Where `<KVM_HOST>` is the IP address of the KVM host and `<USER>` is a user
-(typically an admin with sudo access) on the KVM host.
+Where $KVM_HOST represents the IP address of the KVM host and $USER represents
+a user (typically an admin with sudo access) on the KVM host.
 
 !!! Note: You may need to (temporarily) configure sshd on the KVM host to
 honour password authentication for the `ssh-copy-id` command to succeed.
@@ -89,7 +89,7 @@ honour password authentication for the `ssh-copy-id` command to succeed.
 Still as user 'maas', test connecting to the KVM host with virsh:
 
 ```bash
-virsh -c qemu+ssh://<USER>@<KVM_HOST>/system list --all
+virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 ```
 
 This should work seamlessly because the private key is passphraseless.
