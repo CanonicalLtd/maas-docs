@@ -11,9 +11,10 @@ on to the next one.
 
 ## Software installation
 
-As explained [here][about-maas], the installation of MAAS consists of the
-installation of a rack controller and a region controller which, in turn,
-provide a multitude of services. Go ahead and [install MAAS][install-maas]!
+As explained in the [Introduction][about-maas], the installation of MAAS
+consists of the installation of a rack controller and a region controller
+which, in turn, provide a multitude of services. Go ahead and
+[install MAAS][maas-install]!
 
 
 ## Access the web UI
@@ -110,7 +111,7 @@ you're still a rock star!
 
 A node needs to power cycle while being managed by MAAS. The next step is
 therefore to tell MAAS how to do this. That is, you need to
-[edit the power type][power-type] of the node's BMC.
+[edit the power type][power-types] of the node's BMC.
 
 
 ## Commission a node
@@ -137,8 +138,9 @@ web UI will inform you of its IP address. Mission accomplished!
 
 
 <!-- LINKS -->
+
 [about-maas]: index.md#key-components-and-colocation-of-all-services
-[install-maas]: installconfig-install.md
+[maas-install]: installconfig-install.md
 [web-ui]: installconfig-gui.md
 [zones]: manage-zones.md
 [networks]: installconfig-networking.md
@@ -146,7 +148,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [dhcp]: installconfig-network-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [user-accounts]: manage-account.md
-[power-type]: installconfig-power-types.md
+[power-types]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
 [juju-site]: https://jujucharms.com/docs/
 [deploy-nodes]: installconfig-deploy-nodes.md
