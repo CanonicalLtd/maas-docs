@@ -6,8 +6,7 @@ TODO:  Bug check: https://goo.gl/mPKBRl
 # Networking
 
 This page shows where to view and edit the main networking elements in MAAS.
-See [Concepts and terms](intro-concepts.md) for the definitions of networking
-objects.
+See [Concepts and terms][concepts] for the definitions of networking objects.
 
 
 ## Main view
@@ -30,7 +29,7 @@ Although each of the elements can be clicked upon to open up its own window,
 fabrics, VLANs, and spaces do not have much in the way of configuration; their
 names and descriptions can be altered. A VLAN, however, can additionally have
 its MTU changed and also has an action available for
-[enabling DHCP](installconfig-subnets-dhcp.md) (see 'Take action' button).
+[enabling DHCP][enabling-dhcp] (see 'Take action' button).
 
 A subnet, on the other hand, can be configured considerably and its window also
 shows information pertinent to the day-to-day operation of MAAS. For these
@@ -95,3 +94,9 @@ The **Used** section:
 
 This section displays hosts (not necessarily MAAS nodes) associated with the
 used addresses along with related bits of host information.
+
+
+<!-- LINKS -->
+
+[concepts]: intro-concepts.md
+[enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp

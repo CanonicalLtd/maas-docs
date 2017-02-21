@@ -23,8 +23,7 @@ about a second MAAS-managed DHCP service coming online and causing disruption.
 DHCP software is added intelligently when a new rack controller is installed
 and DHCP HA will become available as an option.
 
-Install a second rack controller by reading
-[Rack controller](installconfig-rack.md#install-a-rack-controller).
+Install a second rack controller by reading [Rack controller][install-rackd].
 
 ### BMC HA
 
@@ -38,8 +37,7 @@ accordingly.
 DHCP HA affects node management (enlistment, commissioning and deployment) and
 it is turned on automatically if the initial rack controller already has DHCP
 enabled. If DHCP is being enabled for the first time after a second rack
-controller is added then enable it according to
-[Enabling DHCP](installconfig-subnets-dhcp.md#enabling-dhcp).
+controller is added then enable it according to [Enabling DHCP][enabling-dhcp].
 
 DHCP HA enables a primary and a secondary DHCP instance to serve the same VLAN
 where all lease information is replicated between rack controllers. DHCP
@@ -63,13 +61,13 @@ Load balancing is optional.
 MAAS stores all state information in the PostgreSQL database. It is therefore
 recommended to run it in HA mode. Configuring HA for PostgreSQL is external to
 MAAS. You will therefore need to study the
-[PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
-and implement the variant of HA that you feel most comfortable with.
+[PostgreSQL documentation][upstream-postgresql-docs] and implement the variant
+of HA that you feel most comfortable with.
 
-A quick treatment of [PostgreSQL HA: hot standby](manage-ha-postgresql.md) is
-provided here for convenience only. Its purpose is to give an idea of what's
-involved at the command line level when implementing one particular form of HA
-with PostgreSQL.
+A quick treatment of [PostgreSQL HA: hot standby][postgresql-ha] is provided
+here for convenience only. Its purpose is to give an idea of what's involved at
+the command line level when implementing one particular form of HA with
+PostgreSQL.
 
 ### Secondary API server
 
@@ -129,7 +127,7 @@ Check the log files for any errors:
 
 ### Load balancing (optional)
 
-Load balancing can be added with the [HAProxy](http://www.haproxy.org/) load
+Load balancing can be added with the [HAProxy][upstream-haproxy] load
 balancer software.
 
 On each API server host, before `haproxy` is installed, `apache2` needs to be
@@ -145,7 +143,7 @@ sudo apt install haproxy
 
 Configure each API server's load balancer by copying the following into
 `/etc/haproxy/haproxy.cfg` (see the
-[upstream configuration manual](http://cbonte.github.io/haproxy-dconv/1.6/configuration.html)
+[upstream configuration manual][upstream-haproxy-manual]
 as a reference). Replace $PRIMARY_API_SERVER_IP and $SECONDARY_API_SERVER_IP
 with their respective IP addresses:
 
@@ -177,7 +175,7 @@ sudo systemctl restart haproxy
 
 A *virtual IP* (VIP) will be used as the effective IP address of all region API
 servers. This will be done with the aid of the
-[Keepalived](http://www.keepalived.org/) routing software.
+[Keepalived][upstream-keepalived] routing software.
 
 On each API server host, install the software, load a kernel module, set it to
 load upon reboot and pass a kernel option:
@@ -191,10 +189,9 @@ sudo systemctl restart procps
 ```
 
 Create the file `/etc/keepalived/keepalived.conf` (see the
-[keepalived.conf man page](http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf)
-as a reference) based on the example below. Either `apache2` or `haproxy` will
-be referred to, depending on whether load balancing was implemented or not (see
-previous section).
+[keepalived.conf man page][keepalived-man-page] as a reference) based on the
+example below. Either `apache2` or `haproxy` will be referred to, depending on
+whether load balancing was implemented or not (see previous section).
 
 The following variables are used:
 
