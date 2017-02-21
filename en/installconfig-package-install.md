@@ -7,7 +7,7 @@ There are three packages to consider when installing MAAS:
 
 - `maas-region-controller` - region API server, database, DNS,
   [HTTP proxy][proxy], and [web UI][web-ui]
-- `maas-rack-controller` - [rack controller][rack] and [DHCP][dhcp]
+- `maas-rack-controller` - [rack controller][rackd] and [DHCP][dhcp]
 - `maas` - a metapackage that installs both the above packages to provide a complete
   MAAS environment
 
@@ -19,11 +19,11 @@ obtained with the command:
 apt-cache search maas
 ```
 
-The 'maas' package is the recommended way to install MAAS. See
-[here][all-in-one] for more detail on colocating all services on a single host.
+The 'maas' package is the recommended way to install MAAS. See the
+[Introduction][all-in-one] for more detail on colocating all services on a single host.
 
 High availability with MAAS involves installing multiple region controllers
-and/or multiple rack controllers. See [MAAS HA][ha-maas].
+and/or multiple rack controllers. See [MAAS HA][maas-ha].
 
 
 ## Package repositories
@@ -41,8 +41,7 @@ Development releases (not meant for production) are available here:
 For example, to add the 'stable' PPA, type:
 
 ```bash
-sudo apt-add-repository -y ppa:maas/stable
-sudo apt update
+sudo apt-add-repository -yu ppa:maas/stable
 ```
 
 ## Installation scenarios
@@ -68,14 +67,14 @@ sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
 
-See [Rack controller][rack] for details.
+See [Rack controller][rackd] for details.
 
 
 <!-- LINKS -->
 
 [proxy]: installconfig-network-proxy.md
 [web-ui]: installconfig-gui.md
-[rack]: installconfig-rack.md
-[dhcp]: installconfig-subnets-dhcp.md
+[rackd]: installconfig-rack.md
+[dhcp]: installconfig-network-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
-[ha-maas]: manage-ha.md
+[maas-ha]: manage-ha.md

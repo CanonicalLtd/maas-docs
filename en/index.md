@@ -90,20 +90,19 @@ machine to the pool.
 ## Key components and colocation of all services
 
 The key components of a MAAS installation are the region controller and the
-rack controller. See [Concepts and terms][controllers] for how each are
-defined.
+rack controller. See [Concepts and terms][concepts-controllers] for how each
+are defined.
 
 Unless there is specific reason not to, it is recommended to have both
 controllers residing on the same system. A no-fuss way to achieve this is by
 installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
 
 Multiple region and rack controllers are required if
-[high availability](manage-ha.md) and/or load balancing (see HA page) is desired.
+[high availability][manage-ha] and/or load balancing (see HA page) is desired.
 
 It's important to note that the all-in-one solution will provide a DHCP
 service. Review your existing network design in order to determine whether this
-will cause problems. See
-[DHCP](installconfig-subnets-dhcp.md#competing-dhcp) for more on this subject.
+will cause problems. See [DHCP][dhcp] for more on this subject.
 
 
 ## Installation methods
@@ -115,7 +114,7 @@ There are three ways to install MAAS:
 - As a self-contained LXD environment
 
 These methods, and their respective advantages, are fleshed out on the
-[Installation](installconfig-install.md) page.
+[Installation][maas-install] page.
 
 
 ## Minimum requirements
@@ -136,9 +135,9 @@ environment are considered.
    
    |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
    | --------------------------------------------------- | ----------- | --------- | --------- |
-   | [Region controller][controllers] (minus PostgreSQL) |  512        | 0.5       |  5        |
+   | [Region controller][concepts-controllers] (minus PostgreSQL) |  512        | 0.5       |  5        |
    | PostgreSQL                                          |  512        | 0.5       |  5        |
-   | [Rack controller][controllers]                      |  512        | 0.5       |  5        |
+   | [Rack controller][concepts-controllers]                      |  512        | 0.5       |  5        |
    | Ubuntu Server (including logs)                      |  512        | 0.5       |  5        |
 
    Therefore, the approximate requirements for this scenario are: 2 GB memory,
@@ -157,9 +156,9 @@ environment are considered.
  
    |                                                     | Memory (MB) | CPU (GHz) | Disk (GB) |
    | --------------------------------------------------- | ----------- | --------- | --------- |
-   | [Region controller][controllers] (minus PostgreSQL) | 2048        | 2.0       |  5        |
+   | [Region controller][concepts-controllers] (minus PostgreSQL) | 2048        | 2.0       |  5        |
    | PostgreSQL                                          | 2048        | 2.0       | 20        |
-   | [Rack controller][controllers]                      | 2048        | 2.0       | 20        |
+   | [Rack controller][concepts-controllers]                      | 2048        | 2.0       | 20        |
    | Ubuntu Server (including logs)                      |  512        | 0.5       | 20        |
 
    Therefore, the approximate requirements for this scenario are:
@@ -176,21 +175,19 @@ environment are considered.
 !!! Note: Figures in the above two tables are for the MAAS infrastructure only.
 That is, they do not cover resources needed on the nodes that will subsequently
 be added to MAAS. That said, node machines should have IPMI-based BMC
-controllers for power cycling, see
-[BMC Power Types](installconfig-power-types.md).
+controllers for power cycling, see [BMC power types][power-types].
 
 Examples of factors that influence hardware specifications include:
 
  - the number of connecting clients (client activity)
  - the manner in which services are distributed
- - whether [high availability](manage-ha.md) is used
- - whether [load balancing](manage-ha.md#load-balancing-(optional)) is used
+ - whether [high availability][manage-ha] is used
+ - whether [load balancing][load-balancing] is used
  - the number of images that are stored (disk space affecting PostgreSQL and
    the rack controller)
 
-Equally not taken into account is a possible
-[local image mirror](installconfig-images-mirror.md) which would be a large
-consumer of disk space.
+Equally not taken into account is a possible [local image mirror][mirror] which
+would be a large consumer of disk space.
 
 One rack controller should not be used to service more than 1000 nodes (whether
 on the same or multiple subnets). There is no load balancing at the rack level
@@ -204,4 +201,10 @@ its own subnet(s).
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [controllers]: intro-concepts.md#controllers
 [ubuntu-advantage]: https://www.ubuntu.com/support
-[controllers]: intro-concepts.md#controllers
+[concepts-controllers]: intro-concepts.md#controllers
+[maas-install]: installconfig-install.md
+[manage-ha]: manage-ha.md
+[dhcp]: installconfig-network-dhcp.md
+[power-types]: installconfig-power-types.md
+[load-balancing]: manage-ha.md#load-balancing-(optional)
+[mirror]: installconfig-images-mirror.md
