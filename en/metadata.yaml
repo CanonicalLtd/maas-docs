@@ -65,7 +65,7 @@ navigation:
             location: installconfig-network-subnet-management.md
 
           - title: DHCP
-            location: installconfig-subnets-dhcp.md
+            location: installconfig-network-dhcp.md
 
           - title: Reserved IP ranges
             location: installconfig-network-ipranges.md
