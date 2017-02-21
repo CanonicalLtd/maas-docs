@@ -55,8 +55,8 @@ boxes will appear in order to do the following:
   ![region controller install dialog 3](../media/iso-install-region_03.png)
 
 During one step of the generic Server install you will be asked whether a proxy
-is needed for the server itself. This is separate from the
-[proxy feature](installconfig-proxy.md) that MAAS provides to its nodes.
+is needed for the server itself. This is separate from the [proxy][proxy] that
+MAAS provides to its nodes.
 
 
 ## Rack controller
@@ -103,3 +103,8 @@ software. You may install an SSH server at this time.
 Once you have installed your MAAS environment (region + rack controller) and
 any possible extra rack controllers(s), see the
 [Checklist](installconfig-checklist.md) for what to do next.
+
+
+<!-- LINKS -->
+
+[proxy]: installconfig-network-proxy.md

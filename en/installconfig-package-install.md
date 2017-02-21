@@ -72,7 +72,8 @@ See [Rack controller][rack] for details.
 
 
 <!-- LINKS -->
-[proxy]: installconfig-proxy.md
+
+[proxy]: installconfig-network-proxy.md
 [web-ui]: installconfig-gui.md
 [rack]: installconfig-rack.md
 [dhcp]: installconfig-subnets-dhcp.md
