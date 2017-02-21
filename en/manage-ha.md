@@ -12,8 +12,8 @@ table_of_contents: True
 
 This page will describe how to provide high availability (HA) for MAAS at both
 the rack controller level and the region controller level. See
-[Concepts and Terms](intro-concepts.md#controllers) for detailed information on
-what services are provided by each of those levels.
+[Concepts and terms][concepts-controllers] for detailed information on what
+services are provided by each of those levels.
 
 
 ## Rack controller HA
@@ -283,3 +283,16 @@ The configuration of region controller HA is now complete.
 
 **The API server(s) must be now be referenced (e.g. web UI, MAAS CLI) using
 port 80 (as opposed to port 5240).**
+
+
+<!-- LINKS -->
+
+[concepts-controllers]: intro-concepts.md#controllers
+[install-rackd]: installconfig-rack.md#install-a-rack-controller
+[enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
+[keepalived-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf
+[upstream-keepalived]: http://www.keepalived.org/
+[upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
+[upstream-haproxy]: http://www.haproxy.org/
+[postgresql-ha]: manage-ha-postgresql.md
+[upstream-postgresql-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html
