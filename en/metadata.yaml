@@ -71,10 +71,10 @@ navigation:
             location: installconfig-subnets-ipranges.md
 
           - title: Proxy
-            location: installconfig-proxy.md
+            location: installconfig-network-proxy.md
 
           - title: NTP
-            location: installconfig-ntp.md
+            location: installconfig-network-ntp.md
 
           - title: Device discovery
             location: installconfig-network-dev-discovery.md
