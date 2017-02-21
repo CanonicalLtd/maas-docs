@@ -67,7 +67,7 @@ get an address in this range.
 
 If necessary, it is possible to add further portions of the subnet to the
 dynamic IP range (see
-[Reserved IP addresses](installconfig-subnets-ipranges.md) ). Furthermore,
+[Reserved IP addresses](installconfig-network-ipranges.md) ). Furthermore,
 since DHCP is enabled on a VLAN basis and a VLAN can contain multiple subnets,
 it is possible to add a portion from those subnets as well. Just select the
 subnet under the 'Subnets' page and reserve a dynamic range. DHCP will be
@@ -80,7 +80,7 @@ If an external DHCP server will be used to deploy machines then a *reserved IP
 range* should be created to prevent the address namespace from being corrupted.
 For instance, address conflicts may occur if a node's IP assignment mode is set
 to 'Auto assign' in the context of an external DHCP server. See
-[Reserved IP addresses](installconfig-subnets-ipranges.md) to create such a
+[Reserved IP addresses](installconfig-network-ipranges.md) to create such a
 range. It should correspond to the lease range of the external server.
 
 

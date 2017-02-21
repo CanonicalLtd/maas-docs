@@ -48,8 +48,7 @@ A rack controller is attached to each "fabric". As the name implies, a common
 setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
-as made highly available. See [MAAS HA](manage-ha.md) for high
-availability.
+as made highly available. See [MAAS HA][maas-ha] for high availability.
 
 ### Machines
 
@@ -78,8 +77,8 @@ of the 'default' zone), they provide more flexibility than a similar feature
 offered by a public cloud service (ex: availability zones).
 
 Some prime examples of how zones can be put to use include fault-tolerance,
-service performance, and power management. See
-[Zone Examples](intro-concepts-zones.md) for an elaboration.
+service performance, and power management. See [Zone examples][zone-examples]
+for an elaboration.
 
 A newly installed MAAS comes with a default zone, and unless a new zone is
 created all nodes get placed within it. You can therefore safely ignore the
@@ -125,8 +124,7 @@ with one another. VLANs within each space need not belong to the same fabric.
 A default space is not created when MAAS is installed.
 
 A space's main purpose is to facilitate machine acquisition for
-[Juju](https://jujucharms.com/docs/stable/about-juju). Specifically, see
-[here](https://jujucharms.com/docs/2.0/network-spaces).
+[Juju][about-juju]. Specifically, see [Juju network spaces][juju-network-spaces].
 
 
 ## Tags
@@ -168,13 +166,10 @@ subnet configuration. There are two types of ranges that can be defined:
   enablement process if done with the web UI. For an unmanaged subnet, this
   range is never used.
 
-See
-[IP ranges](installconfig-subnets-ipranges.md) for how these ranges get created
-and 
-[Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-for how they get used and
-[Subnet management](installconfig-network-subnet-management.md) for information
-on managed vs. unmanaged subnets.
+See [IP ranges][ip-ranges] for how these ranges get created and 
+[Commission nodes][post-commission-configuration] for how they get used and
+[Subnet management][subnet-management] for information on managed vs. unmanaged
+subnets.
 
 
 ## VLANs
@@ -362,8 +357,7 @@ from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 
 The user has the opportunity to erase the node's storage (disks) before
 confirming the action. A default erasure setting can be configured on the
-Settings page. See [Disk erasure](installconfig-storage-erasure.md) for
-details.
+Settings page. See [Disk erasure][storage-erasure] for details.
 
 ### Rescue mode
 
@@ -383,5 +377,14 @@ Puts the node in a specific zone.
 
 
 <!-- LINKS -->
+
+[maas-ha]: manage-ha.md
+[zone-examples]: intro-concepts-zones.md
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
+[juju-network-spaces]: https://jujucharms.com/docs/2.0/network-spaces
 [isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
 [dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
+[ip-ranges]: installconfig-network-ipranges.md
+[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[subnet-management]: installconfig-network-subnet-management.md
+[storage-erasure]: installconfig-storage-erasure.md
