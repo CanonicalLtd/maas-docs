@@ -3,7 +3,7 @@ TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
 
 
-# Tag management
+# CLI Tag Management
 
 This is a list of tag management tasks to perform with the MAAS CLI. See
 [MAAS CLI][manage-cli] on how to get started.
