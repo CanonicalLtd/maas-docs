@@ -99,9 +99,10 @@ maas logout $PROFILE
 
 ## Next steps
 
-To continue with the CLI, explore the following areas:
+The following categories are now available for you to explore:
 
 - [Common tasks](manage-cli-common.md)
 - [Image management](manage-cli-images.md)
+- [Tag management](manage-cli-tags.md)
 - [DHCP snippet management](manage-cli-dhcp-snippets.md)
 - [Advanced tasks](manage-cli-advanced.md)
