@@ -369,7 +369,5 @@ Puts the node in a specific zone.
 [zone-examples]: intro-concepts-zones.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [juju-network-spaces]: https://jujucharms.com/docs/2.0/network-spaces
-[isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
-[dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
 [ip-ranges]: installconfig-network-ipranges.md
 [post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
