@@ -154,10 +154,11 @@ supports IPv4 and IPv6 subnets. Examples:
 IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
-- **Reserved range** An IP range that MAAS will never use. You can use it for
-  anything you want (e.g. infrastructure systems, network hardware, external
-  DHCP, or the namespace for an OpenStack cloud you will be building). For an
-  unmanaged subnet, only addresses in this range are used.
+- **Reserved range** For a MAAS managed subnet this is an IP range that MAAS will
+  never use. You can use it for anything you want (e.g. infrastructure systems,
+  network hardware, external DHCP, or the namespace for an OpenStack cloud you
+  will be building). Alternatively, for an MAAS unmanaged subnet, only addresses
+  in this range are used by MAAS.
 
 - **Reserved dynamic range** An IP range that MAAS will use for enlisting,
   commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during

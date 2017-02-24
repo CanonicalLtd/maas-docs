@@ -6,9 +6,9 @@ table_of_contents: True
 # CLI Image Management
 
 This is a list of image management tasks to perform with the MAAS CLI. See
-[MAAS CLI](manage-cli.md) on how to get started.
+[MAAS CLI][manage-cli] on how to get started.
 
-See [MAAS Images](installconfig-images.md) for an overview of images.
+See [Images][images] for an overview of images.
 
 
 ## List image sources
@@ -109,7 +109,7 @@ If the source that was deleted was the sole boot source then the fields
 ## Edit an image source
 
 An existing source can be edited by changing the GPG keyring file
-(KEYRING_FILE) and/or the location (URL).
+($KEYRING_FILE) and/or the location ($URL).
 
 Update the source:
 
@@ -144,7 +144,7 @@ maas $PROFILE boot-sources create \
 ```
 
 The output will include a new numeric ID that identifies the source
-(SOURCE_ID).
+($SOURCE_ID).
 
 Since MAAS can only practically work with a single image source this scenario
 implies that any existing sources have first been deleted, or will be deleted.
@@ -156,21 +156,20 @@ KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 If the source that was added is now the sole boot source then the fields
 'Sync URL' and 'Keyring Path' in the web UI will reflect its values.
 
-Once the source is added, proceed to the
-[Select and Import](installconfig-images-import.md) images step.
+Once the source is added, proceed to the [Select and import][images-import]
+images step.
 
 ### Using a local image mirror
 
-Once the mirror is set up according to 
-[Local Image Mirror](installconfig-images-mirror.md) it is just a matter of
-specifying the mirror location (URL). Since the images come from the default
-source the default keyring should be used. If the aforementioned mirror
-document was followed, the variable values should be:
+Once the mirror is set up according to [Local image mirror][mirror] it is just
+a matter of specifying the mirror location (URL). Since the images come from
+the default source the default keyring should be used. If the aforementioned
+mirror document was followed, the variable values should be:
 
-- URL=https://myserver/maas/images/ephemeral-v3/daily/
+- URL=https://$MIRROR/maas/images/ephemeral-v3/daily/
 - KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 
-Where `myserver` identifies your mirror server's hostname or IP address.
+Where $MIRROR is the mirror server's hostname or IP address.
 
 ### Recreate the default image source
 
@@ -179,3 +178,11 @@ variable values:
 
 - URL=https://images.maas.io/ephemeral-v3/daily/
 - KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+
+
+<!-- LINKS -->
+
+[manage-cli]: manage-cli.md
+[images]: installconfig-images.md
+[images-import]: installconfig-images-import.md
+[mirror]: installconfig-images-mirror.md

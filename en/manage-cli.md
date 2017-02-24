@@ -13,8 +13,7 @@ This page explains what is needed to get going with the CLI. Tasks are then
 separated into common, image management, DHCP snippet management, and advanced.
 
 Note that we do not provide complete coverage of the MAAS CLI. For an
-exhaustive treatment, see the
-[API documentation](http://docs.maas.io/2.1/api.html).
+exhaustive treatment, see the [API documentation][api].
 
 Values are represented as uppercase variables preceded with the '$' character
 (e.g. $PROFILE and $EMAIL_ADDRESS). These are to be replaced with actual
@@ -32,8 +31,8 @@ sudo maas createadmin --username=$PROFILE --email=$EMAIL_ADDRESS
 ```
 
 Extra administrators can be created in the same way. See
-[here](manage-cli-common.md#create-a-regular-user) for creating regular
-users with the CLI.
+[MAAS CLI - common tasks][cli-create-regular-user] for creating regular users
+with the CLI.
 
 
 ## Log in (required)
@@ -99,9 +98,21 @@ maas logout $PROFILE
 
 ## Next steps
 
-To continue with the CLI, explore the following areas:
+The following categories are now available to be explored:
 
-- [Common tasks](manage-cli-common.md)
-- [Image management](manage-cli-images.md)
-- [DHCP snippet management](manage-cli-dhcp-snippets.md)
-- [Advanced tasks](manage-cli-advanced.md)
+- [Common tasks][cli-common]
+- [Image management][cli-images]
+- [Tag management][cli-tags]
+- [DHCP snippet management][cli-snippets]
+- [Advanced tasks][cli-advanced]
+
+
+<!-- LINKS -->
+
+[api]: api.md
+[cli-create-regular-user]: manage-cli-common.md#create-a-regular-user
+[cli-common]: manage-cli-common.md
+[cli-images]: manage-cli-images.md
+[cli-tags]: manage-cli-tags.md
+[cli-snippets]: manage-cli-dhcp-snippets.md
+[cli-advanced]: manage-cli-advanced.md
