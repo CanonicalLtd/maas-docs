@@ -43,7 +43,7 @@ navigation:
         location: installconfig-rack.md
 
       - title: Web UI
-        location: installconfig-gui.md
+        location: installconfig-webui.md
 
       - title: Images
         location: installconfig-images.md

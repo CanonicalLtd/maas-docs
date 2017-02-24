@@ -1,5 +1,4 @@
-Title: Installation
-TODO:  Need minimum requirements/specifications (all-in-one, rack-controller)
+Title: Installation | MAAS
 
 
 # Installation
@@ -10,13 +9,11 @@ There are three ways to install MAAS:
   complete MAAS environment or a rack controller during the ISO installation of
   Ubuntu Server.
     - Recommended for new MAAS environments, especially for new users
-    - Enables you to get started as quickly as possible 
-
+    - Enables you to get started as quickly as possible
 - [From packages](installconfig-package-install.md). Install packages for
   individual MAAS components.
     - Versatile: Put components where you want them (centralized or distributed)
     - Can access developmental versions of MAAS
-
 - [Locally with LXD](installconfig-lxd-install.md). Create a self-contained
   MAAS environment with LXD containers.
     - MAAS nodes also run as local containers

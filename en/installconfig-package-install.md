@@ -6,7 +6,7 @@ Title: Install from Packages | MAAS
 There are three packages to consider when installing MAAS:
 
 - `maas-region-controller` - region API server, database, DNS,
-  [HTTP proxy][proxy], and [web UI][web-ui]
+  [HTTP proxy][proxy], and [web UI][webui]
 - `maas-rack-controller` - [rack controller][rackd] and [DHCP][dhcp]
 - `maas` - a metapackage that installs both the above packages to provide a complete
   MAAS environment
@@ -73,7 +73,7 @@ See [Rack controller][rackd] for details.
 <!-- LINKS -->
 
 [proxy]: installconfig-network-proxy.md
-[web-ui]: installconfig-gui.md
+[webui]: installconfig-webui.md
 [rackd]: installconfig-rack.md
 [dhcp]: installconfig-network-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
