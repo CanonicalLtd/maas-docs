@@ -12,14 +12,13 @@ following caveats:
 - A rack controller's network interface can only manage a single IPv6 subnet.
 
 A rack controller in an IPv6 context needs to have the region API server URL
-specified by hostname. See 
-[install a rack controller](installconfig-rack.md#install-a-rack-controller)
-for details.
+specified by hostname. See [Install a rack controller][install-rackd] for
+details.
 
-The [web UI](installconfig-gui.md) and the [MAAS CLI](manage-cli.md) (logging
-in to the API server) can be accessed in the same way on both IPv4 and IPv6.
-To use an IPv6 address in a URL surround it with square brackets. For example,
-on the local machine (`::1`, the IPv6 equivalent of `localhost`):
+The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
+server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
+address in a URL surround it with square brackets. For example, on the local
+machine (`::1`, the IPv6 equivalent of `localhost`):
 
 ```nohighlight
 http://[::1]:5240/MAAS/
@@ -110,3 +109,10 @@ deployed, the node will have IPv6 networking only.
 In practice nodes may not be functional without IPv4 networking. A few things
 are known to be needed in any case:
 -->
+
+
+<!-- LINKS -->
+
+[install-rackd]: installconfig-rack.md#install-a-rack-controller
+[webui]: installconfig-webui.md
+[manage-cli]: manage-cli.md
