@@ -27,8 +27,8 @@ navigation:
 
         children:
 
-          - title: Install from Ubuntu Server ISO
-            location: installconfig-server-iso.md
+          - title: Install from ISO
+            location: installconfig-iso-install.md
 
           - title: Install from packages
             location: installconfig-package-install.md
