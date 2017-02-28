@@ -6,7 +6,7 @@ TODO:  Add CLI for IP address assignment methods
 
 # Commission Nodes
 
-Once a node is [added to MAAS](installconfig-add-nodes.md) the next logical
+Once a node is added to MAAS (see [Add nodes][add-nodes]) the next logical
 step is to *commission* it.
 
 To commission, the underlying machine needs to be configured to netboot (this
@@ -30,26 +30,25 @@ page.
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
 the 'Take action' dropdown menu (orange button).
 
-![commission](../media/installconfig-nodes-commission-nodes__2.1_commission.png)
+![commission][img__2.1_commission]
 
 You have the option of selecting some extra parameters (checkboxes). Then
 finalize the directive by hitting 'Go'.
 
-![commission go](../media/installconfig-commission-nodes__commission-go.png)
+![commission go][img__commission-go]
 
 While a node is commissioning its status will change to *Commissioning*. 
 
-See [MAAS CLI](manage-cli-common.md#commission-all-machines) for how to
-commission all machines with the 'New' status.
+See [MAAS CLI][cli-commission-all-machines] for how to commission all machines
+with the 'New' status.
 
 !!! Note: If your node has more than one network interface you may need to tell
 MAAS which one to use. Do this by marking it *Broken* (see next section).
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
-this time to [tag your node](installconfig-tags.md).
+this time to tag your node (see [Tags][tags]).
 
-The next step will be to *deploy* it. See
-[Deploy nodes](installconfig-deploy-nodes.md).
+The next step will be to *deploy* it. See [Deploy nodes][deploy-nodes].
 
 
 ## Post-commission configuration
@@ -57,11 +56,10 @@ The next step will be to *deploy* it. See
 Once a node has been commissioned, its network interface(s) can be configured.
 Specifically, when a node's status is either 'Ready' or 'Broken', interfaces
 can be added/removed, attached to a fabric and linked to a subnet, and provided
-an IP assignment mode. Tags
-[can also be assigned](installconfig-tags.html#tags-for-network-interfaces) to
-specific network interfaces.
+an IP assignment mode. Tags can also be assigned to specific network interfaces
+(see [Tags for network interfaces][tags-network-interfaces]).
 
-![node interface](../media/node-interface-ip.png)
+![node interface][img__node-interface-ip]
 
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
@@ -69,7 +67,7 @@ gets assigned when the node is eventually deployed:
 - **Auto assign** MAAS will assign a random static address 
   (`iface eth0 inet static`). The pool of available addresses depends on
   whether the subnet is managed or unmanaged (see
-  [Subnet management](installconfig-network-subnet-management.md)).
+  [Subnet management][subnet-management]).
 
 - **Static assign** The administrator will specify a static address using a
   secondary field.
@@ -79,8 +77,8 @@ gets assigned when the node is eventually deployed:
 
 - **Unconfigured** The interface will be left unconfigured.
 
-See [Concepts and terms](intro-concepts.md#ip-ranges) for the definitions of
-reserved range types used in MAAS.
+See [Concepts and terms][concepts-ipranges] for the definitions of reserved
+range types used in MAAS.
 
 ### Bridge interfaces
 
@@ -92,7 +90,23 @@ A bridge is created by first selecting a single interface followed by clicking
 the now-enabled 'Create bridge' button. A new pane will appear where you can
 enter a MAC address for the bridge, an optional STP forward delay, and a tag. 
 
-![bridge interface](../media/installconfig-commission-nodes__bridge-iface.png)
+![bridge interface][img__bridge-interface]
 
 Automatic bridge creation on all configured interfaces can also be performed at
 allocation time using the API.
+
+
+<!-- LINKS -->
+
+[add-nodes]: installconfig-add-nodes.md
+[cli-commission-all-machines]: manage-cli-common.md#commission-all-machines
+[tags]: installconfig-tags.md
+[deploy-nodes]: installconfig-deploy-nodes.md
+[tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces
+[subnet-management]: installconfig-network-subnet-management.md
+[concepts-ipranges]: intro-concepts.md#ip-ranges
+
+[img__bridge-interface]: ../media/installconfig-commission-nodes__bridge-iface.png
+[img__2.1_commission]: ../media/installconfig-nodes-commission-nodes__2.1_commission.png
+[img__commission-go]: ../media/installconfig-commission-nodes__commission-go.png
+[img__node-interface-ip]: ../media/node-interface-ip.png
