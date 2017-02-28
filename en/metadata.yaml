@@ -33,7 +33,7 @@ navigation:
           - title: Install from packages
             location: installconfig-package-install.md
 
-          - title: Install into LXD
+          - title: Install with LXD
             location: installconfig-lxd-install.md
 
           - title: Upgrade from 1.9 to 2.0
