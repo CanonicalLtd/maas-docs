@@ -26,7 +26,7 @@ it will register itself automatically. Otherwise this will need to be done
 manually:
 
 To install and register a rack controller you can either use the
-[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
+Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
 [MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
 require the URL of the region API server. For nodes on an
 [IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
@@ -99,3 +99,9 @@ Controller Fabric information:
 ![image](../media/rack-interface-edit.png)
 
 -->
+
+
+<!-- LINKS -->
+
+
+[install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
