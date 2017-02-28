@@ -26,7 +26,7 @@ it will register itself automatically. Otherwise this will need to be done
 manually:
 
 To install and register a rack controller you can either use the
-[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
+Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
 [MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
 require the URL of the region API server. For nodes on an
 [IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
@@ -66,36 +66,6 @@ cause the machine to re-instate itself as a rack controller. This behaviour may
 change with future versions of MAAS.
 
 
-<!--
+<!-- LINKS -->
 
-THIS IS MIND-NUMBING. IT READS LIKE DEVELOPERS' NOTES.
-LET'S TAKE THIS OUT FOR NOW.
-
-
-## Interface management
-
-MAAS automatically recognises the network interfaces on each rack controller.
-Some (though not necessarily all) of these will be connected to subnets on a
-VLAN inside a Fabric. In other words, the rack controllers will be connected
-to VLANs, and the subnets being served on these.
-
-Once a new rack controller is connected, it will try to autodetect in what
-subnet, VLAN and even fabric the interface is connected to. If these have not
-being created, new subnets, VLANs and fabrics and spaces will be created.
-
-If fabrics, VLANs and subnets are already created, once MAAS automatically
-recognises the rack controller network interfaces, it will try to determine to
-which these are connected to before being able to provide services.
-
-As such, each rack controller interface will determine whether a rack
-controller can provide DHCP on an specific VLAN, or for advanced configuration,
-a rack controller interface will determine whether a rack controller can be a
-primary or backup Rack on an HA configuration.
-
-If for any reason, the rack controller interfaces are mis-identified and are
-in the correct fabric, the user can manually change that by editing the Rack
-Controller Fabric information:
-
-![image](../media/rack-interface-edit.png)
-
--->
+[install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
