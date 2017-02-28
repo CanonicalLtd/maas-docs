@@ -11,9 +11,9 @@ for the first time and also draw attention to the first iteration of the MAAS
 
 ## Access the web UI
 
-Unless MAAS was installed from the [Ubuntu Server ISO][install-server-iso],
-you'll need to create a user in order to access the web UI. This initial user
-is a MAAS administrator:
+Unless MAAS was installed from the Ubuntu Server ISO (see
+[Install from ISO][install-from-iso]), you'll need to create a user in order to
+access the web UI. This initial user is a MAAS administrator:
 
 ```bash
 sudo maas createadmin --username=$PROFILE --email=$EMAIL_ADDRESS
@@ -66,9 +66,10 @@ is:
 
 <!-- LINKS -->
 
-[install-server-iso]: installconfig-server-iso.md
-[img__webui-login]: ../media/installconfig-webui__login.png
+[install-from-iso]: installconfig-iso-install.md
 [config-journey]: installconfig-webui-conf-journey.md
 [manage-account]: manage-account.md
 [manage-cli]: manage-cli.md
 [device-discovery]: installconfig-network-dev-discovery.md
+
+[img__webui-login]: ../media/installconfig-webui__login.png

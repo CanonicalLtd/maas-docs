@@ -27,7 +27,7 @@ LTS.
 
 <!-- LINKS -->
 
-[install-from-iso]: installconfig-server-iso.md
+[install-from-iso]: installconfig-iso-install.md
 [install-from-packages]: installconfig-package-install.md
 [install-with-lxd]: installconfig-lxd-install.md
 [upgrade-to-v2]: installconfig-upgrade-to-2.md
