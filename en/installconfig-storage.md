@@ -7,9 +7,8 @@ MAAS has the ability to configure any storage layout during node deployment.
 MAAS doesn't just do simple partitioning - it supports complex storage layouts,
 including setting up and configuring Bcache, RAID, and LVM. It also offers
 fine-grained control over the creation, deletion, formatting and mounting of
-both [block devices](installconfig-block.md) and
-[partitions](installconfig-partitions.md). This gives users unlimited
-possibilities on the storage configurations they want to deploy.
+both block devices and partitions (see [Block devices][block-devices] and
+[Partitions][partitions]).
 
 
 ## Layouts
@@ -142,7 +141,7 @@ The global default storage layout can be set using either the API or the web
 interface. From the web interface, for example, look for 'Default Storage Layout' on the
 settings page:
 
-![default storage](../media/storage_global_layout.png)
+![default storage layout][img__default-storage-layout]
 
 To change the default storage layout from the command line, you would enter the
 following:
@@ -169,5 +168,14 @@ If a node is already acquired and you want to adjust the storage layout the
 ```bash
 maas admin machine set-storage-layout <node-id> storage_layout=lvm lv_size=<size>
 ```
+
 !!! Warning: This will completely remove any previous storage configuration on all
 block devices.
+
+
+<!-- LINKS -->
+
+[block-devices]: installconfig-block.md
+[partitions]: installconfig-partitions.md
+
+[img__default-storage-layout]: ../media/storage_global_layout.png
