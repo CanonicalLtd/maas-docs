@@ -5,8 +5,8 @@ Title: Zone Examples | MAAS
 
 This page provides examples of how MAAS zones can be used.
 
-See [Concepts and Terms](intro-concepts.md#zones) for what zones are and
-[Zones](manage-zones.md) for how to work with them.
+See [Concepts and terms][concepts-zones] for what zones are and
+[Zones][zones] for how to work with them.
 
 
 ## Fault tolerance
@@ -48,3 +48,9 @@ can be addressed with the use of several MAAS zones.
 Nodes can be distributed in such a way that power-hungry and/or "hot" systems
 are located in different zones. This can help mitigate power consumption and
 heat problems.
+
+
+<!-- LINKS -->
+
+[concepts-zones]: intro-concepts.md#zones
+[zones]: manage-zones.md

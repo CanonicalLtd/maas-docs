@@ -14,26 +14,24 @@ For instance, a tag could identify nodes which possess fast GPUs. Such a tag
 would help if you were planning to deploy software which used GPU-accelerated
 CUDA or OpenCL libraries. 
 
-Because MAAS was designed to work well with
-[Juju](https://jujucharms.com/docs/devel/about-juju.html), the latter supports
-MAAS tags for application deployments. Juju is the recommended way to deploy
-services onto machines managed by MAAS.
+Because MAAS was designed to work well with [Juju][about-juju], the latter
+supports MAAS tags for application deployments. Juju is the recommended way to
+deploy services onto machines managed by MAAS.
 
 !!! Note: Newly-created tags immediately become available as a filter in the
-'Nodes' tab in the web UI. 
+'Nodes' page in the web UI. 
 
 
 ## Tag definitions
 
 A *tag definition* is the criteria by which nodes are auto-labelled by the
 corresponding tag. During node enlistment MAAS collects hardware information
-(using the [lshw](http://ezix.org/project/wiki/HardwareLiSter) utility). The
+(using the [lshw][upstream-lshw] utility). The
 definition used in creating a tag is then constructed using an *XPath
 expression* based on that information. See
-[w3schools documentation](http://www.w3schools.com/xsl/xpath_intro.asp) for
-details on XPath. 
+[w3schools documentation][upstream-w3schools] for details on XPath. 
 
-The collected data for each node, viewaable (in both XML and YAML) in the web
+The collected data for each node, viewable (in both XML and YAML) in the web
 UI, is inspected by you for the desired property. Building on the example
 alluded to above, a property can be a GPU with a clock speed greater than 1GHz.
 In this case, the following excerpt from a node's data (in XML format) is
@@ -77,8 +75,8 @@ our tag definition:
 //node[@id="display"]/'clock units="Hz"' > 1000000000
 ```
 
-This definition is used in a CLI example
-[here](manage-cli-tags.md#tag-creation-and-auto-assignment).
+This definition is used elsewhere in this documentation. See this
+[MAAS CLI example][cli-example-tag-creation-and-auto-assignment].
 
 
 ## Tag listing and tags as search filters
@@ -95,7 +93,7 @@ Below, tags 'gpu2' and 'virtual' have been selected by mouse-clicking. The
 search field automatically reflects this. Three nodes satisfy this search
 filter (they have either of these tags).
 
-![tags: search](../media/installconfig-nodes-tags__2.1_tags-filter.png)
+![tags: search][img__2.1_tags-search]
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
@@ -117,7 +115,7 @@ The following three actions are done while in a node's edit mode (click the
   real-time search. Any resulting tags will show up in a drop-down menu.
   Select as desired.
 
-![tags: add & remove](../media/installconfig-nodes-tags__2.1_tags-add_remove.png)
+![tags: add & remove][img__2.1_tags-add-remove]
 
 ### Tags for network interfaces
 
@@ -131,18 +129,30 @@ a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
 interface to expand its details. To add a tag, enter its name into the 'Add a
 tag' field. Use the small 'x' next to a tag to unassign it.
 
-![tags: net interface](../media/installconfig-tags__tags-net-iface.png)
+![tags: net interface][img__2.1_tags-net-interface]
 
 
 ## Tag management
 
 With the exception of tag assignment (as shown above), at this time tag
 management, such as creation, deletion, and advanced operations, can only be
-performed via the CLI. See [MAAS CLI](manage-cli-tags.md) for tag
-management. Also covered there is how to use tags in conjunction with Juju (to
-deploy services) and all tag features available with the web UI (listing and
-searching).
+performed via the CLI. See [MAAS CLI - tags][cli-tags] for tag management. Also
+covered there is how to use tags in conjunction with Juju (to deploy services)
+and all tag features available with the web UI (listing and searching).
 
 As was shown in the above section, rudimentary tag creation *is* possible in the
 web UI but such tags lack any intelligence. They should be regarded more as node
 aliases.
+
+
+<!-- LINKS -->
+
+[about-juju]: https://jujucharms.com/docs/stable/about-juju.html
+[upstream-lshw]: http://ezix.org/project/wiki/HardwareLiSter
+[upstream-w3schools]: https://www.w3schools.com/xml/xpath_intro.asp
+[cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
+[cli-tags]: manage-cli-tags.md 
+
+[img__2.1_tags-search]: ../media/installconfig-nodes-tags__2.1_tags-filter.png
+[img__2.1_tags-add-remove]: ../media/installconfig-nodes-tags__2.1_tags-add_remove.png
+[img__2.1_tags-net-interface]: ../media/installconfig-tags__tags-net-iface.png
