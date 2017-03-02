@@ -258,12 +258,19 @@ browser at:
 http://127.0.0.1/en/contributing.html
 ```
 
-Alternatively, you can use Python to start a simple HTTP server on the docs
-directory. While in the `build` directory run:
+Alternatively, you can use Python to start a simple HTTP server (port 8000).
+While in the `build` directory run:
 
 ```bash
 python -m SimpleHTTPServer
 ```
+
+With Python 3:
+
+```bash
+python3 -m http.server
+```
+
 
 ## Style and language
 
