@@ -203,6 +203,11 @@ For example:
 If the image is not of the MAAS web UI then simply omit the version part (e.g.
 do not include '2.1\_' anywhere in the above).
 
+**Important**: All branch series use the same central location for images
+(`media`). You must therefore be very careful when renaming or removing an
+image for a PR affecting a single branch as it will affect the other branches
+as well.
+
 
 ## Filenames
 
