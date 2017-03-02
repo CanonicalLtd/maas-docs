@@ -97,7 +97,11 @@ The most common *types* used are: `bash`, `yaml`, `json`, and `no-highlight`.
 
 ### Inline code
 
-Use a backtick to `inline commands and other literals`.
+Use a backtick to `inline filenames and other literals` like this:
+
+```no-highlight
+Use a backtick to `inline filenames and other literals`.
+```
 
 ### Admonishments
 
@@ -107,8 +111,7 @@ potential pitfalls.
 To implement an admonishment, use the following syntax:
 
 ```no-highlight
-!!! Note: To get syntax help for the `maas` command add the `-h` switch to the
-command. Example: `maas admin tags read -h`.
+!!! Note: To get syntax help for the 'maas' command add the '-h' switch.
 ```
 
 ### Foldouts
