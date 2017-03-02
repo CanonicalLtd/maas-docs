@@ -166,13 +166,15 @@ Notes:
 
 ### Images
 
-Place image files under the `media` directory. In terms of linking, they are
-managed very similarly to hyperlinks. However, they are placed on their own
-line; are preceded by an exclamation point; and both the label and destination
-have a specific naming convention:
+An image should not be overly cropped - allow for context. When ready, place
+the image file in the `media` directory.
+
+In terms of linking, they are managed very similarly to hyperlinks. However,
+they are placed on their own line; are preceded by an exclamation point; and
+both the label and destination have a specific naming convention:
 
 ```no-highlight
-![alt-attribute][img__webui_descriptor]
+![alt attribute][img__webui_descriptor]
 ```
 
 The bottom of the file will look like:
@@ -185,8 +187,9 @@ Explanation:
 
 - `filename`: name of file containing the image (omit the extension '.md')
 - `webui`: version of MAAS corresponding to the image of the web UI
-- `alt-attribute`: text that is shown in place of the image if the latter
+- `alt attribute`: text that is shown in place of the image if the latter
   cannot be displayed for some reason
+- `descriptor`: a short description of the image (e.g. 'enable-dhcp')
 
 For example:
 
@@ -200,8 +203,8 @@ For example:
 [img__enable-fire-alarm]: ../media/installconfig-networking-dhcp__enable-fire-alarm.png
 ```
 
-If the image is not of the MAAS web UI then simply omit the version part (e.g.
-do not include '2.1\_' anywhere in the above).
+If the image is not of the MAAS web UI then simply omit the version part, like
+in the second image above.
 
 **Important**: All branch series use the same central location for images
 (`media`). You must therefore be very careful when renaming or removing an
@@ -211,9 +214,9 @@ as well.
 
 ## Filenames
 
-The naming of files is based upon its location in the menu (see below). This
+The naming of a file is based upon its location in the menu (see below). This
 makes it easier for the reader and the writer to build up a mental model of how
-everthing is structured.
+everything is structured.
 
 For example, the file `installconfig-networking-dhcp.md` is found under
 'Install & Configure' and then 'Networking'.
