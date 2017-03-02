@@ -155,18 +155,21 @@ For example:
 [upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
 ```
 
-Notice how the internal page is referred to by its source filename.
+Notes:
+
+- An internal page is referred to by its source filename.
+- Try to use the same label:destination pair throughout the documentation.
 
 
 ### Images
 
-Place image files under the `media` directory. They are managed very similarly
-to hyperlinks. However, they are placed on their own line; are preceded by an
-exclamation point; and both the label and destination have a more specific
-naming convention:
+Place image files under the `media` directory. In terms of linking, they are
+managed very similarly to hyperlinks. However, they are placed on their own
+line; are preceded by an exclamation point; and both the label and destination
+have a specific naming convention:
 
 ```no-highlight
-![non-visible text][img__webui_descriptor]
+![alt-attribute][img__webui_descriptor]
 ```
 
 The bottom of the file will look like:
@@ -179,9 +182,8 @@ Explanation:
 
 - `filename`: name of file containing the image (omit the extension '.md')
 - `webui`: version of MAAS corresponding to the image of the web UI
-
-If the image is not of the MAAS web UI then simply omit the version part (do not include
-'`2.1_`').
+- `alt-attribute`: text that is shown in place of the image if the latter
+  cannot be displayed for some reason
 
 For example:
 
@@ -194,6 +196,19 @@ For example:
 [img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png
 [img__enable-fire-alarm]: ../media/installconfig-networking-dhcp__enable-fire-alarm.png
 ```
+
+If the image is not of the MAAS web UI then simply omit the version part (e.g.
+do not include '2.1\_' anywhere in the above).
+
+
+## Filenames
+
+The naming of files is based upon its location in the menu (see below). This
+makes it easier for the reader and the writer to build up a mental model of how
+everthing is structured.
+
+For example, the file `installconfig-networking-dhcp.md` is found under
+'Install & Configure' and then 'Networking'.
 
 
 ## Navigation menu
