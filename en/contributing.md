@@ -1,20 +1,22 @@
-Title: Contributing to MAAS docs  
-TODO: update callout graphic
-      update corresponding file for Juju docs
+Title: Contributing to Documentation | MAAS
+TODO: update corresponding file for Juju docs
+      add an image of the example admonishment when it does more than just embolden 'Note:'
+      can add more user-friendly instructions on setting up nginx
+table_of_contents: True
 
 
-# Contributing to MAAS documentation
+# Contributing to Documentation
 
-MAAS documentation is hosted on [GitHub](http://github.com) and published on
-[maas.io](http://maas.io/docs). Its source documents are easy to
-understand and edit due to the format used: standard
-[GitHub Flavored Markdown](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/).
-Conventions have been added to support doc features such as *foldouts* and
-*admonishments* (explained below).
+MAAS documentation is hosted on [GitHub][upstream-github] and published on
+[https://docs.ubuntu.com/maas][maas-docs]. Its source documents are written in
+standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
+easy to work with. Conventions have been added to support features such as
+*foldouts* and *admonishments* (explained below).
 
-Here are a few [cheat](http://askubuntu.com/editing-help)
-[sheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for
-writing in GFM.
+Here are a few GFM cheat sheets:
+
+- http://askubuntu.com/editing-help
+- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 
 ## Documentation bugs
@@ -28,97 +30,95 @@ and listed here:
 https://github.com/CanonicalLtd/maas-docs/issues
 
 
-## How to contribute text
+## Contributing to a web page
 
-Here are the basic steps necessary to get a change published on the website:
+Here is an overview of what's involved in getting a change published on the website:
 
-- [Fork the repository](https://help.github.com/articles/fork-a-repo) from
-  [github.com/CanonicalLtd/maas-docs](http://github.com/CanonicalLtd/maas-docs)
-- Make a local branch from your fork (and enter that branch)
-- Edit the source documents
-- Push your branch back to your fork on GitHub
-- [Submit a Pull Request](https://help.github.com/articles/creating-a-pull-request)
+1. [Fork][github-help-fork] the
+   [MAAS documentation repository][github-maas-docs]
+1. Clone that fork on your local system
+1. Create a branch from your local fork/clone
+1. Enter that branch and edit the source documents
+1. View the HTML locally
+1. Push your branch to your fork (on GitHub)
+1. [Create a Pull Request][github-help-pr] for that branch
 
-The source documents are located in the `src` directory. From there each
-language is separated into its own directory by language code. For instance,
-English is under `src/en`.
-
-Once submitted, a Docs team member will review your work, suggest improvements,
-and eventually merge it with the master branch. Don't forget to review your
-work before submission!
+A Documentation team member will review your work, suggest improvements, and
+eventually merge it with the appropriate branch (series). Publication to the
+website is a separate step (performed internally), so it can be a few days
+before the changes actually show up. Please be patient!
 
 ### Metadata
 
-Each file has the potential to include metadata for various purposes. At the
-moment this is used to provide a title element, and also to implement a limited
-form of todo list items. Metadata is written as _key : value_ pairs AT THE VERY
-TOP of the document. E.g.
+Metadata can be included in any file. Currently, this is used for:
 
-```
-Title: Contributing to MAAS docs
-TODO: add section on metadata
-      spellcheck everything
+- title element
+- todo list (file improvements)
+- table of contents
+
+This information is written as key:value pairs **at the very top** of the
+page. For example:
+
+```no-highlight
+Title: Install from ISO | MAAS
+TODO: images need updating when Ubuntu 17.04 is released
+      check for changes to bug https://pad.lv/1625211 and modify text accordingly
+table_of_contents: True
 
 # Title of document
 
-Well written text goes here blah blah
+Text goes here blah blah blah
 ```
 
-As you can see, the TODO metadata can have more than one item, as long as
-additional items are indented by at least 4 spaces directly after the previous
-one. The Metadata section ends immediately there is a blank line, and the
-normal document text can begin.
+- The TODO items must be left-aligned as shown above.
+- The table of contents will contain only level 2 headers.
+- The metadata section is terminated by a blank line.
 
 ### Sections
 
-All the text is organised into sections. These are auto-generated, there is
-nothing extra you need to do:
+Text is organised into sections. These are auto-generated, there is nothing
+extra you need to do:
 
-    # <h1> equivalent
-    ## <h2> equivalent
-    ### <h3> equivalent
+    # Top level header (typically the same as the Title element)
+    ## Second level header
+    ### Third level header
 
 ### Code blocks
 
-Create a code block using the code-fencing markup of three backticks,
-preferably followed by the type of code:
+Code blocks are created using the code-fencing markup of three backticks,
+followed by the type of code:
 
     ```bash
-    maas do something
-    maas do something else
+    maas command do something
+    maas command do something else
     ```
 
-The most common "types" used in this documentation are: `bash`, `yaml`, `json`,
-and `no-highlight`.
+The most common *types* used are: `bash`, `yaml`, `json`, and `no-highlight`.
 
 ### Inline code
 
-Use a backtick to `inline commands and other literals`:
+Use a backtick to `inline commands and other literals`.
 
-### Notes, warnings, callouts, and admonishments
+### Admonishments
 
-Callouts are used to notify the user of additional information or warn them of
-potential pitfalls. This will create a notification resembling the following in
-the docs:
+Admonishments are used to notify the user of additional information or warn them of
+potential pitfalls.
 
-![callout](../media/note.png)
-
-To implement this callout, use the following syntax:
+To implement an admonishment, use the following syntax:
 
 ```no-highlight
-!!! Note: If you want to get more information on what is actually happening, or
-to help resolve problems, you can add the `--show-log` switch to the juju
-command to get verbose output.
+!!! Note: To get syntax help for the `maas` command add the `-h` switch to the
+command. Example: `maas admin tags read -h`.
 ```
 
 ### Foldouts
 
-When a page contains a high volume of information that would otherwise require
-a table of contents, or similar method of quick navigation, a *foldout* can be
-used. This will create a collapsed header which, when clicked, will expand to
-display all the content below it.
+When a page contains a lot of extraneous information such as walkthroughs
+containing many images or reference tables, a *foldout* can be used. This will
+create a collapsed header which, when clicked, will expand to display all the
+content below it.
 
-```
+```no-highlight
 ^# Header
   Content can be multi-paragraphed and will be sent through the Markdown parser
 
@@ -126,73 +126,147 @@ display all the content below it.
 ```
 
 
-## Adding pages
+### Hyperlinks
 
-Adding a page (file) to the documentation requires the altering of
-`src/navigation.tpl`. Doing so will insert an entry into the left navigation
-pane which will allow a visitor to discover the new page.
+Link to an internal file or an external URL using the following format:
 
-Add the page with the following format:
-
-    <li class="sub"><a href="charms-scaling.html">Scaling Services</a></li>;
-
-in the appropriate section. Please make sure you submit a Pull Request with a
-description of the new page and why it is needed!
-
-
-## Adding screenshots
-
-When adding screenshots place them in `media`. To reference them in
-your page use the syntax `![description](../media/picture.png)`
-
-
-# Testing or deploying locally
-
-First you need to generate the docs from the Markdown. In the root directory
-first get the dependencies and make the docs:
-
-```bash
-make sysdeps
-make
+```no-highlight
+[visible text][label]
 ```
 
-!!! Note: You only need to `make sysdeps` once, after that you'll have all the
-dependencies you'll need to build the docs going forward.
+The `visible text` is what will appear on the web page. The `label` is used to
+refer to the destination, which is placed at the bottom of the file:
 
-The documentation makes use of Javascript for some functionality, so in order
-to test the docs properly you will need to have a web server set up. See
-[Ubuntu and Apache](https://help.ubuntu.com/lts/serverguide/httpd.html). The
-DocumentRoot should be the `htmldocs` directory:
+```
+<!-- LINKS -->
 
-```bash
-sudo cp -R htmldocs /var/www/htmldocs
+[label]: destination
 ```
 
-You can then point your web browser at your local machine (127.0.0.1/htmldocs)
-to view the files.
+For example:
+
+```no-highlight
+- For more on this topic see [DHCP][dhcp].
+- To understand haproxy, see the [upstream configuration manual][upstream-haproxy-manual].
+
+...
+
+[dhcp]: installconfig-networking-dhcp.md
+[upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
+```
+
+Notice how the internal page is referred to by its source filename.
+
+
+### Images
+
+Place image files under the `media` directory. They are managed very similarly
+to hyperlinks. However, they are placed on their own line; are preceded by an
+exclamation point; and both the label and destination have a more specific
+naming convention:
+
+```no-highlight
+![non-visible text][img__webui_descriptor]
+```
+
+The bottom of the file will look like:
+
+```no-highlight
+[img__webui_descriptor]: ../media/filename__webui_descriptor.png
+```
+
+Explanation:
+
+- `filename`: name of file containing the image (omit the extension '.md')
+- `webui`: version of MAAS corresponding to the image of the web UI
+
+If the image is not of the MAAS web UI then simply omit the version part (do not include
+'`2.1_`').
+
+For example:
+
+```no-highlight
+![enable dhcp][img__2.1_enable-dhcp]
+![enable fire alarm][img__enable-fire-alarm]
+
+...
+
+[img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png
+[img__enable-fire-alarm]: ../media/installconfig-networking-dhcp__enable-fire-alarm.png
+```
+
+
+## Navigation menu
+
+Adding a page (file) to the documentation may require the altering of
+`metadata.yaml`. Doing so will insert an entry into the left navigation pane
+(the menu) on the website.
+
+This is considered a major change so ensure your PR (pull request) includes a
+comment highlighting this change and why it is needed.
+
+
+## Build and view the HTML
+
+First install the builder. On Ubuntu 16.04 LTS:
+
+```bash
+sudo snap install documentation-builder
+```
+
+To build the HTML, while in the root of the MAAS docs repository:
+
+```bash
+/snap/bin/documentation-builder
+```
+
+See the [documentation-builder GitHub project][github-documentation-builder]
+for details.
+
+You will now need a web server. See the
+[Ubuntu Server Guide][ubuntu-serverguide-apache] for instructions on setting up
+Apache. The DocumentRoot should be the `build` directory. To test, point your
+browser at:
+
+```no-highlight
+http://127.0.0.1/en/contributing.html
+```
 
 Alternatively, you can use Python to start a simple HTTP server on the docs
-directory. Navigate to the `/htmldocs` directory of the docs and run the
-following:
+directory. While in the `build` directory run:
 
 ```bash
 python -m SimpleHTTPServer
 ```
 
+## Style and language
 
-# Style and language
+Please follow these guidelines for style and language:
 
-We are putting together a more comprehensive style guide, but for the moment the
-following are good guidelines:
+- Resist being overly formal.
+- Remember that the average reader is a user, not a developer.
+- Use a spell checker.
+- Use British English (en-GB). See
+  [language details][contributing-en-gb], including a comparison with American
+  English (en-US).
+- If including links or examples, ensure they actually work.
+- Use a maximum of 80 columns for files. Here are instructions for the
+  [vim][vim-eighty-columns] and [emacs][emacs-eighty-columns] editors.
+- An exception to the above is a link. __Never break a link with a carriage
+  return__. This includes the `[text][label]` and `[label]: destination`
+  combinations.
 
- - Resist being overly formal.
- - Remember the readers are *users* not necessarily Juju developers.
- - Spell things properly! (see below).
- - We use British English (en-GB). See
-   [language details](contributing-en-GB.md), including a comparison with
-   American English (en-US).
- - If including links or examples, double-check they actually work
- - We enforce 80 columns for every text file to keep it readable. Here are
-   instructions for the
-   [vim](http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns)
-   and [emacs](http://www.emacswiki.org/emacs/EightyColumnRule) editors.
+
+<!-- LINKS -->
+
+[upstream-github]: http://github.com
+[maas-docs]: https://docs.ubuntu.com/maas
+[github-gfm]: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github
+[github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
+[github-help-fork]: https://help.github.com/articles/fork-a-repo
+[github-help-pr]: https://help.github.com/articles/creating-a-pull-request
+[github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
+[ubuntu-serverguide-apache]: https://help.ubuntu.com/lts/serverguide/httpd.html
+[contributing-en-gb]: contributing-en-GB.md
+[vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
+[emacs-eighty-columns]: http://www.emacswiki.org/emacs/EightyColumnRule
