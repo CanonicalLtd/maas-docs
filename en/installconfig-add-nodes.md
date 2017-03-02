@@ -19,11 +19,12 @@ underlying machine. In particular, there is no need to install an operating
 system on it.
 
 Once MAAS is working to the point of adding nodes it is important to
-understand [node statuses](intro-concepts.md#node-statuses) and
-[node actions](intro-concepts.md#node-actions).
+understand node statuses and node actions. See
+[Node statuses][concepts-statuses] and [Node actions][concepts-actions]
+respectively.
 
 Typically, the next step will be to *commission* the node. See
-[Commission nodes](installconfig-commission-nodes.md).
+[Commission nodes][commission-nodes].
 
 
 ## Enlistment
@@ -47,9 +48,9 @@ Since any system booting off the network can enlist, the enlistment and
 commission steps are separate. This allows an administrator to "accept" an
 enlisted machine into MAAS.
 
-As an alternative to enlistment, an administrator can
-[add a node manually](#add-a-node-manually) (below). Typically this is done
-when enlistment doesn't work for some reason.
+As an alternative to enlistment, an administrator can add a node manually (see
+[below][anchor-add-a-node-manually]). Typically this is done when enlistment
+doesn't work for some reason.
 
 
 ## KVM guest nodes
@@ -94,14 +95,13 @@ virsh -c qemu+ssh://<USER>@<KVM_HOST>/system list --all
 
 This should work seamlessly because the private key is passphraseless.
 
-Exit from the user 'maas' shell:
+Exit from the 'maas' user's shell:
 
 ```bash
 exit
 ```
 
-See
-[KVM/virsh power type example](installconfig-power-types.md#example:-virsh-(kvm)-power-type).
+See [KVM/virsh power type example][power-types-example-virsh].
 
 
 ## Add a node manually
@@ -113,4 +113,14 @@ button and then select 'Machine'.
 Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
 being added:
 
-![image](../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png)
+![image][img__2.1_add-node-manually]
+
+
+<!-- LINKS -->
+
+[concepts-statuses]: intro-concepts.md#node-statuses
+[concepts-actions]: intro-concepts.md#node-actions
+[commission-nodes]: installconfig-commission-nodes.md
+[anchor-add-a-node-manually]: #add-a-node-manually
+[power-types-example-virsh]: installconfig-power-types.md#example:-virsh-(kvm)-power-type
+[img__2.1_add-node-manually]: ../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png
