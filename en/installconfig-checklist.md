@@ -151,7 +151,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [power-types]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
-[deploy-nodes]: installconfig-deploy-nodes.md
+[deploy-nodes]: installconfig-nodes-deploy-nodes.md
 [ssh-keys]: manage-account.md#ssh-keys
 [config-journey]: installconfig-webui-conf-journey.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
