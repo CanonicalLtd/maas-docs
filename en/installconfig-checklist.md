@@ -117,7 +117,7 @@ your node now.
 
 ## Deploy a node
 
-Lots of folks would have [Juju][juju-site] take over at this point. Juju acts
+Lots of folks would have [Juju][about juju] take over at this point. Juju acts
 as a sort of command & control centre for adding services/applications on top
 of MAAS nodes (among other "clouds"). If you're just not there and/or you want
 to quickly test things out you can use the web UI to
@@ -143,6 +143,6 @@ web UI will inform you of its IP address. Mission accomplished!
 [user-accounts]: manage-account.md
 [power-type]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
-[juju-site]: https://jujucharms.com/docs/
-[deploy-nodes]: installconfig-deploy-nodes.md
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
+[deploy-nodes]: installconfig-nodes-deploy-nodes.md
 [ssh-keys]: manage-account.md#ssh-keys
