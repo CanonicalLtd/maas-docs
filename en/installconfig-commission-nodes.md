@@ -76,5 +76,18 @@ gets assigned when the node is eventually deployed:
 
 - **Unconfigured** The interface will be left unconfigured.
 
-See [Concepts and terms](intro-concepts.md#ip-ranges) for the definitions of
-reserved range types used in MAAS.
+See [Concepts and terms][concepts-ipranges] for the definitions of reserved
+range types used in MAAS.
+
+
+<!-- LINKS -->
+
+[add-nodes]: installconfig-add-nodes.md
+[cli-commission-all-machines]: manage-cli-common.md#commission-all-machines
+[tags]: installconfig-tags.md
+[deploy-nodes]: installconfig-nodes-deploy-nodes.md
+[tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces
+[concepts-ipranges]: intro-concepts.md#ip-ranges
+
+[img__commission-go]: ../media/installconfig-commission-nodes__commission-go.png
+[img__node-interface-ip]: ../media/node-interface-ip.png
