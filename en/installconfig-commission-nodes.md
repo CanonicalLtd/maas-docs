@@ -79,21 +79,6 @@ gets assigned when the node is eventually deployed:
 See [Concepts and terms][concepts-ipranges] for the definitions of reserved
 range types used in MAAS.
 
-### Bridge interfaces
-
-MAAS supports the creation of a bridge interface from a single network
-interface. This may be useful if you eventually deploy virtual machines or
-containers on the machine. 
-
-A bridge is created by first selecting a single interface followed by clicking
-the now-enabled 'Create bridge' button. A new pane will appear where you can
-enter a MAC address for the bridge, an optional STP forward delay, and a tag. 
-
-![bridge interface][img__bridge-interface]
-
-Automatic bridge creation on all configured interfaces can also be performed at
-allocation time using the API.
-
 
 <!-- LINKS -->
 
@@ -102,11 +87,7 @@ allocation time using the API.
 [tags]: installconfig-tags.md
 [deploy-nodes]: installconfig-nodes-deploy-nodes.md
 [tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces
-[subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 
-[img__bridge-interface]: ../media/installconfig-commission-nodes__bridge-iface.png
-[img__2.1_commission]: ../media/installconfig-nodes-commission-nodes__2.1_commission.png
 [img__commission-go]: ../media/installconfig-commission-nodes__commission-go.png
 [img__node-interface-ip]: ../media/node-interface-ip.png
->>>>>>> c163888... abstract links; renamed file; minor rewording
