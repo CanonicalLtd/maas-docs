@@ -13,7 +13,7 @@ See [Concepts and terms][concepts] for the definitions of networking objects.
 
 To access the main networking view visit the 'Subnets' page:
 
-![networking main page](../media/installconfig-networking__2.1_main.png)
+![networking main page][img__2.1_networking-main]
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
@@ -42,7 +42,7 @@ at this example window by sections.
 
 The **Subnet summary** section:
 
-![networking subnets page summary](../media/installconfig-networking__subnets-summary.png)
+![networking subnets page summary][img__networking-subnets-summary]
 
 !!! Warning: The fields in this section are immediately editable and changes
 are applied instantly.
@@ -69,11 +69,11 @@ edit pane. Enter a Gateway IP address, select a destination subnet from the
 Clicking 'Add' will activate the route. Routes can be edited and removed using
 the icons to the right of each entry. 
 
-![networking static routes configuration](../media/installconfig-networking__static-routes.png)
+![networking static routes configuration][img__networking-static-routes]
 
 The **Utilisation** section:
 
-![networking subnets page utilisation](../media/installconfig-networking__subnets-utilisation.png)
+![networking subnets utilisation][img__networking-subnets-utilisation]
 
 'Subnet addresses' shows the total number of addresses associated
 with the subnet, here 8190. 'Availability' shows how many of those addresses
@@ -83,14 +83,14 @@ that *is* used, here roughly 1%.
 
 The **Reserved** section:
 
-![networking subnets page reserved](../media/installconfig-networking__subnets-reserved.png)
+![networking subnets reserved][img__networking-subnets-reserved]
 
 This shows the *reserved IP ranges*. This is an important subject and is
-treated separately in [IP ranges](installconfig-network-ipranges.md).
+treated separately in [IP ranges][ipranges].
 
 The **Used** section:
 
-![networking subnets page used](../media/installconfig-networking__subnets-used.png)
+![networking subnets used][img__networking-subnets-used]
 
 This section displays hosts (not necessarily MAAS nodes) associated with the
 used addresses along with related bits of host information.
@@ -100,3 +100,11 @@ used addresses along with related bits of host information.
 
 [concepts]: intro-concepts.md
 [enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
+[ipranges]: installconfig-network-ipranges.md
+
+[img__2.1_networking-main]: ../media/installconfig-networking__2.1_main.png
+[img__networking-static-routes]: ../media/installconfig-networking__static-routes.png
+[img__networking-subnets-summary]: ../media/installconfig-networking__subnets-summary.png
+[img__networking-subnets-utilisation]: ../media/installconfig-networking__subnets-utilisation.png
+[img__networking-subnets-reserved]: ../media/installconfig-networking__subnets-reserved.png
+[img__networking-subnets-used]: ../media/installconfig-networking__subnets-used.png
