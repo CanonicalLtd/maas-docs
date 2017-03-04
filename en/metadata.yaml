@@ -61,7 +61,7 @@ navigation:
 
         children:
 
-          - title: Reserved IP ranges
+          - title: IP ranges
             location: installconfig-subnets-ipranges.md
 
           - title: DHCP
