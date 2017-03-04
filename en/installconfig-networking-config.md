@@ -7,7 +7,7 @@ TODO: 	Write new 'Configure Nodes for Networking' section (see issue #33)
 # Configure Networking
 
 The following networking components can be configured via the GUI. See
-[Concepts and terms](intro-concepts.md) for corresponding definitions.
+[Concepts and terms][concepts] for corresponding definitions.
 
 
 ## Fabrics
@@ -23,3 +23,8 @@ The following networking components can be configured via the GUI. See
 
 
 ## Interfaces
+
+
+<!-- LINKS -->
+
+[concepts]: intro-concepts.md

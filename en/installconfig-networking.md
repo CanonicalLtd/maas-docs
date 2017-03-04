@@ -1,6 +1,5 @@
 Title: Networking | MAAS
-TODO:  In 2.1, the 'Networks' page is renamed to 'Subnets'
-       Bug check: https://goo.gl/mPKBRl
+TODO:  Bug check: https://goo.gl/mPKBRl
        Not sure about the purpose of "deleting" a subnet. Won't it reappear eventually?
 
 
@@ -8,14 +7,14 @@ TODO:  In 2.1, the 'Networks' page is renamed to 'Subnets'
 
 This page shows where to view and edit the main networking elements in MAAS.
 It also links to some important networking sub-topics. See
-[Concepts and terms](intro-concepts.md) for networking element definitions.
+[Concepts and terms][concepts] for networking element definitions.
 
 
 ## Main view
 
 To access the main networking view visit the 'Networks' page:
 
-![networking main page](../media/installconfig-networking__main.png)
+![networking main page][img__networking-main]
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
@@ -30,7 +29,7 @@ Although each of the elements can be clicked upon to open up its own window,
 fabrics, VLANs, and spaces do not have much in the way of configuration; their
 names and descriptions can be altered. A VLAN, however, can additionally have
 its MTU changed and also has an action available for
-[enabling DHCP](installconfig-subnets-dhcp.md) (see 'Take action' button).
+enabling DHCP. See the [DHCP page][dhcp].
 
 A subnet, on the other hand, can be configured considerably and its window also
 shows information pertinent to the day-to-day operation of MAAS. For these
@@ -43,7 +42,7 @@ at this example window by sections.
 
 The **Subnet summary** section:
 
-![networking subnets page summary](../media/installconfig-networking__subnets-summary.png)
+![networking subnets page summary][img__networking-subnets-summary]
 
 !!! Warning: The fields in this section are immediately editable and changes
 are applied instantly.
@@ -60,7 +59,7 @@ external DHCP and/or choose an IP assignment mode other than 'DHCP'.
 
 The **Utilisation** section:
 
-![networking subnets page utilisation](../media/installconfig-networking__subnets-utilisation.png)
+![networking subnets utilisation][img__networking-subnets-utilisation]
 
 'Subnet addresses' shows the total number of addresses associated
 with the subnet, here 8190. 'Availability' shows how many of those addresses
@@ -70,14 +69,26 @@ that *is* used, here roughly 1%.
 
 The **Reserved** section:
 
-![networking subnets page reserved](../media/installconfig-networking__subnets-reserved.png)
+![networking subnets reserved][img__networking-subnets-reserved]
 
 This shows the *reserved IP ranges*. This is an important subject and is
 treated separately in [IP ranges](installconfig-subnets-ipranges.md).
 
 The **Used** section:
 
-![networking subnets page used](../media/installconfig-networking__subnets-used.png)
+![networking subnets used][img__networking-subnets-used]
 
 This section displays hosts (not necessarily MAAS nodes) associated with the
 used addresses along with related bits of host information.
+
+
+<!-- LINKS -->
+
+[concepts]: intro-concepts.md
+[dhcp]: installconfig-subnets-dhcp.md
+
+[img__networking-main]: ../media/installconfig-networking__main.png
+[img__networking-subnets-summary]: ../media/installconfig-networking__subnets-summary.png
+[img__networking-subnets-utilisation]: ../media/installconfig-networking__subnets-utilisation.png
+[img__networking-subnets-reserved]: ../media/installconfig-networking__subnets-reserved.png
+[img__networking-subnets-used]: ../media/installconfig-networking__subnets-used.png
