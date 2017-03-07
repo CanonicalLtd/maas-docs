@@ -11,11 +11,12 @@ architecture grows in size.
 In regards to region controller and rack controller communication, each rack
 controller must be able to:
 
-- Initiate TCP connections (for HTTP) to each region controller on port 80 or
-  port 5240, the choice of which depends on the setting of the MAAS URL.
-- Initiate TCP connections (for RPC) to each region controller between port
-  5250 and 5259 inclusive. This permits up to 10 `maas-regiond` processes on
-  each region controller host. At present this is not configurable.
+- for HTTP, to each region controller on port 5240. If high availability is
+  implemented then this will typically become port 80. See
+  [MAAS HA][manage-ha].
+- for RPC, to each region controller between port 5250 and 5259 inclusive. This
+  permits up to 10 `maas-regiond` processes on each region controller host. At
+  present this is not configurable.
 
 
 ## Install a rack controller
@@ -25,24 +26,24 @@ it will register itself automatically. Otherwise this will need to be done
 manually:
 
 To install and register a rack controller you can either use the
-[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
-[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
-require the URL of the region API server. For nodes on an
-[IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
-instead of an IP address and it must resolve to both IPv4 and IPv6 addresses,
-both on the rack controller and on the nodes.
+
+Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
+[MAAS CLI - advanced tasks][cli-install-rackd]. Both will require the URL of
+the region API server. For nodes on an [IPv6][ipv6] subnet, the URL must use a
+hostname instead of an IP address and it must resolve to both IPv4 and IPv6
+addresses, both on the rack controller and on the nodes.
 
 Once registered, if this is an extra rack controller, it will appear
 immediately in the web UI and begin to sync with the primary controller:
 
-![add controller](../media/installconfig-rack__add-controller2.png)
+![add controller][img__add-rackd]
 
 Multiple rack controllers are needed in order to achieve specific types of
-[high availability](manage-ha.md).
+high availability. See [MAAS HA][manage-ha].
 
-!!! Note: If you will be using KVM-backed nodes you will need to install the
-`libvirt-bin` package on the rack controller. See
-[KVM guest nodes](installconfig-add-nodes.md#kvm-guest-nodes).
+!!! Note: If you will be using KVM-backed nodes you must ensure that the new
+rack controller can communicate with the KVM host. See
+[KVM guest nodes][add-nodes-kvm-guest-nodes].
 
 
 ## Unregister a rack controller
@@ -65,36 +66,12 @@ cause the machine to re-instate itself as a rack controller. This behaviour may
 change with future versions of MAAS.
 
 
-<!--
+<!-- LINKS -->
 
-THIS IS MIND-NUMBING. IT READS LIKE DEVELOPERS' NOTES.
-LET'S TAKE THIS OUT FOR NOW.
+[install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
+[manage-ha]: manage-ha.md
+[cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
+[ipv6]: installconfig-network-ipv6.md
+[add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
-
-## Interface management
-
-MAAS automatically recognises the network interfaces on each rack controller.
-Some (though not necessarily all) of these will be connected to subnets on a
-VLAN inside a Fabric. In other words, the rack controllers will be connected
-to VLANs, and the subnets being served on these.
-
-Once a new rack controller is connected, it will try to autodetect in what
-subnet, VLAN and even fabric the interface is connected to. If these have not
-being created, new subnets, VLANs and fabrics and spaces will be created.
-
-If fabrics, VLANs and subnets are already created, once MAAS automatically
-recognises the rack controller network interfaces, it will try to determine to
-which these are connected to before being able to provide services.
-
-As such, each rack controller interface will determine whether a rack
-controller can provide DHCP on an specific VLAN, or for advanced configuration,
-a rack controller interface will determine whether a rack controller can be a
-primary or backup Rack on an HA configuration.
-
-If for any reason, the rack controller interfaces are mis-identified and are
-in the correct fabric, the user can manually change that by editing the Rack
-Controller Fabric information:
-
-![image](../media/rack-interface-edit.png)
-
--->
+[img__add-rackd]: ../media/installconfig-rack__add-controller2.png
