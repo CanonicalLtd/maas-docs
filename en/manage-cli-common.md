@@ -238,10 +238,7 @@ maas $PROFILE users create username=$USERNAME \
 
 All the options are necessary. Note that stipulating a password on the CLI may
 be a security hazard, depending on your environment. If unsure, use the web UI.
-<<<<<<< HEAD
-See [User Accounts](manage-account.md) for the latter.
-=======
-See [User Accounts][manage-account] for the latter.
+See [User accounts][manage-account] for the latter.
 
 
 <!-- LINKS -->
@@ -250,4 +247,3 @@ See [User Accounts][manage-account] for the latter.
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [manage-account]: manage-account.md
 [anchor__set-a-default-gateway]: #set-a-default-gateway
->>>>>>> 3d46bff... abstract links; rewording to upgrade page; minor rewording to others

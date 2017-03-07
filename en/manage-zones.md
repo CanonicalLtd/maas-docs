@@ -24,11 +24,7 @@ To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
 The resulting window will allow for the name and, optionally, a description of
 the new zone.
 
-<<<<<<< HEAD
-![image](../media/add-zone.png)
-=======
-![create zone][img__2.1_create-zone]
->>>>>>> 3d46bff... abstract links; rewording to upgrade page; minor rewording to others
+![create zone][img__2.0_create-zone]
 
 
 ## Edit a zone
@@ -82,4 +78,5 @@ It is possible, though not usually useful, to combine the `zone` and
 
 [concepts]: intro-concepts.md#zones
 
-[img__2.1_create-zone]: ../media/manage-zones__2.1_create-zone.png
+[img__2.0_create-zone]: ../media/add-zone.png
+
