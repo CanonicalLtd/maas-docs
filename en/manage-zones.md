@@ -6,8 +6,8 @@ table_of_contents: True
 # Zones
 
 The concept of a *zone*, and examples of how they can be used, are provided in
-the [Concepts and terms](intro-concepts.md#zones) page. The current page covers
-how to use a zone. Specifically, it will show how to:
+the [Concepts and terms][concepts] page. The current page covers how to use a
+zone. Specifically, it will show how to:
 
 - Create a zone
 - Edit a zone
@@ -24,7 +24,7 @@ To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
 The resulting window will allow for the name and, optionally, a description of
 the new zone.
 
-![image](../media/manage-zones__2.1_create-zone.png)
+![create zone][img__2.1_create-zone]
 
 
 ## Edit a zone
@@ -72,3 +72,10 @@ It is possible, though not usually useful, to combine the `zone` and
 `not_in_zone` parameters. If your choice for `zone` is also present in
 `not_in_zone`, no node will ever match your request. Or if it's not, then the
 `not_in_zone` values will not affect the result of the call at all.
+
+
+<!-- LINKS -->
+
+[concepts]: intro-concepts.md#zones
+
+[img__2.1_create-zone]: ../media/manage-zones__2.1_create-zone.png
