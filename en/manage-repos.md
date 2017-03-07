@@ -33,7 +33,7 @@ MAAS comes equipped with the official Ubuntu repository `archive.ubuntu.com` as
 well as the equivalent for architectures other than i386 and amd64:
 `ports.ubuntu.com` as is evident in the default configuration below:
 
-![default repositories config](../media/manage-repos__default-config.png)
+![default repositories config][img__2.1_default-repo-config]
 
 Adding a third-party repository is elementary. Begin basing the configuration
 on a line you would normally place in a system's `/etc/apt/sources.list` file.
@@ -59,7 +59,7 @@ label to give the repository.
 
 Before saving, the form should look very similar to this:
 
-![3rd-party repository config](../media/manage-repos__add-repo.png)
+![3rd-party repository config][img__2.1_3rd-party-repo-config]
 
 Click 'Add repository' again to save the configuration.
 
@@ -69,12 +69,10 @@ official repository. Such a repository can also contain custom packages.
 
 ## Personal Package Archives (PPA)
 
-A Personal Package Archive (PPA) is a [Launchpad](https://launchpad.net)-based
-method for any individual (or team) to build and distribute packages for
-Ubuntu.
+A Personal Package Archive (PPA) is a [Launchpad][launchpad]-based method for
+any individual (or team) to build and distribute packages for Ubuntu.
 
-Adding a PPA is equally straightforward. The
-[`sosreport` PPA](https://launchpad.net/~canonical-support/+archive/ubuntu/support-tools)
+Adding a PPA is equally straightforward. The [`sosreport` PPA][sosreport-ppa]
 will be used as an example. First, acquire the PPA's address from its page on
 Launchpad:
 
@@ -87,9 +85,19 @@ Launchpad page: 'Technical details about this PPA' > '1024R/9360754F' >
 To add this PPA, then, hit the 'Add repository' button and fill in the
 fields. Before saving, the form should look something like this:
 
-![PPA repository config](../media/manage-repos__add-ppa.png)
+![PPA repository config][img__2.1_add-ppa]
 
 Click 'Add repository' again to save the configuration.
 
-See [Launchpad PPAs](https://help.launchpad.net/Packaging/PPA) for more details
-on PPAs.
+See [Launchpad PPAs][launchpad-ppa-help] for more details on PPAs.
+
+
+<!-- LINKS -->
+
+[launchpad]: https://launchpad.net
+[sosreport-ppa]: https://launchpad.net/~canonical-support/+archive/ubuntu/support-tools
+[launchpad-ppa-help]: https://help.launchpad.net/Packaging/PPA
+
+[img__2.1_default-repo-config]: ../media/manage-repos__default-config.png
+[img__2.1_3rd-party-repo-config]: ../media/manage-repos__add-repo.png
+[img__2.1_add-ppa]: ../media/manage-repos__add-ppa.png
