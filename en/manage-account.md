@@ -7,9 +7,10 @@ section at the top of the general 'Settings' page of the web UI.  Moving the
 cursor over an existing account will show icons to allow either the editing or
 deletion of an account.
 
-![user management](../media/add-user.png)
+![add user][img__add-user]
 
 !!! Note: you can't delete the account you're using from the web UI
+
 
 ## Add a user
 
@@ -17,7 +18,7 @@ Clicking the 'Add User' button will open a pane asking for details on the new
 user, including their username, email address and password. A checkbox is used
 to define whether a user is a MAAS administrator or not.
 
-![add user details](../media/add-user-details.png)
+![add user details][img__add-user-details]
 
 A MAAS administrator can manage all aspects of MAAS, whereas a
 non-administrator user can perform a subset of tasks on machines they acquire
@@ -25,6 +26,7 @@ and deploy. A non-admin user is also limited in the details they can view, such
 as nodes allocated to other users, and they have no access to the global
 settings page in the web UI nor any of the equivalent API calls from the
 command line.
+
 
 ## SSH keys
 
@@ -38,15 +40,16 @@ SSH key file (usually `$HOME/ssh/id_rsa.pub`) into the box and select 'Add
 key'. SSH keys can be viewed and removed from the 'SSH keys'
 section of the user preferences page. 
 
-![add SSH public key](../media/add-user-ssh.png)
+![add SSH public key][img__add-user-ssh-key]
+
 
 ## API key
 
 The user preferences page includes an API key for the currently active user.
-This can be copied and regenerated as needed. The API key is currently used to
-login to the API from the [command line](manage-cli.md), and by Canonical's
-application and service modelling tool,
-[Juju](https://jujucharms.com/docs/stable/clouds-maas). 
+This can be copied and regenerated as needed. The API key is used to log in to
+the API from the [MAAS CLI][manage-cli]. Other services connecting to MAAS such as
+[Juju][juju-maas-cloud] will also need this key.
+
 
 ## Change the password
 
@@ -58,4 +61,15 @@ An administrator can also change a user's password by selecting 'edit' against a
 account in the 'Users and Keys' section of the general settings page and
 providing a new password.
 
-![change user password](../media/add-user-password.png)
+![change user password][img__add-user-password]
+
+
+<!-- LINKS -->
+
+[manage-cli]: manage-cli.md
+[juju-maas-cloud]: https://jujucharms.com/docs/stable/clouds-maas
+
+[img__add-user]: ../media/add-user.png
+[img__add-user-details]: ../media/add-user-details.png
+[img__add-user-ssh-key]: ../media/add-user-ssh.png
+[img__add-user-password]: ../media/add-user-password.png
