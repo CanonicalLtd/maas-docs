@@ -66,7 +66,7 @@ get an address in this range.
 ## Extending a reserved dynamic IP range
 
 If necessary, it is possible to add further portions of the subnet to the
-dynamic IP range (see [IP ranges][ip-ranges]). Furthermore, since DHCP is
+dynamic IP range (see [IP ranges][ipranges]). Furthermore, since DHCP is
 enabled on a VLAN basis and a VLAN can contain multiple subnets, it is possible
 to add a portion from those subnets as well. Just select the subnet under the
 'Subnets' page and reserve a dynamic range. DHCP will be enabled automatically.
@@ -95,14 +95,14 @@ To relay from one VLAN (source) to another VLAN (target):
 1.  Ensure the target VLAN has DHCP enabled  
 
 1.  Set up the external relay  
-    This is done independently from MAAS. See
-    [DHCP relay](intro-concepts.md#dhcp-relay) for software suggestions.
+    This is done independently from MAAS. See [DHCP relay][concepts-dhcp-relay]
+    for software suggestions.
 
 1.  Configure MAAS-managed DHCP  
     Navigate to the source VLAN page and select the 'Relay DHCP' action. Fill in the
     fields in the resulting form. The crucial setting is the target VLAN ('relay
     VLAN'). Press the 'Relay DHCP' button to finish. See
-    [MAAS CLI](manage-cli-advanced.md#relay-dhcp) for how to do this with the CLI.
+    [MAAS CLI][cli-relay-dhcp] for how to do this with the CLI.
 
 ![Relay DHCP][img__2.2_relay-dhcp]
 
@@ -130,12 +130,15 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 <!-- LINKS -->
 
 [manage-ha]: manage-ha.md
+[ipranges]: installconfig-network-ipranges.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
+[concepts-dhcp-relay]: intro-concepts.md#dhcp-relay
 [post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
-[cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
-[ip-ranges]: installconfig-network-ipranges.md
 [dhcpd.conf-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf
+[cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
+[cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
+
 [img__2.1_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.1_dhcp-snippets.png
 [img__2.2_relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
 [img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png
