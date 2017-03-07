@@ -9,6 +9,10 @@ cause problems with some applications/protocols such as PXE, DHCP and DNS, of
 which MAAS makes extensive use.
 
 To alleviate this problem, you should enable
-[Portfast](https://www.symantec.com/business/support/index?page=content&id=HOWTO6019)
-for Cisco switches or its equivalent on other vendor equipment, which enables
-the ports to come up almost immediately.
+[Portfast][upstream-symantec-portfast] for Cisco switches or its equivalent on
+other vendor equipment, which enables the ports to come up almost immediately.
+
+
+<!-- LINKS -->
+
+[upstream-symantec-portfast]: https://www.symantec.com/business/support/index?page=content&id=HOWTO6019
