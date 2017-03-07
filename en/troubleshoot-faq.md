@@ -1,5 +1,6 @@
 Title: Troubleshooting | MAAS
-TODO:  review soon
+TODO:  critical: review needed
+table_of_contents: True
 
 
 # Troubleshooting
@@ -184,3 +185,6 @@ latest
 sudo python $maasds --config=$cfg get $url/latest/meta-data/local-hostname
 maas-enlisting-node
 ```
+
+
+<!-- LINKS -->
