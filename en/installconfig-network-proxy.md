@@ -1,7 +1,7 @@
-Title: MAAS Proxying
+Title: Proxy | MAAS
 
 
-# MAAS Proxying
+# Proxy
 
 MAAS provides a way for its managed machines to use a proxy server when they
 need to access HTTP/HTTPS-based resources, such as the Ubuntu package archive.
@@ -35,17 +35,17 @@ The proxy must be installed on the same host as the region controller (via the
 'maas-proxy' package).
 
 
-## Configure proxying
+## Configure proxy
 
-See the [MAAS CLI](manage-cli-common.md#configure-proxying) for how to
-configure proxying with the CLI. Note that per-subnet proxy configuration can
-only be accomplished via the CLI.
+See the [MAAS CLI][cli-configure-proxying] for how to configure proxying with
+the CLI. Note that per-subnet proxy configuration can only be accomplished via
+the CLI.
 
 In the web UI, visit the 'Settings' page, select the 'General' tab and scroll
 down to the 'Network Configuration' section. Any changes made are applied by
 pressing the 'Save' button.
 
-![image](../media/external-proxy.png)
+![image](../media/installconfig-networking-proxy__2.1_external-proxy.png)
 
 To enable the internal proxy, ensure that the checkbox (for 'Enable the use of
 an APT and HTTP/HTTPS proxy') is checked. This is the default configuration.
@@ -55,3 +55,8 @@ checked, define the proxy's URL (and port if necessary) in the field 'Proxy for
 APT and HTTP/HTTPS'.
 
 To disable proxying completely ensure that the checkbox is unchecked.
+
+
+<!-- LINKS -->
+
+[cli-configure-proxying]: manage-cli-common.md#configure-proxying

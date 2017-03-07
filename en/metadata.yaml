@@ -27,8 +27,8 @@ navigation:
 
         children:
 
-          - title: Install from Ubuntu Server ISO
-            location: installconfig-server-iso.md
+          - title: Install from ISO
+            location: installconfig-iso-install.md
 
           - title: Install from packages
             location: installconfig-package-install.md
@@ -43,7 +43,7 @@ navigation:
         location: installconfig-rack.md
 
       - title: Web UI
-        location: installconfig-gui.md
+        location: installconfig-webui.md
 
       - title: Images
         location: installconfig-images.md
@@ -65,13 +65,13 @@ navigation:
             location: installconfig-subnets-ipranges.md
 
           - title: DHCP
-            location: installconfig-subnets-dhcp.md
+            location: installconfig-network-dhcp.md
 
           - title: IPv6
             location: installconfig-network-ipv6.md
 
           - title: Proxy
-            location: installconfig-proxy.md
+            location: installconfig-network-proxy.md
 
           - title: STP
             location: installconfig-network-stp.md

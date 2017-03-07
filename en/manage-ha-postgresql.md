@@ -1,14 +1,14 @@
 Title: PostgreSQL HA notes | MAAS
+TODO:  these notes should be tested occasionally
+table_of_contents: True
 
 
 # PostgreSQL HA: hot standby
 
-**Disclaimer: These are *notes* that the reader can peruse to get an idea of
-what may be involved at the command line level when setting up 'hot standby' HA
-mode in PostgreSQL. The below procedures are not regularly tested. Please use
-the
-[PostgreSQL documentation](https://www.postgresql.org/docs/9.5/static/high-availability.html)
-when setting up HA on PostgreSQL.**
+**Disclaimer: These *notes* give an idea of what is involved in setting up 'hot
+standby' HA mode in PostgreSQL. The below procedures are not regularly tested.
+Please use the [PostgreSQL documentation][upstream-postgresql-ha-docs] when
+setting up HA on PostgreSQL.**
 
 The following variables are used on this page:
 
@@ -134,3 +134,8 @@ Start the database:
 ```bash
 sudo systemctl start postgresql
 ```
+
+
+<!-- LINKS -->
+
+[upstream-postgresql-ha-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html

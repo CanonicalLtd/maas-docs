@@ -128,7 +128,8 @@ maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 	secondary_rack=$SECONDARY_RACK_CONTROLLER 
 ```
 
-You will also need to [set a default gateway](#set-a-default-gateway).
+You will also need to set a default gateway (see
+[below][anchor__set-a-default-gateway]).
 
 !!! Note: DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
@@ -237,4 +238,12 @@ maas $PROFILE users create username=$USERNAME \
 
 All the options are necessary. Note that stipulating a password on the CLI may
 be a security hazard, depending on your environment. If unsure, use the web UI.
-See [User Accounts](manage-account.md) for the latter.
+See [User accounts][manage-account] for the latter.
+
+
+<!-- LINKS -->
+
+[manage-cli]: manage-cli.md
+[concepts-ipranges]: intro-concepts.md#ip-ranges
+[manage-account]: manage-account.md
+[anchor__set-a-default-gateway]: #set-a-default-gateway
