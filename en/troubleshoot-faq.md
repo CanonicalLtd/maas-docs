@@ -1,5 +1,5 @@
 Title: Troubleshooting | MAAS
-TODO:  review soon
+TODO:  critical: review needed
 table_of_contents: True
 
 
@@ -34,7 +34,7 @@ include proprietary drivers, but it is not a straightforward task.
 
 ## Node deployment fails
 
-When deployment fails the [Rescue mode](intro-concepts.md#rescue-mode) action 
+When deployment fails the [Rescue mode][concepts-rescue-mode-action] action 
 can be used to boot ephemerally into the node, followed by an investigation. 
 
 As an example, an improperly configured PPA was added to MAAS which caused
@@ -215,3 +215,8 @@ latest
 sudo python $maasds --config=$cfg get $url/latest/meta-data/local-hostname
 maas-enlisting-node
 ```
+
+
+<!-- LINKS -->
+
+[concepts-rescue-mode-action]: intro-concepts.md#rescue-mode
