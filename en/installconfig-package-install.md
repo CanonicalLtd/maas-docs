@@ -32,11 +32,11 @@ While MAAS is available in the normal Ubuntu archives, the available packages
 may be lagging behind non-archive, but still stable, versions. To install a newer
 stable version the following PPA can be used:
 
-- [ppa:maas/stable](https://launchpad.net/~maas/+archive/ubuntu/stable)
+- [ppa:maas/stable][ppa_maas-stable]
 
 Development releases (not meant for production) are available here:
 
-- [ppa:maas/next](https://launchpad.net/~maas/+archive/ubuntu/next)
+- [ppa:maas/next][ppa_maas-next]
 
 For example, to add the 'stable' PPA, type:
 
@@ -78,3 +78,5 @@ See [Rack controller][rackd] for details.
 [dhcp]: installconfig-network-dhcp.md
 [all-in-one]: index.md#key-components-and-colocation-of-all-services
 [maas-ha]: manage-ha.md
+[ppa_maas-stable]: https://launchpad.net/~maas/+archive/ubuntu/stable
+[ppa_maas-next]: https://launchpad.net/~maas/+archive/ubuntu/next

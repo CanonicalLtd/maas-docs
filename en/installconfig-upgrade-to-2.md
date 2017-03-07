@@ -1,37 +1,37 @@
-Title: Upgrade from 1.9 to 2.0
+Title: Upgrade from 1.9 to 2.x | MAAS
 
-# Upgrade from 1.9 to 2.0
 
-MAAS 2 is only supported on Ubuntu 16.04 LTS (Xenial Xerus). This is because 
-Ubuntu 16.04 defaults to Python 3, whereas previous versions of Ubuntu defaulted
-to Python 2.
+# Upgrade from 1.9 to 2.x
 
-MAAS versions 1.9 and 1.9.x will continue to be supported on Ubuntu 14.04 LTS
-(Trusty Tahr) until they reach [end-of-life](https://wiki.ubuntu.com/Releases).
+MAAS 2.0 is only supported on Ubuntu 16.04 LTS (Xenial Xerus). This is because
+16.04 defaults to Python 3, whereas previous versions of Ubuntu defaulted to
+Python 2.
 
-However, it is possible to upgrade from MAAS 1.9.x to MAAS 2.x as part of the
-distribution upgrade from Ubuntu 14.04 (or Ubuntu 15.10) to Ubuntu 16.04. The
-MAAS database and MAAS configuration will be migrated to the latest MAAS
-version as part of the upgrade process.
+MAAS 1.9 will continue to be supported on Ubuntu 14.04 LTS (Trusty Tahr) until
+the latter reaches the end of its support cycle. See
+[Ubuntu Releases][ubuntu-wiki-releases] for release and EOL dates for all
+Ubuntu versions.
 
-Before you start, make sure all your packages are updated (`sudo apt update &&
-sudo apt full-upgrade`). Backups should also be made, and we'd recommend
-upgrading a test environment that mirrors your production environment first, to
+Upgrading from 1.9 to 2.x will therefore involve upgrading the version of
+Ubuntu to 16.04 LTS. In so doing, the MAAS database and MAAS configuration will
+be migrated. See the [Xenial Release Notes][xenial-release-notes-upgrading] for
+upgrading to Xenial.
+
+Prior to the upgrade all packages should be updated (`sudo apt-get update &&
+sudo apt-get dist-upgrade`). It is recommended that backups be made and that 
+a test environment (that mirrors your production environment) be upgraded first, to
 pre-empt any issues.
 
-See the '[Upgrading from Ubuntu 14.04 LTS or
-15.10](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10)' 
-section in the release notes for Ubuntu 16.04 LTS (Xenial Xerus) for
-instructions on the upgrade process.
 
 ## Troubleshooting
 
 The upgrade process can be complex, and depending on your installation, may
-require manual intervention. In particular, you may be asked whether you want
-to overwrite `/etc/postgresql-common/createcluster.conf`. If you've made no
-modifications to this file, you can safely allow the upgrade process to
-overwrite the file. But if you have made changes, you'll need to merge your
-changes into the new file manually. 
+require manual intervention. You may be asked whether you want to overwrite
+some files, PostgreSQL files in particular, especially if you've implemented
+high availability in PostgreSQL (see [PostgreSQL HA][postgresql-ha]). If you've
+made no modifications to these files, you can instruct the upgrade process to
+overwrite them. Otherwise, you'll need to merge the new changes into the files
+manually. 
 
 At the end of the upgrade, if you see processing errors with the `maas`,
 `squid3`, `maas-dns`, or `maas-region-controller` packages, or if the upgrade
@@ -42,5 +42,13 @@ sudo apt -f install
 sudo apt autoremove
 sudo apt upgrade
 ```
-This will fix the dependency errors, remove redundant packages and update to
+
+This should fix the dependency errors, remove redundant packages and update to
 the latest version of MAAS.
+
+
+<!-- LINKS -->
+
+[postgresql-ha]: manage-ha-postgresql.md
+[ubuntu-wiki-releases]: https://wiki.ubuntu.com/Releases
+[xenial-release-notes-upgrading]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10
