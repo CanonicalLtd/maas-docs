@@ -136,7 +136,7 @@ Where RESOURCES is a space-separated list from:
 For example:
 
 ```bash
-maas $PROFILE pod compose 135 \
+maas $PROFILE pod compose $POD_ID \
 	cores=40 cpu_speed=2000 memory=7812 architecture="amd64/generic"
 ```
 
