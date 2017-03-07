@@ -6,7 +6,7 @@ TODO:  Fix/add CLI equivalents
 # Zones
 
 The concept of a *zone*, and examples of how they can be used, are provided in
-the [Concepts and terms][concepts] page. The current page covers how to use a
+the [Concepts and terms][concepts-zones] page. The current page covers how to use a
 zone. Specifically, it will show how to:
 
 - Create a zone
@@ -76,7 +76,7 @@ It is possible, though not usually useful, to combine the `zone` and
 
 <!-- LINKS -->
 
-[concepts]: intro-concepts.md#zones
+[concepts-zones]: intro-concepts.md#zones
 
 [img__2.0_create-zone]: ../media/add-zone.png
 

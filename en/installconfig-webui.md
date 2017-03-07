@@ -49,9 +49,7 @@ See [MAAS CLI][manage-cli] for logging in via the CLI and working with the CLI.
 <!-- LINKS -->
 
 [install-from-iso]: installconfig-iso-install.md
-[config-journey]: installconfig-webui-conf-journey.md
 [manage-account]: manage-account.md
 [manage-cli]: manage-cli.md
-[device-discovery]: installconfig-network-dev-discovery.md
 
 [img__webui-login]: ../media/installconfig-webui__login.png
