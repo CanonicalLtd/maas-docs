@@ -11,9 +11,9 @@ architecture grows in size.
 In regards to region controller and rack controller communication, each rack
 controller must be able to initiate TCP connections:
 
-- for HTTP, to each region controller on port 5240. If
-  [high availability](manage-ha.md) is implemented then this will typically
-  become port 80.
+- for HTTP, to each region controller on port 5240. If high availability is
+  implemented then this will typically become port 80. See
+  [MAAS HA][manage-ha].
 - for RPC, to each region controller between port 5250 and 5259 inclusive. This
   permits up to 10 `maas-regiond` processes on each region controller host. At
   present this is not configurable.
@@ -27,23 +27,22 @@ manually:
 
 To install and register a rack controller you can either use the
 Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
-[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
-require the URL of the region API server. For nodes on an
-[IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
-instead of an IP address and it must resolve to both IPv4 and IPv6 addresses,
-both on the rack controller and on the nodes.
+[MAAS CLI - advanced tasks][cli-install-rackd]. Both will require the URL of
+the region API server. For nodes on an [IPv6][ipv6] subnet, the URL must use a
+hostname instead of an IP address and it must resolve to both IPv4 and IPv6
+addresses, both on the rack controller and on the nodes.
 
 Once registered, if this is an extra rack controller, it will appear
 immediately in the web UI and begin to sync with the primary controller:
 
-![add controller](../media/installconfig-rack__add-controller2.png)
+![add controller][img__add-rackd]
 
 Multiple rack controllers are needed in order to achieve specific types of
-[high availability](manage-ha.md).
+high availability. See [MAAS HA][manage-ha].
 
 !!! Note: If you will be using KVM-backed nodes you must ensure that the new
 rack controller can communicate with the KVM host. See
-[KVM guest nodes](installconfig-add-nodes.md#kvm-guest-nodes).
+[KVM guest nodes][add-nodes-kvm-guest-nodes].
 
 
 ## Unregister a rack controller
@@ -69,3 +68,9 @@ change with future versions of MAAS.
 <!-- LINKS -->
 
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
+[manage-ha]: manage-ha.md
+[cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
+[ipv6]: installconfig-network-ipv6.md
+[add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
+
+[img__add-rackd]: ../media/installconfig-rack__add-controller2.png
