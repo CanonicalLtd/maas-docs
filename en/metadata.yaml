@@ -27,13 +27,13 @@ navigation:
 
         children:
 
-          - title: Install from Ubuntu Server ISO
-            location: installconfig-server-iso.md
+          - title: Install from ISO
+            location: installconfig-iso-install.md
 
           - title: Install from packages
             location: installconfig-package-install.md
 
-          - title: Install into LXD
+          - title: Install with LXD
             location: installconfig-lxd-install.md
 
           - title: Upgrade from 1.9 to 2.0
@@ -43,7 +43,7 @@ navigation:
         location: installconfig-rack.md
 
       - title: Web UI
-        location: installconfig-gui.md
+        location: installconfig-webui.md
 
       - title: Images
         location: installconfig-images.md
@@ -67,7 +67,7 @@ navigation:
           - title: DHCP
             location: installconfig-network-dhcp.md
 
-          - title: Reserved IP ranges
+          - title: IP ranges
             location: installconfig-network-ipranges.md
 
           - title: Proxy
@@ -115,16 +115,16 @@ navigation:
             location: installconfig-commission-nodes.md
 
           - title: Deploy nodes
-            location: installconfig-deploy-nodes.md
+            location: installconfig-nodes-deploy-nodes.md
 
           - title: Tags
             location: installconfig-tags.md
 
           - title: Kernel boot options
-            location: installconfig-kernel.md
+            location: installconfig-nodes-kernel-boot-options.md
 
           - title: Ubuntu kernels
-            location: installconfig-hwe-kernels.md
+            location: installconfig-nodes-ubuntu-kernels.md
 
   - title: Manage MAAS
 

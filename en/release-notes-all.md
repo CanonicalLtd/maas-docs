@@ -1,10 +1,10 @@
 Title: Historical Release Notes | MAAS
-table_of_contents: False
+table_of_contents: True
 
 
-# 2.2.0 (beta2) Release Notes
+# Historical Release Notes
 
-## Important announcements
+## 2.2.0 (beta2)
 
 ### Composable hardware
 
@@ -70,9 +70,7 @@ MAAS 2.2b2 now has an updated web UI that includes:
 <!-- ===================================================================== -->
 
 
-# 2.2 Release Notes
-
-## Important announcements
+## 2.2
 
 ### Migrating MAAS L3 to L2 spaces
 
@@ -178,9 +176,7 @@ Cannot add a device with parent from the dashboard
 <!-- ===================================================================== -->
 
 
-# 2.1 Release Notes
-
-## Important changes
+## 2.1
 
 ### New MAAS dashboard
 
@@ -456,9 +452,7 @@ The Networks page has been renamed to Subnets.
 <!-- ===================================================================== -->
 
 
-# 2.0 Release notes
-
-## Important changes
+## 2.0
 
 ### MAAS 2.0 supported on Ubuntu 16.04 LTS (Xenial)
 
@@ -637,10 +631,9 @@ MAAS 2.0 extends DNS management by adding the following features:
 -   Additional PTR records are now created for all non-PXE interfaces in
     the form: `<interface>.<machine fully-qualified-domain-name>`
 -   Reverse DNS is now generated for only the subnet specified, rather
-    than the parent /24 or /16. By default,
-    [RFC2137](https://tools.ietf.org/html/rfc2137) glue is provided for
-    networks smaller than /24. This can be disabled or changed on a
-    per-subnet basis via the API.
+    than the parent /24 or /16. By default, [RFC2137][rfc2137] glue is provided
+    for networks smaller than /24. This can be disabled or changed on a per-subnet
+    basis via the API.
 
 ### IP Ranges  
 
@@ -865,3 +858,8 @@ able to reconstruct it.
 MAAS selects one of the available rack controllers to power control or
 query a BMC. The same rack controller that powers the BMC does not need
 to be the rack controller that the machine PXE boots from.
+
+
+<!-- LINKS -->
+
+[rfc2137]: https://tools.ietf.org/html/rfc2137
