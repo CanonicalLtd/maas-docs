@@ -108,7 +108,7 @@ You can get the above information from the web UI by visiting the 'Nodes' page,
 then the Controller tab, and clicking the button 'Add rack controller'. Here
 is an example of what you may see:
 
-![add controller](../media/manage-maas-cli-advanced__2.1_add-controller.png)
+![add controller][img__2.1_cli-add-controller]
 
 Based on the above, then, we could have also entered:
 
@@ -121,3 +121,5 @@ sudo maas-rack register --url http://10.5.1.5:5240/MAAS --secret 9500bf4c5655834
 
 [manage-cli]: manage-cli.md
 [cli-assign-tag-to-node]: manage-cli-common.md#assign-a-tag-to-a-node
+
+[img__2.1_cli-add-controller]: ../media/manage-maas-cli-advanced__2.1_add-controller.png
