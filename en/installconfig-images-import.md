@@ -1,5 +1,5 @@
 Title: Select and Import Images | MAAS 
-TODO:  Be consistent with final version of installconfig-hwe-kernels.md (see TODO)
+TODO:  Be consistent with final version of installconfig-nodes-ubuntu-kernels.md (see TODO)
        There is rumor of changing the image sync frequency. 1 hr is deemed too frequent
 
 
