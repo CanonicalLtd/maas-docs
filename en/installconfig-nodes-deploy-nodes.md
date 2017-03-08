@@ -71,7 +71,7 @@ authentication requests to the 'ubuntu' account.
 [user-accounts-ssh-keys]: manage-account.md#ssh-keys
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [kernel-boot-options]: installconfig-kernel.md
-[ubuntu-kernels]: installconfig-hwe-kernels.md
+[ubuntu-kernels]: installconfig-nodes-ubuntu-kernels.md
 
 [img__2.1_deploy-nodes]: ../media/installconfig-nodes-deploy-nodes__2.1_deploy.png
 [img__deploy-go]: ../media/installconfig-deploy-nodes__deploy-go.png

@@ -121,7 +121,7 @@ navigation:
             location: installconfig-kernel.md
 
           - title: Ubuntu kernels
-            location: installconfig-hwe-kernels.md
+            location: installconfig-nodes-ubuntu-kernels.md
 
   - title: Manage MAAS
 
