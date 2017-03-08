@@ -109,7 +109,7 @@ You can get the above information from the web UI by visiting the 'Nodes' tab,
 then the Controller sub-tab, and clicking the button 'Add rack controller'.
 Here is an example of what you may see:
 
-![add controller](../media/installconfig-rack__add-controller.png)
+![add controller][img__2.0_cli-add-controller]
 
 Based on the above, then, we could have also entered:
 
@@ -119,3 +119,11 @@ sudo maas-rack register --url http://10.248.0.3:5240/MAAS --secret 30e5413d5b684
 
 !!! Note: The web UI example does not refer to port 5240 but this should be
 fixed soon.
+
+
+<!-- LINKS -->
+
+[manage-cli]: manage-cli.md
+[cli-assign-tag-to-node]: manage-cli-common.md#assign-a-tag-to-a-node
+
+[img__2.0_cli-add-controller]: ../media/installconfig-rack__add-controller.png
