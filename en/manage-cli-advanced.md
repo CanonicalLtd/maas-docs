@@ -3,7 +3,8 @@ TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
-       Bug check: https://goo.gl/cnNy8L - remove Note and change image (and possibly the example command) when resolved (installconfig-rack__add-controller.png)
+       Kernel selection example should not just be about HWE kernels. Adjust installconfig-nodes-ubuntu-kernels.md accordingly
+table_of_contents: True
 
 
 # Advanced CLI Tasks
