@@ -1,7 +1,7 @@
-Title: HWE kernels
+Title: Ubuntu Kernels | MAAS
 
 
-# HWE kernels
+# Ubuntu Kernels
 
 MAAS supports HWE kernels for its Ubuntu nodes.
 
@@ -32,12 +32,11 @@ By default, when using the web UI, MAAS imports all available HWE kernels along
 with its generic boot images. So if Trusty images are imported then the
 following HWE kernels are included: `hwe-u`, `hwe-v`, and `hwe-w`.
 
-See [MAAS CLI](manage-cli-images.md#select-images) for how to target
-specific HWE kernels when selecting install images.
+See [MAAS CLI][cli-select-images] for how to target specific HWE kernels when
+selecting install images.
 
-See the [LTS Enablement
-Stack](https://wiki.ubuntu.com/Kernel/LTSEnablementStack) Ubuntu wiki for
-the latest information on HWE.
+See [LTS Enablement Stack][ubuntu-wiki-hwe] (Ubuntu wiki) for the latest
+information on HWE.
 
 
 ## Using HWE kernels
@@ -53,8 +52,8 @@ done in three ways:
 !!! Note: MAAS will emit an error if a configured minimum kernel version (or
 newer) is not available for the machine's Ubuntu release.
 
-See [MAAS CLI](manage-cli.md#set-a-default-minimum-kernel) for how to
-perform these three configurations from the CLI.
+See [MAAS CLI][cli-set-a-default-minimum-hwe-kernel] for how to perform these
+three configurations from the CLI.
 
 ### Default minimum kernel
 
@@ -62,7 +61,7 @@ To set the default minimum HWE kernel for all machines visit the 'Settings' page
 and select a HWE kernel in the 'Default Minimum Kernel Version' field. Don't
 forget to click 'Save'.
 
-![image](../media/default_min_hwe_kernel.png)
+![default minimum kernel][img__2.0_default-minimum-kernel]
 
 ### Machine minimum kernel
 
@@ -70,7 +69,7 @@ To set the minimum HWE kernel on a machine basis visit the machine's page and cl
 the `Edit` button in the 'Machine summary' pane. Then select a HWE kernel in the
 'Minimum Kernel' field and 'Save changes'.
 
-![image](../media/min_hwe_kernel.png)
+![machine minimum kernel][img__2.0_machine-minimum-kernel]
 
 ### Machine kernel during deployment
 
@@ -78,7 +77,18 @@ To set a specific HWE kernel during deployment visit the machine's page and choo
 `Deploy` under 'Take action'. Then select a HWE kernel in the 'Default
 kernel' field. Hit 'Go' to initiate the deployment.
 
-![image](../media/hwe_kernel.png)
+![machine during deploy kernel][img__2.0_machine-during-deploy-kernel]
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
 release (series) before deploying the node. 
+
+
+<!-- LINKS -->
+
+[cli-select-images]: manage-cli-images.md#select-images
+[ubuntu-wiki-hwe]: https://wiki.ubuntu.com/Kernel/LTSEnablementStack
+[cli-set-a-default-minimum-hwe-kernel]: manage-cli-advanced.md#set-a-default-minimum-hwe-kernel
+
+[img__2.0_default-minimum-kernel]: ../media/default_min_hwe_kernel.png
+[img__2.0_machine-minimum-kernel]: ../media/min_hwe_kernel.png
+[img__2.0_machine-during-deploy-kernel]: ../media/hwe_kernel.png
