@@ -67,5 +67,10 @@ the Settings tab and scroll down to the 'Boot Images' section. Then fill in the
 fields 'Sync URL' and 'Keyring Path' using the values, respectively, for
 variables 'URL' and 'KEYRING_FILE' from above.
 
-See [CLI Image Management](manage-cli-images.md#add-an-image-source) for
-instructions on how to do this with the CLI.
+See [CLI Image Management][cli-add-an-image-source] for instructions on how to
+do this with the CLI.
+
+
+<!-- LINKS -->
+
+[cli-add-an-image-source]: manage-cli-images.md#add-an-image-source
