@@ -85,7 +85,7 @@ range types used in MAAS.
 [add-nodes]: installconfig-add-nodes.md
 [cli-commission-all-machines]: manage-cli-common.md#commission-all-machines
 [tags]: installconfig-tags.md
-[deploy-nodes]: installconfig-nodes-deploy-nodes.md
+[deploy-nodes]: installconfig-nodes-deploy.md
 [tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 
