@@ -112,7 +112,7 @@ navigation:
             location: installconfig-commission-nodes.md
 
           - title: Deploy nodes
-            location: installconfig-nodes-deploy-nodes.md
+            location: installconfig-nodes-deploy.md
 
           - title: Tags
             location: installconfig-tags.md
