@@ -4,6 +4,123 @@ table_of_contents: True
 
 # Historical Release Notes
 
+## 2.2.0 (beta3)
+
+### Hardware tests - running by default during Commissioning
+
+MAAS 2.2 introduces the ability to perform hardware tests. As part of MAAS beta
+3, MAAS introduces the ability to run disk tests, which can be run as part of
+the commissioning processes, or as a separate action from Ready or Deployed.
+
+Please be aware that running hardware tests during the commissioning process
+can prevent machines from becoming 'Ready' for deployment, if the hardware
+tests fail.
+
+For more information about the Hardware Testing feature please refer to the
+following section.
+
+### Intel Rack Scale Design - Dynamically creating machines
+
+MAAS 2.2 Beta 2 introduced support for Intel's Rack Scale Design (RSD). RSD is
+a hardware architecture that allows the dynamic composition of physical systems
+from a pool of available hardware resources.
+
+Starting from Beta 3, MAAS now extends its support for RSD allowing the
+creation (composition) of machines dynamically. This allows administrators and
+users to request a machine (allocate) not previously available to MAAS, and
+dynamically create (compose) one within the RSD system. This machine can then
+be deployed.
+
+Adding such support, it allows Juju to deploy workloads against a MAAS that has
+an RSD Pod, with no previously known (available - Ready) machines.
+
+
+## Major new features
+
+### Hardware Testing
+
+Starting from MAAS, MAAS provides the ability to perform specific hardware
+tests. The hardware testing feature provides administrators with a predefined
+set of tests that can be run to ensure correct operation of their hardware
+before making it available for usage. The hardware testing feature will include
+Disk, CPU and Memory tests.
+
+As of MAAS 2.2 Beta 3, only Disk hardware tests have been made available:
+
+- Disk status - The Disk Status test (smartctl-validate) uses the smartctl tool
+  to verify existing SMART data on all drives has not detected any errors.
+
+- Disk Integrity - MAAS provides the ability to run SMART tests. This includes:
+
+    - smartctl-short & smartctl-long
+      Runs the SMART self tests to validate health on all disks. It provides a long
+      running and a short running test.
+
+    - Smartctl-conveyance
+      Runs the conveyance SMART self tests to validate health on all disks.
+
+- Memory - For memory, MAAS provides the following tests:
+    - Memtestr
+      Runs memtester over all available RAM.
+
+    - Stress-ng
+      Runs the Stress-NG tests over 12 hours against RAM.
+
+  NOTE: Please note that these are long running tests and will take hours to
+  complete.
+
+- CPU - CPU tests include Stress-NG stress tests over 12 hours.
+
+### Intel RSD - Dynamic Composition
+
+The dynamic composition feature allows administrators to request (allocate)
+machines from an Intel RSD without having to manually compose such machine.
+This allows modeling tools, such as Juju, to request a machine from MAAS when
+there are no previously known machines, and dynamically create and deploy one
+for a specific workload.
+
+Administrators not using Juju can request a machine via the API, and if no
+other machine satisfies the specific or default constraints, a machine will be
+automatically created from an RSD pod if one available.
+
+### Web UI - MAAS Pods & Intel RSD
+
+The MAAS web UI introduces a new 'Pods' tab. This is where MAAS will list
+composable hardware systems like the Intel RSD. MAAS 2.2 Beta 2 introduces the
+ability for MAAS to add and control an Intel RSD via the MAAS API/CLI. MAAS 2.2
+Beta 3 introduces a basic Web UI feature to support and manage the Intel RSD
+Pods (and any other composable hardware). This changes include:
+
+- List Pods - lists all available pods under the 'Pods' tab:
+    - This provides the ability to list all available pods and provide a summary of
+      the usage statistics for a pod.
+- Add Pod - ability to add new Pods from the 'Pods' tab.
+- Pod Details Page - provides more detailed information about a pod:
+    - This page provides the ability to obtain more detail information of a
+      particular pod. At the moment, it will provide information about the
+      available and used resources.
+
+### Facebook Wedge 40 & Wedge 100 discovery
+
+MAAS now has the ability to automatically discover and manage the Facebook
+Wedge 40 and Wedge 100 switches. This allows MAAS to automatically discover the
+Switch BMC and power manage as any other servers, in order to deploy Ubuntu
+onto the switches. MAAS will also automatically tag the machine to easily
+identify it.
+
+Additionally, MAAS will automatically identify if the Trident or Tomahawk ASICs
+are connected to the switch, and will automatically identify them via tags.
+
+### Web UI - Device Details Page
+
+Starting from Beta 3, MAAS 2.2 now provides a Details Page for 'Devices',
+allowing administrators to both, add new interfaces to a device, or modifying
+the existing interfaces.
+
+
+<!-- ===================================================================== -->
+
+
 ## 2.2.0 (beta2)
 
 ### Composable hardware
@@ -70,7 +187,7 @@ MAAS 2.2b2 now has an updated web UI that includes:
 <!-- ===================================================================== -->
 
 
-## 2.2
+## 2.2.0 (beta1)
 
 ### Migrating MAAS L3 to L2 spaces
 

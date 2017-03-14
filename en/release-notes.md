@@ -6,8 +6,7 @@ See [Historical release notes][historical-release-notes] for release notes for
 all versions.
 
 
-
-# 2.0 Release notes
+# Release Notes - 2.0
 
 ## Important changes
 
