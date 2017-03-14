@@ -23,7 +23,8 @@ hardware (e.g. it is incompatible with KVM-based nodes).
 ## Apply a hardware test
 
 To launch a test, on the 'Nodes' page, or within a node's actual view, choose
-action 'Test hardware'. Here, a test is being applied to a deployed node:
+action 'Test hardware'. When ready, hit button 'Test machine'. Here, a test is
+being applied to a deployed node:
 
 ![hw test deployed node][img__2.2_hw-testing-deployed]
 
