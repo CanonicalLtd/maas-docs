@@ -1,18 +1,23 @@
 Title: Intel RSD | MAAS
-TODO:  Need access to this hardware to produce quality docs
+TODO:  Need access to this hardware to produce quality docs (Newell Jensen is a resource)
+table_of_contents: True
 
 
 # Intel RSD
 
 Intel Rack Scale Design (RSD) is a hardware architecture that allows the
 dynamic composition of physical systems from a pool of available hardware
-resources.
+resources. It is an example of *composable hardware*.
 
 The dynamic composition feature allows administrators to request (allocate) a
 machine without having to manually compose it. This allows modelling tools,
 such as [Juju][about-juju], to request a machine from MAAS when there are no
 previously known machines, and dynamically **create** and Deploy one. Machines
 can also be requested directly from within MAAS.
+
+Functionality for composable hardware first appeared in MAAS 2.2 beta2. See the
+[MAAS 2.2.0 release notes][release-notes] for how to install the requisite
+version of MAAS.
 
 
 ## Definitions
@@ -35,17 +40,14 @@ can also be requested directly from within MAAS.
   for MAAS’s control through a single endpoint.
 
 
-## Getting started with Intel RSD
+## MAAS CLI
 
-Functionality for Intel RSD first appeared in MAAS 2.2 beta2. See the
-[MAAS 2.2.0 release notes][release-notes] for how to install the requisite
-version of MAAS.
-
-Such functionality is accessed via the MAAS CLI only. See [MAAS CLI][manage-cli]
-for how to get started.
+Functionality for composable hardware is, at this time, primarily accessed via
+the MAAS CLI (see [MAAS CLI][manage-cli] to get started) but the web UI (see
+[below][anchor__webui]) is quickly advancing in this area.
 
 
-## List all Pods
+### List all Pods
 
 List all Pods:
 
@@ -54,7 +56,7 @@ maas $PROFILE pods read
 ```
 
 
-## Register a Pod
+### Register a Pod
 
 To register a Pod:
 
@@ -75,7 +77,7 @@ When a Pod is registered, MAAS automatically discovers and stores the
 resources that the Pod contains.  
 
 
-## List Pod resources
+### List Pod resources
 
 To list a Pod's resources:
 
@@ -84,7 +86,7 @@ maas $PROFILE pod read $POD_ID
 ```
 
 
-## List Pod power parameters
+### List Pod power parameters
 
 To list a Pod's power parameters:
 
@@ -103,7 +105,7 @@ Example output:
 ```
 
 
-## Compose Pod machines
+### Compose Pod machines
 
 To compose a Pod's machines:
 
@@ -141,7 +143,7 @@ maas $PROFILE pod compose $POD_ID \
 ```
 
 
-## List machine parameters
+### List machine parameters
 
 The MAAS machine may be a composed machine in which case its resources will be
 included in the output:
@@ -151,7 +153,7 @@ maas $PROFILE machine read $SYSTEM_ID
 ```
 
 
-## Machine decomposition
+### Machine decomposition
 
 To decompose a Pod machine by deleting the machine itself:
 
@@ -163,7 +165,7 @@ If the Pod's resources are now listed (`pod read $POD_ID`), it would be seen
 that the resources for this machine are available and no longer used.
 
 
-## Pod deletion
+### Pod deletion
 
 To delete a Pod:
 
@@ -172,8 +174,25 @@ maas $PROFILE pod delete $POD_ID
 ```
 
 
+## Web UI
+
+Functionality for composable systems (like the Intel RSD) in the web UI
+consists of the following actions and information displays:
+
+- List pods - lists all pods and provide a summary of usage statistics for each
+- Add a pod - add a pod
+- Pod details - provide detailed information about a pod such as available
+  resources 
+
+Such functionality has only begun to appear in the web UI. It is under active
+development.
+
+Composable hardware systems are managed on the 'Pods' page.
+
+
 <!-- LINKS -->
 
 [release-notes]: release-notes.md
 [manage-cli]: manage-cli.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
+[anchor__webui]: #web-ui
