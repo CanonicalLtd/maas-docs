@@ -30,7 +30,7 @@ being applied to a deployed node:
 
 There is the option of not powering off the node and to allow SSH access.
 
-A default test will be selected (`smartctl-validate`, a disk drive test) but
+A default test will be selected (`smartctl-validate`, a hard drive test) but
 others can be chosen by clicking the 'Select scripts' label. Doing so will
 reveal the following choices:
 
