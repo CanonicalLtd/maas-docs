@@ -1,5 +1,4 @@
 Title: API Client | MAAS
-TODO:  Add CLI (?)
 table_of_contents: True
 
 
