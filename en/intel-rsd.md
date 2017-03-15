@@ -10,11 +10,11 @@ dynamic composition of physical systems from a pool of available hardware
 resources (e.g. disk space, memory, cores). It is an example of *composable
 hardware*.
 
-This allows for the request (allocate) of a machine without having to manually
-compose it beforehand. Modelling tools, such as [Juju][about-juju], can
-therefore leverage this when requesting a machine from MAAS, which will
-dynamically **create** and Deploy one. Machines can also be requested directly
-from within MAAS.
+This means a machine request (allocate) can be made without having to make
+available machines beforehand. Modelling tools, such as [Juju][about-juju], can
+leverage this when requesting a machine from MAAS, which will dynamically
+**create** and Deploy one. Machines can also be requested directly from within
+MAAS.
 
 Functionality for composable hardware first appeared in MAAS 2.2 beta2. See the
 [MAAS 2.2.0 release notes][release-notes] for how to install the requisite
