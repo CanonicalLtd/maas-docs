@@ -5,15 +5,16 @@ table_of_contents: True
 
 # Intel RSD
 
-Intel Rack Scale Design (RSD) is a hardware architecture that allows the
+Intel Rack Scale Design (RSD) is a hardware architecture that allows for the
 dynamic composition of physical systems from a pool of available hardware
-resources. It is an example of *composable hardware*.
+resources (e.g. disk space, memory, cores). It is an example of *composable
+hardware*.
 
-The dynamic composition feature allows administrators to request (allocate) a
-machine without having to manually compose it. This allows modelling tools,
-such as [Juju][about-juju], to request a machine from MAAS when there are no
-previously known machines, and dynamically **create** and Deploy one. Machines
-can also be requested directly from within MAAS.
+This allows for the request (allocate) of a machine without having to manually
+compose it beforehand. Modelling tools, such as [Juju][about-juju], can
+therefore leverage this when requesting a machine from MAAS, which will
+dynamically **create** and Deploy one. Machines can also be requested directly
+from within MAAS.
 
 Functionality for composable hardware first appeared in MAAS 2.2 beta2. See the
 [MAAS 2.2.0 release notes][release-notes] for how to install the requisite
