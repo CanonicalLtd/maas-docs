@@ -168,6 +168,9 @@ navigation:
           - title: Advanced tasks
             location: manage-cli-advanced.md
 
+      - title: API client
+        location: manage-libmaas.md
+
   - title: Troubleshoot
 
     children:
