@@ -1,18 +1,18 @@
 Title: Intel RSD | MAAS
+TODO:  Need access to this hardware to produce quality docs
 
 
 # Intel RSD
 
 Intel Rack Scale Design (RSD) is a hardware architecture that allows the
 dynamic composition of physical systems from a pool of available hardware
-resources. MAAS is a cloud-like, scale-out bare-metal provisioning system, that
-allows consumers to request and deploy hardware on demand, providing Juju with
-physical infrastructure to meet the demands of scale-out software.
+resources.
 
-MAAS leverages the use of Intel RSD by composing machines on-demand
-(dynamically) as required by Juju. MAAS will alternatively allow the manual
-composition of machines, from available pool of resources, to be made available
-for re-use as part of the MAAS machine lifecycle.
+The dynamic composition feature allows administrators to request (allocate) a
+machine without having to manually compose it. This allows modelling tools,
+such as [Juju][about-juju], to request a machine from MAAS when there are no
+previously known machines, and dynamically **create** and Deploy one. Machines
+can also be requested directly from within MAAS.
 
 
 ## Definitions
@@ -37,11 +37,11 @@ for re-use as part of the MAAS machine lifecycle.
 
 ## Getting started with Intel RSD
 
-Functionality for Intel RSD appeared in MAAS 2.2.0 Beta2. See
-[MAAS 2.2.0 (beta2) release notes][release-notes] for how to install the
-requisite version of MAAS.
+Functionality for Intel RSD first appeared in MAAS 2.2 beta2. See the
+[MAAS 2.2.0 release notes][release-notes] for how to install the requisite
+version of MAAS.
 
-Such functionality is accessed via the MAAS CLI only. See [MAAS CLI][maas-cli]
+Such functionality is accessed via the MAAS CLI only. See [MAAS CLI][manage-cli]
 for how to get started.
 
 
@@ -175,4 +175,5 @@ maas $PROFILE pod delete $POD_ID
 <!-- LINKS -->
 
 [release-notes]: release-notes.md
-[maas-cli]: manage-cli.md
+[manage-cli]: manage-cli.md
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
