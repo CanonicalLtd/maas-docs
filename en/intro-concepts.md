@@ -67,6 +67,13 @@ parent node is deleted or released. This is designed to model and manage the
 virtual machines or containers running inside a MAAS-deployed node.
 
 
+## Composable hardware
+
+Hardware architecture that allows for the dynamic composition of physical
+systems from a pool of hardware resources (e.g. disk space, memory, cores).
+See [Intel RSD][intel-rsd] for an example of this.
+
+
 ## Zones
 
 A *physical zone*, or just *zone*, is an organizational unit that contains
@@ -388,3 +395,4 @@ Puts the node in a specific zone.
 [post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
+[intel-rsd]: intel-rsd.md
