@@ -22,9 +22,10 @@ selected:
 In the top-right corner there is a toggle switch for the automatic syncing of
 images. It is highly recommended to keep this enabled.
 
-!!! Note: Image sync occurs hourly and the availability of new images is
-influenced by the image stream MAAS is configured to use. See
-[Boot image sources][images-boot-image-sources].
+!!! Note: 
+    Image sync occurs hourly and the availability of new images is
+    influenced by the image stream MAAS is configured to use. See
+    [Boot image sources][images-boot-image-sources].
 
 To change the selections select any other images (by choosing 'Release' and
 'Architecture'), and click the 'Save selection' button to initiate the import.

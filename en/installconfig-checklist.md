@@ -24,8 +24,9 @@ around! Proceed to the [web UI][webui] now. This will involve the creation of
 an administrator user. Notice how the web UI (API server) is accessed via port
 5240 and not port 80.
 
-!!! Note: Although the web UI may be accessed via port 80, this is not
-guaranteed to work in future versions of MAAS.
+!!! Note: 
+    Although the web UI may be accessed via port 80, this is not
+    guaranteed to work in future versions of MAAS.
 
 The initial access of the web UI will kick off an optional
 [configuration journey][config-journey] whose purpose is to get the essential
@@ -61,8 +62,9 @@ to use the CLI to do this. Either way: achievement unlocked!
 The import process can take a while. Consider moving on and coming back. Just
 ensure that the import has completed prior to adding a node.
 
-!!! Note: Once installed, by default, MAAS will begin downloading images for
-the latest Ubuntu LTS.
+!!! Note: 
+    Once installed, by default, MAAS will begin downloading images for
+    the latest Ubuntu LTS.
 
 
 ## Access the MAAS CLI

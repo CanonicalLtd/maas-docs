@@ -521,7 +521,8 @@ are:
 - ga-16.04-lowlatency: the low latency GA kernel for Xenial
 - hwe-16.04-lowlatency: the low latency HWE kernel for Xenial
 
-!!! Note: As time of writing, the last 2 kernels are the same.
+!!! Note: 
+    As time of writing, the last 2 kernels are the same.
 
 ### Bootloaders are now provided in the image stream
 
