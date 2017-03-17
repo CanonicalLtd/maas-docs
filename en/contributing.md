@@ -111,7 +111,8 @@ potential pitfalls.
 To implement an admonishment, use the following syntax:
 
 ```no-highlight
-!!! Note: To get syntax help for the 'maas' command add the '-h' switch.
+!!! Note: 
+    To get syntax help for the 'maas' command add the '-h' switch.
 ```
 
 ### Foldouts

@@ -47,8 +47,9 @@ the 'maas-region-controller' package was installed):
 sudo maas-region apikey --username=$PROFILE > $API_KEY_FILE
 ```
 
-!!! Note: A user's API key can also be obtained from the web interface. Click
-on 'username' in the top right corner, and select 'Account'.
+!!! Note: 
+    A user's API key can also be obtained from the web interface. Click
+    on 'username' in the top right corner, and select 'Account'.
 
 Log in. You will be prompted for the API key:
 

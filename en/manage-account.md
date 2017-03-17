@@ -11,7 +11,8 @@ deletion of an account.
 
 ![add user][img__add-user]
 
-!!! Note: you can't delete the account you're using from the web UI.
+!!! Note: 
+    You can't delete the account you're using from the web UI.
 
 
 ## Add a user

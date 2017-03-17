@@ -113,8 +113,9 @@ sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
 
-!!! Note: The register command is only needed if the rack controller is not
-being added to a system that already houses an API server.
+!!! Note: 
+    The register command is only needed if the rack controller is not
+    being added to a system that already houses an API server.
 
 You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key

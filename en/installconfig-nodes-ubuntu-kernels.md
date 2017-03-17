@@ -42,10 +42,11 @@ enables more hardware. Hence, HWE is an acronym for HardWare Enablement.
 Clearly, any kernel improvements and new features are also gained by installing
 an HWE kernel.
 
-!!! Note: There is the notion of an HWE *stack*. This refers to the (graphical)
-X portion (in addition to the kernel) when the Ubuntu host is running a desktop
-environment. This is not the case with MAAS as nodes are provisioned strictly
-as non-graphical servers.
+!!! Note: 
+    There is the notion of an HWE *stack*. This refers to the (graphical)
+    X portion (in addition to the kernel) when the Ubuntu host is running a desktop
+    environment. This is not the case with MAAS as nodes are provisioned strictly
+    as non-graphical servers.
 
 Note that these backported/HWE kernels are only available for LTS releases
 (e.g. Precise, Trusty, Xenial, etc). For example, the first available HWE
@@ -89,8 +90,9 @@ different kernel. This can be done in three ways:
 - per machine (minimum kernel)
 - per machine during deployment (specific kernel)
 
-!!! Note: MAAS will emit an error if a configured minimum kernel version (or
-newer) is not available for the machine's Ubuntu release.
+!!! Note: 
+    MAAS will emit an error if a configured minimum kernel version (or
+    newer) is not available for the machine's Ubuntu release.
 
 See [MAAS CLI][cli-set-a-default-minimum-hwe-kernel] for how to perform these
 three configurations from the CLI.

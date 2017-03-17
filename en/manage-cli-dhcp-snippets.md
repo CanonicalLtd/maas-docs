@@ -100,7 +100,8 @@ MAAS only uses the latest revision of the value when writing dhcpd.conf.
 
 ### Reverting a value
 
-!!! Warning: Reverting a value will result in all later versions being deleted!
+!!! Warning: 
+    Reverting a value will result in all later versions being deleted!
 
 The revert operation allows the user to revert to a previous value. When
 specifying what to revert to the user can either provide the value id or a
