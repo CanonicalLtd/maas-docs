@@ -73,8 +73,9 @@ PostgreSQL.
 
 This section assumes that PostgreSQL HA has been set up.
 
-!!! Note: Any number of API servers can be present as long as each connects to
-the same PostgreSQL database.
+!!! Note: 
+    Any number of API servers can be present as long as each connects to
+    the same PostgreSQL database.
 
 On the primary database host, edit file `/etc/postgresql/9.5/main/pg_hba.conf`
 to allow the secondary API server to contact the primary PostgreSQL database.
@@ -85,8 +86,9 @@ of the host that will contain the secondary API server:
 host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
 ```
 
-!!! Note: It is very common for the primary database server and the primary API
-server to reside on the same host.
+!!! Note: 
+    It is very common for the primary database server and the primary API
+    server to reside on the same host.
 
 Apply this change by restarting the database:
 
@@ -255,9 +257,10 @@ Restart the daemon to have these changes take effect:
 sudo systemctl restart keepalived
 ```
 
-!!! Note: If this is being done inside a container, its host needs the ip\_vs
-module loaded and the sysctl change. A restart of the container will then be
-required.
+!!! Note: 
+    If this is being done inside a container, its host needs the ip\_vs
+    module loaded and the sysctl change. A restart of the container will then be
+    required.
 
 Finally, for all API servers, replace the original IP address in the MAAS URL
 with that of the VIP. Then inform all rack controllers of that change.
