@@ -18,8 +18,9 @@ other technologies. In particular, it is designed to work especially well with
 arrangement: MAAS manages the machines and Juju manages the services running on
 those machines.
 
-!!! Note: KVM guests can also act as MAAS nodes as long as they are set to boot
-from the network (PXE).
+!!! Note: 
+    KVM guests can also act as MAAS nodes as long as they are set to boot 
+    from the network (PXE).
 
 
 ## What MAAS offers
@@ -45,8 +46,9 @@ MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef][about-chef] and [Juju][about-juju] as a physical
 provisioning system.
 
-!!! Note: Windows, RHEL and SUSE images require
-[Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
+!!! Note: 
+    Windows, RHEL and SUSE images require
+    [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
 
 
 ## How MAAS works
@@ -58,9 +60,11 @@ the pool and is available for use ("Ready" state).
 MAAS controls machines through IPMI (or another BMC) or converged chassis
 controller such as Cisco UCS.
 
-!!! Warning: A machine destined for MAAS will have its disk space overwritten.
-A node in the pool is under MAAS's sole control and should not be provisioned
-using other methods.
+!!! Warning: 
+    A machine destined for MAAS will have its disk space overwritten.
+    
+    A node in the pool is under MAAS's sole control and should not be provisioned
+    using other methods.
 
 Users of the MAAS then allocate them for their own use ("Acquire") when they go
 into use. Any subsequently installed operating system will contain the user's
@@ -172,10 +176,11 @@ environment are considered.
    - A rack controller is duplicated on a fourth host: 2.5 GB memory, 2.5 GHz CPU,
      and 40 GB of disk space.  
  
-!!! Note: Figures in the above two tables are for the MAAS infrastructure only.
-That is, they do not cover resources needed on the nodes that will subsequently
-be added to MAAS. That said, node machines should have IPMI-based BMC
-controllers for power cycling, see [BMC power types][power-types].
+!!! Note: 
+    Figures in the above two tables are for the MAAS infrastructure only.
+    That is, they do not cover resources needed on the nodes that will subsequently
+    be added to MAAS. That said, node machines should have IPMI-based BMC
+    controllers for power cycling, see [BMC power types][power-types].
 
 Examples of factors that influence hardware specifications include:
 
