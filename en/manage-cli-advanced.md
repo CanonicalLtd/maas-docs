@@ -104,6 +104,91 @@ maas $PROFILE vlan update 2 0 relay_van=5002
 ```
 
 
+## Assign a network interface to a fabric
+
+This task is made easier with the aid of the `jq` utility. It filters the
+`maas` command (JSON formatted) output and prints it in a desired way. This
+allows one to quickly view and compare data. Go ahead and install it:
+
+```bash
+sudo apt install jq
+```
+
+In summary, an interface is indirectly assigned to a fabric by assigning it to
+a VLAN. First we need to gather various bits of data.
+
+List some information on all machines:
+
+```bash
+maas $PROFILE machines read | jq '.[] | \
+	{hostname:.hostname, system_id: .system_id, status:.status}' --compact-output
+```
+
+Example output:
+
+```no-highlight
+{"hostname":"node1","system_id":"dfgnnd","status":4}
+{"hostname":"node2","system_id":"bkaf6e","status":6}
+{"hostname":"node4","system_id":"63wqky","status":6}
+{"hostname":"node3","system_id":"qwkmar","status":4}
+```
+
+!!! Note: An interface can only be edited when the corresponding machine has a
+status of 'Ready'. This is numberically denoted by the integer '4'.
+
+List some information for all interfaces on the machine in question (identified
+by its system id 'dfgnnd'):
+
+```bash
+maas $PROFILE interfaces read dfgnnd | jq '.[] | \
+	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}' --compact-output
+```
+
+Example output:
+
+```no-highlight
+{"id":8,"name":"eth0","mac":"52:54:00:01:01:01","vid":0,"fabric":"fabric-1"}
+{"id":9,"name":"eth1","mac":"52:54:00:01:01:02","vid":null,"fabric":null}
+```
+
+List some information for all fabrics:
+
+```bash
+maas $PROFILE fabrics read | jq '.[] | \
+	{name:.name, vlans:.vlans[] | {id:.id, vid:.vid}}' --compact-output
+```
+
+Example output:
+
+```no-highlight
+{"name":"fabric-0","vlans":{"id":5001,"vid":0}}
+{"name":"fabric-1","vlans":{"id":5002,"vid":0}}
+{"name":"fabric-2","vlans":{"id":5003,"vid":0}}
+```
+
+This example will show how to move interface '8' (on machine 'dfgnnd') from
+'fabric-1' to 'fabric-0'. Based on the gathered information, this will consist
+of changing the interface's VLAN from '5002' to '5001':
+
+```bash
+maas $PROFILE interface update dfgnnd 8 vlan=5001 >/dev/null
+```
+
+Verify the operation by relisting information for the machine's interface:
+
+```bash
+maas $PROFILE interfaces read dfgnnd | jq '.[] | \
+	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}' --compact-output
+```
+
+The output shows that the interface is now on fabric-0:
+
+```no-highlight
+{"id":8,"name":"eth0","mac":"52:54:00:01:01:01","vid":0,"fabric":"fabric-0"}
+{"id":9,"name":"eth1","mac":"52:54:00:01:01:02","vid":null,"fabric":null}
+```
+
+
 ## Install a rack controller
 
 To install and register a rack controller with the MAAS:
@@ -113,8 +198,9 @@ sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
 
-!!! Note: The register command is only needed if the rack controller is not
-being added to a system that already houses an API server.
+!!! Note: 
+    The register command is only needed if the rack controller is not
+    being added to a system that already houses an API server.
 
 You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
