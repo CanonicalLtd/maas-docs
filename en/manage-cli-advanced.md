@@ -106,8 +106,9 @@ maas $PROFILE vlan update 2 0 relay_van=5002
 
 ## Assign a network interface to a fabric
 
-This task is easier understood when viewing CLI output with the aid of the `jq`
-utility. Go ahead and install it:
+This task is made easier with the aid of the `jq` utility. It filters the
+`maas` command (JSON formatted) output and prints it in a desired way. This
+allows one to quickly view and compare data. Go ahead and install it:
 
 ```bash
 sudo apt install jq
