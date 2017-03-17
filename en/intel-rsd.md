@@ -1,5 +1,4 @@
 Title: Intel RSD | MAAS
-TODO:  Need access to this hardware to produce quality docs (Newell Jensen is a resource)
 table_of_contents: True
 
 
@@ -134,7 +133,7 @@ Where RESOURCES is a space-separated list from:
 **cores=**requested cores  
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
-**architecture=**requested architecture that POD must support  
+**architecture=**requested architecture that Pod must support  
 
 For example:
 
@@ -180,15 +179,31 @@ maas $PROFILE pod delete $POD_ID
 Functionality for composable systems (like the Intel RSD) in the web UI
 consists of the following actions and information displays:
 
-- List pods - lists all pods and provide a summary of usage statistics for each
-- Add a pod - add a pod
-- Pod details - provide detailed information about a pod such as available
+- List Pods - lists all Pods and provide a summary of usage statistics for each
+- Add a Pod - add a Pod
+- Pod details - provide detailed information about a Pod such as available
   resources 
 
 Such functionality has only begun to appear in the web UI. It is under active
 development.
 
-Composable hardware systems are managed on the 'Pods' page.
+Composable hardware systems are managed on the 'Pods' page, which is initially
+empty.
+
+
+### Add a Pod
+
+Add a Pod by using the 'Add pod' button:
+
+![pods page][img__2.2_add-pod]
+
+Fill in the fields in the resulting form and click 'Save pod':
+
+![pods page][img__2.2_save-pod]
+
+The resources contained in the new Pod will be shown:
+
+![pods page][img__2.2_new-pod]
 
 
 <!-- LINKS -->
@@ -197,3 +212,7 @@ Composable hardware systems are managed on the 'Pods' page.
 [manage-cli]: manage-cli.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [anchor__webui]: #web-ui
+
+[img__2.2_add-pod]: ../media/intel-rsd__2.2_add-pod.png
+[img__2.2_save-pod]: ../media/intel-rsd__2.2_save-pod.png
+[img__2.2_new-pod]: ../media/intel-rsd__2.2_new-pod.png
