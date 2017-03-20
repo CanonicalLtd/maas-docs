@@ -1,7 +1,6 @@
 Title: Contributing to Documentation | MAAS
-TODO: update corresponding file for Juju docs
-      add an image of the example admonishment when it does more than just embolden 'Note:'
-      can add more user-friendly instructions on setting up nginx
+TODO: add an image of the example admonishment when it does more than just embolden 'Note:'
+      can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
@@ -132,7 +131,7 @@ content below it.
 
 ### Hyperlinks
 
-Link to an internal file or an external URL using the following format:
+Links to internal files or external URLs use the following format:
 
 ```no-highlight
 [visible text][label]
@@ -157,6 +156,13 @@ For example:
 
 [dhcp]: installconfig-networking-dhcp.md
 [upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
+```
+
+The visible text should use an active style as opposed to a passive style. For
+instance, try to avoid:
+
+```no-highlight
+A [proxy][maas-proxy] can optionally be configured.
 ```
 
 Notes:
@@ -207,20 +213,34 @@ For example:
 If the image is not of the MAAS web UI then simply omit the version part, like
 in the second image above.
 
-**Important**: All branch series use the same central location for images
-(`media`). You must therefore be very careful when renaming or removing an
-image for a PR affecting a single branch as it will affect the other branches
-as well.
+#### Central images directory
+
+For publication (on the web site), all branch series use the `media` directory
+in the 'master' branch. This means:
+
+- You must be very careful when renaming or removing an image in master as it
+  will affect all non-master branches.
+- Any image introduced in a non-master branch must be *forward-ported* to the
+  master branch.
 
 
 ## Filenames
 
 The naming of a file is based upon its location in the menu (see below). This
 makes it easier for the reader and the writer to build up a mental model of how
-everything is structured.
+the set of pages is structured.
 
-For example, the file `installconfig-networking-dhcp.md` is found under
-'Install & Configure' and then 'Networking'.
+For example, the page corresponding to file `installconfig-network-dhcp.md` is
+found under 'Install & Configure' and then 'Networking'.
+
+
+## Capitalization
+
+Do not use a "Caps Everywhere" style. It is only used in level one headers and
+the title metadata. References (visible text) to these page titles (including
+the navigation) should just capitalize the first letter. Obviously, this does
+not pertain to words that should always be capitalized according to basic
+grammar rules (e.g. acronyms, proper nouns).
 
 
 ## Navigation menu
