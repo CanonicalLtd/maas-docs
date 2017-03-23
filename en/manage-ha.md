@@ -78,9 +78,9 @@ This section assumes that PostgreSQL HA has been set up.
     the same PostgreSQL database.
 
 On the primary database host, edit file `/etc/postgresql/9.5/main/pg_hba.conf`
-to allow the secondary API server to contact the primary PostgreSQL database.
-Include the below line, replacing $SECONDARY_API_SERVER_IP with the IP address
-of the host that will contain the secondary API server:
+to allow the eventual secondary API server to contact the primary PostgreSQL
+database. Include the below line, replacing $SECONDARY_API_SERVER_IP with the
+IP address of the host that will contain the secondary API server:
 
 ```no-highlight
 host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
@@ -96,8 +96,8 @@ Apply this change by restarting the database:
 sudo systemctl restart postgresql
 ```
 
-On the host set aside for the new API server, add it by installing a few
-carefully chosen packages:
+On the secondary host set aside for the new API server, add it by installing a
+few carefully chosen packages:
 
 ```bash
 sudo apt install maas-region-api maas-dns
@@ -134,8 +134,8 @@ balancer software.
 
 On each API server host, before `haproxy` is installed, `apache2` needs to be
 stopped (and disabled). This is because both apache2 and haproxy listen on the
-same port (TCP 80). Recall that apache2 is only used to redirect port 80 to
-port 5240.
+same port (TCP 80). Recall that Apache is only used to redirect port 80 to port
+5240.
 
 ```bash
 sudo systemctl stop apache2
@@ -193,15 +193,15 @@ sudo systemctl restart procps
 Create the file `/etc/keepalived/keepalived.conf` (see the
 [keepalived.conf man page][keepalived-man-page] as a reference) based on the
 example below. Either `apache2` or `haproxy` will be referred to, depending on
-whether load balancing was implemented or not (see previous section).
+whether load balancing (haproxy) was implemented or not (see previous section).
 
 The following variables are used:
 
-- INTERFACE: The network interface name (e.g. eth0) of the corresponding API
-  server from which it can be reached by MAAS clients.
-- PASSWORD: This example uses a cleartext password (auth_type PASS).
-  Participating servers authenticate with one another in order to synchronize.
-  They must all use the same (arbitrarily chosen) password.
+- INTERFACE: The network interface (e.g. eth0) from which the API server can be
+  reached by MAAS clients.
+- PASSWORD: Participating servers authenticate with one another using this
+  chosen password in order to synchronize. This example uses a cleartext
+  password (auth_type PASS).
 - VIP: The virtual IP. This is any IP address available on the subnet.
 - PRIORITY: An integer (1-255) that indicates a preference for the
   corresponding API server to claim the VIP. A larger value indicates a greater

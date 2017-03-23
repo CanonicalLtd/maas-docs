@@ -16,6 +16,8 @@ The following variables are used on this page:
 - SECONDARY_PG_IP: The IP address of the host that contains the secondary database.
 - REP_USER: The internal database user that manages replication on the primary. 
 - REP_USER_PW: The password of the replication user.
+- REP_ARCHIVE: The directory where the database will place files to be
+  replicated.
 
 Their values are represented when they are preceded with the '$' character
 (e.g. $REP_USER_PW). These are to be replaced with actual values in the commands
@@ -37,11 +39,12 @@ sudo -u postgres createuser -U postgres $REP_USER -P -c 5 --replication
 
 ### Set up replication file storage
 
-Set up a place to store replication files:
+Set up a place to store replication files.
 
 ```bash
-sudo mkdir -p /pgsql/archive
-sudo chown postgres /pgsql/archive
+REP_ARCHIVE=/var/backups/pgsql/archive
+sudo mkdir -p $REP_ARCHIVE
+sudo chown postgres $REP_ARCHIVE
 ```
 
 ### Allow secondary host to connect
@@ -62,7 +65,7 @@ localhost interface, turn on replication, and point to the archive directory:
 listen_addresses = '*'
 wal_level = hot_standby
 archive_mode = on
-archive_command = 'test ! -f /pgsql/archive/%f && cp %p /pgsql/archive/%f'
+archive_command = 'test ! -f $REP_ARCHIVE/%f && cp %p $REP_ARCHIVE/%f'
 max_wal_senders = 3
 ```
 
@@ -79,6 +82,14 @@ sudo systemctl restart postgresql
 
 Perform these actions on the secondary host.
 
+This host should ideally match the primary host in terms of:
+
+- CPU architecture
+- OS type and version
+- PostgreSQL version
+
+Replication has been known to fail due to an architecture mismatch.
+
 ### Install PostgreSQL and stop the service
 
 Install PostgreSQL and stop the service: 
@@ -92,7 +103,7 @@ sudo systemctl stop postgresql
 
 Move the default database files out of the way and replace them with a copy of
 the primary database files. You will be prompted for the password of the
-replication user.
+remote replication user.
 
 ```bash
 sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.old
