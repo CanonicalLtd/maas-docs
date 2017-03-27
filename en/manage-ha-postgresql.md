@@ -77,6 +77,12 @@ Restart the database to apply the above changes:
 sudo systemctl restart postgresql
 ```
 
+Check log file `/var/log/postgresql/postgresql-9.5-main.log` on this primary
+host for any errors.
+
+The primary database is now ready to accept replication requests from the
+secondary database (that will be set up below).
+
 
 ## Secondary
 
@@ -110,6 +116,9 @@ sudo mv /var/lib/postgresql/9.5/main /var/lib/postgresql/9.5/main.old
 sudo -u postgres pg_basebackup -h $PRIMARY_PG_IP -D /var/lib/postgresql/9.5/main -U $REP_USER -v -P --xlog-method=stream
 Password: 
 ```
+
+Once a copy of the primary database is transferred, proceed to configure actual
+replication.
 
 ### Place database in hot standby mode
 
@@ -145,6 +154,48 @@ Start the database:
 ```bash
 sudo systemctl start postgresql
 ```
+
+Check log file `/var/log/postgresql/postgresql-9.5-main.log` on this secondary
+host for any errors.
+
+The secondary database is now replicating the primary database.
+
+
+## Verification of replication
+
+This section includes a raw test that will show whether replication is
+functioning.
+
+On the **secondary** database host, perform a query on the 'maasserver_node'
+table in the 'maasdb' database:
+
+```bash
+sudo -u postgres psql maasdb -c 'SELECT hostname,status,power_state FROM maasserver_node'
+```
+
+The output will look something like:
+
+```no-highlight
+     hostname      | status | power_state 
+-------------------+--------+-------------
+ pmatulis-imp-maas |      0 | unknown
+ node3             |      4 | off
+ node1             |      6 | on
+ node2             |      4 | off
+ node4             |      6 | on
+(5 rows)
+```
+
+This includes any hosts that are being used for API servers or rack controllers
+('pmatulis-imp-maas' in this example). There are 4 regular MAAS nodes.
+
+To quickly check that replication is working simply (temporarily) rename a
+node's hostname in the web UI and re-invoke the above command to see if the
+change is reflected.
+
+Another test could be to change the status of a node, for example, by
+Commissioning or Deploying (a status of '4' is 'Ready' and a status of '6' is
+'Deployed').
 
 
 <!-- LINKS -->

@@ -57,7 +57,7 @@ doesn't work for some reason.
 ## KVM guest nodes
 
 KVM-backed nodes are common and so a little extra guidance is provided here.
-The following actions are performed on the rack controller.
+The following actions are performed on all rack controllers.
 
 Begin by ensuring the `virsh` binary is available to the rack controller by
 installing the `libvirt-bin` package:
