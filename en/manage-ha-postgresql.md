@@ -39,7 +39,7 @@ sudo -u postgres createuser -U postgres $REP_USER -P -c 5 --replication
 
 ### Set up replication file storage
 
-Set up a place to store replication files.
+Set up a place to store replication files:
 
 ```bash
 REP_ARCHIVE=/var/backups/pgsql/archive

@@ -103,8 +103,8 @@ Apply this change by restarting the database:
 sudo systemctl restart postgresql
 ```
 
-On the secondary host set aside for the new API server, add it by installing a
-few carefully chosen packages:
+On a secondary host, add the new API server by installing a few carefully
+chosen packages:
 
 ```bash
 sudo apt install maas-region-api maas-dns

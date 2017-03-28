@@ -37,8 +37,8 @@ immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller][img__add-rackd]
 
-See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (confirm) all
-registered rack controllers with the CLI.
+See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
+all registered rack controllers with the CLI.
 
 Multiple rack controllers are needed in order to achieve specific types of
 high availability. See [MAAS HA][manage-ha].
