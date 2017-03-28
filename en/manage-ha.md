@@ -3,8 +3,9 @@ TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
        Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
        Remove comment about 80:5240 redirect once apache/redirect is removed from MAAS
        Update link to HAProxy upstream manual if haproxy 1.6 not used by default
-       See expanded comment on ports in this document (it's important; no pun intended)
+       See expanded comment on ports in this document (it's important)
        There should be a section devoted to verifying that the various aspects of HA are working
+       Include image for reconfiguring DHCP - only 2.2 branch has one
 table_of_contents: True
 
 
@@ -46,9 +47,11 @@ However, if the initial rack controller already has DHCP enabled then a
 reconfiguration of DHCP is in order. Simply access the VLAN in question (via
 the 'Subnets' page) and choose action 'Reconfigure DHCP'. There you will see
 the second rack controller appearing in the 'Secondary controller' field. All
-you should have to do is press the 'Reconfigure DHCP' button:
+you should have to do is press the 'Reconfigure DHCP' button.
 
+<!-- existing object in 2.2 branch
 ![reconfigure DHCP][img__2.2_reconfigure-dhcp]
+-->
 
 The setup of rack controller HA is now complete.
 
