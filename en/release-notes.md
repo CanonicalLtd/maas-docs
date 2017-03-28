@@ -16,6 +16,66 @@ sudo apt install maas
 
 # Release Notes - devel
 
+## 2.2.0 (beta4)
+
+## Major new features
+
+### Testing
+
+MAAS 2.2 Beta 4 introduces environment tests to allow the administrator to
+verify that their environment is setup correctly:
+
+- Internet Connectivity test  
+  Ensures machines can connect to the Internet.
+- NTP connectivity  
+  Ensures that machines can connect to the configured NTP server, whether this
+  is MAAS or an external NTP server.
+
+### Intel RSD improvements
+
+MAAS 2.2b4 introduces further improvements to Intel RSD usage in MAAS:
+
+- Pod details page  
+  A pod details page has been improved by:
+    - Ability to show the composed machines (those that belong to the specific
+      pod from its details page).
+    - Add the ability to show and change the power management or pod management
+      credentials and endpoints.
+- Constraints  
+  Ability to specify constraints to request machines based on the Pod (by type or
+  name), providing the ability to select from a set of pods or an specific pod.
+
+### UX Improvements
+
+Several UI improvements have been made:
+
+- Design Change - Tabs  
+  Following the UX improvements from our design team, the 2.2b4 UI has now
+  improved navigation. This includes a new Tab based approach for second level
+  navigation items (for example, machines, devices and controllers under the
+  Nodes tag).
+- Better error surfacing  
+  Add error surfacing when editing node interfaces (including both Machine and
+  devices interfaces).
+
+### Windows deployments
+
+Improve the ability to configure storage configuration for Windows. This
+includes the ability to select the root device where windows should be
+installed on.
+
+Note that this ability extends to all DD images that MAAS can deploy.
+
+### Package Repositories
+
+MAAS 2.2 Beta 4 improves its package repositories support for Ubuntu Mirrors
+adding the ability to disable components. This components are Universe,
+Multiverse and Restricted.
+
+
+<!-- ===================================================================== -->
+
+
 ## 2.2.0 (beta3)
 
 ### Hardware tests - running by default during Commissioning
@@ -59,29 +119,26 @@ Disk, CPU and Memory tests.
 
 As of MAAS 2.2 Beta 3, only Disk hardware tests have been made available:
 
-- Disk status - The Disk Status test (smartctl-validate) uses the smartctl tool
+- Disk status  
+  The Disk Status test (smartctl-validate) uses the smartctl tool
   to verify existing SMART data on all drives has not detected any errors.
-
-- Disk Integrity - MAAS provides the ability to run SMART tests. This includes:
-
+- Disk Integrity  
+  MAAS provides the ability to run SMART tests. This includes:
     - smartctl-short & smartctl-long
       Runs the SMART self tests to validate health on all disks. It provides a long
       running and a short running test.
-
     - Smartctl-conveyance
       Runs the conveyance SMART self tests to validate health on all disks.
-
-- Memory - For memory, MAAS provides the following tests:
+- Memory  
+  For memory, MAAS provides the following tests:
     - Memtestr
       Runs memtester over all available RAM.
-
     - Stress-ng
       Runs the Stress-NG tests over 12 hours against RAM.
-
   NOTE: Please note that these are long running tests and will take hours to
   complete.
-
-- CPU - CPU tests include Stress-NG stress tests over 12 hours.
+- CPU  
+  CPU tests include Stress-NG stress tests over 12 hours.
 
 ### Intel RSD - Dynamic Composition
 
