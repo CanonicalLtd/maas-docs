@@ -34,14 +34,21 @@ accordingly.
 
 ### DHCP HA
 
-DHCP HA affects node management (enlistment, commissioning and deployment) and
-it is turned on automatically if the initial rack controller already has DHCP
-enabled. If DHCP is being enabled for the first time after a second rack
-controller is added then enable it according to [Enabling DHCP][enabling-dhcp].
+DHCP HA affects node management (enlistment, commissioning and deployment). It
+enables a primary and a secondary DHCP instance to serve the same VLAN where
+all lease information is replicated between rack controllers. DHCP needs to be
+MAAS-managed in order for DHCP HA to work.
 
-DHCP HA enables a primary and a secondary DHCP instance to serve the same VLAN
-where all lease information is replicated between rack controllers. DHCP
-needs to be MAAS-managed in order for DHCP HA to work with MAAS.
+If DHCP is being enabled for the first time after a second rack controller is
+added then enable it according to [Enabling DHCP][enabling-dhcp].
+
+However, if the initial rack controller already has DHCP enabled then a
+reconfiguration of DHCP is in order. Simply access the VLAN in question (via
+the 'Subnets' page) and choose action 'Reconfigure DHCP'. There you will see
+the second rack controller appearing in the 'Secondary controller' field. All
+you should have to do is press the 'Reconfigure DHCP' button:
+
+![reconfigure DHCP][img__2.2_reconfigure-dhcp]
 
 The setup of rack controller HA is now complete.
 
@@ -296,3 +303,5 @@ port 80 (as opposed to port 5240).**
 [upstream-haproxy]: http://www.haproxy.org/
 [postgresql-ha]: manage-ha-postgresql.md
 [upstream-postgresql-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html
+
+[img__2.2_reconfigure-dhcp]: ../media/manage-ha__2.2_reconfigure-dhcp.png
