@@ -11,8 +11,9 @@ which should, by now, be enabled in your MAAS environment, and PXE, which you
 tell the system in question to use when it boots. This unattended manner of
 adding a node is called *enlistment*.
 
-!!! Note: Configuring a computer to boot over PXE is done via its BIOS and is
-often referred to as "netboot" or "network boot".
+!!! Note: 
+    Configuring a computer to boot over PXE is done via its BIOS and is
+    often referred to as "netboot" or "network boot".
 
 Regardless of how a node is added, there are no special requirements for the
 underlying machine. In particular, there is no need to install an operating
@@ -56,7 +57,7 @@ doesn't work for some reason.
 ## KVM guest nodes
 
 KVM-backed nodes are common and so a little extra guidance is provided here.
-The following actions are performed on the rack controller.
+The following actions will need to be performed on all rack controllers.
 
 Begin by ensuring the `virsh` binary is available to the rack controller by
 installing the `libvirt-bin` package:
@@ -84,8 +85,9 @@ ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
 Where $KVM_HOST represents the IP address of the KVM host and $USER represents
 a user (typically an admin with sudo access) on the KVM host.
 
-!!! Note: You may need to (temporarily) configure sshd on the KVM host to
-honour password authentication for the `ssh-copy-id` command to succeed.
+!!! Note: 
+    You may need to (temporarily) configure sshd on the KVM host to
+    honour password authentication for the `ssh-copy-id` command to succeed.
 
 Still as user 'maas', test connecting to the KVM host with virsh:
 

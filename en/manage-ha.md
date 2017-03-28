@@ -34,14 +34,21 @@ accordingly.
 
 ### DHCP HA
 
-DHCP HA affects node management (enlistment, commissioning and deployment) and
-it is turned on automatically if the initial rack controller already has DHCP
-enabled. If DHCP is being enabled for the first time after a second rack
-controller is added then enable it according to [Enabling DHCP][enabling-dhcp].
+DHCP HA affects node management (enlistment, commissioning and deployment). It
+enables a primary and a secondary DHCP instance to serve the same VLAN where
+all lease information is replicated between rack controllers. DHCP needs to be
+MAAS-managed in order for DHCP HA to work.
 
-DHCP HA enables a primary and a secondary DHCP instance to serve the same VLAN
-where all lease information is replicated between rack controllers. DHCP
-needs to be MAAS-managed in order for DHCP HA to work with MAAS.
+If DHCP is being enabled for the first time after a second rack controller is
+added then enable it according to [Enabling DHCP][enabling-dhcp].
+
+However, if the initial rack controller already has DHCP enabled then a
+reconfiguration of DHCP is in order. Simply access the VLAN in question (via
+the 'Subnets' page) and choose action 'Reconfigure DHCP'. There you will see
+the second rack controller appearing in the 'Secondary controller' field. All
+you should have to do is press the 'Reconfigure DHCP' button:
+
+![reconfigure DHCP][img__2.2_reconfigure-dhcp]
 
 The setup of rack controller HA is now complete.
 
@@ -73,20 +80,22 @@ PostgreSQL.
 
 This section assumes that PostgreSQL HA has been set up.
 
-!!! Note: Any number of API servers can be present as long as each connects to
-the same PostgreSQL database.
+!!! Note: 
+    Any number of API servers can be present as long as each connects to
+    the same PostgreSQL database.
 
 On the primary database host, edit file `/etc/postgresql/9.5/main/pg_hba.conf`
-to allow the secondary API server to contact the primary PostgreSQL database.
-Include the below line, replacing $SECONDARY_API_SERVER_IP with the IP address
-of the host that will contain the secondary API server:
+to allow the eventual secondary API server to contact the primary PostgreSQL
+database. Include the below line, replacing $SECONDARY_API_SERVER_IP with the
+IP address of the host that will contain the secondary API server:
 
 ```no-highlight
 host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
 ```
 
-!!! Note: It is very common for the primary database server and the primary API
-server to reside on the same host.
+!!! Note: 
+    It is very common for the primary database server and the primary API
+    server to reside on the same host.
 
 Apply this change by restarting the database:
 
@@ -94,8 +103,8 @@ Apply this change by restarting the database:
 sudo systemctl restart postgresql
 ```
 
-On the host set aside for the new API server, add it by installing a few
-carefully chosen packages:
+On a secondary host, add the new API server by installing a few carefully
+chosen packages:
 
 ```bash
 sudo apt install maas-region-api maas-dns
@@ -132,8 +141,8 @@ balancer software.
 
 On each API server host, before `haproxy` is installed, `apache2` needs to be
 stopped (and disabled). This is because both apache2 and haproxy listen on the
-same port (TCP 80). Recall that apache2 is only used to redirect port 80 to
-port 5240.
+same port (TCP 80). Recall that Apache is only used to redirect port 80 to port
+5240.
 
 ```bash
 sudo systemctl stop apache2
@@ -191,15 +200,15 @@ sudo systemctl restart procps
 Create the file `/etc/keepalived/keepalived.conf` (see the
 [keepalived.conf man page][keepalived-man-page] as a reference) based on the
 example below. Either `apache2` or `haproxy` will be referred to, depending on
-whether load balancing was implemented or not (see previous section).
+whether load balancing (haproxy) was implemented or not (see previous section).
 
 The following variables are used:
 
-- INTERFACE: The network interface name (e.g. eth0) of the corresponding API
-  server from which it can be reached by MAAS clients.
-- PASSWORD: This example uses a cleartext password (auth_type PASS).
-  Participating servers authenticate with one another in order to synchronize.
-  They must all use the same (arbitrarily chosen) password.
+- INTERFACE: The network interface (e.g. eth0) from which the API server can be
+  reached by MAAS clients.
+- PASSWORD: Participating servers authenticate with one another using this
+  chosen password in order to synchronize. This example uses a cleartext
+  password (auth_type PASS).
 - VIP: The virtual IP. This is any IP address available on the subnet.
 - PRIORITY: An integer (1-255) that indicates a preference for the
   corresponding API server to claim the VIP. A larger value indicates a greater
@@ -255,9 +264,10 @@ Restart the daemon to have these changes take effect:
 sudo systemctl restart keepalived
 ```
 
-!!! Note: If this is being done inside a container, its host needs the ip\_vs
-module loaded and the sysctl change. A restart of the container will then be
-required.
+!!! Note: 
+    If this is being done inside a container, its host needs the ip\_vs
+    module loaded and the sysctl change. A restart of the container will then be
+    required.
 
 Finally, for all API servers, replace the original IP address in the MAAS URL
 with that of the VIP. Then inform all rack controllers of that change.
@@ -293,3 +303,5 @@ port 80 (as opposed to port 5240).**
 [upstream-haproxy]: http://www.haproxy.org/
 [postgresql-ha]: manage-ha-postgresql.md
 [upstream-postgresql-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html
+
+[img__2.2_reconfigure-dhcp]: ../media/manage-ha__2.2_reconfigure-dhcp.png
