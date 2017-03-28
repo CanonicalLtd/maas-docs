@@ -204,6 +204,15 @@ sudo maas-rack register --url http://10.5.1.5:5240/MAAS --secret 9500bf4c5655834
 ```
 
 
+## List rack controllers
+
+To list all rack controllers registered with the region:
+
+```bash
+maas $PROFILE rack-controllers read | grep hostname | cut -d '"' -f 4
+```
+
+
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
