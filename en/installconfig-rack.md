@@ -37,6 +37,9 @@ immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller][img__add-rackd]
 
+See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
+all registered rack controllers with the CLI.
+
 Multiple rack controllers are needed in order to achieve specific types of
 high availability. See [MAAS HA][manage-ha].
 
@@ -72,6 +75,7 @@ Here, you are deleting a machine that is a part of MAAS itself.
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
 [manage-ha]: manage-ha.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
+[cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
 [ipv6]: installconfig-network-ipv6.md
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
