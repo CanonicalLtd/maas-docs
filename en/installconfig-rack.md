@@ -38,12 +38,16 @@ immediately in the web UI and begin to sync with the primary controller:
 
 ![add controller][img__add-rackd]
 
+See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
+all registered rack controllers with the CLI.
+
 Multiple rack controllers are needed in order to achieve specific types of
 high availability. See [MAAS HA][manage-ha].
 
-!!! Note: If you will be using KVM-backed nodes you must ensure that the new
-rack controller can communicate with the KVM host. See
-[KVM guest nodes][add-nodes-kvm-guest-nodes].
+!!! Note: 
+    If you will be using KVM-backed nodes you must ensure that the new
+    rack controller can communicate with the KVM host. See
+    [KVM guest nodes][add-nodes-kvm-guest-nodes].
 
 
 ## Unregister a rack controller
@@ -61,9 +65,10 @@ there is no longer the possibility of having it).
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
-!!! Note: Unless the software on this machine is removed, rebooting it will
-cause the machine to re-instate itself as a rack controller. This behaviour may
-change with future versions of MAAS.
+!!! Note: 
+    Unless the software on this machine is removed, rebooting it will
+    cause the machine to re-instate itself as a rack controller. This behaviour may
+    change with future versions of MAAS.
 
 
 <!-- LINKS -->
@@ -71,6 +76,7 @@ change with future versions of MAAS.
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
 [manage-ha]: manage-ha.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
+[cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
 [ipv6]: installconfig-network-ipv6.md
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
