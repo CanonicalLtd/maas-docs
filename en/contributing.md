@@ -1,6 +1,5 @@
 Title: Contributing to Documentation | MAAS
-TODO: add an image of the example admonishment when it does more than just embolden 'Note:'
-      can add more user-friendly instructions on setting up local web server
+TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
