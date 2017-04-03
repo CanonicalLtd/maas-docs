@@ -133,7 +133,7 @@ A standard 'Warning' type admonishment:
 
 ```no-highlight
 !!! Warning: 
-    Data will be deleted unless you do the right thing.
+    Data will be lost unless you do the right thing.
 ```
 
 A 'Positive' type admonishment with title:
