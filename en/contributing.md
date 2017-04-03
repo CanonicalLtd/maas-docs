@@ -104,15 +104,76 @@ Use a backtick to `inline filenames and other literals`.
 
 ### Admonishments
 
-Admonishments are used to notify the user of additional information or warn them of
-potential pitfalls.
+Admonishments are used to distinguish information from the rest of the text.
+They use the following format:
 
-To implement an admonishment, use the following syntax:
+```no-highlight
+!!! [admonishment-type] "[title]": 
+    [aligned text]
+```
+
+Where:
+
+- `admonishment-type` can be 'Note', 'Warning', 'Positive', or 'Negative'.
+- `title` is an optional title (visible in HTML)
+- `aligned text` is the text
+
+When a value for 'title' is omitted, the default will be the type itself. If
+the 'title' has a null value (i.e. "") then no title will be displayed.
+
+#### Admonishment examples
+
+A standard 'Note' type admonishment:
 
 ```no-highlight
 !!! Note: 
     To get syntax help for the 'maas' command add the '-h' switch.
 ```
+
+A standard 'Warning' type admonishment:
+
+```no-highlight
+!!! Warning: 
+    Data will be deleted unless you do the right thing.
+```
+
+A 'Positive' type admonishment with title:
+
+```no-highlight
+!!! Positive "High score":
+    A positive note that should include a title.
+```
+
+A 'Negative' type admonishment with title:
+
+```no-highlight
+!!! Negative "Game over": 
+    A negative note that should include a title.
+```
+
+A 'Positive' type admonishment with no title:
+
+```no-highlight
+!!! Positive "": 
+    I'm done, and I feel fine.
+```
+
+The above examples will appear as:
+
+!!! Note: 
+    To get syntax help for the 'maas' command add the '-h' switch.
+
+!!! Warning: 
+    Data will be deleted unless you do the right thing.
+
+!!! Positive "High score":
+    A positive note that should include a title.
+
+!!! Negative "Game over": 
+    A negative note that should include a title.
+
+!!! Positive "": 
+    I'm done, and I feel fine.
 
 ### Foldouts
 
