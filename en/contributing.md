@@ -163,7 +163,7 @@ The above examples will appear as:
     To get syntax help for the 'maas' command add the '-h' switch.
 
 !!! Warning: 
-    Data will be deleted unless you do the right thing.
+    Data will be lost unless you do the right thing.
 
 !!! Positive "High score":
     A positive note that should include a title.
