@@ -125,7 +125,9 @@ A standard 'Note' type admonishment:
 
 ```no-highlight
 !!! Note: 
-    To get syntax help for the 'maas' command add the '-h' switch.
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
 ```
 
 A standard 'Warning' type admonishment:
@@ -159,7 +161,9 @@ A 'Positive' type admonishment with no title:
 The above examples will appear as:
 
 !!! Note: 
-    To get syntax help for the 'maas' command add the '-h' switch.
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
 
 !!! Warning: 
     Data will be lost unless you do the right thing.
