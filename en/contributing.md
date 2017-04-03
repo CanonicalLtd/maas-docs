@@ -12,10 +12,9 @@ standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
 easy to work with. Conventions have been added to support features such as
 *foldouts* and *admonishments* (explained below).
 
-Here are a few GFM cheat sheets:
-
-- http://askubuntu.com/editing-help
-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+A few GFM cheat sheets are available on
+[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and [github.com
+(Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 
 ## Documentation bugs
@@ -381,6 +380,8 @@ Please follow these guidelines for style and language:
 [github-help-fork]: https://help.github.com/articles/fork-a-repo
 [github-help-pr]: https://help.github.com/articles/creating-a-pull-request
 [github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
+[gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
+[gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [ubuntu-serverguide-apache]: https://help.ubuntu.com/lts/serverguide/httpd.html
 [contributing-en-gb]: contributing-en-GB.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
