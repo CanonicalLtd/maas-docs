@@ -12,9 +12,9 @@ standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
 easy to work with. Conventions have been added to support features such as
 *foldouts* and *admonishments* (explained below).
 
-A few GFM cheat sheets are available on
-[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and [github.com
-(Markdown-Cheatsheet)][gfm-cheatsheet-github].
+GFM cheat sheets are available on
+[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
+[github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 
 ## Documentation bugs
