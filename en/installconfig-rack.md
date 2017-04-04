@@ -21,19 +21,27 @@ controller must be able to initiate TCP connections:
 
 ## Install a rack controller
 
-When a rack controller is installed on the same host as the region API server
-it will register itself automatically. Otherwise this will need to be done
-manually:
+Installing a rack controller consists of installing the rack controller
+software and then registering the rack controller with the region API server.
 
-To install and register a rack controller you can either use the
-Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
-[MAAS CLI - advanced tasks][cli-install-rackd]. Both will require the URL of
-the region API server. For nodes on an [IPv6][ipv6] subnet, the URL must use a
-hostname instead of an IP address and it must resolve to both IPv4 and IPv6
-addresses, both on the rack controller and on the nodes.
+When a rack controller is installed on the same host as the region API server
+registration occurs automatically. This can occur by installing a complete
+environment on a single host in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso])
+1. Using Ubuntu packages: either the 'maas' metapackage or multiple individual
+   packages (see [Install from packages][install-from-packages])
+
+A rack controller can be installed on a host devoid of a region API server, and
+registered manually, in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd])
+1. Using the 'maas-rack-controller' Ubuntu package (see
+   [MAAS CLI - advanced tasks][cli-install-rackd])
 
 Once registered, if this is an extra rack controller, it will appear
-immediately in the web UI and begin to sync with the primary controller:
+immediately alongside the primary controller in the web UI and begin to sync
+with it:
 
 ![add controller][img__add-rackd]
 
@@ -72,11 +80,12 @@ Here, you are deleting a machine that is a part of MAAS itself.
 
 <!-- LINKS -->
 
+[install-from-iso]: installconfig-iso-install.md
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
+[install-from-packages]: installconfig-package-install.md
 [manage-ha]: manage-ha.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
 [cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
-[ipv6]: installconfig-network-ipv6.md
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
 [img__add-rackd]: ../media/installconfig-rack__add-controller2.png
