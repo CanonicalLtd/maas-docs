@@ -133,8 +133,9 @@ Example output:
 {"hostname":"node3","system_id":"qwkmar","status":4}
 ```
 
-!!! Note: An interface can only be edited when the corresponding machine has a
-status of 'Ready'. This is numberically denoted by the integer '4'.
+!!! Note:
+    An interface can only be edited when the corresponding machine has a
+    status of 'Ready'. This is numberically denoted by the integer '4'.
 
 List some information for all interfaces on the machine in question (identified
 by its system id 'dfgnnd'):

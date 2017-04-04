@@ -1,6 +1,5 @@
 Title: Contributing to Documentation | MAAS
-TODO: add an image of the example admonishment when it does more than just embolden 'Note:'
-      can add more user-friendly instructions on setting up local web server
+TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
@@ -12,10 +11,9 @@ standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
 easy to work with. Conventions have been added to support features such as
 *foldouts* and *admonishments* (explained below).
 
-Here are a few GFM cheat sheets:
-
-- http://askubuntu.com/editing-help
-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+GFM cheat sheets are available on
+[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
+[github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 
 ## Documentation bugs
@@ -104,15 +102,80 @@ Use a backtick to `inline filenames and other literals`.
 
 ### Admonishments
 
-Admonishments are used to notify the user of additional information or warn them of
-potential pitfalls.
+Admonishments are used to distinguish information from the rest of the text.
+They use the following format:
 
-To implement an admonishment, use the following syntax:
+```no-highlight
+!!! [admonishment-type] "[title]": 
+    [aligned text]
+```
+
+Where:
+
+- `admonishment-type` can be 'Note', 'Warning', 'Positive', or 'Negative'.
+- `title` is an optional title (visible in HTML)
+- `aligned text` is the text
+
+When a value for 'title' is omitted, the default will be the type itself. If
+the 'title' has a null value (i.e. "") then no title will be displayed.
+
+#### Admonishment examples
+
+A standard 'Note' type admonishment:
 
 ```no-highlight
 !!! Note: 
-    To get syntax help for the 'maas' command add the '-h' switch.
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
 ```
+
+A standard 'Warning' type admonishment:
+
+```no-highlight
+!!! Warning: 
+    Data will be lost unless you do the right thing.
+```
+
+A 'Positive' type admonishment with title:
+
+```no-highlight
+!!! Positive "High score":
+    A positive note that should include a title.
+```
+
+A 'Negative' type admonishment with title:
+
+```no-highlight
+!!! Negative "Game over": 
+    A negative note that should include a title.
+```
+
+A 'Positive' type admonishment with no title:
+
+```no-highlight
+!!! Positive "": 
+    I'm done, and I feel fine.
+```
+
+The above examples will appear as:
+
+!!! Note: 
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
+
+!!! Warning: 
+    Data will be lost unless you do the right thing.
+
+!!! Positive "High score":
+    A positive note that should include a title.
+
+!!! Negative "Game over": 
+    A negative note that should include a title.
+
+!!! Positive "": 
+    I'm done, and I feel fine.
 
 ### Foldouts
 
@@ -320,6 +383,8 @@ Please follow these guidelines for style and language:
 [github-help-fork]: https://help.github.com/articles/fork-a-repo
 [github-help-pr]: https://help.github.com/articles/creating-a-pull-request
 [github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
+[gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
+[gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [ubuntu-serverguide-apache]: https://help.ubuntu.com/lts/serverguide/httpd.html
 [contributing-en-gb]: contributing-en-GB.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
