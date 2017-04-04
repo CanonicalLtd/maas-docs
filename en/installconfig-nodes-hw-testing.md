@@ -16,8 +16,9 @@ Testing can also be included as part of the commissioning process. The dialog
 aware that if the hardware tests fail the node will become unavailable for
 Deployment.
 
-!!! Note: This feature only works with nodes that are backed by physical
-hardware (e.g. it is incompatible with KVM-based nodes).
+!!! Note: 
+    This feature only works with nodes that are backed by physical
+    hardware (e.g. it is incompatible with KVM-based nodes).
 
 
 ## Apply a hardware test

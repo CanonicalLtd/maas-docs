@@ -1,7 +1,5 @@
 Title: Contributing to Documentation | MAAS
-TODO: update corresponding file for Juju docs
-      add an image of the example admonishment when it does more than just embolden 'Note:'
-      can add more user-friendly instructions on setting up nginx
+TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
@@ -13,10 +11,9 @@ standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
 easy to work with. Conventions have been added to support features such as
 *foldouts* and *admonishments* (explained below).
 
-Here are a few GFM cheat sheets:
-
-- http://askubuntu.com/editing-help
-- https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+GFM cheat sheets are available on
+[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
+[github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 
 ## Documentation bugs
@@ -105,14 +102,80 @@ Use a backtick to `inline filenames and other literals`.
 
 ### Admonishments
 
-Admonishments are used to notify the user of additional information or warn them of
-potential pitfalls.
-
-To implement an admonishment, use the following syntax:
+Admonishments are used to distinguish information from the rest of the text.
+They use the following format:
 
 ```no-highlight
-!!! Note: To get syntax help for the 'maas' command add the '-h' switch.
+!!! [admonishment-type] "[title]": 
+    [aligned text]
 ```
+
+Where:
+
+- `admonishment-type` can be 'Note', 'Warning', 'Positive', or 'Negative'.
+- `title` is an optional title (visible in HTML)
+- `aligned text` is the text
+
+When a value for 'title' is omitted, the default will be the type itself. If
+the 'title' has a null value (i.e. "") then no title will be displayed.
+
+#### Admonishment examples
+
+A standard 'Note' type admonishment:
+
+```no-highlight
+!!! Note: 
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
+```
+
+A standard 'Warning' type admonishment:
+
+```no-highlight
+!!! Warning: 
+    Data will be lost unless you do the right thing.
+```
+
+A 'Positive' type admonishment with title:
+
+```no-highlight
+!!! Positive "High score":
+    A positive note that should include a title.
+```
+
+A 'Negative' type admonishment with title:
+
+```no-highlight
+!!! Negative "Game over": 
+    A negative note that should include a title.
+```
+
+A 'Positive' type admonishment with no title:
+
+```no-highlight
+!!! Positive "": 
+    I'm done, and I feel fine.
+```
+
+The above examples will appear as:
+
+!!! Note: 
+    If KVM-backed nodes are used, ensure that the 'maas' user on the rack
+    controller can connect to the KVM host using a passphraseless private SSH
+    key.
+
+!!! Warning: 
+    Data will be lost unless you do the right thing.
+
+!!! Positive "High score":
+    A positive note that should include a title.
+
+!!! Negative "Game over": 
+    A negative note that should include a title.
+
+!!! Positive "": 
+    I'm done, and I feel fine.
 
 ### Foldouts
 
@@ -131,7 +194,7 @@ content below it.
 
 ### Hyperlinks
 
-Link to an internal file or an external URL using the following format:
+Links to internal files or external URLs use the following format:
 
 ```no-highlight
 [visible text][label]
@@ -156,6 +219,13 @@ For example:
 
 [dhcp]: installconfig-networking-dhcp.md
 [upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
+```
+
+The visible text should use an active style as opposed to a passive style. For
+instance, try to avoid:
+
+```no-highlight
+A [proxy][maas-proxy] can optionally be configured.
 ```
 
 Notes:
@@ -206,20 +276,34 @@ For example:
 If the image is not of the MAAS web UI then simply omit the version part, like
 in the second image above.
 
-**Important**: All branch series use the same central location for images
-(`media`). You must therefore be very careful when renaming or removing an
-image for a PR affecting a single branch as it will affect the other branches
-as well.
+#### Central images directory
+
+For publication (on the web site), all branch series use the `media` directory
+in the 'master' branch. This means:
+
+- You must be very careful when renaming or removing an image in master as it
+  will affect all non-master branches.
+- Any image introduced in a non-master branch must be *forward-ported* to the
+  master branch.
 
 
 ## Filenames
 
 The naming of a file is based upon its location in the menu (see below). This
 makes it easier for the reader and the writer to build up a mental model of how
-everything is structured.
+the set of pages is structured.
 
-For example, the file `installconfig-networking-dhcp.md` is found under
-'Install & Configure' and then 'Networking'.
+For example, the page corresponding to file `installconfig-network-dhcp.md` is
+found under 'Install & Configure' and then 'Networking'.
+
+
+## Capitalization
+
+Do not use a "Caps Everywhere" style. It is only used in level one headers and
+the title metadata. References (visible text) to these page titles (including
+the navigation) should just capitalize the first letter. Obviously, this does
+not pertain to words that should always be capitalized according to basic
+grammar rules (e.g. acronyms, proper nouns).
 
 
 ## Navigation menu
@@ -299,6 +383,8 @@ Please follow these guidelines for style and language:
 [github-help-fork]: https://help.github.com/articles/fork-a-repo
 [github-help-pr]: https://help.github.com/articles/creating-a-pull-request
 [github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
+[gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
+[gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [ubuntu-serverguide-apache]: https://help.ubuntu.com/lts/serverguide/httpd.html
 [contributing-en-gb]: contributing-en-GB.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
