@@ -195,7 +195,7 @@ load upon reboot and pass a kernel option:
 ```bash
 sudo apt install keepalived
 sudo modprobe ip_vs
-echo 'echo modprobe ip_vs' | sudo tee -a /etc/modules
+echo 'ip_vs' | sudo tee -a /etc/modules
 echo 'net.ipv4.ip_nonlocal_bind=1' | sudo tee /etc/sysctl.d/60-keepalived-nonlocal.conf 
 sudo systemctl restart procps
 ```
@@ -244,18 +244,18 @@ vrrp_instance maas_region {
     interface $INTERFACE
     priority $PRIORITY
     virtual_router_id 51
-     authentication {
+    authentication {
         auth_type PASS
         auth_pass $PASSWORD
     }
-     track_script {
+    track_script {
         ### Un-comment next line if using haproxy
         #chk_haproxy
         ### Un-comment next line if using apache2
         #chk_apache2
         chk_named
     }
-     virtual_ipaddress {
+    virtual_ipaddress {
         $VIP
     }
 }
