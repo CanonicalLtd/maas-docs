@@ -195,7 +195,7 @@ load upon reboot and pass a kernel option:
 ```bash
 sudo apt install keepalived
 sudo modprobe ip_vs
-echo 'echo modprobe ip_vs' | sudo tee -a /etc/modules
+echo 'ip_vs' | sudo tee -a /etc/modules
 echo 'net.ipv4.ip_nonlocal_bind=1' | sudo tee /etc/sysctl.d/60-keepalived-nonlocal.conf 
 sudo systemctl restart procps
 ```
