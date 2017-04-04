@@ -44,8 +44,9 @@ The **Subnet summary** section:
 
 ![networking subnets page summary][img__networking-subnets-summary]
 
-!!! Warning: The fields in this section are immediately editable and changes
-are applied instantly.
+!!! Warning: 
+    The fields in this section are immediately editable and changes
+    are applied instantly.
 
 Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
 'Description', are entered. Gateway and DNS values are passed to nodes for

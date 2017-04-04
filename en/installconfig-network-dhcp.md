@@ -116,8 +116,9 @@ to all VLANs, subnets, and nodes. All three types end up in
 `/var/lib/maas/dhcpd.conf` or `/var/lib/maas/dhcpd6.conf`. For information on
 what options to use refer to the [`dhcpd.conf` man page][dhcpd.conf-man-page].
 
-!!! Note: Modifications made directly to `dhcpd.conf.template` or
-`dhcpd6.conf.template` are not supported.
+!!! Note: 
+    Modifications made directly to `dhcpd.conf.template` or
+    `dhcpd6.conf.template` are not supported.
 
 To manage snippets, as an admin, open the 'Settings' page and click on the
 'DHCP Snippets' tab.

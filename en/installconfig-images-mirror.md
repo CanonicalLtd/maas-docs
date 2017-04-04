@@ -26,9 +26,10 @@ IMAGE_SRC=https://images.maas.io/ephemeral-v3/daily/
 IMAGE_DIR=/var/www/html/maas/images/ephemeral-v3/daily
 ```
 
-!!! Note: The new v3 format currently only offers a 'daily' stream whereas in
-previous versions a 'releases' stream was available. The latter changes far
-less frequently but lacks security and bug fixes.
+!!! Note: 
+    The new v3 format currently only offers a 'daily' stream whereas in
+    previous versions a 'releases' stream was available. The latter changes far
+    less frequently but lacks security and bug fixes.
 
 The below example is a good choice for the year 2016. It selects all available
 kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04

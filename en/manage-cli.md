@@ -20,6 +20,17 @@ Values are represented as uppercase variables preceded with the '$' character
 values.
 
 
+## The maas command
+
+The `maas` command is obtained via the `maas-cli` Ubuntu package which is
+installed on every region API server and rack controller. To manage MAAS at the
+CLI level from a remote workstation this package will need to be installed:
+
+```bash
+sudo apt install maas-cli
+```
+
+
 ## Create an administrator
 
 MAAS requires an initial administrator, sometimes called a MAAS "superuser".
@@ -47,13 +58,14 @@ the 'maas-region-controller' package was installed):
 sudo maas-region apikey --username=$PROFILE > $API_KEY_FILE
 ```
 
-!!! Note: A user's API key can also be obtained from the web interface. Click
-on 'username' in the top right corner, and select 'Account'.
+!!! Note: 
+    A user's API key can also be obtained from the web interface. Click
+    on 'username' in the top right corner, and select 'Account'.
 
 Log in. You will be prompted for the API key:
 
 ```bash
-maas login $PROFILE $API_SERVER
+maas login $PROFILE $MAAS_URL
 ```
 
 For example, to log in with the account whose username is 'admin' and where
@@ -66,7 +78,22 @@ maas login admin http://localhost:5240/MAAS/api/2.0
 To log in by referring to the API key file created earlier:
 
 ```bash
-maas login $PROFILE $API_SERVER - < $API_KEY_FILE
+maas login $PROFILE $MAAS_URL - < $API_KEY_FILE
+```
+
+A handy shell script, say `maas-login.sh`, is provided:
+
+```no-highlight
+#!/bin/sh
+
+# Change these 3 values as required 
+PROFILE=admin
+API_KEY_FILE=/home/ubuntu/tmp/api_key
+API_SERVER=localhost
+
+MAAS_URL=http://$API_SERVER/MAAS/api/2.0
+
+maas login $PROFILE $MAAS_URL - < $API_KEY_FILE
 ```
 
 
