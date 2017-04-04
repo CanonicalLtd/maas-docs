@@ -241,18 +241,18 @@ vrrp_instance maas_region {
     interface $INTERFACE
     priority $PRIORITY
     virtual_router_id 51
-     authentication {
+    authentication {
         auth_type PASS
         auth_pass $PASSWORD
     }
-     track_script {
+    track_script {
         ### Un-comment next line if using haproxy
         #chk_haproxy
         ### Un-comment next line if using apache2
         #chk_apache2
         chk_named
     }
-     virtual_ipaddress {
+    virtual_ipaddress {
         $VIP
     }
 }
