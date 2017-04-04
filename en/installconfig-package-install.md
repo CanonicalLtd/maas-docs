@@ -8,8 +8,8 @@ There are three packages to consider when installing MAAS:
 - `maas-region-controller` - region API server, database, DNS,
   [HTTP proxy][proxy], and [web UI][webui]
 - `maas-rack-controller` - [rack controller][rackd] and [DHCP][dhcp]
-- `maas` - a metapackage that installs both the above packages to provide a complete
-  MAAS environment
+- `maas` - a metapackage that installs both the above packages to provide a
+  complete MAAS environment
 
 Each of the above packages has its own dependencies. That is, each will bring
 in other MAAS packages not listed above. The full list of MAAS packages can be
@@ -19,8 +19,9 @@ obtained with the command:
 apt-cache search maas
 ```
 
-The 'maas' package is the recommended way to install MAAS. See
-[here][all-in-one] for more detail on colocating all services on a single host.
+The 'maas' metapackage is the recommended way to install MAAS. See the
+[Introduction][all-in-one] for more detail on colocating all services on a
+single host.
 
 High availability with MAAS involves installing multiple region controllers
 and/or multiple rack controllers. See [MAAS HA][maas-ha].
@@ -29,8 +30,8 @@ and/or multiple rack controllers. See [MAAS HA][maas-ha].
 ## Package repositories
 
 While MAAS is available in the normal Ubuntu archives, the available packages
-may be lagging behind non-archive, but still stable, versions. To install a newer
-stable version the following PPA can be used:
+may be lagging behind non-archive, but still stable, versions. To install a
+newer stable version the following PPA can be used:
 
 - [ppa:maas/stable][ppa_maas-stable]
 
@@ -41,8 +42,7 @@ Development releases (not meant for production) are available here:
 For example, to add the 'stable' PPA, type:
 
 ```bash
-sudo apt-add-repository -y ppa:maas/stable
-sudo apt update
+sudo apt-add-repository -yu ppa:maas/stable
 ```
 
 ## Installation scenarios
@@ -54,7 +54,7 @@ on one machine:
 sudo apt install maas
 ```
 
-For a more distributed environment, the region controller can be place on one
+For a more distributed environment, the region controller can be placed on one
 machine:
 
 ```bash
