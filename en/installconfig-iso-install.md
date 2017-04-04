@@ -20,9 +20,9 @@ controller and register it with an existing region controller. Therefore,
 *an existing region controller is a requirement* for this option to succeed.
 
 !!! Note: 
-    Using the ISO to install a rack controller is typically used to
-    install an extra rack controller since the recommended starting design is to
-    co-locate the rack controller with the region controller.
+    Using the ISO to install a rack controller is typically used to install an
+    extra rack controller since the recommended starting design is to co-locate
+    the rack controller with the region controller.
 
 Each of these two options will add extra dialog boxes to the generic Ubuntu
 Server install procedure. This page covers these extra dialogs only. See the
@@ -65,8 +65,12 @@ After having chosen to install a rack controller, three consecutive dialog
 boxes will appear in order to do the following:
 
 - Install a rack controller
-- Input the location of the region API server
+- Input the location (URL) of the region API server
 - Input the shared secret required for rack controller registration
+
+For nodes on an [IPv6][ipv6] subnet, the URL must use a hostname instead of an
+IP address and it must resolve to both IPv4 and IPv6 addresses, both on the
+rack controller and on the nodes.
 
 ^# Walkthrough of rack controller installation
 
@@ -111,6 +115,7 @@ to do next.
 [proxy]: installconfig-network-proxy.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
 [checklist]: installconfig-checklist.md 
+[ipv6]: installconfig-network-ipv6.md
 
 [img__iso-install-1604-01]: ../media/iso-install_01.png
 [img__iso-install-regiond-01]: ../media/iso-install-region_01.png
