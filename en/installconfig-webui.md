@@ -1,4 +1,4 @@
-Title: Web UI | MAAS
+Title: Web UI
  
 
 # Web UI
@@ -39,7 +39,7 @@ You can now log in here:
 
 Where $API_HOST is the hostname or IP address of the region API server.
 
-![web UI login][img__webui-login]
+![web UI login][img__2.2_webui-login]
 
 The initial administrator will be shown the MAAS Dashboard after they log in
 for the first time. Here, there will be the option of embarking on a
@@ -73,4 +73,4 @@ is:
 [manage-cli]: manage-cli.md
 [device-discovery]: installconfig-network-dev-discovery.md
 
-[img__webui-login]: ../media/installconfig-webui__login.png
+[img__2.2_webui-login]: ../media/installconfig-webui__2.2_webui-login.png
