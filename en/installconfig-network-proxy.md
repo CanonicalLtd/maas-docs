@@ -1,4 +1,4 @@
-Title: Proxy | MAAS
+Title: Proxy
 
 
 # Proxy
