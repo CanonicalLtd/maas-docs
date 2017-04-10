@@ -72,9 +72,9 @@ Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
 !!! Note: 
-    Unless the software on this machine is removed, rebooting it will
-    cause the machine to re-instate itself as a rack controller. This behaviour may
-    change with future versions of MAAS.
+    Unless the software on this machine is removed, rebooting it will cause the
+    machine to re-instate itself as a rack controller. This behaviour may change
+    with future versions of MAAS.
 
 
 <!-- LINKS -->

@@ -1,4 +1,4 @@
-Title: DHCP | MAAS
+Title: DHCP
 TODO:  Maybe create a bug for why the enablement of DHCP in the web UI asks for a gateway IP and not a nameserver
 table_of_contents: True
 
@@ -53,7 +53,7 @@ and the secondary.
 IP' and 'Dynamic range end IP'.
 1. Apply your changes with the 'Provide DHCP' button.
 
-![Enable DHCP][img__2.1_enable-dhcp]
+![Enable DHCP][img__2.2_enable-dhcp]
 
 Now, addresses in this range will get assigned to machines that are being
 either enlisted or commissioned.
@@ -121,9 +121,13 @@ what options to use refer to the [`dhcpd.conf` man page][dhcpd.conf-man-page].
     `dhcpd6.conf.template` are not supported.
 
 To manage snippets, as an admin, open the 'Settings' page and click on the
-'DHCP Snippets' tab.
+'DHCP snippets' tab.
 
-![Manage DHCP snippets][img__2.1_dhcp-snippets]
+For example, to create a new snippet press 'Add custom snippet'. In the
+resulting window choose a name and type for it and enter its associated DHCP
+configuration. Click 'Save snippet' to apply the change.
+
+![Manage DHCP snippets][img__2.2_dhcp-snippets]
 
 See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 
@@ -137,9 +141,9 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
 [dhcpd.conf-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf
 [cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
-[cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 [cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
+[cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 
-[img__2.1_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.1_dhcp-snippets.png
+[img__2.2_enable-dhcp]: ../media/installconfig-networking-dhcp__2.2_enable-dhcp.png
 [img__2.2_relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
-[img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png
+[img__2.2_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.2_dhcp-snippets.png
