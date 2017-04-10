@@ -1,4 +1,4 @@
-Title: Advanced CLI Tasks | MAAS
+Title: Advanced CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
