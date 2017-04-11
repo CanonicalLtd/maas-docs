@@ -1,5 +1,8 @@
-Title: BMC Power Types | MAAS
+Title: BMC Power Types
 TODO:  Provide examples for setting up common power types (BMCs)
+       The BMC driver feature table needs updating since 2.2. See https://git.io/vSXdz
+       Consider putting power check troubleshooting notes on the troubleshooting page
+table_of_contents: True
 
 
 # BMC Power Types
@@ -7,28 +10,48 @@ TODO:  Provide examples for setting up common power types (BMCs)
 In order for MAAS to fully manage a node it must be able to power cycle it.
 This is done via a communication channel with the [BMC][wikipedia-bmc] card of
 the node's underlying system. A newly added node is therefore incomplete until
-its power type has been configured. Since each BMC card is different, the
-required information to provide MAAS will vary.
+its power type has been configured.
 
-To configure a power type, visit the 'Nodes' page, select the node in question
-and scroll down to the 'Power' section. There, you should see MAAS prompting
-you to set up the power type:
+To configure a node's power type begin by selecting the node (on the 'Nodes'
+page) and entering its 'Power' tab. If the power type is undefined the
+following will be displayed:
 
-![power types section][img__power-types-section]
+![power types undefined][img__2.2_power-types-undefined]
 
-Choosing the 'Edit' button will reveal a list of available power types:
+Choose a type in the dropdown menu that corresponds to the node's underlying
+machine's BMC card.
 
-![power types selection][img__power-types-selection]
+![power types selection][img__2.2_power-types-selection]
+
+Fill in the resulting form. The information requested will depend upon the
+power type chosen.
+
+Click 'Save changes' to finish. Once that's done, a power check will be
+performed on the node. This is a good indication of whether MAAS can
+communicate properly with the node. A successful power check will quickly
+result in a power status of "Power off". A failed one will show:
+
+![power types power error][img__2.2_power-types-power-error]
+
+If you get such an error double-check your entered values by editing the power
+type. Also consider another power type altogether. Another cause may be at the
+networking level; traffic may be getting filtered between the rack controller
+and the BMC card.
 
 
 ## Example: Virsh (KVM) power type
 
 Consider a node backed by KVM. Below, a 'Power type' of `Virsh` has been
-selected and the 'Power address' of `qemu+ssh://ubuntu@10.248.64.2/system` has
+selected and the 'Power address' of `qemu+ssh://ubuntu@192.168.1.2/system` has
 been entered (replace values as appropriate). Finally, and out of necessity for
-virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node`.
+virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node2`.
 
-![power types example: virsh][img__power-types-example-virsh]
+![power types example: virsh][img__2.2_power-types-example-virsh]
+
+!!! Note:
+    The node's hostname *according to MAAS* is a randomly chosen string (here
+    `dear.ant`). This would normally be edited to reflect the hostname of the
+    underlying machine.
 
 See [MAAS CLI][cli-update-node-hostname-and-power-parameters] for an example of
 how to edit a power type with the CLI.
@@ -70,6 +93,7 @@ currently supported by MAAS.
 [cli-update-node-hostname-and-power-parameters]: manage-cli-advanced.md#update-node-hostname-and-power-parameters
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
-[img__power-types-section]: ../media/installconfig-power-types__section.png
-[img__power-types-selection]: ../media/installconfig-power-types__types.png
-[img__power-types-example-virsh]: ../media/installconfig-power-types__example-virsh.png
+[img__2.2_power-types-undefined]: ../media/installconfig-nodes-power-types__2.2_undefined.png
+[img__2.2_power-types-selection]: ../media/installconfig-nodes-power-types__2.2_selection.png
+[img__2.2_power-types-example-virsh]: ../media/installconfig-nodes-power-types__2.2_example-virsh.png
+[img__2.2_power-types-power-error]: ../media/installconfig-nodes-power-types__2.2_power-error.png
