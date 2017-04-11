@@ -66,25 +66,27 @@ MAAS supports many types of BMC hardware yet not all the drivers have the same
 capabilities. See the below table for a feature comparison of the BMC drivers
 currently supported by MAAS.
 
-^# BMC driver feature table
+| Power Driver (*X=supported*) | PXE Next Boot | Power Querying | Chassis/Pod Configuration | Enhanced UI Error Reporting | BMC Enlistment |
+|:--------------------------------------|-------------|-----------|---------------|-----------------|------------|
+| American Power Conversion (APC) - PDU |             |           |               |                 |            |
+| Cisco UCS Manager                     |      X      |     X     |       X       |                 |            |
+| Digital Loggers, Inc. - PDU           |             |           |               |                 |            |
+| Facebook's Wedge `*`                  |             |           |               |                 |            |
+| HP Moonshot - iLO Chassis Manager     |      X      |     X     |       X       |                 |            |
+| HP Moonshot - iLO4 (IPMI)             |      X      |     X     |               |                 |     X      |
+| IBM Hardware Management Console (HMC) |      X      |     X     |               |                 |            |
+| IPMI                                  |      X      |     X     |               |       X         |     X      |
+| Intel AMT                             |      X      |     X     |               |       X         |            |
+| Manual                                |             |           |               |                 |            |
+| Microsoft OCS - Chassis Manager       |      X      |     X     |       X       |                 |            |
+| OpenStack Nova                        |             |     X     |               |                 |            |
+| Rack Scale Design                     |      X      |     X     |       X       |                 |            |
+| SeaMicro 15000                        |      X      |     X     |       X       |                 |            |
+| Sentry Switch CDU - PDU               |             |           |               |                 |            |
+| VMWare                                |      X      |     X     |       X       |                 |            |
+| Virsh (virtual systems)               |      X      |     X     |       X       |                 |            |
 
-  | Power Driver (*X=supported*) | PXE Next Boot | Power Querying | Chassis Configuration | Enhanced UI Error Reporting | BMC Enlistment |
-  |:--------------------------------------|-------------|-----------|---------------|-----------------|------------|
-  | American Power Conversion (APC) - PDU |             |           |               |                 |            |
-  | Cisco UCS Manager                     |      X      |     X     |       X       |                 |            |
-  | Digital Loggers, Inc. - PDU           |             |           |               |                 |            |
-  | HP Moonshot - iLO Chassis Manager     |      X      |     X     |       X       |                 |            |
-  | HP Moonshot - iLO4 (IPMI)             |      X      |     X     |               |                 |     X      |
-  | IBM Hardware Management Console (HMC) |      X      |     X     |               |                 |            |
-  | IPMI                                  |      X      |     X     |               |       X         |     X      |
-  | Intel AMT                             |      X      |     X     |               |       X         |            |
-  | Manual                                |             |           |               |                 |            |
-  | Microsoft OCS - Chassis Manager       |      X      |     X     |       X       |                 |            |
-  | OpenStack Nova                        |             |     X     |               |                 |            |
-  | SeaMicro 15000                        |      X      |     X     |       X       |                 |            |
-  | Sentry Switch CDU - PDU               |             |           |               |                 |            |
-  | VMWare                                |      X      |     X     |       X       |                 |            |
-  | Virsh (virtual systems)               |      X      |     X     |       X       |                 |            |
+`*` The 'Facebook's Wedge' OpenBMC power driver is considered experimental at this time.
 
 
 <!-- LINKS -->
