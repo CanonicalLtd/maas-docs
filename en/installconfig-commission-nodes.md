@@ -1,4 +1,4 @@
-Title: Commission Nodes | MAAS
+Title: Commission Nodes
 TODO:  Add CLI for IP address assignment methods
        Add CLI for image/kernel to use for commissioning (?)
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
@@ -28,28 +28,36 @@ require changing. However, it can be configured in the web UI in the 'Settings'
 page.
 
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
-the 'Take action' dropdown menu (orange button).
+the 'Take action' dropdown menu.
 
-![commission][img__2.1_commission]
+![commission][img__2.2_commission]
 
-You have the option of selecting some extra parameters (checkboxes). Then
-finalize the directive by hitting 'Go'.
+You have the option of selecting some extra parameters (checkboxes) and
+performing hardware tests (see [Hardware testing][hardware-testing]).
 
-![commission go][img__commission-go]
+![confirm commission][img__2.2_commission-confirm]
 
-While a node is commissioning its status will change to *Commissioning*. 
+Finalize the directive by hitting 'Commission machine'.
+
+While a node is commissioning its status will change to *Commissioning*. During
+this time the node's network topology will be discovered. This will prompt one
+of the node's network interfaces to be connected to the fabric, VLAN, and
+subnet combination that will allow it to be configured. By default, a static IP
+address will be assigned out of the reserved IP range for the subnet. That is,
+an IP assignment mode of 'Auto assign' will be used. See the next section for
+details on assignment nodes.
 
 See [MAAS CLI][cli-commission-all-machines] for how to commission all machines
 with the 'New' status.
 
-!!! Note: 
-    If your node has more than one network interface you may need to tell
-    MAAS which one to use. Do this by marking it *Broken* (see next section).
+Once a node is commissioned its status will change to *Ready* and an extra tab
+for the node called 'Commissioning' will become available. This tab contains
+the results of the scripts executed during the commissioning process.
 
-Once a node is commissioned its status will change to *Ready*. Consider taking
-this time to tag your node (see [Tags][tags]).
+Now that the node is commissioned you may consider creating or applying a tag
+(see [Tags][tags] for more on this).
 
-The next step will be to *deploy* it. See [Deploy nodes][deploy-nodes].
+The next step will be to *deploy* the node. See [Deploy nodes][deploy-nodes].
 
 
 ## Post-commission configuration
@@ -60,7 +68,13 @@ can be added/removed, attached to a fabric and linked to a subnet, and provided
 an IP assignment mode. Tags can also be assigned to specific network interfaces
 (see [Tags for network interfaces][tags-network-interfaces]).
 
-![node interface][img__node-interface-ip]
+Click the pencil icon for the interface to be edited:
+
+![edit interface][img__2.2_edit-interface]
+
+The following window will appear:
+
+![configure interface][img__2.2_configure-interface]
 
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
@@ -81,20 +95,31 @@ gets assigned when the node is eventually deployed:
 See [Concepts and terms][concepts-ipranges] for the definitions of reserved
 range types used in MAAS.
 
+Press the 'Save' button to apply the changes.
+
 ### Bridge interfaces
 
-MAAS supports the creation of a bridge interface from a single network
-interface. This may be useful if you eventually deploy virtual machines or
-containers on the machine. 
+A bridge is created by selecting an interface and clicking the now-active
+'Create bridge' button. A form will appear that will allow a MAC address, STP,
+and a tag to be configured.
 
-A bridge is created by first selecting a single interface followed by clicking
-the now-enabled 'Create bridge' button. A new pane will appear where you can
-enter a MAC address for the bridge, an optional STP forward delay, and a tag. 
+![configure bridge][img__2.2_configure-bridge]
 
-![bridge interface][img__bridge-interface]
+Press the 'Save' button when you're done.
+
+!!! Positive "Pro tip":
+    A network bridge may be useful if virtual machines or containers are to be
+    put on the node. 
+
+<!--
+
+I'D LIKE TO LEAVE THIS OUT UNTIL A CLI COMMAND IS DOCUMENTED AND THEN LINKED. I
+ALSO FIND THIS SENTENCE NEEDS TO BE REWORDED AS IT IS QUITE ABSTRACT AS IS.
 
 Automatic bridge creation on all configured interfaces can also be performed at
 allocation time using the API.
+
+-->
 
 
 <!-- LINKS -->
@@ -106,8 +131,10 @@ allocation time using the API.
 [tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces
 [subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
+[hardware-testing]: installconfig-nodes-hw-testing
 
-[img__bridge-interface]: ../media/installconfig-commission-nodes__bridge-iface.png
-[img__2.1_commission]: ../media/installconfig-nodes-commission-nodes__2.1_commission.png
-[img__commission-go]: ../media/installconfig-commission-nodes__commission-go.png
-[img__node-interface-ip]: ../media/node-interface-ip.png
+[img__2.2_commission]: ../media/installconfig-nodes-commission__2.2_commission.png
+[img__2.2_commission-confirm]: ../media/installconfig-nodes-commission__2.2_commission-confirm.png
+[img__2.2_configure-interface]: ../media/installconfig-nodes-commission__2.2_configure-interface.png
+[img__2.2_edit-interface]: ../media/installconfig-nodes-commission__2.2_edit-interface.png
+[img__2.2_configure-bridge]: ../media/installconfig-nodes-commission__2.2_configure-bridge.png
