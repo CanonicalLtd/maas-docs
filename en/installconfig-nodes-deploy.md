@@ -28,7 +28,7 @@ will undergo the following process:
 !!! Note: 
     The *curtin* installer uses an image-based method and is now the only
     installer used by MAAS. Although the older *debian-installer* method has been
-    removed curtin continues to support preseed files. See `/etc/maas/preseed`
+    removed curtin continues to support preseed files. See the `/etc/maas/preseed`
     directory.
 
 The agent that triggers deployment varies depending on how the nodes are
