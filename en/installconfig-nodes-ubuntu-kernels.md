@@ -1,7 +1,8 @@
-Title: Ubuntu Kernels | MAAS
+Title: Ubuntu Kernels
 TODO:  Review required. There is still confusion about selecting kernels: https://goo.gl/VTbH0X
        it also appears that some kernels are hardcoded; i can't get rid of them. all very shoddy
        the 'releases' type of v3 stream does not exist at time of writing and it may never (requires rewording if this is the case)
+       Review regularly since Ubuntu codenames are used
 table_of_contents: True
 
 
@@ -75,9 +76,9 @@ For more information see
 
 MAAS denotes a low latency kernel in a few ways:
 
-`hwe-x-lowlatency` : the Xenial low latency HWE kernel for Trusty
-`ga-16.04-lowlatency` : the low latency GA kernel for Xenial
-`hwe-16.04-lowlatency` : the low latency HWE kernel for Xenial
+- `hwe-x-lowlatency` : the Xenial low latency HWE kernel for Trusty
+- `ga-16.04-lowlatency` : the low latency GA kernel for Xenial
+- `hwe-16.04-lowlatency` : the low latency HWE kernel for Xenial
 
 
 ## Using kernels
@@ -103,23 +104,23 @@ To set the default minimum kernel for all machines visit the 'Settings' page
 and select a kernel in the 'Default Minimum Kernel Version' field. Don't
 forget to click 'Save'.
 
-![default minimum kernel][img__2.1_default-minimum-kernel]
+![default minimum kernel][img__2.2_default-minimum-kernel]
 
 ### Machine minimum kernel
 
 To set the minimum kernel on a machine basis, select a machine from the 'Nodes'
-page and click the `Edit` button in the 'Machine summary' pane. Then select a
-kernel in the 'Minimum Kernel' field and 'Save changes'.
+page and click the 'Edit' button under the (default) 'Machine summary' tab.
+Then select a kernel in the 'Minimum Kernel' field and 'Save changes'.
 
-![machine minimum kernel][img__2.1_machine-minimum-kernel]
+![machine minimum kernel][img__2.2_machine-minimum-kernel]
 
 ### Machine kernel during deployment
 
 To set a specific kernel during deployment, select a machine from the 'Nodes'
-page and choose `Deploy` under 'Take action'. Then select a kernel in the
-'Default kernel' field. Hit 'Go' to initiate the deployment.
+page and choose 'Deploy' under 'Take action'. Then select a kernel in the
+(third) kernel field. Hit 'Deploy machine' to initiate the deployment.
 
-![machine during deploy kernel][img__2.1_machine-during-deploy-kernel]
+![machine during deploy kernel][img__2.2_machine-during-deploy-kernel]
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
 release (series) before deploying the node. 
@@ -132,6 +133,6 @@ release (series) before deploying the node.
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
 [cli-set-a-default-minimum-hwe-kernel]: manage-cli-advanced.md#set-a-default-minimum-hwe-kernel
 
-[img__2.1_default-minimum-kernel]: ../media/installconfig-kernels__2.1_default-minimum-kernel.png
-[img__2.1_machine-minimum-kernel]: ../media/installconfig-kernels__2.1_machine-minimum-kernel.png
-[img__2.1_machine-during-deploy-kernel]: ../media/installconfig-kernels__2.1_machine-during-deploy-kernel.png
+[img__2.2_default-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_default-minimum-kernel.png
+[img__2.2_machine-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_machine-minimum-kernel.png
+[img__2.2_machine-during-deploy-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_machine-during-deploy-kernel.png

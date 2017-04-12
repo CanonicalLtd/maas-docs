@@ -1,4 +1,4 @@
-Title: Deploy Nodes | MAAS
+Title: Deploy Nodes
 TODO:  Add CLI for deploying (?)
        Link to curtin resources for users wishing to customize the install
 
@@ -27,9 +27,9 @@ will undergo the following process:
 
 !!! Note: 
     The *curtin* installer uses an image-based method and is now the only
-    installer used by MAAS. The older *debian-installer* (preseed) method has been
-    removed. Some remnants of preseed may still be found however. See
-    `/etc/maas/preseed` directory.
+    installer used by MAAS. Although the older *debian-installer* method has been
+    removed curtin continues to support preseed files. See the `/etc/maas/preseed`
+    directory.
 
 The agent that triggers deployment varies depending on how the nodes are
 intended to be used in the long term. For instance, if the nodes are destined
@@ -49,21 +49,24 @@ Before deploying you should:
   [SSH keys][user-accounts-ssh-keys]) to MAAS so connections can be made to
   deployed nodes.
 
-To deploy directly from MAAS simply select any given node and press the
-'Deploy' button.
+To deploy directly from MAAS select one or more node(s) and press the 'Deploy'
+button.
 
-![deploy][img__2.1_deploy-nodes]
+![deploy][img__2.2_deploy]
 
 You then have the option of deviating from the default OS, release, and kernel.
-When ready, press 'Go'.
+When ready, press 'Deploy *X* machine(s)' (where 'X' is the number of machines
+selected).
 
-![deploy go][img__deploy-go]
+![confirm deploy][img__2.2_deploy-confirm]
 
-While a node is deploying its status will change to *Deploying*.
+While a node is deploying its status will change to *Deploying to 'OS'*, where
+'OS' is the name of the OS being deployed (e.g. 'Deploying to Ubuntu 16.04
+LTS').
 
-Once a node has finished deploying its status will change to *Deployed*. The
-node now has an operating system installed and will accept SSH public key
-authentication requests to the 'ubuntu' account.
+Once a node has finished deploying its status will change to just the name of
+the OS (e.g. 'Ubuntu 16.04 LTS'). The node now has an operating system installed
+and will accept SSH public key authentication requests to the 'ubuntu' account.
 
 
 <!-- LINKS -->
@@ -74,5 +77,5 @@ authentication requests to the 'ubuntu' account.
 [kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
 [ubuntu-kernels]: installconfig-nodes-ubuntu-kernels.md
 
-[img__2.1_deploy-nodes]: ../media/installconfig-nodes-deploy-nodes__2.1_deploy.png
-[img__deploy-go]: ../media/installconfig-deploy-nodes__deploy-go.png
+[img__2.2_deploy]: ../media/installconfig-nodes-deploy__2.2_deploy.png
+[img__2.2_deploy-confirm]: ../media/installconfig-nodes-deploy__2.2_deploy-confirm.png
