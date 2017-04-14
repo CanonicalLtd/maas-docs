@@ -137,19 +137,21 @@ used as the cache.
 
 ## Setting the Layout
 
-It's also possible to change the storage layout either globally, on acquire, or
+It's possible to change the storage layout either globally, on acquire, or
 after acquire.
 
 ### Globally
 
-The global default storage layout can be set using either the API or the web
-interface. From the web interface, for example, look for 'Default Storage Layout' on the
-settings page:
+The default storage layout is configured on
+the 'Settings' page, under the 'General' tab. The section is labelled 'Storage':
 
 ![default storage layout][img__2.2_default-storage-layout]
 
-To change the default storage layout from the command line, you would enter the
-following:
+!!! Warning "Important":
+    The new default will only apply to newly-commissioned nodes.
+
+To change the default with the CLI see
+[MAAS CLI - advanced tasks][cli-default-storage-layout].
 
 ```bash
 maas $PROFILE maas set-config name=default_storage_layout value=$LAYOUT_TYPE
@@ -161,9 +163,8 @@ For example:
 maas $PROFILE maas set-config name=default_storage_layout value=flat
 ```
 
-The new default layout will apply to commissioned (and newly-commissioned)
-nodes (status 'Ready'). It will not, however, apply to any already acquired
-nodes (status 'Acquired').
+See [Disk erasure][storage-erasure] for explanation of the options related to
+the erasing of disks.
 
 ### Per node
 
@@ -188,5 +189,7 @@ maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=?
 
 [block-devices]: installconfig-block.md
 [partitions]: installconfig-partitions.md
+[storage-erasure]: installconfig-storage-erasure.md
+[cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
 
-[img__default-storage-layout]: ../media/storage_global_layout.png
+[img__2.2_default-storage-layout]: ../media/installconfig-storage__2.2_default-storage-layout.png
