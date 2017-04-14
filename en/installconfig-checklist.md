@@ -11,24 +11,26 @@ on to the next one.
 
 ## Software installation
 
-As explained [here][about-maas], the installation of MAAS consists of the
-installation of a rack controller and a region controller which, in turn,
-provide a multitude of services. Go ahead and [install MAAS][install-maas]!
+As explained in the [Introduction][about-maas], the installation of MAAS
+consists of the installation of a rack controller and a region controller
+which, in turn, provide a multitude of services. Go ahead and
+[install MAAS][maas-install]!
 
 
 ## Access the web UI
 
 You *will* be using the web UI so now is the time to log in and take a look
-around! Proceed to the [web UI][web-ui] now. This will involve the creation of
+around! Proceed to the [web UI][webui] now. This will involve the creation of
 an administrator user. Notice how the web UI (API server) is accessed via port
 5240 and not port 80.
 
-!!! Note: Although the web UI may be accessed via port 80, this is not
-guaranteed to work in future versions of MAAS.
+!!! Note: 
+    Although the web UI may be accessed via port 80, this is not
+    guaranteed to work in future versions of MAAS.
 
 The initial access of the web UI will kick off an optional
-[configuration journey](installconfig-webui-conf-journey.md) whose
-purpose is to get the essential aspects of MAAS configured right away.
+[configuration journey][config-journey] whose purpose is to get the essential
+aspects of MAAS configured right away.
 
 Completing the journey will remove the need to perform equivalent deeds below
 so you'll need to adjust accordingly.
@@ -44,11 +46,11 @@ especially if the default one does not suffice.
 ## Networking
 
 Firstly, in terms of IP addresses, understand what a *reserved range* is by
-reading [Concepts and terms](intro-concepts.md#ip-ranges). Create one (not
+reading [Concepts and terms][concepts-ipranges]. Create one (not
 *reserved dynamic range*) if you need one.
 
 Secondly, configure a default gateway and a nameserver that your nodes will
-use. See [Networking](installconfig-networking.md) for how to do this.
+use. See [Networking][networking] for how to do this.
 
 
 ## Import boot images
@@ -60,14 +62,15 @@ to use the CLI to do this. Either way: achievement unlocked!
 The import process can take a while. Consider moving on and coming back. Just
 ensure that the import has completed prior to adding a node.
 
-!!! Note: Once installed, by default, MAAS will begin downloading images for
-the latest Ubuntu LTS.
+!!! Note: 
+    Once installed, by default, MAAS will begin downloading images for
+    the latest Ubuntu LTS.
 
 
 ## Access the MAAS CLI
 
 Even if you've imported images with the web UI, it would be wise (and cool?) to
-give the [CLI](manage-cli.md) a spin in case you ever need to use it later.
+give the [CLI][manage-cli] a spin in case you ever need to use it later.
 Although we strive to make the web UI feature-equivalent to the CLI, some
 things can still only be done with the CLI.
 
@@ -89,7 +92,7 @@ how you intend to use MAAS.
 Additionally, in order for a user to log into a MAAS-deployed machine that user
 *must* have their public SSH key installed on it.
 
-Study [user accounts][user-accounts] to learn about how to create more users
+Study [User accounts][manage-account] to learn about how to create more users
 and how to add their public SSH keys to MAAS. Once that's done, every deployed
 machine will automatically have that key installed.
 
@@ -110,7 +113,7 @@ you're still a rock star!
 
 A node needs to power cycle while being managed by MAAS. The next step is
 therefore to tell MAAS how to do this. That is, you need to
-[edit the power type][power-type] of the node's BMC.
+[edit the power type][power-types] of the node's BMC.
 
 
 ## Commission a node
@@ -122,7 +125,7 @@ your node now.
 
 ## Deploy a node
 
-Lots of folks would have [Juju][juju-site] take over at this point. Juju acts
+Lots of folks would have [Juju][about-juju] take over at this point. Juju acts
 as a sort of command & control centre for adding services/applications on top
 of MAAS nodes (among other "clouds"). If you're just not there and/or you want
 to quickly test things out you can use the web UI to
@@ -137,17 +140,22 @@ web UI will inform you of its IP address. Mission accomplished!
 
 
 <!-- LINKS -->
+
 [about-maas]: index.md#key-components-and-colocation-of-all-services
-[install-maas]: installconfig-install.md
-[web-ui]: installconfig-gui.md
+[maas-install]: installconfig-install.md
+[webui]: installconfig-webui.md
 [zones]: manage-zones.md
 [networks]: installconfig-networking.md
 [images]: installconfig-images.md
-[dhcp]: installconfig-subnets-dhcp.md
+[dhcp]: installconfig-network-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
-[user-accounts]: manage-account.md
-[power-type]: installconfig-power-types.md
+[manage-account]: manage-account.md
+[power-types]: installconfig-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
-[juju-site]: https://jujucharms.com/docs/
-[deploy-nodes]: installconfig-deploy-nodes.md
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
+[deploy-nodes]: installconfig-nodes-deploy.md
 [ssh-keys]: manage-account.md#ssh-keys
+[config-journey]: installconfig-webui-conf-journey.md
+[concepts-ipranges]: intro-concepts.md#ip-ranges
+[networking]: installconfig-networking.md
+[manage-cli]: manage-cli.md

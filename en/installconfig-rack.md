@@ -1,5 +1,4 @@
-Title: Rack Controller | MAAS
-TODO:  Add CLI for deleting a rack controller
+Title: Rack Controller
 
 
 # Rack Controller
@@ -11,9 +10,9 @@ architecture grows in size.
 In regards to region controller and rack controller communication, each rack
 controller must be able to initiate TCP connections:
 
-- for HTTP, to each region controller on port 5240. If
-  [high availability](manage-ha.md) is implemented then this will typically
-  become port 80.
+- for HTTP, to each region controller on port 5240. If high availability is
+  implemented then this will typically become port 80. See
+  [MAAS HA][manage-ha].
 - for RPC, to each region controller between port 5250 and 5259 inclusive. This
   permits up to 10 `maas-regiond` processes on each region controller host. At
   present this is not configurable.
@@ -21,29 +20,40 @@ controller must be able to initiate TCP connections:
 
 ## Install a rack controller
 
-When a rack controller is installed on the same host as the region API server
-it will register itself automatically. Otherwise this will need to be done
-manually:
+Installing a rack controller consists of installing the rack controller
+software and then registering the rack controller with the region API server.
 
-To install and register a rack controller you can either use the
-[Ubuntu Server ISO](installconfig-server-iso.md#rack-controller) or the
-[MAAS CLI](manage-cli-advanced.md#install-a-rack-controller). Both will
-require the URL of the region API server. For nodes on an
-[IPv6](installconfig-network-ipv6.md) subnet, the URL must use a hostname
-instead of an IP address and it must resolve to both IPv4 and IPv6 addresses,
-both on the rack controller and on the nodes.
+When a rack controller is installed on the same host as the region API server
+registration occurs automatically. This can occur by installing a complete
+environment on a single host in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso])
+1. Using Ubuntu packages: either the 'maas' metapackage or multiple individual
+   packages (see [Install from packages][install-from-packages])
+
+A rack controller can be installed on a host devoid of a region API server, and
+registered manually, in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd])
+1. Using the 'maas-rack-controller' Ubuntu package (see
+   [MAAS CLI - advanced tasks][cli-install-rackd])
 
 Once registered, if this is an extra rack controller, it will appear
-immediately in the web UI and begin to sync with the primary controller:
+immediately alongside the primary controller in the web UI and begin to sync
+with it:
 
-![add controller](../media/installconfig-rack__add-controller2.png)
+![install rackd][img__2.2_install-rackd]
+
+See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
+all registered rack controllers with the CLI.
 
 Multiple rack controllers are needed in order to achieve specific types of
-[high availability](manage-ha.md).
+high availability. See [MAAS HA][manage-ha].
 
-!!! Note: If you will be using KVM-backed nodes you must ensure that the new
-rack controller can communicate with the KVM host. See
-[KVM guest nodes](installconfig-add-nodes.md#kvm-guest-nodes).
+!!! Note: 
+    If you will be using KVM-backed nodes you must ensure that the new
+    rack controller can communicate with the KVM host. See
+    [KVM guest nodes][add-nodes-kvm-guest-nodes].
 
 
 ## Unregister a rack controller
@@ -61,41 +71,20 @@ there is no longer the possibility of having it).
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
-!!! Note: Unless the software on this machine is removed, rebooting it will
-cause the machine to re-instate itself as a rack controller. This behaviour may
-change with future versions of MAAS.
+!!! Note: 
+    Unless the software on this machine is removed, rebooting it will cause the
+    machine to re-instate itself as a rack controller. This behaviour may change
+    with future versions of MAAS.
 
 
-<!--
+<!-- LINKS -->
 
-THIS IS MIND-NUMBING. IT READS LIKE DEVELOPERS' NOTES.
-LET'S TAKE THIS OUT FOR NOW.
+[install-from-iso]: installconfig-iso-install.md
+[install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
+[install-from-packages]: installconfig-package-install.md
+[manage-ha]: manage-ha.md
+[cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
+[cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
+[add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
-
-## Interface management
-
-MAAS automatically recognises the network interfaces on each rack controller.
-Some (though not necessarily all) of these will be connected to subnets on a
-VLAN inside a Fabric. In other words, the rack controllers will be connected
-to VLANs, and the subnets being served on these.
-
-Once a new rack controller is connected, it will try to autodetect in what
-subnet, VLAN and even fabric the interface is connected to. If these have not
-being created, new subnets, VLANs and fabrics and spaces will be created.
-
-If fabrics, VLANs and subnets are already created, once MAAS automatically
-recognises the rack controller network interfaces, it will try to determine to
-which these are connected to before being able to provide services.
-
-As such, each rack controller interface will determine whether a rack
-controller can provide DHCP on an specific VLAN, or for advanced configuration,
-a rack controller interface will determine whether a rack controller can be a
-primary or backup Rack on an HA configuration.
-
-If for any reason, the rack controller interfaces are mis-identified and are
-in the correct fabric, the user can manually change that by editing the Rack
-Controller Fabric information:
-
-![image](../media/rack-interface-edit.png)
-
--->
+[img__2.2_install-rackd]: ../media/installconfig-rack__2.2_install-rackd.png

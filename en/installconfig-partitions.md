@@ -1,10 +1,11 @@
-Title: Partitions
+Title: Partitions | MAAS
+
 
 # Partitions
 
-As with [block devices](installconfig-block.md), MAAS and its API offers
-a great deal of control over the creation, formatting, mounting and deletion of
-partitions.
+As with block devices (see [Block devices][block-devices]), MAAS and its API
+offer a great deal of control over the creation, formatting, mounting and
+deletion of partitions.
 
 ### List Partitions
 
@@ -46,6 +47,7 @@ all partitions, use the singular 'partition' API call with an endpoint:
 ```basg
 maas admin partition read <node-id> 10 9
 ```
+
 ### Create Partition
 
 To create a new partition on a block device, use the 'create' API call:
@@ -53,6 +55,7 @@ To create a new partition on a block device, use the 'create' API call:
 ```bash
 maas admin partitions create <node-id> 10 size=5360320512
 ```
+
 In addition to bytes, as shown above, the 'size' of a partition can also be
 defined with a 'G' for gigabytes or 'M' for megabytes. The output from the
 previous command will look like this:
@@ -97,6 +100,7 @@ Partitions can be formatted in a similar way to block devices:
 ```bash
 maas admin partition format <node-id> 10 9 fstype=ext4
 ```
+
 The output from the 'format' command will be similar to the following:
 
 ```nohighlight
@@ -121,8 +125,9 @@ Machine-readable output follows:
 }
 ```
 
-!!! Note: You cannot format partitions that are used to make another virtual
-block device.
+!!! Note: 
+    You cannot format partitions that are used to make another virtual
+    block device.
 
 ### Unformat Partition
 
@@ -148,10 +153,11 @@ Machine-readable output follows:
     "uuid": "3d32adbf-9943-4785-ab38-963758338c6c"
 }
 ```
+
 ### Mount Partition
 
 A formatted partition can be mounted at a given mount point with the 'mount'
-API call"
+command.
 
 ```bash
 maas admin partition mount <node-id> 10 10 mount_point=/srv
@@ -180,9 +186,10 @@ Machine-readable output follows:
     }
 }
 ```
+
 ### Unmount Partition
 
-A previous mounted partition can be unmounted with the 'unmount' call:
+A previous mounted partition can be unmounted with the 'unmount' command:
 
 ```bash
 maas admin partition unmount 4y3h8a 10 10
@@ -210,12 +217,12 @@ Machine-readable output follows:
         "fstype": "ext4",
         "mount_point": null
     }
+    "type": "partition",
+    "id": 3,
+    "size": 2000003072
 }
 ```
-        "type": "partition",
-        "id": 3,
-        "size": 2000003072
-    }
+
 
 ## Restrictions
 
@@ -223,6 +230,11 @@ There are only a couple of restrictions that exists in the storage
 configuration. These restrictions are only in place because they are known to
 not allow a successful deployment.
 
--   An EFI partition is required to be on the boot disk for UEFI.
--   You cannot place partitions on logical volumes.
--   You cannot use a logical volume as a Bcache backing device.
+- An EFI partition is required to be on the boot disk for UEFI.
+- You cannot place partitions on logical volumes.
+- You cannot use a logical volume as a Bcache backing device.
+
+
+<!-- LINKS -->
+
+[block-devices]: installconfig-block.md

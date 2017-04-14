@@ -1,4 +1,4 @@
-Title: DHCP | MAAS
+Title: DHCP
 TODO:  Maybe create a bug for why the enablement of DHCP in the web UI asks for a gateway IP and not a nameserver
 table_of_contents: True
 
@@ -21,26 +21,26 @@ Using an external DHCP server for enlistment and commissioning may work but
 this is not supported. By doing so you also forfeit the IP management ability
 of MAAS since synchronization (e.g. notifications that leases should be
 squashed when a node is returned to the pool) between it and the DHCP server
-will be severed. [High availability](./manage-ha.md) and DHCP relay integration
-(see below) are also dependent upon MAAS-managed DHCP.
+will be severed. [High availability][manage-ha] and DHCP relay integration (see
+below) are also dependent upon MAAS-managed DHCP.
 
 **This documentation presupposes that MAAS-managed DHCP is used to enlist and
 commission nodes.**
 
 Required reading before continuing:
 
-- [Concepts and terms](intro-concepts.md#ip-ranges) for an explanation of
-  reserved IP ranges
-- [Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
-  for an explanation of IP assignment modes
+- [Concepts and terms][concepts-ipranges] for an explanation of reserved IP
+  ranges
+- [Commission nodes][post-commission-configuration] for an explanation of IP
+  assignment modes
 
 
 ## Enabling DHCP
 
 A *reserved dynamic IP range* is needed in order for MAAS-managed DHCP to at
 least enlist and commission nodes and the creation of such a range is part of
-the process of enabling DHCP with the web UI. See
-[MAAS CLI](manage-cli-common.md#enable-dhcp) for doing this with the CLI.
+the process of enabling DHCP with the web UI. See [MAAS CLI][cli-enable-dhcp]
+for doing this with the CLI.
 
 To enable MASS-managed DHCP, under the 'Subnets' page select the desired VLAN
 and then:
@@ -53,7 +53,7 @@ and the secondary.
 IP' and 'Dynamic range end IP'.
 1. Apply your changes with the 'Provide DHCP' button.
 
-![Enable DHCP](../media/installconfig-networking-dhcp__2.1_enable-dhcp.png)
+![Enable DHCP][img__2.2_enable-dhcp]
 
 Now, addresses in this range will get assigned to machines that are being
 either enlisted or commissioned.
@@ -66,12 +66,10 @@ get an address in this range.
 ## Extending a reserved dynamic IP range
 
 If necessary, it is possible to add further portions of the subnet to the
-dynamic IP range (see
-[Reserved IP addresses](installconfig-subnets-ipranges.md) ). Furthermore,
-since DHCP is enabled on a VLAN basis and a VLAN can contain multiple subnets,
-it is possible to add a portion from those subnets as well. Just select the
-subnet under the 'Subnets' page and reserve a dynamic range. DHCP will be
-enabled automatically.
+dynamic IP range (see [IP ranges][ipranges]). Furthermore, since DHCP is
+enabled on a VLAN basis and a VLAN can contain multiple subnets, it is possible
+to add a portion from those subnets as well. Just select the subnet under the
+'Subnets' page and reserve a dynamic range. DHCP will be enabled automatically.
 
 
 ## External DHCP and a reserved IP range
@@ -80,8 +78,8 @@ If an external DHCP server will be used to deploy machines then a *reserved IP
 range* should be created to prevent the address namespace from being corrupted.
 For instance, address conflicts may occur if a node's IP assignment mode is set
 to 'Auto assign' in the context of an external DHCP server. See
-[Reserved IP addresses](installconfig-subnets-ipranges.md) to create such a
-range. It should correspond to the lease range of the external server.
+[IP ranges][ip-ranges] to create such a range. It should correspond
+to the lease range of the external server.
 
 
 ## DHCP relay
@@ -97,16 +95,16 @@ To relay from one VLAN (source) to another VLAN (target):
 1.  Ensure the target VLAN has DHCP enabled  
 
 1.  Set up the external relay  
-    This is done independently from MAAS. See
-    [DHCP relay](intro-concepts.md#dhcp-relay) for software suggestions.
+    This is done independently from MAAS. See [DHCP relay][concepts-dhcp-relay]
+    for software suggestions.
 
 1.  Configure MAAS-managed DHCP  
     Navigate to the source VLAN page and select the 'Relay DHCP' action. Fill in the
     fields in the resulting form. The crucial setting is the target VLAN ('relay
     VLAN'). Press the 'Relay DHCP' button to finish. See
-    [MAAS CLI](manage-cli-advanced.md#relay-dhcp) for how to do this with the CLI.
+    [MAAS CLI][cli-relay-dhcp] for how to do this with the CLI.
 
-![Relay DHCP](../media/installconfig-networking-dhcp__2.2_relay-dhcp.png)
+![Relay DHCP][img__2.2_relay-dhcp]
 
 
 ## DHCP Snippets
@@ -116,15 +114,36 @@ When DHCP is managed from within MAAS, it can be customized through the use of
 applied either globally, per subnet, or per node. A global snippet is applied
 to all VLANs, subnets, and nodes. All three types end up in
 `/var/lib/maas/dhcpd.conf` or `/var/lib/maas/dhcpd6.conf`. For information on
-what options to use refer to the
-[`dhcpd.conf` man page](http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf).
+what options to use refer to the [`dhcpd.conf` man page][dhcpd.conf-man-page].
 
-!!! Note: Modifications made directly to `dhcpd.conf.template` or `dhcpd6.conf.template` are
-not supported.
+!!! Note: 
+    Modifications made directly to `dhcpd.conf.template` or
+    `dhcpd6.conf.template` are not supported.
 
 To manage snippets, as an admin, open the 'Settings' page and click on the
-'DHCP Snippets' tab.
+'DHCP snippets' tab.
 
-![Manage DHCP snippets](../media/installconfig-networking-dhcp__2.1_dhcp-snippets.png)
+For example, to create a new snippet press 'Add custom snippet'. In the
+resulting window choose a name and type for it and enter its associated DHCP
+configuration. Click 'Save snippet' to apply the change.
 
-See [MAAS CLI](manage-cli-dhcp-snippets.md) for doing this with the CLI.
+![Manage DHCP snippets][img__2.2_dhcp-snippets]
+
+See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
+
+
+<!-- LINKS -->
+
+[manage-ha]: manage-ha.md
+[ipranges]: installconfig-network-ipranges.md
+[concepts-ipranges]: intro-concepts.md#ip-ranges
+[concepts-dhcp-relay]: intro-concepts.md#dhcp-relay
+[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[dhcpd.conf-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf
+[cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
+[cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
+[cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
+
+[img__2.2_enable-dhcp]: ../media/installconfig-networking-dhcp__2.2_enable-dhcp.png
+[img__2.2_relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
+[img__2.2_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.2_dhcp-snippets.png

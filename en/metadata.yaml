@@ -27,13 +27,13 @@ navigation:
 
         children:
 
-          - title: Install from Ubuntu Server ISO
-            location: installconfig-server-iso.md
+          - title: Install from ISO
+            location: installconfig-iso-install.md
 
           - title: Install from packages
             location: installconfig-package-install.md
 
-          - title: Install into LXD
+          - title: Install with LXD
             location: installconfig-lxd-install.md
 
           - title: Upgrade from 1.9 to 2.0
@@ -43,7 +43,7 @@ navigation:
         location: installconfig-rack.md
 
       - title: Web UI
-        location: installconfig-gui.md
+        location: installconfig-webui.md
 
       - title: Images
         location: installconfig-images.md
@@ -65,16 +65,16 @@ navigation:
             location: installconfig-network-subnet-management.md
 
           - title: DHCP
-            location: installconfig-subnets-dhcp.md
+            location: installconfig-network-dhcp.md
 
-          - title: Reserved IP ranges
-            location: installconfig-subnets-ipranges.md
+          - title: IP ranges
+            location: installconfig-network-ipranges.md
 
           - title: Proxy
-            location: installconfig-proxy.md
+            location: installconfig-network-proxy.md
 
           - title: NTP
-            location: installconfig-ntp.md
+            location: installconfig-network-ntp.md
 
           - title: Device discovery
             location: installconfig-network-dev-discovery.md
@@ -115,16 +115,19 @@ navigation:
             location: installconfig-commission-nodes.md
 
           - title: Deploy nodes
-            location: installconfig-deploy-nodes.md
+            location: installconfig-nodes-deploy.md
 
           - title: Tags
             location: installconfig-tags.md
 
           - title: Kernel boot options
-            location: installconfig-kernel.md
+            location: installconfig-nodes-kernel-boot-options.md
 
           - title: Ubuntu kernels
-            location: installconfig-hwe-kernels.md
+            location: installconfig-nodes-ubuntu-kernels.md
+
+          - title: Hardware testing
+            location: installconfig-nodes-hw-testing.md
 
   - title: Manage MAAS
 
@@ -156,11 +159,17 @@ navigation:
           - title: Image management
             location: manage-cli-images.md
 
+          - title: Tag management
+            location: manage-cli-tags.md
+
           - title: DHCP snippet management
             location: manage-cli-dhcp-snippets.md
 
           - title: Advanced tasks
             location: manage-cli-advanced.md
+
+      - title: API client
+        location: manage-libmaas.md
 
   - title: Troubleshoot
 
@@ -171,6 +180,9 @@ navigation:
 
       - title: Getting help
         location: troubleshoot-getting-help.md
+
+  - title: Intel RSD
+    location: intel-rsd.md
 
   - title: Release notes
     location: release-notes.md

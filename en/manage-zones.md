@@ -1,4 +1,4 @@
-Title: Zones | MAAS
+Title: Zones
 TODO:  Fix/add CLI equivalents
 table_of_contents: True
 
@@ -6,10 +6,10 @@ table_of_contents: True
 # Zones
 
 The concept of a *zone*, and examples of how they can be used, are provided in
-the [Concepts and terms](intro-concepts.md#zones) page. The current page covers
-how to use a zone. Specifically, it will show how to:
+the [Concepts and terms][concepts-zones] page. The current page covers how to
+use a zone. Specifically, it will show how to:
 
-- Create a zone
+- Add a zone
 - Edit a zone
 - Delete a zone
 - Assign a node to a zone
@@ -18,13 +18,15 @@ how to use a zone. Specifically, it will show how to:
 All these actions require administrative privileges.
 
 
-## Create a zone
+## Add a zone
 
 To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
 The resulting window will allow for the name and, optionally, a description of
 the new zone.
 
-![image](../media/manage-zones__2.1_create-zone.png)
+![add zone][img__2.2_add-zone]
+
+Press the 'Add zone' button to confirm the changes.
 
 
 ## Edit a zone
@@ -72,3 +74,10 @@ It is possible, though not usually useful, to combine the `zone` and
 `not_in_zone` parameters. If your choice for `zone` is also present in
 `not_in_zone`, no node will ever match your request. Or if it's not, then the
 `not_in_zone` values will not affect the result of the call at all.
+
+
+<!-- LINKS -->
+
+[concepts-zones]: intro-concepts.md#zones
+
+[img__2.2_add-zone]: ../media/manage-zones__2.2_add-zone.png

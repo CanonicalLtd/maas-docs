@@ -2,9 +2,249 @@ Title: Historical Release Notes | MAAS
 table_of_contents: True
 
 
-# 2.2 Release Notes
+# Historical Release Notes
 
-## Important announcements
+## 2.2.0 (beta4)
+
+## Major new features
+
+### Testing
+
+MAAS 2.2 Beta 4 introduces environment tests to allow the administrator to
+verify that their environment is setup correctly:
+
+- Internet Connectivity test  
+  Ensures machines can connect to the Internet.
+- NTP connectivity  
+  Ensures that machines can connect to the configured NTP server, whether this
+  is MAAS or an external NTP server.
+
+### Intel RSD improvements
+
+MAAS 2.2b4 introduces further improvements to Intel RSD usage in MAAS:
+
+- Pod details page  
+  A pod details page has been improved by:
+    - Ability to show the composed machines (those that belong to the specific
+      pod from its details page).
+    - Add the ability to show and change the power management or pod management
+      credentials and endpoints.
+- Constraints  
+  Ability to specify constraints to request machines based on the Pod (by type or
+  name), providing the ability to select from a set of pods or an specific pod.
+
+### UX Improvements
+
+Several UI improvements have been made:
+
+- Design Change - Tabs  
+  Following the UX improvements from our design team, the 2.2b4 UI has now
+  improved navigation. This includes a new Tab based approach for second level
+  navigation items (for example, machines, devices and controllers under the
+  Nodes tag).
+- Better error surfacing  
+  Add error surfacing when editing node interfaces (including both Machine and
+  devices interfaces).
+
+### Windows deployments
+
+Improve the ability to configure storage configuration for Windows. This
+includes the ability to select the root device where windows should be
+installed on.
+
+Note that this ability extends to all DD images that MAAS can deploy.
+
+### Package Repositories
+
+MAAS 2.2 Beta 4 improves its package repositories support for Ubuntu Mirrors
+adding the ability to disable components. This components are Universe,
+Multiverse and Restricted.
+
+
+<!-- ===================================================================== -->
+
+
+## 2.2.0 (beta3)
+
+### Hardware tests - running by default during Commissioning
+
+MAAS 2.2 introduces the ability to perform hardware tests. As part of MAAS beta
+3, MAAS introduces the ability to run disk tests, which can be run as part of
+the commissioning processes, or as a separate action from Ready or Deployed.
+
+Please be aware that running hardware tests during the commissioning process
+can prevent machines from becoming 'Ready' for deployment, if the hardware
+tests fail.
+
+For more information about the Hardware Testing feature please refer to the
+following section.
+
+### Intel Rack Scale Design - Dynamically creating machines
+
+MAAS 2.2 Beta 2 introduced support for Intel's Rack Scale Design (RSD). RSD is
+a hardware architecture that allows the dynamic composition of physical systems
+from a pool of available hardware resources.
+
+Starting from Beta 3, MAAS now extends its support for RSD allowing the
+creation (composition) of machines dynamically. This allows administrators and
+users to request a machine (allocate) not previously available to MAAS, and
+dynamically create (compose) one within the RSD system. This machine can then
+be deployed.
+
+Adding such support, it allows Juju to deploy workloads against a MAAS that has
+an RSD Pod, with no previously known (available - Ready) machines.
+
+
+## Major new features
+
+### Hardware Testing
+
+Starting from MAAS, MAAS provides the ability to perform specific hardware
+tests. The hardware testing feature provides administrators with a predefined
+set of tests that can be run to ensure correct operation of their hardware
+before making it available for usage. The hardware testing feature will include
+Disk, CPU and Memory tests.
+
+As of MAAS 2.2 Beta 3, only Disk hardware tests have been made available:
+
+- Disk status  
+  The Disk Status test (smartctl-validate) uses the smartctl tool
+  to verify existing SMART data on all drives has not detected any errors.
+- Disk Integrity  
+  MAAS provides the ability to run SMART tests. This includes:
+    - smartctl-short & smartctl-long
+      Runs the SMART self tests to validate health on all disks. It provides a long
+      running and a short running test.
+    - Smartctl-conveyance
+      Runs the conveyance SMART self tests to validate health on all disks.
+- Memory  
+  For memory, MAAS provides the following tests:
+    - Memtestr
+      Runs memtester over all available RAM.
+    - Stress-ng
+      Runs the Stress-NG tests over 12 hours against RAM.
+  NOTE: Please note that these are long running tests and will take hours to
+  complete.
+- CPU  
+  CPU tests include Stress-NG stress tests over 12 hours.
+
+### Intel RSD - Dynamic Composition
+
+The dynamic composition feature allows administrators to request (allocate)
+machines from an Intel RSD without having to manually compose such machine.
+This allows modeling tools, such as Juju, to request a machine from MAAS when
+there are no previously known machines, and dynamically create and deploy one
+for a specific workload.
+
+Administrators not using Juju can request a machine via the API, and if no
+other machine satisfies the specific or default constraints, a machine will be
+automatically created from an RSD pod if one available.
+
+### Web UI - MAAS Pods & Intel RSD
+
+The MAAS web UI introduces a new 'Pods' tab. This is where MAAS will list
+composable hardware systems like the Intel RSD. MAAS 2.2 Beta 2 introduces the
+ability for MAAS to add and control an Intel RSD via the MAAS API/CLI. MAAS 2.2
+Beta 3 introduces a basic Web UI feature to support and manage the Intel RSD
+Pods (and any other composable hardware). This changes include:
+
+- List Pods - lists all available pods under the 'Pods' tab:
+    - This provides the ability to list all available pods and provide a summary of
+      the usage statistics for a pod.
+- Add Pod - ability to add new Pods from the 'Pods' tab.
+- Pod Details Page - provides more detailed information about a pod:
+    - This page provides the ability to obtain more detail information of a
+      particular pod. At the moment, it will provide information about the
+      available and used resources.
+
+### Facebook Wedge 40 & Wedge 100 discovery
+
+MAAS now has the ability to automatically discover and manage the Facebook
+Wedge 40 and Wedge 100 switches. This allows MAAS to automatically discover the
+Switch BMC and power manage as any other servers, in order to deploy Ubuntu
+onto the switches. MAAS will also automatically tag the machine to easily
+identify it.
+
+Additionally, MAAS will automatically identify if the Trident or Tomahawk ASICs
+are connected to the switch, and will automatically identify them via tags.
+
+### Web UI - Device Details Page
+
+Starting from Beta 3, MAAS 2.2 now provides a Details Page for 'Devices',
+allowing administrators to both, add new interfaces to a device, or modifying
+the existing interfaces.
+
+
+<!-- ===================================================================== -->
+
+
+## 2.2.0 (beta2)
+
+### Composable hardware
+
+MAAS now supports composable hardware - The Intel Rack Scale Design
+The MAAS team is excited to announce the support for the Intel Rack Scale
+Design (RSD). Intel Rack Scale Design (RSD) is a hardware architecture that
+allows the dynamic composition of physical systems from a pool of available
+hardware resources. 
+
+MAAS, as a cloud-like, scale-out bare-metal provisioning system, will leverage
+the use of Intel RSD to compose (create) and provision systems. With the
+support for RSD, MAAS introduces the ability to manually or dynamically compose
+(create) new machines from an available pool of resources. It will allow
+administrators to request machines with specific resources on demand and be
+able to deploy their workloads on them.
+
+
+## Major new features
+
+### MAAS support for Intel RSD - API only
+
+MAAS 2.2b2 introduces initial support for Intel RSD. It provides the ability
+to :
+
+- Add a new Intel RSD POD into MAAS, allowing users to have a full view of the
+  available and used resources. 
+- Add the ability to discover pre-composed resources, allowing MAAS to discover
+  machines that have been created before adding the Intel RSD POD into MAAS.
+- Add the ability to create (compose) new machines.
+
+### Notifications
+
+MAAS 2.2b2 introduces a new notification system. The notification system
+surfaces various messages to the user via the web UI, allowing to have more
+visibility as to what’s going on with the system. Initially, users will be
+notified when :
+
+- When Rack Controllers get disconnected
+- When image import fails on your region controller.
+- When Rack Controllers have images that the Region Controller does not.
+
+### Web UI Visual updates
+
+MAAS 2.2b2 now has an updated web UI that includes:
+
+- Updated all icons and colour set within the framework. This will keep inline
+  with the Vanilla Framework and the new visual update which is going across
+  all products
+- Links have changed from black to blue. This keeps MAAS inline with Juju and
+  other Cloud products also improves the visual UX.
+- Improved the responsive nature of MAAS. Tables especially have been improved.
+- The new card view and label using aria-label improves the readability and
+  uses on mobile / small screens.
+- Navigation responsive issues have been resolved.
+- Flash messages has been removed and now replaced with the improved
+  notification pattern.
+- New utility classes u-display--mobile & u-display--desktop have been added
+  for extra responsive development / design flexibility.
+- Accordion styles have been improved. Removing the cross style and keeping it
+  consistent with our remove style.
+
+
+<!-- ===================================================================== -->
+
+
+## 2.2.0 (beta1)
 
 ### Migrating MAAS L3 to L2 spaces
 
@@ -110,9 +350,7 @@ Cannot add a device with parent from the dashboard
 <!-- ===================================================================== -->
 
 
-# 2.1 Release Notes
-
-## Important changes
+## 2.1
 
 ### New MAAS dashboard
 
@@ -340,7 +578,8 @@ are:
 - ga-16.04-lowlatency: the low latency GA kernel for Xenial
 - hwe-16.04-lowlatency: the low latency HWE kernel for Xenial
 
-!!! Note: As time of writing, the last 2 kernels are the same.
+!!! Note: 
+    As time of writing, the last 2 kernels are the same.
 
 ### Bootloaders are now provided in the image stream
 
@@ -388,9 +627,7 @@ The Networks page has been renamed to Subnets.
 <!-- ===================================================================== -->
 
 
-# 2.0 Release notes
-
-## Important changes
+## 2.0
 
 ### MAAS 2.0 supported on Ubuntu 16.04 LTS (Xenial)
 
@@ -569,10 +806,9 @@ MAAS 2.0 extends DNS management by adding the following features:
 -   Additional PTR records are now created for all non-PXE interfaces in
     the form: `<interface>.<machine fully-qualified-domain-name>`
 -   Reverse DNS is now generated for only the subnet specified, rather
-    than the parent /24 or /16. By default,
-    [RFC2137](https://tools.ietf.org/html/rfc2137) glue is provided for
-    networks smaller than /24. This can be disabled or changed on a
-    per-subnet basis via the API.
+    than the parent /24 or /16. By default, [RFC2137][rfc2137] glue is provided
+    for networks smaller than /24. This can be disabled or changed on a per-subnet
+    basis via the API.
 
 ### IP Ranges  
 
@@ -797,3 +1033,8 @@ able to reconstruct it.
 MAAS selects one of the available rack controllers to power control or
 query a BMC. The same rack controller that powers the BMC does not need
 to be the rack controller that the machine PXE boots from.
+
+
+<!-- LINKS -->
+
+[rfc2137]: https://tools.ietf.org/html/rfc2137

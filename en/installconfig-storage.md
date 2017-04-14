@@ -1,5 +1,4 @@
-Title: Storage | MAAS
-TODO:  Can a user change a node's layout only if the user has acquired that node?
+Title: Storage
 
 
 # Storage
@@ -9,7 +8,6 @@ standard partitioning as well as more complex storage options such as Bcache,
 RAID, and LVM. It also offers fine-grained control over the creation, deletion,
 formatting and mounting of both [block devices](installconfig-block.md) and
 [partitions](installconfig-partitions.md).
-
 
 
 ## Layouts
@@ -132,8 +130,9 @@ Default is false, meaning to create a partition using the given `cache_size`.
 If set to true no partition will be created and the raw cache device will be
 used as the cache.
 
-!!! Note: The /boot/efi partition on all layouts will only be created on nodes
-that deploy with UEFI.
+!!! Note: 
+    The /boot/efi partition on all layouts will only be created on nodes
+    that deploy with UEFI.
 
 
 ## Setting the Layout
@@ -147,24 +146,24 @@ The global default storage layout can be set using either the API or the web
 interface. From the web interface, for example, look for 'Default Storage Layout' on the
 settings page:
 
-![default storage](../media/storage_global_layout.png)
+![default storage layout][img__2.2_default-storage-layout]
 
 To change the default storage layout from the command line, you would enter the
 following:
 
 ```bash
-maas admin maas set-config name=default_storage_layout value=flat
+maas $PROFILE maas set-config name=default_storage_layout value=$LAYOUT_TYPE
 ```
-If this command is successful, you will see the following output:
+
+For example:
 
 ```bash
-Success.
-Machine-readable output follows:
-OK
+maas $PROFILE maas set-config name=default_storage_layout value=flat
 ```
 
-For the default storage layout to apply, a node will need will need to be in
-the 'Ready' state, before being acquired. 
+The new default layout will apply to commissioned (and newly-commissioned)
+nodes (status 'Ready'). It will not, however, apply to any already acquired
+nodes (status 'Acquired').
 
 ### Per node
 
@@ -172,8 +171,22 @@ If a node is already acquired and you want to adjust the storage layout the
 `set_storage_layout API` call can be used:
 
 ```bash
-maas admin machine set-storage-layout <node-id> storage_layout=lvm lv_size=<size>
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE $OPTIONS
 ```
 
-!!! Warning: This will completely remove any previous storage configuration on all
-block devices.
+For example:
+
+```bash
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=???
+```
+
+!!! Warning
+    This will remove any previous storage configuration on all block devices.
+
+
+<!-- LINKS -->
+
+[block-devices]: installconfig-block.md
+[partitions]: installconfig-partitions.md
+
+[img__default-storage-layout]: ../media/storage_global_layout.png

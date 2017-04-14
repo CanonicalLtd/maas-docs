@@ -1,8 +1,13 @@
-Title: MAAS | Architectural Overview
+Title: Architectural Overview | MAAS 
 
 
 # Architectural overview
 
 The high level architecture of MAAS is presented below.
 
-![intro-arch-overview](../media/intro-arch-overview.png)
+![intro-arch-overview][img__arch-overview]
+
+
+<!-- LINKS -->
+
+[img__arch-overview]: ../media/intro-arch-overview.png

@@ -7,10 +7,8 @@ table_of_contents: True
 # CLI DHCP Snippet Management
 
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
-See [MAAS CLI](manage-cli.md) on how to get started.
-
-See [DHCP](installconfig-subnets-dhcp.md#dhcp-snippets) for an overview of DHCP
-snippets.
+See [MAAS CLI][manage-cli] to get started with the CLI and
+[DHCP][dhcp-snippets] for an overview of DHCP snippets.
 
 
 ## Create a snippet
@@ -102,7 +100,8 @@ MAAS only uses the latest revision of the value when writing dhcpd.conf.
 
 ### Reverting a value
 
-!!! Warning: Reverting a value will result in all later versions being deleted!
+!!! Warning: 
+    Reverting a value will result in all later versions being deleted!
 
 The revert operation allows the user to revert to a previous value. When
 specifying what to revert to the user can either provide the value id or a
@@ -123,3 +122,9 @@ maas $PROFILE dhcpsnippet delete $DHCP_SNIPPET_ID
 ```
 
 The snippet name can also be used in place of its ID.
+
+
+<!-- LINKS -->
+
+[manage-cli]: manage-cli.md
+[dhcp-snippets]: installconfig-network-dhcp.md#dhcp-snippets
