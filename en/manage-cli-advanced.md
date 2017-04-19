@@ -230,6 +230,45 @@ maas $PROFILE rack-controllers read | grep hostname | cut -d '"' -f 4
 ```
 
 
+## Set the default storage layout
+
+To set the default storage layout for all nodes:
+
+```bash
+maas $PROFILE maas set-config name=default_storage_layout value=$LAYOUT_TYPE
+```
+
+For example, to set the default layout to Flat:
+
+```bash
+maas $PROFILE maas set-config name=default_storage_layout value=flat
+```
+
+!!! Warning "Important":
+    The new default will only apply to newly-commissioned nodes.
+
+
+## Set a user storage layout
+
+To set a user storage layout for a single node:
+
+
+
+```bash
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE $OPTIONS
+```
+
+For example:
+
+```bash
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=???
+```
+
+!!! Warning
+    This will remove any previous storage configuration on all block devices.
+
+
+
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md

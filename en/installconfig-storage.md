@@ -1,24 +1,23 @@
 Title: Storage
 TODO:  Full review required, especially first paragraph (e.g. partitions *are* block devices)
+table_of_contents: True
 
 
 # Storage
 
-MAAS has the ability to configure the storage of a deployed node. It supports
-standard partitioning as well as more complex storage options such as Bcache,
-RAID, and LVM. It also offers fine-grained control over the creation, deletion,
-formatting and mounting of both [block devices](installconfig-block.md) and
-[partitions](installconfig-partitions.md).
+The final storage configuration that a deployed node uses can be influenced
+significantly. MAAS supports traditional disk partitioning as well as more
+complex options such as Bcache, RAID, and LVM.
 
+A MAAS storage template is called a *layout*, and it gets applied to a
+node when it is commissioned.
 
-## Layouts
+It is possible for a regular user to apply a different layout altogether. It
+is equally possible for a regular user to make modifications to a node after a
+layout is applied in order to arrive at the node's final storage configuration.
 
-A storage configuration is called a *layout*, and it gets applied to a
-node when it is commissioned. There are three types:
-
-- Flat layout
-- LVM layout
-- Bcache layout
+The different layouts are presented in detail lower down. How layouts get
+chosen and what modifications are possible are also shown.
 
 
 ## UEFI
@@ -33,7 +32,16 @@ setting the node to boot from UEFI, no other action is asked of the user.
     commissioning. It won't work!
 
 The EFI partition, if present, will be the first partition (`sda1`) and will
-have a filesystem of FAT32 with a size of 512 MB.
+have a FAT32 filesystem with a size of 512 MB.
+
+
+## Layouts
+
+There are three layout types:
+
+- Flat layout
+- LVM layout
+- Bcache layout
 
 The below layout descriptions will include the EFI partition. If your system is
 not using UEFI simply regard `sda2` as `sda1` (with an additional 512 MB
@@ -41,7 +49,7 @@ available to it).
 
 ### Flat layout
 
-With the Flat layout, MAAS creates a partition that spans the entire boot disk. The partition is
+With the Flat layout, a partition spans the entire boot disk. The partition is
 formatted with the ext4 filesystem and uses the `/` mount point:
 
 | Name      | Size        | Type  | Filesystem     | Mount point |
@@ -140,7 +148,7 @@ used as the cache.
 
 ## Setting the layout
 
-All nodes will have the default layout applied when commissioned. However, it's
+All nodes will have a default layout applied when commissioned. However, it's
 possible for a user to customize the layout providing this is done prior to
 acquiring it.
 
@@ -160,33 +168,10 @@ the erasing of disks.
 To change the default with the CLI see
 [MAAS CLI - advanced tasks][cli-default-storage-layout].
 
-```bash
-maas $PROFILE maas set-config name=default_storage_layout value=$LAYOUT_TYPE
-```
-
-For example:
-
-```bash
-maas $PROFILE maas set-config name=default_storage_layout value=flat
-```
-
 ### User layout
 
 A user can adjust the layout provided by the default. This is only possible via
 the CLI. See [MAAS CLI - advanced tasks][cli-user-storage-layout].
-
-```bash
-maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE $OPTIONS
-```
-
-For example:
-
-```bash
-maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=???
-```
-
-!!! Warning
-    This will remove any previous storage configuration on all block devices.
 
 
 <!-- LINKS -->
@@ -195,5 +180,6 @@ maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=?
 [partitions]: installconfig-partitions.md
 [storage-erasure]: installconfig-storage-erasure.md
 [cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
+[cli-user-storage-layout]: manage-cli-advanced.md#set-a-user-storage-layout
 
 [img__2.2_default-storage-layout]: ../media/installconfig-storage__2.2_default-storage-layout.png
