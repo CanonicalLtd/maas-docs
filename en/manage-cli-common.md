@@ -37,7 +37,7 @@ SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
 
 ## Commission a machine
 
-To commission a machine based on its system ID:
+To commission a machine:
 
 ```bash
 maas $PROFILE machine commission $SYSTEM_ID
@@ -83,8 +83,7 @@ maas $PROFILE machine deploy $SYSTEM_ID
 ```
 
 !!! Note:
-    To deploy a machine it must have a status of either 'Ready' or
-    'Allocated'.
+    To deploy with the CLI the machine must have a status of 'Allocated'.
 
 
 ## Assign a tag to a node
