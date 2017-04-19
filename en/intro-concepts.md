@@ -304,6 +304,10 @@ Deploy.
 Allocates (reserves) a node to the MAAS user performing the action (and
 currently logged in). Changes a node's status from 'Ready' to 'Allocated'.
 
+With the CLI, it is necessary to perform this action prior to deploying. With
+the web UI it is done automatically for the user. Acquiring in the web UI is
+used for machine reservation.
+
 ### Commission
 Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 'Ready'.
@@ -318,8 +322,8 @@ implement maintenance, and then Commission.
 Removes a node from MAAS. The underlying machine remains unaffected.
 
 ### Deploy
-Deploys a node. Changes a node's status from 'Ready' to 'Deploying' to
-'Deployed'. Includes action 'Power on'.
+Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
+'Deploying' to 'Deployed'. Includes action 'Power on'.
 
 If unsuccessful, the status becomes 'Failed deployment'.
 

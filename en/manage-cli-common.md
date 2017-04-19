@@ -1,4 +1,4 @@
-Title: Common CLI Tasks | MAAS
+Title: Common CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        There is a nuance between a single reserved address and a single address in a range (start and end addresses being the same). this could use some digging
 table_of_contents: True
@@ -43,6 +43,9 @@ To commission a machine based on its system ID:
 maas $PROFILE machine commission $SYSTEM_ID
 ```
 
+!!! Note:
+    To commission a machine it must have a status of 'New'.
+
 
 ## Commission all machines
 
@@ -51,6 +54,37 @@ To commission all machines in the 'Ready' state:
 ```bash
 maas $PROFILE machines accept-all
 ```
+
+
+## Acquire a machine
+
+To acquire/allocate a random machine:
+
+```bash
+maas $PROFILE machines allocate
+```
+
+To acquire/allocate a specific machine:
+
+```bash
+maas $PROFILE machines allocate system_id=$SYSTEM_ID
+```
+
+!!! Note:
+    To acquire a machine it must have a status of 'Ready'.
+
+
+## Deploy a machine
+
+To deploy a machine:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID
+```
+
+!!! Note:
+    To deploy a machine it must have a status of either 'Ready' or
+    'Allocated'.
 
 
 ## Control subnet management
