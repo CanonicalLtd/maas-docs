@@ -5,12 +5,24 @@ TODO:  Link to curtin resources for users wishing to customize the install
 # Deploy Nodes
 
 Once a node has been commissioned (see [Commission nodes][commission-nodes])
-the next logical step is to *deploy* it.
+the next logical step is to *deploy* it. Deploying a node means, effectively,
+to install an operating system on it.
 
-Deploying a node means, effectively, to install an operating system on it. The
-deployed node will also be ready to accept connections via SSH to the
-'ubuntu' user account providing an SSH key has been imported to the MAAS user
-account. This is explained in [SSH keys][user-accounts-ssh-keys].
+The agent that triggers deployment may vary. For instance, if the nodes are
+destined to be running complex, inter-related services that may involve scaling
+up or down, that is, if they will be regarded as a "cloud" resource, then
+[Juju][about-juju] is the recommended deploy agent (it will also install &
+configure services on the deployed nodes). If you simply want to use MAAS to
+install a base operating system and work on the machines manually then you can
+deploy a node directly with the web UI.
+
+The deployed node, only if deployed within the web UI, will also be ready to
+accept connections via SSH to the 'ubuntu' user account providing an SSH key
+has been imported to the user's MAAS account. This is explained in
+[SSH keys][user-accounts-ssh-keys].
+
+!!! Note:
+    Juju has its own way of adding SSH keys to machines under its control.
 
 To deploy, the underlying machine needs to be configured to netboot (this
 should already have been done during the commissioning stage). Such a machine
@@ -29,15 +41,6 @@ will undergo the following process:
     installer used by MAAS. The older *debian-installer* (preseed) method has been
     removed. Some remnants of preseed may still be found however. See
     `/etc/maas/preseed` directory.
-
-The agent that triggers deployment varies depending on how the nodes are
-intended to be used in the long term. For instance, if the nodes are destined
-to be running complex, inter-related services that may involve scaling up or
-down, that is, if they will be regarded as a "cloud" resource, then
-[Juju][about-juju] is the recommended deploy agent (it will also install &
-configure services on the deployed nodes). If you simply want to use MAAS to
-install a base operating system and work on the machines manually then you can
-deploy a node directly with the web UI.
 
 Before deploying you should:
 
@@ -62,13 +65,11 @@ See [MAAS CLI][cli-deploy-a-node] for how to deploy a node with the CLI.  If
 doing so, you will first need to acquire the node explicitly, either via the
 web UI or the CLI.
 
-While a node is deploying its status will change to *Deploying to 'OS'*, where
-'OS' is the name of the OS being deployed (e.g. 'Deploying to Ubuntu 16.04
-LTS').
+While a node is deploying its status will change to *Deploying 'OS'*, where
+'OS' is the name of the OS being deployed (e.g. 'Deploying Ubuntu 16.04 LTS').
 
-Once a node has finished deploying its status will change to *Deployed*. The
-node now has an operating system installed and will accept SSH public key
-authentication requests to the 'ubuntu' account.
+Once a node has finished deploying its status will change to *Deployed 'OS'*
+(e.g. 'Deployed Ubuntu 16.04 LTS').
 
 
 ## Acquire nodes

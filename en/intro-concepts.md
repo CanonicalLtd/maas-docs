@@ -1,4 +1,4 @@
-Title: Concepts and Terms | MAAS 
+Title: Concepts and Terms
 TODO:  Consider CLI commands for every node action and link from here
        QA node actions
 table_of_contents: True
@@ -239,8 +239,14 @@ The node is in the process of commissioning. See node action 'Commission'.
 ### Deployed
 The node is deployed. See node action 'Deploy'.
 
+The visible status will be "Deployed" followed by the name of the chosen OS (e.g.
+'Deployed Ubuntu 16.04 LTS').
+
 ### Deploying
 The node is in the process of deploying. See node action 'Deploy'.
+
+The visible status will be *Deploying 'OS'*, where 'OS' is the name of the
+OS being deployed (e.g. 'Deploying Ubuntu 16.04 LTS').
 
 ### Entering rescue mode
 The node is in the process of entering rescue mode. See node action 'Rescue
@@ -299,7 +305,8 @@ be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
 implement maintenance, and then Commission.
 
 ### Delete
-Removes a node from MAAS. The underlying machine remains unaffected.
+Removes a node from MAAS. The underlying machine remains unaffected. Upon
+rebooting it will be enlisted once more (status 'New').
 
 ### Deploy
 Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
