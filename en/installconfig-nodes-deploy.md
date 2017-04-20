@@ -14,11 +14,11 @@ up or down, that is, if they will be regarded as a "cloud" resource, then
 [Juju][about-juju] is the recommended deploy agent (it will also install &
 configure services on the deployed nodes). If you simply want to use MAAS to
 install a base operating system and work on the machines manually then you can
-deploy a node directly with the web UI.
+deploy a node directly with MAAS.
 
-The deployed node, only if deployed within the web UI, will also be ready to
-accept connections via SSH to the 'ubuntu' user account providing an SSH key
-has been imported to the user's MAAS account. This is explained in
+The node, only if deployed with MAAS, will also be ready to accept connections
+via SSH to the 'ubuntu' user account providing an SSH key has been imported to
+the user's MAAS account. This is explained in
 [SSH keys][user-accounts-ssh-keys].
 
 !!! Note:
