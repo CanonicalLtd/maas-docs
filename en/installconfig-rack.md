@@ -1,5 +1,4 @@
-Title: Rack Controller | MAAS
-TODO:  Add CLI for deleting a rack controller
+Title: Rack Controller
 
 
 # Rack Controller
@@ -43,7 +42,7 @@ Once registered, if this is an extra rack controller, it will appear
 immediately alongside the primary controller in the web UI and begin to sync
 with it:
 
-![add controller][img__add-rackd]
+![install rackd][img__2.2_install-rackd]
 
 See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
 all registered rack controllers with the CLI.
@@ -73,9 +72,9 @@ Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
 !!! Note: 
-    Unless the software on this machine is removed, rebooting it will
-    cause the machine to re-instate itself as a rack controller. This behaviour may
-    change with future versions of MAAS.
+    Unless the software on this machine is removed, rebooting it will cause the
+    machine to re-instate itself as a rack controller. This behaviour may change
+    with future versions of MAAS.
 
 
 <!-- LINKS -->
@@ -89,4 +88,4 @@ Here, you are deleting a machine that is a part of MAAS itself.
 [ipv6]: installconfig-network-ipv6.md
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
-[img__add-rackd]: ../media/installconfig-rack__add-controller2.png
+[img__2.2_install-rackd]: ../media/installconfig-rack__2.2_install-rackd.png

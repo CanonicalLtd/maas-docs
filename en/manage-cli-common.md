@@ -1,4 +1,4 @@
-Title: Common CLI Tasks | MAAS
+Title: Common CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        There is a nuance between a single reserved address and a single address in a range (start and end addresses being the same). this could use some digging
 table_of_contents: True
@@ -25,9 +25,9 @@ maas $PROFILE nodes read | grep hostname
 ```
 
 
-## Determine a system ID
+## Determine a node's system ID
 
-To determine the system ID based on a node's hostname:
+To determine the system ID of a node based on its hostname:
 
 ```bash
 SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
@@ -35,22 +35,56 @@ SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
 ```
 
 
-## Commission a machine
+## Commission a node
 
-To commission a machine based on its system ID:
+To commission a node:
 
 ```bash
 maas $PROFILE machine commission $SYSTEM_ID
 ```
 
+!!! Note:
+    To commission a node it must have a status of 'New'.
 
-## Commission all machines
 
-To commission all machines in the 'Ready' state:
+## Commission all nodes
+
+To commission all nodes in the 'Ready' state:
 
 ```bash
 maas $PROFILE machines accept-all
 ```
+
+
+## Acquire a node
+
+To acquire/allocate a random node:
+
+```bash
+maas $PROFILE machines allocate
+```
+
+To acquire/allocate a specific node:
+
+```bash
+maas $PROFILE machines allocate system_id=$SYSTEM_ID
+```
+
+!!! Note:
+    To acquire a node it must have a status of 'Ready'.
+
+
+## Deploy a node
+
+To deploy a node:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID
+```
+
+!!! Note:
+    To deploy with the CLI the node must have a status of 'Allocated'. See
+    'Acquire a node' above (or use the [web UI][acquire-nodes]).
 
 
 ## Control subnet management
@@ -263,4 +297,5 @@ See [User Accounts][manage-account] for the latter.
 [manage-cli]: manage-cli.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [manage-account]: manage-account.md
+[acquire-nodes]: installconfig-nodes-deploy.md#acquire-nodes
 [anchor__set-a-default-gateway]: #set-a-default-gateway
