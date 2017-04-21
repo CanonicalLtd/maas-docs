@@ -1,4 +1,4 @@
-Title: Add Nodes | MAAS
+Title: Add Nodes
 TODO: Need instructions on adding a chassis
       See if 2.0 branch is using file virsh-config.png , delete if not
 table_of_contents: True
@@ -115,7 +115,7 @@ button and then select 'Machine'.
 Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
 being added:
 
-![image][img__2.1_add-node-manually]
+![image][img__2.2_add-node-manually]
 
 
 <!-- LINKS -->
@@ -125,4 +125,5 @@ being added:
 [commission-nodes]: installconfig-commission-nodes.md
 [anchor-add-a-node-manually]: #add-a-node-manually
 [power-types-example-virsh]: installconfig-power-types.md#example:-virsh-(kvm)-power-type
-[img__2.1_add-node-manually]: ../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png
+
+[img__2.2_add-node-manually]: ../media/installconfig-nodes-add__2.2_add-node-manually.png

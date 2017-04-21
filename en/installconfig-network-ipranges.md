@@ -1,4 +1,4 @@
-Title: IP Ranges | MAAS
+Title: IP Ranges
 TODO:  Rename image to correspond to this page's name
 
 
@@ -29,7 +29,7 @@ to enter start and end addresses for the range as well as a comment.
 Below is an example window when creating a 'reserved range' (both windows are
 actually identical):
 
-![reserved IP range][img__network-reserved-iprange]
+![Reserved IP range][img__2.2_add-reserved-iprange]
 
 Click the 'Reserve' button when done.
 
@@ -54,4 +54,4 @@ subnet in question. Confirm this action by clicking on the 'Remove' button.
 [dhcp]: installconfig-network-dhcp.md
 [cli-create-a-reserved-ip-range]: manage-cli-common.md#create-a-reserved-ip-range
 
-[img__network-reserved-iprange]: ../media/installconfig-network-static_image-reserved-range.png
+[img__2.2_add-reserved-iprange]: ../media/installconfig-network-ipranges__2.2_add-reserved-iprange.png

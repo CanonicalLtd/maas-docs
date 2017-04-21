@@ -1,4 +1,4 @@
-Title: Advanced CLI Tasks | MAAS
+Title: Advanced CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
        Update installconfig-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
        Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
@@ -211,12 +211,13 @@ You can get the above information from the web UI by visiting the 'Nodes' page,
 then the Controller tab, and clicking the button 'Add rack controller'. Here
 is an example of what you may see:
 
-![add controller][img__2.1_cli-add-controller]
+![cli-install-rackd][img__2.2_cli-install-rackd]
 
 Based on the above, then, we could have also entered:
 
 ```bash
-sudo maas-rack register --url http://10.5.1.5:5240/MAAS --secret 9500bf4c56558346c925c5d17819f878
+sudo maas-rack register --url http://10.5.1.5:5240/MAAS \
+	--secret fa847000e7cb681101d26e3477e6e39e
 ```
 
 
@@ -234,4 +235,4 @@ maas $PROFILE rack-controllers read | grep hostname | cut -d '"' -f 4
 [manage-cli]: manage-cli.md
 [cli-assign-tag-to-node]: manage-cli-common.md#assign-a-tag-to-a-node
 
-[img__2.1_cli-add-controller]: ../media/manage-maas-cli-advanced__2.1_add-controller.png
+[img__2.2_cli-install-rackd]: ../media/manage-maas-cli-advanced__2.2_install-rackd.png

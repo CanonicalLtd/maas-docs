@@ -1,4 +1,4 @@
-Title: Tags | MAAS
+Title: Tags
 TODO:  Cover how tags are used in the web UI (including XML output for a node)
        Track bug: https://bugs.launchpad.net/maas/+bug/1608629 (UI and tags)
 table_of_contents: True
@@ -27,10 +27,9 @@ deploy services onto machines managed by MAAS.
 
 A *tag definition* is the criteria by which nodes are auto-labelled by the
 corresponding tag. During node enlistment MAAS collects hardware information
-(using the [lshw][upstream-lshw] utility). The
-definition used in creating a tag is then constructed using an *XPath
-expression* based on that information. See
-[w3schools documentation][upstream-w3schools] for details on XPath. 
+(using the [lshw][upstream-lshw] utility). The definition used in creating a
+tag is then constructed using an *XPath expression* based on that information.
+See [w3schools documentation][upstream-w3schools] for details on XPath. 
 
 The collected data for each node, viewable (in both XML and YAML) in the web
 UI, is inspected by you for the desired property. Building on the example
@@ -90,11 +89,11 @@ several, tags. The nodes that satisfy all selected tags will display on the
 right pane. Notice there is a search field at the top of the right pane. This
 is where one can type in a search expression.
 
-Below, tags 'gpu2' and 'virtual' have been selected by mouse-clicking. The
+Below, tags 'gpu2' and 'virtual' have been selected (with the mouse) and the
 search field automatically reflects this. Three nodes satisfy this search
 filter (they have either of these tags).
 
-![tags: search][img__2.1_tags-search]
+![tags: search][img__2.2_tags-search]
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
@@ -106,7 +105,7 @@ To view a node's currently assigned tags stay on the 'Nodes' page and select
 the node in question. Tags that are currently assigned will be displayed.
 
 The following three actions are done while in a node's edit mode (click the
-'Edit' button). Changes are saved by pressing the 'Save changes' button.
+'Edit' button):
 
 - To unassign a tag hit the 'x' character alongside a tag.
 - To create a rudimentary tag type the name of the new tag in the 'Add a tag'
@@ -116,7 +115,9 @@ The following three actions are done while in a node's edit mode (click the
   real-time search. Any resulting tags will show up in a drop-down menu.
   Select as desired.
 
-![tags: add & remove][img__2.1_tags-add-remove]
+![tags: add & remove][img__2.2_tags-add-remove]
+
+Changes are applied by pressing the 'Save changes' button.
 
 ### Tags for network interfaces
 
@@ -124,13 +125,18 @@ Alongside tags for an entire node, it's also possible to assign tags to
 specific network interfaces. These tags can be used when searching for nodes
 within the web UI and when allocating machines from the API. 
 
-Network interface tags can only be assigned when a node is in either a 'Ready' or
-a 'Broken' state. With the machine selected from the 'Nodes' tab, find the
-'Interfaces' section and use the 'Edit' button on the far right of a listed
-interface to expand its details. To add a tag, enter its name into the 'Add a
-tag' field. Use the small 'x' next to a tag to unassign it.
+Network interface tags can only be assigned when a node is in either a 'Ready'
+or a 'Broken' state.
 
-![tags: net interface][img__2.1_tags-net-interface]
+With the machine selected from the 'Nodes' page, on the 'Interfaces' tab use
+the 'Edit' button (pencil icon) of an interface:
+
+![tags: net interface][img__2.2_tags-net-interface]
+
+To add a tag, type its name into the 'Tags' field and press Enter. Repeat as
+desired. Use the small 'x' next to a tag to unassign the tag.
+
+Changes are applied by pressing the 'Save' button.
 
 
 ## Tag management
@@ -154,6 +160,6 @@ aliases.
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
 [cli-tags]: manage-cli-tags.md 
 
-[img__2.1_tags-search]: ../media/installconfig-nodes-tags__2.1_tags-filter.png
-[img__2.1_tags-add-remove]: ../media/installconfig-nodes-tags__2.1_tags-add_remove.png
-[img__2.1_tags-net-interface]: ../media/installconfig-tags__tags-net-iface.png
+[img__2.2_tags-search]: ../media/installconfig-nodes-tags__2.2_tags-filter.png
+[img__2.2_tags-add-remove]: ../media/installconfig-nodes-tags__2.2_tags-add_remove.png
+[img__2.2_tags-net-interface]: ../media/installconfig-nodes-tags__2.2_tags-net-interface.png
