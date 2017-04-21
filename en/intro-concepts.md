@@ -329,7 +329,7 @@ rebooting it will be enlisted once more (status 'New').
 
 ### Deploy
 Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
-'Deploying' to 'Deployed'. Includes action 'Power on'.
+a deployed status. Includes action 'Power on'.
 
 If unsuccessful, the status becomes 'Failed deployment'.
 
