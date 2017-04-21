@@ -310,7 +310,7 @@ rebooting it will be enlisted once more (status 'New').
 
 ### Deploy
 Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
-'Deploying' to 'Deployed'. Includes action 'Power on'.
+'Deployed'. Includes action 'Power on'.
 
 If unsuccessful, the status becomes 'Failed deployment'.
 
@@ -318,7 +318,6 @@ Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
 
 ### Exit rescue mode
-
 Changes a node's status from 'Rescue mode' to the 'Exiting rescue mode'
 transitory status and then back to its original status when the operation is
 complete.
