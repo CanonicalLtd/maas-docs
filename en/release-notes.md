@@ -1,4 +1,4 @@
-Title: 2.2 Release Notes | MAAS
+Title: 2.2 Release Notes
 table_of_contents: True
 
 
