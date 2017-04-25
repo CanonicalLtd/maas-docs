@@ -128,8 +128,9 @@ KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
 
 ## Add an image source
 
-!!! Note: To avoid unnecessary complexity, you should probably delete any
-existing source before adding a new one.
+!!! Note: 
+    To avoid unnecessary complexity, you should probably delete any
+    existing source before adding a new one.
 
 Presented below are two use cases for adding an image source:
 

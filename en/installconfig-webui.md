@@ -1,4 +1,4 @@
-Title: Web UI | MAAS
+Title: Web UI
  
 
 # Web UI
@@ -29,8 +29,9 @@ The username can be anything. You will also be prompted to supply a password
 for the user. The command option `--password=$PASSWORD` can be used to specify
 one but, depending on your environment, this may pose a security risk.
 
-!!! Note: At this time MAAS does not make use of the email address. However, it
-may do so in the future.
+!!! Note: 
+    At this time MAAS does not make use of the email address. However, it
+    may do so in the future.
 
 You can now log in here:
 
@@ -38,7 +39,7 @@ You can now log in here:
 
 Where $API_HOST is the hostname or IP address of the region API server.
 
-![web UI login][img__webui-login]
+![web UI login][img__2.2_webui-login]
 
 The initial administrator will be shown the MAAS Dashboard after they log in
 for the first time. Here, there will be the option of embarking on a
@@ -72,4 +73,4 @@ is:
 [manage-cli]: manage-cli.md
 [device-discovery]: installconfig-network-dev-discovery.md
 
-[img__webui-login]: ../media/installconfig-webui__login.png
+[img__2.2_webui-login]: ../media/installconfig-webui__2.2_webui-login.png

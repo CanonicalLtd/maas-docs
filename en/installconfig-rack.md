@@ -1,5 +1,4 @@
-Title: Rack Controller | MAAS
-TODO:  Add CLI for deleting a rack controller
+Title: Rack Controller
 
 
 # Rack Controller
@@ -21,28 +20,40 @@ controller must be able to initiate TCP connections:
 
 ## Install a rack controller
 
-When a rack controller is installed on the same host as the region API server
-it will register itself automatically. Otherwise this will need to be done
-manually:
+Installing a rack controller consists of installing the rack controller
+software and then registering the rack controller with the region API server.
 
-To install and register a rack controller you can either use the
-Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd]) or the
-[MAAS CLI - advanced tasks][cli-install-rackd]. Both will require the URL of
-the region API server. For nodes on an [IPv6][ipv6] subnet, the URL must use a
-hostname instead of an IP address and it must resolve to both IPv4 and IPv6
-addresses, both on the rack controller and on the nodes.
+When a rack controller is installed on the same host as the region API server
+registration occurs automatically. This can occur by installing a complete
+environment on a single host in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso])
+1. Using Ubuntu packages: either the 'maas' metapackage or multiple individual
+   packages (see [Install from packages][install-from-packages])
+
+A rack controller can be installed on a host devoid of a region API server, and
+registered manually, in one of two ways:
+
+1. Using the Ubuntu Server ISO (see [Install from ISO][install-from-iso-rackd])
+1. Using the 'maas-rack-controller' Ubuntu package (see
+   [MAAS CLI - advanced tasks][cli-install-rackd])
 
 Once registered, if this is an extra rack controller, it will appear
-immediately in the web UI and begin to sync with the primary controller:
+immediately alongside the primary controller in the web UI and begin to sync
+with it:
 
-![add controller][img__add-rackd]
+![install rackd][img__2.2_install-rackd]
+
+See [MAAS CLI - advanced tasks][cli-list-rackd] for how to list (and confirm)
+all registered rack controllers with the CLI.
 
 Multiple rack controllers are needed in order to achieve specific types of
 high availability. See [MAAS HA][manage-ha].
 
-!!! Note: If you will be using KVM-backed nodes you must ensure that the new
-rack controller can communicate with the KVM host. See
-[KVM guest nodes][add-nodes-kvm-guest-nodes].
+!!! Note: 
+    If you will be using KVM-backed nodes you must ensure that the new
+    rack controller can communicate with the KVM host. See
+    [KVM guest nodes][add-nodes-kvm-guest-nodes].
 
 
 ## Unregister a rack controller
@@ -60,17 +71,20 @@ there is no longer the possibility of having it).
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.
 
-!!! Note: Unless the software on this machine is removed, rebooting it will
-cause the machine to re-instate itself as a rack controller. This behaviour may
-change with future versions of MAAS.
+!!! Note: 
+    Unless the software on this machine is removed, rebooting it will cause the
+    machine to re-instate itself as a rack controller. This behaviour may change
+    with future versions of MAAS.
 
 
 <!-- LINKS -->
 
+[install-from-iso]: installconfig-iso-install.md
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
+[install-from-packages]: installconfig-package-install.md
 [manage-ha]: manage-ha.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
-[ipv6]: installconfig-network-ipv6.md
+[cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
 [add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
 
-[img__add-rackd]: ../media/installconfig-rack__add-controller2.png
+[img__2.2_install-rackd]: ../media/installconfig-rack__2.2_install-rackd.png

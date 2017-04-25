@@ -1,4 +1,4 @@
-Title: Networking | MAAS
+Title: Networking
 TODO:  Bug check: https://goo.gl/mPKBRl
        Not sure about the purpose of "deleting" a subnet. Won't it reappear eventually?
 
@@ -13,14 +13,14 @@ See [Concepts and terms][concepts] for the definitions of networking objects.
 
 To access the main networking view visit the 'Subnets' page:
 
-![networking main page][img__2.1_networking-main]
+![subnets page][img__2.2_subnets]
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
 topology being represented here, some elements are used multiple times. To be
-clear, in this example there are 3 fabrics, 1 VLAN, 3 subnets, and 1 space. All
-such elements should be detected automatically by MAAS but if they're not each
-can be added manually using the 'Add' button. 
+clear, in this example there are 3 fabrics, 1 VLAN, and 3 subnets, and 1
+(undefined) space. All such elements should be detected automatically by MAAS
+but if they're not each can be added manually using the 'Add' button. 
 
 This main view can also be filtered either by fabrics or by spaces through the
 use of the 'Group by' dropdown.
@@ -37,24 +37,28 @@ reasons, a subnet will now be examined in more detail.
 
 ### Subnet window
 
-Clicking a subnet (here `10.248.64.0/19`) will display its window. We'll look
+Clicking a subnet (here `192.168.1.0/24`) will display its window. We'll look
 at this example window by sections.
 
 The **Subnet summary** section:
 
-![networking subnets page summary][img__networking-subnets-summary]
+![networking subnets page summary][img__2.2_subnets-summary]
 
-!!! Warning: The fields in this section are immediately editable and changes
-are applied instantly.
+!!! Warning: 
+    The fields in this section are immediately editable and changes
+    are applied instantly.
 
 Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
 'Description', are entered. Gateway and DNS values are passed to nodes for
 commissioning and, if DHCP is MAAS-managed, for deploying too. There is also
-the option of changing the subnet's fabric, VLAN, and space providing your
-network topology allows for it.
+the option of changing the subnet's fabric and VLAN. Spaces are managed at the
+VLAN level.
 
-When the 'Active mapping' checkbox is enabled, MAAS will scan the subnet every
-3 hours to discover hosts that have not been discovered passively. 
+'Managed allocation' refers to the ability of MAAS to completely manage a
+subnet. See [Subnet management][subnet-management].
+
+When 'Active mapping' is enabled, MAAS will scan the subnet every 3 hours to
+discover hosts that have not been discovered passively. 
 
 The **Static Routes** section:
 
@@ -69,31 +73,31 @@ edit pane. Enter a Gateway IP address, select a destination subnet from the
 Clicking 'Add' will activate the route. Routes can be edited and removed using
 the icons to the right of each entry. 
 
-![networking static routes configuration][img__networking-static-routes]
+![networking static routes configuration][img__2.2_subnets-routes]
 
 The **Utilisation** section:
 
-![networking subnets utilisation][img__networking-subnets-utilisation]
+![networking subnets utilisation][img__2.2_subnets-utilisation]
 
 'Subnet addresses' shows the total number of addresses associated
-with the subnet, here 8190. 'Availability' shows how many of those addresses
-are unused, and therefore "available", here 8074, which corresponds to a
-percentage of roughly 99% of the total. Finally, 'Used' shows the percentage
-that *is* used, here roughly 1%.
+with the subnet, here 254. 'Availability' shows how many of those addresses
+are unused, and therefore "available", here 189, which corresponds to a
+percentage of roughly 74% of the total. Finally, 'Used' shows the percentage
+that *is* used, here roughly 26%.
 
 The **Reserved** section:
 
-![networking subnets reserved][img__networking-subnets-reserved]
+![networking subnets reserved][img__2.2_subnets-reserved]
 
 This shows the *reserved IP ranges*. This is an important subject and is
 treated separately in [IP ranges][ipranges].
 
 The **Used** section:
 
-![networking subnets used][img__networking-subnets-used]
+![networking subnets used][img__2.2_subnets-used]
 
-This section displays hosts (not necessarily MAAS nodes) associated with the
-used addresses along with related bits of host information.
+This section displays hosts (including controllers) associated with the used
+addresses along with related bits of host information.
 
 
 <!-- LINKS -->
@@ -101,10 +105,11 @@ used addresses along with related bits of host information.
 [concepts]: intro-concepts.md
 [enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
 [ipranges]: installconfig-network-ipranges.md
+[subnet-management]: installconfig-network-subnet-management.md
 
-[img__2.1_networking-main]: ../media/installconfig-networking__2.1_main.png
-[img__networking-static-routes]: ../media/installconfig-networking__static-routes.png
-[img__networking-subnets-summary]: ../media/installconfig-networking__subnets-summary.png
-[img__networking-subnets-utilisation]: ../media/installconfig-networking__subnets-utilisation.png
-[img__networking-subnets-reserved]: ../media/installconfig-networking__subnets-reserved.png
-[img__networking-subnets-used]: ../media/installconfig-networking__subnets-used.png
+[img__2.2_subnets]: ../media/installconfig-networking__2.2_subnets.png
+[img__2.2_subnets-summary]: ../media/installconfig-networking__2.2_subnets-summary.png
+[img__2.2_subnets-routes]: ../media/installconfig-networking__2.2_subnets-routes.png
+[img__2.2_subnets-utilisation]: ../media/installconfig-networking__2.2_subnets-utilisation.png
+[img__2.2_subnets-reserved]: ../media/installconfig-networking__2.2_subnets-reserved.png
+[img__2.2_subnets-used]: ../media/installconfig-networking__2.2_subnets-used.png
