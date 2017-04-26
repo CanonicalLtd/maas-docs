@@ -45,10 +45,10 @@ of the node's network interfaces to be connected to the fabric, VLAN, and
 subnet combination that will allow it to be configured. By default, a static IP
 address will be assigned out of the reserved IP range for the subnet. That is,
 an IP assignment mode of 'Auto assign' will be used. See the next section for
-details on assignment nodes.
+details on assignment modes.
 
-See [MAAS CLI][cli-commission-all-machines] for how to commission all machines
-with the 'New' status.
+See [MAAS CLI][cli-commission-a-node] for how to commission a node with the
+CLI.
 
 Once a node is commissioned its status will change to *Ready* and an extra tab
 for the node called 'Commissioning' will become available. This tab contains
@@ -125,7 +125,7 @@ allocation time using the API.
 <!-- LINKS -->
 
 [add-nodes]: installconfig-add-nodes.md
-[cli-commission-all-machines]: manage-cli-common.md#commission-all-machines
+[cli-commission-a-node]: manage-cli-common.md#commission-a-node
 [tags]: installconfig-tags.md
 [deploy-nodes]: installconfig-nodes-deploy.md
 [tags-network-interfaces]: installconfig-tags.html#tags-for-network-interfaces

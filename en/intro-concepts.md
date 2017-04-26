@@ -1,4 +1,4 @@
-Title: Concepts and Terms | MAAS 
+Title: Concepts and Terms
 TODO:  Consider CLI commands for every node action and link from here
        QA node actions
 table_of_contents: True
@@ -266,8 +266,13 @@ The node is in the process of commissioning. See node action 'Commission'.
 ### Deployed
 The node is deployed. See node action 'Deploy'.
 
+The visible status will be the name of the chosen OS (e.g. 'Ubuntu 16.04 LTS').
+
 ### Deploying
 The node is in the process of deploying. See node action 'Deploy'.
+
+The visible status will be *Deploying to 'OS'*, where 'OS' is the name of the
+OS being deployed (e.g. 'Deploying to Ubuntu 16.04 LTS').
 
 ### Entering rescue mode
 The node is in the process of entering rescue mode. See node action 'Rescue
@@ -311,6 +316,10 @@ Deploy.
 Allocates (reserves) a node to the MAAS user performing the action (and
 currently logged in). Changes a node's status from 'Ready' to 'Allocated'.
 
+With the CLI, it is necessary to perform this action prior to deploying. With
+the web UI it is done automatically for the user. Acquiring in the web UI is
+used for machine reservation.
+
 ### Commission
 Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 'Ready'.
@@ -322,11 +331,12 @@ be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
 implement maintenance, and then Commission.
 
 ### Delete
-Removes a node from MAAS. The underlying machine remains unaffected.
+Removes a node from MAAS. The underlying machine remains unaffected. Upon
+rebooting it will be enlisted once more (status 'New').
 
 ### Deploy
-Deploys a node. Changes a node's status from 'Ready' to 'Deploying' to
-'Deployed'. Includes action 'Power on'.
+Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
+a deployed status. Includes action 'Power on'.
 
 If unsuccessful, the status becomes 'Failed deployment'.
 
