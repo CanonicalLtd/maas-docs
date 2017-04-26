@@ -14,8 +14,8 @@ dynamic composition of physical systems from a pool of available hardware
 resources (e.g. disk space, memory, cores). It is an example of *composable
 hardware*.
 
-This means a machine request can be made without having to make available
-machines beforehand. Modelling tools, such as [Juju][about-juju], can leverage
+This means a machine request can be made without having to make machines
+available beforehand. Modelling tools, such as [Juju][about-juju], can leverage
 this functionality when requesting a machine from MAAS, which will dynamically
 **create** and Deploy one. Machines can also be requested directly from within
 MAAS.

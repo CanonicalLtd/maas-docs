@@ -4,8 +4,8 @@ table_of_contents: True
 
 # CLI Composable Hardware
 
-This is a list of composable hardware tasks to perform with the MAAS CLI. See
-[MAAS CLI][manage-cli] for how to get started with the CLI and
+This is a list of composable hardware tasks which can be performed with the
+MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
 [Composable hardware][intel-rsd] for an overview of the subject matter
 (including web UI functionality).
 
