@@ -118,7 +118,7 @@ navigation:
             location: installconfig-nodes-deploy.md
 
           - title: Tags
-            location: installconfig-tags.md
+            location: installconfig-nodes-tags.md
 
           - title: Kernel boot options
             location: installconfig-nodes-kernel-boot-options.md
