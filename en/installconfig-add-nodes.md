@@ -1,4 +1,4 @@
-Title: Add Nodes | MAAS
+Title: Add Nodes
 TODO: Need instructions on adding a chassis
       See if 2.0 branch is using file virsh-config.png , delete if not
 table_of_contents: True
@@ -124,5 +124,6 @@ being added:
 [concepts-actions]: intro-concepts.md#node-actions
 [commission-nodes]: installconfig-commission-nodes.md
 [anchor-add-a-node-manually]: #add-a-node-manually
-[power-types-example-virsh]: installconfig-power-types.md#example:-virsh-(kvm)-power-type
+[power-types-example-virsh]: installconfig-nodes-power-types.md#example:-virsh-(kvm)-power-type
+
 [img__2.1_add-node-manually]: ../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png
