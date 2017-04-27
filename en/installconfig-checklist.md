@@ -1,4 +1,4 @@
-Title: Installation and Configuration Checklist | MAAS
+Title: Installation and Configuration Checklist
 table_of_contents: True
 
 
@@ -150,7 +150,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [dhcp]: installconfig-network-dhcp.md
 [add-nodes]: installconfig-add-nodes.md
 [manage-account]: manage-account.md
-[power-types]: installconfig-power-types.md
+[power-types]: installconfig-nodes-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [deploy-nodes]: installconfig-nodes-deploy.md
