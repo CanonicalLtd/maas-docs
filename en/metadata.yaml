@@ -106,7 +106,7 @@ navigation:
             location: installconfig-add-nodes.md
 
           - title: BMC power types
-            location: installconfig-power-types.md
+            location: installconfig-nodes-power-types.md
 
           - title: Commission nodes
             location: installconfig-commission-nodes.md
