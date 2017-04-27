@@ -1,5 +1,5 @@
 Title: Storage
-TODO:  Full review required, especially first paragraph (e.g. partitions *are* block devices)
+TODO:  partitions *are* block devices (?)
 table_of_contents: True
 
 
@@ -12,12 +12,10 @@ complex options such as Bcache, RAID, and LVM.
 A MAAS storage template is called a *layout*, and it gets applied to a
 node when it is commissioned.
 
-It is possible for a regular user to apply a different layout altogether. It
-is equally possible for a regular user to make modifications to a node after a
-layout is applied in order to arrive at the node's final storage configuration.
-
-The different layouts are presented in detail lower down. How layouts get
-chosen and what modifications are possible are also shown.
+It is possible for an administrator to override the default with a different
+layout. It is equally possible for a regular user to make modifications to a
+node after a layout is applied in order to arrive at the node's final storage
+configuration.
 
 
 ## UEFI
@@ -146,16 +144,15 @@ If set to true no partition will be created and the raw cache device will be
 used as the cache.
 
 
-## Setting the layout
+## Setting layouts
 
-All nodes will have a default layout applied when commissioned. However, it's
-possible for a user to customize the layout providing this is done prior to
-acquiring it.
+Layouts can be set globally and on a per-node basis.
 
 ### Default layout
 
-An administrator can configure the default storage layout on the 'Settings'
-page, under the 'General' tab. The section is labelled 'Storage':
+All nodes will have a default layout applied when commissioned. An
+administrator can configure the default layout on the 'Settings' page, under
+the 'General' tab. The section is labelled 'Storage':
 
 ![default storage layout][img__2.2_default-storage-layout]
 
@@ -168,10 +165,18 @@ the erasing of disks.
 To change the default with the CLI see
 [MAAS CLI - advanced tasks][cli-default-storage-layout].
 
-### User layout
+### Node layout
 
-A user can adjust the layout provided by the default. This is only possible via
-the CLI. See [MAAS CLI - advanced tasks][cli-user-storage-layout].
+An administrator can change the layout for a single node as well as customize
+that layout providing this is done while the node has a status of 'Ready'. This
+is only possible via the CLI at this time (see
+[MAAS CLI - advanced tasks][cli-set-storage-layout]).
+
+
+## Final storage modifications
+
+Once a node has been assigned a layout a regular user can perform modifications
+on the corresponding storage configuration.
 
 
 <!-- LINKS -->
@@ -180,6 +185,6 @@ the CLI. See [MAAS CLI - advanced tasks][cli-user-storage-layout].
 [partitions]: installconfig-partitions.md
 [storage-erasure]: installconfig-storage-erasure.md
 [cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
-[cli-user-storage-layout]: manage-cli-advanced.md#set-a-user-storage-layout
+[cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
 
 [img__2.2_default-storage-layout]: ../media/installconfig-storage__2.2_default-storage-layout.png
