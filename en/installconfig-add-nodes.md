@@ -82,8 +82,10 @@ Add the public key to file `/home/<USER>/.ssh/authorized_keys` on the KVM host:
 ssh-copy-id -i ~/.ssh/id_rsa <USER>@<KVM_HOST>
 ```
 
-Where `<KVM_HOST>` is the IP address of the KVM host and `<USER>` is a user
-(typically an admin with sudo access) on the KVM host.
+Where $KVM_HOST represents the IP address of the KVM host and $USER represents
+a user on the KVM host with the permission to communicate with the libvirt
+daemon. The latter is achieved via group membership, typically the `libvirtd`
+group.
 
 !!! Note: 
     You may need to (temporarily) configure sshd on the KVM host to
@@ -96,6 +98,11 @@ virsh -c qemu+ssh://<USER>@<KVM_HOST>/system list --all
 ```
 
 This should work seamlessly because the private key is passphraseless.
+
+!!! Note:
+    Insufficient permissions for $USER may cause the `virsh` command to fail
+    with an error such as `failed to connect to the hypervisor`. Check the
+    user's group membership.
 
 Exit from the 'maas' user's shell:
 
