@@ -85,6 +85,11 @@ ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
 Where $KVM_HOST represents the IP address of the KVM host and $USER represents
 a user (typically an admin with sudo access) on the KVM host.
 
+!!! Note:
+    The user on the KVM host needs to be member of a group that has read/write
+    access the libvirtd socket.
+    (Typically group `libvirtd` and socket `/var/run/libvirt/libvirt-sock`)
+
 !!! Note: 
     You may need to (temporarily) configure sshd on the KVM host to
     honour password authentication for the `ssh-copy-id` command to succeed.
@@ -96,6 +101,14 @@ virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 ```
 
 This should work seamlessly because the private key is passphraseless.
+
+!!! Note:
+    If you get an error like mentioned below, you may have forgotten to add
+    the user on the KVM host to a group with access to the libvirtd socket.
+```
+error: failed to connect to the hypervisor
+error: End of file while reading data: nc: unix connect failed: Permission denied: Input/output error
+```
 
 Exit from the 'maas' user's shell:
 
