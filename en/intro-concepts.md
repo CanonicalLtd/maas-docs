@@ -161,12 +161,14 @@ IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
 - **Reserved range**  
-  There are two modes for a reserved range, depending on whether the subnet is
-  managed or unmanaged:  
-    - **Managed**: MAAS will never use addresses in this range. They can be used
-      for anything (e.g. infrastructure systems, network hardware, external DHCP,
-      or the namespace for an OpenStack cloud you will be building).
-    - **Unmanaged**: MAAS will *only* use addresses in this range.  
+  Mode operates differently depending on whether the subnet is managed or
+  unmanaged:
+    - **Managed (subnet)**:
+      MAAS will never assign IP addresses inside this range. They can be
+      used for anything (e.g. infrastructure systems, network hardware,
+      external DHCP, or the namespace for an OpenStack cloud you will be building).
+    - **Unmanaged (subnet)**:
+      MAAS will only assign IP addresses inside this range.
 - **Reserved dynamic range**  
   An IP range that MAAS will use for enlisting, commissioning and, if
   MAAS-managed DHCP is enabled on the node's VLAN during commissioning,
