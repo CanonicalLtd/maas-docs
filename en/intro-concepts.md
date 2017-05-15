@@ -155,23 +155,23 @@ supports IPv4 and IPv6 subnets. Examples:
 2001:db8:4d41:4153::/64
 ```
 
-
 ### IP ranges
 
 IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
-- **Reserved range** For a MAAS managed subnet this is an IP range that MAAS will
-  never use. You can use it for anything you want (e.g. infrastructure systems,
-  network hardware, external DHCP, or the namespace for an OpenStack cloud you
-  will be building). Alternatively, for an MAAS unmanaged subnet, only addresses
-  in this range are used by MAAS.
-
-- **Reserved dynamic range** An IP range that MAAS will use for enlisting,
-  commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during
-  commissioning, deploying. An initial range is created as part of the DHCP
-  enablement process if done with the web UI. For an unmanaged subnet, this
-  range is never used.
+- **Reserved range**  
+  There are two modes for a reserved range, depending on whether the subnet is
+  managed or unmanaged:  
+    - **Managed**: MAAS will never use addresses in this range. They can be used
+      for anything (e.g. infrastructure systems, network hardware, external DHCP,
+      or the namespace for an OpenStack cloud you will be building).
+    - **Unmanaged**: MAAS will *only* use addresses in this range.  
+- **Reserved dynamic range**  
+  An IP range that MAAS will use for enlisting, commissioning and, if
+  MAAS-managed DHCP is enabled on the node's VLAN during commissioning,
+  deploying. An initial range is created as part of the DHCP enablement process
+  if done with the web UI. For an unmanaged subnet, this range is never used.
 
 See [IP ranges][ip-ranges] for how these ranges get created and 
 [Commission nodes][post-commission-configuration] for how they get used and
