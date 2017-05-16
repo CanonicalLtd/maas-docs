@@ -1,4 +1,4 @@
-Title: Contributing to Documentation | MAAS
+Title: Contributing to Documentation
 TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
