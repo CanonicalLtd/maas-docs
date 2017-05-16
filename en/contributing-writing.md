@@ -1,46 +1,26 @@
-Title: Contributing to Documentation
+Title: Writing Guide
 TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
-# Contributing to Documentation
+# Writing Guide
 
-MAAS documentation is hosted on [GitHub][upstream-github] and published on
-[https://docs.ubuntu.com/maas][maas-docs]. Its source documents are written in
-standard [GitHub Flavored Markdown][github-gfm] (GFM) format, which is very
-easy to work with. Conventions have been added to support features such as
-*foldouts* and *admonishments* (explained below).
+This documentation is written in GitHub Flavored Markdown. GFM conventions
+have been added to support features such as *foldouts* and *admonishments*
+(explained below).
 
 GFM cheat sheets are available on
 [askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
 [github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 
-## Documentation bugs
+## Contributions
 
-Bugs for documentation issues are submitted here:
+A doc contribution ends up being called a *GitHub PR (pull request)*. The
+process involved in producing one is described on the [Working with Git and
+GitHub][contributing-git] page.
 
-https://github.com/CanonicalLtd/maas-docs/issues/new
-
-and listed here:
-
-https://github.com/CanonicalLtd/maas-docs/issues
-
-
-## Contributing to a web page
-
-Here is an overview of what's involved in getting a change published on the website:
-
-1. [Fork][github-help-fork] the
-   [MAAS documentation repository][github-maas-docs]
-1. Clone that fork on your local system
-1. Create a branch from your local fork/clone
-1. Enter that branch and edit the source documents
-1. View the HTML locally
-1. Push your branch to your fork (on GitHub)
-1. [Create a Pull Request][github-help-pr] for that branch
-
-A Documentation team member will review your work, suggest improvements, and
+A Documentation team member will review your PR, suggest improvements, and
 eventually merge it with the appropriate branch (series). Publication to the
 website is a separate step (performed internally), so it can be a few days
 before the changes actually show up. Please be patient!
@@ -376,12 +356,8 @@ Please follow these guidelines for style and language:
 
 <!-- LINKS -->
 
-[upstream-github]: http://github.com
 [maas-docs]: https://docs.ubuntu.com/maas
-[github-gfm]: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github
-[github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
-[github-help-fork]: https://help.github.com/articles/fork-a-repo
-[github-help-pr]: https://help.github.com/articles/creating-a-pull-request
+[contributing-git]: contributing-git.md
 [github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
 [gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
 [gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
