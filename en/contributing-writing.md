@@ -4,13 +4,9 @@ table_of_contents: True
 
 # Writing Guide
 
-This documentation is written in GitHub Flavored Markdown. GFM conventions
-have been added to support features such as *foldouts* and *admonishments*
-(explained below).
+This page contains detailed information on how to become a successful MAAS
+documentation writer. Welcome to the club.
 
-GFM cheat sheets are available on
-[askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
-[github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
 ## Contribution overview
 
@@ -31,32 +27,45 @@ before the changes actually show up. Please be patient!
 
 Please follow these guidelines for style and language:
 
-- Resist being overly formal.
-- Remember that the average reader is a user, not a developer.
 - Use a spell checker.
-- Use British English (en-GB). See
-  [language details][contributing-en-gb], including a comparison with American
-  English (en-US).
-- If including links or examples, ensure they actually work.
+- Resist being overly formal.
+- Verify hyperlinks and examples.
+- Target audience: intermediate system administrator, not a developer.
+- Use British English (en-GB). See [language details][contributing-en-gb],
+  including a comparison with American English (en-US).
 - Use a maximum of 80 columns for files. Here are instructions for the
-  [vim][vim-eighty-columns] and [emacs][emacs-eighty-columns] editors.
-- An exception to the above is a link. __Never break a link with a carriage
-  return__. This includes the `[text][label]` and `[label]: destination`
-  combinations.
+  [vim][vim-eighty-columns] editor.
+- An exception to the above is a hyperlink. Never break one with a carriage
+  return. This includes the `[text][label]` and `[label]: destination`
+  combinations. Hyperlinks are explained lower down.
+
+
+## GitHub Flavored Markdown
+
+This documentation is written in GitHub Flavored Markdown. GFM conventions
+have been added to support features such as *foldouts* and *admonishments*
+(explained later).
+
+GFM is very easy to write with. Get started by looking over the below
+resources:
+
+- [askubuntu.com][gfm-cheatsheet-askubuntu]
+- [github.com][gfm-cheatsheet-github]
+
 
 ## Metadata
 
 Metadata can be included in any file. Currently, this is used for:
 
 - title element
-- todo list (file improvements)
+- TODO list (file improvements)
 - table of contents
 
 This information is written as key:value pairs **at the very top** of the
 page. For example:
 
 ```no-highlight
-Title: Install from ISO | MAAS
+Title: Install from ISO
 TODO: images need updating when Ubuntu 17.04 is released
       check for changes to bug https://pad.lv/1625211 and modify text accordingly
 table_of_contents: True
@@ -70,6 +79,7 @@ Text goes here blah blah blah
 - The table of contents will contain only level 2 headers.
 - The metadata section is terminated by a blank line.
 
+
 ## Sections
 
 Text is organised into sections. These are auto-generated, there is nothing
@@ -78,6 +88,7 @@ extra you need to do:
     # Top level header (typically the same as the Title element)
     ## Second level header
     ### Third level header
+
 
 ## Code blocks
 
@@ -91,6 +102,7 @@ followed by the type of code:
 
 The most common *types* used are: `bash`, `yaml`, `json`, and `no-highlight`.
 
+
 ## Inline code
 
 Use a backtick to `inline filenames and other literals` like this:
@@ -98,6 +110,7 @@ Use a backtick to `inline filenames and other literals` like this:
 ```no-highlight
 Use a backtick to `inline filenames and other literals`.
 ```
+
 
 ## Admonishments
 
@@ -175,6 +188,7 @@ The above examples will appear as:
 
 !!! Positive "": 
     I'm done, and I feel fine.
+
 
 ## Foldouts
 
@@ -324,4 +338,3 @@ highlighting this change and why it is needed.
 [contributing-en-gb]: contributing-en-GB.md
 [contributing-build]: contributing-build.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
-[emacs-eighty-columns]: http://www.emacswiki.org/emacs/EightyColumnRule

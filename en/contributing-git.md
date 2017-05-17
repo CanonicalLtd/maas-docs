@@ -4,8 +4,8 @@ table_of_contents: True
 
 # Working with Git and GitHub
 
-This page will attempt to provide a complete guide to working with Git and
-GitHub with the goal of effectively contributing to MAAS documentation.
+This page provides the essentials for working with Git and GitHub with the goal
+of effectively contributing to MAAS documentation.
 
 
 ## Initial setup
@@ -15,36 +15,47 @@ once.
 
 ### GitHub account
 
-A [GitHub account][github-account] will be required. Sign up now.
+A [GitHub account][github-account] will be required. Sign up now!
+
+Verify your email address by responding to the email notification you will
+receive.
+
+The remainder of this page will refer to your GitHub username as **$GH_USERNAME**.
 
 ### Fork the repository on GitHub
 
-A copy of the main (upstream) MAAS doc repository will be needed. This will
+A copy of the main (upstream) MAAS docs repository will be needed. This will
 become your working area. All your changes will be put there and then merged
 into the upstream repo. *Branches* of proposed changes are never created in
 the upstream repository directly. This copy is known as a *fork*.
 
-So, within GitHub, [fork][github-help-fork] the
-[MAAS documentation repository][github-maas-docs] now. This fork will become
-visible in your GitHub account: `https://github.com/{yourusername}/maas-docs`
+Go to the [MAAS docs repository][github-maas-docs] now and fork it by pressing
+the Fork button in the top-right area:
+
+![fork maas-docs][github-maas-docs-fork]
+
+The URL of your fork will be:
+
+`https://github.com/$GH_USERNAME/maas-docs`
 
 ### Clone your fork locally
 
-A clone is a copy of a repository, including all metadata and history (commits,
-merges, etc). Since you cannot make changes in GitHub itself (where your fork
-currently resides) a copy of your fork will be needed on your local computer.
+A clone is a local copy of a repository, including all metadata and history
+(commits, merges, etc). Since you cannot make changes in GitHub itself (where
+your fork currently resides) a copy of your fork will be needed on your local
+computer.
 
 Clone your fork now and move into the main doc directory:
 
 ```bash
-git clone https://github.com/{yourusername}/maas-docs {yourusername}-maas-docs
+git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs
 ```
 
 ### Add the upstream remote
 
-Add a *remote* to your local repository. This links it with the upstream 
-version of the documentation, making it easy to keep your local
-branches in sync with upstream:
+Add a *remote* to your local repository. This links it with the upstream
+version of the documentation, making it easy to keep your local branches in
+sync with upstream:
 
 ```bash
 git remote add upstream https://github.com/CanonicalLtd/maas-docs
@@ -57,11 +68,12 @@ git remote add upstream https://github.com/CanonicalLtd/maas-docs
    changes:
 
 ```bash
-cd {yourusername}-maas-docs/en
+cd $GH_USERNAME-maas-docs/en
 git checkout -b {branchname}
 ```
 
-2. Make your changes with your favourite editor. See the [Writing guide][contributing-writing].
+2. Make your changes with your favourite editor.
+   See the [Writing guide][contributing-writing].
 
 3. Check which files that have been added or modified:
 
@@ -81,7 +93,7 @@ To rename or delete files use the commands `git mv` and `git rm` respectively.
 5. Make a *commit* to save your changes locally:
 
 ```bash
-git commit -m "my commit message which says something useful"
+git commit -m "a message which describes the change"
 ```
 
 6. Verify the HTML by building the docs locally. See
@@ -101,8 +113,7 @@ easier by any of:
  - caching your [password](https://help.github.com/articles/caching-your-github-password-in-git/)
 
 You can push your changes to GitHub at any time (i.e. you do not need to be
-finished your intended work). Doing so can be seen as a form of off-disk
-backup.
+finished your intended work). Doing so can be a form of off-disk backup.
 
 8. [Create a Pull Request][github-help-pr] (PR). This is done within GitHub:
 Navigate to your branch and hit the compare button - 
@@ -131,22 +142,32 @@ Before creating another feature branch, make sure you update your fork's code
 by pulling from the original MAAS repository (see below).
 
 
-## Keeping your fork in sync with MAAS docs upstream
+## Syncing fork branches with the upstream repository
 
-You should now have both the upstream branch and your fork listed in git, 
-`git remote -v` should return something like:
+You should now have both the upstream repository and your fork listed in git: 
 
-        upstream   	https://github.com/CanonicalLtd/maas-docs.git (fetch)
-        upstream	https://github.com/CanonicalLtd/maas-docs.git (push)
-        origin  	https://github.com/marksmith/maas-docs (fetch)
-        origin  	https://github.com/marksmith/maas-docs (push)
+```bash
+git remote -v
+```
 
-To fetch and merge with the upstream branch:
+The output should look like:
 
-        git checkout master
-        git fetch upstream
-        git merge --ff-only upstream/master
-        git push origin master
+```no-highlight
+upstream   	https://github.com/CanonicalLtd/maas-docs.git (fetch)
+upstream	https://github.com/CanonicalLtd/maas-docs.git (push)
+origin  	https://github.com/$GH_USERNAME/maas-docs (fetch)
+origin  	https://github.com/$GH_USERNAME/maas-docs (push)
+```
+
+To sync one of your fork's branches (both locally and on GitHub), say 'master',
+with the corresponding upstream branch:
+
+```bash
+git fetch upstream	             # Get all data on the upstream repository
+git checkout master		     # Move in to your local 'master' branch
+git merge --ff-only upstream/master  # Sync your your local branch with the upstream 'master' branch
+git push origin master		     # Sync your fork on GitHub with your now-updated local branch
+```
 
 
 ## Additional resources
@@ -182,48 +203,12 @@ Below are a few helpful aliases that have been suggested:
     # git qa-pr maas-docs 6 qa-sticky-headers
     qa-pr = "!sh -c 'git checkout develop; git pull $0 develop; git checkout -b $2; git fetch-pr $0 $1; git merge pr/$1'"
 
-# A Title That Is Capitalized
-
-This is explained in [SSH keys][user-accounts-ssh-keys].
-
-This is an ordered list:
-
-1. DHCP server is contacted
-1. cloud-init triggers deployment process
-    1. curtin installation script is run
-    1. Squashfs image (same as above) is placed on disk
-
-!!! Note:
-    This is an admonishment that refers to a file. See
-    `/etc/maas/preseed` directory.
-
-
-## A second level header that isn't capitalized
-
-[Juju][about-juju] is the recommended deploy agent.
-
-This is an unordered list:
-
-- review the [Kernel boot options][kernel-boot-options].
-- ensure any SSH keys are imported (see [SSH keys][user-accounts-ssh-keys]).
-
-
-### A third level header that isn't capitalized
-
-To deploy directly from MAAS simply press the 'Deploy' button:
-
-![deploy][img__2.1_deploy-nodes]
-
-Don't forget to install a second rack controller. See
-[Rack controller][install-rackd] for details.
-
 
 <!-- LINKS -->
 
-[github-account]: https://github.com/join](https://github.com/join
+[github-account]: https://github.com/join
 [github-help-pr]: https://help.github.com/articles/creating-a-pull-request
 [github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
-[github-help-fork]: https://help.github.com/articles/fork-a-repo
 [contributing-writing]: contributing-writing.md
 [contributing-build]: contributing-build.md
 [user-accounts-ssh-keys]: manage-account.md#ssh-keys
@@ -232,3 +217,4 @@ Don't forget to install a second rack controller. See
 [install-rackd]: installconfig-rack.md#install-a-rack-controller
 
 [img__2.1_deploy-nodes]: ../media/installconfig-nodes-deploy-nodes__2.1_deploy.png
+[github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png

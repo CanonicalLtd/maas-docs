@@ -20,8 +20,8 @@ To build the HTML, while in the root of the MAAS docs repository:
 /snap/bin/documentation-builder
 ```
 
-See the [documentation-builder GitHub project][github-documentation-builder]
-for details.
+See the [documentation-builder project][github-documentation-builder] for
+details.
 
 You will now need a web server. See the
 [Ubuntu Server Guide][ubuntu-serverguide-apache] for instructions on setting up
