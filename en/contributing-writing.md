@@ -1,5 +1,4 @@
 Title: Writing Guide
-TODO: can add more user-friendly instructions on setting up local web server
 table_of_contents: True
 
 
@@ -13,19 +12,39 @@ GFM cheat sheets are available on
 [askubuntu.com (editing-help)][gfm-cheatsheet-askubuntu] and
 [github.com (Markdown-Cheatsheet)][gfm-cheatsheet-github].
 
+## Contribution overview
 
-## Contributions
+An individual doc contribution ends up as a *PR* (pull request) on GitHub. The
+process involved in producing one is described on the
+[Working with Git and GitHub][contributing-git] page.
 
-A doc contribution ends up being called a *GitHub PR (pull request)*. The
-process involved in producing one is described on the [Working with Git and
-GitHub][contributing-git] page.
+Prior to submitting a PR the contributor must verify that the HTML is good. See
+[Build the docs][contributing-build] for how to do this.
 
 A Documentation team member will review your PR, suggest improvements, and
 eventually merge it with the appropriate branch (series). Publication to the
 website is a separate step (performed internally), so it can be a few days
 before the changes actually show up. Please be patient!
 
-### Metadata
+
+## Style and language
+
+Please follow these guidelines for style and language:
+
+- Resist being overly formal.
+- Remember that the average reader is a user, not a developer.
+- Use a spell checker.
+- Use British English (en-GB). See
+  [language details][contributing-en-gb], including a comparison with American
+  English (en-US).
+- If including links or examples, ensure they actually work.
+- Use a maximum of 80 columns for files. Here are instructions for the
+  [vim][vim-eighty-columns] and [emacs][emacs-eighty-columns] editors.
+- An exception to the above is a link. __Never break a link with a carriage
+  return__. This includes the `[text][label]` and `[label]: destination`
+  combinations.
+
+## Metadata
 
 Metadata can be included in any file. Currently, this is used for:
 
@@ -51,7 +70,7 @@ Text goes here blah blah blah
 - The table of contents will contain only level 2 headers.
 - The metadata section is terminated by a blank line.
 
-### Sections
+## Sections
 
 Text is organised into sections. These are auto-generated, there is nothing
 extra you need to do:
@@ -60,7 +79,7 @@ extra you need to do:
     ## Second level header
     ### Third level header
 
-### Code blocks
+## Code blocks
 
 Code blocks are created using the code-fencing markup of three backticks,
 followed by the type of code:
@@ -72,7 +91,7 @@ followed by the type of code:
 
 The most common *types* used are: `bash`, `yaml`, `json`, and `no-highlight`.
 
-### Inline code
+## Inline code
 
 Use a backtick to `inline filenames and other literals` like this:
 
@@ -80,7 +99,7 @@ Use a backtick to `inline filenames and other literals` like this:
 Use a backtick to `inline filenames and other literals`.
 ```
 
-### Admonishments
+## Admonishments
 
 Admonishments are used to distinguish information from the rest of the text.
 They use the following format:
@@ -99,7 +118,7 @@ Where:
 When a value for 'title' is omitted, the default will be the type itself. If
 the 'title' has a null value (i.e. "") then no title will be displayed.
 
-#### Admonishment examples
+### Admonishment examples
 
 A standard 'Note' type admonishment:
 
@@ -157,7 +176,7 @@ The above examples will appear as:
 !!! Positive "": 
     I'm done, and I feel fine.
 
-### Foldouts
+## Foldouts
 
 When a page contains a lot of extraneous information such as walkthroughs
 containing many images or reference tables, a *foldout* can be used. This will
@@ -172,7 +191,7 @@ content below it.
 ```
 
 
-### Hyperlinks
+## Hyperlinks
 
 Links to internal files or external URLs use the following format:
 
@@ -214,7 +233,7 @@ Notes:
 - Try to use the same label:destination pair throughout the documentation.
 
 
-### Images
+## Images
 
 An image should not be overly cropped - allow for context. When ready, place
 the image file in the `media` directory.
@@ -256,7 +275,7 @@ For example:
 If the image is not of the MAAS web UI then simply omit the version part, like
 in the second image above.
 
-#### Central images directory
+### Central images directory
 
 For publication (on the web site), all branch series use the `media` directory
 in the 'master' branch. This means:
@@ -292,76 +311,17 @@ Adding a page (file) to the documentation may require the altering of
 `metadata.yaml`. Doing so will insert an entry into the left navigation pane
 (the menu) on the website.
 
-This is considered a major change so ensure your PR (pull request) includes a
-comment highlighting this change and why it is needed.
-
-
-## Build and view the HTML
-
-First install the builder. On Ubuntu 16.04 LTS:
-
-```bash
-sudo snap install documentation-builder
-```
-
-To build the HTML, while in the root of the MAAS docs repository:
-
-```bash
-/snap/bin/documentation-builder
-```
-
-See the [documentation-builder GitHub project][github-documentation-builder]
-for details.
-
-You will now need a web server. See the
-[Ubuntu Server Guide][ubuntu-serverguide-apache] for instructions on setting up
-Apache. The DocumentRoot should be the `build` directory. To test, point your
-browser at:
-
-```no-highlight
-http://127.0.0.1/en/contributing.html
-```
-
-Alternatively, you can use Python to start a simple HTTP server (port 8000).
-While in the `build` directory run:
-
-```bash
-python -m SimpleHTTPServer
-```
-
-With Python 3:
-
-```bash
-python3 -m http.server
-```
-
-
-## Style and language
-
-Please follow these guidelines for style and language:
-
-- Resist being overly formal.
-- Remember that the average reader is a user, not a developer.
-- Use a spell checker.
-- Use British English (en-GB). See
-  [language details][contributing-en-gb], including a comparison with American
-  English (en-US).
-- If including links or examples, ensure they actually work.
-- Use a maximum of 80 columns for files. Here are instructions for the
-  [vim][vim-eighty-columns] and [emacs][emacs-eighty-columns] editors.
-- An exception to the above is a link. __Never break a link with a carriage
-  return__. This includes the `[text][label]` and `[label]: destination`
-  combinations.
+This is considered a major change so ensure your PR includes a comment
+highlighting this change and why it is needed.
 
 
 <!-- LINKS -->
 
 [maas-docs]: https://docs.ubuntu.com/maas
 [contributing-git]: contributing-git.md
-[github-documentation-builder]: https://github.com/CanonicalLtd/documentation-builder
 [gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
 [gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-[ubuntu-serverguide-apache]: https://help.ubuntu.com/lts/serverguide/httpd.html
 [contributing-en-gb]: contributing-en-GB.md
+[contributing-build]: contributing-build.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns
 [emacs-eighty-columns]: http://www.emacswiki.org/emacs/EightyColumnRule

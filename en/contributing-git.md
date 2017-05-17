@@ -84,9 +84,8 @@ To rename or delete files use the commands `git mv` and `git rm` respectively.
 git commit -m "my commit message which says something useful"
 ```
 
-6. Check that the changes you have made make sense! You can build a local
-   version of the docs (` make && make serve`) to check it renders
-   properly.
+6. Verify the HTML by building the docs locally. See
+   [Build the docs][contributing-build].
 
 7. *Push* the branch to your fork on GitHub:
 
@@ -226,6 +225,7 @@ Don't forget to install a second rack controller. See
 [github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
 [github-help-fork]: https://help.github.com/articles/fork-a-repo
 [contributing-writing]: contributing-writing.md
+[contributing-build]: contributing-build.md
 [user-accounts-ssh-keys]: manage-account.md#ssh-keys
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
