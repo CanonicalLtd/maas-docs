@@ -22,6 +22,10 @@ receive.
 
 The remainder of this page will refer to your GitHub username as **$GH_USERNAME**.
 
+### Profile setup
+
+`git config --global push.default simple`
+
 ### Fork the repository on GitHub
 
 A copy of the main (upstream) MAAS docs repository will be needed. This will
@@ -36,7 +40,7 @@ the Fork button in the top-right area:
 
 The URL of your fork will be:
 
-`https://github.com/$GH_USERNAME/maas-docs`
+https://github.com/$GH_USERNAME/maas-docs
 
 ### Clone your fork locally
 
@@ -45,11 +49,9 @@ A clone is a local copy of a repository, including all metadata and history
 your fork currently resides) a copy of your fork will be needed on your local
 computer.
 
-Clone your fork now and move into the main doc directory:
+Clone your fork now:
 
-```bash
-git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs
-```
+`git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs`
 
 ### Add the upstream remote
 
@@ -57,65 +59,174 @@ Add a *remote* to your local repository. This links it with the upstream
 version of the documentation, making it easy to keep your local branches in
 sync with upstream:
 
+`cd $GH_USERNAME-maas-docs`
+
+`git remote add upstream https://github.com/CanonicalLtd/maas-docs`
+
+
+## Add and track upstream series branches locally
+
+Get all data for the upstream repository using the *fetch* command. The first
+time you do this the upstream series branches will be exposed:
+
+`git fetch upstream`
+
+Example output:
+
+```no-highlight
+From https://github.com/CanonicalLtd/maas-docs
+ * [new branch]      2.0        -> upstream/2.0
+ * [new branch]      2.1        -> upstream/2.1
+ * [new branch]      2.2        -> upstream/2.2
+ * [new branch]      devel      -> upstream/devel
+ * [new branch]      master     -> upstream/master
+```
+
+If you're a serious contributor you should add these branches and *track* them.
+This will enable you to target specific series.
+
+Based on the above example output, branches '2.0', '2.1', '2.2', and 'devel'
+need to be added/tracked ('master' is added & tracked by default):
+
+`git branch 2.0 upstream/2.0`
+
+`git branch 2.1 upstream/2.1`
+
+`git branch 2.2 upstream/2.2`
+
+`git branch devel upstream/devel`
+
+Your GitHub fork inherited these tracking branches when it was created. This
+can be confirmed here:
+
+https://github.com/$GH_USERNAME/maas-docs/branches
+
+!!! Note:
+    You will need to track a series branch in this way as they become
+    available upstream (approximately every 6 months).
+
+Finally, we need to change the remote for these newly tracked branches as they
+are currently using 'upstream':
+
+`git branch -vv`
+
+Example output:
+
+```no-highlight
+  2.0    bb0fb27 [upstream/2.0] Merge pull request #394 from pmatulis/cherrypick-pr383+384-to-2.0
+  2.1    78e3ebb [upstream/2.1] Merge pull request #428 from pmatulis/cherrypick-pr426-to-2.1
+  2.2    55527e1 [upstream/2.2] Merge pull request #433 from pmatulis/cherrypick-pr432-to-2.2
+  devel  030cae8 [upstream/devel] Merge pull request #410 from pmatulis/backport-master-to-devel
+* master df32fa1 [origin/master] Merge pull request #432 from * pmatulis/clarify-reserved-ip-ranges
+```
+
+This is not ideal. Let's change their remotes to 'origin':
+
+`git branch -u origin/2.0 2.0`
+
+`git branch -u origin/2.1 2.1`
+
+`git branch -u origin/2.2 2.2`
+
+`git branch -u origin/devel devel`
+
+A less verbose command is typically used to list branches:
+
+`git branch`
+
+Example output:
+
+```no-highlight
+  2.0
+  2.1
+  2.2
+  devel
+* master
+```
+
+Over time branches will come and go but the ones above should generally never
+be deleted.
+
+
+## Syncing fork branches with the upstream repository
+
+You should now have remotes for both the upstream repository and your fork
+(known as *origin* to git): 
+
+`git remote -v`
+
+The output should look like:
+
+```no-highlight
+origin  	https://github.com/$GH_USERNAME/maas-docs (fetch)
+origin  	https://github.com/$GH_USERNAME/maas-docs (push)
+upstream   	https://github.com/CanonicalLtd/maas-docs (fetch)
+upstream	https://github.com/CanonicalLtd/maas-docs (push)
+```
+
+To sync one of your fork's branches (both locally and on GitHub), say 'master',
+with the corresponding upstream branch:
+
 ```bash
-git remote add upstream https://github.com/CanonicalLtd/maas-docs
+git fetch upstream                   # Get all data on the upstream repository
+git checkout master                  # Move in to your local 'master' branch
+git merge --ff-only upstream/master  # Sync your local branch with the upstream 'master' branch
+git push origin master               # Sync your GitHub branch with your now-updated local branch
 ```
 
 
 ## General workflow
 
-1. Enter the clone directory and create a branch that will contain your
-   changes:
+1. Decide which series/branch you want to make an improvement to. Choose the
+   most recent one that it applies to (often 'master' but not necessarily). The
+   changes, if they're deemed important enough, will be backported to earlier
+   series for you by the Doc team. Let this branch be called **$SRC_BRANCH**.
 
-```bash
-cd $GH_USERNAME-maas-docs/en
-git checkout -b {branchname}
-```
+1. Sync $SRC_BRANCH with upstream as previously described.
 
-2. Make your changes with your favourite editor.
-   See the [Writing guide][contributing-writing].
+1. Enter the clone directory and create a branch that will contain your changes
+   (replace $NEW_BRANCH with your arbitrarily-named branch):
 
-3. Check which files that have been added or modified:
+	`cd $GH_USERNAME-maas-docs`
 
-```bash
-git status
-```
+	`git checkout -b $NEW_BRANCH $SRC_BRANCH`
 
-4. *Add* those files to the repository. For example:
+1. Edit some files with your favourite editor. See the
+   [Writing guide][contributing-writing].
 
-```bash
-git add manage-ha.md
-git add ../media/add-zone.png
-```
-
-To rename or delete files use the commands `git mv` and `git rm` respectively.
-
-5. Make a *commit* to save your changes locally:
-
-```bash
-git commit -m "a message which describes the change"
-```
-
-6. Verify the HTML by building the docs locally. See
+1. Verify the HTML by building the docs locally. See
    [Build the docs][contributing-build].
 
-7. *Push* the branch to your fork on GitHub:
+1. Check which files have been added or modified:
 
-```bash
-git push origin {branchname}
-```
+	`git status`
 
-You may be prompted for your GitHub username/password. You can make things
-easier by any of:
- 
- - [configuring git](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) properly
- - using an [authentication token](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
- - caching your [password](https://help.github.com/articles/caching-your-github-password-in-git/)
+1. *Add* those files to the repository. For example:
 
-You can push your changes to GitHub at any time (i.e. you do not need to be
-finished your intended work). Doing so can be a form of off-disk backup.
+	`git add en/manage-ha.md`
 
-8. [Create a Pull Request][github-help-pr] (PR). This is done within GitHub:
+	`git add media/add-zone.png`
+
+1. Make a *commit* to save your changes locally:
+
+	`git commit -m "a message which describes the change"`
+
+1. *Push* the branch to your fork on GitHub:
+
+	`git push origin $NEW_BRANCH`
+
+	You may be prompted for your GitHub credentials. You can make things
+	easier by any of:
+	 
+	 - [git configuration](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) properly
+	 - [authentication token](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
+	 - [password caching](https://help.github.com/articles/caching-your-github-password-in-git/)
+	
+	You can commit & push your changes to GitHub at any time (i.e. you do
+	not need to be finished your intended work). Doing so is a form of
+	off-disk backup.
+
+1. [Create a Pull Request][github-help-pr] (PR). This is done within GitHub:
 Navigate to your branch and hit the compare button - 
 this will allow you to compare across forks to the CanonicalLtd/maas-docs
 master branch, which is where your changes will hopefully end up. The
@@ -125,7 +236,7 @@ any useful info about the changes in the comments (e.g. if it fixes an issue
 you can refer to it by number to automatically link your pull request to the
 issue)
 
-9. Wait. The documentation team will usually get to your pull request within a 
+1. Wait. The documentation team will usually get to your pull request within a 
    day or two. Be prepared for suggested changes and comments. If there are 
    changes to be made:
 
@@ -140,34 +251,6 @@ the pull request, or you can use `git` to remove the branch.
 
 Before creating another feature branch, make sure you update your fork's code
 by pulling from the original MAAS repository (see below).
-
-
-## Syncing fork branches with the upstream repository
-
-You should now have both the upstream repository and your fork listed in git: 
-
-```bash
-git remote -v
-```
-
-The output should look like:
-
-```no-highlight
-upstream   	https://github.com/CanonicalLtd/maas-docs.git (fetch)
-upstream	https://github.com/CanonicalLtd/maas-docs.git (push)
-origin  	https://github.com/$GH_USERNAME/maas-docs (fetch)
-origin  	https://github.com/$GH_USERNAME/maas-docs (push)
-```
-
-To sync one of your fork's branches (both locally and on GitHub), say 'master',
-with the corresponding upstream branch:
-
-```bash
-git fetch upstream	             # Get all data on the upstream repository
-git checkout master		     # Move in to your local 'master' branch
-git merge --ff-only upstream/master  # Sync your your local branch with the upstream 'master' branch
-git push origin master		     # Sync your fork on GitHub with your now-updated local branch
-```
 
 
 ## Additional resources
