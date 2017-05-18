@@ -14,6 +14,12 @@ of effectively contributing to MAAS documentation.
 Several actions are required before you can begin. These only need to be done
 once.
 
+- GitHub account
+- User environment
+- Fork the repository on GitHub
+- Clone your fork locally
+- Add the upstream remote
+
 ### GitHub account
 
 A [GitHub account][github-account] will be required. Sign up now!
@@ -21,23 +27,27 @@ A [GitHub account][github-account] will be required. Sign up now!
 Verify your email address by responding to the email notification you will
 receive.
 
-The remainder of this page will refer to your GitHub username as **$GH_USERNAME**.
+The remainder of this page will refer to your GitHub username as
+**$GH_USERNAME** (e.g. 'johnsmith').
 
-### Profile setup
+### User environment
 
-Configure some basic user settings.
+Configure some user environment essentials.
+
+Set your user name and email address:
 
 `git config --global user.name "$FIRST_NAME $LAST_NAME"`
 
 `git config --global user.email "$EMAIL_ADDRESS"`
 
-Pre-empt a later warning about how "pushes" should work:
+Pre-empt a later [warning][stackoverflow-git-push-warning] about how "pushes"
+should work:
 
 `git config --global push.default simple`
 
-When you send changes to GitHub you will need to authenticate. By default, you
-use your GitHub login credentials. Consider setting a non-default (15 min)
-credential cache (below is for 60 min):
+When you send changes to GitHub you will need to authenticate. By default, your
+GitHub login credentials are used. Consider setting a credentials cache time
+limit beyond the default (15 min). Below it is set at 60 min:
 
 `git config --global credential.helper 'cache --timeout=3600'`
 
@@ -308,5 +318,6 @@ Below are a few helpful aliases that have been suggested:
 [github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
 [contributing-writing]: contributing-writing.md
 [contributing-build]: contributing-build.md
+[stackoverflow-git-push-warning]: http://stackoverflow.com/questions/13148066/warning-push-default-is-unset-its-implicit-value-is-changing-in-git-2-0
 
 [github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
