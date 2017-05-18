@@ -1,9 +1,7 @@
 Title: Intel RSD
 TODO:  Add page for deleting a MAAS node and linking from here
-       Need to add cover the option of a "virsh chassis Pod"
-       This is intel-rsd centric. May need to eventually make it more general
-       (composable hardware with intel-rsd as just one example) - will involve file
-       renaming :(
+       Need to cover the option of a "virsh chassis Pod"
+       This is intel-rsd centric. May need to eventually make it more generic (composable hardware with intel-rsd as just one example) - will involve file renaming :(
 table_of_contents: True
 
 
@@ -22,6 +20,10 @@ MAAS.
 
 See [MAAS CLI - Composable hardware][manage-cli-comp-hw] for how to manage
 Intel RSD with the CLI.
+
+!!! Note:
+    MAAS has only been validated to work with Intel RSD reference software
+    release v.1.2.5, based on Redfish API v.1.0 and RSD PODM API v.1.0.
 
 
 ## Definitions
