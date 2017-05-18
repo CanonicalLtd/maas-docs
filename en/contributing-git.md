@@ -1,4 +1,5 @@
 Title: Working with Git and GitHub
+TODO:  Review commented out section: "Additional resources"
 table_of_contents: True
 
 
@@ -24,7 +25,24 @@ The remainder of this page will refer to your GitHub username as **$GH_USERNAME*
 
 ### Profile setup
 
+Configure some basic user settings.
+
+`git config --global user.name "$FIRST_NAME $LAST_NAME"`
+
+`git config --global user.email "$EMAIL_ADDRESS"`
+
+Pre-empt a later warning about how "pushes" should work:
+
 `git config --global push.default simple`
+
+When you send changes to GitHub you will need to authenticate. By default, you
+use your GitHub login credentials. Consider setting a non-default (15 min)
+credential cache (below is for 60 min):
+
+`git config --global credential.helper 'cache --timeout=3600'`
+
+To authenticate via an SSH key click on 'Settings' in the top-right corner,
+choose 'SSH and GPG keys' in the left menu, and add your key.
 
 ### Fork the repository on GitHub
 
@@ -86,7 +104,7 @@ If you're a serious contributor you should add these branches and *track* them.
 This will enable you to target specific series.
 
 Based on the above example output, branches '2.0', '2.1', '2.2', and 'devel'
-need to be added/tracked ('master' is added & tracked by default):
+need to be tracked (this is done for 'master' by default):
 
 `git branch 2.0 upstream/2.0`
 
@@ -120,7 +138,7 @@ Example output:
 * master df32fa1 [origin/master] Merge pull request #432 from * pmatulis/clarify-reserved-ip-ranges
 ```
 
-This is not ideal. Let's change their remotes to 'origin':
+This is not ideal. Change their remotes to 'origin':
 
 `git branch -u origin/2.0 2.0`
 
@@ -148,7 +166,7 @@ Over time branches will come and go but the ones above should generally never
 be deleted.
 
 
-## Syncing fork branches with the upstream repository
+## Syncing fork series branches with the upstream repository
 
 You should now have remotes for both the upstream repository and your fork
 (known as *origin* to git): 
@@ -164,32 +182,33 @@ upstream   	https://github.com/CanonicalLtd/maas-docs (fetch)
 upstream	https://github.com/CanonicalLtd/maas-docs (push)
 ```
 
-To sync one of your fork's branches (both locally and on GitHub), say 'master',
-with the corresponding upstream branch:
+To sync one of your fork's series branches (both locally and on GitHub), call
+it **$SERIES_BRANCH**, with the corresponding upstream branch:
 
 ```bash
-git fetch upstream                   # Get all data on the upstream repository
-git checkout master                  # Move in to your local 'master' branch
-git merge --ff-only upstream/master  # Sync your local branch with the upstream 'master' branch
-git push origin master               # Sync your GitHub branch with your now-updated local branch
+git fetch upstream                           # Get all current data on the upstream repository
+git checkout $SERIES_BRANCH                  # Move in to your local branch
+git merge --ff-only upstream/$SERIES_BRANCH  # Sync your local branch with the upstream branch
+git push origin $SERIES_BRANCH               # Sync your GitHub branch with your now-updated local branch
 ```
 
 
 ## General workflow
 
-1. Decide which series/branch you want to make an improvement to. Choose the
-   most recent one that it applies to (often 'master' but not necessarily). The
-   changes, if they're deemed important enough, will be backported to earlier
-   series for you by the Doc team. Let this branch be called **$SRC_BRANCH**.
+1. Decide which series/branch you want to target (make an improvement to).
+   Choose the most recent one that it applies to (often 'master' but not
+   necessarily). The changes, if they're deemed important enough, will be
+   backported to earlier series for you by the Doc team. Let this branch be
+   called **$TARGET_SERIES_BRANCH**.
 
-1. Sync $SRC_BRANCH with upstream as previously described.
+1. Sync $TARGET_SERIES_BRANCH with upstream as previously described.
 
 1. Enter the clone directory and create a branch that will contain your changes
-   (replace $NEW_BRANCH with your arbitrarily-named branch):
+   (replace **$NEW_BRANCH** with your arbitrarily-named branch):
 
 	`cd $GH_USERNAME-maas-docs`
 
-	`git checkout -b $NEW_BRANCH $SRC_BRANCH`
+	`git checkout -b $NEW_BRANCH $TARGET_SERIES_BRANCH`
 
 1. Edit some files with your favourite editor. See the
    [Writing guide][contributing-writing].
@@ -215,18 +234,11 @@ git push origin master               # Sync your GitHub branch with your now-upd
 
 	`git push origin $NEW_BRANCH`
 
-	You may be prompted for your GitHub credentials. You can make things
-	easier by any of:
-	 
-	 - [git configuration](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) properly
-	 - [authentication token](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
-	 - [password caching](https://help.github.com/articles/caching-your-github-password-in-git/)
-	
-	You can commit & push your changes to GitHub at any time (i.e. you do
-	not need to be finished your intended work). Doing so is a form of
+	You can push your changes to GitHub at any time (i.e. you do not need
+	to be finished your intended work). Indeed, doing so can be a form of
 	off-disk backup.
 
-1. [Create a Pull Request][github-help-pr] (PR). This is done within GitHub:
+1. Create a PR. In GitHub, 
 Navigate to your branch and hit the compare button - 
 this will allow you to compare across forks to the CanonicalLtd/maas-docs
 master branch, which is where your changes will hopefully end up. The
@@ -236,22 +248,23 @@ any useful info about the changes in the comments (e.g. if it fixes an issue
 you can refer to it by number to automatically link your pull request to the
 issue)
 
-1. Wait. The documentation team will usually get to your pull request within a 
-   day or two. Be prepared for suggested changes and comments. If there are 
-   changes to be made:
+1. Wait for the Doc team to review your PR (a few days at most). If it is fine
+   it will be merged. Otherwise, you may be asked to make some changes. If so,
+   just repeat what was done before:
 
- - make the changes in your local branch
- - use `git commit -m 'some message' ` to commit the new changes
- - push the branch to your fork again with `git push origin {branchname}`
- - there is no need to update the pull request, it will be updated automatically
+     1. Edit within $NEW_BRANCH
+     1. Add the modified files
+     1. Commit (with an appropriate message)
+     1. Push $NEW_BRANCH  
 
-Once the code has been landed you can remove your feature branch from both the
-remote and your local fork. GitHub provides a button for this at the bottom of
-the pull request, or you can use `git` to remove the branch. 
+        There is no need to update the PR; GitHub will do this for you.
 
-Before creating another feature branch, make sure you update your fork's code
-by pulling from the original MAAS repository (see below).
+        Once the PR is merged, branch $NEW_BRANCH should be removed from both your
+        GitHub fork and your local fork. There are various places to do the former
+        in GitHub. Both can be done via `git` itself.
 
+
+<!-- TURN THIS OFF FOR NOW. CONTENT IS DUBIOUS AND A REVIEW IS REQUIRED
 
 ## Additional resources
 
@@ -286,18 +299,14 @@ Below are a few helpful aliases that have been suggested:
     # git qa-pr maas-docs 6 qa-sticky-headers
     qa-pr = "!sh -c 'git checkout develop; git pull $0 develop; git checkout -b $2; git fetch-pr $0 $1; git merge pr/$1'"
 
+-->
+
 
 <!-- LINKS -->
 
 [github-account]: https://github.com/join
-[github-help-pr]: https://help.github.com/articles/creating-a-pull-request
 [github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
 [contributing-writing]: contributing-writing.md
 [contributing-build]: contributing-build.md
-[user-accounts-ssh-keys]: manage-account.md#ssh-keys
-[about-juju]: https://jujucharms.com/docs/stable/about-juju
-[kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
-[install-rackd]: installconfig-rack.md#install-a-rack-controller
 
-[img__2.1_deploy-nodes]: ../media/installconfig-nodes-deploy-nodes__2.1_deploy.png
 [github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
