@@ -6,7 +6,9 @@ table_of_contents: True
 # Working with Git and GitHub
 
 This page provides the essentials for working with Git and GitHub with the goal
-of effectively contributing to MAAS documentation.
+of contributing specifically to MAAS documentation. See the upstream projects
+for definitive documentation: [Git docs][git-docs] and
+[GitHub docs][github-docs].
 
 
 ## Initial setup
@@ -16,8 +18,8 @@ once.
 
 - GitHub account
 - User environment
-- Fork the repository on GitHub
-- Clone your fork locally
+- Fork the MAAS docs repository on GitHub
+- Clone your MAAS docs fork locally
 - Add the upstream remote
 
 ### GitHub account
@@ -51,10 +53,10 @@ limit beyond the default (15 min). Below it is set at 60 min:
 
 `git config --global credential.helper 'cache --timeout=3600'`
 
-To authenticate via an SSH key click on 'Settings' in the top-right corner,
-choose 'SSH and GPG keys' in the left menu, and add your key.
+To authenticate via SSH keys click on 'Settings' in the top-right corner,
+choose 'SSH and GPG keys' in the left menu, and add your public key.
 
-### Fork the repository on GitHub
+### Fork the MAAS docs repository on GitHub
 
 A copy of the main (upstream) MAAS docs repository will be needed. This will
 become your working area. All your changes will be put there and then merged
@@ -64,22 +66,23 @@ the upstream repository directly. This copy is known as a *fork*.
 Go to the [MAAS docs repository][github-maas-docs] now and fork it by pressing
 the Fork button in the top-right area:
 
-![fork maas-docs][github-maas-docs-fork]
+![fork maas-docs][img__github-maas-docs-fork]
 
-The URL of your fork will be:
+The URL of your fork will become:
 
 https://github.com/$GH_USERNAME/maas-docs
 
-### Clone your fork locally
+### Clone your MAAS docs fork locally
 
 A clone is a local copy of a repository, including all metadata and history
 (commits, merges, etc). Since you cannot make changes in GitHub itself (where
 your fork currently resides) a copy of your fork will be needed on your local
-computer.
-
-Clone your fork now:
+computer. Clone your fork now:
 
 `git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs`
+
+A directory called `$GH_USERNAME-maas-docs` will be created. This is the clone
+directory.
 
 ### Add the upstream remote
 
@@ -93,6 +96,9 @@ sync with upstream:
 
 
 ## Add and track upstream series branches locally
+
+If you're a serious contributor you should add these branches and *track* them.
+This will enable you to target specific series.
 
 Get all data for the upstream repository using the *fetch* command. The first
 time you do this the upstream series branches will be exposed:
@@ -109,9 +115,6 @@ From https://github.com/CanonicalLtd/maas-docs
  * [new branch]      devel      -> upstream/devel
  * [new branch]      master     -> upstream/master
 ```
-
-If you're a serious contributor you should add these branches and *track* them.
-This will enable you to target specific series.
 
 Based on the above example output, branches '2.0', '2.1', '2.2', and 'devel'
 need to be tracked (this is done for 'master' by default):
@@ -172,11 +175,11 @@ Example output:
 * master
 ```
 
-Over time branches will come and go but the ones above should generally never
-be deleted.
+Over time, contribution branches will come and go but the ones above should be
+regarded as permanent.
 
 
-## Syncing fork series branches with the upstream repository
+## Syncing fork series branches with upstream
 
 You should now have remotes for both the upstream repository and your fork
 (known as *origin* to git): 
@@ -205,18 +208,17 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 
 ## General workflow
 
-1. Decide which series/branch you want to target (make an improvement to).
-   Choose the most recent one that it applies to (often 'master' but not
+1. Decide which series branch you want to target (make an improvement to).
+   Choose the most recent one that applies (often 'master' but not
    necessarily). The changes, if they're deemed important enough, will be
    backported to earlier series for you by the Doc team. Let this branch be
    called **$TARGET_SERIES_BRANCH**.
 
-1. Sync $TARGET_SERIES_BRANCH with upstream as previously described.
+1. Enter the clone directory and sync $TARGET_SERIES_BRANCH with upstream as
+   previously described.
 
-1. Enter the clone directory and create a branch that will contain your changes
-   (replace **$NEW_BRANCH** with your arbitrarily-named branch):
-
-	`cd $GH_USERNAME-maas-docs`
+1. Create a branch that will contain your changes (replace **$NEW_BRANCH** with
+   your arbitrarily-named branch):
 
 	`git checkout -b $NEW_BRANCH $TARGET_SERIES_BRANCH`
 
@@ -248,33 +250,46 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 	to be finished your intended work). Indeed, doing so can be a form of
 	off-disk backup.
 
-1. Create a PR. In GitHub, 
-Navigate to your branch and hit the compare button - 
-this will allow you to compare across forks to the CanonicalLtd/maas-docs
-master branch, which is where your changes will hopefully end up. The
-comparison will show you a diff of the changes  - it is useful to look over
-this to avoid mistakes. Then click on the button to Create a pull request.  Add
-any useful info about the changes in the comments (e.g. if it fixes an issue
-you can refer to it by number to automatically link your pull request to the
-issue)
+1. Create a PR. In GitHub, your branches are listed here:
 
-1. Wait for the Doc team to review your PR (a few days at most). If it is fine
-   it will be merged. Otherwise, you may be asked to make some changes. If so,
-   just repeat what was done before:
+     https://github.com/$GH_USERNAME/maas-docs/branches
+     
+     Find $NEW_BRANCH and press the Compare button. You should see the following:
+     
+     ![compare maas-docs branch][img__github-maas-docs-compare]
+     
+     - base fork: `CanonicalLtd/maas-docs` - This is what you want, **always**.
+     - base: `master` - This is the $TARGET_SERIES_BRANCH.
+     - head fork: `pmatulis/maas-docs` - This is the fork belonging to $GH_USERNAME
+       of 'pmatulis'.
+     - compare: `readme-link-issue-423` - This is $NEW_BRANCH.
+
+         Lower down will be shown all the changes. The red and green backgrounds
+       represent removed and added content respectively. Look over this carefully.
+       
+         When you're ready, click on the green 'Create pull request' button. Add
+       a summary of the changes in the comments. Also, if the PR fixes a filed
+       issue , say #423, include a line in the comment: `Fixes #423`. When the PR
+       is merged the issue will be automatically closed.
+
+1. Wait for the Doc team to review your PR. Some changes may be asked of you.
+   If so, don't panic, just repeat the process:
 
      1. Edit within $NEW_BRANCH
      1. Add the modified files
      1. Commit (with an appropriate message)
-     1. Push $NEW_BRANCH  
+     1. Push $NEW_BRANCH
 
-        There is no need to update the PR; GitHub will do this for you.
+          There is no need to update the PR; GitHub will do this for you.
 
-        Once the PR is merged, branch $NEW_BRANCH should be removed from both your
+          Once the PR is merged, branch $NEW_BRANCH should be removed from both your
         GitHub fork and your local fork. There are various places to do the former
-        in GitHub. Both can be done via `git` itself.
+        in GitHub and both can be done via `git` itself.
 
 
-<!-- TURN THIS OFF FOR NOW. CONTENT IS DUBIOUS AND A REVIEW IS REQUIRED
+<!-- TURN THIS OFF FOR NOW. CONTENT IS DUBIOUS AND A REVIEW IS REQUIRED.
+     MAYBE ADD THIS AS A SEPARATE 'ADVANCED' PAGE, POSSIBLY INCLUDE
+     BACKPORTING.
 
 ## Additional resources
 
@@ -314,10 +329,13 @@ Below are a few helpful aliases that have been suggested:
 
 <!-- LINKS -->
 
+[github-docs]: https://help.github.com
+[git-docs]: https://git-scm.com/doc
 [github-account]: https://github.com/join
 [github-maas-docs]: http://github.com/CanonicalLtd/maas-docs
 [contributing-writing]: contributing-writing.md
 [contributing-build]: contributing-build.md
 [stackoverflow-git-push-warning]: http://stackoverflow.com/questions/13148066/warning-push-default-is-unset-its-implicit-value-is-changing-in-git-2-0
 
-[github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
+[img__github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
+[img__github-maas-docs-compare]: ../media/contributing-git__github-maas-docs-compare.png

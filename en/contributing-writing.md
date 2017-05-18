@@ -37,14 +37,14 @@ Please follow these guidelines for style and language:
   [vim][vim-eighty-columns] editor.
 - An exception to the above is a hyperlink. Never break one with a carriage
   return. This includes the `[text][label]` and `[label]: destination`
-  combinations. Hyperlinks are explained lower down.
+  combinations. See [hyperlinks][anchor__hyperlinks].
 
 
 ## GitHub Flavored Markdown
 
 This documentation is written in GitHub Flavored Markdown. GFM conventions
-have been added to support features such as *foldouts* and *admonishments*
-(explained later).
+have been added to support features such as [*foldouts*][anchor__foldouts] and
+[*admonishments*][anchor__admonishments].
 
 GFM is very easy to write with. Get started by looking over the below
 resources:
@@ -80,10 +80,9 @@ Text goes here blah blah blah
 - The metadata section is terminated by a blank line.
 
 
-## Sections
+## Headers
 
-Text is organised into sections. These are auto-generated, there is nothing
-extra you need to do:
+Headers are simple to create:
 
     # Top level header (typically the same as the Title element)
     ## Second level header
@@ -92,15 +91,16 @@ extra you need to do:
 
 ## Code blocks
 
-Code blocks are created using the code-fencing markup of three backticks,
-followed by the type of code:
+A code block is enclosed by three backticks and includes the *type* of code:
 
     ```bash
     maas command do something
     maas command do something else
     ```
 
-The most common *types* used are: `bash`, `yaml`, `json`, and `no-highlight`.
+The most common types used are: `bash`, `yaml`, `json`, and `no-highlight`.
+The last is like a miscellaneous type. It is often used to display command
+output.
 
 
 ## Inline code
@@ -114,8 +114,8 @@ Use a backtick to `inline filenames and other literals`.
 
 ## Admonishments
 
-Admonishments are used to distinguish information from the rest of the text.
-They use the following format:
+An admonishment distinguishes information from the rest of the text. The syntax
+begins with 3 exclamation points:
 
 ```no-highlight
 !!! [admonishment-type] "[title]": 
@@ -190,6 +190,19 @@ The above examples will appear as:
     I'm done, and I feel fine.
 
 
+## Comments
+
+Occasionally it may be appropriate to include a comment to explain or organize
+some text. This ends up as an HTML comment which can be read online so take it
+seriously:
+
+```no-highlight
+<!--
+The below text may be removed soon.
+-->
+```
+
+
 ## Foldouts
 
 When a page contains a lot of extraneous information such as walkthroughs
@@ -243,8 +256,9 @@ A [proxy][maas-proxy] can optionally be configured.
 
 Notes:
 
-- An internal page is referred to by its source filename.
-- Try to use the same label:destination pair throughout the documentation.
+- An internal page is referred to by its source filename (i.e. `.md` not
+  `.html`).
+- Try to use the same `label:destination` pair throughout the documentation.
 
 
 ## Images
@@ -304,10 +318,9 @@ in the 'master' branch. This means:
 
 The naming of a file is based upon its location in the menu (see below). This
 makes it easier for the reader and the writer to build up a mental model of how
-the set of pages is structured.
-
-For example, the page corresponding to file `installconfig-network-dhcp.md` is
-found under 'Install & Configure' and then 'Networking'.
+the set of pages is structured. For example, the page corresponding to file
+`installconfig-network-dhcp.md` is found under 'Install & Configure' and then
+'Networking'.
 
 
 ## Capitalization
@@ -323,13 +336,15 @@ grammar rules (e.g. acronyms, proper nouns).
 
 Adding a page (file) to the documentation may require the altering of
 `metadata.yaml`. Doing so will insert an entry into the left navigation pane
-(the menu) on the website.
-
-This is considered a major change so ensure your PR includes a comment
-highlighting this change and why it is needed.
+(the menu) on the website. This is considered a major change so ensure your PR
+includes a comment highlighting this change and why it is needed.
 
 
 <!-- LINKS -->
+
+[anchor__hyperlinks]: #hyperlinks
+[anchor__foldouts]: #foldouts
+[anchor__admonishments]: #admonishments
 
 [maas-docs]: https://docs.ubuntu.com/maas
 [contributing-git]: contributing-git.md
