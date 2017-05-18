@@ -254,9 +254,10 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 
      https://github.com/$GH_USERNAME/maas-docs/branches
      
-     Find $NEW_BRANCH and press the Compare button. You should see the following:
+     Find $NEW_BRANCH and press the 'New pull request' button. You should see the
+     following:
      
-     ![compare maas-docs branch][img__github-maas-docs-compare]
+     ![maas-docs new pull request][img__github-maas-docs-new-pull-request]
      
      - base fork: `CanonicalLtd/maas-docs` - This is what you want, **always**.
      - base: `master` - This is the $TARGET_SERIES_BRANCH.
@@ -267,10 +268,13 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
          Lower down will be shown all the changes. The red and green backgrounds
        represent removed and added content respectively. Look over this carefully.
        
-         When you're ready, click on the green 'Create pull request' button. Add
-       a summary of the changes in the comments. Also, if the PR fixes a filed
-       issue , say #423, include a line in the comment: `Fixes #423`. When the PR
-       is merged the issue will be automatically closed.
+         When you're ready, click on the green 'Create pull request' button. A
+       new window will appear where you can edit the PR title and add a comment
+       summarizing the changes. Also, if the PR fixes a filed issue , say #423,
+       include a line in the comment: `Fixes #423` (when the PR is merged the issue
+       will be automatically closed).
+
+         Press the 'Create pull request' button to finalize.
 
 1. Wait for the Doc team to review your PR. Some changes may be asked of you.
    If so, don't panic, just repeat the process:
@@ -338,4 +342,4 @@ Below are a few helpful aliases that have been suggested:
 [stackoverflow-git-push-warning]: http://stackoverflow.com/questions/13148066/warning-push-default-is-unset-its-implicit-value-is-changing-in-git-2-0
 
 [img__github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
-[img__github-maas-docs-compare]: ../media/contributing-git__github-maas-docs-compare.png
+[img__github-maas-docs-new-pull-request]: ../media/contributing-git__github-maas-docs-new-pull-request.png
