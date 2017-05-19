@@ -10,6 +10,11 @@ of contributing specifically to MAAS documentation. See the upstream projects
 for definitive documentation: [Git docs][git-docs] and
 [GitHub docs][github-docs].
 
+Related documents:
+
+- [Writing guide][contributing-writing]
+- [Build the docs][contributing-build]
+
 
 ## Initial setup
 
@@ -24,7 +29,7 @@ once.
 
 ### GitHub account
 
-A [GitHub account][github-account] will be required. Sign up now!
+A [GitHub account][github-account] will be required.
 
 Verify your email address by responding to the email notification you will
 receive.
@@ -38,20 +43,25 @@ Configure some user environment essentials.
 
 Set your user name and email address:
 
-`git config --global user.name "$FIRST_NAME $LAST_NAME"`
-
-`git config --global user.email "$EMAIL_ADDRESS"`
+```bash
+git config --global user.name "$FIRST_NAME $LAST_NAME"
+git config --global user.email "$EMAIL_ADDRESS"
+```
 
 Pre-empt a later [warning][stackoverflow-git-push-warning] about how "pushes"
 should work:
 
-`git config --global push.default simple`
+```bash
+git config --global push.default simple
+```
 
 When you send changes to GitHub you will need to authenticate. By default, your
 GitHub login credentials are used. Consider setting a credentials cache time
 limit beyond the default (15 min). Below it is set at 60 min:
 
-`git config --global credential.helper 'cache --timeout=3600'`
+```bash
+git config --global credential.helper 'cache --timeout=3600'
+```
 
 To authenticate via SSH keys click on 'Settings' in the top-right corner,
 choose 'SSH and GPG keys' in the left menu, and add your public key.
@@ -79,7 +89,9 @@ A clone is a local copy of a repository, including all metadata and history
 your fork currently resides) a copy of your fork will be needed on your local
 computer. Clone your fork now:
 
-`git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs`
+```bash
+git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs
+```
 
 A directory called `$GH_USERNAME-maas-docs` will be created. This is the clone
 directory.
@@ -90,9 +102,10 @@ Add a *remote* to your local repository. This links it with the upstream
 version of the documentation, making it easy to keep your local branches in
 sync with upstream:
 
-`cd $GH_USERNAME-maas-docs`
-
-`git remote add upstream https://github.com/CanonicalLtd/maas-docs`
+```bash
+cd $GH_USERNAME-maas-docs
+git remote add upstream https://github.com/CanonicalLtd/maas-docs
+```
 
 
 ## Add and track upstream series branches locally
@@ -103,7 +116,9 @@ This will enable you to target specific series.
 Get all data for the upstream repository using the *fetch* command. The first
 time you do this the upstream series branches will be exposed:
 
-`git fetch upstream`
+```bash
+git fetch upstream
+```
 
 Example output:
 
@@ -119,13 +134,12 @@ From https://github.com/CanonicalLtd/maas-docs
 Based on the above example output, branches '2.0', '2.1', '2.2', and 'devel'
 need to be tracked (this is done for 'master' by default):
 
-`git branch 2.0 upstream/2.0`
-
-`git branch 2.1 upstream/2.1`
-
-`git branch 2.2 upstream/2.2`
-
-`git branch devel upstream/devel`
+```bash
+git branch 2.0 upstream/2.0
+git branch 2.1 upstream/2.1
+git branch 2.2 upstream/2.2
+git branch devel upstream/devel
+```
 
 Your GitHub fork inherited these tracking branches when it was created. This
 can be confirmed here:
@@ -139,7 +153,9 @@ https://github.com/$GH_USERNAME/maas-docs/branches
 Finally, we need to change the remote for these newly tracked branches as they
 are currently using 'upstream':
 
-`git branch -vv`
+```bash
+git branch -vv
+```
 
 Example output:
 
@@ -153,17 +169,18 @@ Example output:
 
 This is not ideal. Change their remotes to 'origin':
 
-`git branch -u origin/2.0 2.0`
-
-`git branch -u origin/2.1 2.1`
-
-`git branch -u origin/2.2 2.2`
-
-`git branch -u origin/devel devel`
+```bash
+git branch -u origin/2.0 2.0
+git branch -u origin/2.1 2.1
+git branch -u origin/2.2 2.2
+git branch -u origin/devel devel
+```
 
 A less verbose command is typically used to list branches:
 
-`git branch`
+```bash
+git branch
+```
 
 Example output:
 
@@ -184,7 +201,9 @@ regarded as permanent.
 You should now have remotes for both the upstream repository and your fork
 (known as *origin* to git): 
 
-`git remote -v`
+```bash
+git remote -v
+```
 
 The output should look like:
 
@@ -247,7 +266,7 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 	`git push origin $NEW_BRANCH`
 
 	You can push your changes to GitHub at any time (i.e. you do not need
-	to be finished your intended work). Indeed, doing so can be a form of
+	to have finished your intended work). Indeed, doing so can be a form of
 	off-disk backup.
 
 1. Create a PR. In GitHub, your branches are listed here:
@@ -265,7 +284,7 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
        of 'pmatulis'.
      - compare: `readme-link-issue-423` - This is $NEW_BRANCH.
 
-         Lower down will be shown all the changes. The red and green backgrounds
+         All the changes will be shown lower down. The red and green backgrounds
        represent removed and added content respectively. Look over this carefully.
        
          When you're ready, click on the green 'Create pull request' button. A

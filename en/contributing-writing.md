@@ -33,7 +33,7 @@ Please follow these guidelines for style and language:
 - Target audience: intermediate system administrator, not a developer.
 - Use British English (en-GB). See [language details][contributing-en-gb],
   including a comparison with American English (en-US).
-- Use a maximum of 80 columns for files. Here are instructions for the
+- Use a maximum of 79 columns for files. Here are instructions for the
   [vim][vim-eighty-columns] editor.
 - An exception to the above is a hyperlink. Never break one with a carriage
   return. This includes the `[text][label]` and `[label]: destination`
@@ -347,9 +347,9 @@ includes a comment highlighting this change and why it is needed.
 [anchor__admonishments]: #admonishments
 
 [maas-docs]: https://docs.ubuntu.com/maas
-[contributing-git]: contributing-git.md
 [gfm-cheatsheet-askubuntu]: http://askubuntu.com/editing-help
 [gfm-cheatsheet-github]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [contributing-en-gb]: contributing-en-GB.md
+[contributing-git]: contributing-git.md
 [contributing-build]: contributing-build.md
 [vim-eighty-columns]: http://stackoverflow.com/questions/3033423/vim-command-to-restructure-force-text-to-80-columns

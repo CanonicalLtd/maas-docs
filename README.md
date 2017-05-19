@@ -10,9 +10,9 @@ Documentation bugs are [submitted here][maas-docs-submit-bugs] and
 
 The below resources describe how to contribute to this documentation:
 
-- [Writing guide][contributing-writing]
-- [Working with Git and GitHub][contributing-git]
-- [Build the docs][contributing-build]
+- [Writing guide][contributing-writing-html]
+- [Working with Git and GitHub][contributing-git-html]
+- [Build the docs][contributing-build-html]
 
 
 <!-- LINKS -->
@@ -23,6 +23,6 @@ The below resources describe how to contribute to this documentation:
 [maas-docs]: https://docs.ubuntu.com/maas
 [maas-docs-submit-bugs]: https://github.com/CanonicalLtd/maas-docs/issues/new
 [maas-docs-list-bugs]: https://github.com/CanonicalLtd/maas-docs/issues
-[contributing-writing]: https://docs.ubuntu.com/maas/2.2/en/contributing-writing
-[contributing-git]: https://docs.ubuntu.com/maas/2.2/en/contributing-git
-[contributing-build]: https://docs.ubuntu.com/maas/2.2/en/contributing-build
+[contributing-writing-html]: https://docs.ubuntu.com/maas/2.2/en/contributing-writing
+[contributing-git-html]: https://docs.ubuntu.com/maas/2.2/en/contributing-git
+[contributing-build-html]: https://docs.ubuntu.com/maas/2.2/en/contributing-build
