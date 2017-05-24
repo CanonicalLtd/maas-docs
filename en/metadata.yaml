@@ -98,30 +98,30 @@ navigation:
           - title: Disk erasure
             location: installconfig-storage-erasure.md
 
-      - title: Nodes
+  - title: Nodes
 
-        children:
+    children:
 
-          - title: Add nodes
-            location: installconfig-add-nodes.md
+      - title: Add nodes
+        location: installconfig-add-nodes.md
 
-          - title: BMC power types
-            location: installconfig-nodes-power-types.md
+      - title: BMC power types
+        location: installconfig-nodes-power-types.md
 
-          - title: Commission nodes
-            location: installconfig-commission-nodes.md
+      - title: Commission nodes
+        location: installconfig-commission-nodes.md
 
-          - title: Deploy nodes
-            location: installconfig-nodes-deploy.md
+      - title: Deploy nodes
+        location: installconfig-nodes-deploy.md
 
-          - title: Tags
-            location: installconfig-nodes-tags.md
+      - title: Tags
+        location: installconfig-nodes-tags.md
 
-          - title: Kernel boot options
-            location: installconfig-nodes-kernel-boot-options.md
+      - title: Kernel boot options
+        location: installconfig-nodes-kernel-boot-options.md
 
-          - title: Ubuntu kernels
-            location: installconfig-nodes-ubuntu-kernels.md
+      - title: Ubuntu kernels
+        location: installconfig-nodes-ubuntu-kernels.md
 
   - title: Manage MAAS
 
