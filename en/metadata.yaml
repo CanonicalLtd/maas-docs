@@ -106,7 +106,7 @@ navigation:
     children:
             
       - title: Add nodes
-        location: installconfig-add-nodes.md
+        location: nodes-add.md
 
       - title: BMC power types
         location: installconfig-nodes-power-types.md
