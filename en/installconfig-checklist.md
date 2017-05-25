@@ -148,7 +148,7 @@ web UI will inform you of its IP address. Mission accomplished!
 [networks]: installconfig-networking.md
 [images]: installconfig-images.md
 [dhcp]: installconfig-network-dhcp.md
-[add-nodes]: installconfig-add-nodes.md
+[add-nodes]: nodes-add.md
 [manage-account]: manage-account.md
 [power-types]: installconfig-nodes-power-types.md
 [commission-nodes]: installconfig-commission-nodes.md

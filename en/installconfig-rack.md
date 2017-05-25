@@ -86,6 +86,6 @@ Here, you are deleting a machine that is a part of MAAS itself.
 [manage-ha]: manage-ha.md
 [cli-install-rackd]: manage-cli-advanced.md#install-a-rack-controller
 [cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
-[add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
+[add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 
 [img__add-rackd]: ../media/installconfig-rack__add-controller2.png
