@@ -133,4 +133,4 @@ being added:
 [anchor-add-a-node-manually]: #add-a-node-manually
 [power-types-example-virsh]: installconfig-nodes-power-types.md#example:-virsh-(kvm)-power-type
 
-[img__2.1_add-node-manually]: ../media/installconfig-nodes-add-nodes__2.1_add-node-manually.png
+[img__2.1_add-node-manually]: ../media/nodes-add__2.1_add-node-manually.png
