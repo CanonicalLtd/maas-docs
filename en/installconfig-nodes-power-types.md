@@ -68,7 +68,7 @@ currently supported by MAAS.
 
 [wikipedia-bmc]: https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface#Baseboard_management_controller
 [cli-update-node-hostname-and-power-parameters]: manage-cli-advanced.md#update-node-hostname-and-power-parameters
-[add-nodes-kvm-guest-nodes]: installconfig-add-nodes.md#kvm-guest-nodes
+[add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 
 [img__power-types-section]: ../media/installconfig-power-types__section.png
 [img__power-types-selection]: ../media/installconfig-power-types__types.png
