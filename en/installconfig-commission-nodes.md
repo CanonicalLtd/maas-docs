@@ -124,7 +124,7 @@ allocation time using the API.
 
 <!-- LINKS -->
 
-[add-nodes]: installconfig-add-nodes.md
+[add-nodes]: nodes-add.md
 [cli-commission-a-node]: manage-cli-common.md#commission-a-node
 [tags]: installconfig-nodes-tags.md
 [deploy-nodes]: installconfig-nodes-deploy.md
