@@ -129,7 +129,7 @@ being added:
 
 [concepts-statuses]: intro-concepts.md#node-statuses
 [concepts-actions]: intro-concepts.md#node-actions
-[commission-nodes]: installconfig-commission-nodes.md
+[commission-nodes]: nodes-commission.md
 [anchor-add-a-node-manually]: #add-a-node-manually
 [power-types-example-virsh]: installconfig-nodes-power-types.md#example:-virsh-(kvm)-power-type
 

@@ -92,7 +92,7 @@ See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
 
 <!-- LINKS -->
 
-[commission-nodes]: installconfig-commission-nodes.md
+[commission-nodes]: nodes-commission.md
 [cli-deploy-a-node]: manage-cli-common.md#deploy-a-node
 [cli-acquire-a-node]: manage-cli-common.md#acquire-a-node
 [user-accounts-ssh-keys]: manage-account.md#ssh-keys

@@ -1,4 +1,4 @@
-Title: DHCP | MAAS
+Title: DHCP
 TODO:  Maybe create a bug for why the enablement of DHCP in the web UI asks for a gateway IP and not a nameserver
 table_of_contents: True
 
@@ -106,10 +106,11 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 
 [manage-ha]: manage-ha.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
 [ip-ranges]: installconfig-network-ipranges.md
 [dhcpd.conf-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
+
 [img__2.1_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.1_dhcp-snippets.png
 [img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png

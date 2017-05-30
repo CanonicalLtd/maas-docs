@@ -380,4 +380,4 @@ Puts the node in a specific zone.
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [juju-network-spaces]: https://jujucharms.com/docs/2.0/network-spaces
 [ip-ranges]: installconfig-network-ipranges.md
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration

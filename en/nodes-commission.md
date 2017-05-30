@@ -1,4 +1,4 @@
-Title: Commission Nodes | MAAS
+Title: Commission Nodes
 TODO:  Add CLI for IP address assignment methods
        Add CLI for image/kernel to use for commissioning (?)
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
@@ -114,7 +114,7 @@ allocation time using the API.
 [subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 
-[img__bridge-interface]: ../media/installconfig-commission-nodes__bridge-iface.png
-[img__2.1_commission]: ../media/installconfig-nodes-commission-nodes__2.1_commission.png
-[img__commission-go]: ../media/installconfig-commission-nodes__commission-go.png
+[img__bridge-interface]: ../media/nodes-commission__bridge-iface.png
+[img__2.1_commission]: ../media/nodes-commission__2.1_commission.png
+[img__commission-go]: ../media/nodes-commission__commission-go.png
 [img__node-interface-ip]: ../media/node-interface-ip.png
