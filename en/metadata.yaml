@@ -109,7 +109,7 @@ navigation:
         location: installconfig-nodes-power-types.md
 
       - title: Commission nodes
-        location: installconfig-commission-nodes.md
+        location: nodes-commission.md
 
       - title: Deploy nodes
         location: installconfig-nodes-deploy.md
