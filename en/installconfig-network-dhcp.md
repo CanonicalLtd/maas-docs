@@ -138,7 +138,7 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [ipranges]: installconfig-network-ipranges.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [concepts-dhcp-relay]: intro-concepts.md#dhcp-relay
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [dhcpd.conf-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=dhcpd.conf
 [cli-enable-dhcp]: manage-cli-common.md#enable-dhcp
 [cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
