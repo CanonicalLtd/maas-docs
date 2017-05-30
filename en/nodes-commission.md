@@ -133,8 +133,8 @@ allocation time using the API.
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: installconfig-nodes-hw-testing
 
-[img__2.2_commission]: ../media/installconfig-nodes-commission__2.2_commission.png
-[img__2.2_commission-confirm]: ../media/installconfig-nodes-commission__2.2_commission-confirm.png
-[img__2.2_configure-interface]: ../media/installconfig-nodes-commission__2.2_configure-interface.png
-[img__2.2_edit-interface]: ../media/installconfig-nodes-commission__2.2_edit-interface.png
-[img__2.2_configure-bridge]: ../media/installconfig-nodes-commission__2.2_configure-bridge.png
+[img__2.2_commission]: ../media/nodes-commission__2.2_commission.png
+[img__2.2_commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
+[img__2.2_configure-interface]: ../media/nodes-commission__2.2_configure-interface.png
+[img__2.2_edit-interface]: ../media/nodes-commission__2.2_edit-interface.png
+[img__2.2_configure-bridge]: ../media/nodes-commission__2.2_configure-bridge.png

@@ -58,7 +58,7 @@ from managed or unmanaged subnets.
 <!-- LINKS -->
 
 [concepts-ipranges]: intro-concepts.md#ip-ranges
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [cli-control-subnet-management]: manage-cli-common.md#control-subnet-management
 
 [img__2.2_subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.2_management-toggle.png
