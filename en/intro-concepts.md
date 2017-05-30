@@ -404,7 +404,7 @@ Puts the node in a specific zone.
 [isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
 [dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
 [ip-ranges]: installconfig-network-ipranges.md
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
 [intel-rsd]: intel-rsd.md
