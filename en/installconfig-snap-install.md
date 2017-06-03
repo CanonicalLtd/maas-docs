@@ -132,7 +132,7 @@ Sample output (for mode 'all'):
 ```no-highlight
 Mode: all
 Settings:
-maas_url=http://10.55.60.1:5240/MAAS
+maas_url=http://192.168.122.1:5240/MAAS
 ```
 
 ## Service statuses
