@@ -1,5 +1,6 @@
 Title: Install from a Snap
 TODO:  Track bug: https://goo.gl/Yifghb
+table_of_contents: True
 
 
 # Install from a Snap
