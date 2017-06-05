@@ -1,9 +1,9 @@
-Title: Installation | MAAS
+Title: Installation
 
 
 # Installation
 
-There are three ways to install MAAS:
+There are four ways to install MAAS:
 
 - [From an Ubuntu Server ISO][install-from-iso]. Install a complete MAAS
   environment or a rack controller during the ISO installation of Ubuntu
@@ -14,6 +14,10 @@ There are three ways to install MAAS:
   components.
     - Versatile: Put components where you want them (centralized or distributed)
     - Can access developmental versions of MAAS
+- [From a snap][install-from-snap]. Install via a snap.
+    - Versatile: Put components where you want them (centralized or distributed)
+    - Can access developmental versions of MAAS
+    - Application isolation
 - [With LXD][install-with-lxd]. Create a self-contained MAAS
   environment with LXD containers.
     - MAAS nodes also run as local containers
@@ -29,5 +33,6 @@ LTS.
 
 [install-from-iso]: installconfig-iso-install.md
 [install-from-packages]: installconfig-package-install.md
+[install-from-snap]: installconfig-snap-install.md
 [install-with-lxd]: installconfig-lxd-install.md
 [upgrade-to-v2]: installconfig-upgrade-to-2.md
