@@ -33,6 +33,9 @@ navigation:
           - title: Install from packages
             location: installconfig-package-install.md
 
+          - title: Install from a snap
+            location: installconfig-snap-install.md
+
           - title: Install with LXD
             location: installconfig-lxd-install.md
 
@@ -100,34 +103,34 @@ navigation:
 
           - title: Disk erasure
             location: installconfig-storage-erasure.md
+                    
+  - title: Nodes
 
-      - title: Nodes
+    children:
+            
+      - title: Add nodes
+        location: nodes-add.md
 
-        children:
+      - title: BMC power types
+        location: installconfig-nodes-power-types.md
 
-          - title: Add nodes
-            location: installconfig-add-nodes.md
+      - title: Commission nodes
+        location: nodes-commission.md
 
-          - title: BMC power types
-            location: installconfig-power-types.md
+      - title: Deploy nodes
+        location: installconfig-nodes-deploy.md
 
-          - title: Commission nodes
-            location: installconfig-commission-nodes.md
+      - title: Tags
+        location: installconfig-nodes-tags.md
 
-          - title: Deploy nodes
-            location: installconfig-nodes-deploy.md
+      - title: Kernel boot options
+        location: installconfig-nodes-kernel-boot-options.md
 
-          - title: Tags
-            location: installconfig-tags.md
+      - title: Ubuntu kernels
+        location: installconfig-nodes-ubuntu-kernels.md
 
-          - title: Kernel boot options
-            location: installconfig-nodes-kernel-boot-options.md
-
-          - title: Ubuntu kernels
-            location: installconfig-nodes-ubuntu-kernels.md
-
-          - title: Hardware testing
-            location: installconfig-nodes-hw-testing.md
+      - title: Hardware testing
+        location: installconfig-nodes-hw-testing.md
 
   - title: Manage MAAS
 
@@ -168,6 +171,9 @@ navigation:
           - title: Advanced tasks
             location: manage-cli-advanced.md
 
+          - title: Composable hardware
+            location: manage-cli-comp-hw.md
+
       - title: API client
         location: manage-libmaas.md
 
@@ -194,7 +200,7 @@ navigation:
     location: /maas/1.9/en/
 
   - title: Help improve these docs
-    location: contributing.md
+    location: contributing-writing.md
 
   - title: Report a docs issue
     location: https://github.com/CanonicalLtd/maas-docs/issues/new
