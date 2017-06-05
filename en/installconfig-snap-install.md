@@ -7,7 +7,7 @@ table_of_contents: True
 
 Although snap installs are meant to eventually replace traditional Ubuntu
 packages, installing MAAS from a snap is considered experimental at this time.
-In particular, implementing high availability via snaps is not yet implemented.
+In particular, implementing high availability via snaps is not yet possible.
 See [MAAS HA][maas-ha] for more on that topic.
 
 All feedback is welcome via the [MAAS issue tracker][launchpad-bugs-maas].
@@ -16,14 +16,14 @@ All feedback is welcome via the [MAAS issue tracker][launchpad-bugs-maas].
 ## Snappy
 
 For detailed information on `snappy` (snaps) please see the
-[Snappy documentation][snappy-docs]. A less technical summary can be had via an
-[Ubuntu Insights][insights.ubuntu.com-snappy] column.
+[Snappy documentation][snappy-docs]. A less technical summary can be had via
+this [Ubuntu Insights][insights.ubuntu.com-snappy] column.
 
 
 ## Installation 
 
-Presently, only the stable and development MAAS versions are available via
-snaps. This corresponds, respectively, to the 'stable' and 'edge' Snappy
+Currently, only the stable and development MAAS versions are available via
+snaps. This corresponds, respectively, to the 'stable' and 'edge' snap
 *channels*:
 
 ```bash
@@ -69,9 +69,9 @@ actually been installed and configured yet.
 
 ## Configuration options
 
-You will now need to tell the snap in what *mode* MAAS will run in. This is
-known as *initialization* and it is performed by choosing one of the below
-options. Doing so will dictate what services will run on the local system.
+You will now need to tell the snap what *mode* MAAS will run in. This is known
+as *initialization* and it is performed by choosing one of the below options.
+Doing so will dictate what services will run on the local system.
 
 - `all` - All services
 - `region` - A region API server only (no database)
@@ -82,7 +82,7 @@ This is different from the installation scenarios covered in the package
 install method (see [Install from packages][install-from-packages]) where
 the installation of a "region controller" **will** include a database.
 
-All modes will prompt for a MAAS URL. The 'all' mode will use it for the
+All modes will prompt for a MAAS URL. The 'all' mode will use this for the
 creation of a new region controller whereas the other three modes will
 interpret it as the URL for an existing region controller.
 
