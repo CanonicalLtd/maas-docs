@@ -155,23 +155,25 @@ supports IPv4 and IPv6 subnets. Examples:
 2001:db8:4d41:4153::/64
 ```
 
-
 ### IP ranges
 
 IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
-- **Reserved range** For a MAAS managed subnet this is an IP range that MAAS will
-  never use. You can use it for anything you want (e.g. infrastructure systems,
-  network hardware, external DHCP, or the namespace for an OpenStack cloud you
-  will be building). Alternatively, for an MAAS unmanaged subnet, only addresses
-  in this range are used by MAAS.
-
-- **Reserved dynamic range** An IP range that MAAS will use for enlisting,
-  commissioning and, if MAAS-managed DHCP is enabled on the node's VLAN during
-  commissioning, deploying. An initial range is created as part of the DHCP
-  enablement process if done with the web UI. For an unmanaged subnet, this
-  range is never used.
+- **Reserved range**  
+  Mode operates differently depending on whether the subnet is managed or
+  unmanaged:
+    - **Managed (subnet)**:
+      MAAS will never assign IP addresses inside this range. They can be
+      used for anything (e.g. infrastructure systems, network hardware,
+      external DHCP, or the namespace for an OpenStack cloud you will be building).
+    - **Unmanaged (subnet)**:
+      MAAS will only assign IP addresses inside this range.
+- **Reserved dynamic range**  
+  An IP range that MAAS will use for enlisting, commissioning and, if
+  MAAS-managed DHCP is enabled on the node's VLAN during commissioning,
+  deploying. An initial range is created as part of the DHCP enablement process
+  if done with the web UI. For an unmanaged subnet, this range is never used.
 
 See [IP ranges][ip-ranges] for how these ranges get created and 
 [Commission nodes][post-commission-configuration] for how they get used and
@@ -402,7 +404,7 @@ Puts the node in a specific zone.
 [isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
 [dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
 [ip-ranges]: installconfig-network-ipranges.md
-[post-commission-configuration]: installconfig-commission-nodes.md#post-commission-configuration
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
 [intel-rsd]: intel-rsd.md

@@ -1,5 +1,7 @@
-Title: Intel RSD | MAAS
-TODO:  Need access to this hardware to produce quality docs (Newell Jensen is a resource)
+Title: Intel RSD
+TODO:  Add page for deleting a MAAS node and linking from here
+       Need to cover the option of a "virsh chassis Pod"
+       This is intel-rsd centric. May need to eventually make it more generic (composable hardware with intel-rsd as just one example) - will involve file renaming :(
 table_of_contents: True
 
 
@@ -10,15 +12,18 @@ dynamic composition of physical systems from a pool of available hardware
 resources (e.g. disk space, memory, cores). It is an example of *composable
 hardware*.
 
-This means a machine request (allocate) can be made without having to make
-available machines beforehand. Modelling tools, such as [Juju][about-juju], can
-leverage this when requesting a machine from MAAS, which will dynamically
+This means a machine request can be made without having to make machines
+available beforehand. Modelling tools, such as [Juju][about-juju], can leverage
+this functionality when requesting a machine from MAAS, which will dynamically
 **create** and Deploy one. Machines can also be requested directly from within
 MAAS.
 
-Functionality for composable hardware first appeared in MAAS 2.2 beta2. See the
-[MAAS 2.2.0 release notes][release-notes] for how to install the requisite
-version of MAAS.
+See [MAAS CLI - Composable hardware][manage-cli-comp-hw] for how to manage
+Intel RSD with the CLI.
+
+!!! Note:
+    MAAS has only been validated to work with Intel RSD reference software
+    release v.1.2.5, based on Redfish API v.1.0 and RSD PODM API v.1.0.
 
 
 ## Definitions
@@ -41,159 +46,102 @@ version of MAAS.
   for MAAS’s control through a single endpoint.
 
 
-## MAAS CLI
-
-Functionality for composable hardware is, at this time, primarily accessed via
-the MAAS CLI (see [MAAS CLI][manage-cli] to get started) but the web UI (see
-[below][anchor__webui]) is quickly advancing in this area.
-
-
-### List all Pods
-
-List all Pods:
-
-```bash
-maas $PROFILE pods read
-```
-
-
-### Register a Pod
-
-To register a Pod:
-
-```bash
-maas $PROFILE pods create type="rsd" power_address=$POWER_ADDRESS \
-	power_user=$USERNAME power_pass=$PASSWORD
-```
-
-Where POWER_ADDRESS can be an IP address or URL followed by a port.
-
-For example:
-
-```bash
-maas $PROFILE pods create type="rsd" power_address="10.3.0.1:8443"
-```
-
-When a Pod is registered, MAAS automatically discovers and stores the
-resources that the Pod contains.  
-
-
-### List Pod resources
-
-To list a Pod's resources:
-
-```bash
-maas $PROFILE pod read $POD_ID
-```
-
-
-### List Pod power parameters
-
-To list a Pod's power parameters:
-
-```bash
-maas $PROFILE pod parameters $POD_ID
-```
-
-Example output:
-
-```no-highlight
-{
-    "power_address": "10.3.0.1:8443",
-    "power_pass": "admin",
-    "power_user": "admin"
-}
-```
-
-
-### Compose Pod machines
-
-To compose a Pod's machines:
-
-```bash
-maas $PROFILE pod compose $POD_ID
-```
-
-Example output for default composing:
-
-```no-highlight
-{
-    "system_id": "73yxmc",
-    "resource_uri": "/MAAS/api/2.0/machines/73yxmc/"
-}
-```
-
-Compose with resources specified:
-
-```bash
-maas $PROFILE pod compose $POD_ID $RESOURCES
-```
-
-Where RESOURCES is a space-separated list from:
-
-**cores=**requested cores  
-**cpu_speed=**requested minimum cpu speed in MHz  
-**memory=**requested memory in MB  
-**architecture=**requested architecture that POD must support  
-
-For example:
-
-```bash
-maas $PROFILE pod compose $POD_ID \
-	cores=40 cpu_speed=2000 memory=7812 architecture="amd64/generic"
-```
-
-
-### List machine parameters
-
-The MAAS machine may be a composed machine in which case its resources will be
-included in the output:
-
-```bash
-maas $PROFILE machine read $SYSTEM_ID
-```
-
-
-### Machine decomposition
-
-To decompose a Pod machine by deleting the machine itself:
-
-```bash
-maas $PROFILE machine delete $SYSTEM_ID
-```
-
-If the Pod's resources are now listed (`pod read $POD_ID`), it would be seen
-that the resources for this machine are available and no longer used.
-
-
-### Pod deletion
-
-To delete a Pod:
-
-```bash
-maas $PROFILE pod delete $POD_ID
-```
-
-
 ## Web UI
 
-Functionality for composable systems (like the Intel RSD) in the web UI
-consists of the following actions and information displays:
+See [Web UI][webui] for how to get started with the web UI.
 
-- List pods - lists all pods and provide a summary of usage statistics for each
-- Add a pod - add a pod
-- Pod details - provide detailed information about a pod such as available
-  resources 
+Composable hardware systems are managed on the 'Pods' page, which is initially
+empty:
 
-Such functionality has only begun to appear in the web UI. It is under active
-development.
+![initial pods page][img__2.2_pod-initial-page]
 
-Composable hardware systems are managed on the 'Pods' page.
+
+### Add a Pod
+
+Add a Pod by using the 'Add pod' button. After choosing 'Rack Scale Design' for
+'Pod type' the below form will appear:
+
+![add pod][img__2.2_pod-add]
+
+Fill in the fields (you will need to get values for 'Pod address', 'Pod user',
+and 'Pod password' from the Intel RSD administrator) and click 'Save pod'.
+
+### List Pods
+
+The new Pod, including a summary of contained resources, will be listed on the
+'Pods' page:
+
+![save pod][img__2.2_pod-list]
+
+### View Pod details
+
+Clicking a Pod's name on the 'Pods' page will reveal the resources contained
+within it:
+
+![pod details][img__2.2_pod-details]
+
+### Compose Pod machine
+
+While on a Pod's details view, begin the machine composition process by
+pressing the 'Compose machine' button:
+
+![pod compose machine][img__2.2_pod-compose-machine]
+
+Fill in the fields (many are optional) and hit 'Compose machine' to finish. You
+will be brought back to the Pod's details view. In a few moments the new
+machine will be auto-commissioned:
+
+![pod compose machine commissioning][img__2.2_pod-compose-machine-commissioning]
+
+The main 'Nodes' page should reflect this as well.
+
+As expected, the new machine's resources will be deducted from the Pod's
+resources:
+
+![pod machine resources deducted][img__2.2_pod-compose-machine-deducted]
+
+### Decompose a Pod machine
+
+Decomposing a Pod machine means to send the machine's resources back to the Pod
+for reuse. Doing so within MAAS will also cause the corresponding MAAS node to
+be Deleted.
+
+While on a Pod's details view, select the machine to decompose and choose the
+'Delete' button from the dropdown menu:
+
+![pod decompose machine][img__2.2_pod-decompose-machine]
+
+Confirm by hitting the 'Delete machine' button.
+
+!!! Note:
+    This operation can also be achieved by simply deleting the corresponding
+    MAAS node in the regular way.
+
+Once done, you will be transported back to the main 'Nodes' page.
+
+### Delete a Pod
+
+While on the main Pods page, select a Pod and choose the 'Delete' action from
+the dropdown menu. Hit 'Delete 1 pod' to confirm the action:
+
+![pod delete][img__2.2_pod-delete]
+
+Deleting a Pod will also decompose all its machines, thereby also removing all
+corresponding nodes from MAAS.
 
 
 <!-- LINKS -->
 
-[release-notes]: release-notes.md
-[manage-cli]: manage-cli.md
+[manage-cli-comp-hw]: manage-cli-comp-hw.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
-[anchor__webui]: #web-ui
+[webui]: installconfig-webui.md
+
+[img__2.2_pod-initial-page]: ../media/intel-rsd__2.2_pod-initial-page.png
+[img__2.2_pod-add]: ../media/intel-rsd__2.2_pod-add.png
+[img__2.2_pod-list]: ../media/intel-rsd__2.2_pod-list.png
+[img__2.2_pod-details]: ../media/intel-rsd__2.2_pod-details.png
+[img__2.2_pod-compose-machine]: ../media/intel-rsd__2.2_pod-compose-machine.png
+[img__2.2_pod-compose-machine-commissioning]: ../media/intel-rsd__2.2_pod-compose-machine-commissioning.png
+[img__2.2_pod-compose-machine-deducted]: ../media/intel-rsd__2.2_pod-compose-machine-deducted.png
+[img__2.2_pod-decompose-machine]: ../media/intel-rsd__2.2_pod-decompose-machine.png
+[img__2.2_pod-delete]: ../media/intel-rsd__2.2_pod-delete.png
