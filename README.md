@@ -12,7 +12,7 @@ The below resources describe how to contribute to this documentation:
 
 - [Writing guide][contributing-writing-html]
 - [Working with Git and GitHub][contributing-git-html]
-- [Build the docs][contributing-build-html]
+- [Building the docs][contributing-build-html]
 
 
 <!-- LINKS -->
