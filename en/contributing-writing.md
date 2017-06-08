@@ -15,7 +15,7 @@ process involved in producing one is described on the
 [Working with Git and GitHub][contributing-git] page.
 
 Prior to submitting a PR the contributor must verify that the HTML is good. See
-[Build the docs][contributing-build] for how to do this.
+[Building the docs][contributing-build] for how to do this.
 
 A Documentation team member will review your PR, suggest improvements, and
 eventually merge it with the appropriate branch (series). Publication to the
