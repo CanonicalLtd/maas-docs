@@ -95,7 +95,7 @@ currently supported by MAAS.
 [cli-update-node-hostname-and-power-parameters]: manage-cli-advanced.md#update-node-hostname-and-power-parameters
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 
-[img__2.2_power-types-undefined]: ../media/installconfig-nodes-power-types__2.2_undefined.png
-[img__2.2_power-types-selection]: ../media/installconfig-nodes-power-types__2.2_selection.png
-[img__2.2_power-types-example-virsh]: ../media/installconfig-nodes-power-types__2.2_example-virsh.png
-[img__2.2_power-types-power-error]: ../media/installconfig-nodes-power-types__2.2_power-error.png
+[img__2.2_power-types-undefined]: ../media/nodes-power-types__2.2_undefined.png
+[img__2.2_power-types-selection]: ../media/nodes-power-types__2.2_selection.png
+[img__2.2_power-types-example-virsh]: ../media/nodes-power-types__2.2_example-virsh.png
+[img__2.2_power-types-power-error]: ../media/nodes-power-types__2.2_power-error.png
