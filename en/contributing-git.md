@@ -13,7 +13,7 @@ for definitive documentation: [Git docs][git-docs] and
 Related documents:
 
 - [Writing guide][contributing-writing]
-- [Build the docs][contributing-build]
+- [Building the docs][contributing-build]
 
 
 ## Initial setup
@@ -245,7 +245,7 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
    [Writing guide][contributing-writing].
 
 1. Verify the HTML by building the docs locally. See
-   [Build the docs][contributing-build].
+   [Building the docs][contributing-build].
 
 1. Check which files have been added or modified:
 
