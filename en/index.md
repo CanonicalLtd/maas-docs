@@ -211,6 +211,6 @@ its own subnet(s).
 [maas-install]: installconfig-install.md
 [manage-ha]: manage-ha.md
 [dhcp]: installconfig-network-dhcp.md
-[power-types]: installconfig-nodes-power-types.md
+[power-types]: nodes-power-types.md
 [load-balancing]: manage-ha.md#load-balancing-(optional)
 [mirror]: installconfig-images-mirror.md
