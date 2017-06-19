@@ -61,14 +61,12 @@ machine:
 sudo apt install maas-region-controller
 ```
 
-and the rack controller on another:
+and the rack controller (see [Rack controller][rackd] for details) on another:
 
 ```bash
 sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
-
-See [Rack controller][rackd] for details.
 
 
 <!-- LINKS -->
