@@ -1,5 +1,11 @@
 Title: Storage
-TODO:  partitions *are* block devices (?)
+TODO:  Describe the Storage page by section
+       Explain how to perform actions: LVM, RAID, Bcache, modify filesystems
+       Bug tracking: https://pad.lv/1636933
+       Bug tracking: https://pad.lv/1698891
+       Bug tracking: https://pad.lv/1698895
+       The 'block devices' and 'partitions' pages have been removed from the menu. They should be reviewed. If worthy, they should be moved to the CLI section
+       Re the above, partitions *are* block devices (?)
 table_of_contents: True
 
 
@@ -7,15 +13,18 @@ table_of_contents: True
 
 The final storage configuration that a deployed node uses can be influenced
 significantly. MAAS supports traditional disk partitioning as well as more
-complex options such as Bcache, RAID, and LVM.
+complex options such as LVM, RAID, and Bcache.
 
-A MAAS storage template is called a *layout*, and it gets applied to a
-node when it is commissioned.
+A MAAS storage template is called a *layout*, and it gets applied to a node
+when it is commissioned. However, it is possible for an administrator to
+override the default with a different layout.
 
-It is possible for an administrator to override the default with a different
-layout. It is equally possible for a regular user to make modifications to a
-node after a layout is applied in order to arrive at the node's final storage
-configuration.
+It is equally possible for a regular user to make modifications to a node, at
+the filesystem level, after a layout is applied in order to arrive at the
+node's final storage configuration.
+
+Only an administrator can modify storage at the block device level (providing
+the node has a status of 'Ready').
 
 
 ## UEFI
@@ -175,8 +184,10 @@ is only possible via the CLI at this time (see
 
 ## Final storage modifications
 
-Once a node has been assigned a layout a regular user can perform modifications
-on the corresponding storage configuration.
+Once a node has been provisioned with block devices via a layout or
+administrator customization (as mentioned under 'Node layout'), a regular user
+can perform modifications on the resulting storage configuration at the
+filesystem level.
 
 
 <!-- LINKS -->
