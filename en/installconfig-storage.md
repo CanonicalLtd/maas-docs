@@ -192,8 +192,6 @@ filesystem level.
 
 <!-- LINKS -->
 
-[block-devices]: installconfig-block.md
-[partitions]: installconfig-partitions.md
 [storage-erasure]: installconfig-storage-erasure.md
 [cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
 [cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
