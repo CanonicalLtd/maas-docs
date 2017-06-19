@@ -378,15 +378,7 @@ Turns a node's underlying machine on.
 
 ### Release
 Releases a node back into the pool of available nodes. Changes a node's status
-<<<<<<< HEAD
-from 'Deployed' or 'Allocated' to 'Ready'.
-
-There is the possibility to erase the node's disk prior to releasing. This is
-done on the 'Settings' page, the 'General' tab, and the 'Storage' section. It
-is a global setting.
-=======
 from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
->>>>>>> 5d9804bd4bcdbbb06ec7e08e4433bf51982f6c79
 
 The user has the opportunity to erase the node's storage (disks) before
 confirming the action. A default erasure setting can be configured on the
