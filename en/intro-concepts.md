@@ -249,6 +249,13 @@ spent in MAAS and its status will change accordingly. A status change is
 usually caused by an *action* (see next section) that is applied to the node.
 Below is the full list of statuses and their meaning, arranged alphabetically.
 
+Some aspects of a node can only be modified when a node has a certain status.
+Examples:
+
+- network interfaces cannot be modified without a status of either 'Ready' or
+  'Broken'.
+- storage cannot be modified without a status of either 'Ready' or 'Allocated'.
+
 ### Allocated
 The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
 
@@ -355,14 +362,13 @@ the source of the problem.
 
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
-networking or disk subsystem level.
+networking or disk subsystem level. In this case, the original status would be
+'Deployed'. 
 
-Finally, some aspects of a node can only be edited when a node's status is
-'Broken'. For example, a node's network interface can only be edited via MAAS
-if the node has a status of either 'Ready' or 'Broken'.
+A newly-commissioned node ('Ready') can also be marked broken.
 
 ### Mark fixed
-Fixes a broken node. Changes a node's status from 'Broken' to 'New'.
+Fixes a broken node. Changes a node's status from 'Broken' to 'Ready'.
 
 ### Power off
 Turns a node's underlying machine off.
