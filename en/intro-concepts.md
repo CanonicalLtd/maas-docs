@@ -387,7 +387,7 @@ Settings page. See [Disk erasure][storage-erasure] for details.
 ### Rescue mode
 
 Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
-This allows a user SSH to the machine for maintenance purposes. This can be
+This allows a user to SSH to the machine for maintenance purposes. This can be
 done for a Deployed or Broken node as well as for a node that failed to deploy.
 
 Authentication and access to the node's storage works the same way it would as
