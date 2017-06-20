@@ -13,7 +13,8 @@ table_of_contents: True
 
 The final storage configuration that a deployed node uses can be influenced
 significantly. MAAS supports traditional disk partitioning as well as more
-complex options such as LVM, RAID, and Bcache. UEFI is also supported.
+complex options such as LVM, RAID, and Bcache. UEFI is also supported as a boot
+mechanism.
 
 A node's storage is dependant upon the underlying system's disks but its
 configuration (how the disks get used) is the result of a storage template. In
@@ -30,16 +31,16 @@ erasure types before releasing it.
 
 ## UEFI
 
-A node booting with UEFI will be accommodated by every layout type by having it
-include an EFI boot partition (`/boot/efi`) in its configuration. Other than
-setting the node to boot from UEFI, no other action is asked of the user.
+A node booting with UEFI is supported by every layout type. In such a case, an
+EFI boot partition (`/boot/efi`) will be automatically created. Other than
+setting the node to boot from UEFI, no other action is required of the user.
 
 !!! Warning: 
     UEFI is either used by the node throughout its lifecycle or it's not. For
     example, do not enlist a node with UEFI enabled and then disable it before
     commissioning. It won't work!
 
-The EFI partition, if present, will be the first partition (`sda1`) and will
+The EFI partition, if created, will be the first partition (`sda1`) and will
 have a FAT32 filesystem with a size of 512 MB.
 
 
@@ -114,9 +115,9 @@ the volume group.
 A Bcache layout will create a partition that spans the entire boot disk as the
 backing device. It uses the smallest block device tagged with 'ssd' as the
 cache device. The Bcache device is formatted with the ext4 filesystem and uses
-the `/` mount point. If no block devices exists on the node that are tagged
-with 'ssd' then the Bcache device will not be created and the Flat layout will
-be used instead:
+the `/` mount point. If there are no 'ssd' tagged block devices on the node, 
+then the Bcache device will not be created and the Flat layout will be used
+instead:
 
 | Name      | Size        | Type  | Filesystem     | Mount point |
 |:----------|-------------|-------|----------------|-------------|
@@ -166,8 +167,8 @@ the 'General' tab. The section is labelled 'Storage':
 
 ![default storage layout][img__2.2_default-storage-layout]
 
-See [Disk erasure][storage-erasure] for explanation of the options related to
-the erasing of disks.
+See [Disk erasure][storage-erasure] for an explanation of the options related
+to the erasing of disks.
 
 !!! Warning "Important":
     The new default will only apply to newly-commissioned nodes.
