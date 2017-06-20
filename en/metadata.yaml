@@ -94,16 +94,6 @@ navigation:
       - title: Storage
         location: installconfig-storage.md
 
-        children:
-          - title: Block devices
-            location: installconfig-block.md
-
-          - title: Partitions
-            location: installconfig-partitions.md
-
-          - title: Disk erasure
-            location: installconfig-storage-erasure.md
-                    
   - title: Nodes
 
     children:
