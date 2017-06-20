@@ -94,11 +94,6 @@ navigation:
       - title: Storage
         location: installconfig-storage.md
 
-        children:
-
-          - title: Disk erasure
-            location: installconfig-storage-erasure.md
-                    
   - title: Nodes
 
     children:

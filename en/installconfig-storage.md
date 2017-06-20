@@ -1,5 +1,5 @@
 Title: Storage
-TODO:  Describe the Storage page by section
+TODO:  Describe the Storage web UI page
        Explain how to perform actions: LVM, RAID, Bcache, modify filesystems
        Bug tracking: https://pad.lv/1636933
        Bug tracking: https://pad.lv/1698891
@@ -13,18 +13,19 @@ table_of_contents: True
 
 The final storage configuration that a deployed node uses can be influenced
 significantly. MAAS supports traditional disk partitioning as well as more
-complex options such as LVM, RAID, and Bcache.
+complex options such as LVM, RAID, and Bcache. UEFI is also supported.
 
-A MAAS storage template is called a *layout*, and it gets applied to a node
-when it is commissioned. However, it is possible for an administrator to
-override the default with a different layout.
+A node's storage is dependant upon the underlying system's disks but its
+configuration (how the disks get used) is the result of a storage template. In
+MAAS this template is called a *layout* and it gets applied to a node when it
+is commissioned.
 
-It is equally possible for a regular user to make modifications to a node, at
-the filesystem level, after a layout is applied in order to arrive at the
-node's final storage configuration.
+Once a layout is applied, a regular user can make modifications to a node at
+the filesystem level in order to arrive at the node's final storage
+configuration.
 
-Only an administrator can modify storage at the block device level (providing
-the node has a status of 'Ready').
+When a node is no longer needed a user can choose from among several disk
+erasure types before releasing it.
 
 
 ## UEFI
@@ -181,6 +182,10 @@ that layout providing this is done while the node has a status of 'Ready'. This
 is only possible via the CLI at this time (see
 [MAAS CLI - advanced tasks][cli-set-storage-layout]).
 
+!!! Note:
+    Only an administrator can modify storage at the block device level (providing
+    the node has a status of 'Ready').
+
 
 ## Final storage modifications
 
@@ -188,6 +193,12 @@ Once a node has been provisioned with block devices via a layout or
 administrator customization (as mentioned under 'Node layout'), a regular user
 can perform modifications on the resulting storage configuration at the
 filesystem level.
+
+
+## Disk erasure
+
+Node storage can be erased in several ways. See [Disk erasure][storage-erasure]
+for details.
 
 
 <!-- LINKS -->
