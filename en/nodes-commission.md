@@ -127,7 +127,7 @@ allocation time using the API.
 [add-nodes]: nodes-add.md
 [cli-commission-a-node]: manage-cli-common.md#commission-a-node
 [tags]: installconfig-nodes-tags.md
-[deploy-nodes]: installconfig-nodes-deploy.md
+[deploy-nodes]: nodes-deploy.md
 [tags-network-interfaces]: installconfig-nodes-tags.html#tags-for-network-interfaces
 [subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges

@@ -297,5 +297,5 @@ See [User Accounts][manage-account] for the latter.
 [manage-cli]: manage-cli.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [manage-account]: manage-account.md
-[acquire-nodes]: installconfig-nodes-deploy.md#acquire-nodes
+[acquire-nodes]: nodes-deploy.md#acquire-nodes
 [anchor__set-a-default-gateway]: #set-a-default-gateway
