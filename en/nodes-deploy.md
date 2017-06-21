@@ -102,5 +102,5 @@ See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
 [kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
 [ubuntu-kernels]: installconfig-nodes-ubuntu-kernels.md
 
-[img__2.2_deploy]: ../media/installconfig-nodes-deploy__2.2_deploy.png
-[img__2.2_deploy-confirm]: ../media/installconfig-nodes-deploy__2.2_deploy-confirm.png
+[img__2.2_deploy]: ../media/nodes-deploy__2.2_deploy.png
+[img__2.2_deploy-confirm]: ../media/nodes-deploy__2.2_deploy-confirm.png
