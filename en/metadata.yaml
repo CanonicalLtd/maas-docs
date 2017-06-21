@@ -149,6 +149,9 @@ navigation:
           - title: Common tasks
             location: manage-cli-common.md
 
+          - title: Kernel management
+            location: manage-cli-kernels.md
+
           - title: Image management
             location: manage-cli-images.md
 
