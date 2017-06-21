@@ -131,7 +131,7 @@ release (series) before deploying the node.
 [cli-select-images]: manage-cli-images.md#select-images
 [ubuntu-wiki-hwe]: https://wiki.ubuntu.com/Kernel/LTSEnablementStack
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
-[cli-set-a-default-minimum-hwe-kernel]: manage-cli-advanced.md#set-a-default-minimum-hwe-kernel
+[cli-set-a-default-minimum-hwe-kernel]: manage-cli-kernels.md#set-a-default-minimum-hwe-kernel
 
 [img__2.2_default-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_default-minimum-kernel.png
 [img__2.2_machine-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_machine-minimum-kernel.png
