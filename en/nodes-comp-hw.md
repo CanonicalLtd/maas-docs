@@ -6,9 +6,9 @@ table_of_contents: True
 
 # Composable Hardware
 
-Composable Hardware allows for the dynamic composition of systems from a pool
-of available hardware resources (e.g. disk space, memory, cores). This
-collection of resources is what MAAS calls a *Pod*.
+Composable Hardware allows for the dynamic composition of nodes from a pool
+of available hardware resources (e.g. disk space, memory, cores). MAAS calls
+such a collection of resources a *Pod*.
 
 This enables a machine request to be made without having machines pre-built.
 Modelling tools, such as [Juju][about-juju], can leverage this functionality
@@ -24,8 +24,8 @@ MAAS currently supports two such architectures:
     For RSD, MAAS has only been validated to work with Intel RSD reference
     software release v.1.2.5, based on Redfish API v.1.0 and RSD PODM API v.1.0.
 
-See [MAAS CLI - Composable hardware][manage-cli-comp-hw] for how to manage
-composable hardware with the CLI.
+See [MAAS CLI - Composable hardware][cli-comp-hw] for how to manage composable
+hardware with the CLI.
 
 
 ## Web UI
@@ -137,18 +137,18 @@ corresponding nodes from MAAS.
 
 <!-- LINKS -->
 
-[manage-cli-comp-hw]: manage-cli-comp-hw.md
+[cli-comp-hw]: manage-cli-comp-hw.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [webui]: installconfig-webui.md
 [launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
 
-[img__2.2_pod-initial-page]: ../media/intel-rsd__2.2_pod-initial-page.png
-[img__2.2_pod-add-rsd]: ../media/intel-rsd__2.2_pod-add-rsd.png
-[img__2.2_pod-add-virsh]: ../media/intel-rsd__2.2_pod-add-virsh.png
-[img__2.2_pod-list]: ../media/intel-rsd__2.2_pod-list.png
-[img__2.2_pod-details]: ../media/intel-rsd__2.2_pod-details.png
-[img__2.2_pod-compose-machine]: ../media/intel-rsd__2.2_pod-compose-machine.png
-[img__2.2_pod-compose-machine-commissioning]: ../media/intel-rsd__2.2_pod-compose-machine-commissioning.png
-[img__2.2_pod-compose-machine-deducted]: ../media/intel-rsd__2.2_pod-compose-machine-deducted.png
-[img__2.2_pod-decompose-machine]: ../media/intel-rsd__2.2_pod-decompose-machine.png
-[img__2.2_pod-delete]: ../media/intel-rsd__2.2_pod-delete.png
+[img__2.2_pod-initial-page]: ../media/nodes-comp-hw__2.2_pod-initial-page.png
+[img__2.2_pod-add-rsd]: ../media/nodes-comp-hw__2.2_pod-add-rsd.png
+[img__2.2_pod-add-virsh]: ../media/nodes-comp-hw__2.2_pod-add-virsh.png
+[img__2.2_pod-list]: ../media/nodes-comp-hw__2.2_pod-list.png
+[img__2.2_pod-details]: ../media/nodes-comp-hw__2.2_pod-details.png
+[img__2.2_pod-compose-machine]: ../media/nodes-comp-hw__2.2_pod-compose-machine.png
+[img__2.2_pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.2_pod-compose-machine-commissioning.png
+[img__2.2_pod-compose-machine-deducted]: ../media/nodes-comp-hw__2.2_pod-compose-machine-deducted.png
+[img__2.2_pod-decompose-machine]: ../media/nodes-comp-hw__2.2_pod-decompose-machine.png
+[img__2.2_pod-delete]: ../media/nodes-comp-hw__2.2_pod-delete.png

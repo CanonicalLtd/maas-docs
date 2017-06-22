@@ -6,8 +6,7 @@ table_of_contents: True
 
 This is a list of composable hardware tasks which can be performed with the
 MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
-[Composable hardware][intel-rsd] for an overview of the subject matter
-(including web UI functionality).
+[Composable hardware][composable-hardware] for an overview of the subject.
 
 
 ## Register a Pod
@@ -175,4 +174,4 @@ maas $PROFILE pod delete $POD_ID
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
-[intel-rsd]: intel-rsd.md
+[composable-hardware]: nodes-comp-hw.md
