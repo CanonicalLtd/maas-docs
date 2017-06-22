@@ -15,15 +15,19 @@ See [CLI Image Management][cli-images] for information on advanced image
 management.
 
 
-## Boot image sources
+## Boot sources
 
 The place from where a region controller downloads its images is known as a
-*boot image source*. The main characteristics of a boot source are its location
+*boot source*. The main characteristics of a boot source are its location
 (URL) and its associated GPG public keyring.
+
+!!! Note:
+    A *boot resource* is another name for an image. So boot resources are
+    found within a boot source.
 
 MAAS comes configured with a boot source that should suffice for most users:
 
-https://images.maas.io/ephemeral-v3/daily/
+[https://images.maas.io/ephemeral-v3/daily/][default-boot-source]
 
 The above URL points to the 'daily' stream (for the v3 format). See
 [Local image mirror][mirror] for some explanation regarding the availability of
@@ -48,5 +52,6 @@ See [Select and Import Images][images-import] to get started with images.
 
 [ubuntu-advantage]: https://www.ubuntu.com/support
 [cli-images]: manage-cli-images.md
+[default-boot-source]: https://images.maas.io/ephemeral-v3/daily/
 [mirror]: installconfig-images-mirror.md
 [images-import]: installconfig-images-import.md

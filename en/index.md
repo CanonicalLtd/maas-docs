@@ -31,17 +31,19 @@ provisioned automatically and used as normal. When those machines are no longer
 required they are "released" back into the pool. MAAS integrates all the tools
 you require in one smooth experience. It includes:
 
-- a beautiful web UI
+- web UI (optimised for mobile devices)
+- Ubuntu, CentOS, Windows, RHEL and SUSE installation support
+- open source IP address management (IPAM)
 - full API/CLI support
 - high availability (optional)
 - IPv6 support
-- open source IP address management (IPAM)
-- Ubuntu, CentOS, Windows, RHEL and SUSE installation support
 - inventory of components
 - DHCP and DNS for other devices on the network
 - DHCP relay integration
 - VLAN and fabric support
 - NTP for the entire infrastructure
+- hardware testing
+- composable hardware support
 
 MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef][about-chef] and [Juju][about-juju] as a physical
@@ -211,6 +213,6 @@ its own subnet(s).
 [maas-install]: installconfig-install.md
 [manage-ha]: manage-ha.md
 [dhcp]: installconfig-network-dhcp.md
-[power-types]: installconfig-nodes-power-types.md
+[power-types]: nodes-power-types.md
 [load-balancing]: manage-ha.md#load-balancing-(optional)
 [mirror]: installconfig-images-mirror.md

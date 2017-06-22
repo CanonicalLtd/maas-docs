@@ -34,7 +34,7 @@ Note that per-node boot options take precedence to global ones.
 <!-- LINKS -->
 
 [upstream-kernel.org-kernel-parameters]: https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
-[cli-set-the-default-kernel-boot-options]: manage-cli-advanced.md#set-the-default-kernel-boot-options
-[cli-specify-kernel-boot-options-for-a-machine]: manage-cli-advanced.md#specify-kernel-boot-options-for-a-machine
+[cli-set-the-default-kernel-boot-options]: manage-cli-kernels.md#set-the-default-kernel-boot-options
+[cli-specify-kernel-boot-options-for-a-machine]: manage-cli-kernels.md#specify-kernel-boot-options-for-a-machine
 
 [img__2.2_global-kernel-options]: ../media/installconfig-nodes-kernel-boot-options__2.2_global.png

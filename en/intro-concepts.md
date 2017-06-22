@@ -1,5 +1,5 @@
 Title: Concepts and Terms
-TODO:  Consider CLI commands for every node action and link from here
+TODO:  Consider CLI commands for every node action and link from the action section
        QA node actions
 table_of_contents: True
 
@@ -69,9 +69,9 @@ virtual machines or containers running inside a MAAS-deployed node.
 
 ## Composable hardware
 
-Hardware architecture that allows for the dynamic composition of physical
-systems from a pool of hardware resources (e.g. disk space, memory, cores).
-See [Intel RSD][intel-rsd] for an example of this.
+Composable hardware is based on an architecture that allows for the dynamic
+composition of machines from a pool of hardware resources (e.g. disk space,
+memory, cores). See [Composable hardware][composable-hardware] for details.
 
 
 ## Zones
@@ -249,6 +249,13 @@ spent in MAAS and its status will change accordingly. A status change is
 usually caused by an *action* (see next section) that is applied to the node.
 Below is the full list of statuses and their meaning, arranged alphabetically.
 
+Some aspects of a node can only be modified when a node has a certain status.
+Examples:
+
+- network interfaces cannot be modified without a status of either 'Ready' or
+  'Broken'.
+- storage cannot be modified without a status of either 'Ready' or 'Allocated'.
+
 ### Allocated
 The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
 
@@ -355,14 +362,13 @@ the source of the problem.
 
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
-networking or disk subsystem level.
+networking or disk subsystem level. In this case, the original status would be
+'Deployed'. 
 
-Finally, some aspects of a node can only be edited when a node's status is
-'Broken'. For example, a node's network interface can only be edited via MAAS
-if the node has a status of either 'Ready' or 'Broken'.
+A newly-commissioned node ('Ready') can also be marked broken.
 
 ### Mark fixed
-Fixes a broken node. Changes a node's status from 'Broken' to 'New'.
+Fixes a broken node. Changes a node's status from 'Broken' to 'Ready'.
 
 ### Power off
 Turns a node's underlying machine off.
@@ -381,7 +387,7 @@ Settings page. See [Disk erasure][storage-erasure] for details.
 ### Rescue mode
 
 Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
-This allows a user SSH to the machine for maintenance purposes. This can be
+This allows a user to SSH to the machine for maintenance purposes. This can be
 done for a Deployed or Broken node as well as for a node that failed to deploy.
 
 Authentication and access to the node's storage works the same way it would as
@@ -407,4 +413,4 @@ Puts the node in a specific zone.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
-[intel-rsd]: intel-rsd.md
+[composable-hardware]: nodes-comp-hw.md
