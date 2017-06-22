@@ -15,24 +15,25 @@ MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
 To register/add a Pod:
 
 ```bash
-maas $PROFILE pods create type="rsd" power_address=$POWER_ADDRESS \
-	power_user=$USERNAME power_pass=$PASSWORD
+maas $PROFILE pods create type=$POD_TYPE power_address=$POWER_ADDRESS \
+	[power_user=$USERNAME] [power_pass=$PASSWORD]
 ```
 
-Where POWER_ADDRESS, USERNAME, and PASSWORD will need to be collected from the
-Intel RSD hardware administrator. POWER_ADDRESS can be an IP address (or URL)
-followed by a port.
+In the case of the Virsh power type, both USERNAME and PASSWORD are not
+needed.
 
-For example:
+For example, to create an RSD pod:
 
 ```bash
 maas $PROFILE pods create type=rsd power_address=10.3.0.1:8443 \
 	power_user=admin power_pass=admin
 ```
 
-When a Pod is registered, MAAS automatically discovers and stores the
-resources that the Pod contains. Any pre-composed machines will appear on the
-'Nodes' page and be commissioned automatically. 
+And to create a Virsh pod:
+
+```bash
+maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system
+```
 
 
 ## List resources of all Pods

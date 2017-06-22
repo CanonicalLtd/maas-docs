@@ -1,49 +1,31 @@
-Title: Intel RSD
-TODO:  Add page for deleting a MAAS node and linking from here
-       Need to cover the option of a "virsh chassis Pod"
-       This is intel-rsd centric. May need to eventually make it more generic (composable hardware with intel-rsd as just one example) - will involve file renaming :(
+Title: Composable Hardware
+TODO:  Need to cover the option of a "virsh chassis" (but not here)
+       Track bug: https://bugs.launchpad.net/maas/+bug/1688066
 table_of_contents: True
 
 
-# Intel RSD
+# Composable Hardware
 
-Intel Rack Scale Design (RSD) is a hardware architecture that allows for the
-dynamic composition of physical systems from a pool of available hardware
-resources (e.g. disk space, memory, cores). It is an example of *composable
-hardware*.
+Composable Hardware allows for the dynamic composition of systems from a pool
+of available hardware resources (e.g. disk space, memory, cores). This
+collection of resources is what MAAS calls a *Pod*.
 
-This means a machine request can be made without having to make machines
-available beforehand. Modelling tools, such as [Juju][about-juju], can leverage
-this functionality when requesting a machine from MAAS, which will dynamically
-**create** and Deploy one. Machines can also be requested directly from within
-MAAS.
+This enables a machine request to be made without having machines pre-built.
+Modelling tools, such as [Juju][about-juju], can leverage this functionality
+when requesting a machine from MAAS, which will dynamically **create** and
+Deploy one. Machines can also be requested directly from within MAAS.
 
-See [MAAS CLI - Composable hardware][manage-cli-comp-hw] for how to manage
-Intel RSD with the CLI.
+MAAS currently supports two such architectures:
+
+- Intel Rack Scale Design (RSD)
+- Virsh
 
 !!! Note:
-    MAAS has only been validated to work with Intel RSD reference software
-    release v.1.2.5, based on Redfish API v.1.0 and RSD PODM API v.1.0.
+    For RSD, MAAS has only been validated to work with Intel RSD reference
+    software release v.1.2.5, based on Redfish API v.1.0 and RSD PODM API v.1.0.
 
-
-## Definitions
-
-- Intel Rack Scale Design  
-  Intel® Rack Scale Design (RSD) is a logical architecture that disaggregates
-  compute, storage, and network resources, and introduces the ability to more
-  efficiently pool and utilize these resources.
-  
-- Composed System  
-  An Intel RSD term. Used to represent a system that has been created for usage
-  as an actual machine in MAAS.
-  
-- Uncomposed System  
-  An Intel RSD term. Used to represent a system that has not been created for
-  usage as an actual usable system.
-  
-- Pod  
-  A MAAS term. Use to represent a set of machines or a pool of hardware available
-  for MAAS’s control through a single endpoint.
+See [MAAS CLI - Composable hardware][manage-cli-comp-hw] for how to manage
+composable hardware with the CLI.
 
 
 ## Web UI
@@ -58,13 +40,36 @@ empty:
 
 ### Add a Pod
 
-Add a Pod by using the 'Add pod' button. After choosing 'Rack Scale Design' for
-'Pod type' the below form will appear:
+Add/register a Pod by using the 'Add pod' button.
 
-![add pod][img__2.2_pod-add]
+The first example depicts an RSD Pod being added. After choosing 'Rack Scale
+Design' for 'Pod type' the below form will appear:
 
-Fill in the fields (you will need to get values for 'Pod address', 'Pod user',
-and 'Pod password' from the Intel RSD administrator) and click 'Save pod'.
+![add pod][img__2.2_pod-add-rsd]
+
+Fill in the fields. You will need to get values for 'Pod address' (IP address
+or URL followed by a port), 'Pod user', and 'Pod password' from the RSD
+administrator. Then click 'Save pod'.
+
+Once added, MAAS will automatically discover and store the resources that a
+Pod contains. Any pre-composed machines will also appear on the 'Nodes' page
+and be commissioned. 
+
+This is how a Virsh Pod is added:
+
+![add pod][img__2.2_pod-add-virsh]
+
+Virsh Pod notes:
+
+- Typically, the KVM host will have a network bridge set up with a libvirt
+  network configured to use it.
+- Alternatively, if KVM and MAAS reside on the same system the default NAT
+  libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
+  the VLAN associated with the libvirt subnet of 192.168.122.0/24.
+- MAAS will always use the libvirt network called `default`.
+- KVM guests subsequently created (composed) will not, by default, have a
+  graphics card added at the libvirt level. See
+  [LP #1688066][launchpad-bug-1688066].
 
 ### List Pods
 
@@ -135,9 +140,11 @@ corresponding nodes from MAAS.
 [manage-cli-comp-hw]: manage-cli-comp-hw.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [webui]: installconfig-webui.md
+[launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
 
 [img__2.2_pod-initial-page]: ../media/intel-rsd__2.2_pod-initial-page.png
-[img__2.2_pod-add]: ../media/intel-rsd__2.2_pod-add.png
+[img__2.2_pod-add-rsd]: ../media/intel-rsd__2.2_pod-add-rsd.png
+[img__2.2_pod-add-virsh]: ../media/intel-rsd__2.2_pod-add-virsh.png
 [img__2.2_pod-list]: ../media/intel-rsd__2.2_pod-list.png
 [img__2.2_pod-details]: ../media/intel-rsd__2.2_pod-details.png
 [img__2.2_pod-compose-machine]: ../media/intel-rsd__2.2_pod-compose-machine.png
