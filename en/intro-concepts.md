@@ -1,5 +1,5 @@
 Title: Concepts and Terms
-TODO:  Consider CLI commands for every node action and link from here
+TODO:  Consider CLI commands for every node action and link from the action section
        QA node actions
 table_of_contents: True
 
@@ -69,9 +69,9 @@ virtual machines or containers running inside a MAAS-deployed node.
 
 ## Composable hardware
 
-Hardware architecture that allows for the dynamic composition of physical
-systems from a pool of hardware resources (e.g. disk space, memory, cores).
-See [Intel RSD][intel-rsd] for an example of this.
+Composable hardware is based on an architecture that allows for the dynamic
+composition of machines from a pool of hardware resources (e.g. disk space,
+memory, cores). See [Composable hardware][composable-hardware] for details.
 
 
 ## Zones
@@ -413,4 +413,4 @@ Puts the node in a specific zone.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
-[intel-rsd]: intel-rsd.md
+[composable-hardware]: nodes-comp-hw.md
