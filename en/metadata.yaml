@@ -94,16 +94,6 @@ navigation:
       - title: Storage
         location: installconfig-storage.md
 
-        children:
-          - title: Block devices
-            location: installconfig-block.md
-
-          - title: Partitions
-            location: installconfig-partitions.md
-
-          - title: Disk erasure
-            location: installconfig-storage-erasure.md
-                    
   - title: Nodes
 
     children:
@@ -112,13 +102,13 @@ navigation:
         location: nodes-add.md
 
       - title: BMC power types
-        location: installconfig-nodes-power-types.md
+        location: nodes-power-types.md
 
       - title: Commission nodes
         location: nodes-commission.md
 
       - title: Deploy nodes
-        location: installconfig-nodes-deploy.md
+        location: nodes-deploy.md
 
       - title: Tags
         location: installconfig-nodes-tags.md
@@ -131,6 +121,9 @@ navigation:
 
       - title: Hardware testing
         location: installconfig-nodes-hw-testing.md
+
+      - title: Composable hardware
+        location: nodes-comp-hw.md
 
   - title: Manage MAAS
 
@@ -159,6 +152,9 @@ navigation:
           - title: Common tasks
             location: manage-cli-common.md
 
+          - title: Kernel management
+            location: manage-cli-kernels.md
+
           - title: Image management
             location: manage-cli-images.md
 
@@ -186,9 +182,6 @@ navigation:
 
       - title: Getting help
         location: troubleshoot-getting-help.md
-
-  - title: Intel RSD
-    location: intel-rsd.md
 
   - title: Release notes
     location: release-notes.md

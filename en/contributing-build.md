@@ -1,10 +1,10 @@
-Title: Build the Docs
+Title: Building the Docs
 TODO: can add more user-friendly instructions on setting up local web server
       talk about entr utility
 table_of_contents: True
 
 
-# Build the Docs
+# Building the Docs
 
 Every non-trivial contribution must first have its HTML built and verified
 before a pull request (PR) is made from it.
