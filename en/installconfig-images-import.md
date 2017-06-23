@@ -1,5 +1,6 @@
 Title: Select and Import Images
-TODO:  There is a rumor of changing the rackd:region image sync frequency from 5 min to 15
+TODO:  Be consistent with final version of installconfig-nodes-ubuntu-kernels.md (see TODO)
+       There is rumor of changing the rackd:region image sync frequency from 5 min to 15
 
 
 # Select and Import Images

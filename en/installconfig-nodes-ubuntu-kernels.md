@@ -1,24 +1,29 @@
 Title: Ubuntu Kernels
-TODO:  Warning: Ubuntu codenames are used
+TODO:  Review required. There is still confusion about selecting kernels: https://goo.gl/VTbH0X
+       it also appears that some kernels are hardcoded; i can't get rid of them. all very shoddy
+       the 'releases' type of v3 stream does not exist at time of writing and it may never (requires rewording if this is the case)
+       Review regularly since Ubuntu codenames are used
 table_of_contents: True
 
 
 # Ubuntu Kernels
 
-MAAS supports four types of kernels for its Ubuntu nodes.
+MAAS supports three types of kernels for its Ubuntu nodes.
 
 - General availability kernels
 - Hardware enablement kernels
-- Hardware enablement kernels (pre-release)
 - Low latency kernels
 
 
 ## General availability kernels
 
 The *general availability* (GA) kernel is based on the *generic* kernel that
-originally ships with a new Ubuntu version. Fixes that have since entered the
-package archives get applied regularly due to the 'daily' *stream* that is used
-when setting up the global image source for MAAS.
+originally ships with a new Ubuntu version. However, what fixes that have since
+entered the package archives get applied depend on what type of *stream* was
+chosen when setting up the global image source for MAAS ('daily' or
+'releases'). The default is 'daily', which indicates that all such fixes will
+be applied. The 'releases' stream type will also have fixes applied but on a
+much less frequent basis.
 
 MAAS denotes a GA kernel like this:
 
@@ -45,39 +50,21 @@ an HWE kernel.
     as non-graphical servers.
 
 Note that these backported/HWE kernels are only available for LTS releases
-(e.g. Trusty, Xenial, etc). For example, the first available HWE kernel for
-Ubuntu 16.04 LTS (Xenial) will be the GA kernel from Ubuntu 16.10 (Yakkety). 
+(e.g. Precise, Trusty, Xenial, etc). For example, the first available HWE
+kernel for Ubuntu 16.04 LTS (Xenial) will be the GA kernel from Ubuntu 16.10
+(Yakkety). 
 
-In MAAS, prior to MAAS 2.1 on Xenial, HWE kernels are referred to by the
-notation `hwe-<release letter>`. So, to install the Yakkety HWE kernel on
-Xenial the `hwe-y` kernel is used. By default, when using the web UI, MAAS
-imports all available HWE kernels along with its generic boot images. So if
-Trusty images are imported then the following HWE kernels are included:
-`hwe-u`, `hwe-v`, `hwe-w`, `hwe-x` (presuming the Xenial HWE kernel is
-available).
-
-In MAAS 2.1, starting with Xenial kernels, the notation has changed. The
-following is used to refer to the latest HWE kernel available for Xenial:
-`hwe-16.04`.
+In MAAS, HWE kernels are referred to by the notation `hwe-<release letter>`.
+So, to install the Yakkety HWE kernel on Xenial the `hwe-y` kernel is used.
+By default, when using the web UI, MAAS imports all available HWE kernels along
+with its generic boot images. So if Trusty images are imported then the
+following HWE kernels are included: `hwe-u`, `hwe-v`, and `hwe-w`.
 
 See [MAAS CLI][cli-select-images] for how to target specific HWE kernels when
 selecting install images.
 
 See [LTS Enablement Stack][ubuntu-wiki-hwe] (Ubuntu wiki) for the latest
 information on HWE.
-
-
-## Hardware enablement kernels (pre-release)
-
-The pre-release HWE kernel is the HWE kernel that has not been released yet. It
-is known as the *edge* HWE kernel.
-
-MAAS denotes the edge kernel like this: `hwe-<version>-edge`.
-
-So 'hwe-16.04' is considered older than 'hwe-16.04-edge'.
-
-See [Rolling LTS Enablement Stack][ubuntu-wiki-hwe-edge] (Ubuntu wiki) for more
-information.
 
 
 ## Low latency kernels
@@ -97,31 +84,33 @@ MAAS denotes a low latency kernel in a few ways:
 ## Using kernels
 
 The kernel installed on a node during deployment is, by default, the Ubuntu
-release's native kernel (GA). However, it is possible to tell MAAS to use a
-different kernel. Kernels can be managed in three ways:
+release's native kernel. However, it is possible to tell MAAS to use a
+different kernel. This can be done in three ways:
 
-- globally (default minimum enlistment and commissioning kernel)
-- per machine (minimum deploy kernel)
-- per machine during deployment (specific deploy kernel)
+- globally (default minimum kernel)
+- per machine (minimum kernel)
+- per machine during deployment (specific kernel)
 
-See
-[MAAS CLI][cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]
-for how to perform these three configurations from the CLI.
+!!! Note: 
+    MAAS will emit an error if a configured minimum kernel version (or
+    newer) is not available for the machine's Ubuntu release.
+
+See [MAAS CLI][cli-set-a-default-minimum-hwe-kernel] for how to perform these
+three configurations from the CLI.
 
 ### Default minimum kernel
 
-To set the default minimum enlistment and commissioning kernel (based on Ubuntu
-release: GA kernel) for all machines visit the 'Settings' page and select a
-kernel in the 'Default Minimum Kernel Version' field. Don't forget to click
-'Save'.
+To set the default minimum kernel for all machines visit the 'Settings' page
+and select a kernel in the 'Default Minimum Kernel Version' field. Don't
+forget to click 'Save'.
 
 ![default minimum kernel][img__2.2_default-minimum-kernel]
 
 ### Machine minimum kernel
 
-To set the minimum deploy kernel on a machine basis, select a machine from the
-'Nodes' page and click the 'Edit' button under the (default) 'Machine summary'
-tab.  Then select a kernel in the 'Minimum Kernel' field and 'Save changes'.
+To set the minimum kernel on a machine basis, select a machine from the 'Nodes'
+page and click the 'Edit' button under the (default) 'Machine summary' tab.
+Then select a kernel in the 'Minimum Kernel' field and 'Save changes'.
 
 ![machine minimum kernel][img__2.2_machine-minimum-kernel]
 
@@ -141,9 +130,8 @@ release (series) before deploying the node.
 
 [cli-select-images]: manage-cli-images.md#select-images
 [ubuntu-wiki-hwe]: https://wiki.ubuntu.com/Kernel/LTSEnablementStack
-[ubuntu-wiki-hwe-edge]: https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack#hwe-16.04-edge
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
-[cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]: manage-cli-kernels.md#set-a-default-minimum-kernel-for-enlistment-and-commissioning
+[cli-set-a-default-minimum-hwe-kernel]: manage-cli-kernels.md#set-a-default-minimum-hwe-kernel
 
 [img__2.2_default-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_default-minimum-kernel.png
 [img__2.2_machine-minimum-kernel]: ../media/installconfig-nodes-ubuntu-kernels__2.2_machine-minimum-kernel.png

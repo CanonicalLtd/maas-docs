@@ -1,4 +1,6 @@
-Title: Local Image Mirror
+Title: Local Image Mirror | MAAS
+TODO:  Hardcoded text: Update suggested mirror selections "for the year 2016"
+       Check whether v3 format still only offers a 'daily' stream
 
 
 # Local Image Mirror
@@ -25,14 +27,14 @@ IMAGE_DIR=/var/www/html/maas/images/ephemeral-v3/daily
 ```
 
 !!! Note: 
-    The v3 format offers only a 'daily' stream whereas in previous versions a
-    'releases' stream was available. The latter changes far less frequently but
-    lacks security and bug fixes.
+    The new v3 format currently only offers a 'daily' stream whereas in
+    previous versions a 'releases' stream was available. The latter changes far
+    less frequently but lacks security and bug fixes.
 
-The below example selects all available kernels that are compatible with either
-Ubuntu 14.04 (Trusty) and Ubuntu 16.04 (Xenial) for the amd64 architecture,
-resulting in a download of approximately 3.1 GB. The second command mirrors the
-bootloaders.
+The below example is a good choice for the year 2016. It selects all available
+kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
+(Xenial) for the amd64 architecture, resulting in a download of approximately
+3.1 GB. The second command mirrors the bootloaders.
 
 ```bash
 sudo sstream-mirror --keyring=$KEYRING_FILE $IMAGE_SRC $IMAGE_DIR \
