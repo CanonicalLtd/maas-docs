@@ -1,6 +1,5 @@
 Title: Commission Nodes
-TODO:  Add CLI for IP address assignment methods (bug tracking: https://pad.lv/1700795)
-       Add link to CLI for setting global commissioning kernel
+TODO:  Add link to CLI for setting global commissioning kernel
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
 
 
