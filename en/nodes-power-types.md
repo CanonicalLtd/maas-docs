@@ -1,6 +1,5 @@
 Title: BMC Power Types
 TODO:  Provide examples for setting up common power types (BMCs)
-       The BMC driver feature table needs updating since 2.2. See https://git.io/vSXdz
        Consider putting power check troubleshooting notes on the troubleshooting page
 table_of_contents: True
 

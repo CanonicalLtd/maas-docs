@@ -1,5 +1,4 @@
-Title: Management Summary | MAAS
-TODO:  Add link for CLI docs (authoritative) to navigation when those docs are available and updated
+Title: Management Summary
 
 
 # Management Summary
