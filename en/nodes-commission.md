@@ -1,6 +1,6 @@
 Title: Commission Nodes
-TODO:  Add CLI for IP address assignment methods
-       Add CLI for image/kernel to use for commissioning (?)
+TODO:  Add CLI for IP address assignment methods (bug tracking: https://pad.lv/1700795)
+       Add link to CLI for setting global commissioning kernel
        Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
 
 
@@ -79,10 +79,9 @@ The following window will appear:
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
 
-- **Auto assign** MAAS will assign a random static address 
-  (`iface eth0 inet static`). The pool of available addresses depends on
-  whether the subnet is managed or unmanaged (see
-  [Subnet management][subnet-management]).
+- **Auto assign** MAAS will assign a random static address (`iface eth0 inet
+  static`). The pool of available addresses depends on whether the subnet is
+  managed or unmanaged (see [Subnet management][subnet-management]).
 
 - **Static assign** The administrator will specify a static address using a
   secondary field.
