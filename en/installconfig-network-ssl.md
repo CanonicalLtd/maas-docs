@@ -1,5 +1,5 @@
-Title: SSL | MAAS
-TODO:  needs better info IMO. My (pmatulis) attempts to get this from maas team failed
+Title: SSL
+TODO:  Critical: review required
        modify Apache redirection wording if this redirection is ever removed
 
 

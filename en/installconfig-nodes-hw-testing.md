@@ -1,4 +1,4 @@
-Title: Hardware Testing | MAAS
+Title: Hardware Testing
 TODO:  Add/link to CLI when functionality becomes available (2.2 release)
        Display test output (require metal-based nodes)
 

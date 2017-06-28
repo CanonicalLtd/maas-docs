@@ -1,4 +1,4 @@
-Title: Zone Examples | MAAS
+Title: Zone Examples
 
 
 # Zone Examples

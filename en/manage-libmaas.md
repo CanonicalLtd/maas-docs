@@ -1,4 +1,4 @@
-Title: API Client | MAAS
+Title: API Client
 table_of_contents: True
 
 

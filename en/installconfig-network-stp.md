@@ -1,4 +1,4 @@
-Title: STP | MAAS
+Title: STP
 
 
 # STP

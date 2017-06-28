@@ -1,4 +1,4 @@
-Title: Install from Packages | MAAS
+Title: Install from Packages
 
 
 # Install from Packages
