@@ -1,4 +1,4 @@
-Title: Troubleshooting | MAAS
+Title: Troubleshooting
 TODO:  critical: review needed
 table_of_contents: True
 

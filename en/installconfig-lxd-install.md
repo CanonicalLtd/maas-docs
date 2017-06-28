@@ -1,4 +1,4 @@
-Title: Install with LXD | MAAS
+Title: Install with LXD
 TODO:  Text needs a review
 
 

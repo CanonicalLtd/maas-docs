@@ -1,4 +1,4 @@
-Title: Images | MAAS
+Title: Images
 
 
 # Images
