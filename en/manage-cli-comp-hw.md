@@ -1,4 +1,4 @@
-Title: MAAS CLI - Composable Hardware
+Title: CLI Composable Hardware
 table_of_contents: True
 
 

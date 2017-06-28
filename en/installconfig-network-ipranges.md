@@ -1,5 +1,4 @@
 Title: IP Ranges
-TODO:  Rename image to correspond to this page's name
 
 
 # IP Ranges
@@ -29,7 +28,7 @@ to enter start and end addresses for the range as well as a comment.
 Below is an example window when creating a 'reserved range' (both windows are
 actually identical):
 
-![Reserved IP range][img__2.2_add-reserved-iprange]
+![reserved IP range][img__2.2_add-reserved-iprange]
 
 Click the 'Reserve' button when done.
 
