@@ -1,5 +1,4 @@
 Title: Add Nodes
-TODO: Need instructions on adding a chassis
 table_of_contents: True
 
 
@@ -55,8 +54,8 @@ doesn't work for some reason.
 
 ## KVM guest nodes
 
-KVM-backed nodes are common and so a little extra guidance is provided here.
-The following actions will need to be performed on all rack controllers.
+KVM-backed nodes being common, extra guidance is provided here. The following
+actions will need to be performed on all rack controllers.
 
 Begin by ensuring the `virsh` binary is available to the rack controller by
 installing the `libvirt-bin` package:
@@ -121,7 +120,35 @@ button and then select 'Machine'.
 Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
 being added:
 
-![image][img__2.2_add-node-manually]
+![add node manually][img__2.2_add-node-manually]
+
+!!! Note:
+    The underlying machine will still need to be configured to boot over the
+    network in order to be commissioned. MAAS will not do this for you.
+
+
+## Add nodes via a chassis
+
+Another option is to add nodes through the *chassis* feature. This is where you
+point MAAS to a hypervisor and all existing virtual machines are added in one
+fell swoop.
+
+To do this, instead of selecting 'Machine' as above, the 'Chassis' item is
+chosen. Here, KVM is again used as an example.
+
+Fill in the resulting form as below. In the case of KVM, not all of the fields
+require values.
+
+![add node via chassis][img__2.2_add-node-chassis]
+
+!!! Note:
+    As with the manual method, the underlying machines will require netbooting.
+
+
+## Add nodes via a Pod
+
+Yet another way to add nodes is to use the composable hardware feature. See the
+[Composable hardware][composable-hardware] page for details.
 
 
 <!-- LINKS -->
@@ -131,5 +158,7 @@ being added:
 [commission-nodes]: nodes-commission.md
 [anchor-add-a-node-manually]: #add-a-node-manually
 [power-types-example-virsh]: nodes-power-types.md#example:-virsh-(kvm)-power-type
+[composable-hardware]: nodes-comp-hw.md
 
 [img__2.2_add-node-manually]: ../media/nodes-add__2.2_add-node-manually.png
+[img__2.2_add-node-chassis]: ../media/nodes-add__2.2_add-node-chassis.png
