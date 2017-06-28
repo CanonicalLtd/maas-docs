@@ -1,4 +1,4 @@
-Title: Install from ISO | MAAS
+Title: Install from ISO
 TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff appropriately
 
 

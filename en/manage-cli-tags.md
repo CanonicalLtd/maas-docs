@@ -1,4 +1,4 @@
-Title: MAAS CLI | Tags
+Title: CLI Tag Management
 TODO:  Decide whether explicit examples are needed everywhere
        Foldouts cannot be used due to bug: https://git.io/vwbCz
 

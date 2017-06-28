@@ -1,4 +1,4 @@
-Title: Device Discovery | MAAS
+Title: Device Discovery
 
 
 # Device Discovery

@@ -1,4 +1,4 @@
-Title: Disk Erasure | MAAS
+Title: Disk Erasure
 
 
 # Disk Erasure
