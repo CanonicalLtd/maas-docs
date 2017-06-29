@@ -6,7 +6,8 @@ TODO:  Decide whether explicit examples are needed everywhere
 # CLI Tag Management
 
 This is a list of tag management tasks to perform with the MAAS CLI. See
-[MAAS CLI][manage-cli] on how to get started.
+[MAAS CLI][manage-cli] on how to get started and [Tags][tags] for an
+explanation of the subject.
 
 
 ## Tag creation and auto-assignment
@@ -113,3 +114,4 @@ maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
+[tags]: installconfig-nodes-tags.md
