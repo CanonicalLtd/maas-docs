@@ -25,9 +25,9 @@ maas $PROFILE nodes read | grep hostname
 ```
 
 
-## Determine a node's system ID
+## Determine a node system ID
 
-To determine the system ID of a node based on its hostname:
+To determine the system ID of a node based on its MAAS hostname:
 
 ```bash
 SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
@@ -47,13 +47,13 @@ maas $PROFILE machine commission $SYSTEM_ID
     To commission a node it must have a status of 'New'.
 
 
-## Commission all nodes
-
-To commission all nodes in the 'Ready' state:
+To commission all nodes in the 'New' state:
 
 ```bash
 maas $PROFILE machines accept-all
 ```
+
+See [Commission nodes][commission-nodes].
 
 
 ## Acquire a node
@@ -86,6 +86,8 @@ maas $PROFILE machine deploy $SYSTEM_ID
     To deploy with the CLI the node must have a status of 'Allocated'. See
     'Acquire a node' above (or use the [web UI][acquire-nodes]).
 
+See [Deploy nodes][deploy-nodes].
+
 
 ## Control subnet management
 
@@ -103,17 +105,7 @@ maas $PROFILE subnet update 192.168.1.0/24 managed=false
 
 The subnet's ID can also be used in place of the CIDR address.
 
-
-## Assign a tag to a node
-
-To assign a tag to a node:
-
-```bash
-maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
-```
-
-Multiple `add=` arguments (and their values) can be used to apply a tag to
-multiple nodes. 
+See [Subnet management][subnet-management].
 
 
 ## Create a reserved IP range
@@ -184,6 +176,8 @@ You will also need to set a default gateway (see
 !!! Note: 
     DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
+See [DHCP][dhcp] for more on this subject.
+
 
 ## Set a DNS forwarder
 
@@ -230,6 +224,8 @@ For example,
 maas $PROFILE subnet update 192.168.0.0/22 allow_proxy=false
 ```
 
+See [Proxy][proxy] for detailed information on how proxying works with MAAS.
+
 
 ## Set a default gateway
 
@@ -258,6 +254,8 @@ maas $PROFILE zone update default \
 	description="This zone was configured by a script."
 ```
 
+See [Zones][zones] for more information on this topic.
+
 
 ## Add a public SSH key
 
@@ -267,10 +265,12 @@ To add a public SSH key to a MAAS user account:
 maas $PROFILE sshkeys create "key=$SSH_KEY"
 ```
 
+See [SSH keys][ssh-keys].
 
-## Determine a hostname
 
-To determine the hostname based on a node's MAC address:
+## Determine a node hostname
+
+To determine a node's hostname based on it's MAC address:
 
 ```bash
 HOSTNAME=$(maas $PROFILE nodes read mac_address=$MAC \
@@ -297,5 +297,12 @@ See [User Accounts][manage-account] for the latter.
 [manage-cli]: manage-cli.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [manage-account]: manage-account.md
+[zones]: manage-zones.md
 [acquire-nodes]: nodes-deploy.md#acquire-nodes
 [anchor__set-a-default-gateway]: #set-a-default-gateway
+[commission-nodes]: nodes-commission.md
+[deploy-nodes]: nodes-deploy.md
+[subnet-management]: installconfig-network-subnet-management.md
+[dhcp]: installconfig-network-dhcp.md
+[proxy]: installconfig-network-proxy.md
+[ssh-keys]: manage-account.md#ssh-keys

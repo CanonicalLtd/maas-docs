@@ -41,7 +41,7 @@ maas $PROFILE tags create name='nomodeset' \
 
 The tag must then be assigned to the machine in question. This can be done
 with the web UI or with the CLI. For the latter, see
-[MAAS CLI - common tasks][cli-assign-tag-to-node].
+[CLI - Manual tag assignment][cli-manual-tag-assignment].
 
 If multiple tags attached to a node have the `kernel_opts` defined, the first
 one (ordered alphabetically) is used.
@@ -114,4 +114,4 @@ maas $PROFILE machine deploy $SYSTEM_ID distro_series=xenial hwe_kernel=hwe-16.0
 [manage-cli]: manage-cli.md
 [ubuntu-kernels]: installconfig-nodes-ubuntu-kernels.md
 [kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
-[cli-assign-tag-to-node]: manage-cli-common.md#assign-a-tag-to-a-node
+[cli-manual-tag-assignment]: manage-cli-tags.md#manual-tag-assignment
