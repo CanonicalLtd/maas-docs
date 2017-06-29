@@ -8,7 +8,7 @@ table_of_contents: True
 
 This is a list of DHCP snippet management tasks to perform with the MAAS CLI.
 See [MAAS CLI][manage-cli] to get started with the CLI and
-[DHCP][dhcp-snippets] for an overview of DHCP snippets.
+[DHCP snippets][dhcp-snippets] for an overview of this topic.
 
 
 ## Create a snippet
@@ -88,30 +88,6 @@ maas $PROFILE dhcpsnippet update $DHCP_SNIPPET_ID enabled=false
 The disabling of a snippet removes the text that was added to the dhcpd.conf
 file when it was created/enabled.
 
-<!--
-
-THE USEFULNESS OF THIS IS QUESTIONABLE. IT MAY BELONG IN THE DEFINITIVE CLI
-DOCUMENTATION. LET'S LEAVE THIS OUT FOR NOW.
-
-## DHCP Snippet value history
-
-MAAS stores the complete history of changes made to the DHCP Snippet's value.
-MAAS only uses the latest revision of the value when writing dhcpd.conf.
-
-### Reverting a value
-
-!!! Warning: 
-    Reverting a value will result in all later versions being deleted!
-
-The revert operation allows the user to revert to a previous value. When
-specifying what to revert to the user can either provide the value id or a
-negative number representing how many revisions to go back:
-
-```bash
-maas $PROFILE dhcpsnippet revert <DHCP Snippet id or name> to=<value id or negative number>
-```
-
--->
 
 ## Delete a snippet
 
