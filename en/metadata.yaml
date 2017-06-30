@@ -114,7 +114,7 @@ navigation:
         location: nodes-tags.md
 
       - title: Kernel boot options
-        location: installconfig-nodes-kernel-boot-options.md
+        location: nodes-kernel-options.md
 
       - title: Ubuntu kernels
         location: nodes-kernels.md
