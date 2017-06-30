@@ -120,7 +120,7 @@ navigation:
         location: installconfig-nodes-ubuntu-kernels.md
 
       - title: Hardware testing
-        location: installconfig-nodes-hw-testing.md
+        location: nodes-hw-testing.md
 
       - title: Composable hardware
         location: nodes-comp-hw.md
