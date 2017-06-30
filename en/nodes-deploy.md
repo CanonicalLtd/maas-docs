@@ -100,7 +100,7 @@ See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
 [user-accounts-ssh-keys]: manage-account.md#ssh-keys
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
-[ubuntu-kernels]: installconfig-nodes-ubuntu-kernels.md
+[ubuntu-kernels]: nodes-kernels.md
 
 [img__2.2_deploy]: ../media/nodes-deploy__2.2_deploy.png
 [img__2.2_deploy-confirm]: ../media/nodes-deploy__2.2_deploy-confirm.png
