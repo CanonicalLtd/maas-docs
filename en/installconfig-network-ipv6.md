@@ -1,4 +1,4 @@
-Title: IPv6 | MAAS
+Title: IPv6
 
 
 # IPv6

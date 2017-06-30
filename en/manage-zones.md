@@ -1,5 +1,4 @@
 Title: Zones
-TODO:  Fix/add CLI equivalents
 table_of_contents: True
 
 

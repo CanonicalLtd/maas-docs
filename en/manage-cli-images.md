@@ -62,7 +62,6 @@ maas $PROFILE boot-source-selections create 1 \
 	subarches="hwe-16.04" labels="*"
 ```
 
-
 After new images are selected MAAS will need to import them.
 
 

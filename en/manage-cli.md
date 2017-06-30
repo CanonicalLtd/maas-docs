@@ -1,6 +1,5 @@
-Title: MAAS CLI | MAAS
+Title: CLI
 TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR (affects all CLI pages)
-       Consider explaining how an API call is converted to a CLI command
 table_of_contents: True
 
 
@@ -128,10 +127,12 @@ maas logout $PROFILE
 The following categories are now available to be explored:
 
 - [Common tasks][cli-common]
+- [Kernel management][cli-kernels]
 - [Image management][cli-images]
 - [Tag management][cli-tags]
 - [DHCP snippet management][cli-snippets]
 - [Advanced tasks][cli-advanced]
+- [Composable hardware][cli-comp-hw]
 
 
 <!-- LINKS -->
@@ -139,7 +140,9 @@ The following categories are now available to be explored:
 [api]: api.md
 [cli-create-regular-user]: manage-cli-common.md#create-a-regular-user
 [cli-common]: manage-cli-common.md
+[cli-kernels]: manage-cli-kernels.md
 [cli-images]: manage-cli-images.md
 [cli-tags]: manage-cli-tags.md
 [cli-snippets]: manage-cli-dhcp-snippets.md
 [cli-advanced]: manage-cli-advanced.md
+[cli-comp-hw]: manage-cli-comp-hw.md

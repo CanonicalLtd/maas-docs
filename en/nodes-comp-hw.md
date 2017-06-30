@@ -66,7 +66,7 @@ Virsh Pod notes:
 - Alternatively, if KVM and MAAS reside on the same system the default NAT
   libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
   the VLAN associated with the libvirt subnet of 192.168.122.0/24.
-- MAAS will always use the libvirt network called `default`.
+- MAAS will first look for a libvirt network named 'maas', then for 'default'.
 - KVM guests subsequently created (composed) will not, by default, have a
   graphics card added at the libvirt level. See
   [LP #1688066][launchpad-bug-1688066].
