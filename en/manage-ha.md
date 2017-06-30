@@ -1,4 +1,4 @@
-Title: High Availability | MAAS
+Title: High Availability
 TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
        Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
        Remove comment about 80:5240 redirect once apache/redirect is removed from MAAS

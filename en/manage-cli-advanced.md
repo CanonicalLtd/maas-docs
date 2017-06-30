@@ -1,6 +1,6 @@
 Title: Advanced CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
-       Update installconfig-nodes-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
+       Update nodes-tags.md to show assigning tags to machines with web UI; then link to it (for entry 'specify boot option') 
 table_of_contents: True
 
 
@@ -12,8 +12,17 @@ This is a list of advanced tasks to perform with the MAAS CLI. See
 
 ## Update node hostname and power parameters
 
-To update the hostname and power parameters of a (KVM) node based on its
-system ID:
+To update the hostname and power parameters of a node:
+
+```bash
+maas $PROFILE machine update $SYSTEM_ID \
+	hostname=$HOSTNAME \
+	power_type=$POWER_TYPE \
+	power_parameters_power_address=$POWER_ADDRESS \
+	power_parameters_power_id=$HOSTNAME
+```
+
+For example, to configure a KVM-based node:
 
 ```bash
 maas $PROFILE machine update $SYSTEM_ID \
@@ -22,6 +31,9 @@ maas $PROFILE machine update $SYSTEM_ID \
 	power_parameters_power_address=qemu+ssh://ubuntu@$KVM_HOST/system \
 	power_parameters_power_id=$HOSTNAME
 ```
+
+See [Common CLI tasks][cli-system-id] for how to find a node's system id and
+[BMC Power Types][power-types] for details on different power types.
 
 
 ## Relay DHCP
@@ -37,6 +49,8 @@ For example, to relay VLAN with vid 0 (on fabric-2) through VLAN with id 5002 :
 ```bash
 maas $PROFILE vlan update 2 0 relay_van=5002
 ```
+
+See [DHCP relay][dhcp-relay] for more information.
 
 
 ## Assign a network interface to a fabric
@@ -155,6 +169,8 @@ sudo maas-rack register --url http://10.5.1.5:5240/MAAS \
 	--secret fa847000e7cb681101d26e3477e6e39e
 ```
 
+See [Rack controller][rackd] for an overview.
+
 
 ## List rack controllers
 
@@ -182,6 +198,8 @@ maas $PROFILE maas set-config name=default_storage_layout value=flat
 !!! Warning "Important":
     The new default will only apply to newly-commissioned nodes.
 
+See [Storage][storage] for more details on MAAS storage features.
+
 
 ## Set a storage layout
 
@@ -207,5 +225,10 @@ All storage sizes are currently required to be specified in bytes.
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
+[cli-system-id]: manage-cli-common.md#determine-a-node-system-id
+[power-types]: nodes-power-types.md
+[dhcp-relay]: installconfig-network-dhcp.md#dhcp-relay
+[rackd]: installconfig-rack.md
+[storage]: installconfig-storage.md
 
 [img__2.2_cli-install-rackd]: ../media/manage-maas-cli-advanced__2.2_install-rackd.png

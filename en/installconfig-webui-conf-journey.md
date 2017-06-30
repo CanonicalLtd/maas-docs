@@ -1,4 +1,4 @@
-Title: Configuration Journey | MAAS
+Title: Configuration Journey
 
 
 # Configuration Journey 

@@ -1,4 +1,4 @@
-Title: Getting Help | MAAS
+Title: Getting Help
 
 
 # Getting Help
