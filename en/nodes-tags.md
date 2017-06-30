@@ -143,9 +143,9 @@ Changes are applied by pressing the 'Save' button.
 
 With the exception of tag assignment (as shown above), at this time tag
 management, such as creation, deletion, and advanced operations, can only be
-performed via the CLI. See [MAAS CLI - tags][cli-tags] for tag management. Also
-covered there is how to use tags in conjunction with Juju (to deploy services)
-and all tag features available with the web UI (listing and searching).
+performed via the CLI (see [CLI Tag management][cli-tags]). Also covered there
+is how to use tags in conjunction with Juju (to deploy services) and all tag
+features available with the web UI (listing and searching).
 
 As was shown in the above section, rudimentary tag creation *is* possible in the
 web UI but such tags lack any intelligence. They should be regarded more as node
@@ -160,6 +160,6 @@ aliases.
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
 [cli-tags]: manage-cli-tags.md 
 
-[img__2.2_tags-search]: ../media/installconfig-nodes-tags__2.2_tags-filter.png
-[img__2.2_tags-add-remove]: ../media/installconfig-nodes-tags__2.2_tags-add_remove.png
-[img__2.2_tags-net-interface]: ../media/installconfig-nodes-tags__2.2_tags-net-interface.png
+[img__2.2_tags-search]: ../media/nodes-tags__2.2_tags-filter.png
+[img__2.2_tags-add-remove]: ../media/nodes-tags__2.2_tags-add_remove.png
+[img__2.2_tags-net-interface]: ../media/nodes-tags__2.2_tags-net-interface.png

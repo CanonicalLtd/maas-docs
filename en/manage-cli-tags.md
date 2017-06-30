@@ -114,4 +114,4 @@ maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
-[tags]: installconfig-nodes-tags.md
+[tags]: nodes-tags.md
