@@ -1,6 +1,6 @@
 Title: Advanced CLI Tasks
 TODO:  Decide whether explicit examples are needed everywhere
-       Update installconfig-nodes-tags.html to show assigning tags to machines with UI; then link to it (for entry 'specify boot option') 
+       Update nodes-tags.md to show assigning tags to machines with web UI; then link to it (for entry 'specify boot option') 
 table_of_contents: True
 
 
