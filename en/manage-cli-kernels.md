@@ -113,5 +113,5 @@ maas $PROFILE machine deploy $SYSTEM_ID distro_series=xenial hwe_kernel=hwe-16.0
 
 [manage-cli]: manage-cli.md
 [ubuntu-kernels]: nodes-kernels.md
-[kernel-boot-options]: installconfig-nodes-kernel-boot-options.md
+[kernel-boot-options]: nodes-kernel-options.md
 [cli-manual-tag-assignment]: manage-cli-tags.md#manual-tag-assignment
