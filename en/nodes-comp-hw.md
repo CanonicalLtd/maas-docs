@@ -1,12 +1,11 @@
 Title: Composable Hardware
-TODO:  Need to cover the option of a "virsh chassis" (but not here)
-       Track bug: https://bugs.launchpad.net/maas/+bug/1688066
+TODO:  Track bug: https://bugs.launchpad.net/maas/+bug/1688066
 table_of_contents: True
 
 
 # Composable Hardware
 
-Composable Hardware allows for the dynamic composition of nodes from a pool
+Composable hardware allows for the dynamic composition of nodes from a pool
 of available hardware resources (e.g. disk space, memory, cores). MAAS calls
 such a collection of resources a *Pod*.
 
@@ -18,7 +17,7 @@ Deploy one. Machines can also be requested directly from within MAAS.
 MAAS currently supports two such architectures:
 
 - Intel Rack Scale Design (RSD)
-- Virsh
+- Virsh (KVM)
 
 !!! Note:
     For RSD, MAAS has only been validated to work with Intel RSD reference
@@ -45,7 +44,7 @@ Add/register a Pod by using the 'Add pod' button.
 The first example depicts an RSD Pod being added. After choosing 'Rack Scale
 Design' for 'Pod type' the below form will appear:
 
-![add pod][img__2.2_pod-add-rsd]
+![add RSD pod][img__2.2_pod-add-rsd]
 
 Fill in the fields. You will need to get values for 'Pod address' (IP address
 or URL followed by a port), 'Pod user', and 'Pod password' from the RSD
@@ -57,7 +56,7 @@ and be commissioned. 
 
 This is how a Virsh Pod is added:
 
-![add pod][img__2.2_pod-add-virsh]
+![add Virsh pod][img__2.2_pod-add-virsh]
 
 Virsh Pod notes:
 
