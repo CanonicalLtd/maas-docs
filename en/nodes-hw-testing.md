@@ -1,4 +1,4 @@
-Title: Hardware Testing | MAAS
+Title: Hardware Testing
 TODO:  Add/link to CLI when functionality becomes available (2.2 release)
        Display test output (require metal-based nodes)
 
@@ -40,5 +40,5 @@ reveal the following choices:
 
 <!-- LINKS -->
 
-[img__2.2_hw-testing-deployed]: ../media/installconfig-nodes-hw-testing__2.2_deployed.png
-[img__2.2_hw-testing-deployed-choices]: ../media/installconfig-nodes-hw-testing__2.2_deployed-choices.png
+[img__2.2_hw-testing-deployed]: ../media/nodes-hw-testing__2.2_deployed.png
+[img__2.2_hw-testing-deployed-choices]: ../media/nodes-hw-testing__2.2_deployed-choices.png

@@ -1,5 +1,4 @@
 Title: Add Nodes
-TODO: See if 2.0 branch is using file virsh-config.png , delete if not
 table_of_contents: True
 
 

@@ -111,16 +111,16 @@ navigation:
         location: nodes-deploy.md
 
       - title: Tags
-        location: installconfig-nodes-tags.md
+        location: nodes-tags.md
 
       - title: Kernel boot options
-        location: installconfig-nodes-kernel-boot-options.md
+        location: nodes-kernel-options.md
 
       - title: Ubuntu kernels
-        location: installconfig-nodes-ubuntu-kernels.md
+        location: nodes-kernels.md
 
       - title: Hardware testing
-        location: installconfig-nodes-hw-testing.md
+        location: nodes-hw-testing.md
 
       - title: Composable hardware
         location: nodes-comp-hw.md

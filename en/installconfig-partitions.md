@@ -1,4 +1,4 @@
-Title: Partitions | MAAS
+Title: Partitions
 
 
 # Partitions
