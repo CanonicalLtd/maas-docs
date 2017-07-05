@@ -139,6 +139,44 @@ The output shows that the interface is now on fabric-0:
 ```
 
 
+## Change the IP assignment mode of a network interface
+
+To edit the IP assignment mode of a network interface the existing subnet link
+first needs to be removed.
+
+Begin by finding the interface ID as well as the interface's subnet link ID
+with the command:
+
+```bash
+maas $PROFILE node read $SYSTEM_ID
+```
+
+Once that's done, proceed to unlink and link:
+
+```bash
+maas $PROFILE interface unlink-subnet $SYSTEM_ID $INTERFACE_ID id=$SUBNET_LINK_ID
+maas $PROFILE interface link-subnet $SYSTEM_ID $INTERFACE_ID mode=$IP_MODE subnet=$SUBNET_CIDR [$OPTIONS]
+```
+
+For instance, to have interface '58', with subnet link '146', on node 'exqn37'
+use DHCP on subnet '192.168.1.0/24':
+ 
+```bash
+maas $PROFILE interface unlink-subnet exqn37 58 id=146
+maas $PROFILE interface link-subnet exqn37 58 mode=dhcp subnet=192.168.1.0/24
+```
+
+If, instead of DHCP, a static address was desired, then the second command
+would have looked like:
+ 
+```bash
+maas $PROFILE interface link-subnet exqn37 58 mode=static subnet=192.168.1.0/24 ip_address=192.168.1.113
+```
+
+For a summary of IP assignment modes see
+[Post-commission configuration][post-commission-configuration].
+
+
 ## Install a rack controller
 
 To install and register a rack controller with the MAAS:
@@ -207,7 +245,7 @@ An administrator can set a storage layout for a node with a status of 'Ready'
 like this:
 
 ```bash
-maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE $OPTIONS
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE [$OPTIONS]
 ```
 
 For example, to set an LVM layout where the logical volume has a size of 5 GB:
@@ -230,5 +268,6 @@ All storage sizes are currently required to be specified in bytes.
 [dhcp-relay]: installconfig-network-dhcp.md#dhcp-relay
 [rackd]: installconfig-rack.md
 [storage]: installconfig-storage.md
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
 
 [img__2.2_cli-install-rackd]: ../media/manage-maas-cli-advanced__2.2_install-rackd.png
