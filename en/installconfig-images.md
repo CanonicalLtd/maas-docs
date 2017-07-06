@@ -1,4 +1,5 @@
 Title: Images
+TODO:  bug tracking: https://github.com/canonical-webteam/documentation-builder/issues/83
 
 
 # Images
@@ -27,7 +28,7 @@ The place from where a region controller downloads its images is known as a
 
 MAAS comes configured with a boot source that should suffice for most users:
 
-[https://images.maas.io/ephemeral-v3/daily/][default-boot-source]
+[`https://images.maas.io/ephemeral-v3/daily/`][default-boot-source]
 
 The above URL points to the 'daily' stream (for the v3 format). See
 [Local image mirror][mirror] for some explanation regarding the availability of

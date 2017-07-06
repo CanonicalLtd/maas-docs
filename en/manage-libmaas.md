@@ -1,4 +1,5 @@
 Title: API Client
+TODO:  bug tracking: https://github.com/canonical-webteam/documentation-builder/issues/83
 table_of_contents: True
 
 
@@ -37,17 +38,17 @@ used:
 
 For installation and initial steps, see:
 
-- https://github.com/maas/python-libmaas
-- http://maas.github.io/python-libmaas/index.html
+- `https://github.com/maas/python-libmaas`
+- `http://maas.github.io/python-libmaas/index.html`
 
 For examples:
 
-- http://maas.github.io/python-libmaas/client/index.html
-- http://maas.github.io/python-libmaas/client/nodes/index.html
+- `http://maas.github.io/python-libmaas/client/index.html`
+- `http://maas.github.io/python-libmaas/client/nodes/index.html`
 
 For pypi information:
 
-https://pypi.python.org/pypi/python-libmaas
+`https://pypi.python.org/pypi/python-libmaas`
 
 
 <!-- LINKS -->
