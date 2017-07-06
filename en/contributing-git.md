@@ -1,5 +1,6 @@
 Title: Working with Git and GitHub
 TODO:  Review commented out section: "Additional resources"
+       bug tracking: https://github.com/canonical-webteam/documentation-builder/issues/83
 table_of_contents: True
 
 
@@ -80,7 +81,7 @@ the Fork button in the top-right area:
 
 The URL of your fork will become:
 
-https://github.com/$GH_USERNAME/maas-docs
+`https://github.com/$GH_USERNAME/maas-docs`
 
 ### Clone your MAAS docs fork locally
 
@@ -110,8 +111,8 @@ git remote add upstream https://github.com/CanonicalLtd/maas-docs
 
 ## Add and track upstream series branches locally
 
-If you're a serious contributor you should add these branches and *track* them.
-This will enable you to target specific series.
+If you're a serious contributor you should add the upstream series branches
+and *track* them. This will enable you to target specific series.
 
 Get all data for the upstream repository using the *fetch* command. The first
 time you do this the upstream series branches will be exposed:
@@ -144,7 +145,7 @@ git branch devel upstream/devel
 Your GitHub fork inherited these tracking branches when it was created. This
 can be confirmed here:
 
-https://github.com/$GH_USERNAME/maas-docs/branches
+`https://github.com/$GH_USERNAME/maas-docs/branches`
 
 !!! Note:
     You will need to track a series branch in this way as they become
@@ -271,7 +272,7 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 
 1. Create a PR. In GitHub, your branches are listed here:
 
-     https://github.com/$GH_USERNAME/maas-docs/branches
+     `https://github.com/$GH_USERNAME/maas-docs/branches`
      
      Find $NEW_BRANCH and press the 'New pull request' button. You should see the
      following:
