@@ -91,7 +91,8 @@ gets assigned when the node is eventually deployed:
 - **Unconfigured** The interface will be left unconfigured.
 
 See [Concepts and terms][concepts-ipranges] for the definitions of reserved
-range types used in MAAS.
+range types and [MAAS CLI - advanced tasks][cli-change-ip-assignment-mode] for
+changing the mode with the CLI.
 
 Press the 'Save' button to apply the changes.
 
@@ -130,6 +131,7 @@ allocation time using the API.
 [subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: nodes-hw-testing.md
+[cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
 
 [img__2.2_commission]: ../media/nodes-commission__2.2_commission.png
 [img__2.2_commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
