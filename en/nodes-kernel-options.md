@@ -37,4 +37,4 @@ Note that per-node boot options take precedence to global ones.
 [cli-set-the-default-kernel-boot-options]: manage-cli-kernels.md#set-the-default-kernel-boot-options
 [cli-specify-kernel-boot-options-for-a-machine]: manage-cli-kernels.md#specify-kernel-boot-options-for-a-machine
 
-[img__2.2_global-kernel-options]: ../media/installconfig-nodes-kernel-boot-options__2.2_global.png
+[img__2.2_global-kernel-options]: ../media/nodes-kernel-options__2.2_global.png
