@@ -11,7 +11,7 @@ basis and a per-node basis.
 As an admin, click on the gear icon at the top right and scroll down to the
 Global Kernel Parameters section, as shown here:
 
-![image](media/global_kernel_opts.png)
+![image](media/1.9_global_kernel_opts.png)
 
 Whatever you set here is sent as-is to all booting nodes.
 
