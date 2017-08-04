@@ -1,192 +1,143 @@
-Title: CLI Image Management
+Title: Boot images import configuration
 table_of_contents: True
 
+# Boot images import configuration
 
-# CLI Image Management
+The configuration for where a region downloads its images is defined by a set
+of "sources". Each "source" defines a Simplestreams repository location (`url`)
+from which images can be downloaded and a `keyring_filename` (or
+`keyring_data`) for validating index and image signatures from that location.
+For each source, you can define a series of filters (`selections`) specifying
+which images should be downloaded from that source.
 
-This is a list of image management tasks to perform with the MAAS CLI. See
-[MAAS CLI][manage-cli] on how to get started.
-
-See [Images][images] for an overview of images.
-
-
-## List boot sources
-
-To list boot sources, that is, the locations where images (boot resources) may
-be downloaded from:
+The following example use the MAAS CLI to list the boot sources and the boot
+source selections. Assuming the CLI `PROFILE` is the name of the profile under
+which you're logged in to the server:
 
 ```bash
 maas $PROFILE boot-sources read
 ```
 
-!!! Note:
-    Although multiple boot sources may be listed, MAAS can only practically
-    work with a single boot source.
+The output of which will include the boot sources:
 
-
-## Select images
-
-To select images (with the intention of later importing them) from a boot
-source:
-
-```bash
-maas $PROFILE boot-source-selections create $SOURCE_ID \
-	os="ubuntu" release="$SERIES" arches="$ARCH" \
-	subarches="$KERNEL" labels="*"
+```yaml
+    [
+        {
+            "url": "http://maas.ubuntu.com/images/ephemeral-v2/releases/",
+            "keyring_data": "",
+            "resource_uri": "<url omitted for readability>",
+            "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
+            "id": 1
+        }
+    ]
 ```
 
-For example, to select all kernels for 64-bit Trusty from a boot source with an
-id of '1':
-
 ```bash
-maas $PROFILE boot-source-selections create 1 \
-	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="*" labels="*"
+maas $PROFILE boot-source-selections read 1
 ```
 
-To get just the latest amd64 HWE kernel available for Trusty, which, at time of
-writing, is from Xenial:
+The output will list boot source selections:
 
-```bash
-maas $PROFILE boot-source-selections create 1 \
-	os="ubuntu" release="trusty" arches="amd64" \
-	subarches="hwe-x" labels="*"
+```yaml
+    [
+        {
+            "labels": [
+                "release"
+            ],
+            "arches": [
+                "amd64"
+            ],
+            "subarches": [
+                "*"
+            ],
+            "release": "trusty",
+            "id": 1,
+            "resource_uri": "<url omitted for readability>"
+        }
+    ]
 ```
 
-For Xenial kernels (and starting with MAAS 2.1), notation has changed. To
-select the latest amd64 HWE kernel available for Xenial:
+## Restricting the images being downloaded
+
+Let's say you want to add a previous LTS release to images being downloaded.
+Starting from the configuration described above, you would need to:
+
+- Add the "Precise" selection (the selection '1' of the source '1'):
 
 ```bash
-maas $PROFILE boot-source-selections create 1 \
-	os="ubuntu" release="xenial" arches="amd64" \
-	subarches="hwe-16.04" labels="*"
+maas $PROFILE boot-source-selections create 1 os="ubuntu" release="precise" arches="amd64" subarches="*" labels="*"
 ```
 
-After new images are selected MAAS will need to import them.
-
-
-## List image selections
-
-To list image selections for a boot source:
-
-```bash
-maas $PROFILE boot-source-selections read $SOURCE_ID
-```
-
-
-## Import newly-selected images
-
-To import newly-selected images (boot resources):
+After you've selected the additional boot sources you need to tell MAAS to
+start the import process by running the command:
 
 ```bash
 maas $PROFILE boot-resources import
 ```
 
-Once newly-selected images are imported a sync mechanism is enabled (by
-default) to keep them up to date. The refresh time interval is 60 minutes.
+## Downloading the images from a different source
 
-Available images resulting from this action are reflected in the web UI.
-
-
-## List currently available images
-
-To list currently available/imported images (boot resources):
+Let's say you want to import the images from a different location. You would
+need to to change the source's url and keyring:
 
 ```bash
-maas $PROFILE boot-resources read
+maas $PROFILE boot-source update 1 url="http://custom.url" keyring_filename="" keyring_data@=./custom_keyring_file
 ```
 
+```yaml
+    {
+        "url": "http://custom.url/",
+        "keyring_data": "<base64 encoded content of `custom_keyring_file`>",
+        "resource_uri": "<url omitted for readability>",
+        "keyring_filename": "",
+        "id": 1
+    }
+```
+## Adding a source
 
-## Delete a boot source
-
-To delete a boot source (the location where images are downloaded from):
+You can also add a new source:
 
 ```bash
-maas $PROFILE boot-source delete $SOURCE_ID
+maas $PROFILE boot-sources create url=http://my.url keyring_filename="" keyring_data@=./ custom_keyring_file
 ```
 
-If the boot source that was deleted was the sole boot source then the fields
-'Sync URL' and 'Keyring Path' in the web UI will take on null values.
+Which produces output similar to the following:
 
+```yaml
+    {
+        "url": "http://my.url/",
+        "keyring_data": "ZW1wdHkK",
+        "keyring_filename": "",
+        "id": 2,
+        "resource_uri": "<url omitted for readability>"
+    }
+```
 
-## Edit a boot source
-
-An existing boot source can be edited by changing the GPG keyring file
-($KEYRING_FILE) and/or the location ($URL).
-
-Update the boot source:
+Inside that newly created source ('2') you can add selections:
 
 ```bash
-maas $PROFILE boot-source update $SOURCE_ID \
-	url=$URL keyring_filename=$KEYRING_FILE
+maas $PROFILE boot-source-selections create 2 os="ubuntu" release="trusty" arches="amd64" subarches="*" labels='*'
 ```
 
-At this time MAAS only fully supports a boot source containing official MAAS
-images. This implies that a boot source would only be edited if a mirror of
-such images has been set up. The location can change but the keyring remains
-constant:
+With the following output:
 
-KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
+```yaml
+    {
+        "labels": ["*"],
+        "arches": ["amd64"],
+        "subarches": ["*"],
+        "release": "trusty",
+        "id": 3,
+        "resource_uri": "<url omitted for readability>"
+    }
+```
 
+## Deleting a source
 
-## Add a boot source
+Let's say you need to delete the newly added source.
 
-!!! Note: 
-    To avoid unnecessary complexity, you should probably delete any
-    existing boot sources before adding a new one.
-
-Presented below are two use cases for adding a boot source:
-
-1. Use a local image mirror (official images)
-1. Recreate the default image source (if it was ever deleted)
-
-The general syntax is:
+To delete the source:
 
 ```bash
-maas $PROFILE boot-sources create \
-	url=$URL keyring_filename=$KEYRING_FILE
+maas $PROFILE boot-source delete 2
 ```
-
-The output will include a new numeric ID that identifies the boot source
-($SOURCE_ID).
-
-Since MAAS can only practically work with a single boot source this scenario
-implies that any existing sources have first been deleted, or will be deleted.
-In addition, as is the case with editing a source, the location (URL) is the
-only acting variable. The only supported keyring is:
-
-KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-
-If the source that was added is now the sole boot source then the fields
-'Sync URL' and 'Keyring Path' in the web UI will reflect its values.
-
-Once the source is added, proceed to the [Select and import][images-import]
-images step.
-
-### Using a local image mirror
-
-Once the mirror is set up according to [Local image mirror][mirror] it is just
-a matter of specifying the mirror location (URL). Since the images come from
-the default source the default keyring should be used. If the aforementioned
-mirror document was followed, the variable values should be:
-
-- URL=https://$MIRROR/maas/images/ephemeral-v3/daily/
-- KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-
-Where $MIRROR is the mirror server's hostname or IP address.
-
-### Recreate the default boot source
-
-Recreate the default boot source if it was ever deleted using the following
-variable values:
-
-- URL=https://images.maas.io/ephemeral-v3/daily/
-- KEYRING_FILE=/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg
-
-
-<!-- LINKS -->
-
-[manage-cli]: manage-cli.md
-[images]: installconfig-images.md
-[images-import]: installconfig-images-import.md
-[mirror]: installconfig-images-mirror.md

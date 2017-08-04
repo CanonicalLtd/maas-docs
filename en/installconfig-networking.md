@@ -1,115 +1,167 @@
-Title: Networking
-TODO:  Bug check: https://goo.gl/mPKBRl
-       Not sure about the purpose of "deleting" a subnet. Won't it reappear eventually?
+Title: Networks
+table_of_contents: True
 
+# Networks
 
-# Networking
+A MAAS cluster controller can manage nodes on one or more networks. The cluster
+controller must have direct interfaces connected to these networks,
+and each node must be managed through one of them.
 
-This page shows where to view and edit the main networking elements in MAAS.
-See [Concepts and terms][concepts] for the definitions of networking objects.
+But nodes may also be connected to additional networks, for your production
+workload, for internet access, for internal communication, or perhaps for
+system-level or application-level management tasks. MAAS does not need to
+manage these networks, but it can be useful for MAAS to be aware of them. If
+MAAS is aware of these networks, you can allocate nodes with specific network
+requirements. For example, when requesting a node, you could specify:
 
+- "Must be connected to the staging network" (for a test application).
+- "Needs to share a network with a given other node" (for fast
+  communication).
+- "Should not be connected to the DMZ network" (for security).
+- "Can't be on the Houston network" (for resilience).
+- "Has to be connected to a particular VLAN" (for software-defined
+  networking).
 
-## Main view
+To avoid confusion, MAAS imposes three rules on the networks you define. Apart
+from these, MAAS places no restrictions on the number or nature of your
+networks, or on which nodes are connected to which networks. The rules are:
 
-To access the main networking view visit the 'Subnets' page:
+1.  Each node must be on a network that is directly connected to an interface
+    on the node's cluster controller. It is recommended that you let the
+    cluster controller manage DHCP and DNS on this network. See
+    cluster-configuration for the details.
+1.  All networks must have different, non-overlapping IP ranges. Any possible
+    IP address in the MAAS should belong to only one network.
+1.  If you use virtual networks, each must have a different VLAN tag in the
+    range 0x001 to 0xffe (1 to 4094) inclusive. Non-virtual networks have no
+    tag, and you can have as many of these as you want.
 
-![subnets page][img__2.2_subnets]
+Networks are defined globally, not within clusters. They can span clusters, or
+be confined to clusters, or connect selected nodes from different clusters, as
+suits your needs. For now, if you want to make use of these placement
+constraints when allocating nodes, you need to define your networks explicitly.
+Future versions of MAAS may detect some of your networks and define them
+automatically.
 
-In the above example the following networking elements can be seen: *fabrics*,
-*VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
-topology being represented here, some elements are used multiple times. To be
-clear, in this example there are 3 fabrics, 1 VLAN, and 3 subnets, and 1
-(undefined) space. All such elements should be detected automatically by MAAS
-but if they're not each can be added manually using the 'Add' button. 
+The networks on which MAAS manages nodes are special, however: they cannot
+connect to different clusters. These are the networks that connect to
+interfaces on the cluster controller. You may define these networks, but you
+don't have to. You need a cluster interface for MAAS to manage nodes (or even
+just serve DHCP) on the network to which it is connected. Networks, on the
+other hand, only need to be defined in order to enable network placement
+constraints when allocating nodes, as in the examples above.
 
-This main view can also be filtered either by fabrics or by spaces through the
-use of the 'Group by' dropdown.
+## Defining networks
 
-Although each of the elements can be clicked upon to open up its own window,
-fabrics, VLANs, and spaces do not have much in the way of configuration; their
-names and descriptions can be altered. A VLAN, however, can additionally have
-its MTU changed and also has an action available for
-[enabling DHCP][enabling-dhcp] (see 'Take action' button).
+There are two ways to define networks: through the web user interface, or
+through the API. The command-line interface acts a front-end for the API.
 
-A subnet, on the other hand, can be configured considerably and its window also
-shows information pertinent to the day-to-day operation of MAAS. For these
-reasons, a subnet will now be examined in more detail.
+To define a network in the user interface, click on `Networks` in the top bar.
+This will take you to the listing of known networks. Click the `Add network`
+button to start entering your network's information.
 
-### Subnet window
+![image](media/add-network.png)
 
-Clicking a subnet (here `192.168.1.0/24`) will display its window. We'll look
-at this example window by sections.
+Assign each network a short name for easy reference, and optionally, a more
+detailed description. Fill out the other fields as detailed below. Click
+`Add network` to bring your network definition into effect.
 
-The **Subnet summary** section:
+Networks are defined as a pair of a base IP address and a netmask. For a
+24-bit network `10.122.1.0/24`, for example, the IP address would be
+`10.122.1.0` and the netmask would be `255.255.255.0`.
 
-![networking subnets page summary][img__2.2_subnets-summary]
+The bits that correspond to zeroes in the netmask are not part of the network
+address, so if you entered `10.122.1.9` as the network's IP address, it would
+still come out as `10.122.1.0`.
 
-!!! Warning: 
-    The fields in this section are immediately editable and changes
-    are applied instantly.
+MAAS also supports virtual networks, or VLANs. Multiple VLANs can share the
+same underlying physical network. A "tag" on each network packet tells the
+infrastructure on which of the VLANs the packet is travelling. Each VLAN is
+effectively a separate network.
 
-Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
-'Description', are entered. Gateway and DNS values are passed to nodes for
-commissioning and, if DHCP is MAAS-managed, for deploying too. There is also
-the option of changing the subnet's fabric and VLAN. Spaces are managed at the
-VLAN level.
+The VLAN tag is a number between 1 and 4094 inclusive, as dictated by the
+underlying technical standard. Leave this blank if the network is not a VLAN,
+or if it is untagged. The number zero is a reserved value that means "no
+VLAN," as you would get with conventional networks, and so MAAS treats it as a
+blank field.
 
-'Managed allocation' refers to the ability of MAAS to completely manage a
-subnet. See [Subnet management][subnet-management].
+You can also define a network through the
+region-controller API &lt;region-controller-api&gt;. The values are the same
+as for the web UI. To do this, `POST` your network definition to the
+*"networks"* endpoint.
 
-When 'Active mapping' is enabled, MAAS will scan the subnet every 3 hours to
-discover hosts that have not been discovered passively. 
+## Connecting nodes to networks
 
-The **Static Routes** section:
+In order for network placement constraints to take effect, you must also tell
+MAAS which nodes are connected to each network.
 
-This section can be used to define a static route between two subnets, allowing
-administrators to configure reachability to a subnet from a source subnet. A
-route is defined on a per-subnet basis to use a particular gateway, using a
-configured destination and metric.
+Nodes connect to networks through their network interface cards. Each of these
+NICs has a MAC address, and so, a connection between a node and a network is
+associated with one of the node's MAC addresses. The network interface and its
+MAC address must be registered with MAAS before it can be attached to a
+network. A node's network interfaces are normally registered
+automatically when the node is enlisted &lt;auto-enlist&gt;, but in some
+situations you may need to do this manually in the web user interface.
 
-To create a static route, click the 'Add static route' button to reveal the
-edit pane. Enter a Gateway IP address, select a destination subnet from the
-'Destination' drop-down list, and edit the routing metric value if needed.
-Clicking 'Add' will activate the route. Routes can be edited and removed using
-the icons to the right of each entry. 
+To inform MAAS about nodes' connections to a network through the user
+interface, you must either specify them when creating the network, or edit the
+network's details. You can get to a network's edit page either by browsing to
+its details page and clicking the "Edit" link in the right-hand bar, or by
+clicking on the "pencil" icon for the network's entry in the networks listing
+under the "Networks" section in the top bar.
 
-![networking static routes configuration][img__2.2_subnets-routes]
+On the network add/edit pages, you will see a selection box where you can
+select which network interfaces are connected to that network, as well as the
+nodes to which they belong.
 
-The **Utilisation** section:
+![image](media/connect-nodes-to-network.png)
 
-![networking subnets utilisation][img__2.2_subnets-utilisation]
+The box lets you select multiple network interfaces, even if they belong to
+the same node. Click "Save network" to make your changes permanent.
 
-'Subnet addresses' shows the total number of addresses associated
-with the subnet, here 254. 'Availability' shows how many of those addresses
-are unused, and therefore "available", here 189, which corresponds to a
-percentage of roughly 74% of the total. Finally, 'Used' shows the percentage
-that *is* used, here roughly 26%.
+You can also connect nodes to networks using the
+region-controller API &lt;region-controller-api&gt;. A network has a `POST`
+method `connect_macs`, which lets you connect any number of network interfaces
+to the network in one call. The network interfaces are identified as a list of
+MAC addresses. The list may also be empty (in which case the call does
+nothing), and connecting a network and a network interface that are already
+connected is not an error.
 
-The **Reserved** section:
+Connecting a node to a network does not affect any other connections between
+the node and other networks, or between the network and other nodes. A
+matching `POST` method, `disconnect_macs`, removes connections between a
+network and network interfaces. Again, empty lists are accepted and
+disconnecting a node from a network that it is not connected to is not an
+error.
 
-![networking subnets reserved][img__2.2_subnets-reserved]
+Future versions of MAAS may detect and register some of the networks and their
+connections to nodes automatically.
 
-This shows the *reserved IP ranges*. This is an important subject and is
-treated separately in [IP ranges][ipranges].
+## Placement constraints
 
-The **Used** section:
+When you allocate a node through the API, or search for nodes in the web UI,
+you can specify two kinds of constraints for the node's network placement:
 
-![networking subnets used][img__2.2_subnets-used]
+1.  `networks` specifies that the node you want must be connected to *all* of
+    the given networks.
+1.  `not_networks` says that a node must *not* be connected to *any* of the
+    given networks.
 
-This section displays hosts (including controllers) associated with the used
-addresses along with related bits of host information.
+Constraints can identify a network in any of several ways. You may combine
+these freely. Each is a way of referring to a specific network, just expressed
+in different ways.
 
+- "`network-name`": The name of a network as it was defined in the MAAS. The
+  example is for the case where you have defined a network with the name,
+  `network-name`.
+- "`ip:10.122.1.0`": An IP address in the network. This can be the network's
+  base address, or its broadcast address, or any other IP address that falls
+  within the network. So `ip:10.122.1.0` identifies the same network as, for
+  example, `ip:10.122.1.99`.
+- "`vlan:13`": a VLAN tag. This can only be used for VLANs, so the tag must
+  be nonzero. The tag is a number between 1 to 4094 inclusive.
+- "`vlan:0x0d`": a VLAN tag in hexadecimal notation. The valid range is from
+  `0x1` to `0xffe` inclusive. The notation is case-insensitive and leading
+  zeroes are ignored. So, `vlan:0x0d`, `vlan:0Xd`, `vlan:0xD`, and
+  `vlan:0X0d` are all equivalent to `vlan:13`.
 
-<!-- LINKS -->
-
-[concepts]: intro-concepts.md
-[enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
-[ipranges]: installconfig-network-ipranges.md
-[subnet-management]: installconfig-network-subnet-management.md
-
-[img__2.2_subnets]: ../media/installconfig-networking__2.2_subnets.png
-[img__2.2_subnets-summary]: ../media/installconfig-networking__2.2_subnets-summary.png
-[img__2.2_subnets-routes]: ../media/installconfig-networking__2.2_subnets-routes.png
-[img__2.2_subnets-utilisation]: ../media/installconfig-networking__2.2_subnets-utilisation.png
-[img__2.2_subnets-reserved]: ../media/installconfig-networking__2.2_subnets-reserved.png
-[img__2.2_subnets-used]: ../media/installconfig-networking__2.2_subnets-used.png
