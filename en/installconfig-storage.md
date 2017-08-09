@@ -1,211 +1,743 @@
 Title: Storage
-TODO:  Describe the Storage web UI page
-       Explain how to perform actions: LVM, RAID, Bcache, modify filesystems
-       Bug tracking: https://pad.lv/1636933
-       Bug tracking: https://pad.lv/1698891
-       Bug tracking: https://pad.lv/1698895
-       The 'block devices' and 'partitions' pages have been removed from the menu. They should be reviewed. If worthy, they should be moved to the CLI section
-       Re the above, partitions *are* block devices (?)
 table_of_contents: True
-
 
 # Storage
 
-The final storage configuration that a deployed node uses can be influenced
-significantly. MAAS supports traditional disk partitioning as well as more
-complex options such as LVM, RAID, and Bcache. UEFI is also supported as a boot
-mechanism.
-
-A node's storage is dependant upon the underlying system's disks but its
-configuration (how the disks get used) is the result of a storage template. In
-MAAS this template is called a *layout* and it gets applied to a node when it
-is commissioned.
-
-Once a layout is applied, a regular user can make modifications to a node at
-the filesystem level in order to arrive at the node's final storage
-configuration.
-
-When a node is no longer needed a user can choose from among several disk
-erasure types before releasing it.
-
-
-## UEFI
-
-A node booting with UEFI is supported by every layout type. In such a case, an
-EFI boot partition (`/boot/efi`) will be automatically created. Other than
-setting the node to boot from UEFI, no other action is required of the user.
-
-!!! Warning: 
-    UEFI is either used by the node throughout its lifecycle or it's not. For
-    example, do not enlist a node with UEFI enabled and then disable it before
-    commissioning. It won't work!
-
-The EFI partition, if created, will be the first partition (`sda1`) and will
-have a FAT32 filesystem with a size of 512 MB.
-
+MAAS doesn't just do simple partitioning it supports complex storage layouts,
+including setting up and configuring Bcache, RAID, and LVM. This gives users
+unlimited possibilities on the storage configurations they want to deploy.
 
 ## Layouts
 
-There are three layout types:
+When a node is acquired by a user it gets a default storage layout. This
+layout provides the basic storage configuration to allow a node to deploy
+successfully. The default storage layout can also be adjusted allowing an
+administrator to make the decision on which layout will be the default.
 
-- Flat layout
-- LVM layout
-- Bcache layout
+The users deploying nodes are not limited by the default. They can set an
+explicit storage layout when they acquire a node or after they have acquried a
+node with the set-storage-layout API. The user acquiring a node or performing
+the set-storage-layout API calls can also customize the layout generation.
+Each layout has a set of options that can be set to adjust the generated
+layout.
 
-The below layout descriptions will include the EFI partition. If your system is
-not using UEFI simply regard `sda2` as `sda1` (with an additional 512 MB
-available to it).
+Below list all the available storage layouts and the available options for
+each.
 
-### Flat layout
+### LVM Layout
 
-With the Flat layout, a partition spans the entire boot disk. The partition is
-formatted with the ext4 filesystem and uses the `/` mount point:
+Creates a volume group vgroot on a partition that spans the entire boot disk.
+A logical volume lvroot is created for the full size of the volume group. The
+lvroot is formatted with ext4 and set as the / mount point:
 
-| Name      | Size        | Type  | Filesystem     | Mount point |
-|:----------|-------------|-------|----------------|-------------|
-| sda       | -           | disk  |                |             |
-| sda1      | 512 MB      | part  | FAT32          | /boot/efi   |
-| sda2      | rest of sda | part  | ext4           | /           |
+```no-highlight
+    NAME        SIZE        TYPE    FSTYPE         MOUNTPOINT
+    sda         100G        disk
+      sda1      512M        part    fat32          /boot/efi
+      sda2      99.5G       part    lvm-pv(vgroot)
+    vgroot      99.5G       lvm
+      lvroot    99.5G       lvm     ext4           /
+```
 
-The following options are supported:
+The following options are supported for this layout. :
 
-`boot_size`: Size of the boot partition on the boot disk. Default is 0,
-meaning not to create the boot partition. The '/boot' will be placed on
-the root filesystem.
-    
-`root_device`: The block device to place the root partition on. Default is the
-boot disk.
-    
-`root_size`: Size of the root partition. Default is 100%, meaning the entire
-size of the root device.
+- **boot_size**: Size of the boot partition on the boot disk. Default is 0, meaning
+  not to create the boot partition. The '/boot' will be placed on the root
+  filesystem.
+- **root_device**: The block device to place the root partition on. Default is the
+  boot disk.
+- **root_size**: Size of the root partition. Default is 100%, meaning the entire
+  size of the root device.
+- **vg_name**: Name of the created volume group. Default is `vgroot`.  lv_name:
+  Name of the created logical volume. Default is `lvroot`.  lv_size: Size of
+  the created logical volume. Default is 100%, meaning the entire size of the
+  volume group.
 
-### LVM layout
+### Flat Layout
 
-The LVM layout creates the volume group `vgroot` on a partition that spans the
-entire boot disk. A logical volume `lvroot` is created for the full size of the
-volume group; is formatted with the ext4 filesystem; and uses the `/` mount point:
+Creates a partition that spans the entire boot disk. The partition is
+formatted with ext4 and set as the / mount point. :
 
-| Name      | Size        | Type  | Filesystem     | Mount point |
-|:----------|-------------|-------|----------------|-------------|
-| sda       | -           | disk  |                |             |
-| sda1      | 512 MB      | part  | FAT32          | /boot/efi   |
-| sda2      | rest of sda | part  | lvm-pv(vgroot) |             |
-| lvroot    | rest of sda | lvm   | ext4           | /           |
-| vgroot    | rest of sda | lvm   |                |             |
+```no-highlight
+    NAME        SIZE        TYPE    FSTYPE         MOUNTPOINT
+    sda         100G        disk
+      sda1      512M        part    fat32          /boot/efi
+      sda2      99.5G       part    ext4           /
+```
 
-The following options are supported:
-
-`boot_size`: Size of the boot partition on the boot disk. Default is 0, meaning not to
-create the boot partition. The '/boot' will be placed on the root filesystem.
-
-`root_device`: The block device to place the root partition on. Default is the boot disk.
-
-`root_size`: Size of the root partition. Default is 100%, meaning the entire size of the
-root device.
-
-`vg_name`: Name of the created volume group. Default is `vgroot`.
-
-`lv_name`: Name of the created logical volume. Default is `lvroot`.
-
-`lv_size`: Size of the created logical volume. Default is 100%, meaning the entire size of
-the volume group.
-
-### Bcache layout
-
-A Bcache layout will create a partition that spans the entire boot disk as the
-backing device. It uses the smallest block device tagged with 'ssd' as the
-cache device. The Bcache device is formatted with the ext4 filesystem and uses
-the `/` mount point. If there are no 'ssd' tagged block devices on the node, 
-then the Bcache device will not be created and the Flat layout will be used
-instead:
-
-| Name      | Size        | Type  | Filesystem     | Mount point |
-|:----------|-------------|-------|----------------|-------------|
-| sda       | -           | disk  |                |             |
-| sda1      | 512 MB      | part  | FAT32          | /boot/efi   |
-| sda2      | rest of sda | part  | bc-backing     |             |
-| sdb (ssd) | -           | disk  |                |             |
-| sdb1      | 100% of sdb | part  | bc-cache       |             |
-| bcache0   | per sda2    | disk  | ext4           | /           |
-
-The following options are supported:
-
-`boot_size`: Size of the boot partition on the boot disk. Default is 0, meaning
-not to create the boot partition. The '/boot' will be placed on the root
-filesystem.
-
-`root_device`: The block device to place the root partition on. Default is the
-boot disk.
-
-`root_size`: Size of the root partition. Default is 100%, meaning the entire
-size of the root device.
-
-`cache_device`: The block device to use as the cache device. Default is the
-smallest block device tagged ssd.
-
-`cache_mode`: The cache mode to set the created Bcache device to. Default is
-`writethrough`.
-
-`cache_size`: The size of the partition on the cache device. Default is 100%,
-meaning the entire size of the cache device.
-
-`cache_no_part`: Whether or not to create a partition on the cache device.
-Default is false, meaning to create a partition using the given `cache_size`.
-If set to true no partition will be created and the raw cache device will be
-used as the cache.
+The following options are supported for this layout. :
 
 
-## Setting layouts
+- **boot_size**: Size of the boot partition on the boot disk. Default is 0,
+  meaning not to create the boot partition. The '/boot' will be placed on the
+  root filesystem.
+- **root_device**: The block device to place the root partition on. Default is
+  the boot disk.
+- **root_size**: Size of the root partition. Default is 100%, meaning the
+  entire size of the root device.
 
-Layouts can be set globally and on a per-node basis.
+### Bcache Layout
 
-### Default layout
+Creates a Bcache using a partition that spans the entire boot disk as the
+backing device. Uses the smallest block device tagged with ssd as the cache
+device. The Bcache device is formatted with ext4 and set as the / mount point.
+If no block devices exists on the node that are tagged with ssd then the Bcache
+device will not be created and the flat layout will be used. :
 
-All nodes will have a default layout applied when commissioned. An
-administrator can configure the default layout on the 'Settings' page, under
-the 'General' tab. The section is labelled 'Storage':
+```no-highlight
+    NAME        SIZE        TYPE    FSTYPE         MOUNTPOINT
+    sda         100G        disk
+      sda1      512M        part    fat32          /boot/efi
+      sda2      99.5G       part    bc-backing
+    sdb         50G         disk
+      sdb1      50G         part    bc-cache
+    bcache0     99.5G       disk    ext4           /
+```
 
-![default storage layout][img__2.2_default-storage-layout]
+The following options are supported for this layout. :
 
-See [Disk erasure][storage-erasure] for an explanation of the options related
-to the erasing of disks.
+- **boot_size**: Size of the boot partition on the boot disk. Default is 0,
+  meaning not to create the boot partition. The '/boot' will be placed on the
+root filesystem.
+- **root_device**: The block device to place the root partition on. Default is
+  the boot disk.
+- **root_size**: Size of the root partition. Default is 100%, meaning the
+  entire size of the root device.
+- **cache_device**: The block device to use as the cache device. Default is the
+  smallest block device tagged ssd.
+- **cache_mode**:: The cache mode to set the created Bcache device to. Default
+  is `writethrough`.
+- **cache_size**: The size of the partition on the cache device. Default is
+  100%, meaning the entire size of the cache device.
+- **cache_no_part**: Whether or not to create a partition on the cache device.
+  Default is false, meaning to create a partition using the given `cache_size`.
+  If set to true no partition will be created and the raw cache device will be
+  used as the cache.
 
-!!! Warning "Important":
-    The new default will only apply to newly-commissioned nodes.
+!!! Note: 
+    The /boot/efi partition on all layouts will only be created on nodes that
+    deploy with UEFI.
 
-To change the default with the CLI see
-[MAAS CLI - advanced tasks][cli-default-storage-layout].
+## Setting the Layout
 
-### Node layout
+### Globally
 
-An administrator can change the layout for a single node as well as customize
-that layout providing this is done while the node has a status of 'Ready'. This
-is only possible via the CLI at this time (see
-[MAAS CLI - advanced tasks][cli-set-storage-layout]).
+The global default storage layout can be set using the API and the UI. This
+will change the default storage layout for when a node is acquired. \`It will
+not adjust the layout of any node that is already passed the acquire stage:
+
+```bash
+maas my-maas-session maas set_config name=default_storage_layout value=flat
+```
+### Set Storage Layout
+
+If a node is already acquired and you want to adjust the storage layout the
+`set_storage_layout` API call can be used. The options for this API call do not
+require the `storage_layout()` prefix:
+
+```bash
+maas my-maas-session node set-storage-layout <system-id> storage_layout=lvm lv_size=50%
+```
+!!! Note:
+    This will completely remove any previous storage configuration on all block
+    devices.
+
+## Block Devices
+
+Once the initial storage layout has been configure on a node you can perform
+many operations to view and adjust the entire storage layout for the node. In
+MAAS there are two different types of block devices.
+
+**Physical**
+
+A physical block device is a physically attached block device. This being true
+storage on a machine. E.g. A 100G hard drive in a server.
+
+**Virtual**
+
+A virtual block device is a block device that is exposed by the Linux kernel
+when an operation is performed. Almost all the operations on a physical block
+device can be performed on a virtual block device. E.g. A RAID device exposed
+as md0.
+
+### List Block Devices
+
+To view all block devices on a node use the *read* operation. This list both
+physical and virtual block devices.:
+
+```bash
+maas my-maas-session block-devices read node-f4e2281c-d19a-11e4-a5ac-00163edde41f
+```
+
+The output should be similar to the following:
+
+```yaml
+    [
+        {
+            "size": 21474836480,
+            "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/",
+            "uuid": null,
+            "tags": [
+                "ssd",
+                "rotary"
+            ],
+            "name": "sda",
+            "partition_table_type": "MBR",
+            "id_path": "/dev/disk/by-id/ata-QEMU_HARDDISK_QM00001",
+            "path": "/dev/disk/by-dname/sda",
+            "model": "QEMU HARDDISK",
+            "block_size": 4096,
+            "type": "physical",
+            "id": 6,
+            "serial": "QM00001",
+            "partitions": [
+                {
+                    "uuid": "e94ca09a-d83e-4521-8bac-833da2ed0b3e",
+                    "bootable": false,
+                    "filesystem": {
+                        "label": null,
+                        "mount_point": null,
+                        "uuid": "61d447c2-387d-4fb1-885a-65eeef91e92a",
+                        "fstype": "lvm-pv"
+                    },
+                    "path": "/dev/disk/by-dname/sda-part1",
+                    "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/1",
+                    "type": "partition",
+                    "id": 1,
+                    "size": 21471690752
+                }
+            ]
+        },
+        {
+            "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+            "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+            "tags": [],
+            "partitions": [],
+            "name": "vgroot-lvroot",
+            "partition_table_type": null,
+            "filesystem": {
+                "label": "root",
+                "mount_point": "/",
+                "uuid": "9f09e3fd-2484-4da5-bb56-a72a0c478d06",
+                "fstype": "ext4"
+            },
+            "id_path": null,
+            "path": "/dev/disk/by-dname/lvroot",
+            "model": null,
+            "block_size": 4096,
+            "type": "virtual",
+            "id": 11,
+            "serial": null,
+            "size": 21470642176
+        }
+    ]
+```
+
+### Read Block Device
+
+If you want to read just one block device instead of listing all block devices
+the *read* operation on the block-device endpoint provides that information:
+
+```bash
+maas my-maas-session block-device read node-f4e2281c-d19a-11e4-a5ac-00163edde41f 12
+```
+
+This produces the following output:
+
+```yaml
+    {
+        "size": 21474836480,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/12/",
+        "uuid": null,
+        "tags": [],
+        "name": "sdb",
+        "partition_table_type": null,
+        "id_path": "",
+        "path": "/dev/disk/by-dname/sdb",
+        "model": "QEMU HARDDISK",
+        "block_size": 4096,
+        "type": "physical",
+        "id": 12,
+        "serial": "QM00001",
+        "partitions": []
+    }
+```
+
+It is also possible to use the name of the block device instead of its ID:
+
+```bash
+maas my-maas-session block-device read node-f4e2281c-d19a-11e4-a5ac-00163edde41f sdb
+```
+
+Which will create output similar to the following:
+
+```yaml
+    {
+        "size": 21474836480,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/12/",
+        "uuid": null,
+        "tags": [],
+        "name": "sdb",
+        "partition_table_type": null,
+        "id_path": "",
+        "path": "/dev/disk/by-dname/sdb",
+        "model": "QEMU HARDDISK",
+        "block_size": 4096,
+        "type": "physical",
+        "id": 12,
+        "serial": "QM00001",
+        "partitions": []
+    }
+```
+
+!!! Note: 
+    MAAS allows the name of a block device to be changed. If the block device name
+    has changed then the API call needs to use the new name. Using the ID is safer
+    as it never changes.
+
+### Create Block Device
+
+This operation only allows an administrator to add a physical block device to a
+node. It is not recommended to create a block device as you need very specific
+information for each block device. It is recommended to re-commissioning the
+machine for MAAS to gather the required information. If MAAS does not provide
+the required information this API exists only as a fallback:
+
+```bash
+maas my-maas-session block-devices create node-f4e2281c-d19a-11e4-a5ac-00163edde41f name=sdb model="QEMU HARDDISK" serial="QM00001" size=21474836480 block_size=4096
+```
+
+This will generate the following output:
+
+```yaml
+    {
+        "size": 21474836480,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/12/",
+        "uuid": null,
+        "tags": [],
+        "name": "sdb",
+        "partition_table_type": null,
+        "id_path": "",
+        "path": "/dev/disk/by-dname/sdb",
+        "model": "QEMU HARDDISK",
+        "block_size": 4096,
+        "type": "physical",
+        "id": 12,
+        "serial": "QM00001",
+        "partitions": []
+    }
+```
+
+!!! Note: 
+    The serial number is what MAAS will use when a node is deployed to find the
+    specific block device. Its very important that this be absolutely correct. In
+    a rare chance that your block device does not provide a model or serial number
+    you can provide an id_path. The id_path should be a path that is always the
+    same, no matter the kernel version.
+
+### Update Block Device
+
+Provides the ability for an administrator needs to update the information of a
+physical block device and a standard user to update information of a virtual
+block device. A standard user cannot update the information of a physical block
+device:
+
+```bash
+maas my-maas-session block-device update node-f4e2281c-d19a-11e4-a5ac-00163edde41f 11 name=newroot
+```
+
+Generating the following output:
+
+```yaml
+    {
+        "size": 21470642176,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+        "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+        "tags": [],
+        "name": "vgroot-newroot",
+        "partition_table_type": null,
+        "filesystem": {
+            "label": "root",
+            "mount_point": "/",
+            "uuid": "9f09e3fd-2484-4da5-bb56-a72a0c478d06",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/vgroot-newroot",
+        "model": null,
+        "block_size": 4096,
+        "type": "virtual",
+        "id": 11,
+        "serial": null,
+        "partitions": []
+    }
+```
+
+### Delete Block Device
+
+Allows an adminstrator to delete a physical block device and a standard user
+to delete a virtual block device:
+
+```bash
+maas my-maas-session block-device delete node-f4e2281c-d19a-11e4-a5ac-00163edde41f 12
+```
+### Format Block Device
+
+Format the entire block device with a file system:
+
+```bash
+maas my-maas-session block-device format node-f4e2281c-d19a-11e4-a5ac-00163edde41f 11 fstype=ext4
+```
+
+Generating the following output:
+
+```yaml
+    {
+        "size": 21470642176,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+        "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+        "tags": [],
+        "name": "vgroot-newroot",
+        "partition_table_type": null,
+        "filesystem": {
+            "label": null,
+            "mount_point": null,
+            "uuid": "b713af05-3f1c-4ddc-b4dd-a7878e6af14f",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/vgroot-newroot",
+        "model": null,
+        "block_size": 4096,
+        "type": "virtual",
+        "id": 11,
+        "serial": null,
+        "partitions": []
+    }
+```
+!!! Note: 
+    You cannot format a block device that contains partitions or is used to make
+    another virtual block device.
+
+### Unformat Block Device
+
+Remove the file system from the block device:
+
+```bash
+maas my-maas-session block-device unformat node-f4e2281c-d19a-11e4-a5ac-00163edde41f 11
+```
+
+Producing output similar to the following:
+
+```yaml
+    {
+        "size": 21470642176,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+        "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+        "tags": [],
+        "name": "vgroot-newroot",
+        "partition_table_type": null,
+        "path": "/dev/disk/by-dname/vgroot-newroot",
+        "model": null,
+        "block_size": 4096,
+        "type": "virtual",
+        "id": 11,
+        "serial": null,
+        "partitions": []
+    }
+```
+
+### Mount Block Device
+
+Mount the block device at the given mount point. Block device is required to
+have a filesystem:
+
+```bash
+maas my-maas-session block-device mount node-f4e2281c-d19a-11e4-a5ac-00163edde41f 11 mount_point=/srv
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "size": 21470642176,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+        "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+        "tags": [],
+        "name": "vgroot-newroot",
+        "partition_table_type": null,
+        "filesystem": {
+            "label": null,
+            "mount_point": "/srv",
+            "uuid": "b892e5c3-8bea-4371-a456-bde11df3df40",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/vgroot-newroot",
+        "model": null,
+        "block_size": 4096,
+        "type": "virtual",
+        "id": 11,
+        "serial": null,
+        "partitions": []
+    }
+```
+
+### Unmount Block Device
+
+Remove the mount point from the block device:
+
+```bash
+maas my-maas-session block-device unmount node-f4e2281c-d19a-11e4-a5ac-00163edde41f 11
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "size": 21470642176,
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/11/",
+        "uuid": "f58b8fb2-dcf2-4ba9-a01c-60409829a64e",
+        "tags": [],
+        "name": "vgroot-newroot",
+        "partition_table_type": null,
+        "filesystem": {
+            "label": null,
+            "mount_point": null,
+            "uuid": "b892e5c3-8bea-4371-a456-bde11df3df40",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/vgroot-newroot",
+        "model": null,
+        "block_size": 4096,
+        "type": "virtual",
+        "id": 11,
+        "serial": null,
+        "partitions": []
+    }
+```
+
+### Set as Boot Disk
+
+MAAS by default picks the first added block device to the node as the boot
+disk. In most cases this works as expected as the BIOS enumerates the boot disk
+as the first block device. There are cases where this fails and the boot disk
+needs to be set to another disk. This API allow setting which block device on a
+node MAAS should use as the boot disk.:
+
+```bash
+maas my-maas-session block-device set-boot-disk node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6
+```
+Successful configuration will output `OK`.
 
 !!! Note:
-    Only an administrator can modify storage at the block device level (providing
-    the node has a status of 'Ready').
+    Only an administrator can set which block device should be used as the boot
+    disk and only a physical block device can be set as a the boot disk. This
+    operation should be done before a node is acquired or the storage layout will
+    be applied to the previous boot disk.
 
+## Partitions
 
-## Final storage modifications
+### List Partitions
 
-Once a node has been provisioned with block devices via a layout or
-administrator customization (as mentioned under 'Node layout'), a regular user
-can perform modifications on the resulting storage configuration at the
-filesystem level.
+View all the partitions on a block device:
 
+```bash
+maas my-maas-session partitions read node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6
+```
 
-## Disk erasure
+Output will look similar to the following:
 
-Node storage can be erased in several ways. See [Disk erasure][storage-erasure]
-for details.
+```yaml
+    [
+        {
+            "uuid": "e94ca09a-d83e-4521-8bac-833da2ed0b3e",
+            "bootable": false,
+            "filesystem": {
+                "label": null,
+                "mount_point": null,
+                "uuid": "61d447c2-387d-4fb1-885a-65eeef91e92a",
+                "fstype": "lvm-pv"
+            },
+            "path": "/dev/disk/by-dname/sda-part1",
+            "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/1",
+            "type": "partition",
+            "id": 1,
+            "size": 21471690752
+        }
+    ]
+```
 
+### Read Partition
 
-<!-- LINKS -->
+If you want to read just one partition on a block device instead of listing
+all partitions read operation on the partition endpoint provides that
+information:
 
-[storage-erasure]: installconfig-storage-erasure.md
-[cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
-[cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
+```bash
+maas my-maas-session partition read node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 1
+```
 
-[img__2.2_default-storage-layout]: ../media/installconfig-storage__2.2_default-storage-layout.png
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "e94ca09a-d83e-4521-8bac-833da2ed0b3e",
+        "bootable": false,
+        "filesystem": {
+            "label": null,
+            "mount_point": null,
+            "uuid": "61d447c2-387d-4fb1-885a-65eeef91e92a",
+            "fstype": "lvm-pv"
+        },
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/1",
+        "type": "partition",
+        "id": 1,
+        "size": 21471690752
+    }
+```
+### Create Partition
+
+To create a partition on a block device:
+
+```bash
+maas my-maas-session partitions create node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 size=2G
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "fc06be78-1665-4fd2-95d3-f588aaad3575",
+        "bootable": false,
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/2",
+        "type": "partition",
+        "id": 2,
+        "size": 2000003072
+    }
+```
+### Delete Partition
+
+To delete a partition from a block device:
+
+```bash
+maas my-maas-session partition delete node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 2
+```
+
+### Format Partition
+
+To format the partition with a file system:
+
+```bash
+maas my-maas-session partition format node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 3 fstype=ext4
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "fb468be6-64bd-434a-b95b-b8c932610960",
+        "bootable": false,
+        "filesystem": {
+            "label": "",
+            "mount_point": null,
+            "uuid": "8fbb4e35-cb65-49f7-8377-f00f48ac9da9",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/3",
+        "type": "partition",
+        "id": 3,
+        "size": 2000003072
+    }
+```
+
+!!! Note: 
+    You cannot format partitions that are used to make another virtual block
+    device.
+
+### Unformat Partition
+
+To remove the file system from the partition:
+
+```bash
+maas my-maas-session partition unformat node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 3
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "fb468be6-64bd-434a-b95b-b8c932610960",
+        "bootable": false,
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/3",
+        "type": "partition",
+        "id": 3,
+        "size": 2000003072
+    }
+```
+### Mount Partition
+
+o mount the partition at the given mount point (partition is required to have a
+filesystem):
+
+```bash
+maas my-maas-session partition mount node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 3 mount_point=/srv
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "fb468be6-64bd-434a-b95b-b8c932610960",
+        "bootable": false,
+        "filesystem": {
+            "label": "",
+            "mount_point": "/srv",
+            "uuid": "b59ad2c3-cffa-4cda-830f-276df4151c1c",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/3",
+        "type": "partition",
+        "id": 3,
+        "size": 2000003072
+    }
+```
+
+### Unmount Partition
+
+Remove the mount point from the partition:
+
+```bash
+maas my-maas-session partition unmount node-f4e2281c-d19a-11e4-a5ac-00163edde41f 6 3
+```
+
+Output will look similar to the following:
+
+```yaml
+    {
+        "uuid": "fb468be6-64bd-434a-b95b-b8c932610960",
+        "bootable": false,
+        "filesystem": {
+            "label": "",
+            "mount_point": null,
+            "uuid": "b59ad2c3-cffa-4cda-830f-276df4151c1c",
+            "fstype": "ext4"
+        },
+        "path": "/dev/disk/by-dname/sda-part1",
+        "resource_uri": "/MAAS/api/1.0/nodes/node-f4e2281c-d19a-11e4-a5ac-00163edde41f/blockdevices/6/partition/3",
+        "type": "partition",
+        "id": 3,
+        "size": 2000003072
+    }
+```
+## Restrictions
+
+There are only a couple of restrictions that exists in the storage
+configuration. These restrictions are only in place because they are known to
+not allow a successful deployment:
+
+- EFI partition is required to be on the boot disk for UEFI.
+- Cannot place partitions on logical volumes.
+- Cannot use a logical volume as a Bcache backing device.

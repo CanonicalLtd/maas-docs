@@ -1,18 +1,18 @@
-Title: Device Discovery
+Title: Devices
+table_of_contents: True
 
+# Devices
 
-# Device Discovery
+In addition to nodes, a MAAS cluster controller can manage *devices*. Devices
+represent non-installable machines. This feature can be used to track routers,
+virtual machines, etc. within MAAS.
 
-MAAS constantly listens to the network and reports any discovered devices.
-Devices are identified when the rack controller observes them communicating on
-an attached IPv4 subnet. Discovered devices that do not correspond to machines
-and devices already known to MAAS are shown on the [Dashboard][dashboard]. If a
-device advertises a hostname using `mDNS` (such as with `avahi` or `Bonjour`),
-MAAS will also present the discovered hostname in the Dashboard. Using the
-Dashboard, an unknown discovered device can be added to MAAS as a device or as
-a network interface belonging to a machine or device.
+Same as nodes, devices can be assigned IP addresses and DNS names. IP
+addresses can be fixed, in which case the device should be configured to use
+the defined IP address, or dynamic, in which case the device can obtain an IP
+address from the MAAS DHCP server and will receive the configured IP address.
 
-
-<!-- LINKS -->>
-
-[dashboard]: installconfig-webui.md#maas-dashboard
+Devices can also be assigned a parent node and will be automatically deleted
+(along with all the IP address reservations associated with it) when the
+parent node is deleted or released. This is designed to model and manage the
+virtual machines or containers running on a MAAS-deployed node.

@@ -1,164 +1,100 @@
-Title: Add Nodes
-table_of_contents: True
+Title: Adding nodes to the system
+table_of_contents:  True
 
+# Adding nodes to the system
 
-# Add Nodes
+Now that the MAAS controller is running, we need to make the nodes aware of
+MAAS and vice-versa. If you have set up DHCP correctly, and your nodes can boot
+via [PXE][preboot] then things really couldn't be much easier and you can use
+the automatic discovery procedure <auto-enlist>. You do not need to
+install Ubuntu on nodes that you wish to add to MAAS prior to enlistment.
 
-Adding a node to MAAS is typically done via a combination of DHCP (and TFTP),
-which should, by now, be enabled in your MAAS environment, and PXE, which you
-tell the system in question to use when it boots. This unattended manner of
-adding a node is called *enlistment*.
+To learn more about setting up DHCP, read the cluster [configuration
+documentation][clusterconfig].
 
-!!! Note: 
-    Configuring a computer to boot over PXE is done via its BIOS and is
-    often referred to as "netboot" or "network boot".
+## Automatic Discovery
 
-Regardless of how a node is added, there are no special requirements for the
-underlying machine. In particular, there is no need to install an operating
-system on it.
+With nodes set to boot from a PXE image, they will start, look for a DHCP
+server, receive the PXE boot details, boot the image, contact the MAAS server
+and shut down.
 
-Once MAAS is working to the point of adding nodes it is important to
-understand node statuses and node actions. See
-[Node statuses][concepts-statuses] and [Node actions][concepts-actions]
-respectively.
+During this process, the MAAS server will be passed information about the
+node, including the architecture, MAC address and other details which will be
+stored in the database of nodes. You can accept and commission the nodes via
+the web interface. When the nodes have been accepted the selected series of
+Ubuntu will be installed.
 
-Typically, the next step will be to *commission* the node. See
-[Commission nodes][commission-nodes].
-
-
-## Enlistment
-
-As explained, to enlist, the underlying machine needs to be configured to
-netboot. Such a machine will undergo the following process:
-
-1. DHCP server is contacted
-1. kernel and initrd are received over TFTP
-1. machine boots
-1. initrd mounts a Squashfs image ephemerally over iSCSI
-1. cloud-init runs enlistment scripts
-1. machine shuts down
-
-The enlistment scripts will send the region API server information about the
-machine, including the architecture, MAC address and other details which will
-be stored in the database. This information-gathering process is known as
-*automatic discovery*.
-
-Since any system booting off the network can enlist, the enlistment and
-commission steps are separate. This allows an administrator to "accept" an
-enlisted machine into MAAS.
-
-As an alternative to enlistment, an administrator can add a node manually (see
-[below][anchor-add-a-node-manually]). Typically this is done when enlistment
-doesn't work for some reason.
-
-
-## KVM guest nodes
-
-KVM-backed nodes being common, extra guidance is provided here. The following
-actions will need to be performed on all rack controllers.
-
-Begin by ensuring the `virsh` binary is available to the rack controller by
-installing the `libvirt-bin` package:
+To save time, you can also accept and commission all nodes from the
+commandline. This requires that you first log in with the API key, which
+you can retrieve from the web interface <api-key>:
 
 ```bash
-sudo apt install libvirt-bin
+maas maas nodes accept-all
 ```
 
-Next, the 'maas' user will need an SSH keypair (with a null passphrase) so the
-rack controller can query and manage KVM guests remotely. A login shell will
-also be necessary when becoming user 'maas':
+## Manually add nodes
+
+If you know the MAC address of a node, you can manually enter details about
+the node through the web interface. Click the `Add Node` button to be taken to
+the "Add Node" form:
+
+![image](../media/1.9_add-node.png)
+
+## Virtual machine nodes
+
+If you're setting up virtual machines to use as nodes with MAAS, you need to
+configure the power type as `virsh`. For MAAS to be able to use virsh, make
+sure you have the `libvirt-bin` package installed.
+
+!!! Note:
+    If you are assembling a set of VMs for testing or development, make sure they
+    have at least 512 MB (768 MB If you are deploying 15.10) to avoid failures
+    during deployment.
+
+The virsh power type takes two parameters:
+
+**Power ID**: The Power ID is the name of the virtual machine shown by `sudo
+virsh list --all`
+
+**Address**: This is a libvirt connection string, such as
+`qemu+ssh://ubuntu@10.0.0.2/system` or `qemu:///system`
+
+![image](../media/1.9_virsh-config.png)
+
+If you want to use ssh you'll need to generate a ssh key pair for the maas
+user. By default there is no home directory created for the maas user:
+
+```bash
+sudo mkdir /home/maas
+sudo chown maas:maas /home/maas
+```
+
+Add a login shell for the maas user:
 
 ```bash
 sudo chsh -s /bin/bash maas
+```
+
+Become the maas user and generate a SSH keypair:
+
+```bash
 sudo su - maas
-ssh-keygen -f ~/.ssh/id_rsa -N ''
+ssh-keygen
 ```
 
-Add the public key to file `/home/$USER/.ssh/authorized_keys` on the KVM host:
+Then add the public key to `/ubuntu/.ssh/authorized_keys` on the vm server so
+virsh can use ssh without a password:
 
 ```bash
-ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
+ssh-copy-id -i ~/.ssh/id_rsa ubuntu@10.0.0.2
 ```
 
-Where $KVM_HOST represents the IP address of the KVM host and $USER represents
-a user on the KVM host with the permission to communicate with the libvirt
-daemon. The latter is achieved via group membership, typically the `libvirtd`
-group.
-
-!!! Note: 
-    You may need to (temporarily) configure sshd on the KVM host to
-    honour password authentication for the `ssh-copy-id` command to succeed.
-
-Still as user 'maas', test connecting to the KVM host with virsh:
+As the maas user, test virsh commands against libvirt at 10.0.0.2:
 
 ```bash
-virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
+virsh -c qemu+ssh://ubuntu@10.0.0.2/system list --all
 ```
-
-This should work seamlessly because the private key is passphraseless.
-
-!!! Note:
-    Insufficient permissions for $USER may cause the `virsh` command to fail
-    with an error such as `failed to connect to the hypervisor`. Check the
-    user's group membership.
-
-Exit from the 'maas' user's shell:
-
-```bash
-exit
-```
-
-See [KVM/virsh power type example][power-types-example-virsh].
-
-
-## Add a node manually
-
-Enlistment can be done manually if the hardware specifications of the
-underlying machine are known. On the 'Nodes' page click the 'Add hardware'
-button and then select 'Machine'.
-
-Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
-being added:
-
-![add node manually][img__2.2_add-node-manually]
-
-!!! Note:
-    The underlying machine will still need to be configured to boot over the
-    network in order to be commissioned. MAAS will not do this for you.
-
-
-## Add nodes via a chassis
-
-Another option is to add nodes through the *chassis* feature. This is where you
-point MAAS to a hypervisor and all existing virtual machines are added in one
-fell swoop.
-
-To do this, instead of selecting 'Machine' as above, the 'Chassis' item is
-chosen. Here, KVM is again used as an example.
-
-Fill in the resulting form as below. In the case of KVM, not all of the fields
-require values.
-
-![add node via chassis][img__2.2_add-node-chassis]
-
-!!! Note:
-    As with the manual method, the underlying machines will require netbooting.
-
-
-## Add nodes via a Pod
-
-Yet another way to add nodes is to use the composable hardware feature. See the
-[Composable hardware][composable-hardware] page for details.
-
 
 <!-- LINKS -->
-
-[concepts-statuses]: intro-concepts.md#node-statuses
-[concepts-actions]: intro-concepts.md#node-actions
-[commission-nodes]: nodes-commission.md
-[anchor-add-a-node-manually]: #add-a-node-manually
-[power-types-example-virsh]: nodes-power-types.md#example:-virsh-(kvm)-power-type
-[composable-hardware]: nodes-comp-hw.md
-
-[img__2.2_add-node-manually]: ../media/nodes-add__2.2_add-node-manually.png
-[img__2.2_add-node-chassis]: ../media/nodes-add__2.2_add-node-chassis.png
+[preboot]: http://en.wikipedia.org/wiki/Preboot_Execution_Environment
+[clusterconfig]: ./installconfig-rack.md

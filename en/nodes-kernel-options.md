@@ -1,40 +1,38 @@
-Title: Kernel Boot Options
+Title: Setting kernel boot options
+table_of_contents: True
 
+# Setting kernel boot options
 
-# Kernel Boot Options
+MAAS is able to send specific kernel options to booting nodes on both a global
+basis and a per-node basis.
 
-MAAS is able to specify kernel boot options to nodes on both a global basis and
-a per-node basis. See
-[Linux kernel parameters][upstream-kernel.org-kernel-parameters] (kernel.org)
-for a full listing of available options.
+## Global kernel options
 
+As an admin, click on the gear icon at the top right and scroll down to the
+Global Kernel Parameters section, as shown here:
 
-## Global kernel boot options
+![image](../media/1.9_global_kernel_opts.png)
 
-To set kernel boot options globally, as an admin, open the 'Settings' page and
-on the 'General' tab scroll down to the 'Global Kernel Parameters' section:
+Whatever you set here is sent as-is to all booting nodes.
 
-![global kernel options][img__2.2_global-kernel-options]
+## Per-node kernel options
 
-Type in the desired (space separated) options and click 'Save'. The contents of
-the field will be used as-is. Do not use extra characters.
+Per-node kernel options are set using tags. The easiest way of doing this is to
+use the `maas` command. You will need to be logged in to the API first
+&lt;api-key&gt; and then you can add a tag which has its `kernel_opts` value
+set, like this:
 
-See [MAAS CLI][cli-set-the-default-kernel-boot-options] for how to do this with
-the CLI.
+```bash
+maas maas tags new name='nomodeset' comment='nomodeset kernel option' kernel_opts='nomodeset vga'
+```
 
+Once the tag is defined, you can add it to a node or nodes:
 
-## Per-node kernel boot options
+```bash
+maas maas tag update-nodes nomodeset add=<system_id_1> add=<system_id_2>
+```
 
-Per-node kernel boot options are set using the CLI. See
-[MAAS CLI][cli-specify-kernel-boot-options-for-a-machine] for instructions.
-
-Note that per-node boot options take precedence to global ones.
-
-
-<!-- LINKS -->
-
-[upstream-kernel.org-kernel-parameters]: https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
-[cli-set-the-default-kernel-boot-options]: manage-cli-kernels.md#set-the-default-kernel-boot-options
-[cli-specify-kernel-boot-options-for-a-machine]: manage-cli-kernels.md#specify-kernel-boot-options-for-a-machine
-
-[img__2.2_global-kernel-options]: ../media/nodes-kernel-options__2.2_global.png
+!!! Note:
+    Any per-node kernel options set will completely override the global options.
+    If multiple tags attached to a node have the kernel_opts defined, the first
+    one ordered by name is used.
