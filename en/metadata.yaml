@@ -6,12 +6,6 @@ navigation:
       - title: About MAAS
         location: index.md
 
-      - title: Management summary
-        location: intro-management.md
-
-      - title: Concepts and terms
-        location: intro-concepts.md
-
       - title: Architectural overview
         location: intro-architecture.md
 
@@ -19,159 +13,155 @@ navigation:
 
     children:
 
-      - title: Checklist
-        location: installconfig-checklist.md
-
       - title: Install MAAS
         location: installconfig-install.md
 
         children:
 
-          - title: Install from ISO
-            location: installconfig-iso-install.md
+         - title: Install from packages
+           location: installconfig-install.md#maas-packages
 
-          - title: Install from packages
-            location: installconfig-package-install.md
+         - title: Install from ISO
+           location: installconfig-install.md#installing-maas-from-ubuntu-server-boot-media
 
-          - title: Install from a snap
-            location: installconfig-snap-install.md
-
-          - title: Install with LXD
-            location: installconfig-lxd-install.md
-
-          - title: Upgrade from 1.9 to 2.0
-            location: installconfig-upgrade-to-2.md
-
-      - title: Rack controller
-        location: installconfig-rack.md
-
-      - title: Web UI
-        location: installconfig-webui.md
-
-      - title: Images
-        location: installconfig-images.md
+      - title: Post-Install tasks
+        location: installconfig-install.md#post-install-tasks
 
         children:
 
-          - title: Selection and import
-            location: installconfig-images-import.md
+          - title: Create an admin account
+            location: installconfig-install.md#create-a-superuser-account
 
-          - title: Local image mirror
+          - title: Import boot images
+            location: installconfig-install.md#import-the-boot-images
+
+          - title: Configure local mirror
+            location: installconfig-install.md#speeding-up-repeated-image-imports-by-using-a-local-mirror
+
+          - title: Configure DHCP
+            location: installconfig-install.md#configure-dhcp
+
+          - title: Cluster configuration
+            location: installconfig-rack.md
+
+          - title: Import boot images
+            location: manage-cli-images.md
+
+          - title: Adding nodes
+            location: add-nodes.md
+
+          - title: Kernel boot options
+            location: nodes-kernel-options.md
+
+          - title: Hardware enablement-kernels
+            location: nodes-kernels.md
+
+          - title: Boot image mirroring
             location: installconfig-images-mirror.md
 
-      - title: Networking
-        location: installconfig-networking.md
+      - title: Additional Configuration
+        location: installconfig-misc.md
 
         children:
 
-          - title: Subnet management
-            location: installconfig-network-subnet-management.md
+          - title: Manual DHCP configuration 
+            location: installconfig-misc.md#manual-dhcp-configuration
 
-          - title: DHCP
-            location: installconfig-network-dhcp.md
+          - title: SSL support
+            location: installconfig-misc.md#ssl-support
 
-          - title: IP ranges
-            location: installconfig-network-ipranges.md
+          - title: Select install series
+            location: installconfig-misc.md#choosing-a-series-to-install
 
-          - title: Proxy
-            location: installconfig-network-proxy.md
+          - title: Altering the pre-seed file
+            location: installconfig-misc.md#altering-the-preseed-file
 
-          - title: NTP
-            location: installconfig-network-ntp.md
+          - title: Additional clusters
+            location: installconfig-misc.md#installing-additional-clusters
 
-          - title: Device discovery
+          - title: Client-side DNS configuration
+            location: installconfig-misc.md#configuring-the-cluster-controller
+
+          - title: Installing Ubuntu
+            location: installconfig-ubuntu.md
+
+          - title: Adding devices
             location: installconfig-network-dev-discovery.md
-
-          - title: IPv6
-            location: installconfig-network-ipv6.md
-
-          - title: SSL
-            location: installconfig-network-ssl.md
-
-          - title: STP
-            location: installconfig-network-stp.md
 
       - title: Storage
         location: installconfig-storage.md
+ 
+        children:
 
-  - title: Nodes
+           - title: Layouts
+             location: installconfig-storage.md#layouts
+
+           - title: Block Devices
+             location: installconfig-storage.md#block-devices
+ 
+           - title: Partitions
+             location: installconfig-storage.md#partitions
+
+           - title: Restrictions
+             location: installconfig-storage.md#restrictions
+
+      - title: Networks
+        location: installconfig-networking.md
+
+        children:
+ 
+           - title: Networking concepts 
+             location: installconfig-networking-concepts.md
+ 
+           - title: Defining networks
+             location: installconfig-networking.md#defining-networks
+
+           - title: Connecting nodes
+             location: installconfig-networking.md#g-networks
+
+           - title: Device discovery
+             location: insatallconfig-network-dev-discovery.md
+          
+           - title: Static IPs
+             location: nodes-commission.md
+
+           - title: IPv6
+             location: installconfig-network-ipv6.md
+
+  - title: Deployment
 
     children:
-            
-      - title: Add nodes
-        location: nodes-add.md
 
-      - title: BMC power types
-        location: nodes-power-types.md
+      - title: Get started with Juju
+        location: juju-quick-start.md
 
-      - title: Commission nodes
-        location: nodes-commission.md
+      - title: Making use of Tags
+        location: nodes.md
 
-      - title: Deploy nodes
-        location: nodes-deploy.md
-
-      - title: Tags
-        location: nodes-tags.md
-
-      - title: Kernel boot options
-        location: nodes-kernel-options.md
-
-      - title: Ubuntu kernels
-        location: nodes-kernels.md
-
-      - title: Hardware testing
-        location: nodes-hw-testing.md
-
-      - title: Composable hardware
-        location: nodes-comp-hw.md
-
-  - title: Manage MAAS
-
-    children:
-
-      - title: Zones
+      - title: Physical Zones
         location: manage-zones.md
 
-      - title: User accounts
-        location: manage-account.md
+        children:
 
-      - title: Package repositories
-        location: manage-repos.md
+          - title: Create a Zone
+            location: manage-zones.md#creating-a-zone
 
-      - title: High availability
-        location: manage-ha.md
+  - title: API
+    location: api.md
 
-      - title: Backup
-        location: manage-backup.md
+    children:
+
+      - title: Authentication
+        location: api-authentication.md 
 
       - title: MAAS CLI
         location: manage-cli.md
 
-        children:
+      - title: Operations
+        location: api.md#operations
 
-          - title: Common tasks
-            location: manage-cli-common.md
-
-          - title: Kernel management
-            location: manage-cli-kernels.md
-
-          - title: Image management
-            location: manage-cli-images.md
-
-          - title: Tag management
-            location: manage-cli-tags.md
-
-          - title: DHCP snippet management
-            location: manage-cli-dhcp-snippets.md
-
-          - title: Advanced tasks
-            location: manage-cli-advanced.md
-
-          - title: Composable hardware
-            location: manage-cli-comp-hw.md
-
-      - title: API client
-        location: manage-libmaas.md
+      - title: Hacking MAAS
+        location: hacking.md
 
   - title: Troubleshoot
 
@@ -180,17 +170,14 @@ navigation:
       - title: FAQ
         location: troubleshoot-faq.md
 
+      - title: Other OS support
+        location: installconfig-images.md
+
       - title: Getting help
         location: troubleshoot-getting-help.md
 
-  - title: Release notes
-    location: release-notes.md
-
-  - title: API documentation
-    location: api.md
-
-  - title: MAAS 1.9 docs
-    location: /maas/1.9/en/
+  - title: Changelog
+    location: changelog.md
 
   - title: Help improve these docs
     location: contributing-writing.md
