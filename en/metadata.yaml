@@ -48,7 +48,7 @@ navigation:
             location: manage-cli-images.md
 
           - title: Adding nodes
-            location: add-nodes.md
+            location: nodes-add.md
 
           - title: Kernel boot options
             location: nodes-kernel-options.md
@@ -120,7 +120,7 @@ navigation:
              location: installconfig-networking.md#g-networks
 
            - title: Device discovery
-             location: insatallconfig-network-dev-discovery.md
+             location: installconfig-network-dev-discovery.md
           
            - title: Static IPs
              location: nodes-commission.md
@@ -136,7 +136,7 @@ navigation:
         location: juju-quick-start.md
 
       - title: Making use of Tags
-        location: nodes.md
+        location: nodes-tags.md
 
       - title: Physical Zones
         location: manage-zones.md
