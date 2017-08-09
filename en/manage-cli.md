@@ -21,11 +21,11 @@ To obtain the key from the web user interface, log in and click on your user
 name in the top right corner of the page, and select 'Preferences' from the
 menu which appears.
 
-![image](media/maascli-prefs.*)
+![image](../media/maascli-prefs.*)
 
 A new page will load...
 
-![image](media/maascli-key.*)
+![image](../media/maascli-key.*)
 
 Your MAAS API keys appear at the top of the preferences form. It's easiest to
 just select and copy the key (it's quite long!) and then paste it into the

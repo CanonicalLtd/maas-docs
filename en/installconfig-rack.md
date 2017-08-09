@@ -50,12 +50,12 @@ Any other cluster controllers you set up will show up in the user interface as
 To accept a cluster controller, visit the "pending clusters" section of the
 Clusters page:
 
-![image](media/1.9_cluster-accept.png)
+![image](../media/1.9_cluster-accept.png)
 
 You can either click on "Accept all" or click on the edit icon to edit the
 cluster. After clicking on the edit icon, you will see this page:
 
-![image](media/1.9_cluster-edit.png)
+![image](../media/1.9_cluster-edit.png)
 
 Here you can change the cluster's name as it appears in the UI, its DNS zone,
 and its status. Accepting the cluster changes its status from "pending" to
@@ -83,7 +83,7 @@ As an example, we will configure the cluster controller to manage a network on
 interface `eth0`. Click on the edit icon for the cluster interface on network
 interface `eth0`, which takes us to this page:
 
-![image](media/1.9_cluster-interface-edit.png)
+![image](../media/1.9_cluster-interface-edit.png)
 
 Here you can select to what extent you want the cluster controller to manage
 the network:

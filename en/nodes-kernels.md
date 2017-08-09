@@ -55,7 +55,7 @@ visiting the Node's page and clicking `Edit node`. Under the Minimum Kernel
 field, you will be able to select any HWE kernels that have been imported onto
 that node's cluster controller.
 
-![image](media/1.9_min_hwe_kernel.png)
+![image](../media/1.9_min_hwe_kernel.png)
 
 You can also set the hwe_kernel during deployment. MAAS checks that the
 specified kernel is available for the release specified before deploying the
@@ -67,6 +67,6 @@ maas <profile-name> node start <system-id> distro_series=<distro> hwe_kernel=hwe
 
 Or through the web interface as seen below.
 
-![image](media/1.9_hwe_kernel.png)
+![image](../media/1.9_hwe_kernel.png)
 
 [stack]: https://wiki.ubuntu.com/Kernel/LTSEnablementStack

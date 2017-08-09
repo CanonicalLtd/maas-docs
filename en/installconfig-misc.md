@@ -86,7 +86,7 @@ on the node page when the node has been automatically discovered but before it
 is accepted, there is a drop down menu to select the version of Ubuntu you wish
 to install.
 
-![image](media/1.9_series.png)
+![image](../media/1.9_series.png)
 
 The menu will always list all the currently available series according to which
 boot images are available.
@@ -207,7 +207,7 @@ the MAAS region controller includes a cluster controller, but it is possible to
 add additional cluster controllers to the configuration, as shown in the
 diagram below:
 
-![image](media/1.9_orientation_architecture-diagram.png)
+![image](../media/1.9_orientation_architecture-diagram.png)
 
 Each cluster controller will need to run on a separate Ubuntu server.
 Installing and configuring the software is straightforward though:
@@ -234,7 +234,7 @@ software:
 dpkg-reconfigure maas-cluster-controller
 ```
 
-![image](media/1.9_cluster-config.png)
+![image](../media/1.9_cluster-config.png)
 
 The configuration script should then bring up a screen where you can enter the
 IP address of the region controller. Additionally, you will need to import the

@@ -77,7 +77,7 @@ the web user interface, log in as an administrator and browse to the "Zones"
 section in the top bar. This will takes you to the zones listing page. At the
 bottom of the page is a button for creating a new zone:
 
-![image](media/add-zone.*)
+![image](../media/add-zone.*)
 
 Or to do it in the region-controller API <region-controller-api>, POST
 your zone definition to the *"zones"* endpoint.

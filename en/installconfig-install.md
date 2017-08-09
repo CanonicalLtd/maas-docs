@@ -91,7 +91,7 @@ server, but expect to add about 200MB of files.
 The configuration for the MAAS controller will automatically run and pop up
 this config screen:
 
-![image](media/1.9_install_cluster-config.png)
+![image](../media/1.9_install_cluster-config.png)
 
 Here you will need to enter the hostname for where the region controller can
 be contacted. In many scenarios, you may be running the region controller
@@ -131,7 +131,7 @@ sudo dpkg-reconfigure maas-cluster-controller
 The configuration for the MAAS Cluster Controller will automatically run and
 pop up this config screen:
 
-![image](media/1.9_install_cluster-config.png)
+![image](../media/1.9_install_cluster-config.png)
 
 Once entered, the MAAS Cluster Controller configuration will request
 
@@ -142,74 +142,74 @@ the "Multiple Server install with MAAS" option from the installer and have
 pretty much everything set up for you. Boot from the Ubuntu Server media and
 you will be greeted with the usual language selection screen:
 
-![image](media/1.9_install_01.png)
+![image](../media/1.9_install_01.png)
 
 On the next screen, you will see there is an entry in the menu called
 "Multiple server install with MAAS". Use the cursor keys to select this and
 then press Enter.
 
-![image](media/1.9_install_02.png)
+![image](../media/1.9_install_02.png)
 
 The installer then runs through the usual language and keyboard options. Make
 your selections using Tab/Cursor keys/Enter to proceed through the install.
 The installer will then load various drivers, which may take a moment or two.
 
-![image](media/1.9_install_03.png)
+![image](../media/1.9_install_03.png)
 
 The next screen asks for the hostname for this server. Choose something
 appropriate for your network.
 
-![image](media/1.9_install_04.png)
+![image](../media/1.9_install_04.png)
 
 Finally we get to the MAAS part! Here there are just two options. We want to
 "Create a new MAAS on this server" so go ahead and choose that one.
 
-![image](media/1.9_install_05.png)
+![image](../media/1.9_install_05.png)
 
 The install now continues as usual. Next you will be prompted to enter a
 username. This will be the admin user for the actual server that MAAS will be
 running on (not the same as the MAAS admin user!)
 
-![image](media/1.9_install_06.png)
+![image](../media/1.9_install_06.png)
 
 As usual you will have the chance to encrypt your home directory. Continue to
 make selections based on whatever settings suit your usage.
 
-![image](media/1.9_install_07.png)
+![image](../media/1.9_install_07.png)
 
 After making selections and partitioning storage, the system software will
 start to be installed. This part should only take a few minutes.
 
-![image](media/1.9_install_09.png)
+![image](../media/1.9_install_09.png)
 
 Various packages will now be configured, including the package manager and
 update manager. It is important to set these up appropriately so you will
 receive timely updates of the MAAS server software, as well as other essential
 services that may run on this server.
 
-![image](media/1.9_install_10.png)
+![image](../media/1.9_install_10.png)
 
 The configuration for MAAS will ask you to configure the host address of the
 server. This should be the IP address you will use to connect to the server
 (you may have additional interfaces e.g. to run node subnets)
 
-![image](media/1.9_install_cluster-config.png)
+![image](../media/1.9_install_cluster-config.png)
 
 The next screen will confirm the web address that will be used to the web
 interface.
 
-![image](media/1.9_install_controller-config.png)
+![image](../media/1.9_install_controller-config.png)
 
 After configuring any other packages the installer will finally come to and
 end. At this point you should eject the boot media.
 
-![image](media/1.9_install_14.png)
+![image](../media/1.9_install_14.png)
 
 After restarting, you should be able to login to the new server with the
 information you supplied during the install. The MAAS software will run
 automatically.
 
-![image](media/1.9_install_15.png)
+![image](../media/1.9_install_15.png)
 
 !!! Note: 
     The maas-dhcp and maas-dns packages should be installed by default,
@@ -235,7 +235,7 @@ Your MAAS is now installed, but there are a few more things to be done. If you
 now use a web browser to connect to the region controller, you should see that
 MAAS is running, but there will also be some errors on the screen:
 
-![image](media/1.9_install_web-init.png)
+![image](../media/1.9_install_web-init.png)
 
 The on screen messages will tell you that there are no boot images present,
 and that you can't login because there is no admin user.
@@ -262,7 +262,7 @@ Looking at the region controller's main web page again, you should now see a
 login screen. Log in using the user name and password which you have just
 created.
 
-![image](media/1.9_install-login.png)
+![image](../media/1.9_install-login.png)
 
 ## Import the boot images
 
@@ -280,7 +280,7 @@ To do it in the web user interface, go to the Images tab, check the boxes to
 say which images you want to import, and click the "Import images" button at
 the bottom of the Ubuntu section.
 
-![image](media/1.9_import-images.png)
+![image](../media/1.9_import-images.png)
 
 A message will appear to let you know that the import has started, and after a
 while, the warnings about the lack of boot images will disappear.

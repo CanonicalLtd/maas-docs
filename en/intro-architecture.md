@@ -58,7 +58,7 @@ into different subnets (e.g. if you have a lot of nodes). If you install the
 `maas` package, it will include both a region controller and a cluster
 controller, and they will be automatically set up to work together.
 
-![image](media/1.9_orientation_architecture-diagram.png)
+![image](../media/1.9_orientation_architecture-diagram.png)
 
 ## How MAAS is used
 
