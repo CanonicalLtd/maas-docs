@@ -3,7 +3,7 @@ table_of_contents: True
 
 # Release Notes 2.3
 
-MAAS 2.3 is currently being developed. The current release is [MAAS 2.3.0
+MAAS 2.3 is currently under development. The current release is [MAAS 2.3.0
 alpha2][currentrelease]. See [Historical release
 notes][historical-release-notes] for release notes for stable versions.
 
@@ -57,7 +57,7 @@ UDP port 5240.  When registering a new controller, MAAS uses the information
 gathered from the beaconing protocol to ensure that newly registered interfaces
 on each controller are associated with existing known networks in MAAS. 
 
-###UI improvements 
+### UI improvements 
 
 Minor UI improvements have been made:
 
