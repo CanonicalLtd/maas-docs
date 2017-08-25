@@ -189,9 +189,6 @@ navigation:
   - title: API documentation
     location: api.md
 
-  - title: MAAS 1.9 docs
-    location: /maas/1.9/en/
-
   - title: Help improve these docs
     location: contributing-writing.md
 
