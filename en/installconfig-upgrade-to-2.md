@@ -24,7 +24,7 @@ environment) be upgraded first, to pre-empt any issues.
 
 ## IP range changes
 
-The concepts and terminology used to define IP ranges within MAAS change
+The concepts and terminology used to define IP ranges within MAAS have changed
 significantly between 1.9 and 2.x releases of MAAS. These changes are described
 below.
 
@@ -36,8 +36,8 @@ DHCP.
 Static ranges are deprecated in MAAS 2.x. Instead, MAAS assumes full control
 of the address space for a network it manages with two exceptions:
 
-- An optionally defined [reserved range][ip-range] has been defined.
-- [Managed allocation][managed-subnet] in MAAS 2.3+ is disabled. 
+- When an optionally defined [reserved range][ip-range] has been defined.
+- When [managed allocation][managed-subnet] in MAAS 2.3+ is disabled. 
 
 Reserved ranges allow MAAS to avoid addresses already in use on the network.
 When upgrading from MAAS 1.9 to MAAS 2.x, static ranges are migrated to their
