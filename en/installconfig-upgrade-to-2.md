@@ -36,7 +36,7 @@ DHCP.
 Static ranges are deprecated in MAAS 2.x. Instead, MAAS assumes full control
 of the address space for a network it manages with two exceptions:
 
-- When an optionally defined [reserved range][ip-range] has been defined.
+- When an optional [reserved range][ip-range] has been defined.
 - When [managed allocation][managed-subnet] in MAAS 2.3+ is disabled. 
 
 Reserved ranges allow MAAS to avoid addresses already in use on the network.
