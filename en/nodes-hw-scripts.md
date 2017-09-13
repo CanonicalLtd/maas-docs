@@ -1,4 +1,5 @@
 Title: Hardware Testing Scripts
+TODO: Expand definitions for metadata and add guidelines for their use
 table_of_contents: True
 
 # Hardware Testing Scripts
@@ -44,7 +45,7 @@ The following metadata can be included:
 - `name`: Corresponds to the script's filename
 - `title`: Human-friendly descriptive version of name, used within the web UI
 - `description`: Brief outline of what the script does
-- `tags`:  List of tags associated with the script.
+- `tags`:  List of tags associated with the script
 - `script-type`,`hardware_type`: Broad categories for the kind of script and
   what the script tests
 - `timeout`: Length of time before MAAS automatically
