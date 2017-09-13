@@ -87,7 +87,7 @@ maas $PROFILE node-script delete $SCRIPT_NAME
 ## Tags
 
 As with general [tag management][tag-management], tags make scripts easier to
-manage, such as by grouping scripts together for commissioning and testing:
+manage; grouping scripts together for commissioning and testing, for example:
 
 ```bash
 maas $PROFILE node-script add-tag $SCRIPT_NAME tag=$TAG
