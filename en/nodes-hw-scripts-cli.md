@@ -141,8 +141,8 @@ maas $PROFILE node-script-result download $SYSTEM_ID $RUN_ID output=all \
 ```
 
 !!! Note:
-    See [Determine a node's system ID][system-id] for details on retrieving
-    the system ID.
+    **$RUN_ID** is labelled `id` in the verbose result output. See [Determine a
+    node's system ID][system-id] for details on retrieving **$SYSTEM_ID**.
 
 <!-- LINKS -->
 [hardware-testing]: nodes-hw-scripts.md
