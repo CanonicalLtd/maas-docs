@@ -92,7 +92,7 @@ from the 'Test hardware' page of the web UI before running scripts.
 ![enable SSH within Test Hardware][nodes-hw-scripts__2.2_ssh]
 
 As scripts operate within an ephemeral version of Ubuntu, enabling this option
-stops the node from shutting down, enabling you to connect and probe a script's
+stops the node from shutting down, allowing you to connect and probe a script's
 status. 
 
 As long as you've added your [SSH key][ssh-keys] to MAAS, you can simply
