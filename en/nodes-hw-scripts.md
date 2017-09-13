@@ -41,7 +41,7 @@ utility) and the second to execute **stress-ng** with various arguments.
 
 The following metadata can be included:
 
-- `name`: Corresponds with the script's filename
+- `name`: Corresponds to the script's filename
 - `title`: Human-friendly descriptive version of name, used within the web UI
 - `description`: Brief outline of what the script does
 - `tags`:  List of tags associated with the script.
