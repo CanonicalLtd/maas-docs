@@ -103,14 +103,11 @@ maas $PROFILE machine commission \
 ```
 
 Similarly, all testing scripts tagged with *commissioning* are also run during
-commissioning or testing. Like commissioning you can select testing scripts by
-name or tag:
-
+commissioning, and you can also select which testing scripts to run by name or
+tag:
 
 ```bash
 maas $PROFILE machine commission \ 
- testing_scripts=$SCRIPT_NAME,$SCRIPT_TAG
-maas $PROFILE machine test \ 
  testing_scripts=$SCRIPT_NAME,$SCRIPT_TAG
 ```
 
