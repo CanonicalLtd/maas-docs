@@ -68,7 +68,7 @@ to:
 maas $PROFILE node-script revert $SCRIPT_NAME to=$VERSION_ID
 ```
 
-!!! Note:
+!!! Warning:
     The history for later modifications will be lost when reverting to an earlier
     version of the script.
 
