@@ -115,8 +115,7 @@ commissioning.
 ## Results
 
 The command line allows you to not only view the current script's progress but
-you can also retrieve the verbatim output from previous runs as well.   
-
+also retrieve the verbatim output from any previous runs too.
 
 If you only want to see the latest or currently running result you can use
 `current-commissioning`, `current-testing`, or `current-installation` instead
@@ -126,8 +125,8 @@ of an id:
 maas $PROFILE node-script-result read $SYSTEM_ID $RESULTS
 ```
 
-You can also limit which results are returned by type (commissioning, testing,
-or installation), script name, or script run:
+You can also limit which results are returned by type (*commissioning*,
+*testing*, or *installation*), script name, or script run:
 
 ```bash
 maas $PROFILE node-script-results read \ 
