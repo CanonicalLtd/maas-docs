@@ -122,6 +122,9 @@ navigation:
       - title: Hardware testing
         location: nodes-hw-testing.md
 
+      - title: Hardware testing scripts
+        location: nodes-hw-scripts.md
+
       - title: Composable hardware
         location: nodes-comp-hw.md
 
@@ -163,6 +166,9 @@ navigation:
 
           - title: DHCP snippet management
             location: manage-cli-dhcp-snippets.md
+
+          - title: Hardware testing scripts
+            location: nodes-hw-scripts-cli.md
 
           - title: Advanced tasks
             location: manage-cli-advanced.md
