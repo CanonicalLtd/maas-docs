@@ -53,8 +53,9 @@ into the 'Public key' field. Click 'Import' to add the key to MAAS.
 
 Public keys residing on either [Launchpad][help.launchpad.net-accounts] or
 [GitHub][help.github.com-ssh] can also be added. Select either from the
-'Source' menu and specify the key user ID. Press the 'Import' button to
-download the key to the current user's MAAS account.
+'Source' menu and specify the user ID associated with the key(s). Press the
+`Import' button to add any keys MAAS discovers to the current user's MAAS
+account.
 
 ![add user SSH key][img__2.2_add-user-ssh-key]
 
