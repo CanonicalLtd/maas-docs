@@ -47,11 +47,15 @@ you're not familiar with SSH keys.
     An initial SSH key is normally imported during a user's initial login to the
     web UI (see [Configuration journey][config-journey]).
 
-The key to be added must already reside on either
-[Launchpad][help.launchpad.net-accounts] or [GitHub][help.github.com-ssh]. It
-is then a simple matter of selecting one of those sites and specifying the key
-user ID. Press the 'Import' button to download the key to the current user's
-MAAS account!
+To add a locally generated public key, select 'Upload' from the 'Source' menu
+and paste the complete contents of your key file, usually called `id_rsa.pub`,
+into the 'Public key' field. Click 'Import' to add the key to MAAS.
+
+Public keys residing on either [Launchpad][help.launchpad.net-accounts] or
+[GitHub][help.github.com-ssh] can also be added. Select either from the
+'Source' menu and specify the user ID associated with the key(s). Press the
+'Import' button to add any keys MAAS discovers to the current user's MAAS
+account.
 
 ![add user SSH key][img__2.2_add-user-ssh-key]
 
