@@ -85,7 +85,7 @@ automatically detected or made.
 The web UI now displays the version number of each running controller and will
 notify the user of any mismatch between region and rack controller versions.
 This helps administrators avert potential problems when upgrading MAAS on a
-multi-node cluster, such within a HA setup.
+multi-node cluster, such as within a HA setup.
 
 ### Issues fixed in this release
 
