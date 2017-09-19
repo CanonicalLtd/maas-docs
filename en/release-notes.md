@@ -36,23 +36,22 @@ each test.
 With the new hardware testing framework, you can:
 
 - **Define a custom testing script with a YAML definition**.
-  Each custom test can be defined with YAML that will provide information about
-  the test. This information includes the script name, description, required
-  packages, and other metadata about what information the script will gather.
-  This information can then be displayed in the UI.
+  Each custom test can use a YAML definition to provide information about the
+  test. This information includes the script name, description, required
+  packages and other metadata about the data the script will collect.
+  This information will then be displayed in the web UI. 
 
 - **Pass parameters**.
   You can now pass specific parameters to the hardware testing scripts. For example, in upcoming
-  beta releases, users will be able to select which disks they want to test.
+  beta releases users will be able to select which disks they want to test.
 
 - **Run individual tests**
-  Improves the way how hardware tests are run per
-  component. This allows MAAS to run tests against any individual component (such
-a single disk).
+  Improves the way how hardware tests are run per component. This allows MAAS
+  to run tests against individual components, such a single disk.
 
 - **Additional performance tests**
   This release includes a new CPU performance test using *[7zip][7zip]* and a new
-  storage performance test with *[fio][fio]*.
+  storage performance test using *[fio][fio]*.
 
 
 !!! Note:
@@ -66,12 +65,12 @@ MAAS can now install and configure a rack controller after a machine has been
 deployed. Currently, this feature is only available if the machine is a
 certified white box switch.
 
-Currently certified switches include the [Wedge 40 and 100][wedge100].
+Current certified switches include the [Wedge 40 and 100][wedge100].
 
 !!! Note: 
-    This features makes use of the MAAS *snap* to configure the rack controller
-    on the deployed machine. As 'snap store' mirrors are not yet available, your
-    machine will need internet access to install the MAAS snap.
+    This features makes use of the MAAS *[snap][snapio]* package to configure the rack
+    controller on the deployed machine. As 'snap store' mirrors are not yet
+    available, your machine will need internet access to install the MAAS snap.
 
 ### Improved DNS Reloading
 
