@@ -45,11 +45,11 @@ With the new hardware testing framework, you can:
   You can now pass specific parameters to the hardware testing scripts. For example, in upcoming
   beta releases users will be able to select which disks they want to test.
 
-- **Run individual tests**
+- **Run individual tests**.
   Improves the way how hardware tests are run per component. This allows MAAS
   to run tests against individual components, such a single disk.
 
-- **Additional performance tests**
+- **Additional performance tests**.
   This release includes a new CPU performance test using *[7zip][7zip]* and a new
   storage performance test using *[fio][fio]*.
 
