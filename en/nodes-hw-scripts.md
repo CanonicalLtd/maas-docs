@@ -119,7 +119,7 @@ the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 [maas-scripts-cli]: nodes-hw-scripts-cli.md
 
 <!-- IMAGES -->
-[nodes-hw-scripts__2.2_select]: /media/nodes-hw-scripts__2.2_select.png
-[nodes-hw-scripts__2.2_fail]: /media/nodes-hw-scripts__2.2_fail.png
-[nodes-hw-scripts__2.2_ssh]: /media/nodes-hw-scripts__2.2_ssh.png
+[nodes-hw-scripts__2.2_select]: ../media/nodes-hw-scripts__2.2_select.png
+[nodes-hw-scripts__2.2_fail]: ../media/nodes-hw-scripts__2.2_fail.png
+[nodes-hw-scripts__2.2_ssh]: ../media/nodes-hw-scripts__2.2_ssh.png
 
