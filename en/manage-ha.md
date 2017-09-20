@@ -169,7 +169,8 @@ frontend maas
 
 backend maas
     timeout server 30s
-    balance roundrobin
+    balance source
+    hash-type consistent
     server localhost localhost:5240 check
     server maas-api-1 $PRIMARY_API_SERVER_IP:5240 check
     server maas-api-2 $SECONDARY_API_SERVER_IP:5240 check
