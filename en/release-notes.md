@@ -25,6 +25,74 @@ sudo add-apt-repository -yu ppa:maas/next
 sudo apt install maas
 ```
 
+## 2.3.0 (alpha3)
+
+### Hardware Testing (backend only)
+
+This release introduces an improved hardware testing framework that enables MAAS to
+test individual components of a single machine and provide better feedback for
+each test. 
+
+With the new hardware testing framework, you can:
+
+- **Define a custom testing script with a YAML definition**.
+  Each custom test can use a YAML definition to provide information about the
+  test. This information includes the script name, description, required
+  packages and other metadata about the data the script will collect.
+  This information will then be displayed in the web UI. 
+
+- **Pass parameters**.
+  You can now pass specific parameters to the hardware testing scripts. For example, in upcoming
+  beta releases users will be able to select which disks they want to test.
+
+- **Run individual tests**.
+  Improves the way how hardware tests are run per component. This allows MAAS
+  to run tests against individual components, such a single disk.
+
+- **Additional performance tests**.
+  This release includes a new CPU performance test using *[7zip][7zip]* and a new
+  storage performance test using *[fio][fio]*.
+
+
+!!! Note:
+    The results for individual components are currently only available from the
+    API. Upcoming beta releases will include UI improvements to accomodate these
+    results. 
+
+### Rack Controller Deployment in White Box Switches
+
+MAAS can now install and configure a rack controller after a machine has been
+deployed. Currently, this feature is only available if the machine is a
+certified white box switch.
+
+Current certified switches include the [Wedge 40 and 100][wedge100].
+
+!!! Note: 
+    This features makes use of the MAAS *[snap][snapio]* package to configure the rack
+    controller on the deployed machine. As 'snap store' mirrors are not yet
+    available, your machine will need internet access to install the MAAS snap.
+
+### Improved DNS Reloading
+
+This new release introduces various improvements to the DNS reload mechanism,
+enabling MAAS to be smarter about when to reload after changes have been
+automatically detected or made. 
+
+### UI improvements
+
+**Controller Versions and Notifications**
+
+The web UI now displays the version number of each running controller and will
+notify the user of any mismatch between region and rack controller versions.
+This helps administrators avert potential problems when upgrading MAAS on a
+multi-node cluster, such as within a HA setup.
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
+
 ## 2.3.0 (alpha2)
 
 ### Advanced Network for CentOS & Windows
@@ -161,3 +229,7 @@ For all the issues fixed in this release, please refer to:
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
 [contactus]: https://maas.io/contact-us
+[fio]: https://github.com/axboe/fio
+[7zip]: http://www.7-zip.org
+[maasapi]: api.html
+[wedge100]: https://code.facebook.com/posts/1802489260027439/wedge-100-more-open-and-versatile-than-ever/
