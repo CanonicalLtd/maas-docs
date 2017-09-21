@@ -184,7 +184,7 @@ See [IP ranges][ip-ranges] for how these ranges get created and
 [Subnet management][subnet-management] for information on managed vs. unmanaged
 subnets.
 
-For details on how IP range terminology has changed between since MAAS, see
+For details on how IP range terminology has changed since MAAS 1.9, see
 [Upgrade from 1.9 to 2.x][upgrade-maas].
 
 ## VLANs
