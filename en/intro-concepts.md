@@ -119,9 +119,9 @@ MAAS is complete. MAAS only becomes functional once images have been imported.
 
 ## Fabrics
 
-A *fabric* is a set of interconnected VLANs that are capable of mutual
-communication. A fabric is a logical grouping of unique VLANs. A default fabric
-('fabric-0') is created for each detected subnet when MAAS is installed.
+A *fabric* is a switch or a combination of switches that use trunking to
+provide the same VLANs. A default fabric ('fabric-0') is created for each
+detected subnet when MAAS is installed.
 
 
 ## Spaces
@@ -180,6 +180,8 @@ See [IP ranges][ip-ranges] for how these ranges get created and
 [Subnet management][subnet-management] for information on managed vs. unmanaged
 subnets.
 
+For details on how IP range terminology has changed between since MAAS, see
+[Upgrade from 1.9 to 2.x][upgrade-maas].
 
 ## VLANs
 
@@ -414,3 +416,4 @@ Puts the node in a specific zone.
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
 [composable-hardware]: nodes-comp-hw.md
+[upgrade-maas]: installconfig-upgrade-to-2.md#ip-range-changes
