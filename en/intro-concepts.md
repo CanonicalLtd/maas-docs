@@ -34,7 +34,9 @@ A region controller consists of:
 - caching HTTP proxy
 - web UI
 
-A region controller can be thought of as being responsible for a data centre.
+A region controller can be thought of as being responsible for a data centre,
+or a single region. Multiple *fabrics* are used by MAAS to accommodate
+subdivisions within a single region, such as multiple floors in a data centre. 
 
 A rack controller provides:
 
@@ -49,6 +51,7 @@ setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA][maas-ha] for high availability.
+
 
 ### Machines
 
