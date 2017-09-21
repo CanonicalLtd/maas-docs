@@ -122,9 +122,10 @@ MAAS is complete. MAAS only becomes functional once images have been imported.
 
 ## Fabrics
 
-A *fabric* is a switch or a combination of switches that use trunking to
-provide the same VLANs. A default fabric ('fabric-0') is created for each
-detected subnet when MAAS is installed.
+A *fabric* could be described as a VLAN namespace mechanism. It's a switch or a
+combination of switches that use trunking to provide the same VLANs. A
+default fabric ('fabric-0') is created for each detected subnet when MAAS is
+installed.
 
 
 ## Spaces
