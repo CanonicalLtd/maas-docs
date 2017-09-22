@@ -34,7 +34,9 @@ A region controller consists of:
 - caching HTTP proxy
 - web UI
 
-A region controller can be thought of as being responsible for a data centre.
+A region controller can be thought of as being responsible for a data centre,
+or a single region. Multiple *fabrics* are used by MAAS to accommodate
+subdivisions within a single region, such as multiple floors in a data centre. 
 
 A rack controller provides:
 
@@ -49,6 +51,7 @@ setup is to have a rack controller in each data centre server rack.
 
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA][maas-ha] for high availability.
+
 
 ### Machines
 
@@ -119,9 +122,10 @@ MAAS is complete. MAAS only becomes functional once images have been imported.
 
 ## Fabrics
 
-A *fabric* is a set of interconnected VLANs that are capable of mutual
-communication. A fabric is a logical grouping of unique VLANs. A default fabric
-('fabric-0') is created for each detected subnet when MAAS is installed.
+A *fabric* could be described as a VLAN namespace mechanism. It's a switch or a
+combination of switches that use trunking to provide the same VLANs. A
+default fabric ('fabric-0') is created for each detected subnet when MAAS is
+installed.
 
 
 ## Spaces
@@ -180,6 +184,8 @@ See [IP ranges][ip-ranges] for how these ranges get created and
 [Subnet management][subnet-management] for information on managed vs. unmanaged
 subnets.
 
+For details on how IP range terminology has changed since MAAS 1.9, see
+[Upgrade from 1.9 to 2.x][upgrade-maas].
 
 ## VLANs
 
@@ -414,3 +420,4 @@ Puts the node in a specific zone.
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
 [composable-hardware]: nodes-comp-hw.md
+[upgrade-maas]: installconfig-upgrade-to-2.md#ip-range-changes
