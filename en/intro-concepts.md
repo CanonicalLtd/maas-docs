@@ -34,7 +34,9 @@ A region controller consists of:
 - caching HTTP proxy
 - web UI
 
-A region controller can be thought of as being responsible for a data centre.
+A region controller can be thought of as being responsible for a data centre,
+or a single region. Multiple *fabrics* are used by MAAS to accommodate
+subdivisions within a single region, such as multiple floors in a data centre. 
 
 A rack controller provides:
 
@@ -50,6 +52,7 @@ setup is to have a rack controller in each data centre server rack.
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA](manage-maas-ha.md) for high
 availability.
+
 
 ### Machines
 
@@ -113,9 +116,10 @@ MAAS is complete. MAAS only becomes functional once images have been imported.
 
 ## Fabrics
 
-A *fabric* is a set of interconnected VLANs that are capable of mutual
-communication. A fabric is a logical grouping of unique VLANs. A default fabric
-('fabric-0') is created for each detected subnet when MAAS is installed.
+A *fabric* could be described as a VLAN namespace mechanism. It's a switch or a
+combination of switches that use trunking to provide the same VLANs. A
+default fabric ('fabric-0') is created for each detected subnet when MAAS is
+installed.
 
 
 ## Spaces
@@ -169,6 +173,8 @@ and
 [Commission nodes](installconfig-commission-nodes.md#post-commission-configuration)
 for how they get used.
 
+For details on how IP range terminology has changed since MAAS 1.9, see
+[Upgrade from 1.9 to 2.x][upgrade-maas].
 
 ## VLANs
 
@@ -327,3 +333,19 @@ from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 
 ### Set Zone
 Puts the node in a specific zone.
+
+
+<!-- LINKS -->
+
+[maas-ha]: manage-ha.md
+[zone-examples]: intro-concepts-zones.md
+[about-juju]: https://jujucharms.com/docs/stable/about-juju
+[juju-network-spaces]: https://jujucharms.com/docs/2.0/network-spaces
+[isc-dhcp-relay]: http://packages.ubuntu.com/xenial/isc-dhcp-relay
+[dhcp-helper]: http://packages.ubuntu.com/xenial/dhcp-helper
+[ip-ranges]: installconfig-network-ipranges.md
+[post-commission-configuration]: nodes-commission.md#post-commission-configuration
+[subnet-management]: installconfig-network-subnet-management.md
+[storage-erasure]: installconfig-storage-erasure.md
+[composable-hardware]: nodes-comp-hw.md
+[upgrade-maas]: installconfig-upgrade-to-2.md#ip-range-changes
