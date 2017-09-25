@@ -78,7 +78,7 @@ services (PostgreSQL needs to stay running):
 - maas-rackd.service
 - maas-regiond.service
 
-Copy the backup file to the new machine and untar its contents (`sudo tar xvf
+Copy the backup file to the new machine and untar its contents (`sudo tar xvzpf
 backup.tgz`).
 
 To restore the state of the database, enter the following from the backup
@@ -93,7 +93,7 @@ care to move the originals aside just in case:
 
 ```bash
 sudo mv /etc/maas /etc/_maas; mv /var/lib/maas /var/lib/_maas
-sudo cp -rf etc/maas /etc/; cp -rf var/lib/maas /var/lib/
+sudo cp -prf etc/maas /etc/; cp -prf var/lib/maas /var/lib/
 ```
 
 !!! Note: 
