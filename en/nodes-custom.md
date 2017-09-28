@@ -71,7 +71,7 @@ or `{prefix}_{node_arch}`
 1. `generic`
 
 The *node* needs to be the node name, as shown in the web UI URL or the [system
-ID][system-id] as used by the API. For example, the following web UI URL
+ID][system-id] as output from the API. For example, the following web UI URL
 displays a node name of `7gan3t`:
 
 ```bash
