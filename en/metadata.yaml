@@ -128,6 +128,9 @@ navigation:
       - title: Composable hardware
         location: nodes-comp-hw.md
 
+      - title: Custom node setup
+        location: nodes-custom.md
+
   - title: Manage MAAS
 
     children:
