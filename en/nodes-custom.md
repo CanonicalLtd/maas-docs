@@ -103,7 +103,7 @@ You can customise the Curtin installation by either editing the existing
 `curtin_userdata` template or by adding a custom file as described above.
 
 Curtin provides hooks to execute custom code before and after installation
-takes places. These hooks are named `early` and `late` respectively, and they
+takes place. These hooks are named `early` and `late` respectively, and they
 can both be overridden to execute the Curtin configuration in the ephemeral
 environment. Additionally, the `late` hook can be used to execute a
 configuration for a machine being installed, a state known as *in-target*.
@@ -121,7 +121,7 @@ The following is an example of two late commands that will run after the
 installation has been performed. Both run *in-target*, on the machine being
 installed.
 
-The first command adds a PPA to the machine. The second command create a file
+The first command adds a PPA to the machine. The second command creates a file
 containing the node’s system ID:
 
 ```bash
