@@ -92,8 +92,7 @@ To create the equivalent template for *curtin_userdata*, the file would be calle
 !!! Note:
     Any file targetting a specific node will replace the values and
     configuration held within any generic files. If those values are needed,
-    the contents of generic templates will need to be copied into your new
-    template. 
+    the generic template values will need to be copied into your new file. 
 
 ## Curtin configuration
 
