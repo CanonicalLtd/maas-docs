@@ -47,7 +47,7 @@ configuration options and parameters to be overridden on an operating system,
 architecture, sub-architecture, release and node name basis.
 
 To maintain backward compatibility with earlier versions of MAAS that only
-supported Ubuntu, if the node operating system is Ubuntu then file names
+support Ubuntu, if the node operating system is Ubuntu then file names
 without `{os}` will also be tried.
 
 Consequently, template files are interpreted in the following order:
