@@ -59,7 +59,7 @@ This release adds the ability to deploy any machine with a rack controller via t
 
 The subnets page now includes a *DHCP* column and in-line editing has been
 removed from both the *Space* and *VLAN* pages. You will now also be warned when
-changing a subnet's mode to and from either unmanaged or managed. 
+changing a subnet's mode between managed and unmanaged.
 
 
 ### API improvements
