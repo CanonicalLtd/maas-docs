@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.3
 
 MAAS 2.3 is currently under development. The current release is [MAAS 2.3.0
-alpha2][currentrelease]. See [Historical release
+beta1][currentrelease]. See [Historical release
 notes][historical-release-notes] for release notes for stable versions.
 
 The development version of MAAS is available as a [snap][snapio] and from the
@@ -24,6 +24,56 @@ To install from the MAAS Next PPA (ppa:maas/next):
 sudo add-apt-repository -yu ppa:maas/next
 sudo apt install maas
 ```
+
+## 2.3.0 (beta1)
+
+### Hardware Testing
+
+This release overhauls the visibility of hardware test results, necessitating
+significant changes across the MAAS web UI:
+
+- **Machine/Nodes Listing**.
+  This page now includes the progress and status of hardware tests. Status
+  shows  when a test is pending, running, successful, or when a test has
+  failed. Additionally, machines can now be filtered by architecture.
+
+- **Machine Details**:
+
+    - **Machine summary** includes new details about the different components
+      being tested, such as CPU, memory and storage.
+
+    - **Hardware tests** have been completely redesigned, showing a list of
+      test results per component and the ability to view more details about the
+      test itself.
+
+    - **Settings** is a new page that enables you to edit a node's
+      configuration directly.
+
+
+### Rack Controller Deployment
+
+This release adds the ability to deploy any machine with a rack controller via the API.
+
+
+### Other UI improvements
+
+The subnets page now includes a *DHCP* column and in-line editing has been
+removed from both the *Space* and *VLAN* pages. You will now also be warned when
+changing a subnet's mode to and from either unmanaged or managed. 
+
+
+### API improvements
+
+This release introduces API output for `volume_groups`, `raids`, `cache_sets` and
+`bcaches` to the machine's endpoint.
+
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
+
 
 ## 2.3.0 (alpha3)
 
@@ -224,7 +274,7 @@ For all the issues fixed in this release, please refer to:
 [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.3.0-(alpha2)
+[currentrelease]: release-notes.md#2.3.0-(beta1)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
