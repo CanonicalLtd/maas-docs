@@ -1,14 +1,16 @@
 Title: Custom node setup
 table_of_contents: True
 
-# Custom node setup
+# Custom node setup (preseed)
 
 During node [enlistment][node-enlistment], [deployment][node-deployment],
 [commissioning][node-commission] and node installation, MAAS sends
 [Tempita-derived][tempita] configuration files to the [cloud-init][cloud-init]
-process running on the target node. These files are used to configure a node's
-ephemeral and installation environments and can be modified or augmented to
-perform your own custom node configuration.
+process running on the target node. MAAS refers to this process as **preseed**.
+
+These *preseed* files are used to configure a node's ephemeral and
+installation environments and can be modified or augmented to perform your own
+custom node configuration.
 
 
 ## Templates
