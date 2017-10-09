@@ -271,5 +271,5 @@ However, for hosts using the `resolvconf` package, please read its
 documentation for more information.
 
 <!-- LINKS -->
-[custom-node]: ./nodes-custom.md
-[managecli]: ./manage-cli.md
+[custom-node]: nodes-custom.md
+[managecli]: manage-cli.md
