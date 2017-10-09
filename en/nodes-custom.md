@@ -3,12 +3,11 @@ table_of_contents: True
 
 # Custom node setup
 
-During node [enlistment][node-enlistment], [deployment][node-deployment],
-[commissioning][node-commission] and node installation, MAAS sends
-[Tempita-derived][tempita] configuration files to the [cloud-init][cloud-init]
-process running on the target node. These files are used to configure a node's
-ephemeral and installation environments and can be modified or augmented to
-perform your own custom node configuration.
+During node [enlistment, deployment, commissioning][node-enlistment] and node
+installation, MAAS sends [Tempita-derived][tempita] configuration files to the
+[cloud-init][cloud-init] process running on the target node. These files are
+used to configure a node's ephemeral and installation environments and can be
+modified or augmented to perform your own custom node configuration.
 
 
 ## Templates
@@ -133,8 +132,8 @@ late_commands:
 <!-- LINKS -->
 [curtin]: https://launchpad.net/curtin
 [cloud-init]: https://launchpad.net/cloud-init
-[node-enlistment]: nodes-add.html#enlistment
-[node-deployment]: installconfig-nodes-deploy.html
-[node-commission]: nodes-commission.html
+[node-enlistment]: ./nodes-add.mdhtml#enlistment
+[node-deployment]: installconfig-nodes-deploy.md
+[node-commission]: nodes-commission.md
 [tempita]: https://raw.githubusercontent.com/ravenac95/tempita/master/docs/index.txt
-[system-id]: manage-cli-common#determine-a-node's-system-id
+[system-id]: api.md
