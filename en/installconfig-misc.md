@@ -191,8 +191,7 @@ Specifies the filesystem to put on the partition.
 **mountpoint{ / }**
 Where to mount the partition.
 
-For more information on preseed options, you should refer to [the official
-Ubuntu documentation][ubuntudocs].
+For more information on preseed options, see [Custom node setup][custom-node].
 
 
 !!! Note:
@@ -272,5 +271,5 @@ However, for hosts using the `resolvconf` package, please read its
 documentation for more information.
 
 <!-- LINKS -->
-[ubuntudocs]: https://help.ubuntu.com/12.04/installation-guide/i386/preseed-contents.html
+[custom-node]: ./nodes-custom.md
 [managecli]: ./manage-cli.md
