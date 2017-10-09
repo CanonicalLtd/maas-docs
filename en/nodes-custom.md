@@ -132,7 +132,7 @@ late_commands:
 <!-- LINKS -->
 [curtin]: https://launchpad.net/curtin
 [cloud-init]: https://launchpad.net/cloud-init
-[node-enlistment]: ./nodes-add.mdhtml#enlistment
+[node-enlistment]: ./nodes-add.md#enlistment
 [node-deployment]: installconfig-nodes-deploy.md
 [node-commission]: nodes-commission.md
 [tempita]: https://raw.githubusercontent.com/ravenac95/tempita/master/docs/index.txt
