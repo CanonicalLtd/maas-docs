@@ -82,6 +82,9 @@ navigation:
           - title: Client-side DNS configuration
             location: installconfig-misc.md#configuring-the-cluster-controller
 
+          - title: Custom node setup
+            location: nodes-custom.md
+
           - title: Installing Ubuntu
             location: installconfig-ubuntu.md
 
