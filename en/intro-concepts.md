@@ -127,6 +127,11 @@ combination of switches that use trunking to provide the same VLANs. A
 default fabric ('fabric-0') is created for each detected subnet when MAAS is
 installed.
 
+The following conceptual diagram shows two fabrics in the same data
+centre or region, each using distinct VLAN ranges and their associated subnets:
+
+![fabrics and spaces][img__fabrics-spaces]
+
 
 ## Spaces
 
@@ -406,6 +411,9 @@ then to 'Rescue mode' when the operation is complete.
 ### Set Zone
 Puts the node in a specific zone.
 
+<!-- IMAGES -->
+
+[img__fabrics-spaces]: ../media/intro-concepts__fabrics-spaces.png
 
 <!-- LINKS -->
 
