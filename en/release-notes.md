@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.3
 
 MAAS 2.3 is currently under development. The current release is [MAAS 2.3.0
-beta1][currentrelease]. See [Historical release
+beta2][currentrelease]. See [Historical release
 notes][historical-release-notes] for release notes for stable versions.
 
 The development version of MAAS is available as a [snap][snapio] and from the
@@ -24,6 +24,13 @@ To install from the MAAS Next PPA (ppa:maas/next):
 sudo add-apt-repository -yu ppa:maas/next
 sudo apt install maas
 ```
+
+## 2.3.0 (beta2)
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
+
 
 ## 2.3.0 (beta1)
 
