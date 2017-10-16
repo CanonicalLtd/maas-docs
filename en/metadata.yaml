@@ -163,6 +163,14 @@ navigation:
   - title: API documentation
     location: api.md
 
+    children:
+
+      - title: API reference
+        location: api.md
+
+      - title: API authentication
+        location: api-authentication.md
+
   - title: Help improve these docs
     location: contributing.md
 
