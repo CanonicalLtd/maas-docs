@@ -10,4 +10,4 @@ The high level architecture of MAAS is presented below.
 
 <!-- LINKS -->
 
-[img__arch-overview]: ../media/intro-arch-overview.png
+[img__arch-overview]: ../media/intro-arch-overview__22.png
