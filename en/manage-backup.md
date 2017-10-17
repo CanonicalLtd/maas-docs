@@ -41,8 +41,8 @@ directories, enter the following:
 sudo -u postgres pg_dumpall -c > ~/dump.sql
 ```
 
-If you run the above `pg_dumpall` process in the background you can ensure this
-has completed and that there are no other established sessions with the
+If you run the above `pg_dumpall` process in the background, you can ensure
+this has completed and that there are no other established sessions with the
 following command:
 
 ```bash
