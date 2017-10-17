@@ -165,7 +165,7 @@ frontend maas
     default_backend maas
 
 backend maas
-    timeout server 30s
+    timeout server 90s
     balance source
     hash-type consistent
     server localhost localhost:5240 check
