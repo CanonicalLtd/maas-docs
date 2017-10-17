@@ -50,7 +50,7 @@ sudo -u postgres psql -c  "SELECT * FROM pg_stat_activity"
 ```
 
 Running sessions, such as *pg_dumpall*, will appear in the `application_name`
-column of the output, alongside `psql` running the above `pg_stat_activity`
+column of the output alongside `psql` running the above `pg_stat_activity`
 query.  Excepting *psql*, if `application_name` is empty, you can safely stop
 the database service.
 
