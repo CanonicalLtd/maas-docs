@@ -40,15 +40,29 @@ directories, enter the following:
 ```bash
 sudo -u postgres pg_dumpall -c > ~/dump.sql
 ```
+
+If you run the above `pg_dumpall` process in the background, you can ensure
+this has completed and that there are no other established sessions connected
+to the database, with the following command:
+
+```bash
+sudo -u postgres psql -c  "SELECT * FROM pg_stat_activity"
+```
+
+Running sessions, such as *pg_dumpall*, will appear in the `application_name`
+column of the output, alongside `psql` running the above `pg_stat_activity`
+query.  Excepting *psql*, if `application_name` is empty, you can safely stop
+the database service.
+
 ### Stop critical services
 
 To avoid conflicting updates during a backup, stop the following services with
 the `sudo systemctl stop <service>` command:
 
-- postgresql.service 
 - maas-dhcpd.service
 - maas-rackd.service
 - maas-regiond.service
+- postgresql.service 
 
 !!! Note: Ubuntu 14.04 LTS (Trusty) users need to use Upstart's `service`
 command rather than Systemd's `systemctl` command for managing services.
