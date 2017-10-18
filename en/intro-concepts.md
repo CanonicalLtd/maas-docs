@@ -43,7 +43,6 @@ A rack controller provides:
 - DHCP
 - TFTP
 - HTTP (for images)
-- iSCSI
 - power management
 
 A rack controller is attached to each "fabric". As the name implies, a common

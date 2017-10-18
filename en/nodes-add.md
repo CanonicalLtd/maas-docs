@@ -34,7 +34,7 @@ netboot. Such a machine will undergo the following process:
 1. DHCP server is contacted
 1. kernel and initrd are received over TFTP
 1. machine boots
-1. initrd mounts a Squashfs image ephemerally over iSCSI
+1. initrd mounts a Squashfs image ephemerally over HTTP
 1. cloud-init runs enlistment scripts
 1. machine shuts down
 
