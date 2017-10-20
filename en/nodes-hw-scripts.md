@@ -40,20 +40,8 @@ The above Bash script contains comment-delineated metadata plus two lines of
 functionality, the first to install the `stress-ng` package (a CPU stress-test
 utility) and the second to execute **stress-ng** with various arguments.
 
-The following metadata can be included:
-
-- `name`: Corresponds to the script's filename
-- `title`: Human-friendly descriptive version of name, used within the web UI
-- `description`: Brief outline of what the script does
-- `tags`:  List of tags associated with the script
-- `script-type`,`hardware_type`: Broad categories for the kind of script and
-  what the script tests
-- `timeout`: Length of time before MAAS automatically
-fails the script
-- `comment`:  A comment describing changes made in this revision
-of the script 
-- `destructive`: *True* or *False*, depending on whether the script
-will overwrite system data (not shown above)
+For further details on which metadata fields can be used, and what they do, see
+[Hardware Testing Script Metadata][maas-scripts-fields].
 
 !!! Note: 
     Many metadata elements can optionally be defined from the 
@@ -117,6 +105,7 @@ the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 [maas-cli]: manage-cli.md
 [ssh-keys]: manage-account.md#ssh-keys
 [maas-scripts-cli]: nodes-hw-scripts-cli.md
+[maas-scripts-fields]: nodes-hw-scripts-fields.md
 
 <!-- IMAGES -->
 [nodes-hw-scripts__2.2_select]: ../media/nodes-hw-scripts__2.2_select.png
