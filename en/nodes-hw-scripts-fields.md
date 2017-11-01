@@ -8,7 +8,7 @@ your own from both the [web UI][maas-scripts] and from the [command
 line][maas-scripts-cli].
 
 This page explains the various metadata fields used within these scripts, along
-with how parameters are passed to scripts and any results returned.
+with how parameters are passed to scripts and how any results are returned.
 
 ## Metadata fields
 
