@@ -13,7 +13,7 @@ with how parameters are passed to scripts and how any results are returned.
 ## Metadata fields
 
 Metadata fields tell MAAS when the script should be used, how it should be run,
-and what information it's gathering. A script can have the following fields:
+and what information a script is gathering. A script can have the following fields:
 
 - `name`: Corresponds to the script's filename.
 - `title`: Human-friendly descriptive version of name, used within the web UI.
@@ -27,9 +27,8 @@ and what information it's gathering. A script can have the following fields:
 - `comment`: Describes changes made in this revision of the script.
 
 - `hardware_type`: Defines the type of hardware the script configures or tests.
-  If the
-   script returns results, *hardware type* dictates what hardware the results
-   are associated with. The following types are valid:
+  If the script returns results, *hardware type* dictates what hardware the results
+  are associated with. The following types are valid:
 
     - **node**: Not associated with any hardware type. This is the default.
     - **cpu**: Configures or tests the CPUs on the node.
@@ -93,13 +92,13 @@ The value is a dictionary with the following fields:
       passed to the script in seconds.
 
 - `min`: The minimum numeric value an input is allowed to have. Only
-  applicable to runtime which defaults to 0.
+  applicable to runtime and defaults to 0.
 
 - `max`: The maximum numeric value an input is allowed to have. Only applicable
-  to runtime. Defaults to unlimited.
+  to runtime. The default is unlimited.
 
 - `title`: The title of the parameter field when displayed in the UI. The
-  following types have the default values:
+  following types have the following default values:
     - **storage**: Storage device.
     - **runtime**: Runtime.
 
@@ -108,24 +107,24 @@ The value is a dictionary with the following fields:
 
    The storage type may also use `{name}`, `{path}`, `{model}` or
    `{serial}`. MAAS will lookup the values of path, model, and serial based on
-   user selection. For storage `{input}` is synonymous with `{path}`.
+   user selection. For storage, `{input}` is synonymous with `{path}`.
 
-   The following types have the default formats.
+   The following types have the following default values:
    - **storage**: `--storage={path}`
    - **runtime**: `--runtime={input}`
 
 - `default`: The default value of the parameter. The following types have
-  default values, setting to '' or None overrides.
+  the following default values. Setting these to '' or *None* will override
+  these values:
    - **storage**: all.
    - **runtime**: If set, the runtime value of the script.
 
-- `required`: Whether or not user input into the field is required. If set
-  false, no default is set, and no user input is given the parameter will not
-  be passed to the script. Defaults to `true`.
-
+- `required`: Whether or not user input is required. If set to *false*, no default
+  is set and no user input will mean the parameter is not passed to the script.
+  Defaults to `true`.
 
 - `results`: What results the script will return on completion. This may only
-  be defined within the embedded YAML of the script. results may be a list of
+  be defined within the embedded YAML of the script. Results may be a list of
   strings or a dictionary of dictionaries.
 
 ## Results
@@ -137,7 +136,7 @@ If the hardware type is *storage*, for example, and the script accepts a
 *storage type* parameter, the result will be associated with a specific storage
 device.
 
-The YAML file must represent a dictionary with the following fields.
+The YAML file must represent a dictionary with the following fields:
 
 - `result`: The completion status of the script. This can be either **passed**,
   **failed** or **degraded**. If no status is defined, an exit code of `0`
