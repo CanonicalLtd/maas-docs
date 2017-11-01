@@ -12,6 +12,10 @@ result automation.
 
 To use the CLI, first make sure you are [logged in][maas-cli-login].
 
+!!! Note:
+    For further details on which metadata fields can be used within scripts,
+    and what they do, see [Hardware Testing Script Metadata][maas-scripts-fields].
+
 ## Script management
 
 To upload a hardware testing script to MAAS, enter the following:
@@ -151,3 +155,4 @@ maas $PROFILE node-script-result download $SYSTEM_ID $RUN_ID output=all \
 [maas-cli-login]: manage-cli.md#log-in-(required)
 [system-id]: manage-cli-common#determine-a-node's-system-id
 [tag-management]: manage-cli-tags.md
+[maas-scripts-fields]: nodes-hw-scripts-fields.md
