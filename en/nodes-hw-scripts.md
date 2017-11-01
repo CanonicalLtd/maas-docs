@@ -27,18 +27,19 @@ As a simple example, here's a functional Bash script replicating part of the
 # description: Run stress-ng memory tests for 5 minutes.
 # script_type: test
 # hardware_type: cpu
+# packages: {apt: stress-ng}
 # tags: cpu
 # timeout: 00:05:00
 # --- End MAAS 1.0 script metadata ---
 
-sudo apt-get --assume-yes install stress-ng
 sudo -n stress-ng --matrix 0 --ignite-cpu --log-brief --metrics-brief --times \
     --tz --verify --timeout 2m
 ```
 
-The above Bash script contains comment-delineated metadata plus two lines of
-functionality, the first to install the `stress-ng` package (a CPU stress-test
-utility) and the second to execute **stress-ng** with various arguments.
+The above Bash script contains comment-delineated metadata that configures the
+script environment and installs any dependencies, plus a single line of
+functionality that runs **stress-ng** (a CPU stress-test utility) with various
+arguments.
 
 For further details on which metadata fields can be used, and what they do, see
 [Hardware Testing Script Metadata][maas-scripts-fields].
