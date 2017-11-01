@@ -173,6 +173,9 @@ navigation:
           - title: Hardware testing scripts
             location: nodes-hw-scripts-cli.md
 
+          - title: Script metadata
+            location: nodes-hw-scripts-fields.md
+
           - title: Advanced tasks
             location: manage-cli-advanced.md
 
