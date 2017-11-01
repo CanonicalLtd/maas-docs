@@ -4,8 +4,8 @@ table_of_contents: True
 # Hardware Testing Script Metadata
 
 Hardware testing scripts are used to evaluate system hardware, and you can run
-your own from both the [web UI][maas-scripts] and from the [command
-line][maas-scripts-cli].
+your own from both the [web UI][maas-scripts] and from the 
+[command line][maas-scripts-cli].
 
 This page explains the various metadata fields used within these scripts, along
 with how parameters are passed to scripts and how any results are returned.
