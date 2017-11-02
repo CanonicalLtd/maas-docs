@@ -21,8 +21,8 @@ Below are the default windows and window sections that will appear.
 ^# SSH keys (for currently logged in user)
    ![conf journey step 4][conf-journey-step-4]
 
-   Here, two keys appear because they were added when the administrator was
-   created via the CLI.
+   Here, one key is already imported as this was added when the administrator
+   was created via the CLI.
 
 ^# Finished (next steps)
    ![conf journey step 5][conf-journey-step-5]
