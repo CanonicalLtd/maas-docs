@@ -18,8 +18,8 @@ To access the main networking view visit the 'Subnets' page:
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
 topology being represented here, some elements are used multiple times. To be
-clear, in this example there are 3 fabrics, 1 VLAN, and 3 subnets, and 1
-(undefined) space. All such elements should be detected automatically by MAAS
+clear, in this example there are 2 fabrics, 1 VLAN, and 5 subnets, and 2
+(undefined) spaces. All such elements should be detected automatically by MAAS
 but if they're not each can be added manually using the 'Add' button. 
 
 This main view can also be filtered either by fabrics or by spaces through the
@@ -37,22 +37,21 @@ reasons, a subnet will now be examined in more detail.
 
 ### Subnet window
 
-Clicking a subnet (here `192.168.1.0/24`) will display its window. We'll look
+Clicking a subnet (here `192.168.100.0/24`) will display its window. We'll look
 at this example window by sections.
 
 The **Subnet summary** section:
 
 ![networking subnets page summary][img__2.2_subnets-summary]
 
-!!! Warning: 
-    The fields in this section are immediately editable and changes
-    are applied instantly.
+The subnet summary area includes values for 'Gateway IP' and 'DNS'
+(nameserver), and optionally. 'Description'. These values can be updated by
+first selecting the 'Edit' button, making any necessary changes, and clicking
+'Save summary'.
 
-Here, values for 'Gateway IP' and 'DNS' (nameserver), and optionally
-'Description', are entered. Gateway and DNS values are passed to nodes for
-commissioning and, if DHCP is MAAS-managed, for deploying too. There is also
-the option of changing the subnet's fabric and VLAN. Spaces are managed at the
-VLAN level.
+Gateway and DNS values are passed to nodes for commissioning and, if DHCP is
+MAAS-managed, for deploying too. There is also the option of changing the
+subnet's fabric and VLAN. Spaces are managed at the VLAN level.
 
 'Managed allocation' refers to the ability of MAAS to completely manage a
 subnet. See [Subnet management][subnet-management].
