@@ -45,7 +45,7 @@ The **Subnet summary** section:
 ![networking subnets page summary][img__subnets-summary]
 
 The subnet summary area includes values for 'Gateway IP' and 'DNS'
-(nameserver), and optionally. 'Description'. These values can be updated by
+(nameserver), and optionally, 'Description'. These values can be updated by
 first selecting the 'Edit' button, making any necessary changes, and clicking
 'Save summary'.
 
