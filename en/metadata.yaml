@@ -79,7 +79,7 @@ navigation:
           - title: NTP
             location: installconfig-network-ntp.md
 
-          - title: Device discovery
+          - title: Network discovery
             location: installconfig-network-dev-discovery.md
 
           - title: IPv6

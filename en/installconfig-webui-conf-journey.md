@@ -21,8 +21,8 @@ Below are the default windows and window sections that will appear.
 ^# SSH keys (for currently logged in user)
    ![conf journey step 4][conf-journey-step-4]
 
-   Here, two keys appear because they were added when the administrator was
-   created via the CLI.
+   Here, one key is already imported as this was added when the administrator
+   was created via the CLI.
 
 ^# Finished (next steps)
    ![conf journey step 5][conf-journey-step-5]
@@ -32,6 +32,6 @@ Below are the default windows and window sections that will appear.
 
 [conf-journey-step-1]: ../media/installconfig-webui-conf-journey__region-name.png
 [conf-journey-step-2]: ../media/installconfig-webui-conf-journey__connectivity.png
-[conf-journey-step-3]: ../media/installconfig-webui-conf-journey__ubuntu-images.png
-[conf-journey-step-4]: ../media/installconfig-webui-conf-journey__ssh-keys.png
-[conf-journey-step-5]: ../media/installconfig-webui-conf-journey__successfully-setup.png
+[conf-journey-step-3]: ../media/installconfig-webui-conf-journey__2.3_ubuntu-images.png
+[conf-journey-step-4]: ../media/installconfig-webui-conf-journey__2.3_ssh-keys.png
+[conf-journey-step-5]: ../media/installconfig-webui-conf-journey__2.3_successfully-setup.png

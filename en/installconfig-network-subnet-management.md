@@ -40,9 +40,10 @@ DHCP will never lease addresses from an unmanaged subnet.
 By default, a subnet is managed, but it is easy to change this.
 
 To disable (or re-enable) subnet management navigate to the 'Subnets' page and
-select the subnet. There is a slide switch labelled 'Managed allocation'. Click
-the label (or the switch icon itself) to toggle between enabled (dark blue) and
-disabled (grey).
+select the subnet. Press the 'Edit' button so that changes can be made. The
+'Managed allocation' field will become a slide switch. Click the label (or the
+switch icon itself) to toggle between enabled (dark blue) and disabled (grey)
+and click 'Save summary'.
 
 ![subnet management toggle][img__2.2_subnet-management-toggle]
 
