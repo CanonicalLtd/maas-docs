@@ -53,7 +53,7 @@ and the secondary.
 IP' and 'Dynamic range end IP'.
 1. Apply your changes with the 'Provide DHCP' button.
 
-![Enable DHCP][img__2.2_enable-dhcp]
+![Enable DHCP][img__enable-dhcp]
 
 Now, addresses in this range will get assigned to machines that are being
 either enlisted or commissioned.
@@ -144,6 +144,6 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 
-[img__2.2_enable-dhcp]: ../media/installconfig-networking-dhcp__2.2_enable-dhcp.png
+[img__enable-dhcp]: ../media/installconfig-networking-dhcp__2.3_enable-dhcp.png
 [img__2.2_relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
 [img__2.2_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.2_dhcp-snippets.png
