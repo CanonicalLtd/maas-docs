@@ -13,7 +13,7 @@ See [Concepts and terms][concepts] for the definitions of networking objects.
 
 To access the main networking view visit the 'Subnets' page:
 
-![subnets page][img__2.2_subnets]
+![subnets page][img__subnets]
 
 In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
@@ -42,7 +42,7 @@ at this example window by sections.
 
 The **Subnet summary** section:
 
-![networking subnets page summary][img__2.2_subnets-summary]
+![networking subnets page summary][img__subnets-summary]
 
 The subnet summary area includes values for 'Gateway IP' and 'DNS'
 (nameserver), and optionally. 'Description'. These values can be updated by
@@ -72,7 +72,7 @@ edit pane. Enter a Gateway IP address, select a destination subnet from the
 Clicking 'Add' will activate the route. Routes can be edited and removed using
 the icons to the right of each entry. 
 
-![networking static routes configuration][img__2.2_subnets-routes]
+![networking static routes configuration][img__subnets-routes]
 
 The **Utilisation** section:
 
@@ -86,7 +86,7 @@ that *is* used, here roughly 26%.
 
 The **Reserved** section:
 
-![networking subnets reserved][img__2.2_subnets-reserved]
+![networking subnets reserved][img__subnets-reserved]
 
 This shows the *reserved IP ranges*. This is an important subject and is
 treated separately in [IP ranges][ipranges].
@@ -106,9 +106,9 @@ addresses along with related bits of host information.
 [ipranges]: installconfig-network-ipranges.md
 [subnet-management]: installconfig-network-subnet-management.md
 
-[img__2.2_subnets]: ../media/installconfig-networking__2.2_subnets.png
-[img__2.2_subnets-summary]: ../media/installconfig-networking__2.2_subnets-summary.png
-[img__2.2_subnets-routes]: ../media/installconfig-networking__2.2_subnets-routes.png
+[img__subnets]: ../media/installconfig-networking__2.3_subnets.png
+[img__subnets-summary]: ../media/installconfig-networking__2.3_subnets-summary.png
+[img__subnets-routes]: ../media/installconfig-networking__2.3_subnets-routes.png
 [img__2.2_subnets-utilisation]: ../media/installconfig-networking__2.2_subnets-utilisation.png
-[img__2.2_subnets-reserved]: ../media/installconfig-networking__2.2_subnets-reserved.png
+[img__subnets-reserved]: ../media/installconfig-networking__2.3_subnets-reserved.png
 [img__2.2_subnets-used]: ../media/installconfig-networking__2.2_subnets-used.png
