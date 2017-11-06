@@ -12,17 +12,17 @@ MAAS will also present the discovered hostname in the Dashboard.
 
 Using the Dashboard, an unknown discovered device can be added to MAAS as a
 device or as a network interface belonging to a machine or device. Clicking the
-expand *down* arrow to the right of a new device allows values such as 'Type',
+*down* arrow to the right of a new device allows values such as 'Type',
 'Domain', 'IP Assignment' and 'Parent' to be changed prior to the device being
 added. Selecting a *Parent* device is optional.
 
 Network discovery can be disabled or re-enabled using the switch on the Network
 discovery dashboard.
 
-![network discovery page][img__2.3_network-discovery]
+![network discovery page][img__network-discovery]
 
 <!-- LINKS -->>
 
 [dashboard]: installconfig-webui.md#maas-dashboard
 
-[img__2.3_network-discovery]: ../media/installconfig-networking__2.3_discovery.png
+[img__network-discovery]: ../media/installconfig-networking__2.3_discovery.png
