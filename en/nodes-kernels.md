@@ -120,8 +120,9 @@ kernel in the 'Default Minimum Kernel Version' field. Don't forget to click
 ### Machine minimum kernel
 
 To set the minimum deploy kernel on a machine basis, select a machine from the
-'Nodes' page and click the 'Edit' button under the (default) 'Machine summary'
-tab.  Then select a kernel in the 'Minimum Kernel' field and 'Save changes'.
+'Nodes' page and switch to its 'Settings' page. Click 'Edit' in the 'Machine
+settings' section, select a kernel in the 'Minimum Kernel' field followed by
+'Save changes'.
 
 ![machine minimum kernel][img__2.2_machine-minimum-kernel]
 
