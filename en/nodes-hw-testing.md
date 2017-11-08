@@ -22,9 +22,9 @@ Deployment.
 
 ## Apply a hardware test
 
-To launch a test, on the 'Nodes' page, or within a node's actual view, choose
-action 'Test hardware'. When ready, hit button 'Test machine'. Here, a test is
-being applied to a deployed node:
+To launch a test, select the target machine from the 'Nodes' page and use the
+'Take action' drop-down menu to select 'Test hardware'. When ready, hit button
+'Test machine'. Here, a test is being applied to a deployed node:
 
 ![hw test deployed node][img__2.2_hw-testing-deployed]
 
