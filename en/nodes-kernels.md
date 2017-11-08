@@ -124,7 +124,7 @@ To set the minimum deploy kernel on a machine basis, select a machine from the
 settings' section, select a kernel in the 'Minimum Kernel' field followed by
 'Save changes'.
 
-![machine minimum kernel][img__2.2_machine-minimum-kernel]
+![machine minimum kernel][img__machine-minimum-kernel]
 
 ### Machine kernel during deployment
 
@@ -132,7 +132,7 @@ To set a specific kernel during deployment, select a machine from the 'Nodes'
 page and choose 'Deploy' under 'Take action'. Then select a kernel in the
 (third) kernel field. Hit 'Deploy machine' to initiate the deployment.
 
-![machine during deploy kernel][img__2.2_machine-during-deploy-kernel]
+![machine during deploy kernel][img__machine-during-deploy-kernel]
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
 release (series) before deploying the node. 
@@ -147,5 +147,5 @@ release (series) before deploying the node.
 [cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]: manage-cli-kernels.md#set-a-default-minimum-kernel-for-enlistment-and-commissioning
 
 [img__2.2_default-minimum-kernel]: ../media/nodes-kernels__2.2_default-minimum-kernel.png
-[img__2.2_machine-minimum-kernel]: ../media/nodes-kernels__2.2_machine-minimum-kernel.png
-[img__2.2_machine-during-deploy-kernel]: ../media/nodes-kernels__2.2_machine-during-deploy-kernel.png
+[img__machine-minimum-kernel]: ../media/nodes-kernels__2.3_machine-minimum-kernel.png
+[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.3_machine-during-deploy-kernel.png
