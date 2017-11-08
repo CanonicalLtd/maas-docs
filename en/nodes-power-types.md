@@ -20,7 +20,7 @@ following will be displayed:
 Choose a type in the dropdown menu that corresponds to the node's underlying
 machine's BMC card.
 
-![power types selection][img__2.2_power-types-selection]
+![power types selection][img__power-types-selection]
 
 Fill in the resulting form. The information requested will depend upon the
 power type chosen.
@@ -95,6 +95,6 @@ currently supported by MAAS.
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 
 [img__2.2_power-types-undefined]: ../media/nodes-power-types__2.2_undefined.png
-[img__2.2_power-types-selection]: ../media/nodes-power-types__2.2_selection.png
+[img__power-types-selection]: ../media/nodes-power-types__2.3_selection.png
 [img__2.2_power-types-example-virsh]: ../media/nodes-power-types__2.2_example-virsh.png
 [img__2.2_power-types-power-error]: ../media/nodes-power-types__2.2_power-error.png
