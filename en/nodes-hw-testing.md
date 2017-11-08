@@ -22,9 +22,9 @@ Deployment.
 
 ## Apply a hardware test
 
-To launch a test, on the 'Nodes' page, or within a node's actual view, choose
-action 'Test hardware'. When ready, hit button 'Test machine'. Here, a test is
-being applied to a deployed node:
+To launch a test, select the target machine from the 'Nodes' page and use the
+'Take action' drop-down menu to select 'Test hardware'. When ready, hit the
+'Test machine' button. Here, a test is being applied to a deployed node:
 
 ![hw test deployed node][img__2.2_hw-testing-deployed]
 
@@ -42,24 +42,27 @@ The following hardware testing scripts can be selected from the web UI:
 
 | Name                       | Category Tags   | Description
 |:-:                         |:-:      | :-:
-| **badblocks**              | storage | Run badblocks on disk in readonly mode |
-| **badblocks-destructive**  | storage, destructive | Run badblocks on a disk in read/write destructive mode |
-| **internet-connectivity**  | network, internet, node | Check if the system has access to the Internet |
-| **memtester**              | node    | Run memtester against all available userspace memory |
-| **ntp**                    | network, ntp, node | Run ntp clock set to verify NTP connectivity|
-| **smartctl-conveyance**    | storage | Run the conveyance SMART self-test and validate SMART health on all drives in parallel |
-| **smartctl-long**          | storage | Run the long SMART self-test and validate SMART health on all drives in parallel |
-| **smartctl-short**         | storage | Run the short SMART self-test and validate SMART health on all drives in parallel |
-| **stress-ng-cpu-short**    | cpu | Run stress-ng memory tests for 5 minutes |
-| **stress-ng-cpu-long**     | node | Run stress-ng memory tests for 12 hours |
-| **stress-ng-memory-short** | memory | Run stress-ng memory tests for 5 minutes |
-| **stress-ng-memory-long**  | memory | Run stress-ng memory tests for 12 hours |
+| **smartctl-short** | storage | Run the short SMART self-test and validate SMART health on all drives in parallel |
+| **smartctl-long**  | storage | Run the long SMART self-test and validate SMART health on all drives in parallel |
+| **smartctl-conveyance** | storage | Run the conveyance SMART self-test and validate SMART health on all drives in parallel |
+| **memtester** | memory | Run memtester against all available userspace memory. |
+| **internet-connectivity** | network, internet, node | Check if the system has access to the internet. |
+| **stress-ng-cpu-long** | cpu | Run stress-ng memory tests for 12 hours. |
+| **stress-ng-cpu-short** | cpu | Run stress-ng memory tests for 5 minutes. |
+| **stress-ng-memory-long** | memory | Run stress-ng memory tests for 12 hours. |
+| **stress-ng-memory-short** | memory | Run stress-ng memory tests for 5 minutes. |
+| **ntp** | network, ntp, node | Run ntp clock set to verify NTP connectivity. |
+| **badblocks** | storage | Run badblocks on disk in read-only mode. |
+| **badblocks-destructive** | destructive, storage | Run badblocks on a disk in read/write destructive mode. |
+| **7z** | cpu | Run *7zip* CPU benchmarking. |
+| **fio** | storage, destructive | Run Fio benchmarking against selected storage devices. |
 
 After either commissioning, testing, or installation has started, MAAS reports
 in real time which script is running.
 
 The verbatim output from any tests is accessed by selecting a node, selecting
-the 'Hardware tests' page and clicking on the name of the specific test.
+the 'Hardware tests' page and clicking on the 'Log view' link in the 'Results'
+column for the specific test.
 
 See [Hardware Testing Scripts][nodes-hw-scripts] for more details on how
 these scripts work and how you can write your own.

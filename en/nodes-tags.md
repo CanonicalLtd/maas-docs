@@ -93,7 +93,7 @@ Below, tags 'gpu2' and 'virtual' have been selected (with the mouse) and the
 search field automatically reflects this. Three nodes satisfy this search
 filter (they have either of these tags).
 
-![tags: search][img__2.2_tags-search]
+![tags: search][img__tags-search]
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
@@ -115,7 +115,7 @@ The following three actions are done while in a node's edit mode (click the
   real-time search. Any resulting tags will show up in a drop-down menu.
   Select as desired.
 
-![tags: add & remove][img__2.2_tags-add-remove]
+![tags: add & remove][img__tags-add-remove]
 
 Changes are applied by pressing the 'Save changes' button.
 
@@ -160,6 +160,6 @@ aliases.
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
 [cli-tags]: manage-cli-tags.md 
 
-[img__2.2_tags-search]: ../media/nodes-tags__2.2_tags-filter.png
-[img__2.2_tags-add-remove]: ../media/nodes-tags__2.2_tags-add_remove.png
-[img__2.2_tags-net-interface]: ../media/nodes-tags__2.2_tags-net-interface.png
+[img__tags-search]: ../media/nodes-tags__2.3_tags-filter.png
+[img__tags-add-remove]: ../media/nodes-tags__2.3_tags-add_remove.png
+[img__tags-net-interface]: ../media/nodes-tags__2.3_tags-net-interface.png
