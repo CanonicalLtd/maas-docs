@@ -67,13 +67,14 @@ can be added/removed, attached to a fabric and linked to a subnet, and provided
 an IP assignment mode. Tags can also be assigned to specific network interfaces
 (see [Tags for network interfaces][tags-network-interfaces]).
 
-Click the pencil icon for the interface to be edited:
+From a node's 'Interfaces' page, click the menu icon for the interface to be
+edited and select 'Edit Physical' from the resulting menu:
 
-![edit interface][img__2.2_edit-interface]
+![edit interface][img__edit-interface]
 
 The following window will appear:
 
-![configure interface][img__2.2_configure-interface]
+![configure interface][img__configure-interface]
 
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
@@ -102,7 +103,7 @@ A bridge is created by selecting an interface and clicking the now-active
 'Create bridge' button. A form will appear that will allow a MAC address, STP,
 and a tag to be configured.
 
-![configure bridge][img__2.2_configure-bridge]
+![configure bridge][img__configure-bridge]
 
 Press the 'Save' button when you're done.
 
@@ -135,6 +136,6 @@ allocation time using the API.
 
 [img__2.2_commission]: ../media/nodes-commission__2.2_commission.png
 [img__2.2_commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
-[img__2.2_configure-interface]: ../media/nodes-commission__2.2_configure-interface.png
-[img__2.2_edit-interface]: ../media/nodes-commission__2.2_edit-interface.png
-[img__2.2_configure-bridge]: ../media/nodes-commission__2.2_configure-bridge.png
+[img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
+[img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
+[img__configure-bridge]: ../media/nodes-commission__2.3_configure-bridge.png
