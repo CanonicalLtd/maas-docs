@@ -61,7 +61,8 @@ After either commissioning, testing, or installation has started, MAAS reports
 in real time which script is running.
 
 The verbatim output from any tests is accessed by selecting a node, selecting
-the 'Hardware tests' page and clicking on the name of the specific test.
+the 'Hardware tests' page and clicking on the 'Log view' link in the 'Results'
+column for the specific test.
 
 See [Hardware Testing Scripts][nodes-hw-scripts] for more details on how
 these scripts work and how you can write your own.
