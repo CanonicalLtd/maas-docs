@@ -67,7 +67,8 @@ can be added/removed, attached to a fabric and linked to a subnet, and provided
 an IP assignment mode. Tags can also be assigned to specific network interfaces
 (see [Tags for network interfaces][tags-network-interfaces]).
 
-Click the pencil icon for the interface to be edited:
+From a node's 'Interfaces' page, click the menu icon for the interface to be
+edited and select 'Edit Physical' from the resulting menu:
 
 ![edit interface][img__2.2_edit-interface]
 
