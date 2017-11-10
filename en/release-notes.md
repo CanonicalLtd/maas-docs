@@ -3,9 +3,10 @@ table_of_contents: True
 
 # Release Notes 2.3
 
-MAAS 2.3 is currently under development. The current release is [MAAS 2.3.0
-RC2][currentrelease]. See [Historical release
-notes][historical-release-notes] for release notes for stable versions.
+MAAS 2.3 is currently under development. The current release is 
+[MAAS 2.3.0 RC2][currentrelease]. See 
+[Historical release notes][historical-release-notes] for release notes for
+stable versions.
 
 The development version of MAAS is available as a [snap][snapio] and from the
 MAAS Next PPA.
