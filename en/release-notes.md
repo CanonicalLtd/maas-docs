@@ -3,9 +3,10 @@ table_of_contents: True
 
 # Release Notes 2.3
 
-MAAS 2.3 is currently under development. The current release is [MAAS 2.3.0
-beta3][currentrelease]. See [Historical release
-notes][historical-release-notes] for release notes for stable versions.
+MAAS 2.3 is currently under development. The current release is 
+[MAAS 2.3.0 RC2][currentrelease]. See 
+[Historical release notes][historical-release-notes] for release notes for
+stable versions.
 
 The development version of MAAS is available as a [snap][snapio] and from the
 MAAS Next PPA.
@@ -25,11 +26,26 @@ sudo add-apt-repository -yu ppa:maas/next
 sudo apt install maas
 ```
 
+## 2.3.0 (RC2)
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
+
+
+## 2.3.0 (RC1)
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
+
+
 ## 2.3.0 (beta3)
 
 For all the issues fixed in this release, please refer to:
 
 [https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
+
 
 ## 2.3.0 (beta2)
 
@@ -287,7 +303,7 @@ For all the issues fixed in this release, please refer to:
 [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.3.0-(beta1)
+[currentrelease]: release-notes.md#2.3.0-(rc2)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
