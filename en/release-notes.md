@@ -41,6 +41,8 @@ For all the issues fixed in this release, please refer to:
 
 ## 2.3.0 (beta3)
 
+For all the issues fixed in this release, please refer to:
+
 [https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
 
 
