@@ -300,7 +300,7 @@ For all the issues fixed in this release, please refer to:
 [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.3.0-(beta1)
+[currentrelease]: release-notes.md#2.3.0-(rc2)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
