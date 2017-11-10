@@ -52,6 +52,10 @@ you should have to do is press the 'Reconfigure DHCP' button:
 
 The setup of rack controller HA is now complete.
 
+!!! Note:
+    For HA purposes, DHCP provisioning will take into account multiple DNS
+    services when there is more than one region controller on a single region.    
+
 
 ## Region controller HA
 
