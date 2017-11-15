@@ -59,6 +59,21 @@ overview of its current status.
 When relevant, 'Edit' links take you directly to the settings pane for the
 configuration referenced within the card.
 
+The node menu bar within the web UI includes links to log output and
+configuration options:
+
+![web UI node menu][img__node-menu]
+
+The menu includes links to the following:
+
+- **Machine summary**: Overview of CPU, memory, storage, tag and general settings.
+- **Interfaces**: Network and interface configuration for a node.
+- **Storage**: File system, partitioning and storage overview.
+- **Commissioning**: Timestamped completion and status log from the commissioning process.
+- **Logs**: Raw log output, switchable between YAML and XML output.
+- **Events**: Timestamped status updates for events and actions performed on the node.
+- **Configuration**: Machine and power configuration options.
+
 <!-- LINKS -->
 
 [node-actions]: intro-concepts.md#node-actions
@@ -66,3 +81,4 @@ configuration referenced within the card.
 [img__nodes-action]: ../media/nodes-manage__2.3_take-action.png
 [img__nodes-table]: ../media/nodes-manage__2.3_table.png
 [img__node-details]: ../media/nodes-manage__2.3_details.png
+[img__node-menu]: ../media/nodes-manage__2.3_node-menu.png
