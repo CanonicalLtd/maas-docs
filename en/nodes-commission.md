@@ -29,12 +29,12 @@ page.
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
 the 'Take action' dropdown menu.
 
-![commission][img__2.2_commission]
+![commission][img__commission]
 
 You have the option of selecting some extra parameters (checkboxes) and
 performing hardware tests (see [Hardware testing][hardware-testing]).
 
-![confirm commission][img__2.2_commission-confirm]
+![confirm commission][img__commission-confirm]
 
 Finalize the directive by hitting 'Commission machine'.
 
@@ -132,8 +132,8 @@ allocation time using the API.
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: nodes-hw-testing.md
 
-[img__2.2_commission]: ../media/nodes-commission__2.2_commission.png
-[img__2.2_commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
+[img__commission]: ../media/nodes-commission__2.2_commission.png
+[img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
 [img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
 [img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
 [img__configure-bridge]: ../media/nodes-commission__2.3_configure-bridge.png
