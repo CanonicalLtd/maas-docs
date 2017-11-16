@@ -37,7 +37,7 @@ See [MAAS CLI][cli-create-a-reserved-ip-range] for doing this with the CLI.
 
 ## Edit a range
 
-Click the 'down' arrow at the far right of the row corresponding to the subnet
+Click the 'Menu' button at the far right of the row corresponding to the subnet
 in question. Edit the fields as desired and click the 'Save' button.
 
 
