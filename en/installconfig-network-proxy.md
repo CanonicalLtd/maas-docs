@@ -42,23 +42,27 @@ the CLI. Note that per-subnet proxy configuration can only be accomplished via
 the CLI.
 
 In the web UI, visit the 'Settings' page, select the 'General' tab and scroll
-down to the 'Network Configuration' section. Any changes made are applied by
-pressing the 'Save' button.
+down to the 'Proxy' section. Any changes made are applied by pressing the
+'Save' button.
 
-![Configure proxy][img__2.2_configure-proxy]
+![Configure proxy][img__configure-proxy]
 
-To enable the internal proxy, ensure that the checkbox (for 'Enable the use of
-an APT and HTTP/HTTPS proxy') is checked. This is the default configuration.
+To enable the internal proxy, ensure that the checkbox adjacent to 'MAAS
+Built-in' is selected. This is the default configuration.
 
-To enable an external proxy, in addition to ensuring that the checkbox is
-checked, define the proxy's URL (and port if necessary) in the field 'Proxy for
-APT and HTTP/HTTPS'.
+To enable an external proxy, activate the 'External' checkbox and use the field
+that appears to define the proxy's URL (and port if necessary).
 
-To disable proxying completely ensure that the checkbox is unchecked.
+An upstream cache peer can be defined by enabling the 'Peer' checkbox and
+entering the external proxy URL into the field. With this enabled, machines
+will be configured to use the MAAS built-in proxy to download cached APT
+packages.
+
+To disable proxying completely, enable the 'Don't use a proxy' checkbox.
 
 
 <!-- LINKS -->
 
 [cli-configure-proxying]: manage-cli-common.md#configure-proxying
 
-[img__2.2_configure-proxy]: ../media/installconfig-network-proxy__2.2_configure-proxy.png
+[img__2.2_configure-proxy]: ../media/installconfig-network-proxy__2.3_configure-proxy.png
