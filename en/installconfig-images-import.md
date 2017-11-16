@@ -40,7 +40,7 @@ supported and provided by MAAS will appear beneath the 'Other Images' section.
 Currently, images for both CentOS 6.6 and CentOS 7.0 are available and these
 can be imported and used just like the Ubuntu images above.
 
-![other images importing][img__2.2_other-images-importing]
+![other images importing][img__other-images-importing]
 
 
 ## Using a local mirror
@@ -60,4 +60,4 @@ required to complete the image import step significantly. See
 
 [img__2.2_select-and-import-images]: ../media/installconfig-images-import__2.2_select-and-import-images.png
 [img__2.2_ubuntu-images-importing]: ../media/installconfig-images-import__2.2_ubuntu-images-importing.png
-[img__2.2_other-images-importing]: ../media/installconfig-images-import__2.2_other-images-importing.png
+[img__other-images-importing]: ../media/installconfig-images-import__2.3_other-images-importing.png
