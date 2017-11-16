@@ -50,8 +50,8 @@ down to the 'Proxy' section. Any changes made are applied by pressing the
 To enable the internal proxy, ensure that the checkbox adjacent to 'MAAS
 Built-in' is selected. This is the default configuration.
 
-To enable an external proxy, activate the 'External' checkbox and use the field
-that appears to define the proxy's URL (and port if necessary).
+To enable an external proxy, activate the 'External' checkbox and use the new
+field that is displayed to define the proxy's URL (and port if necessary).
 
 An upstream cache peer can be defined by enabling the 'Peer' checkbox and
 entering the external proxy URL into the field. With this enabled, machines
