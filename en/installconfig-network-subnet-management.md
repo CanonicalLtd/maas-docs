@@ -45,7 +45,7 @@ select the subnet. Press the 'Edit' button so that changes can be made. The
 switch icon itself) to toggle between enabled (dark blue) and disabled (grey)
 and click 'Save summary'.
 
-![subnet management toggle][img__2.2_subnet-management-toggle]
+![subnet management toggle][img__subnet-management-toggle]
 
 See [MAAS CLI][cli-control-subnet-management] for how to do this with the CLI.
 
@@ -62,4 +62,4 @@ from managed or unmanaged subnets.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [cli-control-subnet-management]: manage-cli-common.md#control-subnet-management
 
-[img__2.2_subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.2_management-toggle.png
+[img__subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.3_management-toggle.png

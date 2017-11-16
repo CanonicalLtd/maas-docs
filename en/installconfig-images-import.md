@@ -16,7 +16,7 @@ downloaded. By default, MAAS will automatically grab the most recent Ubuntu LTS
 releases (and amd64 architecture). Below, two additional releases have been
 selected:
 
-![select and import images][img__2.2_select-and-import-images]
+![select and import images][img__select-and-import-images]
 
 In the top-right corner there is a toggle switch for the hourly syncing of
 images for the region based on the image stream MAAS is configured to use (see
@@ -28,7 +28,7 @@ Click the 'Save selection' button to initiate the import. Existing images will
 be shown in addition to the newly selected ones. The latter will have their
 status updated as the import is processed:
 
-![ubuntu images importing][img__2.2_ubuntu-images-importing]
+![ubuntu images importing][img__ubuntu-images-importing]
 
 To remove an image, simply unselect it and click 'Save selection'.
 
@@ -40,7 +40,7 @@ supported and provided by MAAS will appear beneath the 'Other Images' section.
 Currently, images for both CentOS 6.6 and CentOS 7.0 are available and these
 can be imported and used just like the Ubuntu images above.
 
-![other images importing][img__2.2_other-images-importing]
+![other images importing][img__other-images-importing]
 
 
 ## Using a local mirror
@@ -58,6 +58,6 @@ required to complete the image import step significantly. See
 [images-boot-image-sources]: installconfig-images.md#boot-image-sources
 [mirror]: installconfig-images-mirror.md
 
-[img__2.2_select-and-import-images]: ../media/installconfig-images-import__2.2_select-and-import-images.png
-[img__2.2_ubuntu-images-importing]: ../media/installconfig-images-import__2.2_ubuntu-images-importing.png
-[img__2.2_other-images-importing]: ../media/installconfig-images-import__2.2_other-images-importing.png
+[img__select-and-import-images]: ../media/installconfig-images-import__2.3_select-and-import-images.png
+[img__ubuntu-images-importing]: ../media/installconfig-images-import__2.3_ubuntu-images-importing.png
+[img__other-images-importing]: ../media/installconfig-images-import__2.3_other-images-importing.png
