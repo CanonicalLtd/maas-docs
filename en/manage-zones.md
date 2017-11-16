@@ -20,18 +20,16 @@ All these actions require administrative privileges.
 ## Add a zone
 
 To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
-The resulting window will allow for the name and, optionally, a description of
-the new zone.
+Simply enter a name for the zone and click 'Add zone'.
 
-![add zone][img__2.2_add-zone]
-
-Press the 'Add zone' button to confirm the changes.
+![add zone][img__add-zone]
 
 
 ## Edit a zone
 
 To edit a zone, on the 'Zones' page select a zone and use the 'Edit zone'
-button. Doing so will allow a change to be made to the name and description.
+button. Doing so will allow a change to be made to the name and a description
+for the zone added or edited.
 
 
 ## Delete a zone
@@ -45,9 +43,9 @@ zone.
 
 To assign a node to a zone, from the 'Nodes' page, select a node (or multiple
 nodes) and choose 'Set Zone' using the 'Take action' button. After selecting a
-zone hit the 'Go' button to apply the change.
+zone hit the 'Set zone...' button to apply the change.
 
-You can also edit a node's individual page to change its zone.
+You can also edit a node's 'Configuration' page to change its zone.
 
 Both ways are available in the API as well: edit an individual node through a
 PUT request to the node's URI, or set the zone on multiple nodes at once by
@@ -79,4 +77,4 @@ It is possible, though not usually useful, to combine the `zone` and
 
 [concepts-zones]: intro-concepts.md#zones
 
-[img__2.2_add-zone]: ../media/manage-zones__2.2_add-zone.png
+[img__add-zone]: ../media/manage-zones__2.3_add-zone.png
