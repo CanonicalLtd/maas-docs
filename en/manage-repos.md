@@ -33,7 +33,7 @@ MAAS comes equipped with the official Ubuntu repository `archive.ubuntu.com` as
 well as the equivalent for architectures other than i386 and amd64:
 `ports.ubuntu.com` as is evident in the default configuration below:
 
-![default repositories config][img__2.2_default-repo-config]
+![default repositories config][img__default-repo-config]
 
 Adding a third-party repository is elementary. Begin by basing the
 configuration on a line you would normally place in a system's
@@ -60,7 +60,7 @@ label to give the repository.
 
 Before saving, the form should look very similar to this:
 
-![add repository][img__2.2_add-repo]
+![add repository][img__add-repo]
 
 Click 'Add repository' to save the configuration.
 
@@ -86,7 +86,7 @@ Launchpad page: 'Technical details about this PPA' > '1024R/9360754F' >
 To add this PPA, then, hit the 'Add repository' button and fill in the
 fields. Before saving, the form should look something like this:
 
-![add PPA][img__2.2_add-ppa]
+![add PPA][img__add-ppa]
 
 Click 'Add repository' to save the configuration.
 
@@ -99,6 +99,6 @@ See [Launchpad PPAs][launchpad-ppa-help] for more information on PPAs.
 [sosreport-ppa]: https://launchpad.net/~canonical-support/+archive/ubuntu/support-tools
 [launchpad-ppa-help]: https://help.launchpad.net/Packaging/PPA
 
-[img__2.2_default-repo-config]: ../media/manage-repositories__2.2_default-repo-config.png
-[img__2.2_add-repo]: ../media/manage-repositories__2.2_add-repo.png
-[img__2.2_add-ppa]: ../media/manage-repositories__2.2_add-ppa.png
+[img__default-repo-config]: ../media/manage-repositories__2.3_default-repo-config.png
+[img__add-repo]: ../media/manage-repositories__2.2_add-repo.png
+[img__add-ppa]: ../media/manage-repositories__2.2_add-ppa.png
