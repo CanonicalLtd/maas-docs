@@ -16,7 +16,7 @@ downloaded. By default, MAAS will automatically grab the most recent Ubuntu LTS
 releases (and amd64 architecture). Below, two additional releases have been
 selected:
 
-![select and import images][img__2.2_select-and-import-images]
+![select and import images][img__select-and-import-images]
 
 In the top-right corner there is a toggle switch for the hourly syncing of
 images for the region based on the image stream MAAS is configured to use (see
@@ -58,6 +58,6 @@ required to complete the image import step significantly. See
 [images-boot-image-sources]: installconfig-images.md#boot-image-sources
 [mirror]: installconfig-images-mirror.md
 
-[img__2.2_select-and-import-images]: ../media/installconfig-images-import__2.2_select-and-import-images.png
+[img__select-and-import-images]: ../media/installconfig-images-import__2.3_select-and-import-images.png
 [img__2.2_ubuntu-images-importing]: ../media/installconfig-images-import__2.2_ubuntu-images-importing.png
 [img__other-images-importing]: ../media/installconfig-images-import__2.3_other-images-importing.png
