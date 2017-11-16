@@ -28,7 +28,7 @@ Click the 'Save selection' button to initiate the import. Existing images will
 be shown in addition to the newly selected ones. The latter will have their
 status updated as the import is processed:
 
-![ubuntu images importing][img__2.2_ubuntu-images-importing]
+![ubuntu images importing][img__ubuntu-images-importing]
 
 To remove an image, simply unselect it and click 'Save selection'.
 
@@ -59,5 +59,5 @@ required to complete the image import step significantly. See
 [mirror]: installconfig-images-mirror.md
 
 [img__select-and-import-images]: ../media/installconfig-images-import__2.3_select-and-import-images.png
-[img__2.2_ubuntu-images-importing]: ../media/installconfig-images-import__2.2_ubuntu-images-importing.png
+[img__ubuntu-images-importing]: ../media/installconfig-images-import__2.3_ubuntu-images-importing.png
 [img__other-images-importing]: ../media/installconfig-images-import__2.3_other-images-importing.png
