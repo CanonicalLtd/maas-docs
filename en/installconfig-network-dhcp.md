@@ -104,7 +104,7 @@ To relay from one VLAN (source) to another VLAN (target):
     VLAN'). Press the 'Relay DHCP' button to finish. See
     [MAAS CLI][cli-relay-dhcp] for how to do this with the CLI.
 
-![Relay DHCP][img__2.2_relay-dhcp]
+![Relay DHCP][img__relay-dhcp]
 
 
 ## DHCP Snippets
@@ -127,7 +127,7 @@ For example, to create a new snippet press 'Add custom snippet'. In the
 resulting window choose a name and type for it and enter its associated DHCP
 configuration. Click 'Save snippet' to apply the change.
 
-![Manage DHCP snippets][img__2.2_dhcp-snippets]
+![Manage DHCP snippets][img__dhcp-snippets]
 
 See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 
@@ -145,5 +145,5 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 
 [img__enable-dhcp]: ../media/installconfig-networking-dhcp__2.3_enable-dhcp.png
-[img__2.2_relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
-[img__2.2_dhcp-snippets]: ../media/installconfig-networking-dhcp__2.2_dhcp-snippets.png
+[img__relay-dhcp]: ../media/installconfig-networking-dhcp__2.2_relay-dhcp.png
+[img__dhcp-snippets]: ../media/installconfig-networking-dhcp__2.3_dhcp-snippets.png
