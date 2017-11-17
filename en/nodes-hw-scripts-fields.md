@@ -25,31 +25,25 @@ and what information a script is gathering. A script can have the following fiel
 - `destructive`: *True* or *False*, depending on whether the script will
   overwrite system data.
 - `comment`: Describes changes made in this revision of the script.
-
 - `hardware_type`: Defines the type of hardware the script configures or tests.
   If the script returns results, *hardware type* dictates what hardware the results
   are associated with. The following types are valid:
-
     - **node**: Not associated with any hardware type. This is the default.
     - **cpu**: Configures or tests the CPUs on the node.
     - **memory**: Configures or tests memory on the node.
     - **storage**: Configures or test storage on the node. Each storage
       result may be associated with a block device on the system.
-
 - `parallel`: Enables scripts to be run in parallel and can be one of the
   following:
-
     - **disabled**: The script will run serially on its own.
     - **instance**: Runs in parallel only with other instances of the same
       script.
     - **any**: Runs in parallel alongside any other scripts with *parallel* set
       to *any*.
-
 - `packages`: List of packages to be installed or extracted before running the
   script. Packages may be specified as a JSON string, a list of strings, or as
   a dictionary. For example, `packages: {apt: stress-ng}`, would ask **apt** to
   install *stress-ng*. Package sources can be any of the following:
-
     - **apt**: Used by default if the source is omitted.
     - **snap**: Installs packages using [snap][snapcraft]. May also be a list of
       dictionaries. The dictionary must define the *name* of the package to be
@@ -90,39 +84,30 @@ The value is a dictionary with the following fields:
       run.
     - **runtime**: The amount of time the script should run for. This will be
       passed to the script in seconds.
-
 - `min`: The minimum numeric value an input is allowed to have. Only
   applicable to runtime and defaults to 0.
-
 - `max`: The maximum numeric value an input is allowed to have. Only applicable
   to runtime. The default is unlimited.
-
 - `title`: The title of the parameter field when displayed in the UI. The
   following types have the following default values:
     - **storage**: Storage device.
     - **runtime**: Runtime.
-
 - `argument-format`: Specifies how the argument should be passed to the script.
   Input is described as `{input}`.
-
    The storage type may also use `{name}`, `{path}`, `{model}` or
    `{serial}`. MAAS will lookup the values of path, model, and serial based on
    user selection. For storage, `{input}` is synonymous with `{path}`.
-
    The following types have the following default values:
-   - **storage**: `--storage={path}`
-   - **runtime**: `--runtime={input}`
-
+    - **storage**: `--storage={path}`
+    - **runtime**: `--runtime={input}`
 - `default`: The default value of the parameter. The following types have
   the following default values. Setting these to '' or *None* will override
   these values:
-   - **storage**: all.
-   - **runtime**: If set, the runtime value of the script.
-
+    - **storage**: all.
+    - **runtime**: If set, the runtime value of the script.
 - `required`: Whether or not user input is required. If set to *false*, no default
   is set and no user input will mean the parameter is not passed to the script.
   Defaults to `true`.
-
 - `results`: What results the script will return on completion. This may only
   be defined within the embedded YAML of the script. Results may be a list of
   strings or a dictionary of dictionaries.
@@ -141,7 +126,6 @@ The YAML file must represent a dictionary with the following fields:
 - `result`: The completion status of the script. This can be either **passed**,
   **failed** or **degraded**. If no status is defined, an exit code of `0`
   indicates a pass while a non-zero value indicates a failure.
- 
 - `results`: A dictionary of results. The key may map to a results key defined
   as embedded YAML within the script. The value of each result must be a string
   or a list of strings.
