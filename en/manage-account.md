@@ -19,7 +19,7 @@ the 'Users and Keys' section the list of current users will be shown.
 
 Clicking the 'Add user' button will result in a form to be displayed:
 
-![add user][img__2.2_add-user]
+![add user][img__add-user]
 
 Fill in the fields and hit 'Add user' when done.
 
@@ -91,6 +91,6 @@ password' to finish.
 [juju-maas-cloud]: https://jujucharms.com/docs/stable/clouds-maas
 
 [img__2.2_current-users]: ../media/manage-user-accounts__2.2_current-users.png
-[img__2.2_add-user]: ../media/manage-user-accounts__2.2_add-user.png
+[img__add-user]: ../media/manage-user-accounts__2.3_add-user.png
 [img__2.2_add-user-ssh-key]: ../media/manage-user-accounts__2.2_add-user-ssh-key.png
 [img__2.2_change-user-password]: ../media/manage-user-accounts__2.2_change-user-password.png

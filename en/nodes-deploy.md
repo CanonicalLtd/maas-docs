@@ -54,13 +54,13 @@ Before deploying you should:
 To deploy directly from MAAS select one or more node(s) and press the 'Deploy'
 button.
 
-![deploy][img__2.2_deploy]
+![deploy][img__deploy]
 
 You then have the option of deviating from the default OS, release, and kernel.
 When ready, press 'Deploy *X* machine(s)' (where 'X' is the number of machines
 selected).
 
-![confirm deploy][img__2.2_deploy-confirm]
+![confirm deploy][img__deploy-confirm]
 
 See [MAAS CLI][cli-deploy-a-node] for how to deploy a node with the CLI.  If
 doing so, you will first need to acquire the node explicitly, either via the
@@ -102,5 +102,5 @@ See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
 [kernel-boot-options]: nodes-kernel-options.md
 [ubuntu-kernels]: nodes-kernels.md
 
-[img__2.2_deploy]: ../media/nodes-deploy__2.2_deploy.png
-[img__2.2_deploy-confirm]: ../media/nodes-deploy__2.2_deploy-confirm.png
+[img__deploy]: ../media/nodes-deploy__2.2_deploy.png
+[img__deploy-confirm]: ../media/nodes-deploy__2.3_deploy-confirm.png

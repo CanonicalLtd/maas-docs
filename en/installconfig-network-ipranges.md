@@ -37,14 +37,15 @@ See [MAAS CLI][cli-create-a-reserved-ip-range] for doing this with the CLI.
 
 ## Edit a range
 
-Click the 'down' arrow at the far right of the row corresponding to the subnet
-in question. Edit the fields as desired and click the 'Save' button.
+Click the 'Menu' button at the far right of the row corresponding to the subnet
+in question and select 'Edit reserved range' from the menu that appears. Edit
+the fields as desired and click the 'Save' button.
 
 
 ## Delete a range
 
-Click the 'trash bin' icon at the far right of the row corresponding to the
-subnet in question. Confirm this action by clicking on the 'Remove' button.
+Select 'Remove range' from the menu that appears when clicking the 'Menu'
+button at the far right of the row corresponding to the subnet in question.
 
 
 <!-- LINKS -->
