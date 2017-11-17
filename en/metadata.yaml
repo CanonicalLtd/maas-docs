@@ -103,6 +103,9 @@ navigation:
 
       - title: BMC power types
         location: nodes-power-types.md
+      
+      - title: Node overview
+        location: nodes-overview.md
 
       - title: Commission nodes
         location: nodes-commission.md
