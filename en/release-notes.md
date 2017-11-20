@@ -1,314 +1,292 @@
 Title: 2.3 Release Notes
 table_of_contents: True
 
-# Release Notes 2.3
+See [Historical release notes][historical-notes] for release notes for all versions.
 
-MAAS 2.3 is currently under development. The current release is 
-[MAAS 2.3.0 RC2][currentrelease]. See 
-[Historical release notes][historical-release-notes] for release notes for
-stable versions.
+# Release Notes - 2.3
 
-The development version of MAAS is available as a [snap][snapio] and from the
-MAAS Next PPA.
+## Important announcements
 
-To install from the snap, use the ***Beta*** channel on the default track:
+### Machine network configuration now deferred to cloud-init
+
+Machine network configuration is now handled by [cloud-init][cloudinit].
+
+With previous versions of MAAS (and curtin), network configuration was
+performed by [curtin][curtin] during the installation process. In an effort to
+improve robustness, this network configuration has been consolidated with
+cloud-init. MAAS continues to pass network configuration to curtin, which in
+turn, will delegate the configuration to cloud-init.  
+
+
+### Ephemeral images over HTTP
+
+To reduce the number of dependencies and improve reliability, MAAS ephemeral
+(network boot) images are no longer loaded using iSCSI (tgt). By default, the
+ephemeral images are now obtained using HTTP requests to the rack controller.
+
+After upgrading to MAAS 2.3, please ensure you have the latest available
+images. For more information please refer to the section below (New features &
+improvements).
+
+
+### Advanced network configuration for CentOS and Windows
+
+MAAS 2.3 now supports the ability to perform network configuration for CentOS
+and Windows via [cloud-init][cloudinit]. The MAAS CentOS images now use the
+latest available version of cloud-init to support these features.
+
+
+## New features & improvements
+
+### CentOS network configuration
+
+MAAS can now perform machine network configuration for CentOS 6 and 7,
+providing those operating systems with networking feature parity.
+
+The following can now be configured for MAAS deployed CentOS images:
+
+- Bonds, VLAN and bridge interfaces.
+- Static network configuration.
+
+Our thanks to the [cloud-init][cloudinit] team for improving the network
+configuration support for CentOS.
+
+
+### Windows network configuration
+
+MAAS can now configure NIC teaming (bonding) and VLAN interfaces for Windows
+deployments. This uses the native NetLBFO in Windows 2008+.
+
+Contact us for more information: [https://maas.io/contact-us](https://maas.io/contact-us).
+
+
+### Ephemeral images over HTTP
+
+Historically, MAAS used [tgt][tgt] to provide images over iSCSI for the
+ephemeral environments (e.g commissioning, deployment environment, rescue mode,
+etc). MAAS 2.3 changes the default behaviour by now providing images over HTTP
+instead.
+
+This change means that *initrd* (run via PXE) will contact the rack controller to
+download the image to load in the ephemeral environment directly.
+
+Support for using 'tgt' is being phased out in MAAS 2.3 and will no longer be
+supported from MAAS 2.4 onwards.
+
+ Users who would like to continue to use and load their ephemeral images via
+'tgt' they can disable http boot with the following command.
 
 ```bash
-sudo snap install maas --devmode --beta
+maas $PROFILE maas set-config name=http_boot value=False
 ```
 
-See [Install from a Snap][snapinstall] for further details. 
 
-To install from the MAAS Next PPA (ppa:maas/next):
+### Network discovery and beaconing
+
+In order to confirm network connectivity and aide with the discovery of VLANs,
+fabrics and subnets, MAAS 2.3 introduces network beaconing.
+
+MAAS now sends out encrypted beacons to facilitate network discovery and
+monitoring. Beacons are sent using IPv4 and IPv6 multicast (and unicast) to UDP
+port 5240.
+
+When registering a new controller, MAAS uses the information gathered from the
+beaconing protocol to ensure that newly registered interfaces on each
+controller are associated with existing known networks in MAAS.
+
+Using network beaconing, MAAS can better correlate which networks are
+connected to its controllers, even if interfaces on those controllers are not
+configured with IP addresses.
+
+Future uses for beaconing could include validation of networks from
+commissioning nodes, MTU verification and a better user experience when
+registering new controllers.
+
+
+### Improved hardware testing
+
+MAAS 2.3 introduces a new hardware testing framework that significantly
+improves the granularity and provision of hardware testing feedback. These
+improvements include:
+
+- **Run individual tests**.
+  The new testing framework that allows MAAS to run each component individually. This
+  enables  MAAS to run tests against storage devices, for example, and capture
+  results separately.
+- **Define a custom testing script with a YAML definition**.
+  The ability to describe custom hardware tests with a YAML definition enables
+  MAAS do the following:
+   - Collate details about the tests, such as script name, description, required
+     packages, and other metadata about what information the script will
+     gather. All of which will be used by MAAS to render in the UI.
+   - Determine whether the test supports a parameter, such as storage,
+     that lets the test to be run against individual storage devices.
+   - The option to run tests in parallel.
+- **Performance metrics**.
+  Capture performance metrics for the tests that can provide them:
+   - CPU performance now offers a new *[7zip][7zip]* test which includes metrics.
+   - Storage performance now include a new *[fio][fio]* test with metrics.
+   - The storage test *badblocks* has been improved to provide the number of
+     badblocks found as a metric.
+- **Failed testing overridei**. 
+  The ability to override a machine that has been marked ‘Failed testing’. This
+  allows administrators to acknowledge that a machine is usable despite it
+  having failed testing.
+
+Hardware testing improvements integrate with the following web UI changes:
+
+- **Machine Listing page**:
+   - Displays whether a test is pending, running or failed for the machine
+     components (CPU, Memory or Storage.)
+   - Displays whether a test not related to CPU, Memory or Storage has failed.
+   - Displays a warning when the machine has been overridden and has failed
+     tests but is in a ‘Ready’ or ‘Deployed’ state.
+- **Machine Details page**:
+   - The *Summary tab* now provides hardware testing information about the different
+     components (CPU, Memory, Storage).
+   - The *Hardware Tests /Commission tab* now displays an improved view of the latest
+     test run, its run time as well as an improved view of previous results. It
+     also adds more detailed information about specific tests, such as status, exit
+     code, tags, runtime and logs/output (such as stdout and stderr).
+   - The *Storage tab* now displays the status of specific disks, including whether a
+     test is OK or failed after running hardware tests.
+
+For more information, please refer to
+[https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing](https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing)
+
+### Upstream proxy
+
+MAAS 2.3 enables an upstream HTTP proxy to allow MAAS-deployed machines to
+continue to use a caching proxy for repositories. This provides greater
+flexibility for closed environments, including:
+
+- Enabling MAAS itself to use a corporate proxy while allowing machines to
+  continue to use the MAAS proxy.
+- Allowing machines that don’t have access to a corporate proxy to gain network
+  access using the MAAS proxy.
+
+Upstream proxy support includes an improved configuration pane on the
+settings page. See *Settings > Proxy* for more details.
+
+
+### Usability improvement (web UI)
+
+Alongside the UI improvements outlined in the features above, MAAS 2.3
+introduces an improved web UI design for the machines, devices and controllers
+detail pages that include the following changes:
+
+- *Summary tab* now provides only information about the specific node (machine,
+  device or controller), organised across cards.
+- *Configuration* has been introduced, which includes all editable settings for
+  the specific node (machine, device or controllers).
+
+**Controller versions and notifications**
+
+The MAAS web UI now displays the version of each running controller and notifies the users
+of any version mismatch between the region and rack controllers.
+
+This helps administrators identify potential problems when upgrading MAAS on a
+multi-node MAAS cluster, such as within a HA setup.
+
+Other UI improvements include:
+
+- Added DHCP status column on the *Subnets* tab.
+- Added architecture filters
+- VLAN and Space details page no longer allows inline editing.
+- VLAN page adds the IP ranges tables.
+- Zones page converted to AngularJS (away from YUI).
+- New warnings when changing a subnet’s mode (*Unmanaged* or *Managed*).
+- Renamed *Device Discovery* to *Network Discovery*.
+- When MAAS cannot determine the hostname for discovered devices, it will show
+  the hostname as 'unknown' and greyed-out rather than using the MAC address
+  manufacturer as the hostname.
+
+
+### Rack controller deployment
+
+MAAS 2.3 can now automatically deploy rack controllers when deploying a
+machine.
+
+This is accomplished by providing [cloud-init][cloudinit] user data. Cloud-init
+will install and configure the rack controller after a machine has been
+deployed. Upon rack controller registration, MAAS will automatically detect
+whether the machine is a rack controller and process the transition automatically.
+
+To deploy a rack controller, users can do so via the API (or CLI), e.g:
 
 ```bash
-sudo add-apt-repository -yu ppa:maas/next
-sudo apt install maas
+maas $PROFILE machine deploy $SYTEM_ID install_rackd=True
 ```
 
-## 2.3.0 (RC2)
-
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
-
-
-## 2.3.0 (RC1)
-
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
+!!! Note:
+    This features makes use of the MAAS [snap][snapio] to configure the rack
+    controller on the deployed machine. 'snap store' mirrors are not yet
+    available, which means the machine will need access to the internet.
 
 
-## 2.3.0 (beta3)
+### Improved DNS Reloading
 
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
-
-
-## 2.3.0 (beta2)
-
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
-
-
-## 2.3.0 (beta1)
-
-### Hardware Testing
-
-This release overhauls the visibility of hardware test results, necessitating
-significant changes across the MAAS web UI:
-
-- **Machine/Nodes Listing**.
-  This page now includes the progress and status of hardware tests. Status
-  shows  when a test is pending, running, successful, or when a test has
-  failed. Additionally, machines can now be filtered by architecture.
-
-- **Machine Details**:
-
-    - **Machine summary** includes new details about the different components
-      being tested, such as CPU, memory and storage.
-
-    - **Hardware tests** have been completely redesigned, showing a list of
-      test results per component and the ability to view more details about the
-      test itself.
-
-    - **Settings** is a new page that enables you to edit a node's
-      configuration directly.
-
-
-### Rack Controller Deployment
-
-This release adds the ability to deploy any machine with a rack controller via the API.
-
-
-### Other UI improvements
-
-The subnets page now includes a *DHCP* column and in-line editing has been
-removed from both the *Space* and *VLAN* pages. You will now also be warned when
-changing a subnet's mode between managed and unmanaged.
+This release includes various improvements to the DNS reload mechanism,
+allowing MAAS to be smarter about when to reload DNS after changes have been
+automatically detected or made.
 
 
 ### API improvements
 
-This release introduces API output for `volume_groups`, `raids`, `cache_sets` and
-`bcaches` to the machine's endpoint.
+The machines [API][maasapi] endpoint now provide more information on configured
+storage and provides additional output that includes *volume_groups*, *raids*,
+*cache_sets*, and *bcaches* fields.
 
 
-### Issues fixed in this release
+### Django 1.11 support
 
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
-
-
-## 2.3.0 (alpha3)
-
-### Hardware Testing (backend only)
-
-This release introduces an improved hardware testing framework that enables MAAS to
-test individual components of a single machine and provide better feedback for
-each test. 
-
-With the new hardware testing framework, you can:
-
-- **Define a custom testing script with a YAML definition**.
-  Each custom test can use a YAML definition to provide information about the
-  test. This information includes the script name, description, required
-  packages and other metadata about the data the script will collect.
-  This information will then be displayed in the web UI. 
-
-- **Pass parameters**.
-  You can now pass specific parameters to the hardware testing scripts. For example, in upcoming
-  beta releases users will be able to select which disks they want to test.
-
-- **Run individual tests**.
-  Improves the way how hardware tests are run per component. This allows MAAS
-  to run tests against individual components, such a single disk.
-
-- **Additional performance tests**.
-  This release includes a new CPU performance test using *[7zip][7zip]* and a new
-  storage performance test using *[fio][fio]*.
-
-
-!!! Note:
-    The results for individual components are currently only available from the
-    API. Upcoming beta releases will include UI improvements to accomodate these
-    results. 
-
-### Rack Controller Deployment in White Box Switches
-
-MAAS can now install and configure a rack controller after a machine has been
-deployed. Currently, this feature is only available if the machine is a
-certified white box switch.
-
-Current certified switches include the [Wedge 40 and 100][wedge100].
-
-!!! Note: 
-    This features makes use of the MAAS *[snap][snapio]* package to configure the rack
-    controller on the deployed machine. As 'snap store' mirrors are not yet
-    available, your machine will need internet access to install the MAAS snap.
-
-### Improved DNS Reloading
-
-This new release introduces various improvements to the DNS reload mechanism,
-enabling MAAS to be smarter about when to reload after changes have been
-automatically detected or made. 
-
-### UI improvements
-
-**Controller Versions and Notifications**
-
-The web UI now displays the version number of each running controller and will
-notify the user of any mismatch between region and rack controller versions.
-This helps administrators avert potential problems when upgrading MAAS on a
-multi-node cluster, such as within a HA setup.
-
-### Issues fixed in this release
-
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
-
-## 2.3.0 (alpha2)
-
-### Advanced Network for CentOS & Windows
-
-MAAS 2.3 now supports the ability to perform network configuration for CentOS
-and Windows. The network configuration is performed via cloud-init. MAAS CentOS
-images now use the latest available version of cloud-init that includes these
-features.
-
-### New Features & Improvements
-
-CentOS Networking Support MAAS can now perform machine network configuration
-for CentOS, giving CentOS networking feature parity with Ubuntu. The following
-can now be configured for MAAS deployed CentOS images:
-
-- Static network configuration.
-- Bonds, VLAN and bridge interfaces.
-
-### Windows Networking Support
-
-MAAS can now configure NIC teaming (bonding) and VLAN interfaces for Windows
-deployments. This uses the native NetLBFO in Windows 2008+. [Contact
-us][contactus] for more information.
-
-### Network Discovery & Beaconing
-
-MAAS now sends out encrypted beacons to facilitate network discovery and
-monitoring.  Beacons are sent using IPv4 and IPv6 multicast (and unicast) to
-UDP port 5240.  When registering a new controller, MAAS uses the information
-gathered from the beaconing protocol to ensure that newly registered interfaces
-on each controller are associated with existing known networks in MAAS. 
-
-### UI improvements 
-
-Minor UI improvements have been made:
-
-- Renamed “Device Discovery” to “Network Discovery”.
-- Discovered devices where MAAS cannot determine the hostname now show the
-  hostname as “unknown” and greyed out instead of using the MAC address
-  manufacturer as the hostname.
-
-### Issues fixed in this release
-
-For all the issues fixed in this release, please refer to:
-
-[https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
-
-## 2.3.0 (alpha1)
-
-### Machine Network configuration now deferred to cloud-init.
-
-The machine network configuration is now deferred to cloud-init. In previous
-MAAS (and curtin) releases, the machine network configuration was performed by
-curtin during the installation process. In an effort to consolidate and improve
-robustness, network configuration has now been consolidated in cloud-init.
-
-Since MAAS 2.3 now depends on the latest version of curtin, the network
-configuration is now deferred to cloud-init. As such, while MAAS will continue
-to send the network configuration to curtin for backwards compatibility, curtin
-itself will defer the network configuration to cloud-init. Cloud-init will then
-perform such configuration on first boot after the installation process has
-completed.
-
-### Ephemeral Images over HTTP
-
-In the effort to reduce the amount of dependencies and improve MAAS’
-robustness, MAAS ephemeral images are no longer loaded via iSCSI (tgt).
-Starting from 2.3, the ephemeral images are obtained via HTTP from the Rack
-Controller.
-
-Please ensure you have the latest available images. For more information please
-refer to the section below in New Features & Improvements.
-
-### New Features and Improvements
-
-#### Django 1.11 support
-
-MAAS 2.3 now supports the latest Django LTS version, Django 1.11. This allows
+MAAS 2.3 now supports the latest [Django LTS][djangolts] version, Django 1.11. This allows
 MAAS to work with the newer Django version in Ubuntu Artful, which serves as a
-preparation for the next Ubuntu LTS release. 
+preparation for the next Ubuntu LTS release.
 
-- Users running MAAS from the snap in any Ubuntu release will use Django 1.11.
 - Users running MAAS in Ubuntu Artful will use Django 1.11.
 - Users running MAAS in Ubuntu Xenial will continue to use Django 1.9.
 
-#### Upstream Proxy
+**Contribute**  
+If you would like to contribute you can find the source code in GitHub:
 
-MAAS 2.3 now supports the ability to use an upstream proxy. Doing so provides
-greater flexibility for closed environments provided that:
+https://github.com/maas/python-libmaas
 
-- Allows MAAS itself to use the corporate proxy at the same time as allowing
-  machines to continue to use the MAAS proxy.
-- Allows machines that don’t have access to the corporate proxy, to have
-  access to other pieces of the infrastructure via MAAS’ proxy.
+For more questions, please find us:
 
-Adding upstream proxy support also includes an improved configuration on the
-settings page. Please refer to *Settings > Proxy* for more details.
+- `#maas` on freenode
+- `maas-devel` mailing list is a good place for questions
 
-#### Fabric deduplication and beaconing
+### Issues fixed with this release
 
-MAAS 2.3 will introduce network beaconing, to confirm network connectivity and
-aide discovery of VLANs and fabrics. MAAS now listens for unicast and multicast
-beacons on UDP port 5240, and will reply to received beacons. To prepare for
-beaconing, several improvements to fabric discovery and creation have been
-completed. (For example, MAAS 2.3 alpha 1 should no longer create empty fabrics
-when a rack controller is initially registered.)
+For issues fixed in MAAS 2.3, please refer to the following milestone:
 
-#### Ephemeral Images over HTTP (feature flag)
+[https://launchpad.net/maas/+milestone/2.3.0](https://launchpad.net/maas/+milestone/2.3.0)
 
-Historically, MAAS has used ‘tgt’ to provide images over iSCSI for the
-ephemeral environments (e.g commissioning, deployment environment, rescue mode,
-etc). MAAS 2.3 will change that behavior in favor of loading images via HTTP.
-The change means that the initrd loaded on PXE will contact the Rack Controller
-to download the image to load in the ephemeral environment.  Due to these
-changes, ‘tgt’ will be dropped as a dependency completely once 2.3 is final.
+For more information on previous bug fixes across 2.3, please refer to the
+following milestones:
 
-MAAS 2.3 alpha 1 includes this feature behind a feature flag. While the feature
-is enabled by default, users experiencing issues who would want to go back to
-use 'tgt' can do so by turning of the feature flag:
-
-```bash
-maas <user> maas set-config name=http_boot value=False
-```
-
-### Issues fixed in this release
-
-For all the issues fixed in this release, please refer to:
-
+[https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
+[https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
+[https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
+[https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
+[https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
+[https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
+[https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
 [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
 
+
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.3.0-(rc2)
+[historical-notes]: release-notes-all.md 
+[curtin]: https://launchpad.net/curtin
+[cloudinit]: https://cloud-init.io/
+[tgt]: http://stgt.sourceforge.net/
 [snapio]: https://snapcraft.io/
-[snapinstall]: installconfig-snap-install.md
-[historical-release-notes]: release-notes-all.md
-[contactus]: https://maas.io/contact-us
+[maasapi]: api.htmlv
+[djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
 [fio]: https://github.com/axboe/fio
 [7zip]: http://www.7-zip.org
-[maasapi]: api.html
-[wedge100]: https://code.facebook.com/posts/1802489260027439/wedge-100-more-open-and-versatile-than-ever/
+
+[snapinstall]: installconfig-snap-install.md
+[contactus]: https://maas.io/contact-us
+
