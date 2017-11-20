@@ -282,11 +282,11 @@ following milestones:
 [cloudinit]: https://cloud-init.io/
 [tgt]: http://stgt.sourceforge.net/
 [snapio]: https://snapcraft.io/
-[maasapi]: api.htmlv
+[maasapi]: api.html
 [djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
 [fio]: https://github.com/axboe/fio
 [7zip]: http://www.7-zip.org
-
+[
 [snapinstall]: installconfig-snap-install.md
 [contactus]: https://maas.io/contact-us
 
