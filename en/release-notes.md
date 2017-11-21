@@ -38,7 +38,7 @@ and Windows via [cloud-init][cloudinit]. The MAAS CentOS images now use the
 latest available version of cloud-init to support these features.
 
 
-## New features & improvements
+## New features and improvements
 
 ### CentOS network configuration
 
@@ -172,7 +172,7 @@ maas $PROFILE maas set-config name=http_boot value=False
 ```
 
 
-### Usability improvement (web UI)
+### Usability improvements (web UI)
 
 Alongside the UI improvements outlined above, MAAS 2.3 introduces an improved
 web UI design for the machines, devices and controllers detail pages that
