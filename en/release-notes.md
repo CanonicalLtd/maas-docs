@@ -220,7 +220,7 @@ whether the machine is a rack controller and process the transition automaticall
 To deploy a rack controller, users can do so via the API (or CLI), e.g:
 
 ```bash
-maas $PROFILE machine deploy $SYTEM_ID install_rackd=True
+maas $PROFILE machine deploy $SYSTEM_ID install_rackd=True
 ```
 
 !!! Note:
