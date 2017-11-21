@@ -38,7 +38,7 @@ and Windows via [cloud-init][cloudinit]. The MAAS CentOS images now use the
 latest available version of cloud-init to support these features.
 
 
-## New features & improvements
+## New features and improvements
 
 ### CentOS network configuration
 
@@ -172,7 +172,7 @@ maas $PROFILE maas set-config name=http_boot value=False
 ```
 
 
-### Usability improvement (web UI)
+### Usability improvements (web UI)
 
 Alongside the UI improvements outlined above, MAAS 2.3 introduces an improved
 web UI design for the machines, devices and controllers detail pages that
@@ -220,7 +220,7 @@ whether the machine is a rack controller and process the transition automaticall
 To deploy a rack controller, users can do so via the API (or CLI), e.g:
 
 ```bash
-maas $PROFILE machine deploy $SYTEM_ID install_rackd=True
+maas $PROFILE machine deploy $SYSTEM_ID install_rackd=True
 ```
 
 !!! Note:
@@ -256,19 +256,19 @@ preparation for the next Ubuntu LTS release.
 
 For issues fixed in MAAS 2.3, please refer to the following milestone:
 
-[https://launchpad.net/maas/+milestone/2.3.0](https://launchpad.net/maas/+milestone/2.3.0)
+- [https://launchpad.net/maas/+milestone/2.3.0](https://launchpad.net/maas/+milestone/2.3.0)
 
 For more information on previous bug fixes across 2.3, please refer to the
 following milestones:
 
-[https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
-[https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
-[https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
-[https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
-[https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
-[https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
-[https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
-[https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
+- [https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
+- [https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
+- [https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
+- [https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
+- [https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
 
 ## Get in touch
 
