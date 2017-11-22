@@ -275,7 +275,11 @@ used for machine reservation.
 Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 'Ready'.
 
-If unsuccessful, the status becomes 'Failed commissioning'.
+Commissioning enables MAAS to build a detailed inventory of RAM, CPU, storage,
+NICs and accelerators like GPUs itemised and usable as constraints for machine
+selection. 
+
+If commissioning is unsuccessful, the status becomes 'Failed commissioning'.
 
 Any time a node's underlying networking or disk subsystem has changed it should
 be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
