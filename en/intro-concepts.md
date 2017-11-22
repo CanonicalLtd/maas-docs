@@ -251,67 +251,6 @@ lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
 
 
-## Node statuses
-
-Node *statuses* are labels used to describe the general state of a node as
-known to MAAS. A node will undergo various manipulations during their time
-spent in MAAS and its status will change accordingly. A status change is
-usually caused by an *action* (see next section) that is applied to the node.
-Below is the full list of statuses and their meaning, arranged alphabetically.
-
-Some aspects of a node can only be modified when a node has a certain status.
-Examples:
-
-- network interfaces cannot be modified without a status of either 'Ready' or
-  'Broken'.
-- storage cannot be modified without a status of either 'Ready' or 'Allocated'.
-
-### Allocated
-The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
-
-### Broken
-The node is broken. See node action 'Mark broken'.
-
-### Commissioning
-The node is in the process of commissioning. See node action 'Commission'.
-
-### Deployed
-The node is deployed. See node action 'Deploy'.
-
-The visible status will be the name of the chosen OS (e.g. 'Ubuntu 16.04 LTS').
-
-### Deploying
-The node is in the process of deploying. See node action 'Deploy'.
-
-The visible status will be *Deploying to 'OS'*, where 'OS' is the name of the
-OS being deployed (e.g. 'Deploying to Ubuntu 16.04 LTS').
-
-### Entering rescue mode
-The node is in the process of entering rescue mode. See node action 'Rescue
-mode'.
-
-### Exiting rescue mode
-The node is in the process of exiting rescue mode. See node action 'Exit rescue
-mode'.
-
-### Failed Commissioning
-The node failed to commission.
-
-### Failed Deployment
-The node failed to deploy.
-
-### New
-The first stage of a node's life in MAAS. Typically, a node with this status
-has just been added to MAAS.
-
-### Ready
-The node has been commissioned and is ready for use.
-
-### Rescue mode
-The node is in rescue mode and is ready to accept SSH connections. See node
-action 'Rescue mode'.
-
-
 ## Node actions
 
 Node *actions* are essentially: "things you can do with nodes". They can be
@@ -409,6 +348,68 @@ then to 'Rescue mode' when the operation is complete.
 
 ### Set Zone
 Puts the node in a specific zone.
+
+
+## Node statuses
+
+Node *statuses* are labels used to describe the general state of a node as
+known to MAAS. A node will undergo various manipulations during their time
+spent in MAAS and its status will change accordingly. A status change is
+usually caused by an *action* (see next section) that is applied to the node.
+Below is the full list of statuses and their meaning, arranged alphabetically.
+
+Some aspects of a node can only be modified when a node has a certain status.
+Examples:
+
+- network interfaces cannot be modified without a status of either 'Ready' or
+  'Broken'.
+- storage cannot be modified without a status of either 'Ready' or 'Allocated'.
+
+### Allocated
+The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
+
+### Broken
+The node is broken. See node action 'Mark broken'.
+
+### Commissioning
+The node is in the process of commissioning. See node action 'Commission'.
+
+### Deployed
+The node is deployed. See node action 'Deploy'.
+
+The visible status will be the name of the chosen OS (e.g. 'Ubuntu 16.04 LTS').
+
+### Deploying
+The node is in the process of deploying. See node action 'Deploy'.
+
+The visible status will be *Deploying to 'OS'*, where 'OS' is the name of the
+OS being deployed (e.g. 'Deploying to Ubuntu 16.04 LTS').
+
+### Entering rescue mode
+The node is in the process of entering rescue mode. See node action 'Rescue
+mode'.
+
+### Exiting rescue mode
+The node is in the process of exiting rescue mode. See node action 'Exit rescue
+mode'.
+
+### Failed Commissioning
+The node failed to commission.
+
+### Failed Deployment
+The node failed to deploy.
+
+### New
+The first stage of a node's life in MAAS. Typically, a node with this status
+has just been added to MAAS.
+
+### Ready
+The node has been commissioned and is ready for use.
+
+### Rescue mode
+The node is in rescue mode and is ready to accept SSH connections. See node
+action 'Rescue mode'.
+
 
 <!-- IMAGES -->
 
