@@ -414,6 +414,10 @@ has just been added to MAAS.
 ### Ready
 The node has been commissioned and is ready for use.
 
+A node in this state has configured BMC credentials (on IPMI based BMCs) for
+ongoing power control, ensuring that MAAS can start or stop the machine and
+allocate or (re)deploy it with a fresh operating system.
+
 ### Rescue mode
 The node is in rescue mode and is ready to accept SSH connections. See node
 action 'Rescue mode'.
