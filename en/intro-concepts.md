@@ -293,7 +293,11 @@ rebooting it will be enlisted once more (status 'New').
 Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
 a deployed status. Includes action 'Power on'.
 
-If unsuccessful, the status becomes 'Failed deployment'.
+During deployment, MAAS turns on the machine and installs a complete server
+operating system from scratch without any manual intervention, configuring
+network interfaces, disk partitions and more.
+
+If deployment is unsuccessful, the status becomes 'Failed deployment'.
 
 Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
