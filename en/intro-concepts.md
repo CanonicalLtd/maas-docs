@@ -256,7 +256,7 @@ cannot be user-created.
 Node *actions* are essentially: "things you can do with nodes". They can be
 triggered via the web UI or the MAAS CLI. With the former, they are managed
 with the 'Take action' button in the top right corner. An action usually
-changes the *status* (see above section) of a node. Below is the full list of
+changes the *status* (see next section) of a node. Below is the full list of
 possible actions and their meaning, arranged alphabetically.
 
 ### Abort
@@ -355,7 +355,7 @@ Puts the node in a specific zone.
 Node *statuses* are labels used to describe the general state of a node as
 known to MAAS. A node will undergo various manipulations during their time
 spent in MAAS and its status will change accordingly. A status change is
-usually caused by an *action* (see next section) that is applied to the node.
+usually caused by an *action* (see above section) that is applied to the node.
 Below is the full list of statuses and their meaning, arranged alphabetically.
 
 Some aspects of a node can only be modified when a node has a certain status.
