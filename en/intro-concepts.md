@@ -294,8 +294,8 @@ Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
 a deployed status. Includes action 'Power on'.
 
 During deployment, MAAS turns on the machine and installs a complete server
-operating system from scratch without any manual intervention, configuring
-network interfaces, disk partitions and more.
+operating system without manual intervention, configuring network interfaces,
+disk partitions and more automatically.
 
 If deployment is unsuccessful, the status becomes 'Failed deployment'.
 
