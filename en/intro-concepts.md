@@ -54,7 +54,7 @@ A rack controller is attached to each "fabric". As the name implies, a common
 setup is to have a rack controller in each data centre server rack. The rack
 controller will cache large items for performance, such as operating system
 install images, but maintains no exclusive state other than the credentials
-used to talk to the region controller.
+required to talk to the region controller.
 
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA][maas-ha] for high availability.
