@@ -13,13 +13,17 @@ MAAS, not to mention the rest of this documentation.
 ## Nodes
 
 A *node* is a general term that refers to multiple, more specific objects.
-Basically, it is a networked object that is known to MAAS.
+Nodes are managed by MAAS through a life cycle, from enlistment into MAAS,
+through commissioning, allocation and deployment. Nodes are then either
+released back into the pool or retired.
 
 Nodes include:
 
 - Controllers
 - Machines
 - Devices
+
+See [Node actions][node-actions] below for an overview of a node's life cycle.
 
 ### Controllers
 
@@ -429,6 +433,7 @@ action 'Rescue mode'.
 
 <!-- LINKS -->
 
+[node-actions]: #node-actions
 [maas-ha]: manage-ha.md
 [zone-examples]: intro-concepts-zones.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
