@@ -284,8 +284,8 @@ Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 'Ready'.
 
 Commissioning enables MAAS to build a detailed inventory of RAM, CPU, storage,
-NICs and accelerators like GPUs itemised and usable as constraints for machine
-selection. 
+NICs and accelerators like GPUs. These are itemised and usable as constraints
+for machine selection. 
 
 If commissioning is unsuccessful, the status becomes 'Failed commissioning'.
 
