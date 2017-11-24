@@ -13,8 +13,8 @@ MAAS, not to mention the rest of this documentation.
 ## Nodes
 
 A *node* is a general term that refers to multiple, more specific objects.
-Nodes are managed by MAAS through a life cycle, from enlistment into MAAS,
-through commissioning, allocation and deployment. Nodes are then either
+Nodes are managed by MAAS through a life cycle, from adding and enlistment into
+MAAS, through commissioning, allocation and deployment. Nodes are then either
 released back into the pool of nodes or retired.
 
 Nodes include:
@@ -29,7 +29,8 @@ See [Node actions][node-actions] below for an overview of a node's life cycle.
 
 There are two types of controllers: a *region controller* and a *rack
 controller*. The region controller deals with operator requests while one or
-more rack controllers provide the high-bandwidth services to multiple racks.
+more rack controllers provide the high-bandwidth services to multiple server
+racks, as typically found in a data centre.
 
 A region controller consists of:
 
