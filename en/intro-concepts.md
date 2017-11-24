@@ -13,7 +13,9 @@ MAAS, not to mention the rest of this documentation.
 ## Nodes
 
 A *node* is a general term that refers to multiple, more specific objects.
-Basically, it is a networked object that is known to MAAS.
+Nodes are managed by MAAS through a life cycle, from adding and enlistment into
+MAAS, through commissioning, allocation and deployment. Nodes are then either
+released back into the pool of nodes or retired.
 
 Nodes include:
 
@@ -21,10 +23,14 @@ Nodes include:
 - Machines
 - Devices
 
+See [Node actions][node-actions] below for an overview of a node's life cycle.
+
 ### Controllers
 
 There are two types of controllers: a *region controller* and a *rack
-controller*.
+controller*. The region controller deals with operator requests while one or
+more rack controllers provide the high-bandwidth services to multiple server
+racks, as typically found in a data centre.
 
 A region controller consists of:
 
@@ -47,7 +53,10 @@ A rack controller provides:
 - power management
 
 A rack controller is attached to each "fabric". As the name implies, a common
-setup is to have a rack controller in each data centre server rack.
+setup is to have a rack controller in each data centre server rack. The rack
+controller will cache large items for performance, such as operating system
+install images, but maintains no exclusive state other than the credentials
+required to talk to the region controller.
 
 Both the region controller and the rack controller can be scaled-out as well
 as made highly available. See [MAAS HA][maas-ha] for high availability.
@@ -230,67 +239,12 @@ lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
 
 
-## Node statuses
-
-Node *statuses* are labels used to describe the general state of a node as
-known to MAAS. A node will undergo various manipulations during their time
-spent in MAAS and its status will change accordingly. A status change is
-usually caused by an *action* (see next section) that is applied to the node.
-Below is the full list of statuses and their meaning, arranged alphabetically.
-
-### Allocated
-The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
-
-### Broken
-The node is broken. See node action 'Mark broken'.
-
-### Commissioning
-The node is in the process of commissioning. See node action 'Commission'.
-
-### Deployed
-The node is deployed. See node action 'Deploy'.
-
-The visible status will be "Deployed" followed by the name of the chosen OS (e.g.
-'Deployed Ubuntu 16.04 LTS').
-
-### Deploying
-The node is in the process of deploying. See node action 'Deploy'.
-
-The visible status will be *Deploying 'OS'*, where 'OS' is the name of the
-OS being deployed (e.g. 'Deploying Ubuntu 16.04 LTS').
-
-### Entering rescue mode
-The node is in the process of entering rescue mode. See node action 'Rescue
-mode'.
-
-### Exiting rescue mode
-The node is in the process of exiting rescue mode. See node action 'Exit rescue
-mode'.
-
-### Failed Commissioning
-The node failed to commission.
-
-### Failed Deployment
-The node failed to deploy.
-
-### New
-The first stage of a node's life in MAAS. Typically, a node with this status
-has just been added to MAAS.
-
-### Ready
-The node has been commissioned and is ready for use.
-
-### Rescue mode
-The node is in rescue mode and is ready to accept SSH connections. See node
-action 'Rescue mode'.
-
-
 ## Node actions
 
 Node *actions* are essentially: "things you can do with nodes". They can be
 triggered via the web UI or the MAAS CLI. With the former, they are managed
 with the 'Take action' button in the top right corner. An action usually
-changes the *status* (see above section) of a node. Below is the full list of
+changes the *status* (see next section) of a node. Below is the full list of
 possible actions and their meaning, arranged alphabetically.
 
 ### Abort
@@ -309,7 +263,11 @@ used for machine reservation.
 Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 'Ready'.
 
-If unsuccessful, the status becomes 'Failed commissioning'.
+Commissioning enables MAAS to build a detailed inventory of RAM, CPU, storage,
+NICs and accelerators like GPUs. These are itemised and usable as constraints
+for machine selection. 
+
+If commissioning is unsuccessful, the status becomes 'Failed commissioning'.
 
 Any time a node's underlying networking or disk subsystem has changed it should
 be re-commissioned. Typically, you would mark the node as 'Broken' (see below),
@@ -323,7 +281,11 @@ rebooting it will be enlisted once more (status 'New').
 Deploys a node. Changes a node's status from 'Ready' (or 'Allocated') to
 a deployed status. Includes action 'Power on'.
 
-If unsuccessful, the status becomes 'Failed deployment'.
+During deployment, MAAS turns on the machine and installs a complete server
+operating system without manual intervention, configuring network interfaces,
+disk partitions and more automatically.
+
+If deployment is unsuccessful, the status becomes 'Failed deployment'.
 
 Note that Juju, often used in conjunction with MAAS, also uses the term
 "deploy" to mean "deploy an application".
@@ -383,12 +345,79 @@ then to 'Rescue mode' when the operation is complete.
 ### Set Zone
 Puts the node in a specific zone.
 
+
+## Node statuses
+
+Node *statuses* are labels used to describe the general state of a node as
+known to MAAS. A node will undergo various manipulations during their time
+spent in MAAS and its status will change accordingly. A status change is
+usually caused by an *action* (see above section) that is applied to the node.
+Below is the full list of statuses and their meaning, arranged alphabetically.
+
+Some aspects of a node can only be modified when a node has a certain status.
+Examples:
+
+- network interfaces cannot be modified without a status of either 'Ready' or
+  'Broken'.
+- storage cannot be modified without a status of either 'Ready' or 'Allocated'.
+
+### Allocated
+The node is allocated (reserved) to a MAAS user. See node action 'Acquire'.
+
+### Broken
+The node is broken. See node action 'Mark broken'.
+
+### Commissioning
+The node is in the process of commissioning. See node action 'Commission'.
+
+### Deployed
+The node is deployed. See node action 'Deploy'.
+
+The visible status will be the name of the chosen OS (e.g. 'Ubuntu 16.04 LTS').
+
+### Deploying
+The node is in the process of deploying. See node action 'Deploy'.
+
+The visible status will be *Deploying to 'OS'*, where 'OS' is the name of the
+OS being deployed (e.g. 'Deploying to Ubuntu 16.04 LTS').
+
+### Entering rescue mode
+The node is in the process of entering rescue mode. See node action 'Rescue
+mode'.
+
+### Exiting rescue mode
+The node is in the process of exiting rescue mode. See node action 'Exit rescue
+mode'.
+
+### Failed Commissioning
+The node failed to commission.
+
+### Failed Deployment
+The node failed to deploy.
+
+### New
+The first stage of a node's life in MAAS. Typically, a node with this status
+has just been added to MAAS.
+
+### Ready
+The node has been commissioned and is ready for use.
+
+A node in this state has configured BMC credentials (on IPMI based BMCs) for
+ongoing power control, ensuring that MAAS can start or stop the machine and
+allocate or (re)deploy it with a fresh operating system.
+
+### Rescue mode
+The node is in rescue mode and is ready to accept SSH connections. See node
+action 'Rescue mode'.
+
+
 <!-- IMAGES -->
 
 [img__fabrics-spaces]: ../media/intro-concepts__fabrics-spaces.png
 
 <!-- LINKS -->
 
+[node-actions]: #node-actions
 [maas-ha]: manage-ha.md
 [zone-examples]: intro-concepts-zones.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
