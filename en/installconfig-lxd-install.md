@@ -3,15 +3,20 @@ TODO:  Text needs a review
 
 # Install locally with LXD
 
-Installing MAAS in a container is a typical setup for those users who would
-like test MAAS, or would like to use their their machine for other tasks at the
-same time. 
+# Install with LXD
+
+[LXD][link-lxd] is a manager for Linux-based containers (LXC), offering a user
+experience similar to virtual machines without the same overheads.
+
+Using LXD to install MAAS into containers is a good choice for users who want
+to test MAAS, or who may want to continue leveraging an existing container
+architecture or policy. 
 
 MAAS running with LXD has the following requirements:
 
--   Create a bridge (for example, it can be br0).
--   Install LXD and ZFS.
--   Create a Container profile for MAAS
+- a network bridge on the LXD host (e.g. lxdbr0)
+- LXD and ZFS
+- a container profile
 
 ### Install LXD and ZFS
 
@@ -23,6 +28,14 @@ sudo modprobe zfs
 sudo lxd init
 ```
 
+The *sudo lxd init* command will trigger a series of configuration questions.
+Except in the case where the randomly chosen subnet may conflict with an
+existing one in your local environment, all questions can be answered with
+their default values.
+
+The bridge network is configured via a second round of questions and is named
+*lxdbr0* by default. 
+
 ### Create a LXC profile for MAAS
 
 First, lets create a container profile by copying the default:
@@ -31,14 +44,22 @@ First, lets create a container profile by copying the default:
 lxc profile copy default maas
 ```
 
-Second, bind the NIC inside the container (eth0) against the bridge on the
-physical host (br0):
+Second, bind the network interface inside the container (eth0) to the bridge on
+the physical host (lxdbr0):
 
 ```bash
-lxc profile device set maas eth0 parent br0
+lxc profile device set maas eth0 parent lxdbr0
 ```
 
-Third, edit the container profile (lxc profile edit maas) with:
+Thirdly, the *maas* container profile needs to be edited to include a specific
+set of privileges. Enter the following to open the profile in your editor of
+choice:
+
+```bash
+lxc profile edit maas
+```
+
+And replace the `{}` after *config* with the following (excluding `config:`):
 
 ```yaml
 config:
@@ -49,13 +70,16 @@ config:
   security.privileged: "true"
 ```
 
-And lastly, ensure that the LXC container has loop devices added:
+The final step adds the 8 necessary loop devices to LXC:
 
 ```bash
 for i in `seq 0 7`; do lxc profile device add maas loop$i unix-block path=/dev/loop$i; done
 ```
 
-### Launch LXD container
+When correctly configured, the above command outputs 
+`Device loop0 added to maas` for each loop device.
+
+### Launch and access the LXD container
 
 Once the profile has been created, you can now launch the LXC container:
 
@@ -71,5 +95,13 @@ access the container with:
 ```bash
 lxc exec xenial-maas bash
 ```
-You can now proceed with the [standard package
-installation](installconfig-package-install.md). 
+
+### Install MAAS
+
+In the container (or containers), install MAAS via packages. See
+[Install from packages][maas-install-packages]. 
+
+
+<!-- LINKS -->
+[link-lxd]: https://linuxcontainers.org/lxd/
+[maas-install-packages]: installconfig-package-install.md
