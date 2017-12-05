@@ -1272,7 +1272,34 @@ MAAS selects one of the available rack controllers to power control or
 query a BMC. The same rack controller that powers the BMC does not need
 to be the rack controller that the machine PXE boots from.
 
+# Get in touch
+
+We'd love to hear about how you're using MAAS, whether it's at the smallest of
+scales or the largest. Our team is always approachable and can usually be found
+in the following locations:
+
+- Join us on IRC. We can be found on the [maas][maas-freenode] channel on
+  [freenode][freenode]. 
+- Subscribe to the [maas-devel][mailing-list] mailing list, a great place to
+  ask questions.
+
 
 <!-- LINKS -->
-
+[curtin]: https://launchpad.net/curtin
+[cloudinit]: https://cloud-init.io/
+[tgt]: http://stgt.sourceforge.net/
+[snapio]: https://snapcraft.io/
+[maasapi]: api.html
+[djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
+[fio]: https://github.com/axboe/fio
+[7zip]: http://www.7-zip.org
+[ephemeral]: #ephemeral-images-now-use-http
+[contactus]: https://maas.io/contact-us
+[snapinstall]: installconfig-snap-install.md
+[hardware-testing]: nodes-hw-testing.md
+[testing-scripts]: nodes-hw-scripts.md
+[node-overview]: nodes-overview.md
+[maas-freenode]: http://webchat.freenode.net/?channels=maas
+[freenode]: https://freenode.net/
+[mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
 [rfc2137]: https://tools.ietf.org/html/rfc2137
