@@ -1,191 +1,285 @@
-Title: Historical Release Notes | MAAS
-table_of_contents: True
+Title: Historical Release Notes
 
 
 # Historical Release Notes
 
-## 2.2.0 (beta4)
+# 2.3
 
-## Major new features
+## Important announcements
 
-### Testing
+### Machine network configuration now deferred to cloud-init
 
-MAAS 2.2 Beta 4 introduces environment tests to allow the administrator to
-verify that their environment is setup correctly:
+Machine network configuration is now handled by [cloud-init][cloudinit].
 
-- Internet Connectivity test  
-  Ensures machines can connect to the Internet.
-- NTP connectivity  
-  Ensures that machines can connect to the configured NTP server, whether this
-  is MAAS or an external NTP server.
+With previous versions of MAAS (and [curtin][curtin]), network configuration
+was performed directly by curtin during the installation process. In an effort
+to improve robustness, this network configuration has been consolidated with
+cloud-init.
 
-### Intel RSD improvements
-
-MAAS 2.2b4 introduces further improvements to Intel RSD usage in MAAS:
-
-- Pod details page  
-  A pod details page has been improved by:
-    - Ability to show the composed machines (those that belong to the specific
-      pod from its details page).
-    - Add the ability to show and change the power management or pod management
-      credentials and endpoints.
-- Constraints  
-  Ability to specify constraints to request machines based on the Pod (by type or
-  name), providing the ability to select from a set of pods or an specific pod.
-
-### UX Improvements
-
-Several UI improvements have been made:
-
-- Design Change - Tabs  
-  Following the UX improvements from our design team, the 2.2b4 UI has now
-  improved navigation. This includes a new Tab based approach for second level
-  navigation items (for example, machines, devices and controllers under the
-  Nodes tag).
-- Better error surfacing  
-  Add error surfacing when editing node interfaces (including both Machine and
-  devices interfaces).
-
-### Windows deployments
-
-Improve the ability to configure storage configuration for Windows. This
-includes the ability to select the root device where windows should be
-installed on.
-
-Note that this ability extends to all DD images that MAAS can deploy.
-
-### Package Repositories
-
-MAAS 2.2 Beta 4 improves its package repositories support for Ubuntu Mirrors
-adding the ability to disable components. This components are Universe,
-Multiverse and Restricted.
+MAAS continues to pass network configuration to curtin which in turn delegates
+the configuration to cloud-init.  
 
 
-<!-- ===================================================================== -->
+### Ephemeral images over HTTP
+
+To reduce the number of dependencies and improve reliability, MAAS ephemeral
+(network boot) images are no longer loaded using iSCSI (tgt). By default, these
+images are now obtained using HTTP requests to the rack controller.
+
+After upgrading to MAAS 2.3, please ensure you have the latest available
+images. For more information please refer to 
+[Ephemeral images now use HTTP][ephemeral] below.
 
 
-## 2.2.0 (beta3)
+### CentOS and Windows advanced network configuration
 
-### Hardware tests - running by default during Commissioning
-
-MAAS 2.2 introduces the ability to perform hardware tests. As part of MAAS beta
-3, MAAS introduces the ability to run disk tests, which can be run as part of
-the commissioning processes, or as a separate action from Ready or Deployed.
-
-Please be aware that running hardware tests during the commissioning process
-can prevent machines from becoming 'Ready' for deployment, if the hardware
-tests fail.
-
-For more information about the Hardware Testing feature please refer to the
-following section.
-
-### Intel Rack Scale Design - Dynamically creating machines
-
-MAAS 2.2 Beta 2 introduced support for Intel's Rack Scale Design (RSD). RSD is
-a hardware architecture that allows the dynamic composition of physical systems
-from a pool of available hardware resources.
-
-Starting from Beta 3, MAAS now extends its support for RSD allowing the
-creation (composition) of machines dynamically. This allows administrators and
-users to request a machine (allocate) not previously available to MAAS, and
-dynamically create (compose) one within the RSD system. This machine can then
-be deployed.
-
-Adding such support, it allows Juju to deploy workloads against a MAAS that has
-an RSD Pod, with no previously known (available - Ready) machines.
+MAAS 2.3 now supports the ability to perform network configuration for CentOS
+and Windows via [cloud-init][cloudinit]. The MAAS CentOS images now use the
+latest available version of cloud-init to support these features.
 
 
-## Major new features
+## New features and improvements
 
-### Hardware Testing
+### CentOS network configuration
 
-Starting from MAAS, MAAS provides the ability to perform specific hardware
-tests. The hardware testing feature provides administrators with a predefined
-set of tests that can be run to ensure correct operation of their hardware
-before making it available for usage. The hardware testing feature will include
-Disk, CPU and Memory tests.
+MAAS now performs machine network configuration for CentOS 6 and 7, providing
+those operating systems with networking feature parity with Ubuntu.
 
-As of MAAS 2.2 Beta 3, only Disk hardware tests have been made available:
+The following can now be configured for MAAS deployed CentOS images:
 
-- Disk status  
-  The Disk Status test (smartctl-validate) uses the smartctl tool
-  to verify existing SMART data on all drives has not detected any errors.
-- Disk Integrity  
-  MAAS provides the ability to run SMART tests. This includes:
-    - smartctl-short & smartctl-long
-      Runs the SMART self tests to validate health on all disks. It provides a long
-      running and a short running test.
-    - Smartctl-conveyance
-      Runs the conveyance SMART self tests to validate health on all disks.
-- Memory  
-  For memory, MAAS provides the following tests:
-    - Memtestr
-      Runs memtester over all available RAM.
-    - Stress-ng
-      Runs the Stress-NG tests over 12 hours against RAM.
-  NOTE: Please note that these are long running tests and will take hours to
-  complete.
-- CPU  
-  CPU tests include Stress-NG stress tests over 12 hours.
+- Bonds, VLAN and bridge interfaces.
+- Static network configuration.
 
-### Intel RSD - Dynamic Composition
-
-The dynamic composition feature allows administrators to request (allocate)
-machines from an Intel RSD without having to manually compose such machine.
-This allows modeling tools, such as Juju, to request a machine from MAAS when
-there are no previously known machines, and dynamically create and deploy one
-for a specific workload.
-
-Administrators not using Juju can request a machine via the API, and if no
-other machine satisfies the specific or default constraints, a machine will be
-automatically created from an RSD pod if one available.
-
-### Web UI - MAAS Pods & Intel RSD
-
-The MAAS web UI introduces a new 'Pods' tab. This is where MAAS will list
-composable hardware systems like the Intel RSD. MAAS 2.2 Beta 2 introduces the
-ability for MAAS to add and control an Intel RSD via the MAAS API/CLI. MAAS 2.2
-Beta 3 introduces a basic Web UI feature to support and manage the Intel RSD
-Pods (and any other composable hardware). This changes include:
-
-- List Pods - lists all available pods under the 'Pods' tab:
-    - This provides the ability to list all available pods and provide a summary of
-      the usage statistics for a pod.
-- Add Pod - ability to add new Pods from the 'Pods' tab.
-- Pod Details Page - provides more detailed information about a pod:
-    - This page provides the ability to obtain more detail information of a
-      particular pod. At the moment, it will provide information about the
-      available and used resources.
-
-### Facebook Wedge 40 & Wedge 100 discovery
-
-MAAS now has the ability to automatically discover and manage the Facebook
-Wedge 40 and Wedge 100 switches. This allows MAAS to automatically discover the
-Switch BMC and power manage as any other servers, in order to deploy Ubuntu
-onto the switches. MAAS will also automatically tag the machine to easily
-identify it.
-
-Additionally, MAAS will automatically identify if the Trident or Tomahawk ASICs
-are connected to the switch, and will automatically identify them via tags.
-
-### Web UI - Device Details Page
-
-Starting from Beta 3, MAAS 2.2 now provides a Details Page for 'Devices',
-allowing administrators to both, add new interfaces to a device, or modifying
-the existing interfaces.
+Our thanks to the [cloud-init][cloudinit] team for improving the network
+configuration support for CentOS.
 
 
-<!-- ===================================================================== -->
+### Windows network configuration
+
+MAAS can now configure NIC teaming (bonding) and VLAN interfaces for Windows
+deployments. This uses the native NetLBFO in Windows 2008+.
+
+[Contact us][contactus] for more information.
 
 
-## 2.2.0 (beta2)
+### Improved hardware testing
 
-### Composable hardware
+MAAS 2.3 introduces a new [hardware testing][hardware-testing] framework that
+significantly improves the granularity and provision of hardware testing
+feedback. These improvements include:
 
-MAAS now supports composable hardware - The Intel Rack Scale Design
+- **Run individual tests**.
+  The new framework allows MAAS to run each component individually. This
+  enables MAAS to run tests against storage devices, for example, and capture
+  results separately.
+- **Define a [custom testing script][testing-scripts] with a YAML definition**.
+  The ability to describe custom hardware tests with a YAML definition enables
+  MAAS do the following:
+    - Collate details about the tests, such as script name, description, required
+      packages, and other metadata about what information the script will
+      gather. All of which will be used by MAAS to render in the UI.
+    - Determine whether the test supports a parameter, such as storage,
+      that lets the test to be run against individual storage devices.
+    - The option to run tests in parallel.
+- **Performance metrics**.
+  Capture performance metrics for the tests that can provide them:
+    - CPU performance now offers a new *[7zip][7zip]* test which includes metrics.
+    - Storage performance now include a new *[fio][fio]* test with metrics.
+    - The storage test *badblocks* has been improved to provide the number of
+     badblocks found as a metric.
+- **Failed testing override**. 
+  The ability to override a machine that has been marked ‘Failed testing’. This
+  allows administrators to acknowledge that a machine is usable despite it
+  having failed testing.
+
+Hardware testing improvements include the following web UI changes:
+
+- **Machine Listing page**:
+    - Displays whether a test is pending, running or failed for the machine
+      components (CPU, Memory or Storage.)
+    - Displays whether a test not related to CPU, Memory or Storage has failed.
+    - Displays a warning when the machine has been overridden and has failed
+      tests but is in a ‘Ready’ or ‘Deployed’ state.
+- **Machine Details page**:
+    - The *Summary tab* now provides hardware testing information about the different
+      components (CPU, Memory, Storage).
+    - The *Hardware Tests /Commission tab* now displays an improved view of the latest
+      test run, its run time as well as an improved view of previous results. It
+      also adds more detailed information about specific tests, such as status, exit
+      code, tags, runtime and logs/output (such as stdout and stderr).
+    - The *Storage tab* now displays the status of specific disks, including whether a
+      test is OK or failed after running hardware tests.
+
+For more information, please refer to
+[https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing](https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing)
+
+
+### Network discovery and beaconing
+
+In order to confirm network connectivity and aide with the discovery of VLANs,
+fabrics and subnets, MAAS 2.3 introduces network beaconing.
+
+MAAS now sends out encrypted beacons to facilitate network discovery and
+monitoring. Beacons are sent using IPv4 and IPv6 multicast (and unicast) to UDP
+port 5240.
+
+When registering a new controller, MAAS uses the information gathered from the
+beaconing protocol to ensure that newly registered interfaces on each
+controller are associated with existing known networks in MAAS.
+
+Using network beaconing, MAAS can better correlate which networks are
+connected to its controllers, even if interfaces on those controllers are not
+configured with IP addresses.
+
+Future uses for beaconing could include validation of networks from
+commissioning nodes, MTU verification and a better user experience when
+registering new controllers.
+
+
+### Upstream proxy
+
+MAAS 2.3 enables an upstream HTTP proxy to allow MAAS-deployed machines to
+continue to use a caching proxy for repositories. This provides greater
+flexibility for closed environments, including:
+
+- Enabling MAAS itself to use a corporate proxy while allowing machines to
+  continue to use the MAAS proxy.
+- Allowing machines that don’t have access to a corporate proxy to gain network
+  access using the MAAS proxy.
+
+Upstream proxy support includes an improved configuration pane on the
+settings page. See *Settings > Proxy* for more details.
+
+
+### Ephemeral images now use HTTP
+
+Historically, MAAS used [tgt][tgt] to provide images over iSCSI for the
+ephemeral environments (such as during commissioning, the deployment
+environment and rescue mode). MAAS 2.3 changes the default behaviour by now
+providing images over HTTP instead.
+
+This change means that *initrd* (run via PXE) will contact the rack controller to
+download the image to load in the ephemeral environment directly.
+
+Support for using 'tgt' is being phased out in MAAS 2.3 and will no longer be
+supported from MAAS 2.4 onwards.
+
+ Users who would like to continue to use and load their ephemeral images via
+'tgt' they can disable http boot with the following command.
+
+```bash
+maas $PROFILE maas set-config name=http_boot value=False
+```
+
+
+### Usability improvements (web UI)
+
+Alongside the UI improvements outlined above, MAAS 2.3 introduces an improved
+web UI design for the machines, devices and controllers detail pages that
+include the following changes:
+
+- **[Summary tab][node-overview]**.
+  Now only displays details on a specific node (machine, device or controller),
+  organised across cards.
+- **Configuration**. 
+  This includes all editable settings for the specific node (machine, device or
+  controllers).
+
+#### Controller versions and notifications
+
+The MAAS web UI now displays the version of each running controller and notifies the users
+of any version mismatch between the region and rack controllers.
+
+This helps administrators identify potential problems when upgrading MAAS on a
+multi-node MAAS cluster, such as within a HA setup.
+
+#### Other UI improvements
+
+- Added DHCP status column on the *Subnets* tab.
+- Added architecture filters
+- VLAN and Space details page no longer allows inline editing.
+- VLAN page adds the IP ranges tables.
+- Zones page converted to AngularJS (away from YUI).
+- New warnings when changing a subnet’s mode (*Unmanaged* or *Managed*).
+- Renamed *Device Discovery* to *Network Discovery*.
+- When MAAS cannot determine the hostname for discovered devices, it will show
+  the hostname as 'unknown' and greyed-out rather than using the MAC address
+  manufacturer as the hostname.
+
+
+### Rack controller deployment
+
+MAAS 2.3 can now automatically deploy rack controllers when deploying a
+machine.
+
+This is accomplished by providing [cloud-init][cloudinit] user data. Cloud-init
+will install and configure the rack controller after a machine has been
+deployed. Upon rack controller registration, MAAS will automatically detect
+whether the machine is a rack controller and process the transition automatically.
+
+To deploy a rack controller, users can do so via the API (or CLI), e.g:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID install_rackd=True
+```
+
+!!! Note:
+    This features makes use of the MAAS [snap][snapio] to configure the rack
+    controller on the deployed machine. 'snap store' mirrors are not yet
+    available, which means the machine will need access to the internet.
+
+
+### Improved DNS reloading
+
+This release includes various improvements to the DNS reload mechanism,
+allowing MAAS to be smarter about when to reload DNS after changes have been
+automatically detected or made.
+
+
+### API improvements
+
+The machines [API][maasapi] endpoint now provide more information on configured
+storage and provides additional output that includes *volume_groups*, *raids*,
+*cache_sets*, and *bcaches* fields.
+
+
+### Django 1.11 support
+
+MAAS 2.3 now supports the latest [Django LTS][djangolts] version, Django 1.11. This allows
+MAAS to work with the newer Django version in Ubuntu Artful, which serves as a
+preparation for the next Ubuntu LTS release.
+
+- Users running MAAS in Ubuntu Artful will use Django 1.11.
+- Users running MAAS in Ubuntu Xenial will continue to use Django 1.9.
+
+### Issues fixed with this release
+
+For issues fixed in MAAS 2.3, please refer to the following milestone:
+
+- [https://launchpad.net/maas/+milestone/2.3.0](https://launchpad.net/maas/+milestone/2.3.0)
+
+For more information on previous bug fixes across 2.3, please refer to the
+following milestones:
+
+- [https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
+- [https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
+- [https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
+- [https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
+- [https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
+- [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
+
+
+# 2.2
+
+## Important announcements
+
+### Support for composable hardware - Intel Rack Scale Design
+
 The MAAS team is excited to announce the support for the Intel Rack Scale
 Design (RSD). Intel Rack Scale Design (RSD) is a hardware architecture that
-allows the dynamic composition of physical systems from a pool of available
+allows for the dynamic composition of physical systems from a pool of available
 hardware resources. 
 
 MAAS, as a cloud-like, scale-out bare-metal provisioning system, will leverage
@@ -195,162 +289,304 @@ support for RSD, MAAS introduces the ability to manually or dynamically compose
 administrators to request machines with specific resources on demand and be
 able to deploy their workloads on them.
 
+### Migrating spaces from subnets to VLANs
 
-## Major new features
-
-### MAAS support for Intel RSD - API only
-
-MAAS 2.2b2 introduces initial support for Intel RSD. It provides the ability
-to :
-
-- Add a new Intel RSD POD into MAAS, allowing users to have a full view of the
-  available and used resources. 
-- Add the ability to discover pre-composed resources, allowing MAAS to discover
-  machines that have been created before adding the Intel RSD POD into MAAS.
-- Add the ability to create (compose) new machines.
-
-### Notifications
-
-MAAS 2.2b2 introduces a new notification system. The notification system
-surfaces various messages to the user via the web UI, allowing to have more
-visibility as to what’s going on with the system. Initially, users will be
-notified when :
-
-- When Rack Controllers get disconnected
-- When image import fails on your region controller.
-- When Rack Controllers have images that the Region Controller does not.
-
-### Web UI Visual updates
-
-MAAS 2.2b2 now has an updated web UI that includes:
-
-- Updated all icons and colour set within the framework. This will keep inline
-  with the Vanilla Framework and the new visual update which is going across
-  all products
-- Links have changed from black to blue. This keeps MAAS inline with Juju and
-  other Cloud products also improves the visual UX.
-- Improved the responsive nature of MAAS. Tables especially have been improved.
-- The new card view and label using aria-label improves the readability and
-  uses on mobile / small screens.
-- Navigation responsive issues have been resolved.
-- Flash messages has been removed and now replaced with the improved
-  notification pattern.
-- New utility classes u-display--mobile & u-display--desktop have been added
-  for extra responsive development / design flexibility.
-- Accordion styles have been improved. Removing the cross style and keeping it
-  consistent with our remove style.
-
-
-<!-- ===================================================================== -->
-
-
-## 2.2.0 (beta1)
-
-### Migrating MAAS L3 to L2 spaces
-
-MAAS 2.2 has changed the definition of spaces from a Layer 3 concept to a Layer
-2 concept.
+The definition of spaces has changed from a Layer 3 concept to a Layer 2
+concept.
 
 The spaces definition in MAAS (first introduced in MAAS 1.9) is "a set of
 subnets that can mutually communicate". The assumption is that these spaces can
 route to each other, and have appropriate firewall rules for their purposes.
-(For example, a dmz space might contain subnets with internet access, and a
-storage space might contain subnets that can access the same storage networks.)
-Juju uses the current definition in order to ensure that deployed applications
-have access to networks appropriate for the services they provide.
+(For example, a "dmz" space might contain subnets with internet access, or a
+"storage" space might contain subnets that can access the same storage
+networks.) Juju uses the current definition in order to ensure that deployed
+applications have access to networks appropriate for the services they provide.
 
 The current definition of spaces as a L3 concept is problematic, in that
 sometimes Juju wants to deploy applications that themselves create a Layer 3
 subnet. Therefore, it was decided that the concept of spaces will be pushed
 down a layer (to apply to VLANs in MAAS).
 
-With spaces as a Layer 2 concept, it is is now "a set of VLANs whose subnets
-can mutually communicate".
-
-As such, starting from MAAS 2.2b1 :
+With spaces as a Layer 2 concept, it is now "a set of VLANs whose subnets can
+mutually communicate". As such:
 
 - VLANs will gain a 'space' reference, and subnets will have their spaces
-  migrated to the VLANs they are on. On upgrades, if two subnets on the same
-  VLAN are in different spaces, the most recently created space will be used for
-  both.
+  migrated to the VLANs they are on.
+     - On upgrades, if two subnets on the same VLAN are in different spaces,
+       the most recently created space will be used for both.
+- Spaces will become optional.
+     - Fresh installs will not have a default space (e.g. space-0).
+     - On upgrades, if only the default space (space-0) exists, it will be
+       removed.
 
-- Spaces will become optional. Fresh installs will not have a default space
-  (e.g. space-0). On upgrades, if only the default space (space-0) exists, it
-  will be removed.
+The following API changes will occur in MAAS 2.2:
 
-The following API changes will occur in MAAS 2.2 :
+- Editing a subnet's space will no longer be possible. Spaces must now be
+  assigned on a per-VLAN basis. (Note: this is an API-breaking change; any usage
+  of the MAAS API involving assigning subnets to spaces must be updated.)
+- For backward compatibility, a subnet's endpoint will present the underlying
+  VLAN's space as a read-only value.
 
-- Editing a subnet's space will no longer be possible (breaks backwards
-  compatibility). Spaces must now be edited each VLAN.
-
-- For backward compatibility, the subnets endpoint will present the underlying
-  VLAN’s space.
-
-Recommended actions for MAAS administrators prior to upgrading to MAAS 2.2 :
+Recommended actions for MAAS administrators prior to upgrading to MAAS 2.2:
 
 - Ensure that no two subnets in the same VLAN are in different spaces, so that
   the upgrade path migrates the expected space to the VLAN.
+- In order to preserve backward compatibility with Juju charms that use the
+  subnet-based definition of a space, ensure that each space contains subnets
+  capable of mutual communication. It may be helpful to view the list of subnets
+  grouped by space (using the "Group by: Spaces" option on the Subnets page in
+  the web UI) in order to verify that each space is defined correctly.
 
-- Ensure that each VLAN with an assigned space will contain subnets which can
-  mutually communicate with other subnets whose VLAN is in the same space. This
-  will allow backward compatibility with Juju charms which use the Layer 3
-  definition of spaces.[2]
-
-NOTE: Please note that not breakage is expected, provided that most people are
-not using spaces. For those who we know are, they are using them in a
-compatible way. If you experience some type of issue, please contact us.
+Please note that MAAS and Juju make assumptions about the security and
+isolation of a network based on the space defined for a VLAN (and, by
+extension, each subnet in that VLAN). Since a VLAN containing subnets in
+multiple spaces implies lack of network isolation, MAAS and Juju cannot support
+that use model.
 
 
-## Major new features
+## New features & improvements
 
-### DHCP Relay support
+### MAAS Pods & composable hardware (and VMs)
+MAAS 2.2 introduces a new concept called *pods*. In MAAS, pods are an abstraction
+to describe the availability of resources that allows MAAS to create or compose
+a machine with a set of those resources.
 
-The ability to model the usage of DHCP relays in your networking configuration
-has been added to MAAS. The allows an administrator to identify which VLANs
-will be relayed through another VLAN running a MAAS DHCP server. This will
-configure the MAAS DHCP server running on the primary and/or secondary rack
-controller to include the shared network statement for that VLAN. Note: MAAS
-does not run a DHCP relay service, it is up to the administrator to configure
-the DHCP relay service on the VLAN and point it at the primary and/or secondary
-rack controller running the MAAS DHCP.
+Pods refer to a combination of hardware resources that can be used to construct
+a machine. Each pod can be thought of as a pool of hardware with various
+available resources, such as CPU, RAM, and (local or remote) storage capacity.
+MAAS allows the manual allocation of physical hardware based on resources
+available in the pod. Users can use the MAAS UI or the API to allocate hardware
+from a pod.
+
+In addition, MAAS will now make more efficient use of resources by *dynamically
+allocating hardware* (using Juju or the MAAS API). That is, machines can be
+allocated "just in time", based on CPU, RAM, and storage constraints.
+
+The MAAS 2.2 release supports two types of pods:
+
+- Physical systems with Intel RSD
+- Virtual Machines with libvirt and qemu-kvm
+
+### MAAS Pods - Intel RSD
+MAAS now supports Intel Rack Scale Design (RSD). The supported version of Intel
+RSD is with the Intel OEM PODM/PSME software version 1.2.5, which is APIv1 and
+based on Redfish.
+
+MAAS Intel RSD support includes the following features:
+
+- Ability to discover all available resources
+- Ability to discover all pre-composed (pre-existing) resources or machines
+- Ability to compose machines (manually) via the API or the web UI
+- Ability to compose machines (manually and dynamically) with remote attached
+storage (iSCSI)
+- Ability to (dynamically) compose machines
+
+### MAAS Pods - libvirt with qemu-kvm
+MAAS supports using a given qemu-kvm system as a pod, using libvirt. MAAS will
+treat the libvirt hypervisor as a pod, including the following features:
+
+- Ability to discover all available resources
+- Ability to discover all pre-composed (pre-existing) resources or machines
+- Ability to compose (create) machines (manually) via the API or the web UI
+- Ability to (dynamically) compose machines
+
+### Hardware testing
+Hardware Testing in MAAS allows administrators to perform a series of tests to
+ensure the reliability of CPU, RAM, storage, and network environment.
+Therefore, MAAS administrators can now easily identify hardware issues before
+placing hardware into production. 
+
+Users can run hardware testing as part the commissioning processes, or as a
+separate action available on machines in "Ready" or "Deployed" state. When
+hardware tests are run as part of the commissioning process, machines that fail
+testing will not transition to the "Ready" state, and cannot be used for
+deployment.
+
+The available tests are described below:
+
+#### Disk testing
+- **smartctl-validate** - uses the smartctl tool to verify existing SMART data on all
+  drives has not detected any errors.
+- **smartctl-short & smartctl-long** - runs the SMART self tests to validate health
+  on all disks. It provides a long running and a short running test.
+- **smartctl-conveyance** - runs the conveyance SMART self tests to validate health
+  on all disks.
+- **badblocks** - runs badblocks testing on all disks in parallel.
+- **badblocks-destructive** - runs badblocks destructive tests on all disks in
+  parallel. This means that badblocks will overwrite any date currently on the
+  disks.
+
+#### CPU and RAM testing
+- **stress-ng-cpu-short/long** - stress tests the CPU of a machine for 5 minutes/12
+  hours respectively.
+- **stress-ng-memory-short/long** - stress tests the memory of a machine for 5
+  minutes/12 hours.
+- **memtester** - runs memtester over all available RAM.
+
+#### Environment testing
+- **Internet connectivity** - ensures machines can connect to the Internet.
+- **NTP connectivity** - ensures that machines can connect to the configured NTP
+  server, whether this is MAAS or an external NTP server.
+
+### DHCP relay support
+MAAS now supports the modeling of DHCP relays in your network. For example, if
+an edge switch is forwarding DHCP traffic to a MAAS DHCP server, an
+administrator can tell MAAS that the VLAN at the edge will have its DHCP
+traffic forwarded to a particular destination VLAN. This allows MAAS to
+configure the DHCP server running on the primary and/or secondary rack
+controller to include a shared-network statement for that VLAN. 
+
+Please note that MAAS does not provide a DHCP relay service. Network
+administrators must configure a DHCP relay service to forward DHCP traffic from
+edge networks to the IP addresses of of the primary and/or secondary rack
+controller(s), on the VLAN where DHCP is enabled.
 
 ### Unmanaged subnets
-
-In MAAS 2.0, the concept of a “static range” (a specific range of addresses in
+In MAAS 2.0, the concept of a "static range" (a specific range of addresses in
 which MAAS was allowed to freely allocate addresses from) was removed from
-MAAS, in favor of the idea that MAAS managing entire subnets. As such, the only
+MAAS, in favour of the idea that MAAS managing entire subnets. As such, the only
 way to tell MAAS to not allocate certain sections of a subnet is to add a
 reserved IP range.
 
-Starting from MAAS 2.2b1, however, MAAS enhances this functionality by
-introducing a new concept, called unamanged subnets. Setting a Subnet in MAAS
-as unmanaged, allows administrators to prevent MAAS from using that subnet for
-automatic IP assignment. In other words, it is a way to tell MAAS that it knows
-about a subnet but that it shouldn’t use it. 
+MAAS 2.2 now enhances this functionality by introducing *unmanaged subnets*. By
+setting a subnet in MAAS to "unmanaged", administrators prevent MAAS from using
+that subnet for automatic IP assignment. On unmanaged subnets, MAAS will only
+allocate IP addresses from reserved ranges. If no reserved range exists on an
+unmanaged subnet, IP allocation will fail.
 
-### MAAS is now responsive
+### Notifications (web UI)
+MAAS 2.2 introduces a new notification system that surfaces messages to the
+user via the web UI, providing more visibility to the user when:
 
-For all of those users that use (or would like to use) MAAS web UI from their
-Phone or Tablet, will now have a better user experience, provided that starting
-from 2.2b1, MAAS is now responsive. 
+- Rack controllers get disconnected
+- Image imports fail on your region controller
+- Rack controllers have images that the region controller does not
+- Static IP address allocations on a subnet are close to exhaustion
 
-Phone or Table users will see a new slick design for those devices. Thanks for
-the Ubuntu Web team for putting the effort into making MAAS look great in
-smaller devices.
+### Switch discovery and deployment (Facebook Wedge 40, Wedge 100)
+MAAS now has the ability to automatically discover and manage the Facebook
+Wedge 40 and Wedge 100 switches. When enlisting a Wedge switch, MAAS will
+identify OpenBMC-compatible management, provide power management, and allow the
+deployment of Ubuntu. MAAS will also automatically tag the fact that the device
+is a switch (and which particular model was found) for easy identification.
+
+Additionally, MAAS will automatically identify if the Trident or Tomahawk ASICs
+are connected to the switch, and will automatically identify them via tags.
+
+### MAAS on mobile devices
+The MAAS web UI is now more responsive on mobile devices, resulting in a better
+user experience for users working from their phone or tablet. These users will
+see a slick new design for these devices. Thanks goes to the Ubuntu Web team
+for making MAAS look great on small devices.
+
+### Windows deployments
+MAAS 2.2 improves the ability to configure storage configuration for Windows.
+This includes the ability to select the root device where Windows will be
+installed. Note that this ability extends to all DD images that MAAS can
+deploy.
+
+### Device details (web UI)
+MAAS 2.2 provides a 'Details Page' for 'Devices' allowing administrators to add
+new interfaces as well as modifying existing ones. It also provides the ability
+to update a device hostname and domain name.
+
+### Package repositories
+MAAS 2.2 improves its package repositories support for Ubuntu mirrors by adding
+the ability to disable components. These components are Universe, Multiverse,
+and Restricted.
+
+### Commissioning improvements
+Several improvements have been made to the commissioning process in MAAS 2.2:
+
+- **Ability to select custom commissioning scripts**  
+  As of 2.1, MAAS would run all uploaded custom commissioning scripts that.
+  MAAS 2.2 now provides the ability to select which custom commissioning scripts
+  to run. By default, however, all custom commissioning scripts will be run.
+
+- **Commissioning no longer dependent on a 20 minute timeout**  
+  In 2.1, if the entire commissioning process took longer than 20 minutes to
+  run, the machine would fail to commission.
+
+    As of 2.2, this is no longer the case. MAAS now has the ability to track both,
+  builtin and custom commissioning scripts. This provides the flexibility to add
+  custom commissioning scripts that would take longer than the initial 20 minute
+  timeout, allowing them to fully run their scripts without marking a node
+  'Failed Commissioning'.
+
+### Usability improvements (web UI)
+Several web UI improvements have been made:
+
+- **Navigation improvements - adding tabs**  
+  Following the UX improvements from our design team, the web UI now has improved
+  navigation. This includes a new tab-based approach for second level navigation
+  items (for example, machines, devices, and controllers on the Nodes page).
+
+- **Better error surfacing**  
+  Added error surfacing when editing node interfaces (including both machine and
+  devices interfaces).
 
 
-## Known issues and workarounds
+## Other features
 
-Cannot add a device from the dashboard
-https://bugs.launchpad.net/maas/+bug/1659959
+### MAAS Client Library — libmaas (0.4.1)
 
-Cannot add a device with parent from the dashboard
+The MAAS team is happy to announce the introduction of a new and improved MAAS
+client library (python-libmaas). The MAAS team has started work on an
+asyncio-based client library to allow developers, integrators, and
+administrators to better interact with MAAS.
+
+While this is an initial client library release and does not support all MAAS
+endpoints (nor all operations), we encourage all of our users to try it out and
+provide feedback. The currently supported releases include both MAAS 2.1 & 2.2.
+
+If you wish to contribute to the development of the client library, please see
+below!
+
+**Available endpoints**  
+The library currently has the following endpoints:
+
+- Account
+- Boot-resources, boot-sources (manages images)
+- Machines, devices, region-controllers & rack-controllers (manages nodes)
+- Events (manages machine events)
+- Configuration (settings)
+- Tags
+- Version
+- Zones
+
+**Documentation**  
+If you would like to know more about python-libmaas, please refer to the
+below resources:
+
+For installation and initial steps:
+http://maas.github.io/python-libmaas/index.html
+
+For a few examples:
+
+- http://maas.github.io/python-libmaas/client/index.html
+- http://maas.github.io/python-libmaas/client/nodes/index.html
+
+For pypi information:
+https://pypi.python.org/pypi/python-libmaas
+
+**Contribute**  
+If you would like to contribute you can find the source code in GitHub:
+
+https://github.com/maas/python-libmaas
+
+For more questions, please find us:
+
+- `#maas` on freenode
+- `maas-devel` mailing list is a good place for questions
+
 
 
 <!-- ===================================================================== -->
 
 
-## 2.1
+# 2.1
+
+## Important announcements
 
 ### New MAAS dashboard
 
@@ -627,7 +863,9 @@ The Networks page has been renamed to Subnets.
 <!-- ===================================================================== -->
 
 
-## 2.0
+# 2.0
+
+## Important announcements
 
 ### MAAS 2.0 supported on Ubuntu 16.04 LTS (Xenial)
 
@@ -1034,7 +1272,34 @@ MAAS selects one of the available rack controllers to power control or
 query a BMC. The same rack controller that powers the BMC does not need
 to be the rack controller that the machine PXE boots from.
 
+# Get in touch
+
+We'd love to hear about how you're using MAAS, whether it's at the smallest of
+scales or the largest. Our team is always approachable and can usually be found
+in the following locations:
+
+- Join us on IRC. We can be found on the [maas][maas-freenode] channel on
+  [freenode][freenode]. 
+- Subscribe to the [maas-devel][mailing-list] mailing list, a great place to
+  ask questions.
+
 
 <!-- LINKS -->
-
+[curtin]: https://launchpad.net/curtin
+[cloudinit]: https://cloud-init.io/
+[tgt]: http://stgt.sourceforge.net/
+[snapio]: https://snapcraft.io/
+[maasapi]: api.html
+[djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
+[fio]: https://github.com/axboe/fio
+[7zip]: http://www.7-zip.org
+[ephemeral]: #ephemeral-images-now-use-http
+[contactus]: https://maas.io/contact-us
+[snapinstall]: installconfig-snap-install.md
+[hardware-testing]: nodes-hw-testing.md
+[testing-scripts]: nodes-hw-scripts.md
+[node-overview]: nodes-overview.md
+[maas-freenode]: http://webchat.freenode.net/?channels=maas
+[freenode]: https://freenode.net/
+[mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
 [rfc2137]: https://tools.ietf.org/html/rfc2137
