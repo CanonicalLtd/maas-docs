@@ -18,7 +18,8 @@ a single logical interface. A bond can be created with the following command:
 
 ```bash
 maas $PROFILE interfaces create-bond $SYSTEM_ID name=$BOND_NAME \
-parents=$IFACE1_ID mac_address=$MAC_ADDR parents=$IFACE2_ID bond_mode=$BOND_MODE \
+parents=$IFACE1_ID mac_address=$MAC_ADDR \ 
+parents=$IFACE2_ID bond_mode=$BOND_MODE \
 bond_downdelay=$BOND_DOWN bond_updelay=$BOND_UP mtu=$MTU
 ```
 
