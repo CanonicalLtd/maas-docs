@@ -169,6 +169,9 @@ Press the 'Save' button when you're done.
     A network bridge may be useful if virtual machines or containers are to be
     put on the node. 
 
+See [CLI Interface Management][manage-cli-interfaces] for details on how
+interfaces can be configured from the command line.
+
 <!--
 
 I'D LIKE TO LEAVE THIS OUT UNTIL A CLI COMMAND IS DOCUMENTED AND THEN LINKED. I
@@ -191,6 +194,7 @@ allocation time using the API.
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: nodes-hw-testing.md
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
+[manage-cli-interfaces]: manage-cli-interfaces.md
 
 [img__commission]: ../media/nodes-commission__2.2_commission.png
 [img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
