@@ -45,8 +45,8 @@ parents=$IFACE2_ID bond_mode=$BOND_MODE \
 bond_downdelay=$BOND_DOWN bond_updelay=$BOND_UP mtu=$MTU
 ```
 
-Use the 'parents' parameters to define which interfaces form the aggregation.
-The following is an example of 'create-bond' in action:
+Use the 'parents' parameters to define which interfaces form the aggregate
+interface. The following is an example of 'create-bond' in action:
 
 ```bash
 maas admin interfaces create-bond 4efwb4 name=bond0 parents=4 \
@@ -69,7 +69,7 @@ parent=$IFACE_ID
 Use 'parent' to define the primary interface used for the bridge:
 
 ```bash
-maas admin interfaces create-bridge 4efwb4 name=gmbridged0 parent=4
+maas admin interfaces create-bridge 4efwb4 name=bridged0 parent=4
 ```
 
 ## Delete an interface
