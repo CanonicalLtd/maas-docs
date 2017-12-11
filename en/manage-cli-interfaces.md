@@ -8,12 +8,34 @@ This is a list of interface management tasks to perform with the MAAS CLI. See
 [MAAS CLI][manage-cli] on how to get started.
 
 See [Networking][networking] for an overview of networking and 
-[Commission Nodes][commission-nodes] for more details on managing interfaces. 
+[Commission Nodes][commission-nodes] for more details on managing interfaces
+from the MAAS web UI.
 
+
+## Interface identifiers
+
+A numeric interface identifier is used by the MAAS CLI for many interface
+operations. Use the following command to retrieve the identifier(s):
+
+```bash
+maas $PROFILE interfaces read $SYSTEM_ID
+```
+
+Look for either *id* or the number at the end of an interface's resource URI,
+such as **15** in the following example output:
+
+```json
+"id": 15,
+"mac_address": "52:54:00:55:06:40",
+...
+"name": "ens9",
+...
+"resource_uri": "/MAAS/api/2.0/nodes/4efwb4/interfaces/15/"
+```
 
 ## Create a Bond interface
 
-A *bond interface* is used to aggregate two more more physical interfaces into
+A bond interface is used to aggregate two more more physical interfaces into
 a single logical interface. A bond can be created with the following command:
 
 ```bash
@@ -23,13 +45,11 @@ parents=$IFACE2_ID bond_mode=$BOND_MODE \
 bond_downdelay=$BOND_DOWN bond_updelay=$BOND_UP mtu=$MTU
 ```
 
-Use `maas $PROFILE interfaces read $SYSTEM_ID` to retrieve identifiers for
-a node's interfaces.
-
-The following is an example of *create-bond* in action:
+Use the 'parents' parameters to define which interfaces are used within the
+aggregation. The following is an example of 'create-bond' in action:
 
 ```bash
-maas admin interfaces create-bond 4efwb4 name=gmbond0 parents=4 \
+maas admin interfaces create-bond 4efwb4 name=bond0 parents=4 \
 mac_address=52:52:00:00:00:00 parents=15 bond_mode=802.3ad bond_downdelay=200 \
 bond_updelay=200 mtu=9000
 ```
@@ -37,13 +57,46 @@ bond_updelay=200 mtu=9000
 See [Bond interfaces][commission-nodes-bond] for details on supported bond
 modes and their actions.
 
-## Delete an interface
+## Create a Bridge interface
+
+A bridge interface is created with the following syntax:
 
 ```bash
-maas admin interface delete 4efwb4 17
+maas $PROFILE interfaces create-bridge $SYSTEM_ID name=$BRIDGE_NAME \
+parent=$IFACE_ID
+```
+
+Use 'parent' to define the primary interface used for the bridge:
+
+```bash
+maas admin interfaces create-bridge 4efwb4 name=gmbridged0 parent=4
+```
+
+## Delete an interface
+
+The 'delete' command can be used to delete a bridge interface, a bond interface
+or a physical interface:
+
+```bash
+maas $PROFILE interface delete $SYSTEM_ID $IFACE_ID
+```
+
+For example:
+
+```bash
+maas admin interface delete 4efwb4 15
+```
+
+The following will be output after successfully deleting an interface:
+
+```no-highlight
+Success.
+Machine-readable output follows:
 
 ```
 
+!!! Note:
+    There is no machine-readable output.
 
 ## Create a VLAN interface
 
@@ -82,7 +135,7 @@ Machine-readable output follows:
 ```
 
 Be aware that the $VLAN_ID parameter does not indicate a VLAN ID that
-corresponds to the VLAN tag. You must first create the VLAN, and then associate
+corresponds to the VLAN tag. You must first create the VLAN and then associate
 it with the interface:
 
 ```bash
@@ -91,7 +144,7 @@ parent=$IFACE_ID
 ```
 
 !!! Note:
-    **OUTPUT_VLAN_ID** corresponds to the *id* value output when the vlan was
+    **OUTPUT_VLAN_ID** corresponds to the *id* value output when the VLAN was
     created. 
 
 The following example contains values that correspond to the output above:
@@ -154,7 +207,7 @@ from the command line:
 maas $PROFILE vlan delete $FABRIC__ID $VLAN_ID
 ```
 
-Using the values from previous examples, this would be executed as:
+Using the values from previous examples, this is executed as:
 
 ```bash
 maas admin vlan delete 0 100
