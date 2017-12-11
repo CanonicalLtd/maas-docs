@@ -106,13 +106,17 @@ interface and clicking the now-active 'Create bond' button:
 ![configure setbond][img__configure-setbond]
 
 After clicking the 'Create bond' button, the bond configuration pane will
-appear:
-
-![configure bond][img__configure-bond]
+appear.
 
 From the bond configuration pane, you can rename the bond, select a bond mode
 (see below), assign a MAC address to the aggregate device and attach one or
 more tags. 
+
+The interfaces aggregated into the bond interface are listed below the 'Tags'
+field. Use the 'Primary' column to select the interface to act as the
+primary device.
+
+![configure bond][img__configure-bond]
 
 The following bonding modes can be selected from the 'Bond mode' drop-down
 menu:
@@ -135,7 +139,7 @@ menu:
   provides fault tolerance.
 
 - **802.3ad**: Creates aggregation groups that share the same speed and duplex
-  settings. Utilises all slaves in the active aggregator according to the IEEE
+  settings. Utilises all slaves in the active aggregation according to the IEEE
   802.3ad specification.
 
 - **balance-tlb**: Adaptive transmit load balancing, channel bonding that does
@@ -144,10 +148,6 @@ menu:
 - **balance-alb**: Adaptive load balancing, includes *balance-tlb* plus
   *receive load balancing* (rlb) for IPV4 traffic. Does not require any special
   switch support. The receive load balancing is achieved by ARP negotiation.
-
-A list of interfaces aggregated into the bond interface is situated below the
-'Tags' field. Use the 'Primary' column to select the interface to act as the
-primary device.
 
 Press the 'Save' button when you're done.
 
