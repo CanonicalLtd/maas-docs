@@ -35,7 +35,7 @@ such as **15** in the following example output:
 
 ## Create a Bond interface
 
-A bond interface is used to aggregate two more more physical interfaces into
+A bond interface is used to aggregate two or more more physical interfaces into
 a single logical interface. A bond can be created with the following command:
 
 ```bash
@@ -45,8 +45,8 @@ parents=$IFACE2_ID bond_mode=$BOND_MODE \
 bond_downdelay=$BOND_DOWN bond_updelay=$BOND_UP mtu=$MTU
 ```
 
-Use the 'parents' parameters to define which interfaces are used within the
-aggregation. The following is an example of 'create-bond' in action:
+Use the 'parents' parameters to define which interfaces form the aggregation.
+The following is an example of 'create-bond' in action:
 
 ```bash
 maas admin interfaces create-bond 4efwb4 name=bond0 parents=4 \
@@ -87,7 +87,7 @@ For example:
 maas admin interface delete 4efwb4 15
 ```
 
-The following will be output after successfully deleting an interface:
+The following is output after the successful deletion of an interface:
 
 ```no-highlight
 Success.
@@ -96,7 +96,8 @@ Machine-readable output follows:
 ```
 
 !!! Note:
-    There is no machine-readable output.
+    There is no machine-readable output after the successful execution of the
+    delete command.
 
 ## Create a VLAN interface
 
@@ -155,7 +156,7 @@ maas admin interfaces create-vlan 4efwb4 vlan=5004 parent=4
 
 The above command generates the following output:
 
-```no-highlight
+```json
 Success.
 Machine-readable output follows:
 {
