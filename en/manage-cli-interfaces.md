@@ -4,8 +4,8 @@ table_of_contents: True
 
 # CLI Interface Management
 
-This is a list of interface management tasks to perform with the MAAS CLI. See
-[MAAS CLI][manage-cli] on how to get started.
+This is a list of interface management tasks which can be performed by the MAAS
+CLI. See [MAAS CLI][manage-cli] on how to get started.
 
 See [Networking][networking] for an overview of networking and 
 [Commission Nodes][commission-nodes] for more details on managing interfaces
@@ -42,16 +42,22 @@ a single logical interface. A bond can be created with the following command:
 maas $PROFILE interfaces create-bond $SYSTEM_ID name=$BOND_NAME \
 parents=$IFACE1_ID mac_address=$MAC_ADDR \ 
 parents=$IFACE2_ID bond_mode=$BOND_MODE \
-bond_downdelay=$BOND_DOWN bond_updelay=$BOND_UP mtu=$MTU
+bond_updelay=$BOND_UP bond_downdelay=$BOND_DOWN mtu=$MTU
 ```
 
 Use the 'parents' parameters to define which interfaces form the aggregate
-interface. The following is an example of 'create-bond' in action:
+interface.
+
+The 'bond_updelay' and 'bond_downdelay' parameters specify the milliseconds to
+wait before either enabling or disabling a slave after a failure has been
+detected.
+
+The following is an example of 'create-bond' in action:
 
 ```bash
 maas admin interfaces create-bond 4efwb4 name=bond0 parents=4 \
-mac_address=52:52:00:00:00:00 parents=15 bond_mode=802.3ad bond_downdelay=200 \
-bond_updelay=200 mtu=9000
+mac_address=52:52:00:00:00:00 parents=15 bond_mode=802.3ad \
+bond_updelay=200 bond_downdelay=200 mtu=9000
 ```
 
 See [Bond interfaces][commission-nodes-bond] for details on supported bond
@@ -221,3 +227,4 @@ maas admin vlan delete 0 100
 [networking]: installconfig-networking.md
 [commission-nodes]: nodes-commission.md
 [commission-nodes-bond]: nodes-commission.md#bond-interfaces
+[interface-api]: api.md#put-api20nodessystem_idinterfacesid
