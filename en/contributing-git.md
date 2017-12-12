@@ -200,7 +200,7 @@ regarded as permanent.
 
 You will need to track a series branch as they become available upstream
 (approximately every 6 months). Continuing with the example above, we will
-demonstrate using the next series branch of 2.3:
+demonstrate using the 2.3 series branch:
 
 ```bash
 git fetch upstream
