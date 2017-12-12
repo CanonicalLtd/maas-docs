@@ -94,6 +94,12 @@ computer. Clone your fork now:
 git clone https://github.com/$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs
 ```
 
+Alternatively, if you will be using SSH for authentication, clone in this way:
+
+```bash
+git clone git@github.com:$GH_USERNAME/maas-docs $GH_USERNAME-maas-docs
+```
+
 A directory called `$GH_USERNAME-maas-docs` will be created. This is the clone
 directory.
 
@@ -107,7 +113,6 @@ sync with upstream:
 cd $GH_USERNAME-maas-docs
 git remote add upstream https://github.com/CanonicalLtd/maas-docs
 ```
-
 
 ## Add and track upstream series branches locally
 
@@ -146,10 +151,6 @@ Your GitHub fork inherited these tracking branches when it was created. This
 can be confirmed here:
 
 `https://github.com/$GH_USERNAME/maas-docs/branches`
-
-!!! Note:
-    You will need to track a series branch in this way as they become
-    available upstream (approximately every 6 months).
 
 Finally, we need to change the remote for these newly tracked branches as they
 are currently using 'upstream':
@@ -196,6 +197,25 @@ Example output:
 Over time, contribution branches will come and go but the ones above should be
 regarded as permanent.
 
+### Tracking a new branch
+
+You will need to track a series branch as they become available upstream
+(approximately every 6 months). Continuing with the example above, we will
+demonstrate using the next series branch of 2.3:
+
+```bash
+git fetch upstream
+git branch 2.3 upstream/2.3
+```
+
+However, because your GitHub fork will not contain the new branch you cannot
+instruct Git to use the origin (fork) branch as the remote. You will first need
+to push the new branch to your fork and then change it. This can be done with
+one command:
+
+```bash
+git push -u origin 2.3
+```
 
 ## Syncing fork series branches with upstream
 
