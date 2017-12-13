@@ -214,6 +214,75 @@ maas $PROFILE rack-controllers read | grep hostname | cut -d '"' -f 4
 ```
 
 
+## Set the default storage layout
+
+To set the default storage layout for all nodes:
+
+```bash
+maas $PROFILE maas set-config name=default_storage_layout value=$LAYOUT_TYPE
+```
+
+For example, to set the default layout to Flat:
+
+```bash
+maas $PROFILE maas set-config name=default_storage_layout value=flat
+```
+
+!!! Warning "Important":
+    The new default will only apply to newly-commissioned nodes.
+
+See [Storage][storage] for more details on MAAS storage features.
+
+
+## Set a storage layout
+
+An administrator can set a storage layout for a node with a status of 'Ready'
+like this:
+
+```bash
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=$LAYOUT_TYPE [$OPTIONS]
+```
+
+For example, to set an LVM layout where the logical volume has a size of 5 GB:
+
+```bash
+maas $PROFILE machine set-storage-layout $SYSTEM_ID storage_layout=lvm lv_size=5368709120
+```
+
+All storage sizes are currently required to be specified in bytes.
+
+!!! Warning
+    This will remove the configuration that may exist on any block device.
+
+## Create an alias (CNAME) record in DNS
+
+An administrator can set a DNS Alias (CNAME record) to an already existing DNS entry of a node. 
+
+```bash
+mass $PROFILE dnsresource-records create fqdn=$HOSTNAME.$DOMAIN rrtype=cname rrdata=$ALIAS
+```
+
+For example, to set webserver.maas.io to alias to www.maas.io:
+
+```bash
+maas $PROFILE dnsresource-records create fqdn=webserver.maas.io rrtype=cname rrdata=www
+```
+
+## Create a Mail Exchange pointer record in DNS
+
+An administrator can set a DNS Mail Exchange pointer record (MX and value) to a domain.
+
+```bash
+maas $PROFILE dnsresource-records create fqdn=$DOMAIN rrtype=mx rrdata='10 $MAIL_SERVER.$DOMAIN'
+```
+
+For example, to set domain.name managed by MAAS to have an MX record and that you own the domain:
+
+```bash
+maas $PROFILE dnsresource-records create fqdn=maas.io rrtype=mx rrdata='10 smtp.maas.io'
+```
+
+
 <!-- LINKS -->
 
 [manage-cli]: manage-cli.md
