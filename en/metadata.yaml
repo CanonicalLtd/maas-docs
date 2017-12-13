@@ -156,6 +156,9 @@ navigation:
           - title: Image management
             location: manage-cli-images.md
 
+          - title: Interface management
+            location: manage-cli-interfaces.md
+
           - title: Tag management
             location: manage-cli-tags.md
 
