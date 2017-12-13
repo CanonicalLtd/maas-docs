@@ -78,23 +78,81 @@ The following window will appear:
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
 
-- **Auto assign** MAAS will assign a random static address (`iface eth0 inet
+- **Auto assign**: MAAS will assign a random static address (`iface eth0 inet
   static`). The pool of available addresses depends on whether the subnet is
   managed or unmanaged (see [Subnet management][subnet-management]).
 
-- **Static assign** The administrator will specify a static address using a
+- **Static assign**: The administrator will specify a static address using a
   secondary field.
 
-- **DHCP** A dynamic address will be leased via either MAAS-managed DHCP or an
+- **DHCP**: A dynamic address will be leased via either MAAS-managed DHCP or an
   external DHCP server.
 
-- **Unconfigured** The interface will be left unconfigured.
+- **Unconfigured**: The interface will be left unconfigured.
 
 See [Concepts and terms][concepts-ipranges] for the definitions of reserved
 range types and [MAAS CLI - advanced tasks][cli-change-ip-assignment-mode] for
 changing the mode with the CLI.
 
 Press the 'Save' button to apply the changes.
+
+### Bond interfaces
+
+A bond interface is used to aggregate two or more physical interfaces into
+a single logical interface. A bond is created by selecting more than one
+interface and clicking the now-active 'Create bond' button:
+
+![configure setbond][img__configure-setbond]
+
+After clicking the 'Create bond' button, the bond configuration pane will
+appear.
+
+From the bond configuration pane, you can rename the bond, select a bond mode
+(see below), assign a MAC address to the aggregate device and attach one or
+more tags. 
+
+The interfaces aggregated into the bond interface are listed below the 'Tags'
+field. Use the 'Primary' column to select the interface to act as the
+primary device.
+
+![configure bond][img__configure-bond]
+
+The following bonding modes can be selected from the 'Bond mode' drop-down
+menu:
+
+- **balance-rr**: Transmit packets in sequential order from the first available
+  slave through to the last. This mode provides load balancing and fault
+  tolerance.
+
+- **active-backup**: Only one slave in the bond is active. A different slave
+  becomes active if, and only if, the active slave fails. The bond's MAC
+  address is externally visible on only one port (network adapter) to avoid
+  confusing the switch.
+
+- **balance-xor**: Transmit based on the selected transmit hash policy. The
+  default policy is *simple*. This means packages are selected by an XOR
+  operation between the source MAC address and the resultant XOR between the
+  destination MAC address the packet type identifier, modulo slave count.
+
+- **broadcast**: Transmit everything on all slave interfaces. This mode
+  provides fault tolerance.
+
+- **802.3ad**: Creates aggregation groups that share the same speed and duplex
+  settings. Utilises all slaves in the active aggregation according to the IEEE
+  802.3ad specification.
+
+- **balance-tlb**: Adaptive transmit load balancing, channel bonding that does
+  not require any special switch support.
+
+- **balance-alb**: Adaptive load balancing, includes *balance-tlb* plus
+  *receive load balancing* (rlb) for IPV4 traffic. Does not require any special
+  switch support. The receive load balancing is achieved by ARP negotiation.
+
+Press the 'Save' button when you're done.
+
+!!! Note: 
+    The MAC address defaults to the MAC address of the primary interface.
+
 
 ### Bridge interfaces
 
@@ -109,6 +167,9 @@ Press the 'Save' button when you're done.
 !!! Positive "Pro tip":
     A network bridge may be useful if virtual machines or containers are to be
     put on the node. 
+
+See [CLI Interface Management][manage-cli-interfaces] for details on how
+interfaces can be configured from the command line.
 
 <!--
 
@@ -132,9 +193,12 @@ allocation time using the API.
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: nodes-hw-testing.md
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
+[manage-cli-interfaces]: manage-cli-interfaces.md
 
-[img__2.2_commission]: ../media/nodes-commission__2.2_commission.png
-[img__2.2_commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
-[img__2.2_configure-interface]: ../media/nodes-commission__2.2_configure-interface.png
-[img__2.2_edit-interface]: ../media/nodes-commission__2.2_edit-interface.png
-[img__2.2_configure-bridge]: ../media/nodes-commission__2.2_configure-bridge.png
+[img__commission]: ../media/nodes-commission__2.2_commission.png
+[img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
+[img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
+[img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
+[img__configure-setbond]: ../media/nodes-commission__2.3_configure-setbond.png
+[img__configure-bond]: ../media/nodes-commission__2.3_configure-bond.png
+[img__configure-bridge]: ../media/nodes-commission__2.3_configure-bridge.png
