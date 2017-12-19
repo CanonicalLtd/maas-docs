@@ -172,7 +172,7 @@ navigation:
         location: api-authentication.md
 
   - title: Help improve these docs
-    location: contributing.md
+    location: contributing-writing.md
 
   - title: Report a docs issue
     location: https://github.com/CanonicalLtd/maas-docs/issues/new
