@@ -201,7 +201,7 @@ navigation:
       - title: Getting help
         location: troubleshoot-getting-help.md
 
- - title: API documentation
+  - title: API documentation
     location: api.md
 
     children:
