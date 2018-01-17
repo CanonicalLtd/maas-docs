@@ -187,13 +187,8 @@ Output from the previous command looks like the following:
 $6$AaHblHl5KGrWBmPV$20ssynyY0EhcT9AwZgA2sTdYt4Bvd97bX7PjeyqVLKun2Hk3NBa8r7efM2duK7pi2dlnd5tG76I0dTUvjb6hx0
 ```
 
-Open the `etc/shadow` file extracted from the image with your favourite text editor:
-
-```bash
-sudo vim xenial/etc/shadow
-```
-
-Insert the password hash into the *root* user line of `etc/shadow`, between the
+Open the `xenial/etc/shadow` file extracted from the image with a text editor and
+insert the password hash into the *root* user line of `etc/shadow`, between the
 first and second colons:
 
 ```no-highlight
