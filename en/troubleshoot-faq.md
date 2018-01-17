@@ -140,7 +140,7 @@ However, if you find yourself with no other way to access node, a Linux-based
 ephemeral image can be modified to enable a *backdoor* that adds or resets a
 user's password, much like you can with any standard version of Linux.
 
-As images are constantly updated and refreshed, this backdoor is only
+As images are constantly updated and refreshed, the backdoor will only be
 temporary, but it should help you login to see what may be going wrong with
 your node.
 
@@ -152,8 +152,7 @@ by MAAS:
 
 ![web UI image list][img__webui-images]
 
-
-Images can be downloaded from [https://cloud-images.ubuntu.com/daily/server/xenial/current](https://cloud-images.ubuntu.com/daily/server/xenial/current/).
+Images can be downloaded from [https://cloud-images.ubuntu.com/daily/server](https://cloud-images.ubuntu.com/daily/server/).
 
 For example:
 
@@ -161,7 +160,7 @@ For example:
 wget https://cloud-images.ubuntu.com/daily/server/xenial/current/xenial-server-cloudimg-amd64-root.tar.gz
 ```
 
-With an image downloaded, extract its contents so that the *shadow* password
+With the image downloaded, extract its contents so that the *shadow* password
 file can be edited:
 
 ```bash
@@ -171,7 +170,7 @@ sudo tar -C xenial -xpSf xenial-server-cloudimg-amd64-root.tar.gz --numeric-owne
 
 !!! Note:
     `sudo` is required when extracting the image filesystem and when making
-    changes to the image filesystem.
+    changes to the files extracted from the image filesystem.
 
 ### Generate password hash
 
@@ -236,7 +235,7 @@ following directory:
 cd /var/lib/maas/boot-resources/current/ubuntu/amd64/ga-16.04-lowlatency/xenial/daily
 ```
 
-To replace the original, replace the *squashfs* file with the custom image
+To replace the original, substitute the *squashfs* file with the custom image
 generated earlier, making sure the new owner is *maas*:
 
 ```bash
