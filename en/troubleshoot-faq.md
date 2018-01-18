@@ -114,7 +114,6 @@ server, you can simply run the setup again:
 sudo dpkg-reconfigure maas-region-controller
 ```
 
-
 ## Can't find MAAS web UI
 
 By default, the web UI is located at `http://<hostname>:5240/MAAS/`. If you can't
@@ -132,6 +131,131 @@ access it, there are a few things to try:
    MAAS web interface has been installed in the right place. There should
    be a file present called `/usr/share/maas/maas/urls.py`.
 
+
+## Backdoor image login
+
+Ephemeral images are used by MAAS to boot nodes during commissioning, as well
+as during deployment. By design, these images are not built to be edited or
+tampered with, instead they're used to probe the hardware and launch
+[cloud-init][cloud-init].
+
+However, if you find yourself with no other way to access a node, especially if
+a node fails during commissioning, Linux-based ephemeral images can be modified
+to enable a *backdoor* that adds or resets a user's password. You can then
+login to check the **cloud-init** logs, for example, and troubleshoot the
+problem.
+
+As images are constantly updated and refreshed, the backdoor will only ever be
+temporary, but it should help you login to see what may be going wrong with
+your node.
+
+### Extract the cloud image
+
+First, download the cloud image that corresponds to the architecture of your
+node. The *Images* page of the web UI lists the images currently being cached
+by MAAS:
+
+![web UI image list][img__webui-images]
+
+Images can be downloaded from [https://cloud-images.ubuntu.com/daily/server](https://cloud-images.ubuntu.com/daily/server/).
+
+For example:
+
+```bash
+wget https://cloud-images.ubuntu.com/daily/server/xenial/current/xenial-server-cloudimg-amd64-root.tar.gz
+```
+
+With the image downloaded, extract its contents so that the *shadow* password
+file can be edited:
+
+```bash
+mkdir xenial
+sudo tar -C xenial -xpSf xenial-server-cloudimg-amd64-root.tar.gz --numeric-owner --xattrs "--xattrs-include=*"
+```
+
+!!! Note:
+    `sudo` is required when extracting the image filesystem and when making
+    changes to the files extracted from the image filesystem.
+
+### Generate password hash
+
+Now generate a hashed password. Use the following Python 3 command, replacing
+**ubuntu** with the password you wish to use:
+
+```bash
+python3 -c 'import crypt; print(crypt.crypt("ubuntu", crypt.mksalt(crypt.METHOD_SHA512)))'
+```
+
+Output from the previous command looks like the following:
+
+```no-highlight
+$6$AaHblHl5KGrWBmPV$20ssynyY0EhcT9AwZgA2sTdYt4Bvd97bX7PjeyqVLKun2Hk3NBa8r7efM2duK7pi2dlnd5tG76I0dTUvjb6hx0
+```
+
+Open the `xenial/etc/shadow` file extracted from the image with a text editor and
+insert the password hash into the *root* user line of `etc/shadow`, between the
+first and second colons:
+
+```no-highlight
+root:$6$AaHblHl5KGrWBmPV$20ssynyY0EhcT9AwZgA2sTdYt4Bvd97bX7PjeyqVLKun2Hk3NBa8r7efM2duK7pi2dlnd5tG76I0dTUvjb6hx0:17445:0:99999:7:::
+```
+
+Save the file and exit the text editor.
+
+### Rebuild SquashFS image
+
+Recent versions of MAAS use SquashFS to hold the ephemeral image filesystem.
+The final step is to use the following command to create a SquashFS file called
+`xenial-customized.squashfs` that contains the modified shadow file:
+
+```bash
+sudo mksquashfs xenial/ xenial-customized.squashfs -xattrs -comp xz
+```
+
+The output should look like the following:
+
+```no-highlight
+Parallel mksquashfs: Using 2 processors
+Creating 4.0 filesystem on xenial-customized.squashfs, block size 131072.
+[=======]  2516/26975   9%
+```
+
+You now have an ephemeral image with a working root login that can replace an
+image locally cached by MAAS.
+
+### Use the custom image
+
+Images are synchronised by the region controller and stored on the rack
+controller in `/var/lib/maas/boot-resources/`, with the *current* directory
+linking to the latest synchronised images. 
+
+For example, the latest low-latency Ubuntu 16.04 image can be found in the
+following directory:
+
+```bash
+cd /var/lib/maas/boot-resources/current/ubuntu/amd64/ga-16.04-lowlatency/xenial/daily
+```
+
+To replace the original, substitute the *squashfs* file with the custom image
+generated earlier, making sure the new owner is *maas*:
+
+```bash
+mv squashfs squashfs_original
+cp /home/ubuntu/xenial-customized.squashfs .
+chown maas:maas squashfs
+``` 
+
+You can now use this image to commission or deploy a node and access the root
+account with the backdoor password, such as by deploying the same specific
+image from the web UI to the node you wish to troubleshoot.
+
+![web UI deploy image][img__webui-deploy]
+
+
+<!-- IMAGES -->
+[img__webui-images]: ../media/troulbeshoot-faq__2.3_images.png
+[img__webui-deploy]: ../media/troulbeshoot-faq__2.3_deploy.png
 <!-- LINKS -->
 
+[cloud-init]: https://launchpad.net/cloud-init
 [concepts-rescue-mode-action]: intro-concepts.md#rescue-mode
