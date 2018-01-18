@@ -134,13 +134,15 @@ access it, there are a few things to try:
 
 ## Backdoor image login
 
-By design, ephemeral images are not built to be edited or tampered with.
+Ephemeral images are used by MAAS to boot nodes during commissioning, as well
+as during deployment. By design, these images are not built to be edited or
+tampered with. 
 
-However, if you find yourself with no other way to access node, a Linux-based
-ephemeral image can be modified to enable a *backdoor* that adds or resets a
-user's password, much like you can with any standard version of Linux.
+However, if you find yourself with no other way to access node, especially when
+a node fails during commissioning, Linux-based ephemeral image can be modified
+to enable a *backdoor* that adds or resets a user's password.
 
-As images are constantly updated and refreshed, the backdoor will only be
+As images are constantly updated and refreshed, the backdoor will only ever be
 temporary, but it should help you login to see what may be going wrong with
 your node.
 
@@ -220,8 +222,9 @@ image locally cached by MAAS.
 
 ### Use the custom image
 
-Images are stored on the region controller in `/var/lib/maas/boot-resources/`,
-with the *current* directory linking to the latest synchronised images. 
+Images are synchronised by the region controller and stored on the rack
+controller in `/var/lib/maas/boot-resources/`, with the *current* directory
+linking to the latest synchronised images. 
 
 For example, the latest low-latency Ubuntu 16.04 image can be found in the
 following directory:
@@ -239,9 +242,9 @@ cp /home/ubuntu/xenial-customized.squashfs .
 chown maas:maas squashfs
 ``` 
 
-You can now use this image to boot a node and access the root account with the
-backdoor password, such as by deploying the same specific image from the web UI
-to the node you wish to troubleshoot.
+You can now use this image to commission or deploy a node and access the root
+account with the backdoor password, such as by deploying the same specific
+image from the web UI to the node you wish to troubleshoot.
 
 ![web UI deploy image][img__webui-deploy]
 
