@@ -136,11 +136,14 @@ access it, there are a few things to try:
 
 Ephemeral images are used by MAAS to boot nodes during commissioning, as well
 as during deployment. By design, these images are not built to be edited or
-tampered with. 
+tampered with, instead they're used to probe the hardware and launch
+[cloud-init][cloud-init].
 
-However, if you find yourself with no other way to access node, especially when
-a node fails during commissioning, Linux-based ephemeral image can be modified
-to enable a *backdoor* that adds or resets a user's password.
+However, if you find yourself with no other way to access a node, especially if
+a node fails during commissioning, Linux-based ephemeral images can be modified
+to enable a *backdoor* that adds or resets a user's password. You can then
+login to check the **cloud-init** logs, for example, and troubleshoot the
+problem.
 
 As images are constantly updated and refreshed, the backdoor will only ever be
 temporary, but it should help you login to see what may be going wrong with
@@ -254,4 +257,5 @@ image from the web UI to the node you wish to troubleshoot.
 [img__webui-deploy]: ../media/troulbeshoot-faq__2.3_deploy.png
 <!-- LINKS -->
 
+[cloud-init]: https://launchpad.net/cloud-init
 [concepts-rescue-mode-action]: intro-concepts.md#rescue-mode
