@@ -53,6 +53,8 @@ The [web UI][webui] provides a responsive interface to the majority of MAAS
 functionality, while the [CLI][manage-cli] and [REST API][api] facilitate
 configuration and large-scale automation.
 
+![web UI showing node view][img__webui]
+
 !!! Note: 
     Windows, RHEL and SUSE images require
     [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
@@ -145,3 +147,7 @@ These methods, and their respective advantages, are fleshed out on the
 [webui]: installconfig-webui.md
 [manage-cli]: manage-cli.md
 [api]: api.md
+
+<!-- IMAGES -->
+[img__webui]: ../media/intro__2.3_webui.png
+
