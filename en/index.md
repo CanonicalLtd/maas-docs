@@ -77,6 +77,7 @@ It's important to note that the all-in-one solution will provide a DHCP
 service. Review your existing network design in order to determine whether this
 will cause problems. See [DHCP][dhcp] for more on this subject.
 
+![intro-arch-overview][img__arch-overview]
 
 ## How MAAS works
 
@@ -136,4 +137,4 @@ machine to the pool.
 
 <!-- IMAGES -->
 [img__webui]: ../media/intro__2.3_webui.png
-
+[img__arch-overview]: ../media/intro-arch-overview.png
