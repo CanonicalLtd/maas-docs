@@ -49,6 +49,10 @@ MAAS works with any configuration system, and is recommended by the teams
 behind both [Chef][about-chef] and [Juju][about-juju] as a physical
 provisioning system.
 
+The [web UI][webui] provides a responsive interface to the majority of MAAS
+functionality, while the [CLI][manage-cli] and [REST API][api] facilitate
+configuration and large-scale automation.
+
 !!! Note: 
     Windows, RHEL and SUSE images require
     [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
@@ -138,3 +142,6 @@ These methods, and their respective advantages, are fleshed out on the
 [power-types]: nodes-power-types.md
 [load-balancing]: manage-ha.md#load-balancing-(optional)
 [mirror]: installconfig-images-mirror.md
+[webui]: installconfig-webui.md
+[manage-cli]: manage-cli.md
+[api]: api.md
