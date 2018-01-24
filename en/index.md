@@ -60,6 +60,24 @@ configuration and large-scale automation.
     [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
 
 
+## Key components and colocation of all services
+
+The key components of a MAAS installation are the region controller and the
+rack controller. See [Concepts and terms][concepts-controllers] for how each
+are defined.
+
+Unless there is specific reason not to, it is recommended to have both
+controllers residing on the same system. A no-fuss way to achieve this is by
+installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
+
+Multiple region and rack controllers are required if
+[high availability][manage-ha] and/or load balancing (see HA page) is desired.
+
+It's important to note that the all-in-one solution will provide a DHCP
+service. Review your existing network design in order to determine whether this
+will cause problems. See [DHCP][dhcp] for more on this subject.
+
+
 ## How MAAS works
 
 MAAS manages a pool of nodes. After registering ("Enlisting" state) a new
@@ -98,38 +116,6 @@ becomes a sort of backend (resource pool) for Juju, or a "cloud provider" in
 Juju terminology. However, everything that was stated earlier still applies.
 For instance, if Juju removes a machine then MAAS will, in turn, release that
 machine to the pool.
-
-
-## Key components and colocation of all services
-
-The key components of a MAAS installation are the region controller and the
-rack controller. See [Concepts and terms][concepts-controllers] for how each
-are defined.
-
-Unless there is specific reason not to, it is recommended to have both
-controllers residing on the same system. A no-fuss way to achieve this is by
-installing the `maas` metapackage, or by installing from the Ubuntu Server ISO.
-
-Multiple region and rack controllers are required if
-[high availability][manage-ha] and/or load balancing (see HA page) is desired.
-
-It's important to note that the all-in-one solution will provide a DHCP
-service. Review your existing network design in order to determine whether this
-will cause problems. See [DHCP][dhcp] for more on this subject.
-
-
-## Installation methods
-
-There are three ways to install MAAS:
-
-- From the Ubuntu Server ISO
-- From software packages ("debs")
-- As a self-contained LXD environment
-
-These methods, and their respective advantages, are fleshed out on the
-[Installation][maas-install] page.
-
-
 
 <!-- LINKS -->
 
