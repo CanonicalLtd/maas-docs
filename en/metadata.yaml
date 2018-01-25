@@ -1,52 +1,86 @@
 navigation:
-  - title: Introduction
+  - title: Get started
 
     children:
 
       - title: About MAAS
         location: index.md
 
-      - title: Management summary
-        location: intro-management.md
+      - title: Requirements
+        location: intro-requirements.md
 
-      - title: Concepts and terms
-        location: intro-concepts.md
+        #      - title: Explore MAAS
 
-      - title: Architectural overview
-        location: intro-architecture.md
+        #              - title: Quick guides
 
-  - title: Install & Configure
+        #       children:
+
+        # - title: Create a pod
+          
+        #  - title: Juju with MAAS
+
+        #  - title: Space isolation
+
+        #  - title: Deploy OpenStack
+
+  - title: User guide
+    location: installconfig-install.md
 
     children:
-
-      - title: Checklist
-        location: installconfig-checklist.md
-
+    
       - title: Install MAAS
         location: installconfig-install.md
 
+      - title: Controllers
+
         children:
 
-          - title: Install from ISO
-            location: installconfig-iso-install.md
+          - title: Rack controller      
+            location: installconfig-rack.md
 
-          - title: Install from packages
-            location: installconfig-package-install.md
+            #          - title: Region controller
+            #            location:
 
-          - title: Install from a snap
-            location: installconfig-snap-install.md
+      - title: Nodes
 
-          - title: Install with LXD
-            location: installconfig-lxd-install.md
+        children:
+ 
+          - title: Node overview
+            location: nodes-overview.md
+           
+          - title: Add nodes
+            location: nodes-add.md
 
-          - title: Upgrade from 1.9 to 2.0
-            location: installconfig-upgrade-to-2.md
+          - title: BMC power types
+            location: nodes-power-types.md
+      
+          - title: Commission nodes
+            location: nodes-commission.md
 
-      - title: Rack controller
-        location: installconfig-rack.md
+          - title: Deploy nodes
+            location: nodes-deploy.md
 
-      - title: Web UI
-        location: installconfig-webui.md
+          - title: Tags
+            location: nodes-tags.md
+
+          - title: Kernel boot options
+            location: nodes-kernel-options.md
+
+          - title: Ubuntu kernels
+            location: nodes-kernels.md
+
+          - title: Hardware testing
+            location: nodes-hw-testing.md
+
+          - title: Hardware testing scripts
+            location: nodes-hw-scripts.md
+
+          - title: Composable hardware
+            location: nodes-comp-hw.md
+
+          - title: Custom node setup
+            location: nodes-custom.md
+
 
       - title: Images
         location: installconfig-images.md
@@ -59,7 +93,7 @@ navigation:
           - title: Local image mirror
             location: installconfig-images-mirror.md
 
-      - title: Networking
+      - title: Networks
         location: installconfig-networking.md
 
         children:
@@ -91,55 +125,11 @@ navigation:
           - title: STP
             location: installconfig-network-stp.md
 
+          - title: Zones
+            location: manage-zones.md
+
       - title: Storage
         location: installconfig-storage.md
-
-  - title: Nodes
-
-    children:
-            
-      - title: Add nodes
-        location: nodes-add.md
-
-      - title: BMC power types
-        location: nodes-power-types.md
-      
-      - title: Node overview
-        location: nodes-overview.md
-
-      - title: Commission nodes
-        location: nodes-commission.md
-
-      - title: Deploy nodes
-        location: nodes-deploy.md
-
-      - title: Tags
-        location: nodes-tags.md
-
-      - title: Kernel boot options
-        location: nodes-kernel-options.md
-
-      - title: Ubuntu kernels
-        location: nodes-kernels.md
-
-      - title: Hardware testing
-        location: nodes-hw-testing.md
-
-      - title: Hardware testing scripts
-        location: nodes-hw-scripts.md
-
-      - title: Composable hardware
-        location: nodes-comp-hw.md
-
-      - title: Custom node setup
-        location: nodes-custom.md
-
-  - title: Manage MAAS
-
-    children:
-
-      - title: Zones
-        location: manage-zones.md
 
       - title: User accounts
         location: manage-account.md
@@ -153,53 +143,56 @@ navigation:
       - title: Backup
         location: manage-backup.md
 
-      - title: MAAS CLI
-        location: manage-cli.md
+      - title: Concepts & terms
+        location: intro-concepts.md
+
+      - title: Troubleshoot
 
         children:
 
-          - title: Common tasks
-            location: manage-cli-common.md
+          - title: FAQ
+            location: troubleshoot-faq.md
 
-          - title: Kernel management
-            location: manage-cli-kernels.md
+          - title: Getting help
+            location: troubleshoot-getting-help.md
 
-          - title: Image management
-            location: manage-cli-images.md
-
-          - title: Interface management
-            location: manage-cli-interfaces.md
-
-          - title: Tag management
-            location: manage-cli-tags.md
-
-          - title: DHCP snippet management
-            location: manage-cli-dhcp-snippets.md
-
-          - title: Hardware testing scripts
-            location: nodes-hw-scripts-cli.md
-
-          - title: Script metadata
-            location: nodes-hw-scripts-fields.md
-
-          - title: Advanced tasks
-            location: manage-cli-advanced.md
-
-          - title: Composable hardware
-            location: manage-cli-comp-hw.md
-
-      - title: API client
-        location: manage-libmaas.md
-
-  - title: Troubleshoot
+  - title: Command reference
+    location: manage-cli.md
 
     children:
 
-      - title: FAQ
-        location: troubleshoot-faq.md
+      - title: Common tasks
+        location: manage-cli-common.md
 
-      - title: Getting help
-        location: troubleshoot-getting-help.md
+      - title: Kernel management
+        location: manage-cli-kernels.md
+
+      - title: Image management
+        location: manage-cli-images.md
+
+      - title: Interface management
+        location: manage-cli-interfaces.md
+
+      - title: Tag management
+        location: manage-cli-tags.md
+
+      - title: DHCP snippet management
+        location: manage-cli-dhcp-snippets.md
+
+      - title: Hardware testing scripts
+        location: nodes-hw-scripts-cli.md
+
+      - title: Script metadata
+        location: nodes-hw-scripts-fields.md
+
+      - title: Advanced tasks
+        location: manage-cli-advanced.md
+
+      - title: Composable hardware
+        location: manage-cli-comp-hw.md
+
+      - title: API client
+        location: manage-libmaas.md
 
   - title: API documentation
     location: api.md
@@ -214,9 +207,6 @@ navigation:
 
   - title: Release notes
     location: release-notes.md
- 
+
   - title: Help improve these docs
     location: contributing-writing.md
-
-  - title: Report a docs issue
-    location: https://github.com/CanonicalLtd/maas-docs/issues/new
