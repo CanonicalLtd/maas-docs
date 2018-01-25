@@ -1,5 +1,6 @@
 navigation:
   - title: Get started
+    location: index.md
 
     children:
 
@@ -8,20 +9,6 @@ navigation:
 
       - title: Requirements
         location: intro-requirements.md
-
-        #      - title: Explore MAAS
-
-        #              - title: Quick guides
-
-        #       children:
-
-        # - title: Create a pod
-          
-        #  - title: Juju with MAAS
-
-        #  - title: Space isolation
-
-        #  - title: Deploy OpenStack
 
   - title: User guide
     location: installconfig-install.md
@@ -37,9 +24,6 @@ navigation:
 
           - title: Rack controller      
             location: installconfig-rack.md
-
-            #          - title: Region controller
-            #            location:
 
       - title: Nodes
 
