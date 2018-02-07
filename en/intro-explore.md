@@ -11,7 +11,10 @@ The following overview covers a typical virtual machine installation, with a
 focus on the web-based user-interface. It's a non-exhaustive introduction, but
 does provide a typical working outline of how MAAS is used and what it's
 capable of. The same and more advanced configuration can be accomplished from
-both the [CLI][manage-cli] and the [REST API][rest-api].
+both the [CLI][manage-cli] and the [REST API][rest-api]. 
+
+The [User Manual][installation] offers a more comprehensive guide to
+installation, configuration and usage.
 
 ![web UI login][img__login]
 
@@ -152,10 +155,10 @@ MAAS-managed machines are listed, and operated on, from the
 MAAS web UI.
 
 If you're testing MAAS using virtual machines, creating a new instance and
-booting it on the same network will be enough for it to appear. This is because
-new machines are added automatically when they first connect to your network.
-Alternatively, the 'Add hardware' menu lets you add machines via their MAC
-addresses manually.
+booting it on the same network will be enough for it to appear here. This is
+because new machines are added automatically when they first connect to your
+network.  Alternatively, the 'Add hardware' menu lets you add machines via
+their MAC address manually.
 
 After power and interfaces are configured, machines need to be commissioned to
 retrieve CPU, memory and storage information. From this point, they can be
@@ -179,7 +182,7 @@ Windows, RHEL and SUSE images with [Ubuntu Advantage][ubuntu-advantage].
 ![Image import overview][img__images]
 
 
-###Pods
+### Pods
 
 Even greater control over your hardware comes from the use of *pods* to group
 either virtual machines (using libvirt and KVM) or physical systems with Intel
