@@ -260,11 +260,11 @@ Pods abstract multiple resources...
 [xenial-link]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
 [libvirt-install]: https://help.ubuntu.com/lts/serverguide/libvirt.html
 [ubuntu-advantage]: https://www.ubuntu.com/support
-[requirements]: intro-requiremends.md#test-environment
+[requirements]: intro-requirements.md#test-environment
 [welcome-page]: installconfig-webui-conf-journey.md
 [device-disco]: installconfig-network-dev-discovery.md
 [node-overview]: nodes-overview.md
-[tags]: installconfig-nodes-tags.md
+[tags]: nodes-tags.md
 [composable]: nodes-comp-hw.md
 [kvm-nodes]: nodes-add.md#kvm-guest-nodes
 [rest-api]: api.md
