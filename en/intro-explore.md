@@ -136,7 +136,7 @@ requirements of flexible machine deployment, MAAS offers comprehensive control
 over networking.
 
 Alongside the management of its own domain, configured via the DNS page of the
-web UI, MAAS can isolate machine deployment across fabrics, zones, fabrics and
+web UI, MAAS can isolate machine deployment across spaces, zones, fabrics and
 subnets.
 
 ![MAAS subnet configuration][img__subnets]
