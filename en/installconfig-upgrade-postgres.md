@@ -1,109 +1,115 @@
-Title: Upgrade from <=2.3 (Xenial) to 2.4 (Bionic)
+Title: Upgrade 2.3 to 2.4 from Ubuntu 16.04
 
-# Upgrade from <= (Xenial) to 2.4 (Bionic)
+# Upgrade 2.3 to 2.4 from Ubuntu 16.04
 
-MAAS 2.3 is the last releases support on Ubuntu 16.04 LTS (Xenial Xerus). This is
-because 18.04 changes the base dependencies, which require MAAS to make changes
-that are not backportable to Ubuntu 16.04 LTS (Xenial Xerus).
+MAAS 2.3 is the last supported version of MAAS for Ubuntu 16.04 LTS (Xenial
+Xerus). This is because changes in the base dependencies of Ubuntu 18.04 LTS
+(Bionic Beaver) require MAAS updates that are not back-portable to
+older versions of MAAS. Consequently, to upgrade from MAAS 2.3 to MAAS 2.4 on Ubuntu
+16.04, you will need to upgrade the base operating system.
 
-MAAS 2.3 will continue to be supported on Ubuntu 16.04 LTS (Xenial Xerus) until
-the latter reaches the end of its support cycle. See
-[Ubuntu Releases][ubuntu-wiki-releases] for release and EOL dates for all
-Ubuntu versions.
+!!! Note:
+    MAAS 2.3 will continue to be supported on Ubuntu 16.04 LTS until the end of its
+    support cycle. See [Ubuntu Releases][ubuntu-wiki-releases] for release and EOL
+    dates for all Ubuntu versions.
 
-Upgrading from 2.3 to 2.4+ will therefore involve upgrading the version of
-Ubuntu to 16.04 LTS. In so doing, the MAAS database and MAAS configuration will
-be migrated. 
+Upgrading from MAAS 2.3 to MAAS 2.4 involves in two steps:
 
-Prior to the upgrade all packages should be updated, it is recommended that backups
-be made and that a test environment (that mirrors your production environment) be
-upgraded first, to pre-empt any issues.
+1. Update Ubuntu 16.04 LTS to Ubuntu 18.04 LTS, automatically migrating both
+   the MAAS database and the MAAS configuration for MAAS 2.4.
+1. Upgrade the PostgreSQL database used by MAAS from version 9.x to version 10.
 
-Upgrading to Bionic will also require adminstrators to upgrade their database from
-PostgreSQL 9 to PostgreSQL 10.
+Prior to the upgrade all packages should be updated. It is also strongly
+recommended that backups be made and that a test environment that mirrors your
+production environment be upgraded first, to pre-empt any issues.
 
-## Upgrading MAAS
+## Upgrade MAAS
 
-Upgrading to MAAS 2.4 is simple as upgrading the operating system, as the
-process that upgrades the OS will also upgrade the software, including MAAS.
+To upgrade to MAAS 2.4, simply upgrade the operating system; the process
+that upgrades Ubuntu will also upgrade the software, including MAAS.
 
-To do so, administrators can simply upgrade the OS with:
+To upgrade Ubuntu, administrators need only type:
 
 ```bash
 sudo do-release-upgrade
 ```
-After the upgrade process is completed (and the machine rebooted), MAAS will continue
-to use the PostgreSQL 9.x version that came with Xenial. However, since Bionic has
-PostgreSQL 10, it is imperative to upgrade the database as well.
 
-## Upgrading PostgreSQL
+After the upgrade process completes and the machine rebooted, MAAS will
+continue to use the PostgreSQL 9.x version that came with Ubuntu 16.04 LTS.
+However, because Ubuntu 18.04 LTS switches to PostgreSQL 10, it is imperative
+we upgrade the database as well.
+
+## Upgrade PostgreSQL
 
 The PostgreSQL upgrade process is fairly simple.
 
-1. The first thing is to verify that both postgres clusters are available:
+First, use the following command to verify that both version 9.x and 10 PostgreSQL clusters are available: 
 
 ```bash
-$ pg_lsclusters
+pg_lsclusters
+```
+
+The output should look similar to the following:
+
+```no-highlight
 Ver Cluster Port Status Owner    Data directory               Log file
-9.5 main    5433 down   postgres /var/lib/postgresql/9.5/main /var/log/postgresql/postgresql-9.5-main.log
-10 main    5432 online postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log
+9.5 main    5432 online postgres /var/lib/postgresql/9.5/main postgresql-9.5-main.log
+10  main    5433 online postgres /var/lib/postgresql/10/main  postgresql-10-main.log
 ```
 
-2. Once we verify the PostgreSQL cluster is online, we need to stop MAAS and PostgreSQL itself.
+With both clusters verified to be online, stop MAAS and PostgreSQL:
 
 ```bash
-$ sudo service maas-rackd stop && sudo service maas-regiond stop && sudo service postgresql stop
+sudo service maas-rackd stop 
+sudo service maas-regiond stop 
+sudo service postgresql stop
 ```
 
-3. Once services are stopped, we need to rename the 'main' cluster created by the installation
-of PostgreSQL 10, so that it doesn't conflict with the upgrade:
+Next, rename the *main* cluster created by the installation of PostgreSQL 10 so that it doesn't conflict with the upgrade:
+
 
 ```bash
-$ sudo pg_renamecluster 10 main main_pristine
+sudo pg_renamecluster 10 main main_pristine
 ```
-4. Now, we can upgrade the cluster:
+
+The output from `pg_lsclusters` should now look like the following:
+
+```no-highlight
+Ver Cluster       Port Status Owner    Data directory                       Log file
+9.5 main          5432 down   postgres /var/lib/postgresql/9.5/main         postgresql-9.5-main.log
+10  main_pristine 5433 down   postgres /var/lib/postgresql/10/main_pristine postgresql-10-main_pristine.log
+
+```
+
+We can now safely upgrade the 9.x cluster:
 
 ```bash
-$ sudo pg_upgradecluster 9.5 main
+sudo pg_upgradecluster 9.5 main
 ```
 
-5. After the upgrade process is complete, we should verify that the postgresq cluster has. Once
-we do so, it is ok to drop the other clusters:
+The final output from the previous command should show the new PostgreSQL
+version 10 *main* cluster is online:
+
+```no-highlight
+Ver Cluster Port Status Owner    Data directory              Log file
+10  main    5432 online postgres /var/lib/postgresql/10/main postgresql-10-main.log
+```
+
+With the version 10 cluster verified as running, we can now drop the other clusters:
 
 ```bash
 sudo pg_dropcluster 9.5 main
 sudo pg_dropcluster 10 main_pristine
 ```
 
-## Troubleshooting
-
-The upgrade process can be complex, and depending on your installation, may
-require manual intervention. You may be asked whether you want to overwrite
-some files, PostgreSQL files in particular, especially if you've implemented
-high availability in PostgreSQL (see [PostgreSQL HA][postgresql-ha]). If you've
-made no modifications to these files, you can instruct the upgrade process to
-overwrite them. Otherwise, you'll need to merge the new changes into the files
-manually. 
-
-At the end of the upgrade, if you see processing errors with the `maas`,
-`squid3`, `maas-dns`, or `maas-region-controller` packages, or if the upgrade
-complains about unmet dependencies with the MAAS packages, try the following:
+PostgreSQL has now been upgraded and you can now either reboot your machine or
+restart the MAAS services we stopped earlier:
 
 ```bash
-sudo apt -f install
-sudo apt autoremove
-sudo apt upgrade
+sudo service maas-rackd start
+sudo service maas-regiond start
 ```
-
-This should fix the dependency errors, remove redundant packages and update to
-the latest version of MAAS.
 
 <!-- LINKS -->
 
-[postgresql-ha]: manage-ha-postgresql.md
 [ubuntu-wiki-releases]: https://wiki.ubuntu.com/Releases
-[xenial-release-notes-upgrading]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10
-[managed-subnet]: installconfig-network-subnet-management.md
-[1-9-static]: https://docs.ubuntu.com/maas/1.9/en/nodes-commission
-[device-discovery]: installconfig-network-dev-discovery.md
-[ip-range]: installconfig-network-ipranges.md
