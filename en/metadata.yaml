@@ -6,8 +6,11 @@ navigation:
       - title: About MAAS
         location: index.md
 
-      - title: Management summary
-        location: intro-management.md
+      - title: Explore MAAS
+        location: intro-explore.md
+
+      - title: Requirements
+        location: intro-requirements.md
 
       - title: Concepts and terms
         location: intro-concepts.md
