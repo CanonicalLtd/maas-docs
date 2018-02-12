@@ -9,6 +9,9 @@ navigation:
       - title: Explore MAAS
         location: intro-explore.md
 
+      - title: Management summary
+        location: intro-management.md
+
       - title: Requirements
         location: intro-requirements.md
 
