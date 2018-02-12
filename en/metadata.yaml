@@ -6,6 +6,9 @@ navigation:
       - title: About MAAS
         location: index.md
 
+      - title: Explore MAAS
+        location: intro-explore.md
+
       - title: Management summary
         location: intro-management.md
 
