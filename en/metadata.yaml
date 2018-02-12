@@ -12,9 +12,6 @@ navigation:
       - title: Management summary
         location: intro-management.md
 
-      - title: Requirements
-        location: intro-requirements.md
-
       - title: Concepts and terms
         location: intro-concepts.md
 
