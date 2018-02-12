@@ -263,7 +263,7 @@ Pods abstract multiple resources...
 [xenial-link]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
 [libvirt-install]: https://help.ubuntu.com/lts/serverguide/libvirt.html
 [ubuntu-advantage]: https://www.ubuntu.com/support
-[requirements]: intro-requirements.md#test-environment
+[requirements]: index.md#minimum-requirements
 [welcome-page]: installconfig-webui-conf-journey.md
 [device-disco]: installconfig-network-dev-discovery.md
 [node-overview]: nodes-overview.md
