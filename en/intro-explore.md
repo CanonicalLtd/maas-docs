@@ -272,4 +272,4 @@ Pods abstract multiple resources...
 [kvm-nodes]: nodes-add.md#kvm-guest-nodes
 [rest-api]: api.md
 [manage-cli]: manage-cli.md
-[installation]: installconfig-install.md
+[installation]: installconfig-snap-install.md
