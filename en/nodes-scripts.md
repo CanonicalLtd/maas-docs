@@ -12,10 +12,12 @@ scripts are run from the [web UI][maas-scripts] or the
 
 # Hardware Testing Scripts
 
-Hardware testing scripts are used to evaluate system hardware and report its
-status. By default any test script tagged `commissioning` will be run during
-commissioning or testing. You can select which testing scripts are run from
-the [web UI][maas-scripts] or the [command line][maas-scripts-cli].
+Hardware testing scripts are used to evaluate system hardware and
+report its status. Test scripts may be run directly after
+commissioning or from a node in a ready, deployed, or broken state. By
+default any test script tagged `commissioning` will be run during
+commissioning or testing. You can select which testing scripts are run
+from the [webUI][maas-scripts] or the [commandline][maas-scripts-cli].
 
 ## Metadata fields
 
@@ -130,15 +132,93 @@ The value is a dictionary with the following fields:
   be defined within the embedded YAML of the script. Results may be a list of
   strings or a dictionary of dictionaries.
 
-## Automatically Selecting Scripts by Hardware
+## Commissioning Script Sample - Configure HPA
 
-When selecting multiple machines in the [web UI][maas-scripts] scripts which
-specify the `for_hardware` field will only run on matching machines. To
-automatically run a script when 'Update firmware' or 'Configure HBA' is
-selected the script must be tagged with 'update_firmware' or 'configure_hba'.
+Below is a sample script to configure an Intel C610/X99 HPA controller on an HP
+system. The script will only run on systems with an Intel C610/X99 controller
+idenified by the PCI ID 8086:8d06. Before the script runs MAAS will download
+and install the hprest package from HP. After the script successfully completes
+the builtin commissioning scripts will be rerun to capture the new
+configuration.
 
-Scripts selected by tag in the [command line][maas-scripts-cli] which specify
-the `for_hardware` field will only run on matching hardware.
+```bash
+#!/bin/bash -ex
+# --- Start MAAS 1.0 script metadata ---
+# name: hp_c610_x99_ahci
+# title: Configure Intel C610/X99 controller on HP systems
+# description: Configure Intel C610/X99 controller on HP systems to AHCI
+# script_type: commissioning
+# tags: configure_hpa
+# packages:
+#  url: http://downloads.linux.hpe.com/SDR/repo/hprest/pool/non-free/hprest-1.5-26_amd64.deb
+# for_hardware: pci:8086:8d06
+# recommission: True
+# --- End MAAS 1.0 script metadata ---
+output=$(sudo hprest get EmbeddedSata --selector HpBios.)
+echo $output
+if [ $(echo $output | grep -c 'EmbeddedSata=Raid') ]; then
+    echo "Server is in Dynamic Smart Array RAID mode. Changing to SATA AHCI support mode."
+    sudo hprest set EmbeddedSata=Ahci --selector HpBios. --commit
+else:
+    echo "No changes made to the system, Server is Already in AHCI Mode"
+fi
+```
+
+## Commissioning Script Sample - Update Firmware
+
+Below is a sample script to update the mainboard firmware on an ASUS P8P67 Pro
+using a vendor provided tool. The tool will be automatically downloaded an
+extracted by MAAS. The script reboots the system to complete the update. The
+system will boot back into the MAAS ephemeral environment to finish
+commissioning and optionally testing.
+
+!!! Note:
+    Vendor tools which use UEFI boot capsules or need to store resource files
+    on disk while rebooting are not currently supported.
+
+```bash
+#!/bin/bash -ex
+# --- Start MAAS 1.0 script metadata ---
+# name: update_asus_p8p67_firmware
+# title: Firmware update for the ASUS P8P67 mainboard
+# description: Firmware update for the ASUS P8P67 mainboard
+# script_type: commissioning
+# tags: update_firmware
+# packages:
+#  url: http://example.com/firmware.tar.gz
+# for_hardware: mainboard_product:P8P67 PRO
+# may_reboot: True
+# --- End MAAS 1.0 script metadata ---
+$DOWNLOAD_PATH/update_firmware
+reboot
+```
+
+## Hardware Test Script Sample
+
+As a simple example, here's a functional Bash script replicating part of the
+**stress-ng** script bundled with MAAS:
+
+```bash
+#!/bin/bash -e
+# --- Start MAAS 1.0 script metadata ---
+# name: stress-ng-cpu-test
+# title: CPU validation
+# description: Run stress-ng memory tests for 5 minutes.
+# script_type: test
+# hardware_type: cpu
+# packages: {apt: stress-ng}
+# tags: cpu
+# timeout: 00:05:00
+# --- End MAAS 1.0 script metadata ---
+
+sudo -n stress-ng --matrix 0 --ignite-cpu --log-brief --metrics-brief --times \
+    --tz --verify --timeout 2m
+```
+
+The above Bash script contains comment-delineated metadata that configures the
+script environment and installs any dependencies, plus a single line of
+functionality that runs **stress-ng** (a CPU stress-test utility) with various
+arguments.
 
 ## Environment variables
 
@@ -173,8 +253,78 @@ The YAML file must represent a dictionary with the following fields:
   as embedded YAML within the script. The value of each result must be a string
   or a list of strings.
 
+## Automatically Selecting Scripts by Hardware
+
+When selecting multiple machines in the [web UI][maas-scripts] scripts which
+specify the `for_hardware` field will only run on matching machines. To
+automatically run a script when 'Update firmware' or 'Configure HBA' is
+selected the script must be tagged with 'update_firmware' or 'configure_hba'.
+
+Scripts selected by tag in the [command line][maas-scripts-cli] which specify
+the `for_hardware` field will only run on matching hardware.
+
+## Upload procedure
+
+Scripts can be uploaded to MAAS using the web UI. Select the 'Settings' page and
+look for the 'Commissioning scripts' section near the top. Within the
+Commissioning scripts section, use the *Choose file* button to open a
+requester, locate the script, and select *Upload script* to upload it to MAAS. 
+
+A status message of *Commissioning script created* will appear and you'll now
+be able to select your script from the Node's '[Test hardware][hardware-testing]' page. 
+
+![select custom script][nodes-hw-scripts__2.2_select]
+
+!!! Note: 
+    MAAS executes scripts in lexicographical order. This allows you to control
+    when your scripts are executed and if they run before or after the standard
+    MAAS scripts.
+
+## Debugging
+
+Clicking on the title of a completed or failed script will reveal the output
+from that specific script.
+
+![failed script output][nodes-hw-scripts__2.2_fail]
+
+If you need further details, especially when writing and running your own
+scripts, connect to a node and examine its logs and environment.
+
+To do this, enable *Allow SSH access and prevent machine from powering off*
+from the 'Test hardware' page of the web UI before starting commissioning or
+testing.
+
+![enable SSH within Test Hardware][nodes-hw-scripts__2.2_ssh]
+
+As scripts operate within an ephemeral version of Ubuntu, enabling this option
+stops the node from shutting down, allowing you to connect and probe a script's
+status. 
+
+As long as you've added your [SSH key][ssh-keys] to MAAS, you can simply
+connect with SSH to the node's IP with a username of `ubuntu`. Type `sudo -i`
+to get root access, and navigate to the `/tmp/user_data.sh.*` directory. This
+holds the scripts, output and tools for current session, in particular:
+
+- `output/`: Contains standard (**.out**) and error (**.err**) output for each script
+- `testing/`: Contains the scripts MAAS attempts to execute
+
+## Command line access
+
+If you need more control over the running and management of testing scripts,
+the [MAAS CLI][maas-cli] includes options not available from the web UI. See
+the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 
 <!-- LINKS -->
-[snapcraft]: https://snapcraft.io/
-[maas-scripts]: nodes-hw-scripts.md
+[commission-nodes]: nodes-commission.md
+[hardware-testing]: nodes-hw-testing.md
+[bundled-scripts]: nodes-hw-testing.md#included-scripts
+[maas-cli]: manage-cli.md
+[ssh-keys]: manage-account.md#ssh-keys
+[maas-scripts-cli]: nodes-hw-scripts-cli.md
+[maas-scripts-fields]: nodes-hw-scripts-fields.md
+
+<!-- IMAGES -->
+[nodes-hw-scripts__2.2_select]: ../media/nodes-hw-scripts__2.2_select.png
+[nodes-hw-scripts__2.2_fail]: ../media/nodes-hw-scripts__2.2_fail.png
+[nodes-hw-scripts__2.2_ssh]: ../media/nodes-hw-scripts__2.2_ssh.png
 [maas-scripts-cli]: nodes-hw-scripts-cli.md
