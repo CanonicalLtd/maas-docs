@@ -154,6 +154,9 @@ navigation:
       - title: Common tasks
         location: manage-cli-common.md
 
+      - title: Audit Event Logs
+        location: manage-audit-events.md 
+
       - title: Kernel management
         location: manage-cli-kernels.md
 
