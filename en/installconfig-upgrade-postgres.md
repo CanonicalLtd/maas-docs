@@ -2,18 +2,17 @@ Title: Upgrade 2.3 to 2.4 from Ubuntu 16.04
 
 # Upgrade 2.3 to 2.4 from Ubuntu 16.04
 
-MAAS 2.3 is the last supported version of MAAS for Ubuntu 16.04 LTS (Xenial
-Xerus). This is because changes in the base dependencies of Ubuntu 18.04 LTS
-(Bionic Beaver) require MAAS updates that are not back-portable to
-older versions of MAAS. Consequently, to upgrade from MAAS 2.3 to MAAS 2.4 on Ubuntu
-16.04, you will need to upgrade the base operating system.
+MAAS 2.3 is the last supported version for Ubuntu 16.04 LTS. Changes in the
+base dependencies of Ubuntu 18.04 LTS mean that newer versions of MAAS will not
+be back-portable, and consequently, to upgrade to MAAS 2.4 and all future
+versions, you will also need to upgrade the base operating system.
 
 !!! Note:
     MAAS 2.3 will continue to be supported on Ubuntu 16.04 LTS until the end of its
     support cycle. See [Ubuntu Releases][ubuntu-wiki-releases] for release and EOL
     dates for all Ubuntu versions.
 
-Upgrading from MAAS 2.3 to MAAS 2.4 involves in two steps:
+Upgrading from MAAS 2.3 to MAAS 2.4 involves two steps:
 
 1. Update Ubuntu 16.04 LTS to Ubuntu 18.04 LTS, automatically migrating both
    the MAAS database and the MAAS configuration for MAAS 2.4.
@@ -34,7 +33,7 @@ To upgrade Ubuntu, administrators need only type:
 sudo do-release-upgrade
 ```
 
-After the upgrade process completes and the machine rebooted, MAAS will
+After the upgrade process completes and the machine is rebooted, MAAS will
 continue to use the PostgreSQL 9.x version that came with Ubuntu 16.04 LTS.
 However, because Ubuntu 18.04 LTS switches to PostgreSQL 10, it is imperative
 we upgrade the database as well.
