@@ -140,6 +140,9 @@ navigation:
           - title: FAQ
             location: troubleshoot-faq.md
 
+          - title: Upgrade 2.3 to 2.4 from Ubuntu 16.04
+            location: installconfig-upgrade-postgres.md
+
           - title: Getting help
             location: troubleshoot-getting-help.md
 

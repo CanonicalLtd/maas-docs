@@ -24,10 +24,9 @@ There are four ways to install MAAS:
     - Ideal for testing and experimenting with MAAS
     - Can access developmental versions of MAAS
 
-Ubuntu 14.04 LTS systems running the MAAS 1.7 or 1.9 series can
-[upgrade to MAAS 2.0][upgrade-to-v2] via an LTS-to-LTS upgrade to Ubuntu 16.04
-LTS.
-
+Ubuntu 16.06 LTS systems running MAAS 2.3 or older can upgrade to MAAS 2.4 via
+an LTS-to-LTS upgrade to Ubuntu 18.04. See
+[Upgrade 2.3 to 2.4 from Ubuntu 16.04][upgrade-to-24] for details.
 
 <!-- LINKS -->
 
@@ -35,4 +34,4 @@ LTS.
 [install-from-packages]: installconfig-package-install.md
 [install-from-snap]: installconfig-snap-install.md
 [install-with-lxd]: installconfig-lxd-install.md
-[upgrade-to-v2]: installconfig-upgrade-to-2.md
+[upgrade-to-24]: installconfig-upgrade-postgres.md
