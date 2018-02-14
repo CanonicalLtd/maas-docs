@@ -19,7 +19,11 @@ Additionally, you may want to consider an installation within
 [LXD containers][install-with-lxd]. This allows MAAS nodes to also run as
 local containers and is ideal for testing and experimenting with MAAS.
 
-## From a snap
+!!! Note:
+    Implementing high availability via snaps is not yet possible.
+    See [MAAS HA][maas-ha] for more on that topic.
+
+## Install from a snap
 
 [Snaps][snappy-docs] are containerised software packages. To install MAAS from a
 *snap*, simply enter the following:
@@ -30,10 +34,6 @@ sudo snap install maas --devmode --stable
 
 After entering your password, the snap will download and install from the
 *stable* channel. However, MAAS needs initialising before it's ready to go.
-
-!!! Note:
-    Implementing high availability via snaps is not yet possible.
-    See [MAAS HA][maas-ha] for more on that topic.
 
 ## Initialisation
 
@@ -87,16 +87,15 @@ another, say 'region', simply state it:
 sudo maas init --mode region
 ```
 
-With MAAS installed and initialised, you can now open the web UI in your
-browser. See [Access the web UI][webui] for further details.
-
 
 ## Configuration verification
 
 After a *snap* installation of MAAS, a verification of the currently running
 configuration can be done with:
  
-```bash sudo maas config ```
+```bash
+sudo maas config
+```
 
 Sample output (for mode 'all'):
 
@@ -131,8 +130,10 @@ regiond:regiond-3                RUNNING   pid 8015, uptime 0:09:17
 tgt                              RUNNING   pid 8040, uptime 0:09:15
 ```
 
-<!-- LINKS -->
+With MAAS installed and initialised, you can now open the web UI in your
+browser. See [Access the web UI][webui] for further details.
 
+<!-- LINKS -->
 
 [snappy-docs]: https://snapcraft.io/docs
 [insights.ubuntu.com-snappy]: https://insights.ubuntu.com/2016/06/14/universal-snap-packages-launch-on-multiple-linux-distros/
@@ -140,7 +141,7 @@ tgt                              RUNNING   pid 8040, uptime 0:09:15
 [launchpad-bugs-maas]: https://bugs.launchpad.net/maas/+filebug
 [install-from-iso]: installconfig-iso-install.md
 [install-from-packages]: installconfig-package-install.md
-[install-from-snap]: #from-a-snap
+[install-from-snap]: #install-from-a-snap
 [install-with-lxd]: installconfig-lxd-install.md#from-a-snap#from-a-snap
 [launchpad]: https://launchpad.net/
 [github]: https://github.com
