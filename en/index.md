@@ -125,7 +125,6 @@ machine to the pool.
 [controllers]: intro-concepts.md#controllers
 [ubuntu-advantage]: https://www.ubuntu.com/support
 [concepts-controllers]: intro-concepts.md#controllers
-[maas-install]: installconfig-install.md
 [manage-ha]: manage-ha.md
 [dhcp]: installconfig-network-dhcp.md
 [power-types]: nodes-power-types.md
