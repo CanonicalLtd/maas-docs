@@ -5,26 +5,26 @@ table_of_contents: True
 
 # Audit Event Logs
 
-This page provides examples for working with audit event logs in MAAS.
-There are many user initiated events in MAAS that an administrator or user
-would want to audit, such as someone updating the settings or changing a
-user's permissions, for example.  This section details how to query these
-events.
+There are many user initiated events in MAAS that an administrator or a user
+may want to audit. These include someone updating the settings or changing a
+user's permissions. This page details how to query these events and includes
+examples of how to perform a query and the type of data logs can provide.
 
-Let's take a look at some examples to get a better understanding of how to
-query audit event logs and the type of information that it can give us. For the
-below issued commands, we will be using `admin` as the MAAS API login profile.
+## List audit events for all users
 
-## List Audit Event Logs For All Users
+To list events for all users, use the following syntax:
 
 ```bash
-maas admin events query level=AUDIT
+maas $PROFILE events query level=AUDIT
 ```
-Note: Non-administrators will only see their own audit event logs listed.
 
-*example:*
-```bash
-# maas admin events query level=AUDIT
+Note:
+    Non-administrators will only see their own audit event logs listed.
+
+The following is example output from the previous command, using *admin* as the
+MAAS profile:
+
+```no-highlight
 Success.
 Machine-readable output follows:
 {
@@ -46,35 +46,36 @@ Machine-readable output follows:
 }
 ```
 
-This shows us that there is only currently one audit event log for the user
-`admin` and was created when they logged into the WebUI.
+The above output shows that there is currently only one audit event log for the user
+`admin` and this was created when they logged into the web UI.
 
 
-## List Audit Event Logs For A Specific User
+## List audit events for a specific user
 
 To list the audit event logs for a specific user that you have permissions for,
-supply the `owner=$USERNAME` parameter to the query command.
+supply the `owner=$USERNAME` parameter to the query command:
 
 ```bash
-maas admin events query level=AUDIT owner=$USERNAME
+maas $PROFILE events query level=AUDIT owner=$USERNAME
 ```
 
+As there is only one audit event log in the database (as seen above), generate
+some more by performing these actions:
 
-As there is only one audit event log in the database (seen in previous example)
-let us create some more by performing these actions:
-
-- Create new non-administrator user `johnnybegood` with `admin` user.
-- Logout of WebUI as `admin` user and login with `johnnybegood` user.
-- Change password of `johnnybegood` user.
-- Log back into WebUI (Django forces a re-login when currently logged in user
-changes their password).
+- create new non-administrator user `johnnybegood` with `admin` user
+- logout of web UI as `admin` user and login with `johnnybegood` user
+- change password of the `johnnybegood` user
+- log back into the web UI (Django forces a re-login when currently logged in
+  user changes their password).
 
 Let's take a look and see what type of audit event logs we have now, filtering
-on with `owner=johnnybegood`.
+with `owner=johnnybegood` as shown in the following command:
 
-*example:*
 ```bash
-# maas admin events query level=AUDIT owner=johnnybegood
+maas admin events query level=AUDIT owner=johnnybegood
+```
+
+```bash
 Success.
 Machine-readable output follows:
 {
@@ -116,25 +117,29 @@ Machine-readable output follows:
 }
 ```
 
-
 As we can see above, only audit event logs for the user `johnnybegood` are
-shown. The audit event logs show us the user of the event, whether the event is
-associated with a particular node, the node's hostname, the event id, the level
-of the event, when the event was created, the event type for this event, and the
-event's description.
+generated. These events show the following:
 
+- user for the event
+- whether the event is associated with a particular node
+- node's hostname
+- event id
+- level of the event
+- when the event was created
+- event type
+- event description
 
-## Types of Audit Event Logs
+## Types of audit event logs
 
-Here is a list of the types of audit event logs that are currently part of MAAS:
+Here is a list of the types of audit event logs that are currently supported by MAAS:
 
-- Password changes.
-- Permission changes.
-- API (OAuth) tokens created/deleted.
-- Login and Logouts.
-- SSH keys imported from GH or LP.
-- SSL key changes.
-- User profile changes.
-- Commissioning script changes.
-- Test script changes.
+- Password changes
+- Permission changes
+- API (OAuth) tokens created/deleted
+- Login and logouts
+- SSH keys imported from GitHub or Launchpad
+- SSL key changes
+- User profile changes
+- Commissioning script changes
+- Test script changes
 
