@@ -142,7 +142,7 @@ web UI will inform you of its IP address. Mission accomplished!
 <!-- LINKS -->
 
 [about-maas]: index.md#key-components-and-colocation-of-all-services
-[maas-install]: installconfig-install.md
+[maas-install]: installconfig-snap-install.md
 [webui]: installconfig-webui.md
 [zones]: manage-zones.md
 [networks]: installconfig-networking.md
