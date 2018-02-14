@@ -23,7 +23,7 @@ local containers and is ideal for testing and experimenting with MAAS.
     Implementing high availability via snaps is not yet possible.
     See [MAAS HA][maas-ha] for more on that topic.
 
-## Install from a snap
+## Install from snap
 
 [Snaps][snappy-docs] are containerised software packages. To install MAAS from a
 *snap*, simply enter the following:
@@ -141,8 +141,8 @@ browser. See [Access the web UI][webui] for further details.
 [launchpad-bugs-maas]: https://bugs.launchpad.net/maas/+filebug
 [install-from-iso]: installconfig-iso-install.md
 [install-from-packages]: installconfig-package-install.md
-[install-from-snap]: #install-from-a-snap
-[install-with-lxd]: installconfig-lxd-install.md#from-a-snap#from-a-snap
+[install-from-snap]: #install-from-snap
+[install-with-lxd]: installconfig-lxd-install.md
 [launchpad]: https://launchpad.net/
 [github]: https://github.com
 [webui]: installconfig-webui.md#access-the-web-ui
