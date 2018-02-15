@@ -14,12 +14,12 @@ navigation:
         location: intro-requirements.md
 
   - title: User guide
-    location: installconfig-install.md
+    location: installconfig-snap-install.md
 
     children:
     
       - title: Install MAAS
-        location: installconfig-install.md
+        location: installconfig-snap-install.md
 
       - title: Controllers
 
