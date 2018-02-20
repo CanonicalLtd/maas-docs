@@ -68,7 +68,6 @@ navigation:
           - title: Custom node setup
             location: nodes-custom.md
 
-
       - title: Images
         location: installconfig-images.md
 
