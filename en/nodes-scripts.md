@@ -1,23 +1,28 @@
 Title: Commissioning and Hardware Testing Scripts
 table_of_contents: True
 
-# Commissioning Scripts
+# Commissioning and Hardware Testing Scripts
 
-MAAS supports adding custom commissioning scripts which can be used to
-configure hardware, update system firmware, or perform other tasks during
-commissioning. By default all commissioning scripts are run except those
-which use the `for_hardware` feature. You can select which commissioning
-scripts are run from the [web UI][maas-scripts] or the
-[command line][maas-scripts-cli].
+Commissioning and hardware testing scripts are used by MAAS while
+commissioning and testing a node respectively. *Commissioning scripts* are used
+to configure hardware or perform other tasks during commissioning, such as
+updating firmware, whereas *hardware testing scripts* are used to evaluate system
+hardware and report its status. 
 
-# Hardware Testing Scripts
+Scripts can be selected to run from web UI 
+[during commissioning][maas-commission], by [testing
+hardware][hardware-testing] or from the [command line][maas-scripts-cli].
 
-Hardware testing scripts are used to evaluate system hardware and
-report its status. Test scripts may be run directly after
-commissioning or from a node in a ready, deployed, or broken state. By
-default any test script tagged `commissioning` will be run during
-commissioning or testing. You can select which testing scripts are run
-from the [webUI][maas-scripts] or the [commandline][maas-scripts-cli].
+This page explains the various metadata fields used within these scripts, how
+parameters are passed to scripts and how any results are returned, along with
+examples of both commissioning and hardware testing scripts.
+
+!!! Note:
+    By default, all commissioning scripts will be run except those which use the
+    `for_hardware` feature. Similarly, any test script tagged `commissioning` will
+    be run during commissioning or testing. 
+    [See below](#automatic-script-selection-by-hardware-type) for more details.
+
 
 ## Metadata fields
 
@@ -49,7 +54,7 @@ and what information a script is gathering. A script can have the following fiel
       script.
     - `any`: Runs in parallel alongside any other scripts with *parallel* set
       to *any*.
-- `parameters`: What [parameters](#Parameters) the script accepts.
+- `parameters`: What [parameters](#parameters) the script accepts.
 - `packages`: List of packages to be installed or extracted before running the
   script. Packages may be specified as a JSON string, a list of strings, or as
   a dictionary. For example, `packages: {apt: stress-ng}`, would ask `apt` to
@@ -81,6 +86,7 @@ and what information a script is gathering. A script can have the following fiel
   with `may_reboot` set to True.
 - `recommission`: After all commissioning scripts have finished running rerun
   the builtin commissioning scripts to rediscover hardware.
+
 
 ## Parameters
 
@@ -132,14 +138,34 @@ The value is a dictionary with the following fields:
   be defined within the embedded YAML of the script. Results may be a list of
   strings or a dictionary of dictionaries.
 
-## Commissioning Script Sample - Configure HPA
+## Environment variables
+
+The following environment variables are available when a script is run within
+the MAAS environment:
+
+- `OUTPUT_STDOUT_PATH`: The path to the log of *STDOUT* from the script.
+- `OUTPUT_STDERR_PATH`: The path to the log of *STDERR* from the script.
+- `OUTPUT_COMBINED_PATH`: The path to the log of the combined *STDOUT* and *STDERR*
+  from the script.
+- `RESULT_PATH`: Path for the script to write a result YAML to.
+- `DOWNLOAD_PATH`: The path where all files have been downloaded to.
+- `RUNTIME`: The amount of time the script has to run in seconds.
+- `HAS_STARTED`: When True MAAS has run the script once before but not to
+  completion. Indicates the machine has been rebooted.
+
+
+## Script examples
+
+### Commissioning script: Configure HPA
 
 Below is a sample script to configure an Intel C610/X99 HPA controller on an HP
 system. The script will only run on systems with an Intel C610/X99 controller
-idenified by the PCI ID 8086:8d06. Before the script runs MAAS will download
-and install the hprest package from HP. After the script successfully completes
-the builtin commissioning scripts will be rerun to capture the new
-configuration.
+identified by the PCI ID **8086:8d06**.
+
+Before the script runs, MAAS will download and install the 
+[HP RESTful Interface Tool][hp-rest] package from HP.  After the script
+successfully completes, the built-in commissioning scripts will be re-run to
+capture the new configuration.
 
 ```bash
 #!/bin/bash -ex
@@ -164,7 +190,7 @@ else:
 fi
 ```
 
-## Commissioning Script Sample - Update Firmware
+### Commissioning script: Update firmware
 
 Below is a sample script to update the mainboard firmware on an ASUS P8P67 Pro
 using a vendor provided tool. The tool will be automatically downloaded an
@@ -193,7 +219,7 @@ $DOWNLOAD_PATH/update_firmware
 reboot
 ```
 
-## Hardware Test Script Sample
+### Hardware test script: CPU stress test
 
 As a simple example, here's a functional Bash script replicating part of the
 **stress-ng** script bundled with MAAS:
@@ -220,20 +246,17 @@ script environment and installs any dependencies, plus a single line of
 functionality that runs **stress-ng** (a CPU stress-test utility) with various
 arguments.
 
-## Environment variables
+### Automatic script selection by hardware type
 
-The following environment variables are available when a script is run within
-the MAAS environment:
+When selecting multiple machines in the [web UI][maas-nodes], scripts which
+declare the `for_hardware` field will only run on machines with matching
+hardware. To automatically run a script when 'Update firmware' or 'Configure
+HBA' is selected the script must be tagged with 'update_firmware' or
+'configure_hba'.
 
-- `OUTPUT_STDOUT_PATH`: The path to the log of *STDOUT* from the script.
-- `OUTPUT_STDERR_PATH`: The path to the log of *STDERR* from the script.
-- `OUTPUT_COMBINED_PATH`: The path to the log of the combined *STDOUT* and *STDERR*
-  from the script.
-- `RESULT_PATH`: Path for the script to write a result YAML to.
-- `DOWNLOAD_PATH`: The path where all files have been downloaded to.
-- `RUNTIME`: The amount of time the script has to run in seconds.
-- `HAS_STARTED`: When True MAAS has run the script once before but not to
-  completion. Indicates the machine has been rebooted.
+Similarly, scripts selected by tag on the [command line][maas-scripts-cli]
+which specify the `for_hardware` field will only run on matching hardware.
+
 
 ## Results
 
@@ -252,16 +275,6 @@ The YAML file must represent a dictionary with the following fields:
 - `results`: A dictionary of results. The key may map to a results key defined
   as embedded YAML within the script. The value of each result must be a string
   or a list of strings.
-
-## Automatically Selecting Scripts by Hardware
-
-When selecting multiple machines in the [web UI][maas-scripts] scripts which
-specify the `for_hardware` field will only run on matching machines. To
-automatically run a script when 'Update firmware' or 'Configure HBA' is
-selected the script must be tagged with 'update_firmware' or 'configure_hba'.
-
-Scripts selected by tag in the [command line][maas-scripts-cli] which specify
-the `for_hardware` field will only run on matching hardware.
 
 ## Upload procedure
 
@@ -314,17 +327,21 @@ If you need more control over the running and management of testing scripts,
 the [MAAS CLI][maas-cli] includes options not available from the web UI. See
 the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 
+
 <!-- LINKS -->
 [commission-nodes]: nodes-commission.md
 [hardware-testing]: nodes-hw-testing.md
 [bundled-scripts]: nodes-hw-testing.md#included-scripts
 [maas-cli]: manage-cli.md
 [ssh-keys]: manage-account.md#ssh-keys
-[maas-scripts-cli]: nodes-hw-scripts-cli.md
-[maas-scripts-fields]: nodes-hw-scripts-fields.md
+[maas-scripts-cli]: nodes-scripts-cli.md
+[hp-rest]: https://downloads.linux.hpe.com/SDR/project/hprest/
+[maas-nodes]: nodes-overview.md 
+[maas-commission]: nodes-commission.md
+[script-selection]: nodes-scripts.md#automatic-script-selection-by-hardware-type
+[maas-scripts-cli]: nodes-scripts-cli.md
 
 <!-- IMAGES -->
 [nodes-hw-scripts__2.2_select]: ../media/nodes-hw-scripts__2.2_select.png
 [nodes-hw-scripts__2.2_fail]: ../media/nodes-hw-scripts__2.2_fail.png
 [nodes-hw-scripts__2.2_ssh]: ../media/nodes-hw-scripts__2.2_ssh.png
-[maas-scripts-cli]: nodes-hw-scripts-cli.md
