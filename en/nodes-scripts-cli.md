@@ -14,7 +14,8 @@ To use the CLI, first make sure you are [logged in][maas-cli-login].
 
 !!! Note:
     For further details on which metadata fields can be used within scripts,
-    and what they do, see [Hardware Testing Script Metadata][maas-scripts-fields].
+    and what they do, see 
+    [Commissioning and Hardware Testing Scripts][maas-scripts-fields].
 
 ## Script management
 
