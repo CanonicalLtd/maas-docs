@@ -12,6 +12,6 @@ install:
   - pip install ./documentation-builder
  
 script:
-  - python3 ./documentation-builder/bin/documentation-builder
+  - python3 ./documentation-builder/documentation-builder
 
 
