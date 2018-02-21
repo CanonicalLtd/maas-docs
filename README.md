@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CanonicalLtd/maas-docs.svg?branch=master)](https://travis-ci.org/CanonicalLtd/maas-docs)
+
 # MAAS Documentation 
 
 This is the official documentation for [MAAS][maas]. It is written in
