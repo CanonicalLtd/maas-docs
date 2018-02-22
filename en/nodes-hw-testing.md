@@ -64,11 +64,11 @@ The verbatim output from any tests is accessed by selecting a node, selecting
 the 'Hardware tests' page and clicking on the 'Log view' link in the 'Results'
 column for the specific test.
 
-See [Hardware Testing Scripts][nodes-hw-scripts] for more details on how
+See [Commissioning and Hardware Testing Scripts][nodes-hw-scripts] for more details on how
 these scripts work and how you can write your own.
 
 <!-- LINKS -->
-[nodes-hw-scripts]: nodes-hw-scripts.md
+[nodes-hw-scripts]: nodes-scripts.md
 
 <!-- IMAGES -->
 [img__2.2_hw-testing-deployed]: ../media/nodes-hw-testing__2.2_deployed.png

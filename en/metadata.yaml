@@ -59,15 +59,14 @@ navigation:
           - title: Hardware testing
             location: nodes-hw-testing.md
 
-          - title: Hardware testing scripts
-            location: nodes-hw-scripts.md
+          - title: Commissioning and Hardware testing scripts
+            location: nodes-scripts.md
 
           - title: Composable hardware
             location: nodes-comp-hw.md
 
           - title: Custom node setup
             location: nodes-custom.md
-
 
       - title: Images
         location: installconfig-images.md
@@ -170,10 +169,7 @@ navigation:
         location: manage-cli-dhcp-snippets.md
 
       - title: Hardware testing scripts
-        location: nodes-hw-scripts-cli.md
-
-      - title: Script metadata
-        location: nodes-hw-scripts-fields.md
+        location: nodes-scripts-cli.md
 
       - title: Advanced tasks
         location: manage-cli-advanced.md
