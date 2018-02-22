@@ -296,7 +296,7 @@ in the following locations:
 [contactus]: https://maas.io/contact-us
 [snapinstall]: installconfig-snap-install.md
 [hardware-testing]: nodes-hw-testing.md
-[testing-scripts]: nodes-hw-scripts.md
+[testing-scripts]: nodes-scripts.md
 [node-overview]: nodes-overview.md
 [maas-freenode]: http://webchat.freenode.net/?channels=maas
 [freenode]: https://freenode.net/
