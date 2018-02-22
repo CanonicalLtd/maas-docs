@@ -1,7 +1,7 @@
-Title: CLI Hardware Testing Scripts
+Title: CLI Testing Scripts
 table_of_contents: True
 
-# CLI Hardware Testing Scripts
+# CLI Testing Scripts
 
 The [web UI][hardware-testing] enables you to easily write, upload and execute
 your own hardware testing scripts and see the results.
@@ -14,7 +14,8 @@ To use the CLI, first make sure you are [logged in][maas-cli-login].
 
 !!! Note:
     For further details on which metadata fields can be used within scripts,
-    and what they do, see [Hardware Testing Script Metadata][maas-scripts-fields].
+    and what they do, see 
+    [Commissioning and Hardware Testing Scripts][maas-scripts-fields].
 
 ## Script management
 
@@ -149,10 +150,10 @@ maas $PROFILE node-script-result download $SYSTEM_ID $RUN_ID output=all \
     node's system ID][system-id] for details on retrieving **$SYSTEM_ID**.
 
 <!-- LINKS -->
-[hardware-testing]: nodes-hw-scripts.md
-[script-example]: nodes-hw-scripts.md#script-example
+[hardware-testing]: nodes-scripts.md
+[script-example]: nodes-scripts.md#hardware-test-script-sample
 [maas-cli]: manage-cli.md
 [maas-cli-login]: manage-cli.md#log-in-(required)
 [system-id]: manage-cli-common#determine-a-node's-system-id
 [tag-management]: manage-cli-tags.md
-[maas-scripts-fields]: nodes-hw-scripts-fields.md
+[maas-scripts-fields]: nodes-scripts.md#metadata-fields
