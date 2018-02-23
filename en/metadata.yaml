@@ -21,6 +21,9 @@ navigation:
       - title: Install MAAS
         location: installconfig-snap-install.md
 
+      - title: Access the web UI
+        location: installconfig-webui.md
+      
       - title: Controllers
 
         children:
