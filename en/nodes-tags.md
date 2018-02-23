@@ -131,7 +131,7 @@ or a 'Broken' state.
 With the machine selected from the 'Nodes' page, on the 'Interfaces' tab use
 the 'Edit' button (pencil icon) of an interface:
 
-![tags: net interface][img__2.2_tags-net-interface]
+![tags: net interface][img__tags-net-interface]
 
 To add a tag, type its name into the 'Tags' field and press Enter. Repeat as
 desired. Use the small 'x' next to a tag to unassign the tag.
