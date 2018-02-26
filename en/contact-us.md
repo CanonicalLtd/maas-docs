@@ -1,7 +1,7 @@
 Title: Contact Us
 table_of_contents: True
 
-# Contact us
+# Contact Us
 
 We love hearing your feedback and about how you're using MAAS. Get in touch
 with the team from one of the following locations:
