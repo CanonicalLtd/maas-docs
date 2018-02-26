@@ -7,7 +7,8 @@ We love hearing your feedback and about how you're using MAAS. Get in touch
 with the team from one of the following locations:
 
 - On the [MAAS IRC channel][irc-freenode], hosted on [freenode][freenode].
-- The MAAS [developers mailing list][mailing-list].
+- The MAAS [developers mailing list][mailing-list]; a great place to ask
+  questions.
 - Via the [Launchpad][maas-launchpad] source code and issue tracking repository.
 
 If you're interested in adopting MAAS for enterprise use or looking to partner
