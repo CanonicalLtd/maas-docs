@@ -199,3 +199,6 @@ navigation:
 
   - title: Help improve these docs
     location: contributing-writing.md
+  
+  - title: Contact us
+    location: contact-us.md
