@@ -190,3 +190,6 @@ navigation:
 
   - title: Report a docs issue
     location: https://github.com/CanonicalLtd/maas-docs/issues/new
+
+  - title: Contact us
+    location: contact-us.md
