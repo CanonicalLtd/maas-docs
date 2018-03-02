@@ -69,8 +69,8 @@ a VLAN. First we need to gather various bits of data.
 List some information on all machines:
 
 ```bash
-maas $PROFILE machines read | jq '.[] | \
-	{hostname:.hostname, system_id: .system_id, status:.status}' --compact-output
+maas $PROFILE machines read | jq ".[] | \
+	{hostname:.hostname, system_id: .system_id, status:.status}" --compact-output
 ```
 
 Example output:
@@ -90,8 +90,8 @@ List some information for all interfaces on the machine in question (identified
 by its system id 'dfgnnd'):
 
 ```bash
-maas $PROFILE interfaces read dfgnnd | jq '.[] | \
-	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}' --compact-output
+maas $PROFILE interfaces read dfgnnd | jq ".[] | \
+	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}" --compact-output
 ```
 
 Example output:
@@ -104,8 +104,8 @@ Example output:
 List some information for all fabrics:
 
 ```bash
-maas $PROFILE fabrics read | jq '.[] | \
-	{name:.name, vlans:.vlans[] | {id:.id, vid:.vid}}' --compact-output
+maas $PROFILE fabrics read | jq ".[] | \
+	{name:.name, vlans:.vlans[] | {id:.id, vid:.vid}}" --compact-output
 ```
 
 Example output:
@@ -127,8 +127,8 @@ maas $PROFILE interface update dfgnnd 8 vlan=5001 >/dev/null
 Verify the operation by relisting information for the machine's interface:
 
 ```bash
-maas $PROFILE interfaces read dfgnnd | jq '.[] | \
-	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}' --compact-output
+maas $PROFILE interfaces read dfgnnd | jq ".[] | \
+	{id:.id, name:.name, mac:.mac_address, vid:.vlan.vid, fabric:.vlan.fabric}" --compact-output
 ```
 
 The output shows that the interface is now on fabric-0:
