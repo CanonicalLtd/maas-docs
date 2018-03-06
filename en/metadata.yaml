@@ -178,9 +178,6 @@ navigation:
       - title: Getting help
         location: troubleshoot-getting-help.md
 
-  - title: Release notes
-    location: release-notes.md
-
   - title: API documentation
     location: api.md
 
@@ -191,6 +188,9 @@ navigation:
 
       - title: API authentication
         location: api-authentication.md
+
+  - title: Release notes
+    location: release-notes.md
 
   - title: Help improve these docs
     location: contributing-writing.md
