@@ -1,5 +1,5 @@
 Title: API Authentication
-table_of_contentsi: True
+table_of_contents: True
 
 # API authentication
 
