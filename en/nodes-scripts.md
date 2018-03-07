@@ -35,9 +35,9 @@ and what information a script is gathering. A script can have the following fiel
 - `tags`: List of tags associated with the script.
 - `type`: Either *commissioning* or *testing*.
 - `timeout`: Length of time before MAAS automatically fails and kills execution
-  of the script.
+  of the script. The time may be specified in seconds or using the *HH:MM:SS* format.
 - `destructive`: *True* or *False*, depending on whether the script will
-  overwrite system data.
+  overwrite system data. Destructive tests can not be run on a deployed machine.
 - `comment`: Describes changes made in this revision of the script.
 - `hardware_type`: Defines the type of hardware the script configures or tests.
   If the script returns results, *hardware type* dictates what hardware the results
@@ -65,10 +65,6 @@ and what information a script is gathering. A script can have the following fiel
       installed, and optionally, the `channel`, `mode` and `revision`.
     - `url`: The archive will be downloaded and, if possible, extracted or
       installed when a Debian package or [snap][snapcraft].
-- `timeout`: The amount of time the script has to run before being timing out.
-  The time may be specified in seconds or using HH:MM:SS format.
-- `destructive`: When True indicates the script may overwrite existing data to
-  the disks. Destructive tests can not be run on a deployed machine.
 - `for_hardware`: Specifies the hardware that must be on the machine for the
   script to run. May be a single string or list of strings of the following:
     - `modalias`: Starts with 'modalias:' may optionally contain wild cards.
