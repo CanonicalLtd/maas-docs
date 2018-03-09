@@ -1,274 +1,143 @@
-Title: 2.3 Release Notes
+Title: 2.4 Release Notes
 table_of_contents: True
 
-See [Historical release notes][historical-notes] for release notes for all versions.
+# Release Notes 2.4
 
-# Release Notes - 2.3
+MAAS 2.4 is currently under development. The current release is 
+[MAAS 2.4.0 (alpha1)][currentrelease]. See 
+[Historical release notes][historical-release-notes] for release notes for
+stable versions.
 
-## Important announcements
+The development version of MAAS is available from the *proposed* repository of
+the upcoming Ubuntu 18.04 LTS (Bionic Beaver) release and the MAAS Next PPA
+repository.
 
-### Machine network configuration now deferred to cloud-init
-
-Machine network configuration is now handled by [cloud-init][cloudinit].
-
-With previous versions of MAAS (and [curtin][curtin]), network configuration
-was performed directly by curtin during the installation process. In an effort
-to improve robustness, this network configuration has been consolidated with
-cloud-init.
-
-MAAS continues to pass network configuration to curtin which in turn delegates
-the configuration to cloud-init.  
-
-
-### Ephemeral images over HTTP
-
-To reduce the number of dependencies and improve reliability, MAAS ephemeral
-(network boot) images are no longer loaded using iSCSI (tgt). By default, these
-images are now obtained using HTTP requests to the rack controller.
-
-After upgrading to MAAS 2.3, please ensure you have the latest available
-images. For more information please refer to 
-[Ephemeral images now use HTTP][ephemeral] below.
-
-
-### CentOS and Windows advanced network configuration
-
-MAAS 2.3 now supports the ability to perform network configuration for CentOS
-and Windows via [cloud-init][cloudinit]. The MAAS CentOS images now use the
-latest available version of cloud-init to support these features.
-
-
-## New features and improvements
-
-### CentOS network configuration
-
-MAAS now performs machine network configuration for CentOS 6 and 7, providing
-those operating systems with networking feature parity with Ubuntu.
-
-The following can now be configured for MAAS deployed CentOS images:
-
-- Bonds, VLAN and bridge interfaces.
-- Static network configuration.
-
-Our thanks to the [cloud-init][cloudinit] team for improving the network
-configuration support for CentOS.
-
-
-### Windows network configuration
-
-MAAS can now configure NIC teaming (bonding) and VLAN interfaces for Windows
-deployments. This uses the native NetLBFO in Windows 2008+.
-
-[Contact us][contactus] for more information.
-
-
-### Improved hardware testing
-
-MAAS 2.3 introduces a new [hardware testing][hardware-testing] framework that
-significantly improves the granularity and provision of hardware testing
-feedback. These improvements include:
-
-- **Run individual tests**.
-  The new framework allows MAAS to run each component individually. This
-  enables MAAS to run tests against storage devices, for example, and capture
-  results separately.
-- **Define a [custom testing script][testing-scripts] with a YAML definition**.
-  The ability to describe custom hardware tests with a YAML definition enables
-  MAAS do the following:
-    - Collate details about the tests, such as script name, description, required
-      packages, and other metadata about what information the script will
-      gather. All of which will be used by MAAS to render in the UI.
-    - Determine whether the test supports a parameter, such as storage,
-      that lets the test to be run against individual storage devices.
-    - The option to run tests in parallel.
-- **Performance metrics**.
-  Capture performance metrics for the tests that can provide them:
-    - CPU performance now offers a new *[7zip][7zip]* test which includes metrics.
-    - Storage performance now include a new *[fio][fio]* test with metrics.
-    - The storage test *badblocks* has been improved to provide the number of
-     badblocks found as a metric.
-- **Failed testing override**. 
-  The ability to override a machine that has been marked ‘Failed testing’. This
-  allows administrators to acknowledge that a machine is usable despite it
-  having failed testing.
-
-Hardware testing improvements include the following web UI changes:
-
-- **Machine Listing page**:
-    - Displays whether a test is pending, running or failed for the machine
-      components (CPU, Memory or Storage.)
-    - Displays whether a test not related to CPU, Memory or Storage has failed.
-    - Displays a warning when the machine has been overridden and has failed
-      tests but is in a ‘Ready’ or ‘Deployed’ state.
-- **Machine Details page**:
-    - The *Summary tab* now provides hardware testing information about the different
-      components (CPU, Memory, Storage).
-    - The *Hardware Tests /Commission tab* now displays an improved view of the latest
-      test run, its run time as well as an improved view of previous results. It
-      also adds more detailed information about specific tests, such as status, exit
-      code, tags, runtime and logs/output (such as stdout and stderr).
-    - The *Storage tab* now displays the status of specific disks, including whether a
-      test is OK or failed after running hardware tests.
-
-For more information, please refer to
-[https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing](https://docs.ubuntu.com/maas/2.3/en/nodes-hw-testing)
-
-
-### Network discovery and beaconing
-
-In order to confirm network connectivity and aide with the discovery of VLANs,
-fabrics and subnets, MAAS 2.3 introduces network beaconing.
-
-MAAS now sends out encrypted beacons to facilitate network discovery and
-monitoring. Beacons are sent using IPv4 and IPv6 multicast (and unicast) to UDP
-port 5240.
-
-When registering a new controller, MAAS uses the information gathered from the
-beaconing protocol to ensure that newly registered interfaces on each
-controller are associated with existing known networks in MAAS.
-
-Using network beaconing, MAAS can better correlate which networks are
-connected to its controllers, even if interfaces on those controllers are not
-configured with IP addresses.
-
-Future uses for beaconing could include validation of networks from
-commissioning nodes, MTU verification and a better user experience when
-registering new controllers.
-
-
-### Upstream proxy
-
-MAAS 2.3 enables an upstream HTTP proxy to allow MAAS-deployed machines to
-continue to use a caching proxy for repositories. This provides greater
-flexibility for closed environments, including:
-
-- Enabling MAAS itself to use a corporate proxy while allowing machines to
-  continue to use the MAAS proxy.
-- Allowing machines that don’t have access to a corporate proxy to gain network
-  access using the MAAS proxy.
-
-Upstream proxy support includes an improved configuration pane on the
-settings page. See *Settings > Proxy* for more details.
-
-
-### Ephemeral images now use HTTP
-
-Historically, MAAS used [tgt][tgt] to provide images over iSCSI for the
-ephemeral environments (such as during commissioning, the deployment
-environment and rescue mode). MAAS 2.3 changes the default behaviour by now
-providing images over HTTP instead.
-
-This change means that *initrd* (run via PXE) will contact the rack controller to
-download the image to load in the ephemeral environment directly.
-
-Support for using 'tgt' is being phased out in MAAS 2.3 and will no longer be
-supported from MAAS 2.4 onwards.
-
- Users who would like to continue to use and load their ephemeral images via
-'tgt' they can disable http boot with the following command.
+To install from the MAAS Next PPA (ppa:maas/next) repository:
 
 ```bash
-maas $PROFILE maas set-config name=http_boot value=False
+sudo add-apt-repository -yu ppa:maas/next
+sudo apt install maas
 ```
 
+### MAAS Client Library (python-libmaas)
 
-### Usability improvements (web UI)
+The official Python client library for MAAS is available in the Ubuntu 18.04
+LTS package archive or you can download the source from:
+[https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
 
-Alongside the UI improvements outlined above, MAAS 2.3 introduces an improved
-web UI design for the machines, devices and controllers detail pages that
-include the following changes:
+## 2.4.0 (alpha1)
 
-- **[Summary tab][node-overview]**.
-  Now only displays details on a specific node (machine, device or controller),
-  organised across cards.
-- **Configuration**. 
-  This includes all editable settings for the specific node (machine, device or
-  controllers).
+### Dependency on tgt (iSCSI) has been dropped
 
-#### Controller versions and notifications
+MAAS 2.3 moved away from using iSCSI to run ephemeral environments and
+deployments, adding the ability to perform the same functions with a *squashfs*
+image. While this removed the requirement for *tgt*, the dependency wasn't
+dropped from 2.3. As of 2.4, however, tgt has been completely removed.
 
-The MAAS web UI now displays the version of each running controller and notifies the users
-of any version mismatch between the region and rack controllers.
+### Apache2 dependency dropped from Debian packages
 
-This helps administrators identify potential problems when upgrading MAAS on a
-multi-node MAAS cluster, such as within a HA setup.
+MAAS 2.0 changed the web UI to port 5240 and deprecated the use of port 80.
+However, so as to not break deployments when upgrading from the previous LTS
+release, MAAS continued to have *apache2* as a dependency. This was purely to
+provide a reverse proxy to allow users to connect via port 80.
 
-#### Other UI improvements
+The availability of the MAAS *snap* changes that behaviour, longer providing
+web UI access on port 80. To remain consistent with the snap, the Debian
+package removes its dependency on *apache2* and drops proxy access via port 80.
 
-- Added DHCP status column on the *Subnets* tab.
-- Added architecture filters
-- VLAN and Space details page no longer allows inline editing.
-- VLAN page adds the IP ranges tables.
-- Zones page converted to AngularJS (away from YUI).
-- New warnings when changing a subnet’s mode (*Unmanaged* or *Managed*).
-- Renamed *Device Discovery* to *Network Discovery*.
-- When MAAS cannot determine the hostname for discovered devices, it will show
-  the hostname as 'unknown' and greyed-out rather than using the MAC address
-  manufacturer as the hostname.
+### Python libmaas (0.6.0) available in the Ubuntu Archive
 
+The new [MAAS Client
+Library](#maas-client-library-(python-libmaas)) is now available in the Ubuntu
+Archives for Ubuntu 18.04. *Libmaas* is an asyncio-based client library that
+provides an improved programming interface to interact with MAAS. More details
+below.
 
-### Rack controller deployment
+### New Features & Improvements
 
-MAAS 2.3 can now automatically deploy rack controllers when deploying a
-machine.
+#### Machine Locking
 
-This is accomplished by providing [cloud-init][cloudinit] user data. Cloud-init
-will install and configure the rack controller after a machine has been
-deployed. Upon rack controller registration, MAAS will automatically detect
-whether the machine is a rack controller and process the transition automatically.
+MAAS adds the ability to lock machines, preventing the user from
+performing actions that could change their state. This gives MAAS a prevention
+mechanism for potentially catastrophic actions. For example, it prevents
+powering off machines by mistake, or releasing machines that could bring
+workloads down.
 
-To deploy a rack controller, users can do so via the API (or CLI), e.g:
+#### Audit logging
 
-```bash
-maas $PROFILE machine deploy $SYSTEM_ID install_rackd=True
-```
+With the introduction of *audit logging*, MAAS 2.4 allows the administrators to
+audit the user’s actions.
 
-!!! Note:
-    This features makes use of the MAAS [snap][snapio] to configure the rack
-    controller on the deployed machine. 'snap store' mirrors are not yet
-    available, which means the machine will need access to the internet.
+The audit logs are available to administrators via the MAAS CLI/API, giving
+administrators a centralised location to access these logs. See
+[Audit Event Logs][audit-logs] for more details.
 
+#### Commissioning Harness
 
-### Improved DNS reloading
+**Support for firmware upgrades and hardware specific scripts**
 
-This release includes various improvements to the DNS reload mechanism,
-allowing MAAS to be smarter about when to reload DNS after changes have been
-automatically detected or made.
+The *commissioning harness* has been expanded with various improvements to help
+administrators write their own firmware upgrades and hardware specific scripts.
+These improvements addresses some of the challenges administrators face when
+performing such tasks at scale. 
 
+Improvements include:
 
-### API improvements
+- auto-select all firmware upgrade/storage hardware changes (API
+  only, UI will be available soon)
+- write and run scripts for specific hardware
+- reboot machines from the commissioning environment without disrupting the commissioning process
 
-The machines [API][maasapi] endpoint now provide more information on configured
-storage and provides additional output that includes *volume_groups*, *raids*,
-*cache_sets*, and *bcaches* fields.
+These improvements allow administrators to:
 
+- target specific hardware specific by specifying PCI ID, modalias, vendor or
+  model of the machine or device
+- use script metadata to create firmware upgrade scripts that require a reboot
+  before the machine finishes the commissioning process
+- define where a script can obtain proprietary firmware and/or proprietary
+  tools to perform any operations required.
 
-### Django 1.11 support
+See [Commissioning and Hardware Testing Scripts][hardware-scripts] for more details.
 
-MAAS 2.3 now supports the latest [Django LTS][djangolts] version, Django 1.11. This allows
-MAAS to work with the newer Django version in Ubuntu Artful, which serves as a
-preparation for the next Ubuntu LTS release.
+#### Minor improvements
 
-- Users running MAAS in Ubuntu Artful will use Django 1.11.
-- Users running MAAS in Ubuntu Xenial will continue to use Django 1.9.
+**Gather information about BIOS & firmware**
 
-### Issues fixed with this release
+MAAS now probes for more underlying system details, including the model, serial
+number, BIOS and firmware of a machine (where available). It also gathers
+details on storage devices and network interfaces.
 
-For issues fixed in MAAS 2.3, please refer to the following milestone:
+### MAAS Client Library (python-libmaas)
 
-- [https://launchpad.net/maas/+milestone/2.3.0](https://launchpad.net/maas/+milestone/2.3.0)
+**New upstream release - 0.6.0**
 
-For more information on previous bug fixes across 2.3, please refer to the
-following milestones:
+A new release is now available in the Ubuntu Archive for Bionic. The new
+release lets you do the following:
 
-- [https://launchpad.net/maas/+milestone/2.3.0rc2](https://launchpad.net/maas/+milestone/2.3.0rc2)
-- [https://launchpad.net/maas/+milestone/2.3.0rc1](https://launchpad.net/maas/+milestone/2.3.0rc1)
-- [https://launchpad.net/maas/+milestone/2.3.0beta3](https://launchpad.net/maas/+milestone/2.3.0beta3)
-- [https://launchpad.net/maas/+milestone/2.3.0beta2](https://launchpad.net/maas/+milestone/2.3.0beta2)
-- [https://launchpad.net/maas/+milestone/2.3.0beta1](https://launchpad.net/maas/+milestone/2.3.0beta1)
-- [https://launchpad.net/maas/+milestone/2.3.0alpha3](https://launchpad.net/maas/+milestone/2.3.0alpha3)
-- [https://launchpad.net/maas/+milestone/2.3.0alpha2](https://launchpad.net/maas/+milestone/2.3.0alpha2)
-- [https://launchpad.net/maas/+milestone/2.3.0alpha1](https://launchpad.net/maas/+milestone/2.3.0alpha1)
+- add/read/update/delete storage devices attached to machines
+- configure partitions and mount points
+- configure bcache
+- configure RAID
+- configure LVM
+
+### Known issues
+
+[LP: #1748712][bug] - 2.4.0a1 upgrade failed with old node event data
+
+It has been reported that an upgrade to MAAS 2.4.0(alpha1) failed due to the
+existence of old data from a non-existent node stored in the database. This
+could have been due to an older development version of MAAS which could have
+left an entry in the node event table. A work around is provided in the bug
+report.
+
+If you hit this issue, please update the bug report immediately so MAAS
+developers can get a better idea of the problem.
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.4.0alpha1](https://launchpad.net/maas/+milestone/2.4.0alpha1)
 
 ## Get in touch
 
@@ -281,23 +150,18 @@ in the following locations:
 - Subscribe to the [maas-devel][mailing-list] mailing list, a great place to
   ask questions.
 
-
 <!-- LINKS -->
-[historical-notes]: release-notes-all.md 
-[curtin]: https://launchpad.net/curtin
-[cloudinit]: https://cloud-init.io/
-[tgt]: http://stgt.sourceforge.net/
+[currentrelease]: release-notes.md#2.4.0-(alpha1)
 [snapio]: https://snapcraft.io/
-[maasapi]: api.html
-[djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
+[snapinstall]: installconfig-snap-install.md
+[historical-release-notes]: release-notes-all.md
+[contactus]: https://maas.io/contact-us
 [fio]: https://github.com/axboe/fio
 [7zip]: http://www.7-zip.org
-[ephemeral]: #ephemeral-images-now-use-http
-[contactus]: https://maas.io/contact-us
-[snapinstall]: installconfig-snap-install.md
-[hardware-testing]: nodes-hw-testing.md
-[testing-scripts]: nodes-scripts.md
-[node-overview]: nodes-overview.md
+[maasapi]: api.html
+[audit-logs]: manage-audit-events.md
+[bug]: https://bugs.launchpad.net/maas/+bug/1748712
 [maas-freenode]: http://webchat.freenode.net/?channels=maas
 [freenode]: https://freenode.net/
 [mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
+[hardware-scripts]: nodes-scripts.md
