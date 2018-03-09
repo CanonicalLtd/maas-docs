@@ -136,6 +136,16 @@ For all the issues fixed in this release, please refer to:
 
 [https://launchpad.net/maas/+milestone/2.4.0alpha1](https://launchpad.net/maas/+milestone/2.4.0alpha1)
 
+## Get in touch
+
+We'd love to hear about how you're using MAAS, whether it's at the smallest of
+scales or the largest. Our team is always approachable and can usually be found
+in the following locations:
+
+- Join us on IRC. We can be found on the [maas][maas-freenode] channel on
+  [freenode][freenode]. 
+- Subscribe to the [maas-devel][mailing-list] mailing list, a great place to
+  ask questions.
 
 <!-- LINKS -->
 [currentrelease]: release-notes.md#2.3.0-(alpha1)
@@ -148,3 +158,6 @@ For all the issues fixed in this release, please refer to:
 [maasapi]: api.html
 [audit-logs]: manage-audit-events.md
 [bug]: https://bugs.launchpad.net/maas/+bug/1748712
+[maas-freenode]: http://webchat.freenode.net/?channels=maas
+[freenode]: https://freenode.net/
+[mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
