@@ -97,6 +97,8 @@ These improvements allow administrators to:
 - define where a script can obtain proprietary firmware and/or proprietary
   tools to perform any operations required.
 
+See [Commissioning and Hardware Testing Scripts][hardware-scripts] for more details.
+
 #### Minor improvements
 
 **Gather information about BIOS & firmware**
@@ -162,3 +164,4 @@ in the following locations:
 [maas-freenode]: http://webchat.freenode.net/?channels=maas
 [freenode]: https://freenode.net/
 [mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
+[hardware-scripts]: nodes-scripts.md
