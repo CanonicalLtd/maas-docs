@@ -9,7 +9,8 @@ MAAS 2.4 is currently under development. The current release is
 stable versions.
 
 The development version of MAAS is available from the *proposed* repository of
-the upcoming Ubuntu 18.04 LTS (Bionic Beaver) release and the MAAS Next PPA.
+the upcoming Ubuntu 18.04 LTS (Bionic Beaver) release and the MAAS Next PPA
+repository.
 
 To install from the MAAS Next PPA (ppa:maas/next) repository:
 
@@ -20,8 +21,8 @@ sudo apt install maas
 
 ### MAAS Client Library (python-libmaas)
 
-The official Python client library for MAAS is available in the Ubuntu Bionic
-archive or you can download the source from:
+The official Python client library for MAAS is available in the Ubuntu 18.04
+LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
 
 ## 2.4.0 (alpha1)
