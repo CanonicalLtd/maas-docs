@@ -151,7 +151,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.3.0-(alpha1)
+[currentrelease]: release-notes.md#2.4.0-(alpha1)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
