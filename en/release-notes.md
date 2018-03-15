@@ -112,8 +112,8 @@ user actions that affect Hardware Testing & Commissioning.
 #### KVM pod improvements
 
 MAAS’ KVM pods was initially developed as a feature to help developers quickly iterate
-and test new functionality while developing MAAS. This, however, because a feature that
-allow not only developers, but also administrators to make better use of resources across
+and test new functionality while developing MAAS. This, however, became a feature that
+allows not only developers, but also administrators to make better use of resources across
 their datacenter. Since the feature was initially create for developers, some features
 were lacking. As such, in 2.4 we are improving the usability of KVM pods:
 
@@ -130,7 +130,7 @@ were lacking. As such, in 2.4 we are improving the usability of KVM pods:
    MAAS now adds the ability to set tags for a pod. This allows
    administrators to use tags to allow/prevent the creation of a
    VM inside the pod using tags. For example, if the administrator
-   would like a machine with a ‘tag’ named ‘virtual’, MAAS will
+   would like a machine with a ‘tag’ named `virtual`, MAAS will
    filter all physical machines and only consider other VM’s or
    a KVM pod for machine allocation.
 
