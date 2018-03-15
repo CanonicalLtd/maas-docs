@@ -29,11 +29,16 @@ LTS package archive or you can download the source from:
 
 ### NTP services now provided by Chrony
 
-Starting with 2.4 Alpha 2, and in common with changes being made to Ubuntu Server, MAAS replaces ‘ntpd’ with Chrony for the NTP protocol. MAAS will handle the upgrade process and automatically resume NTP service operation.
+Starting with 2.4 Alpha 2, and in common with changes being made to Ubuntu Server,
+MAAS replaces ‘ntpd’ with Chrony for the NTP protocol. MAAS will handle the upgrade
+process and automatically resume NTP service operation.
 
 ### Vanilla CSS Framework Transition
 
-MAAS 2.4 is undergoing a Vanilla CSS framework transition to a new version of vanilla, which will bring a fresher look to the MAAS UI. This framework transition is currently work in progress and not all of the UI have been fully updated. Please expect to see some inconsistencies in this new release.
+MAAS 2.4 is undergoing a Vanilla CSS framework transition to a new version of Vanilla,
+which will bring a fresher look to the MAAS UI. This framework transition is currently a 
+work in progress and not all of the UI have been fully updated. Please expect to see some
+inconsistencies in this new release.
 
 ### New Features & Improvements
 
@@ -41,7 +46,7 @@ MAAS 2.4 is undergoing a Vanilla CSS framework transition to a new version of va
 
 Starting from MAAS 2.4alpha2, chrony is now the default NTP service, replacing ntpd.
 This work has been done to align with the Ubuntu Server and Security team to support
-chrony instead of ntpd. MAAS will continue to provide services exactly the same way and
+chrony instead of `ntpd`. MAAS will continue to provide services exactly the same way and
 users will not be affected by the changes, handling the upgrade process transparently.
 This means that:
 
@@ -57,27 +62,39 @@ MAAS in larger environments. These improvements include:
 
 
  - **AsyncIO based event loop**
-    MAAS has an event loop which performs various internal actions. In older versions of MAAS, the event loop was managed by the default twisted event loop. MAAS now uses an asyncio based event loop, driven by uvloop, which is targeted at improving internal performance.
+    MAAS has an event loop which performs various internal actions. In older versions
+    of MAAS, the event loop was managed by the default twisted event loop. MAAS now uses
+    an asyncio based event loop, driven by uvloop, which is targeted at improving
+    internal performance.
 
  - **Improved daemon management**
-   MAAS has changed the way daemons are run to allow users to see both ‘regiond’ and ‘rackd’ as processes in the process list.
-   As part of these changes, regiond workers are now managed by a master regiond process. In older versions of MAAS each worker was directly run by systemd. The master process is now in charge of ensuring workers are running at all times, and re-spawning new workers in case of failures. This also allows users to see the worker hierarchy in the process list.
+   MAAS has changed the way daemons are run to allow users to see both `regiond` 
+   and `rackd` as processes in the process list.
+   As part of these changes, `regiond` workers are now managed by a master `regiond`
+   process. In older versions of MAAS each worker was directly run by `systemd`.
+   The master process is now in charge of ensuring workers are running at all times,
+   and re-spawning new workers in case of failures. This also allows users to see the
+   worker hierarchy in the process list.
 
 
  - **Ability to increase the number of regiond workers**
    Following the improved way MAAS daemons are run, further internal changes have been made to allow the number of regiond workers to be increased automatically. This allows MAAS to scale to handle more internal operations in larger environments.
-   While this capability is already available, it is not yet available by default. It will become available in the following milestone release.
+   While this capability is already available, it is not yet enabled by default. It will become available in the following milestone release.
 
 
 - **Database query optimizations**
    In the process of inspecting the internal operations of MAAS, it was discovered that multiple unnecessary database queries are performed for various operations. Optimising these requires internal improvements to reduce the footprint of these operations. Some areas that have been addressed in this release include:
 
      *  When saving node objects (e.g. making any update of a machine, device, rack controller, etc), MAAS validated changes across various fields. This required an increased number of queries for fields, even when they were not being updated. MAAS now tracks specific fields that change and only performs queries for those fields.
-     Example: To update a power state, MAAS would perform 11 queries. After these improvements, , only 1 query is now performed.
+     Example: To update a power state, MAAS would perform 11 queries. After these
+     improvements, only 1 query is now performed.
 
-     * On every transaction, MAAS performed 2 queries to update the timestamp. This has now been consolidated into a single query per transaction.
+     * On every transaction, MAAS performed 2 queries to update the timestamp.
+     This has now been consolidated into a single query per transaction.
 
-   These changes  greatly improve MAAS performance and database utilisation in larger environments. More improvements will continue to be made as we continue to examine various areas in MAAS.
+   These changes  greatly improve MAAS performance and database utilisation in
+   larger environments. More improvements will continue to be made as we continue
+   to examine various areas in MAAS.
 
 
  - **UI optimisations**
@@ -102,11 +119,20 @@ were lacking. As such, in 2.4 we are improving the usability of KVM pods:
 
 
  - **Pod AZ’s**
-   MAAS now allows setting the physical zone for the pod. This helps administrators by conceptually placing their KVM pods in a AZ, which enables them to request/allocate machines on demand based on its AZ. All VM’s created from a pod will inherit the AZ.
+   MAAS now allows setting the physical zone for the pod. This
+   helps administrators by conceptually placing their KVM pods
+   in an AZ, which enables them to request/allocate machines on
+   demand based on its AZ. All VM’s created from a pod will
+   inherit the AZ.
 
 
  - **Pod tagging**
-   MAAS now adds the ability to set tags for a pod. This allows administrators to use tags to allow/prevent the creation of a VM inside the pod using tags. For example, if the administrator would like a machine with a ‘tag’ named ‘virtual’, MAAS will filter all physical machines and only consider other VM’s or a KVM pod for machine allocation.
+   MAAS now adds the ability to set tags for a pod. This allows
+   administrators to use tags to allow/prevent the creation of a
+   VM inside the pod using tags. For example, if the administrator
+   would like a machine with a ‘tag’ named ‘virtual’, MAAS will
+   filter all physical machines and only consider other VM’s or
+   a KVM pod for machine allocation.
 
 ### Bug fixes
 
