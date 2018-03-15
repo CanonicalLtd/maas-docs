@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.4
 
 MAAS 2.4 is currently under development. The current release is
-[MAAS 2.4.0 (alpha1)][currentrelease]. See
+[MAAS 2.4.0 (alpha2)][currentrelease]. See
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
@@ -241,7 +241,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0-(alpha1)
+[currentrelease]: release-notes.md#2.4.0_(alpha2)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
