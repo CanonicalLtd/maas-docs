@@ -180,7 +180,7 @@ navigation:
             location: manage-cli-dhcp-snippets.md
 
           - title: Hardware testing scripts
-            location: nodes-hw-scripts-cli.md
+            location: nodes-scripts-cli.md
 
           - title: Script metadata
             location: nodes-hw-scripts-fields.md
