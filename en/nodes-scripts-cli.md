@@ -154,6 +154,6 @@ maas $PROFILE node-script-result download $SYSTEM_ID $RUN_ID output=all \
 [script-example]: nodes-scripts.md#hardware-test-script-sample
 [maas-cli]: manage-cli.md
 [maas-cli-login]: manage-cli.md#log-in-(required)
-[system-id]: manage-cli-common#determine-a-node's-system-id
+[system-id]: manage-cli-common.md#determine-a-node's-system-id
 [tag-management]: manage-cli-tags.md
 [maas-scripts-fields]: nodes-scripts.md#metadata-fields
