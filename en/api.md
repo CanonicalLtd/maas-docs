@@ -23,8 +23,8 @@ error message and the api version are returned as plaintext.
 
 ## HTTP methods and parameter-passing
 
-The following HTTP methods are available for accessing the API- `
-   -   GET (for information retrieval and queries),
+The following HTTP methods are available for accessing the API: 
+    -   GET (for information retrieval and queries),
     -   POST (for asking the system to do things),
     -   PUT (for updating objects), and
     -   DELETE (for deleting objects).
