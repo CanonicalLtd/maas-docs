@@ -24,14 +24,14 @@ error message and the api version are returned as plaintext.
 ## HTTP methods and parameter-passing
 
 The following HTTP methods are available for accessing the API:
-    -   GET (for information retrieval and queries),
-    -   POST (for asking the system to do things),
-    -   PUT (for updating objects), and
-    -   DELETE (for deleting objects).
+   -   GET (for information retrieval and queries),
+   -   POST (for asking the system to do things),
+   -   PUT (for updating objects), and
+   -   DELETE (for deleting objects).
 
 All methods except DELETE may take parameters, but they are not all passed in
-the same way. GET parameters are passed in the URL, as is normal with a
-GET: "/item/?foo=bar" passes parameter "foo" with value "bar".
+the same way. GET parameters are passed in the URL, as is normal with a GET:
+"/item/?foo=bar" passes parameter "foo" with value "bar".
 
 POST and PUT are different. Your request should have MIME type
 "multipart/form-data"; each part represents one parameter (for POST) or
@@ -58,56 +58,56 @@ Manage the current logged-in user.
 
 List authorisation tokens available to the currently logged-in user.
 
-:return`
+- `return`
    list of dictionaries representing each key's name and token.
 
 ##### `POST /api/2.0/account/ op=create_authorisation_token`
 
 Create an authorisation OAuth token and OAuth consumer.
 
-:param name`
+- `param name`
    Optional name of the token that will be generated.
 
-:type name`
+- `type name`
    unicode
 
-:return`
+- `return`
    a json dict with four keys: 'token_key',
-       'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
-        's65244576fgqs', token_secret:
+   'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
+   's65244576fgqs', token_secret:
 
-    'qsdfdhv34',
-       consumer_key: '68543fhj854fg', name`
+   'qsdfdhv34',
+   consumer_key: '68543fhj854fg', name:
 
-    'MAAS consumer'}).
+   'MAAS consumer'}).
 
-:rtype`
+- `rtype`
    string (json)
 
 ##### `POST /api/2.0/account/ op=delete_authorisation_token`
 
 Delete an authorisation OAuth token and the related OAuth consumer.
 
-:param token_key`
+- `param token_key`
    The key of the token to be deleted.
 
-:type token_key`
+- `type token_key`
    unicode
 
 ##### `POST /api/2.0/account/ op=update_token_name`
 
 Modify the consumer name of an authorisation OAuth token.
 
-:param token`
+- `param token`
    Can be the whole token or only the token key.
 
-:type token`
+- `type token`
    unicode
 
-:param name`
+- `param name`
    New name of the token.
 
-:type name`
+- `type name`
    unicode
 
 ### Bcache Cache Set
@@ -131,10 +131,10 @@ Returns 404 if the machine or cache set is not found.
 
 Delete bcache on a machine.
 
-:param cache_device`
+- `param cache_device`
    Cache block device to replace current one.
 
-:param cache_partition`
+- `param cache_partition`
    Cache partition to replace current one.
 
 Specifying both a cache_device and a cache_partition is not allowed.
@@ -156,10 +156,10 @@ Returns 404 if the machine is not found.
 
 Creates a Bcache Cache Set.
 
-:param cache_device`
+- `param cache_device`
    Cache block device.
 
-:param cache_partition`
+- `param cache_partition`
    Cache partition.
 
 Specifying both a cache_device and a cache_partition is not allowed.
@@ -188,22 +188,22 @@ Returns 404 if the machine or bcache is not found.
 
 Delete bcache on a machine.
 
-:param name`
+- `param name`
    Name of the Bcache.
 
-:param uuid`
+- `param uuid`
    UUID of the Bcache.
 
-:param cache_set`
+- `param cache_set`
    Cache set to replace current one.
 
-:param backing_device`
+- `param backing_device`
    Backing block device to replace current one.
 
-:param backing_partition`
+- `param backing_partition`
    Backing partition to replace current one.
 
-:param cache_mode`
+- `param cache_mode`
    Cache mode (writeback, writethrough, writearound).
 
 Specifying both a device and a partition for a given role (cache or backing)
@@ -226,22 +226,22 @@ Returns 404 if the machine is not found.
 
 Creates a Bcache.
 
-:param name`
+- `param name`
    Name of the Bcache.
 
-:param uuid`
+- `param uuid`
    UUID of the Bcache.
 
-:param cache_set`
+- `param cache_set`
    Cache set.
 
-:param backing_device`
+- `param backing_device`
    Backing block device.
 
-:param backing_partition`
+- `param backing_partition`
    Backing partition.
 
-:param cache_mode`
+- `param cache_mode`
    Cache mode (WRITEBACK, WRITETHROUGH, WRITEAROUND).
 
 Specifying both a device and a partition for a given role (cache or backing)
@@ -272,7 +272,7 @@ Returns 404 if the machine or block device is not found.
 
 Add a tag to block device on a machine.
 
-:param tag`
+- `param tag`
    The tag being added.
 
 Returns 404 if the machine or block device is not found. Returns 403 if the
@@ -283,10 +283,10 @@ not Ready.
 
 Format block device with filesystem.
 
-:param fstype`
+- `param fstype`
    Type of filesystem.
 
-:param uuid`
+- `param uuid`
    UUID of the filesystem.
 
 Returns 403 when the user doesn't have the ability to format the block device.
@@ -297,10 +297,10 @@ machine is not Ready or Allocated.
 
 Mount the filesystem on block device.
 
-:param mount_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-:param mount_options`
+- `param mount_options`
    Options to pass to mount(8).
 
 Returns 403 when the user doesn't have the ability to mount the block device.
@@ -311,7 +311,7 @@ machine is not Ready or Allocated.
 
 Remove a tag from block device on a machine.
 
-:param tag`
+- `param tag`
    The tag being removed.
 
 Returns 404 if the machine or block device is not found. Returns 403 if the
@@ -356,35 +356,35 @@ replaced while the machine remains deployed.
 
 Fields for physical block device:
 
-:param name`
+- `param name`
    Name of the block device.
 
-:param model`
+- `param model`
    Model of the block device.
 
-:param serial`
+- `param serial`
    Serial number of the block device.
 
-:param id_path`
+- `param id_path`
    (optional) Only used if model and serial cannot be provided. This should
-    be a path that is fixed and doesn't change depending on the boot order or
-    kernel version.
+   be a path that is fixed and doesn't change depending on the boot order or
+   kernel version.
 
-:param size`
+- `param size`
    Size of the block device.
 
-:param block_size`
+- `param block_size`
    Block size of the block device.
 
 Fields for virtual block device:
 
-:param name`
+- `param name`
    Name of the block device.
 
-:param uuid`
+- `param uuid`
    UUID of the block device.
 
-:param size`
+- `param size`
    Size of the block device. (Only allowed for logical volumes.)
 
 Returns 404 if the machine or block device is not found. Returns 403 if the
@@ -405,24 +405,24 @@ Returns 404 if the machine is not found.
 
 Create a physical block device.
 
-:param name`
+- `param name`
    Name of the block device.
 
-:param model`
+- `param model`
    Model of the block device.
 
-:param serial`
+- `param serial`
    Serial number of the block device.
 
-:param id_path`
+- `param id_path`
    (optional) Only used if model and serial cannot be
-       provided. This should be a path that is fixed and doesn't change
-        depending on the boot order or kernel version.
+   provided. This should be a path that is fixed and doesn't change
+   depending on the boot order or kernel version.
 
-:param size`
+- `param size`
    Size of the block device.
 
-:param block_size`
+- `param block_size`
    Block size of the block device.
 
 Returns 404 if the node is not found.
@@ -447,7 +447,7 @@ Manage the boot resources.
 
 List all boot resources.
 
-:param type`
+- `param type`
    Type of boot resources to list. Default: all
 
 ##### `GET /api/2.0/boot-resources/ op=is_importing`
@@ -458,23 +458,22 @@ Return import status.
 
 Uploads a new boot resource.
 
-:param name`
+- `param name`
    Name of the boot resource.
 
-:param title`
+- `param title`
    Title for the boot resource.
 
-:param architecture`
+- `param architecture`
    Architecture the boot resource supports.
 
-:param filetype`
+- `param filetype`
    Filetype for uploaded content. (Default: tgz,
-       Supported: tgz, ddtgz, ddtbz, ddtxz, ddtar, ddbz2, ddgz, ddxz,
-        ddraw
+   Supported: tgz, ddtgz, ddtbz, ddtxz, ddtar, ddbz2, ddgz, ddxz, ddraw
 
-:param content`
+- `param content`
    Image content. Note: this is not a normal parameter,
-       but a file upload.
+   but a file upload.
 
 ##### `POST /api/2.0/boot-resources/ op=import`
 
@@ -500,16 +499,16 @@ Read a boot source.
 
 Update a specific boot source.
 
-:param url`
+- `param url`
    The URL of the BootSource.
 
-:param keyring_filename`
+- `param keyring_filename`
    The path to the keyring file for this
-       BootSource.
+   BootSource.
 
-:param keyring_data`
+- `param keyring_data`
    The GPG keyring for this BootSource,
-       base64-encoded data.
+   base64-encoded data.
 
 ### Boot source selection
 
@@ -527,20 +526,20 @@ Read a boot source selection.
 
 Update a specific boot source selection.
 
-:param os`
+- `param os`
    The OS (e.g. ubuntu, centos) for which to import resources.
 
-:param release`
+- `param release`
    The release for which to import resources.
 
-:param arches`
+- `param arches`
    The list of architectures for which to import resources.
 
-:param subarches`
+- `param subarches`
    The list of subarchitectures for which to import
-       resources.
+   resources.
 
-:param labels`
+- `param labels`
    The list of labels for which to import resources.
 
 ### Boot source selections
@@ -557,20 +556,20 @@ Get a listing of a boot source's selections.
 
 Create a new boot source selection.
 
-:param os`
+- `param os`
    The OS (e.g. ubuntu, centos) for which to import resources.
 
-:param release`
+- `param release`
    The release for which to import resources.
 
-:param arches`
+- `param arches`
    The architecture list for which to import resources.
 
-:param subarches`
+- `param subarches`
    The subarchitecture list for which to import
-       resources.
+   resources.
 
-:param labels`
+- `param labels`
    The label lists for which to import resources.
 
 ### Boot sources
@@ -587,16 +586,16 @@ Get a listing of boot sources.
 
 Create a new boot source.
 
-:param url`
+- `param url`
    The URL of the BootSource.
 
-:param keyring_filename`
+- `param keyring_filename`
    The path to the keyring file for
-       this BootSource.
+   this BootSource.
 
-:param keyring_data`
+- `param keyring_data`
    The GPG keyring for this BootSource,
-       base64-encoded.
+   base64-encoded.
 
 ### Commissioning script
 
@@ -656,15 +655,15 @@ commissioning script might consist of a binary tool provided by a hardware
 vendor. Either way, the script gets passed to the commissioning machine in the
 exact form in which it was uploaded.
 
-:param name`
+- `param name`
    Unique identifying name for the script. Names should
-       follow the pattern of "25-burn-in-hard-disk" (all ASCII, and with
-        numbers greater than zero, and generally no "weird" characters).
+   follow the pattern of "25-burn-in-hard-disk" (all ASCII, and with
+   numbers greater than zero, and generally no "weird" characters).
 
-:param content`
+- `param content`
    A script file, to be uploaded in binary form. Note:
-       this is not a normal parameter, but a file upload. Its filename is
-        ignored; MAAS will know it by the name you pass to the request.
+   this is not a normal parameter, but a file upload. Its filename is
+   ignored; MAAS will know it by the name you pass to the request.
 
 ### DHCP Snippet
 
@@ -688,12 +687,12 @@ Returns 404 if the snippet is not found.
 
 Revert the value of a DHCP snippet to an earlier revision.
 
-:param to`
+- `param to`
    What revision in the DHCP snippet's history to revert to.
-       This can either be an ID or a negative number representing how far
-        back to go.
+   This can either be an ID or a negative number representing how far
+   back to go.
 
-:type to`
+- `type to`
    integer
 
 Returns 404 if the DHCP snippet is not found.
@@ -702,50 +701,50 @@ Returns 404 if the DHCP snippet is not found.
 
 Update a DHCP snippet.
 
-:param name`
+- `param name`
    The name of the DHCP snippet.
 
-:type name`
+- `type name`
    unicode
 
-:param value`
+- `param value`
    The new value of the DHCP snippet to be used in
-       dhcpd.conf. Previous values are stored and can be reverted.
+   dhcpd.conf. Previous values are stored and can be reverted.
 
-:type value`
+- `type value`
    unicode
 
-:param description`
+- `param description`
    A description of what the DHCP snippet does.
 
-:type description`
+- `type description`
    unicode
 
-:param enabled`
+- `param enabled`
    Whether or not the DHCP snippet is currently enabled.
 
-:type enabled`
+- `type enabled`
    boolean
 
-:param node`
+- `param node`
    The node the DHCP snippet is to be used for. Can not be
-       set if subnet is set.
+   set if subnet is set.
 
-:type node`
+- `type node`
    unicode
 
-:param subnet`
+- `param subnet`
    The subnet the DHCP snippet is to be used for. Can not
-       be set if node is set.
+   be set if node is set.
 
-:type subnet`
+- `type subnet`
    unicode
 
-:param global_snippet`
+- `param global_snippet`
    Set the DHCP snippet to be a global option. This
-       removes any node or subnet links.
+   removes any node or subnet links.
 
-:type global_snippet`
+- `type global_snippet`
    boolean
 
 Returns 404 if the DHCP snippet is not found.
@@ -762,51 +761,51 @@ List all DHCP snippets.
 
 Create a DHCP snippet.
 
-:param name`
+- `param name`
    The name of the DHCP snippet. This is required to create
-       a new DHCP snippet.
+   a new DHCP snippet.
 
-:type name`
+- `type name`
    unicode
 
-:param value`
+- `param value`
    The snippet of config inserted into dhcpd.conf. This is
-       required to create a new DHCP snippet.
+   required to create a new DHCP snippet.
 
-:type value`
+- `type value`
    unicode
 
-:param description`
+- `param description`
    A description of what the snippet does.
 
-:type description`
+- `type description`
    unicode
 
-:param enabled`
+- `param enabled`
    Whether or not the snippet is currently enabled.
 
-:type enabled`
+- `type enabled`
    boolean
 
-:param node`
+- `param node`
    The node this snippet applies to. Cannot be used with
-       subnet or global_snippet.
+   subnet or global_snippet.
 
-:type node`
+- `type node`
    unicode
 
-:param subnet`
+- `param subnet`
    The subnet this snippet applies to. Cannot be used with
-       node or global_snippet.
+   node or global_snippet.
 
-:type subnet`
+- `type subnet`
    unicode
 
-:param global_snippet`
+- `param global_snippet`
    Whether or not this snippet is to be applied
-       globally. Cannot be used with node or subnet.
+   globally. Cannot be used with node or subnet.
 
-:type global_snippet`
+- `type global_snippet`
    boolean
 
 Returns 404 if the DHCP snippet is not found.
@@ -832,10 +831,10 @@ Returns 404 if the dnsresource is not found.
 
 Update dnsresource.
 
-:param fqdn`
+- `param fqdn`
    Hostname (with domain) for the dnsresource.
 
-:param ip_address`
+- `param ip_address`
    Address to assign to the dnsresource.
 
 Returns 403 if the user does not have permission to update the dnsresource.
@@ -862,10 +861,10 @@ Returns 404 if the dnsresourcerecord is not found.
 
 Update dnsresourcerecord.
 
-:param rrtype`
+- `param rrtype`
    Resource Type
 
-:param rrdata`
+- `param rrdata`
    Resource Data (everything to the right of Type.)
 
 Returns 403 if the user does not have permission to update the
@@ -879,40 +878,40 @@ Manage DNS resource records (e.g. CNAME, MX, NS, SRV, TXT)
 
 List all dnsresourcerecords.
 
-:param domain`
+- `param domain`
    restrict the listing to entries for the domain.
 
-:param name`
+- `param name`
    restrict the listing to entries of the given name.
 
-:param rrtype`
+- `param rrtype`
    restrict the listing to entries which have
-       records of the given rrtype.
+   records of the given rrtype.
 
 ##### `POST /api/2.0/dnsresourcerecords/`
 
 Create a DNS resource record.
 
-:param fqdn`
+- `param fqdn`
    Hostname (with domain) for the dnsresource. Either fqdn
-       or (name, domain) must be specified. Fqdn is ignored if either name or
-        domain is given (e.g. www.your-maas.maas).
+   or (name, domain) must be specified. Fqdn is ignored if either name or
+   domain is given (e.g. www.your-maas.maas).
 
-:param name`
+- `param name`
    The name (or hostname without a domain) of the DNS
-       resource record (e.g. www.your-maas)
+   resource record (e.g. www.your-maas)
 
-:param domain`
+- `param domain`
    The domain (name or id) where to create the DNS
-       resource record (Domain (e.g. 'maas')
+   resource record (Domain (e.g. 'maas')
 
-:param rrtype`
+- `param rrtype`
    The resource record type (e.g 'cname', 'mx', 'ns',
-       'srv', 'sshfp', 'txt')
+   'srv', 'sshfp', 'txt')
 
-:param rrdata`
+- `param rrdata`
    The resource record data (e.g. 'your-maas',
-       '10 mail.your-maas.maas')
+   '10 mail.your-maas.maas')
 
 ### DNSResources
 
@@ -922,37 +921,37 @@ Manage dnsresources.
 
 List all resources for the specified criteria.
 
-:param domain`
+- `param domain`
    restrict the listing to entries for the domain.
 
-:param name`
+- `param name`
    restrict the listing to entries of the given name.
 
-:param rrtype`
+- `param rrtype`
    restrict the listing to entries which have
-       records of the given rrtype.
+   records of the given rrtype.
 
 ##### `POST /api/2.0/dnsresources/`
 
 Create a dnsresource.
 
-:param fqdn`
+- `param fqdn`
    Hostname (with domain) for the dnsresource. Either fqdn
-       or (name, domain) must be specified. Fqdn is ignored if either name or
-        domain is given.
+   or (name, domain) must be specified. Fqdn is ignored if either name or
+   domain is given.
 
-:param name`
+- `param name`
    Hostname (without domain)
 
-:param domain`
+- `param domain`
    Domain (name or id)
 
-:param address_ttl`
+- `param address_ttl`
    Default ttl for entries in this zone.
 
-:param ip_addresses`
+- `param ip_addresses`
    (optional) Address (ip or id) to assign to the
-       dnsresource.
+   dnsresource.
 
 ### Device
 
@@ -980,8 +979,8 @@ Obtain various system details.
 
 For example, LLDP and `lshw` XML dumps.
 
-Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
-like "lldp" or "lshw".
+Returns a `{detail_type: xml, ...}` map, where `detail_type` is something like
+"lldp" or "lshw".
 
 Note that this is returned as BSON and not JSON. This is for efficiency, but
 mainly because JSON can't do binary content without applying additional
@@ -1034,31 +1033,31 @@ permission.
 
 Update a specific device.
 
-:param hostname`
+- `param hostname`
    The new hostname for this device.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param domain`
+- `param domain`
    The domain for this device.
 
-:type domain`
+- `type domain`
    unicode
 
-:param parent`
+- `param parent`
    Optional system_id to indicate this device's parent.
-       If the parent is already set and this parameter is omitted, the parent
-        will be unchanged.
+   If the parent is already set and this parameter is omitted, the parent
+   will be unchanged.
 
-:type parent`
+- `type parent`
    unicode
 
-:param zone`
+- `param zone`
    Name of a valid physical zone in which to place this
-       node.
+   node.
 
-:type zone`
+- `type zone`
    unicode
 
 Returns 404 if the device is not found. Returns 403 if the user does not have
@@ -1074,48 +1073,48 @@ List Nodes visible to the user, optionally filtered by criteria.
 
 Nodes are sorted by id (i.e. most recent last) and grouped by type.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only nodes relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to see multiple nodes.
+   with the matching hostname will be returned. This can be specified
+   multiple times to see multiple nodes.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param mac_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the
-       node owning the specified MAC address will be returned. This can be
-        specified multiple times to see multiple nodes.
+   node owning the specified MAC address will be returned. This can be
+   specified multiple times to see multiple nodes.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes relating to the
-       nodes with matching system ids will be returned.
+   nodes with matching system ids will be returned.
 
-:type id`
+- `type id`
    unicode
 
-:param domain`
+- `param domain`
    An optional name for a dns domain. Only nodes relating
-       to the nodes in the domain will be returned.
+   to the nodes in the domain will be returned.
 
-:type domain`
+- `type domain`
    unicode
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes relating
-       to the nodes in the zone will be returned.
+   to the nodes in the zone will be returned.
 
-:type zone`
+- `type zone`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the
-       nodes with matching agent names will be returned.
+   nodes with matching agent names will be returned.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/devices/ op=is_registered`
@@ -1123,16 +1122,16 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
 
-:param mac_address`
+- `param mac_address`
    The mac address to be checked.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:return`
+- `return`
    'true' or 'false'.
 
-:rtype`
+- `rtype`
    unicode
 
 Returns 400 if any mandatory parameters are missing.
@@ -1141,42 +1140,42 @@ Returns 400 if any mandatory parameters are missing.
 
 Create a new device.
 
-:param hostname`
+- `param hostname`
    A hostname. If not given, one will be generated.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param domain`
+- `param domain`
    The domain of the device. If not given the default
-       domain is used.
+   domain is used.
 
-:type domain`
+- `type domain`
    unicode
 
-:param mac_addresses`
+- `param mac_addresses`
    One or more MAC addresses for the device.
 
-:type mac_addresses`
+- `type mac_addresses`
    unicode
 
-:param parent`
+- `param parent`
    The system id of the parent. Optional.
 
-:type parent`
+- `type parent`
    unicode
 
 ##### `POST /api/2.0/devices/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
-:param zone`
+- `param zone`
    Zone name. If omitted, the zone is "none" and the nodes
-       will be taken out of their physical zones.
+   will be taken out of their physical zones.
 
-:param nodes`
+- `param nodes`
    system_ids of the nodes whose zones are to be set.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -1227,13 +1226,13 @@ Discoveries are listed in the order they were last observed on the network
 
 Deletes all discovered neighbours and/or mDNS entries.
 
-:param mdns`
+- `param mdns`
    if True, deletes all mDNS entries.
 
-:param neighbours`
+- `param neighbours`
    if True, deletes all neighbour entries.
 
-:param all`
+- `param all`
    if True, deletes all discovery data.
 
 ##### `POST /api/2.0/discovery/ op=scan`
@@ -1253,10 +1252,9 @@ networks.
 If the call is a success, this method will return a dictionary of results as
 follows:
 
-result: A human-readable string summarizing the results.
-scan_attempted_on: A list of rack 'system_id' values where a scan was
-attempted. (That is, an RPC connection was successful and a subsequent call
-was intended.)
+result: A human-readable string summarizing the results. scan_attempted_on:
+A list of rack 'system_id' values where a scan was attempted. (That is, an
+RPC connection was successful and a subsequent call was intended.)
 
 failed_to_connect_to: A list of rack 'system_id' values where the RPC
 connection failed.
@@ -1267,33 +1265,33 @@ successfully started.
 scan_failed_on: A list of rack 'system_id' values where a scan was
 attempted, but failed because a scan was already in progress.
 
-rpc_call_timed_out_on: A list of rack 'system_id' values where the
-RPC connection was made, but the call timed out before a ten second timeout
+rpc_call_timed_out_on: A list of rack 'system_id' values where the RPC
+connection was made, but the call timed out before a ten second timeout
 elapsed.
 
-:param cidr`
+- `param cidr`
    The subnet CIDR(s) to scan (can be specified multiple
-       times). If not specified, defaults to all networks.
+   times). If not specified, defaults to all networks.
 
-:param force`
+- `param force`
    If True, will force the scan, even if all networks are
-       specified. (This may not be the best idea, depending on acceptable use
-        agreements, and the politics of the organization that owns the
-        network.) Default: False.
+   specified. (This may not be the best idea, depending on acceptable use
+   agreements, and the politics of the organization that owns the
+   network.) Default: False.
 
-:param always_use_ping`
+- `param always_use_ping`
    If True, will force the scan to use 'ping' even
-       if 'nmap' is installed. Default: False.
+   if 'nmap' is installed. Default: False.
 
-:param slow`
+- `param slow`
    If True, and 'nmap' is being used, will limit the scan
-       to nine packets per second. If the scanner is 'ping', this option has
-        no effect. Default: False.
+   to nine packets per second. If the scanner is 'ping', this option has
+   no effect. Default: False.
 
-:param threads`
+- `param threads`
    The number of threads to use during scanning. If 'nmap'
-       is the scanner, the default is one thread per 'nmap' process. If
-        'ping' is the scanner, the default is four threads per CPU.
+   is the scanner, the default is one thread per 'nmap' process. If
+   'ping' is the scanner, the default is four threads per CPU.
 
 ### Discovery
 
@@ -1322,13 +1320,13 @@ Returns 404 if the domain is not found.
 
 Update domain.
 
-:param name`
+- `param name`
    Name of the domain.
 
-:param authoritative`
+- `param authoritative`
    True if we are authoritative for this domain.
 
-:param ttl`
+- `param ttl`
    The default TTL for this domain.
 
 Returns 403 if the user does not have permission to update the dnsresource.
@@ -1346,17 +1344,17 @@ List all domains.
 
 Create a domain.
 
-:param name`
+- `param name`
    Name of the domain.
 
-:param authoritative`
+- `param authoritative`
    Class type of the domain.
 
 ##### `POST /api/2.0/domains/ op=set_serial`
 
 Set the SOA serial number (for all DNS zones.)
 
-:param serial`
+- `param serial`
    serial number to use next.
 
 ### Events
@@ -1371,47 +1369,47 @@ Retrieve filtered node events.
 List Node events, optionally filtered by various criteria via URL query
 parameters.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only events relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to get events relating to more than one node.
+   with the matching hostname will be returned. This can be specified
+   multiple times to get events relating to more than one node.
 
-:param mac_address`
+- `param mac_address`
    An optional list of MAC addresses. Only
-       nodes with matching MAC addresses will be returned.
+   nodes with matching MAC addresses will be returned.
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes with
-       matching system ids will be returned.
+   matching system ids will be returned.
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes in the
-       zone will be returned.
+   zone will be returned.
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes with
-       matching agent names will be returned.
+   matching agent names will be returned.
 
-:param level`
+- `param level`
    Desired minimum log level of returned events. Returns
-       this level of events and greater. Choose from: AUDIT, CRITICAL,
-        DEBUG, ERROR, INFO, WARNING. The default is INFO.
+   this level of events and greater. Choose from: AUDIT, CRITICAL, DEBUG,
+   ERROR, INFO, WARNING. The default is INFO.
 
-:param limit`
+- `param limit`
    Optional number of events to return. Default 100.
-       Maximum: 1000.
+   Maximum: 1000.
 
-:param before`
+- `param before`
    Optional event id. Defines where to start returning
-       older events.
+   older events.
 
-:param after`
+- `param after`
    Optional event id. Defines where to start returning
-       newer events.
+   newer events.
 
-:param owner`
+- `param owner`
    If specified, filters the list to show only events
-       owned by the specified username.
+   owned by the specified username.
 
 ### Fabric
 
@@ -1433,13 +1431,13 @@ Returns 404 if the fabric is not found.
 
 Update fabric.
 
-:param name`
+- `param name`
    Name of the fabric.
 
-:param description`
+- `param description`
    Description of the fabric.
 
-:param class_type`
+- `param class_type`
    Class type of the fabric.
 
 Returns 404 if the fabric is not found.
@@ -1456,13 +1454,13 @@ List all fabrics.
 
 Create a fabric.
 
-:param name`
+- `param name`
    Name of the fabric.
 
-:param description`
+- `param description`
    Description of the fabric.
 
-:param class_type`
+- `param class_type`
    Class type of the fabric.
 
 ### Fan Network
@@ -1485,25 +1483,25 @@ Returns 404 if the fannetwork is not found.
 
 Update fannetwork.
 
-:param name`
+- `param name`
    Name of the fannetwork.
 
-:param overlay`
+- `param overlay`
    Overlay network
 
-:param underlay`
+- `param underlay`
    Underlay network
 
-:param dhcp`
+- `param dhcp`
    confiugre dhcp server for overlay net
 
-:param host_reserve`
+- `param host_reserve`
    number of IP addresses to reserve for host
 
-:param bridge`
+- `param bridge`
    override bridge name
 
-:param off`
+- `param off`
    put this int he config, but disable it.
 
 Returns 404 if the fannetwork is not found.
@@ -1520,25 +1518,25 @@ List all fannetworks.
 
 Create a fannetwork.
 
-:param name`
+- `param name`
    Name of the fannetwork.
 
-:param overlay`
+- `param overlay`
    Overlay network
 
-:param underlay`
+- `param underlay`
    Underlay network
 
-:param dhcp`
+- `param dhcp`
    confiugre dhcp server for overlay net
 
-:param host_reserve`
+- `param host_reserve`
    number of IP addresses to reserve for host
 
-:param bridge`
+- `param bridge`
    override bridge name
 
-:param off`
+- `param off`
    put this int he config, but disable it.
 
 ### File
@@ -1565,10 +1563,10 @@ Manage the collection of all the files in this MAAS.
 
 Delete a FileStorage object.
 
-:param filename`
+- `param filename`
    The filename of the object to be deleted.
 
-:type filename`
+- `type filename`
    unicode
 
 ##### `GET /api/2.0/files/`
@@ -1577,56 +1575,56 @@ List the files from the file storage.
 
 The returned files are ordered by file name and the content is excluded.
 
-:param prefix`
+- `param prefix`
    Optional prefix used to filter out the returned files.
 
-:type prefix`
+- `type prefix`
    string
 
 ##### `GET /api/2.0/files/ op=get`
 
 Get a named file from the file storage.
 
-:param filename`
+- `param filename`
    The exact name of the file you want to get.
 
-:type filename`
+- `type filename`
    string
 
-:return`
+- `return`
    The file is returned in the response content.
 
 ##### `GET /api/2.0/files/ op=get_by_key`
 
 Get a file from the file storage using its key.
 
-:param key`
+- `param key`
    The exact key of the file you want to get.
 
-:type key`
+- `type key`
    string
 
-:return`
+- `return`
    The file is returned in the response content.
 
 ##### `POST /api/2.0/files/`
 
 Add a new file to the file storage.
 
-:param filename`
+- `param filename`
    The file name to use in the storage.
 
-:type filename`
+- `type filename`
    string
 
-:param file`
+- `param file`
    Actual file data with content type
-       application/octet-stream
+   application/octet-stream
 
 Returns 400 if any of these conditions apply:
    -   The filename is missing from the parameters
-    -   The file data is missing
-    -   More than one file is supplied
+   -   The file data is missing
+   -   More than one file is supplied
 
 ### IP Addresses
 
@@ -1639,54 +1637,54 @@ List IP addresses known to MAAS.
 By default, gets a listing of all IP addresses allocated to the requesting
 user.
 
-:param ip`
+- `param ip`
    If specified, will only display information for the
-       specified IP address.
+   specified IP address.
 
-:type ip`
+- `type ip`
    unicode (must be an IPv4 or IPv6 address)
 
 If the requesting user is a MAAS administrator, the following options may also
 be supplied:
 
-:param all`
+- `param all`
    If True, all reserved IP addresses will be shown. (By
-       default, only addresses of type 'User reserved' that are assigned to
-        the requesting user are shown.)
+   default, only addresses of type 'User reserved' that are assigned to
+   the requesting user are shown.)
 
-:type all`
+- `type all`
    bool
 
-:param owner`
+- `param owner`
    If specified, filters the list to show only IP addresses
-       owned by the specified username.
+   owned by the specified username.
 
-:type user`
+- `type user`
    unicode
 
 ##### `POST /api/2.0/ipaddresses/ op=release`
 
 Release an IP address that was previously reserved by the user.
 
-:param ip`
+- `param ip`
    The IP address to release.
 
-:type ip`
+- `type ip`
    unicode
 
-:param force`
+- `param force`
    If True, allows a MAAS administrator to force an IP
-       address to be released, even if it is not a user-reserved IP address
-        or does not belong to the requesting user. Use with caution.
+   address to be released, even if it is not a user-reserved IP address
+   or does not belong to the requesting user. Use with caution.
 
-:type force`
+- `type force`
    bool
 
-:param discovered`
+- `param discovered`
    If True, allows a MAAS administrator to release
-       a discovered address. Only valid if 'force' is specified. If not
-        specified, MAAS will attempt to release any type of address except for
-        discovered addresses.
+   a discovered address. Only valid if 'force' is specified. If not
+   specified, MAAS will attempt to release any type of address except for
+   discovered addresses.
 
 Returns 404 if the provided IP address is not found.
 
@@ -1699,23 +1697,23 @@ use; it is free for use by the requesting user until released by the user.
 
 The user may supply either a subnet or a specific IP address within a subnet.
 
-:param subnet`
+- `param subnet`
    CIDR representation of the subnet on which the IP
-       reservation is required. e.g. 10.1.2.0/24
+   reservation is required. e.g. 10.1.2.0/24
 
-:param ip`
+- `param ip`
    The IP address, which must be within
-       a known subnet.
+   a known subnet.
 
-:param ip_address`
+- `param ip_address`
    (Deprecated.) Alias for 'ip' parameter. Provided
-       for backward compatibility.
+   for backward compatibility.
 
-:param hostname`
+- `param hostname`
    The hostname to use for the specified IP address. If
-       no domain component is given, the default domain will be used.
+   no domain component is given, the default domain will be used.
 
-:param mac`
+- `param mac`
    The MAC address that should be linked to this reservation.
 
 Returns 400 if there is no subnet in MAAS matching the provided one, or a
@@ -1743,13 +1741,13 @@ Returns 404 if the IP range is not found.
 
 Update IP range.
 
-:param start_ip`
+- `param start_ip`
    Start IP address of this range (inclusive).
 
-:param end_ip`
+- `param end_ip`
    End IP address of this range (inclusive).
 
-:param comment`
+- `param comment`
    A description of this range. (optional)
 
 Returns 403 if not owner of IP range. Returns 404 if the IP Range is not
@@ -1767,19 +1765,19 @@ List all IP ranges.
 
 Create an IP range.
 
-:param type`
+- `param type`
    Type of this range. (dynamic or reserved)
 
-:param start_ip`
+- `param start_ip`
    Start IP address of this range (inclusive).
 
-:param end_ip`
+- `param end_ip`
    End IP address of this range (inclusive).
 
-:param subnet`
+- `param subnet`
    Subnet this range is associated with. (optional)
 
-:param comment`
+- `param comment`
    A description of this range. (optional)
 
 Returns 403 if standard users tries to create a dynamic IP range.
@@ -1804,7 +1802,7 @@ Returns 404 if the node or interface is not found.
 
 Add a tag to interface on a node.
 
-:param tag`
+- `param tag`
    The tag being added.
 
 Returns 404 if the node or interface is not found. Returns 403 if the user is
@@ -1823,32 +1821,32 @@ Returns 404 if the node or interface is not found.
 
 Link interface to a subnet.
 
-:param mode`
+- `param mode`
    AUTO, DHCP, STATIC or LINK_UP connection to subnet.
 
-:param subnet`
+- `param subnet`
    Subnet linked to interface.
 
-:param ip_address`
+- `param ip_address`
    IP address for the interface in subnet. Only used
-       when mode is STATIC. If not provided an IP address from subnet will be
-        auto selected.
+   when mode is STATIC. If not provided an IP address from subnet will be
+   auto selected.
 
-:param force`
+- `param force`
    If True, allows LINK_UP to be set on the interface
-       even if other links already exist. Also allows the selection of any
-        VLAN, even a VLAN MAAS does not believe the interface to currently be
-        on. Using this option will cause all other links on the interface to
-        be deleted. (Defaults to False.)
+   even if other links already exist. Also allows the selection of any
+   VLAN, even a VLAN MAAS does not believe the interface to currently be
+   on. Using this option will cause all other links on the interface to
+   be deleted. (Defaults to False.)
 
-:param default_gateway`
+- `param default_gateway`
    True sets the gateway IP address for the subnet
-       as the default gateway for the node this interface belongs to. Option
-        can only be used with the AUTO and STATIC modes.
+   as the default gateway for the node this interface belongs to. Option
+   can only be used with the AUTO and STATIC modes.
 
-Mode definitions: AUTO - Assign this interface a static IP address from
-the provided subnet. The subnet must be a managed subnet. The IP address will
-not be assigned until the node goes to be deployed.
+Mode definitions: AUTO - Assign this interface a static IP address from the
+provided subnet. The subnet must be a managed subnet. The IP address will not
+be assigned until the node goes to be deployed.
 
 DHCP - Bring this interface up with DHCP on the given subnet. Only one subnet
 can be set to DHCP. If the subnet is managed this interface will pull from the
@@ -1867,7 +1865,7 @@ Returns 404 if the node or interface is not found.
 
 Remove a tag from interface on a node.
 
-:param tag`
+- `param tag`
    The tag being removed.
 
 Returns 404 if the node or interface is not found. Returns 403 if the user is
@@ -1881,9 +1879,9 @@ If this interface has more than one subnet with a gateway IP in the same IP
 address family then specifying the ID of the link on this interface is
 required.
 
-:param link_id`
+- `param link_id`
    ID of the link on this interface to select the
-       default gateway IP address from.
+   default gateway IP address from.
 
 Returns 400 if the interface has not AUTO or STATIC links. Returns 404 if the
 node or interface is not found.
@@ -1892,7 +1890,7 @@ node or interface is not found.
 
 Unlink interface to a subnet.
 
-:param id`
+- `param id`
    ID of the link on the interface to remove.
 
 Returns 404 if the node or interface is not found.
@@ -1908,102 +1906,102 @@ replaced while the machine remains deployed.
 
 Fields for physical interface:
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    Untagged VLAN the interface is connected to. If not set
-       then the interface is considered disconnected.
+   then the interface is considered disconnected.
 
 Fields for bond interface:
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    Untagged VLAN the interface is connected to. If not set
-       then the interface is considered disconnected.
+   then the interface is considered disconnected.
 
-:param parents`
+- `param parents`
    Parent interfaces that make this bond.
 
 Fields for VLAN interface:
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    Tagged VLAN the interface is connected to.
 
-:param parent`
+- `param parent`
    Parent interface for this VLAN interface.
 
 Fields for bridge interface:
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    VLAN the interface is connected to.
 
-:param parent`
+- `param parent`
    Parent interface for this bridge interface.
 
 Following are extra parameters that can be set on all interface types:
 
-:param mtu`
+- `param mtu`
    Maximum transmission unit.
 
-:param accept_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
-:param autoconf`
+- `param autoconf`
    Perform stateless autoconfiguration. (IPv6 only)
 
 Following are parameters specific to bonds:
 
-:param bond_mode`
+- `param bond_mode`
    The operating mode of the bond.
-       (Default: active-backup).
+   (Default: active-backup).
 
-:param bond_miimon`
+- `param bond_miimon`
    The link monitoring freqeuncy in milliseconds.
-       (Default: 100).
+   (Default: 100).
 
-:param bond_downdelay`
+- `param bond_downdelay`
    Specifies the time, in milliseconds, to wait
-       before disabling a slave after a link failure has been detected.
+   before disabling a slave after a link failure has been detected.
 
-:param bond_updelay`
+- `param bond_updelay`
    Specifies the time, in milliseconds, to wait
-       before enabling a slave after a link recovery has been detected.
+   before enabling a slave after a link recovery has been detected.
 
-:param bond_lacp_rate`
+- `param bond_lacp_rate`
    Option specifying the rate in which we'll ask
-       our link partner to transmit LACPDU packets in 802.3ad mode. Available
-        options are fast or slow. (Default: slow).
+   our link partner to transmit LACPDU packets in 802.3ad mode. Available
+   options are fast or slow. (Default: slow).
 
-:param bond_xmit_hash_policy`
+- `param bond_xmit_hash_policy`
    The transmit hash policy to use for
-       slave selection in balance-xor, 802.3ad, and tlb modes.
+   slave selection in balance-xor, 802.3ad, and tlb modes.
 
 Supported bonding modes (bond-mode):
 
@@ -2026,22 +2024,22 @@ fault tolerance.
 that share the same speed and duplex settings. Utilizes all slaves in the
 active aggregator according to the 802.3ad specification.
 
-balance-tlb - Adaptive transmit load balancing: channel bonding that does
-not require any special switch support.
+balance-tlb - Adaptive transmit load balancing: channel bonding that does not
+require any special switch support.
 
-balance-alb - Adaptive load balancing: includes balance-tlb plus receive
-load balancing (rlb) for IPV4 traffic, and does not require any special switch
+balance-alb - Adaptive load balancing: includes balance-tlb plus receive load
+balancing (rlb) for IPV4 traffic, and does not require any special switch
 support. The receive load balancing is achieved by ARP negotiation.
 
 Following are parameters specific to bridges:
 
-:param bridge_stp`
+- `param bridge_stp`
    Turn spanning tree protocol on or off.
-       (Default: False).
+   (Default: False).
 
-:param bridge_fd`
+- `param bridge_fd`
    Set bridge forward delay to time seconds.
-       (Default: 15).
+   (Default: 15).
 
 Returns 404 if the node or interface is not found.
 
@@ -2059,54 +2057,54 @@ Returns 404 if the node is not found.
 
 Create a bond interface on a machine.
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    VLAN the interface is connected to. If not
-       provided then the interface is considered disconnected.
+   provided then the interface is considered disconnected.
 
-:param parents`
+- `param parents`
    Parent interfaces that make this bond.
 
 Following are parameters specific to bonds:
 
-:param bond_mode`
+- `param bond_mode`
    The operating mode of the bond.
-       (Default: active-backup).
+   (Default: active-backup).
 
-:param bond_miimon`
+- `param bond_miimon`
    The link monitoring freqeuncy in milliseconds.
-       (Default: 100).
+   (Default: 100).
 
-:param bond_downdelay`
+- `param bond_downdelay`
    Specifies the time, in milliseconds, to wait
-       before disabling a slave after a link failure has been detected.
+   before disabling a slave after a link failure has been detected.
 
-:param bond_updelay`
+- `param bond_updelay`
    Specifies the time, in milliseconds, to wait
-       before enabling a slave after a link recovery has been detected.
+   before enabling a slave after a link recovery has been detected.
 
-:param bond_lacp_rate`
+- `param bond_lacp_rate`
    Option specifying the rate in which we'll ask
-       our link partner to transmit LACPDU packets in 802.3ad mode. Available
-        options are fast or slow. (Default: slow).
+   our link partner to transmit LACPDU packets in 802.3ad mode. Available
+   options are fast or slow. (Default: slow).
 
-:param bond_xmit_hash_policy`
+- `param bond_xmit_hash_policy`
    The transmit hash policy to use for
-       slave selection in balance-xor, 802.3ad, and tlb modes. (Default:
-        layer2)
+   slave selection in balance-xor, 802.3ad, and tlb modes. (Default:
+   layer2)
 
-:param bond_num_grat_arp`
+- `param bond_num_grat_arp`
    The number of peer notifications (IPv4 ARP
-       or IPv6 Neighbour Advertisements) to be issued after a failover.
-        (Default: 1)
+   or IPv6 Neighbour Advertisements) to be issued after a failover.
+   (Default: 1)
 
 Supported bonding modes (bond-mode): balance-rr - Transmit packets in
 sequential order from the first available slave through the last. This mode
@@ -2128,22 +2126,22 @@ fault tolerance.
 that share the same speed and duplex settings. Utilizes all slaves in the
 active aggregator according to the 802.3ad specification.
 
-balance-tlb - Adaptive transmit load balancing: channel bonding that does
-not require any special switch support.
+balance-tlb - Adaptive transmit load balancing: channel bonding that does not
+require any special switch support.
 
-balance-alb - Adaptive load balancing: includes balance-tlb plus receive
-load balancing (rlb) for IPV4 traffic, and does not require any special switch
+balance-alb - Adaptive load balancing: includes balance-tlb plus receive load
+balancing (rlb) for IPV4 traffic, and does not require any special switch
 support. The receive load balancing is achieved by ARP negotiation.
 
 Following are extra parameters that can be set on the interface:
 
-:param mtu`
+- `param mtu`
    Maximum transmission unit.
 
-:param accept_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
-:param autoconf`
+- `param autoconf`
    Perform stateless autoconfiguration. (IPv6 only)
 
 Returns 404 if the node is not found.
@@ -2152,40 +2150,40 @@ Returns 404 if the node is not found.
 
 Create a bridge interface on a machine.
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    VLAN the interface is connected to.
 
-:param parent`
+- `param parent`
    Parent interface for this bridge interface.
 
 Following are parameters specific to bridges:
 
-:param bridge_stp`
+- `param bridge_stp`
    Turn spanning tree protocol on or off.
-       (Default: False).
+   (Default: False).
 
-:param bridge_fd`
+- `param bridge_fd`
    Set bridge forward delay to time seconds.
-       (Default: 15).
+   (Default: 15).
 
 Following are extra parameters that can be set on the interface:
 
-:param mtu`
+- `param mtu`
    Maximum transmission unit.
 
-:param accept_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
-:param autoconf`
+- `param autoconf`
    Perform stateless autoconfiguration. (IPv6 only)
 
 Returns 404 if the node is not found.
@@ -2194,28 +2192,28 @@ Returns 404 if the node is not found.
 
 Create a physical interface on a machine and device.
 
-:param name`
+- `param name`
    Name of the interface.
 
-:param mac_address`
+- `param mac_address`
    MAC address of the interface.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    Untagged VLAN the interface is connected to. If not
-       provided then the interface is considered disconnected.
+   provided then the interface is considered disconnected.
 
 Following are extra parameters that can be set on the interface:
 
-:param mtu`
+- `param mtu`
    Maximum transmission unit.
 
-:param accept_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
-:param autoconf`
+- `param autoconf`
    Perform stateless autoconfiguration. (IPv6 only)
 
 Returns 404 if the node is not found.
@@ -2224,24 +2222,24 @@ Returns 404 if the node is not found.
 
 Create a VLAN interface on a machine.
 
-:param tags`
+- `param tags`
    Tags for the interface.
 
-:param vlan`
+- `param vlan`
    Tagged VLAN the interface is connected to.
 
-:param parent`
+- `param parent`
    Parent interface for this VLAN interface.
 
 Following are extra parameters that can be set on the interface:
 
-:param mtu`
+- `param mtu`
    Maximum transmission unit.
 
-:param accept_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
-:param autoconf`
+- `param autoconf`
    Perform stateless autoconfiguration. (IPv6 only)
 
 Returns 404 if the node is not found.
@@ -2262,13 +2260,13 @@ Read license key.
 
 Update license key.
 
-:param osystem`
+- `param osystem`
    Operating system that the key belongs to.
 
-:param distro_series`
+- `param distro_series`
    OS release that the key belongs to.
 
-:param license_key`
+- `param license_key`
    License key for osystem/distro_series combo.
 
 ### License Keys
@@ -2283,13 +2281,13 @@ List license keys.
 
 Define a license key.
 
-:param osystem`
+- `param osystem`
    Operating system that the key belongs to.
 
-:param distro_series`
+- `param distro_series`
    OS release that the key belongs to.
 
-:param license_key`
+- `param license_key`
    License key for osystem/distro_series combo.
 
 ### MAAS server
@@ -2300,290 +2298,290 @@ Manage the MAAS server.
 
 Get a config value.
 
-:param name`
+- `param name`
    The name of the config item to be retrieved.
 
 Available configuration items:
 
-:active_discovery_interval`
+- `active_discovery_interval`
    Active subnet mapping interval. When enabled, each rack will scan subnets
-    enabled for active mapping. This helps ensure discovery information is
-    accurate and complete.
+   enabled for active mapping. This helps ensure discovery information is
+   accurate and complete.
 
-:boot_images_auto_import`
+- `boot_images_auto_import`
    Automatically import/refresh the boot images every 60 minutes.
 
-:commissioning_distro_series`
+- `commissioning_distro_series`
    Default Ubuntu release used for commissioning.
 
-:completed_intro`
+- `completed_intro`
    Marks if the initial intro has been completed.
 
-:curtin_verbose`
+- `curtin_verbose`
    Run the fast-path installer with higher verbosity. This provides more
-    detail in the installation logs.
+   detail in the installation logs.
 
-:default_distro_series`
+- `default_distro_series`
    Default OS release used for deployment.
 
-:default_dns_ttl`
+- `default_dns_ttl`
    Default Time-To-Live for the DNS. If no TTL value is specified at a more
-    specific point this is how long DNS responses are valid, in seconds.
+   specific point this is how long DNS responses are valid, in seconds.
 
-:default_min_hwe_kernel`
+- `default_min_hwe_kernel`
    Default Minimum Kernel Version. The default minimum kernel version used on
-    all new and commissioned nodes.
+   all new and commissioned nodes.
 
-:default_osystem`
+- `default_osystem`
    Default operating system used for deployment.
 
-:default_storage_layout`
+- `default_storage_layout`
    Default storage layout. Storage layout that is applied to a node when it
-    is commissioned. Available choices are: 'bcache' (Bcache layout),
-    'flat' (Flat layout), 'lvm' (LVM layout).
+   is commissioned. Available choices are: 'bcache' (Bcache layout), 'flat'
+   (Flat layout), 'lvm' (LVM layout).
 
-:disk_erase_with_quick_erase`
+- `disk_erase_with_quick_erase`
    Use quick erase by default when erasing disks.. This is not a secure
-    erase; it wipes only the beginning and end of each disk.
+   erase; it wipes only the beginning and end of each disk.
 
-:disk_erase_with_secure_erase`
+- `disk_erase_with_secure_erase`
    Use secure erase by default when erasing disks. Will only be used on
-    devices that support secure erase. Other devices will fall back to full
-    wipe or quick erase depending on the selected options.
+   devices that support secure erase. Other devices will fall back to full
+   wipe or quick erase depending on the selected options.
 
-:dnssec_validation`
+- `dnssec_validation`
    Enable DNSSEC validation of upstream zones. Only used when MAAS is running
-    its own DNS server. This value is used as the value of
-    'dnssec_validation' in the DNS server config.
+   its own DNS server. This value is used as the value of
+   'dnssec_validation' in the DNS server config.
 
-:enable_analytics`
+- `enable_analytics`
    Enable Google Analytics in MAAS UI to shape improvements in user
-    experience.
+   experience.
 
-:enable_disk_erasing_on_release`
+- `enable_disk_erasing_on_release`
    Erase nodes' disks prior to releasing. Forces users to always erase disks
-    when releasing.
+   when releasing.
 
-:enable_http_proxy`
+- `enable_http_proxy`
    Enable the use of an APT and HTTP/HTTPS proxy. Provision nodes to use the
-    built-in HTTP proxy (or user specified proxy) for APT. MAAS also uses the
-    proxy for downloading boot images.
+   built-in HTTP proxy (or user specified proxy) for APT. MAAS also uses the
+   proxy for downloading boot images.
 
-:enable_third_party_drivers`
+- `enable_third_party_drivers`
    Enable the installation of proprietary drivers (i.e. HPVSA).
 
-:http_proxy`
+- `http_proxy`
    Proxy for APT and HTTP/HTTPS. This will be passed onto provisioned nodes
-    to use as a proxy for APT traffic. MAAS also uses the proxy for
-    downloading boot images. If no URL is provided, the built-in MAAS proxy
-    will be used.
+   to use as a proxy for APT traffic. MAAS also uses the proxy for
+   downloading boot images. If no URL is provided, the built-in MAAS proxy
+   will be used.
 
-:kernel_opts`
+- `kernel_opts`
    Boot parameters to pass to the kernel by default.
 
-:maas_name`
+- `maas_name`
    MAAS name.
 
-:max_node_commissioning_results`
+- `max_node_commissioning_results`
    The maximum number of commissioning results runs which are stored.
 
-:max_node_installation_results`
+- `max_node_installation_results`
    The maximum number of installation result runs which are stored.
 
-:max_node_testing_results`
+- `max_node_testing_results`
    The maximum number of testing results runs which are stored.
 
-:network_discovery`
+- `network_discovery`
    . When enabled, MAAS will use passive techniques (such as listening to ARP
-    requests and mDNS advertisements) to observe networks attached to rack
-    controllers. Active subnet mapping will also be available to be enabled on
-    the configured subnets.
+   requests and mDNS advertisements) to observe networks attached to rack
+   controllers. Active subnet mapping will also be available to be enabled on
+   the configured subnets.
 
-:ntp_external_only`
+- `ntp_external_only`
    Use external NTP servers only. Configure all region controller hosts, rack
-    controller hosts, and subsequently deployed machines to refer directly to
-    the configured external NTP servers. Otherwise only region controller
-    hosts will be configured to use those external NTP servers, rack contoller
-    hosts will in turn refer to the regions' NTP servers, and deployed
-    machines will refer to the racks' NTP servers.
+   controller hosts, and subsequently deployed machines to refer directly to
+   the configured external NTP servers. Otherwise only region controller
+   hosts will be configured to use those external NTP servers, rack contoller
+   hosts will in turn refer to the regions' NTP servers, and deployed
+   machines will refer to the racks' NTP servers.
 
-:ntp_servers`
+- `ntp_servers`
    Addresses of NTP servers. NTP servers, specified as IP addresses or
-    hostnames delimited by commas and/or spaces, to be used as time references
-    for MAAS itself, the machines MAAS deploys, and devices that make use of
-    MAAS's DHCP services.
+   hostnames delimited by commas and/or spaces, to be used as time references
+   for MAAS itself, the machines MAAS deploys, and devices that make use of
+   MAAS's DHCP services.
 
-:prefer_v4_proxy`
+- `prefer_v4_proxy`
    Sets IPv4 DNS resolution before IPv6. If prefer_v4_proxy is set, the
-    proxy will be set to prefer IPv4 DNS resolution before it attempts to
-    perform IPv6 DNS resolution.
+   proxy will be set to prefer IPv4 DNS resolution before it attempts to
+   perform IPv6 DNS resolution.
 
-:subnet_ip_exhaustion_threshold_count`
+- `subnet_ip_exhaustion_threshold_count`
    If the number of free IP addresses on a subnet becomes less than or equal
-    to this threshold, an IP exhaustion warning will appear for that subnet.
+   to this threshold, an IP exhaustion warning will appear for that subnet.
 
-:upstream_dns`
+- `upstream_dns`
    Upstream DNS used to resolve domains not managed by this MAAS
-    (space-separated IP addresses). Only used when MAAS is running its own DNS
-    server. This value is used as the value of 'forwarders' in the DNS server
-    config.
+   (space-separated IP addresses). Only used when MAAS is running its own DNS
+   server. This value is used as the value of 'forwarders' in the DNS server
+   config.
 
-:use_peer_proxy`
+- `use_peer_proxy`
    Use the built-in proxy with an external proxy as a peer. If
-    enable_http_proxy is set, the built-in proxy will be configured to use
-    http_proxy as a peer proxy. The deployed machines will be configured to
-    use the built-in proxy.
+   enable_http_proxy is set, the built-in proxy will be configured to use
+   http_proxy as a peer proxy. The deployed machines will be configured to
+   use the built-in proxy.
 
-:windows_kms_host`
+- `windows_kms_host`
    Windows KMS activation host. FQDN or IP address of the host that provides
-    the KMS Windows activation service. (Only needed for Windows deployments
-    using KMS activation.)
+   the KMS Windows activation service. (Only needed for Windows deployments
+   using KMS activation.)
 
 ##### `POST /api/2.0/maas/ op=set_config`
 
 Set a config value.
 
-:param name`
+- `param name`
    The name of the config item to be set.
 
-:param value`
+- `param value`
    The value of the config item to be set.
 
 Available configuration items:
 
-:active_discovery_interval`
+- `active_discovery_interval`
    Active subnet mapping interval. When enabled, each rack will scan subnets
-    enabled for active mapping. This helps ensure discovery information is
-    accurate and complete.
+   enabled for active mapping. This helps ensure discovery information is
+   accurate and complete.
 
-:boot_images_auto_import`
+- `boot_images_auto_import`
    Automatically import/refresh the boot images every 60 minutes.
 
-:commissioning_distro_series`
+- `commissioning_distro_series`
    Default Ubuntu release used for commissioning.
 
-:completed_intro`
+- `completed_intro`
    Marks if the initial intro has been completed.
 
-:curtin_verbose`
+- `curtin_verbose`
    Run the fast-path installer with higher verbosity. This provides more
-    detail in the installation logs.
+   detail in the installation logs.
 
-:default_distro_series`
+- `default_distro_series`
    Default OS release used for deployment.
 
-:default_dns_ttl`
+- `default_dns_ttl`
    Default Time-To-Live for the DNS. If no TTL value is specified at a more
-    specific point this is how long DNS responses are valid, in seconds.
+   specific point this is how long DNS responses are valid, in seconds.
 
-:default_min_hwe_kernel`
+- `default_min_hwe_kernel`
    Default Minimum Kernel Version. The default minimum kernel version used on
-    all new and commissioned nodes.
+   all new and commissioned nodes.
 
-:default_osystem`
+- `default_osystem`
    Default operating system used for deployment.
 
-:default_storage_layout`
+- `default_storage_layout`
    Default storage layout. Storage layout that is applied to a node when it
-    is commissioned. Available choices are: 'bcache' (Bcache layout),
-    'flat' (Flat layout), 'lvm' (LVM layout).
+   is commissioned. Available choices are: 'bcache' (Bcache layout), 'flat'
+   (Flat layout), 'lvm' (LVM layout).
 
-:disk_erase_with_quick_erase`
+- `disk_erase_with_quick_erase`
    Use quick erase by default when erasing disks.. This is not a secure
-    erase; it wipes only the beginning and end of each disk.
+   erase; it wipes only the beginning and end of each disk.
 
-:disk_erase_with_secure_erase`
+- `disk_erase_with_secure_erase`
    Use secure erase by default when erasing disks. Will only be used on
-    devices that support secure erase. Other devices will fall back to full
-    wipe or quick erase depending on the selected options.
+   devices that support secure erase. Other devices will fall back to full
+   wipe or quick erase depending on the selected options.
 
-:dnssec_validation`
+- `dnssec_validation`
    Enable DNSSEC validation of upstream zones. Only used when MAAS is running
-    its own DNS server. This value is used as the value of
-    'dnssec_validation' in the DNS server config.
+   its own DNS server. This value is used as the value of
+   'dnssec_validation' in the DNS server config.
 
-:enable_analytics`
+- `enable_analytics`
    Enable Google Analytics in MAAS UI to shape improvements in user
-    experience.
+   experience.
 
-:enable_disk_erasing_on_release`
+- `enable_disk_erasing_on_release`
    Erase nodes' disks prior to releasing. Forces users to always erase disks
-    when releasing.
+   when releasing.
 
-:enable_http_proxy`
+- `enable_http_proxy`
    Enable the use of an APT and HTTP/HTTPS proxy. Provision nodes to use the
-    built-in HTTP proxy (or user specified proxy) for APT. MAAS also uses the
-    proxy for downloading boot images.
+   built-in HTTP proxy (or user specified proxy) for APT. MAAS also uses the
+   proxy for downloading boot images.
 
-:enable_third_party_drivers`
+- `enable_third_party_drivers`
    Enable the installation of proprietary drivers (i.e. HPVSA).
 
-:http_proxy`
+- `http_proxy`
    Proxy for APT and HTTP/HTTPS. This will be passed onto provisioned nodes
-    to use as a proxy for APT traffic. MAAS also uses the proxy for
-    downloading boot images. If no URL is provided, the built-in MAAS proxy
-    will be used.
+   to use as a proxy for APT traffic. MAAS also uses the proxy for
+   downloading boot images. If no URL is provided, the built-in MAAS proxy
+   will be used.
 
-:kernel_opts`
+- `kernel_opts`
    Boot parameters to pass to the kernel by default.
 
-:maas_name`
+- `maas_name`
    MAAS name.
 
-:max_node_commissioning_results`
+- `max_node_commissioning_results`
    The maximum number of commissioning results runs which are stored.
 
-:max_node_installation_results`
+- `max_node_installation_results`
    The maximum number of installation result runs which are stored.
 
-:max_node_testing_results`
+- `max_node_testing_results`
    The maximum number of testing results runs which are stored.
 
-:network_discovery`
+- `network_discovery`
    . When enabled, MAAS will use passive techniques (such as listening to ARP
-    requests and mDNS advertisements) to observe networks attached to rack
-    controllers. Active subnet mapping will also be available to be enabled on
-    the configured subnets.
+   requests and mDNS advertisements) to observe networks attached to rack
+   controllers. Active subnet mapping will also be available to be enabled on
+   the configured subnets.
 
-:ntp_external_only`
+- `ntp_external_only`
    Use external NTP servers only. Configure all region controller hosts, rack
-    controller hosts, and subsequently deployed machines to refer directly to
-    the configured external NTP servers. Otherwise only region controller
-    hosts will be configured to use those external NTP servers, rack contoller
-    hosts will in turn refer to the regions' NTP servers, and deployed
-    machines will refer to the racks' NTP servers.
+   controller hosts, and subsequently deployed machines to refer directly to
+   the configured external NTP servers. Otherwise only region controller
+   hosts will be configured to use those external NTP servers, rack contoller
+   hosts will in turn refer to the regions' NTP servers, and deployed
+   machines will refer to the racks' NTP servers.
 
-:ntp_servers`
+- `ntp_servers`
    Addresses of NTP servers. NTP servers, specified as IP addresses or
-    hostnames delimited by commas and/or spaces, to be used as time references
-    for MAAS itself, the machines MAAS deploys, and devices that make use of
-    MAAS's DHCP services.
+   hostnames delimited by commas and/or spaces, to be used as time references
+   for MAAS itself, the machines MAAS deploys, and devices that make use of
+   MAAS's DHCP services.
 
-:prefer_v4_proxy`
+- `prefer_v4_proxy`
    Sets IPv4 DNS resolution before IPv6. If prefer_v4_proxy is set, the
-    proxy will be set to prefer IPv4 DNS resolution before it attempts to
-    perform IPv6 DNS resolution.
+   proxy will be set to prefer IPv4 DNS resolution before it attempts to
+   perform IPv6 DNS resolution.
 
-:subnet_ip_exhaustion_threshold_count`
+- `subnet_ip_exhaustion_threshold_count`
    If the number of free IP addresses on a subnet becomes less than or equal
-    to this threshold, an IP exhaustion warning will appear for that subnet.
+   to this threshold, an IP exhaustion warning will appear for that subnet.
 
-:upstream_dns`
+- `upstream_dns`
    Upstream DNS used to resolve domains not managed by this MAAS
-    (space-separated IP addresses). Only used when MAAS is running its own DNS
-    server. This value is used as the value of 'forwarders' in the DNS server
-    config.
+   (space-separated IP addresses). Only used when MAAS is running its own DNS
+   server. This value is used as the value of 'forwarders' in the DNS server
+   config.
 
-:use_peer_proxy`
+- `use_peer_proxy`
    Use the built-in proxy with an external proxy as a peer. If
-    enable_http_proxy is set, the built-in proxy will be configured to use
-    http_proxy as a peer proxy. The deployed machines will be configured to
-    use the built-in proxy.
+   enable_http_proxy is set, the built-in proxy will be configured to use
+   http_proxy as a peer proxy. The deployed machines will be configured to
+   use the built-in proxy.
 
-:windows_kms_host`
+- `windows_kms_host`
    Windows KMS activation host. FQDN or IP address of the host that provides
-    the KMS Windows activation service. (Only needed for Windows deployments
-    using KMS activation.)
+   the KMS Windows activation service. (Only needed for Windows deployments
+   using KMS activation.)
 
 ### Machine
 
@@ -2611,8 +2609,8 @@ Obtain various system details.
 
 For example, LLDP and `lshw` XML dumps.
 
-Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
-like "lldp" or "lshw".
+Returns a `{detail_type: xml, ...}` map, where `detail_type` is something like
+"lldp" or "lshw".
 
 Note that this is returned as BSON and not JSON. This is for efficiency, but
 mainly because JSON can't do binary content without applying additional
@@ -2649,12 +2647,12 @@ state. The reply to this could be delayed by up to 30 seconds while waiting
 for the power controller to respond. Use this method sparingly as it ties up
 an appserver thread while waiting.
 
-:param system_id`
+- `param system_id`
    The node to query.
 
-:return`
+- `return`
    a dict whose key is "state" with a value of one of
-       'on' or 'off'.
+   'on' or 'off'.
 
 Returns 404 if the node is not found. Returns node's power state.
 
@@ -2662,10 +2660,10 @@ Returns 404 if the node is not found. Returns node's power state.
 
 Abort a node's current operation.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the node could not be found. Returns 403 if the user does not
@@ -2697,43 +2695,43 @@ not have permission to clear the default gateways.
 
 Begin commissioning process for a machine.
 
-:param enable_ssh`
+- `param enable_ssh`
    Whether to enable SSH for the commissioning
-       environment using the user's SSH key(s).
+   environment using the user's SSH key(s).
 
-:type enable_ssh`
+- `type enable_ssh`
    bool ('0' for False, '1' for True)
 
-:param skip_networking`
+- `param skip_networking`
    Whether to skip re-configuring the networking
-       on the machine after the commissioning has completed.
+   on the machine after the commissioning has completed.
 
-:type skip_networking`
+- `type skip_networking`
    bool ('0' for False, '1' for True)
 
-:param skip_storage`
+- `param skip_storage`
    Whether to skip re-configuring the storage
-       on the machine after the commissioning has completed.
+   on the machine after the commissioning has completed.
 
-:type skip_storage`
+- `type skip_storage`
    bool ('0' for False, '1' for True)
 
-:param commissioning_scripts`
+- `param commissioning_scripts`
    A comma seperated list of commissioning
-       script names and tags to be run. By default all custom commissioning
-        scripts are run. Builtin commissioning scripts always run. Selecting
-        'update_firmware' or 'configure_hba' will run firmware updates or
-        configure HBA's on matching machines.
+   script names and tags to be run. By default all custom commissioning
+   scripts are run. Builtin commissioning scripts always run. Selecting
+   'update_firmware' or 'configure_hba' will run firmware updates or
+   configure HBA's on matching machines.
 
-:type commissioning_scripts`
+- `type commissioning_scripts`
    string
 
-:param testing_scripts`
+- `param testing_scripts`
    A comma seperated list of testing script names
-       and tags to be run. By default all tests tagged 'commissioning' will
-        be run. Set to 'none' to disable running tests.
+   and tags to be run. By default all tests tagged 'commissioning' will
+   be run. Set to 'none' to disable running tests.
 
-:type testing_scripts`
+- `type testing_scripts`
    string
 
 A machine in the 'ready', 'declared' or 'failed test' state may initiate a
@@ -2748,68 +2746,67 @@ Returns 404 if the machine is not found.
 
 Deploy an operating system to a machine.
 
-:param user_data`
+- `param user_data`
    If present, this blob of user-data to be made
-       available to the machines through the metadata service.
+   available to the machines through the metadata service.
 
-:type user_data`
+- `type user_data`
    base64-encoded unicode
 
-:param distro_series`
+- `param distro_series`
    If present, this parameter specifies the
-       OS release the machine will use.
+   OS release the machine will use.
 
-:type distro_series`
+- `type distro_series`
    unicode
 
-:param hwe_kernel`
+- `param hwe_kernel`
    If present, this parameter specified the kernel to
-       be used on the machine
+   be used on the machine
 
-:type hwe_kernel`
+- `type hwe_kernel`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name to attach to the
-       acquired machine.
+   acquired machine.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
-:param bridge_all`
+- `param bridge_all`
    Optionally create a bridge interface for every
-       configured interface on the machine. The created bridges will be
-        removed once the machine is released. (Default: False)
+   configured interface on the machine. The created bridges will be
+   removed once the machine is released. (Default: False)
 
-:type bridge_all`
+- `type bridge_all`
    boolean
 
-:param bridge_stp`
+- `param bridge_stp`
    Optionally turn spanning tree protocol on or off
-       for the bridges created on every configured interface. (Default:
-        off)
+   for the bridges created on every configured interface. (Default: off)
 
-:type bridge_stp`
+- `type bridge_stp`
    boolean
 
-:param bridge_fd`
+- `param bridge_fd`
    Optionally adjust the forward delay to time seconds.
-       (Default: 15)
+   (Default: 15)
 
-:type bridge_fd`
+- `type bridge_fd`
    integer
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
-:param install_rackd`
+- `param install_rackd`
    If True, the Rack Controller will be installed on
-       this machine.
+   this machine.
 
-:type install_rackd`
+- `type install_rackd`
    boolean
 
 Ideally we'd have MIME multipart and content-transfer-encoding etc. deal with
@@ -2836,10 +2833,10 @@ Mark a deployed machine as locked, to prevent changes.
 
 A locked machine cannot be released or modified.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -2851,11 +2848,11 @@ Mark a node as 'broken'.
 
 If the node is allocated, release it first.
 
-:param comment`
+- `param comment`
    Optional comment for the event log. Will be
-       displayed on the node as an error description until marked fixed.
+   displayed on the node as an error description until marked fixed.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the node is not found. Returns 403 if the user does not have
@@ -2865,10 +2862,10 @@ permission to mark the node broken.
 
 Mark a broken node as fixed and set its status as 'ready'.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -2878,14 +2875,14 @@ permission to mark the machine fixed.
 
 Mount a special-purpose filesystem, like tmpfs.
 
-:param fstype`
+- `param fstype`
    The filesystem type. This must be a filesystem that
-       does not require a block special device.
+   does not require a block special device.
 
-:param mount_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-:param mount_option`
+- `param mount_option`
    Options to pass to mount(8).
 
 Returns 403 when the user is not permitted to mount the partition.
@@ -2894,10 +2891,10 @@ Returns 403 when the user is not permitted to mount the partition.
 
 Ignore failed tests and put node back into a usable state.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -2907,22 +2904,22 @@ permission to ignore tests for the node.
 
 Power off a node.
 
-:param stop_mode`
+- `param stop_mode`
    An optional power off mode. If 'soft',
-       perform a soft power down if the node's power type supports it,
-        otherwise perform a hard power off. For all values other than 'soft',
-        and by default, perform a hard power off. A soft power off generally
-        asks the OS to shutdown the system gracefully before powering off,
-        while a hard power off occurs immediately without any warning to the
-        OS.
+   perform a soft power down if the node's power type supports it,
+   otherwise perform a hard power off. For all values other than 'soft',
+   and by default, perform a hard power off. A soft power off generally
+   asks the OS to shutdown the system gracefully before powering off,
+   while a hard power off occurs immediately without any warning to the
+   OS.
 
-:type stop_mode`
+- `type stop_mode`
    unicode
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the node is not found. Returns 403 if the user does not have
@@ -2932,17 +2929,17 @@ permission to stop the node.
 
 Turn on a node.
 
-:param user_data`
+- `param user_data`
    If present, this blob of user-data to be made
-       available to the nodes through the metadata service.
+   available to the nodes through the metadata service.
 
-:type user_data`
+- `type user_data`
    base64-encoded unicode
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Ideally we'd have MIME multipart and content-transfer-encoding etc. deal with
@@ -2958,33 +2955,33 @@ relevant cluster interface.
 
 Release a machine. Opposite of Machines.allocate.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
-:param erase`
+- `param erase`
    Erase the disk when releasing.
 
-:type erase`
+- `type erase`
    boolean
 
-:param secure_erase`
+- `param secure_erase`
    Use the drive's secure erase feature if available.
-       In some cases this can be much faster than overwriting the drive. Some
-        drives implement secure erasure by overwriting themselves so this
-        could still be slow.
+   In some cases this can be much faster than overwriting the drive. Some
+   drives implement secure erasure by overwriting themselves so this
+   could still be slow.
 
-:type secure_erase`
+- `type secure_erase`
    boolean
 
-:param quick_erase`
+- `param quick_erase`
    Wipe 2MiB at the start and at the end of the drive
-       to make data recovery inconvenient and unlikely to happen by accident.
-        This is not secure.
+   to make data recovery inconvenient and unlikely to happen by accident.
+   This is not secure.
 
-:type quick_erase`
+- `type quick_erase`
    boolean
 
 If neither secure_erase nor quick_erase are specified, MAAS will overwrite
@@ -3054,51 +3051,51 @@ Changes the storage layout on the machine.
 
 This operation can only be performed on a machine with a status of 'Ready'.
 
-Note: This will clear the current storage layout and any extra
-configuration and replace it will the new layout.
+Note: This will clear the current storage layout and any extra configuration
+and replace it will the new layout.
 
-:param storage_layout`
+- `param storage_layout`
    Storage layout for the machine. (flat, lvm,
-       and bcache)
+   and bcache)
 
 The following are optional for all layouts:
 
-:param boot_size`
+- `param boot_size`
    Size of the boot partition.
 
-:param root_size`
+- `param root_size`
    Size of the root partition.
 
-:param root_device`
+- `param root_device`
    Physical block device to place the root partition.
 
 The following are optional for LVM:
 
-:param vg_name`
+- `param vg_name`
    Name of created volume group.
 
-:param lv_name`
+- `param lv_name`
    Name of created logical volume.
 
-:param lv_size`
+- `param lv_size`
    Size of created logical volume.
 
 The following are optional for Bcache:
 
-:param cache_device`
+- `param cache_device`
    Physical block device to use as the cache device.
 
-:param cache_mode`
+- `param cache_mode`
    Cache mode for bcache device. (writeback,
-       writethrough, writearound)
+   writethrough, writearound)
 
-:param cache_size`
+- `param cache_size`
    Size of the cache partition to create on the cache
-       device.
+   device.
 
-:param cache_no_part`
+- `param cache_no_part`
    Don't create a partition on the cache device.
-       Use the entire disk as the cache device.
+   Use the entire disk as the cache device.
 
 Returns 400 if the machine is currently not allocated. Returns 404 if the
 machine could not be found. Returns 403 if the user does not have permission
@@ -3108,19 +3105,19 @@ to set the storage layout.
 
 Begin testing process for a node.
 
-:param enable_ssh`
+- `param enable_ssh`
    Whether to enable SSH for the testing environment
-       using the user's SSH key(s).
+   using the user's SSH key(s).
 
-:type enable_ssh`
+- `type enable_ssh`
    bool ('0' for False, '1' for True)
 
-:param testing_scripts`
+- `param testing_scripts`
    A comma seperated list of testing script names
-       and tags to be run. By default all tests tagged 'commissioning' will
-        be run.
+   and tags to be run. By default all tests tagged 'commissioning' will
+   be run.
 
-:type testing_scripts`
+- `type testing_scripts`
    string
 
 A node in the 'ready', 'allocated', 'deployed', 'broken', or any failed state
@@ -3135,10 +3132,10 @@ Returns 404 if the node is not found.
 
 Mark a machine as unlocked, allowing changes.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -3148,7 +3145,7 @@ permission unlock the machine.
 
 Unmount a special-purpose filesystem, like tmpfs.
 
-:param mount_point`
+- `param mount_point`
    Path on the filesystem to unmount.
 
 Returns 403 when the user is not permitted to unmount the partition.
@@ -3157,91 +3154,91 @@ Returns 403 when the user is not permitted to unmount the partition.
 
 Update a specific Machine.
 
-:param hostname`
+- `param hostname`
    The new hostname for this machine.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param domain`
+- `param domain`
    The domain for this machine. If not given the default
-       domain is used.
+   domain is used.
 
-:type domain`
+- `type domain`
    unicode
 
-:param architecture`
+- `param architecture`
    The new architecture for this machine.
 
-:type architecture`
+- `type architecture`
    unicode
 
-:param min_hwe_kernel`
+- `param min_hwe_kernel`
    A string containing the minimum kernel version
-       allowed to be ran on this machine.
+   allowed to be ran on this machine.
 
-:type min_hwe_kernel`
+- `type min_hwe_kernel`
    unicode
 
-:param power_type`
+- `param power_type`
    The new power type for this machine. If you use the
-       default value, power_parameters will be set to the empty string.
-        Available to admin users. See the [Power types]() section for a list
-        of the available power types.
+   default value, power_parameters will be set to the empty string.
+   Available to admin users. See the [Power types]() section for a list
+   of the available power types.
 
-:type power_type`
+- `type power_type`
    unicode
 
-:param [power_parameters](){param1}`
+- `param power_parameters_{param1}`
    The new value for the 'param1'
-       power parameter. Note that this is dynamic as the available parameters
-        depend on the selected value of the Machine's power_type. Available
-        to admin users. See the [Power types]() section for a list of the
-        available power parameters for each power type.
+   power parameter. Note that this is dynamic as the available parameters
+   depend on the selected value of the Machine's power_type. Available
+   to admin users. See the [Power types]() section for a list of the
+   available power parameters for each power type.
 
-:type [power_parameters](){param1}`
+- `type power_parameters_{param1}`
    unicode
 
-:param power_parameters_skip_check`
+- `param power_parameters_skip_check`
    Whether or not the new power
-       parameters for this machine should be checked against the expected
-        power parameters for the machine's power type ('true' or 'false'). The
-        default is 'false'.
+   parameters for this machine should be checked against the expected
+   power parameters for the machine's power type ('true' or 'false'). The
+   default is 'false'.
 
-:type power_parameters_skip_check`
+- `type power_parameters_skip_check`
    unicode
 
-:param zone`
+- `param zone`
    Name of a valid physical zone in which to place this
-       machine.
+   machine.
 
-:type zone`
+- `type zone`
    unicode
 
-:param swap_size`
+- `param swap_size`
    Specifies the size of the swap file, in bytes. Field
-       accept K, M, G and T suffixes for values expressed respectively in
-        kilobytes, megabytes, gigabytes and terabytes.
+   accept K, M, G and T suffixes for values expressed respectively in
+   kilobytes, megabytes, gigabytes and terabytes.
 
-:type swap_size`
+- `type swap_size`
    unicode
 
-:param disable_ipv4`
+- `param disable_ipv4`
    Deprecated. If specified, must be False.
 
-:type disable_ipv4`
+- `type disable_ipv4`
    boolean
 
-:param cpu_count`
+- `param cpu_count`
    The amount of CPU cores the machine has.
 
-:type cpu_count`
+- `type cpu_count`
    integer
 
-:param memory`
+- `param memory`
    How much memory the machine has.
 
-:type memory`
+- `type memory`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -3257,48 +3254,48 @@ List Nodes visible to the user, optionally filtered by criteria.
 
 Nodes are sorted by id (i.e. most recent last) and grouped by type.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only nodes relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to see multiple nodes.
+   with the matching hostname will be returned. This can be specified
+   multiple times to see multiple nodes.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param mac_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the
-       node owning the specified MAC address will be returned. This can be
-        specified multiple times to see multiple nodes.
+   node owning the specified MAC address will be returned. This can be
+   specified multiple times to see multiple nodes.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes relating to the
-       nodes with matching system ids will be returned.
+   nodes with matching system ids will be returned.
 
-:type id`
+- `type id`
    unicode
 
-:param domain`
+- `param domain`
    An optional name for a dns domain. Only nodes relating
-       to the nodes in the domain will be returned.
+   to the nodes in the domain will be returned.
 
-:type domain`
+- `type domain`
    unicode
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes relating
-       to the nodes in the zone will be returned.
+   to the nodes in the zone will be returned.
 
-:type zone`
+- `type zone`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the
-       nodes with matching agent names will be returned.
+   nodes with matching agent names will be returned.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/machines/ op=is_registered`
@@ -3306,16 +3303,16 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
 
-:param mac_address`
+- `param mac_address`
    The mac address to be checked.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:return`
+- `return`
    'true' or 'false'.
 
-:rtype`
+- `rtype`
    unicode
 
 Returns 400 if any mandatory parameters are missing.
@@ -3328,14 +3325,14 @@ Fetch Machines that were allocated to the User/oauth token.
 
 Retrieve power parameters for multiple machines.
 
-:param id`
+- `param id`
    An optional list of system ids. Only machines with
-       matching system ids will be returned.
+   matching system ids will be returned.
 
-:type id`
+- `type id`
    iterable
 
-:return`
+- `return`
    A dictionary of power parameters, keyed by machine system_id.
 
 Raises 403 if the user is not an admin.
@@ -3350,63 +3347,62 @@ enlistment (and when the enlistment is done by a non-admin), the machine is
 held in the "New" state for approval by a MAAS admin.
 
 The minimum data required is: architecture=&lt;arch string&gt; (e.g.
-"i386/generic") mac_addresses=&lt;value&gt; (e.g. "aa:bb`
-cc:dd`ee`ff")
+"i386/generic") mac_addresses=&lt;value&gt; (e.g. "aa:bb: cc:dd:ee:ff")
 
-:param architecture`
+- `param architecture`
    A string containing the architecture type of
-       the machine. (For example, "i386", or "amd64".) To determine the
-        supported architectures, use the boot-resources endpoint.
+   the machine. (For example, "i386", or "amd64".) To determine the
+   supported architectures, use the boot-resources endpoint.
 
-:type architecture`
+- `type architecture`
    unicode
 
-:param min_hwe_kernel`
+- `param min_hwe_kernel`
    A string containing the minimum kernel version
-       allowed to be ran on this machine.
+   allowed to be ran on this machine.
 
-:type min_hwe_kernel`
+- `type min_hwe_kernel`
    unicode
 
-:param subarchitecture`
+- `param subarchitecture`
    A string containing the subarchitecture type
-       of the machine. (For example, "generic" or "hwe-t".) To determine the
-        supported subarchitectures, use the boot-resources endpoint.
+   of the machine. (For example, "generic" or "hwe-t".) To determine the
+   supported subarchitectures, use the boot-resources endpoint.
 
-:type subarchitecture`
+- `type subarchitecture`
    unicode
 
-:param mac_addresses`
+- `param mac_addresses`
    One or more MAC addresses for the machine. To
-       specify more than one MAC address, the parameter must be specified
-        twice. (such as "machines new mac_addresses=01:02`
+   specify more than one MAC address, the parameter must be specified
+   twice. (such as "machines new mac_addresses=01:02:
 
-03:04`05`06
-   mac_addresses=02:03`
+03:04:05:06
+   mac_addresses=02:03:
 
-> 04:05`06`07")
+> 04:05:06:07")
 
-:type mac_addresses`
+- `type mac_addresses`
    unicode
 
-:param hostname`
+- `param hostname`
    A hostname. If not given, one will be generated.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param domain`
+- `param domain`
    The domain of the machine. If not given the default
-       domain is used.
+   domain is used.
 
-:type domain`
+- `type domain`
    unicode
 
-:param power_type`
+- `param power_type`
    A power management type, if applicable (e.g.
-       "virsh", "ipmi").
+   "virsh", "ipmi").
 
-:type power_type`
+- `type power_type`
    unicode
 
 ##### `POST /api/2.0/machines/ op=accept`
@@ -3421,14 +3417,14 @@ Enlistments can be accepted en masse, by passing multiple machines to this
 call. Accepting an already accepted machine is not an error, but accepting one
 that is already allocated, broken, etc. is.
 
-:param machines`
+- `param machines`
    system_ids of the machines whose enlistment is to be
-       accepted. (An empty list is acceptable).
+   accepted. (An empty list is acceptable).
 
-:return`
+- `return`
    The system_ids of any machines that have their status changed
-       by this call. Thus, machines that were already accepted are excluded
-        from the result.
+   by this call. Thus, machines that were already accepted are excluded
+   from the result.
 
 Returns 400 if any of the machines do not exist. Returns 403 if the user is
 not an admin.
@@ -3441,111 +3437,111 @@ Machines can be enlisted in the MAAS anonymously or by non-admin users, as
 opposed to by an admin. These machines are held in the New state; a MAAS admin
 must first verify the authenticity of these enlistments, and accept them.
 
-:return`
+- `return`
    Representations of any machines that have their status changed
-       by this call. Thus, machines that were already accepted are excluded
-        from the result.
+   by this call. Thus, machines that were already accepted are excluded
+   from the result.
 
 ##### `POST /api/2.0/machines/ op=add_chassis`
 
 Add special hardware types.
 
-:param chassis_type`
+- `param chassis_type`
    The type of hardware.
-       mscm is the type for the Moonshot Chassis Manager. msftocs is the type
-        for the Microsoft OCS Chassis Manager. powerkvm is the type for
-        Virtual Machines on Power KVM, managed by Virsh. recs_box is the type
-        for the christmann RECS|Box servers. seamicro15k is the type for the
-        Seamicro 1500 Chassis. ucsm is the type for the Cisco UCS Manager.
-        virsh is the type for virtual machines managed by Virsh. vmware is the
-        type for virtual machines managed by VMware.
+   mscm is the type for the Moonshot Chassis Manager. msftocs is the type
+   for the Microsoft OCS Chassis Manager. powerkvm is the type for
+   Virtual Machines on Power KVM, managed by Virsh. recs_box is the type
+   for the christmann RECS|Box servers. seamicro15k is the type for the
+   Seamicro 1500 Chassis. ucsm is the type for the Cisco UCS Manager.
+   virsh is the type for virtual machines managed by Virsh. vmware is the
+   type for virtual machines managed by VMware.
 
-:type chassis_type`
+- `type chassis_type`
    unicode
 
-:param hostname`
+- `param hostname`
    The URL, hostname, or IP address to access the
-       chassis.
+   chassis.
 
-:type url`
+- `type url`
    unicode
 
-:param username`
+- `param username`
    The username used to access the chassis. This field
-       is required for the recs_box, seamicro15k, vmware, mscm, msftocs, and
-        ucsm chassis types.
+   is required for the recs_box, seamicro15k, vmware, mscm, msftocs, and
+   ucsm chassis types.
 
-:type username`
+- `type username`
    unicode
 
-:param password`
+- `param password`
    The password used to access the chassis. This field
-       is required for the recs_box, seamicro15k, vmware, mscm, msftocs, and
-        ucsm chassis types.
+   is required for the recs_box, seamicro15k, vmware, mscm, msftocs, and
+   ucsm chassis types.
 
-:type password`
+- `type password`
    unicode
 
-:param accept_all`
+- `param accept_all`
    If true, all enlisted machines will be
-       commissioned.
+   commissioned.
 
-:type accept_all`
+- `type accept_all`
    unicode
 
-:param rack_controller`
+- `param rack_controller`
    The system_id of the rack controller to send
-       the add chassis command through. If none is specifed MAAS will
-        automatically determine the rack controller to use.
+   the add chassis command through. If none is specifed MAAS will
+   automatically determine the rack controller to use.
 
-:type rack_controller`
+- `type rack_controller`
    unicode
 
-:param domain`
+- `param domain`
    The domain that each new machine added should use.
 
-:type domain`
+- `type domain`
    unicode
 
 The following are optional if you are adding a virsh, vmware, or powerkvm
 chassis:
 
-:param prefix_filter`
+- `param prefix_filter`
    Filter machines with supplied prefix.
 
-:type prefix_filter`
+- `type prefix_filter`
    unicode
 
 The following are optional if you are adding a seamicro15k chassis:
 
-:param power_control`
+- `param power_control`
    The power_control to use, either ipmi (default),
-       restapi, or restapi2.
+   restapi, or restapi2.
 
-:type power_control`
+- `type power_control`
    unicode
 
 The following are optional if you are adding a recs_box, vmware or msftocs
 chassis.
 
-:param port`
+- `param port`
    The port to use when accessing the chassis.
 
-:type port`
+- `type port`
    integer
 
 The following are optioanl if you are adding a vmware chassis:
 
-:param protocol`
+- `param protocol`
    The protocol to use when accessing the VMware
-       chassis (default: https).
+   chassis (default: https).
 
-:type protocol`
+- `type protocol`
    unicode
 
-:return`
+- `return`
    A string containing the chassis powered on by which rack
-       controller.
+   controller.
 
 Returns 404 if no rack controller can be found which has access to the given
 URL. Returns 403 if the user does not have access to the rack controller.
@@ -3559,321 +3555,318 @@ Constraints parameters can be used to allocate a machine that possesses
 certain characteristics. All the constraints are optional and when multiple
 constraints are provided, they are combined using 'AND' semantics.
 
-:param name`
+- `param name`
    Hostname or FQDN of the desired machine. If a FQDN is
-       specified, both the domain and the hostname portions must match.
+   specified, both the domain and the hostname portions must match.
 
-:type name`
+- `type name`
    unicode
 
-:param system_id`
+- `param system_id`
    system_id of the desired machine.
 
-:type system_id`
+- `type system_id`
    unicode
 
-:param arch`
+- `param arch`
    Architecture of the returned machine (e.g. 'i386/generic',
-       'amd64', 'armhf/highbank', etc.).
+   'amd64', 'armhf/highbank', etc.).
 
-        If multiple architectures are specified, the machine to acquire may
-        match any of the given architectures. To request multiple
-        architectures, this parameter must be repeated in the request with
-        each value.
+   If multiple architectures are specified, the machine to acquire may
+   match any of the given architectures. To request multiple
+   architectures, this parameter must be repeated in the request with
+   each value.
 
-:type arch`
+- `type arch`
    unicode (accepts multiple)
 
-:param cpu_count`
+- `param cpu_count`
    Minimum number of CPUs a returned machine must have.
 
-    > A machine with additional CPUs may be allocated if there is no exact
-    > match, or if the 'mem' constraint is not also specified.
+   > A machine with additional CPUs may be allocated if there is no exact
+   > match, or if the 'mem' constraint is not also specified.
 
-:type cpu_count`
+- `type cpu_count`
    positive integer
 
-:param mem`
+- `param mem`
    The minimum amount of memory (expressed in MB) the
-       returned machine must have. A machine with additional memory may be
-        allocated if there is no exact match, or the 'cpu_count' constraint
-        is not also specified.
+   returned machine must have. A machine with additional memory may be
+   allocated if there is no exact match, or the 'cpu_count' constraint
+   is not also specified.
 
-:type mem`
+- `type mem`
    positive integer
 
-:param tags`
+- `param tags`
    Tags the machine must match in order to be acquired.
 
-    > If multiple tag names are specified, the machine must be tagged with all
-    > of them. To request multiple tags, this parameter must be repeated in
-    > the request with each value.
+   > If multiple tag names are specified, the machine must be tagged with all
+   > of them. To request multiple tags, this parameter must be repeated in
+   > the request with each value.
 
-:type tags`
+- `type tags`
    unicode (accepts multiple)
 
-:param not_tags`
+- `param not_tags`
    Tags the machine must NOT match.
 
-    > If multiple tag names are specified, the machine must NOT be tagged with
-    > ANY of them. To request exclusion of multiple tags, this parameter must
-    > be repeated in the request with each value.
+   > If multiple tag names are specified, the machine must NOT be tagged with
+   > ANY of them. To request exclusion of multiple tags, this parameter must
+   > be repeated in the request with each value.
 
-:type tags`
+- `type tags`
    unicode (accepts multiple)
 
-:param zone`
+- `param zone`
    Physical zone name the machine must be located in.
 
-:type zone`
+- `type zone`
    unicode
 
-:param not_in_zone`
+- `param not_in_zone`
    List of physical zones from which the machine must
-       not be acquired.
+   not be acquired.
 
-        If multiple zones are specified, the machine must NOT be associated
-        with ANY of them. To request multiple zones to exclude, this parameter
-        must be repeated in the request with each value.
+   If multiple zones are specified, the machine must NOT be associated
+   with ANY of them. To request multiple zones to exclude, this parameter
+   must be repeated in the request with each value.
 
-:type not_in_zone`
+- `type not_in_zone`
    unicode (accepts multiple)
 
-:param pod`
+- `param pod`
    Pod the machine must be located in.
 
-:type pod`
+- `type pod`
    unicode
 
-:param not_pod`
+- `param not_pod`
    Pod the machine must not be located in.
 
-:type not_pod`
+- `type not_pod`
    unicode
 
-:param pod_type`
+- `param pod_type`
    Pod type the machine must be located in.
 
-:type pod_type`
+- `type pod_type`
    unicode
 
-:param not_pod_type`
+- `param not_pod_type`
    Pod type the machine must not be located in.
 
-:type not_pod_type`
+- `type not_pod_type`
    unicode
 
-:param subnets`
+- `param subnets`
    Subnets that must be linked to the machine.
 
-    > "Linked to" means the node must be configured to acquire an address in
-    > the specified subnet, have a static IP address in the specified subnet,
-    > or have been observed to DHCP from the specified subnet during
-    > commissioning time (which implies that it *could* have an address on the
-    > specified subnet).
-    >
-    > Subnets can be specified by one of the following criteria:
-    >
-    > -   &lt;id&gt;: match the subnet by its 'id' field
-    > -   fabric:&lt;fabric-spec&gt;`
+   > "Linked to" means the node must be configured to acquire an address in
+   > the specified subnet, have a static IP address in the specified subnet,
+   > or have been observed to DHCP from the specified subnet during
+   > commissioning time (which implies that it *could* have an address on the
+   > specified subnet).
+   >
+   > Subnets can be specified by one of the following criteria:
+   >
+   > -   &lt;id&gt;: match the subnet by its 'id' field
+   > -   fabric:&lt;fabric-spec&gt;:
 
-    match all subnets in a given fabric.
-       -   ip:&lt;ip-address&gt;`
+   match all subnets in a given fabric.
+   -   ip:&lt;ip-address&gt;:
 
-    Match the subnet containing &lt;ip-address&gt; with
-       the with the longest-prefix match.
+   Match the subnet containing &lt;ip-address&gt; with
+   the with the longest-prefix match.
 
-    > -   name:&lt;subnet-name&gt;`
+   > -   name:&lt;subnet-name&gt;:
 
-    Match a subnet with the given name.
-       -   space:&lt;space-spec&gt;`
+   Match a subnet with the given name.
+   -   space:&lt;space-spec&gt;:
 
-    Match all subnets in a given space.
-       -   vid:&lt;vid-integer&gt;`
+   Match all subnets in a given space.
+   -   vid:&lt;vid-integer&gt;:
 
-    Match a subnet on a VLAN with the specified
-       VID. Valid values range from 0 through 4094 (inclusive). An untagged
-        VLAN can be specified by using the value "0".
+   Match a subnet on a VLAN with the specified
+   VID. Valid values range from 0 through 4094 (inclusive). An untagged
+   VLAN can be specified by using the value "0".
 
-    > -   vlan:&lt;vlan-spec&gt;`
+   > -   vlan:&lt;vlan-spec&gt;:
 
-    Match all subnets on the given VLAN.
+   Match all subnets on the given VLAN.
 
-    > Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
-    > specifiers are only useful for the 'not_spaces' version of this
-    > constraint, because they will most likely force the query to match ALL
-    > the subnets in each fabric, space, or VLAN, and thus not return any
-    > nodes. (This is not a particularly useful behavior, so may be changed in
-    > the future.)
-    >
-    > If multiple subnets are specified, the machine must be associated with
-    > all of them. To request multiple subnets, this parameter must be
-    > repeated in the request with each value.
-    >
-    > Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
+   > Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
+   > specifiers are only useful for the 'not_spaces' version of this
+   > constraint, because they will most likely force the query to match ALL
+   > the subnets in each fabric, space, or VLAN, and thus not return any
+   > nodes. (This is not a particularly useful behavior, so may be changed in
+   > the future.)
+   >
+   > If multiple subnets are specified, the machine must be associated with
+   > all of them. To request multiple subnets, this parameter must be
+   > repeated in the request with each value.
+   >
+   > Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
 
-:type subnets`
+- `type subnets`
    unicode (accepts multiple)
 
-:param not_subnets`
+- `param not_subnets`
    Subnets that must NOT be linked to the machine.
 
-    > See the 'subnets' constraint documentation above for more information
-    > about how each subnet can be specified.
-    >
-    > If multiple subnets are specified, the machine must NOT be associated
-    > with ANY of them. To request multiple subnets to exclude, this parameter
-    > must be repeated in the request with each value. (Or a fabric, space, or
-    > VLAN specifier may be used to match multiple subnets).
-    >
-    > Note that this replaces the leagcy 'not_networks' constraint in MAAS
-    > 1.x.
+   > See the 'subnets' constraint documentation above for more information
+   > about how each subnet can be specified.
+   >
+   > If multiple subnets are specified, the machine must NOT be associated
+   > with ANY of them. To request multiple subnets to exclude, this parameter
+   > must be repeated in the request with each value. (Or a fabric, space, or
+   > VLAN specifier may be used to match multiple subnets).
+   >
+   > Note that this replaces the leagcy 'not_networks' constraint in MAAS
+   > 1.x.
 
-:type not_subnets`
+- `type not_subnets`
    unicode (accepts multiple)
 
-:param storage`
+- `param storage`
    A list of storage constraint identifiers, in the form:
-       &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;`
+   &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
 
 > ...\]
 
-:type storage`
+- `type storage`
    unicode
 
-:param interfaces`
+- `param interfaces`
    A labeled constraint map associating constraint
-       labels with interface properties that should be matched. Returned
-        nodes must have one or more interface matching the specified
-        constraints. The labeled constraint map must be in the format:
-        `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
+   labels with interface properties that should be matched. Returned
+   nodes must have one or more interface matching the specified
+   constraints. The labeled constraint map must be in the format:
+   `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
 
-        Each key can be one of the following:
+   Each key can be one of the following:
 
-        -   id: Matches an interface with the specific id
-        -   fabric: Matches an interface attached to the specified
-            fabric.
-        -   fabric_class: Matches an interface attached to a fabric with
-            the specified class.
-        -   ip: Matches an interface with the specified IP address
-            assigned to it.
-        -   mode: Matches an interface with the specified mode.
-            (Currently, the only supported mode is "unconfigured".)
-        -   name: Matches an interface with the specified name. (For
-            example, "eth0".)
-        -   hostname: Matches an interface attached to the node with the
-            specified hostname.
-        -   subnet: Matches an interface attached to the specified
-            subnet.
-        -   space: Matches an interface attached to the specified space.
-        -   subnet_cidr: Matches an interface attached to the specified
-            subnet CIDR. (For example, "192.168.0.0/24".)
-        -   type: Matches an interface of the specified type. (Valid
-            types: "physical", "vlan", "bond", "bridge", or "unknown".)
-        -   vlan: Matches an interface on the specified VLAN.
-        -   vid: Matches an interface on a VLAN with the specified VID.
-        -   tag: Matches an interface tagged with the specified tag.
+   -   id: Matches an interface with the specific id
+   -   fabric: Matches an interface attached to the specified fabric.
+   -   fabric_class: Matches an interface attached to a fabric with the
+       specified class.
+   -   ip: Matches an interface with the specified IP address assigned to
+       it.
+   -   mode: Matches an interface with the specified mode. (Currently,
+       the only supported mode is "unconfigured".)
+   -   name: Matches an interface with the specified name. (For example,
+       "eth0".)
+   -   hostname: Matches an interface attached to the node with the
+       specified hostname.
+   -   subnet: Matches an interface attached to the specified subnet.
+   -   space: Matches an interface attached to the specified space.
+   -   subnet_cidr: Matches an interface attached to the specified
+       subnet CIDR. (For example, "192.168.0.0/24".)
+   -   type: Matches an interface of the specified type. (Valid types:
+       "physical", "vlan", "bond", "bridge", or "unknown".)
+   -   vlan: Matches an interface on the specified VLAN.
+   -   vid: Matches an interface on a VLAN with the specified VID.
+   -   tag: Matches an interface tagged with the specified tag.
 
-:type interfaces`
+- `type interfaces`
    unicode
 
-:param fabrics`
+- `param fabrics`
    Set of fabrics that the machine must be associated with
-       in order to be acquired.
+   in order to be acquired.
 
-        If multiple fabrics names are specified, the machine can be in any of
-        the specified fabrics. To request multiple possible fabrics to match,
-        this parameter must be repeated in the request with each value.
+   If multiple fabrics names are specified, the machine can be in any of
+   the specified fabrics. To request multiple possible fabrics to match,
+   this parameter must be repeated in the request with each value.
 
-:type fabrics`
+- `type fabrics`
    unicode (accepts multiple)
 
-:param not_fabrics`
+- `param not_fabrics`
    Fabrics the machine must NOT be associated with in
-       order to be acquired.
+   order to be acquired.
 
-        If multiple fabrics names are specified, the machine must NOT be in
-        ANY of them. To request exclusion of multiple fabrics, this parameter
-        must be repeated in the request with each value.
+   If multiple fabrics names are specified, the machine must NOT be in
+   ANY of them. To request exclusion of multiple fabrics, this parameter
+   must be repeated in the request with each value.
 
-:type not_fabrics`
+- `type not_fabrics`
    unicode (accepts multiple)
 
-:param fabric_classes`
+- `param fabric_classes`
    Set of fabric class types whose fabrics the
-       machine must be associated with in order to be acquired.
+   machine must be associated with in order to be acquired.
 
-        If multiple fabrics class types are specified, the machine can be in
-        any matching fabric. To request multiple possible fabrics class types
-        to match, this parameter must be repeated in the request with each
-        value.
+   If multiple fabrics class types are specified, the machine can be in
+   any matching fabric. To request multiple possible fabrics class types
+   to match, this parameter must be repeated in the request with each
+   value.
 
-:type fabric_classes`
+- `type fabric_classes`
    unicode (accepts multiple)
 
-:param not_fabric_classes`
+- `param not_fabric_classes`
    Fabric class types whose fabrics the machine
-       must NOT be associated with in order to be acquired.
+   must NOT be associated with in order to be acquired.
 
-        If multiple fabrics names are specified, the machine must NOT be in
-        ANY of them. To request exclusion of multiple fabrics, this parameter
-        must be repeated in the request with each value.
+   If multiple fabrics names are specified, the machine must NOT be in
+   ANY of them. To request exclusion of multiple fabrics, this parameter
+   must be repeated in the request with each value.
 
-:type not_fabric_classes`
+- `type not_fabric_classes`
    unicode (accepts multiple)
 
-:param agent_name`
+- `param agent_name`
    An optional agent name to attach to the
-       acquired machine.
+   acquired machine.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
-:param bridge_all`
+- `param bridge_all`
    Optionally create a bridge interface for every
-       configured interface on the machine. The created bridges will be
-        removed once the machine is released. (Default: False)
+   configured interface on the machine. The created bridges will be
+   removed once the machine is released. (Default: False)
 
-:type bridge_all`
+- `type bridge_all`
    boolean
 
-:param bridge_stp`
+- `param bridge_stp`
    Optionally turn spanning tree protocol on or off
-       for the bridges created on every configured interface. (Default:
-        off)
+   for the bridges created on every configured interface. (Default: off)
 
-:type bridge_stp`
+- `type bridge_stp`
    boolean
 
-:param bridge_fd`
+- `param bridge_fd`
    Optionally adjust the forward delay to time seconds.
-       (Default: 15)
+   (Default: 15)
 
-:type bridge_fd`
+- `type bridge_fd`
    integer
 
-:param dry_run`
+- `param dry_run`
    Optional boolean to indicate that the machine should
-       not actually be acquired (this is for support/troubleshooting, or
-        users who want to see which machine would match a constraint, without
-        acquiring a machine). Defaults to False.
+   not actually be acquired (this is for support/troubleshooting, or
+   users who want to see which machine would match a constraint, without
+   acquiring a machine). Defaults to False.
 
-:type dry_run`
+- `type dry_run`
    bool
 
-:param verbose`
+- `param verbose`
    Optional boolean to indicate that the user would like
-       additional verbosity in the constraints_by_type field (each
-        constraint will be prefixed by verbose_, and contain the full data
-        structure that indicates which machine(s) matched).
+   additional verbosity in the constraints_by_type field (each
+   constraint will be prefixed by verbose_, and contain the full data
+   structure that indicates which machine(s) matched).
 
-:type verbose`
+- `type verbose`
    bool
 
 Returns 409 if a suitable machine matching the constraints could not be found.
@@ -3884,20 +3877,20 @@ Release multiple machines.
 
 This places the machines back into the pool, ready to be reallocated.
 
-:param machines`
+- `param machines`
    system_ids of the machines which are to be released.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
-:return`
+- `return`
    The system_ids of any machines that have their status
-       changed by this call. Thus, machines that were already released are
-        excluded from the result.
+   changed by this call. Thus, machines that were already released are
+   excluded from the result.
 
 Returns 400 if any of the machines cannot be found. Returns 403 if the user
 does not have permission to release any of the machines. Returns a 409 if any
@@ -3907,13 +3900,13 @@ of the machines could not be released due to their current state.
 
 Assign multiple nodes to a physical zone at once.
 
-:param zone`
+- `param zone`
    Zone name. If omitted, the zone is "none" and the nodes
-       will be taken out of their physical zones.
+   will be taken out of their physical zones.
 
-:param nodes`
+- `param nodes`
    system_ids of the nodes whose zones are to be set.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -3957,26 +3950,26 @@ Update network definition.
 
 This endpoint is no longer available. Use the 'subnet' endpoint instead.
 
-:param name`
+- `param name`
    A simple name for the network, to make it easier to
-       refer to. Must consist only of letters, digits, dashes, and
-        underscores.
+   refer to. Must consist only of letters, digits, dashes, and
+   underscores.
 
-:param ip`
+- `param ip`
    Base IP address for the network, e.g. 10.1.0.0. The host
-       bits will be zeroed.
+   bits will be zeroed.
 
-:param netmask`
+- `param netmask`
    Subnet mask to indicate which parts of an IP address
-       are part of the network address. For example, 255.255.255.0.
+   are part of the network address. For example, 255.255.255.0.
 
-:param vlan_tag`
+- `param vlan_tag`
    Optional VLAN tag: a number between 1 and 0xffe (4094)
-       inclusive, or zero for an untagged network.
+   inclusive, or zero for an untagged network.
 
-:param description`
+- `param description`
    Detailed description of the network for the benefit
-       of users and administrators.
+   of users and administrators.
 
 ### Networks
 
@@ -3988,10 +3981,10 @@ Manage the networks.
 
 List networks.
 
-:param node`
+- `param node`
    Optionally, nodes which must be attached to any returned
-       networks. If more than one node is given, the result will be
-        restricted to networks that these nodes have in common.
+   networks. If more than one node is given, the result will be
+   restricted to networks that these nodes have in common.
 
 ##### `POST /api/2.0/networks/`
 
@@ -4025,8 +4018,8 @@ Obtain various system details.
 
 For example, LLDP and `lshw` XML dumps.
 
-Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
-like "lldp" or "lshw".
+Returns a `{detail_type: xml, ...}` map, where `detail_type` is something like
+"lldp" or "lshw".
 
 Note that this is returned as BSON and not JSON. This is for efficiency, but
 mainly because JSON can't do binary content without applying additional
@@ -4055,25 +4048,25 @@ Read the collection of NodeResult in the MAAS.
 
 List NodeResult visible to the user, optionally filtered.
 
-:param system_id`
+- `param system_id`
    An optional list of system ids. Only the
-       results related to the nodes with these system ids will be returned.
+   results related to the nodes with these system ids will be returned.
 
-:type system_id`
+- `type system_id`
    iterable
 
-:param name`
+- `param name`
    An optional list of names. Only the results
-       with the specified names will be returned.
+   with the specified names will be returned.
 
-:type name`
+- `type name`
    iterable
 
-:param result_type`
+- `param result_type`
    An optional result_type. Only the results
-       with the specified result_type will be returned.
+   with the specified result_type will be returned.
 
-:type name`
+- `type name`
    iterable
 
 ### Node Script
@@ -4088,31 +4081,31 @@ Delete a script.
 
 Return a script's metadata.
 
-:param include_script`
+- `param include_script`
    Include the base64 encoded script content.
 
-:type include_script`
+- `type include_script`
    bool
 
 ##### `GET /api/2.0/scripts/{name} op=download`
 
 Download a script.
 
-:param revision`
+- `param revision`
    What revision to download, latest by default. Can use
-       rev as a shortcut.
+   rev as a shortcut.
 
-:type revision`
+- `type revision`
    integer
 
 ##### `POST /api/2.0/scripts/{name} op=add_tag`
 
 Add a single tag to a script.
 
-:param tag`
+- `param tag`
    The tag being added.
 
-:type tag`
+- `type tag`
    unicode
 
 Returns 404 if the script is not found.
@@ -4121,10 +4114,10 @@ Returns 404 if the script is not found.
 
 Remove a single tag to a script.
 
-:param tag`
+- `param tag`
    The tag being removed.
 
-:type tag`
+- `type tag`
    unicode
 
 Returns 404 if the script is not found.
@@ -4133,11 +4126,11 @@ Returns 404 if the script is not found.
 
 Revert a script to an earlier version.
 
-:param to`
+- `param to`
    What revision in the script's history to revert to. This can
-       either be an ID or a negative number representing how far back to go.
+   either be an ID or a negative number representing how far back to go.
 
-:type to`
+- `type to`
    integer
 
 Returns 404 if the script is not found.
@@ -4146,110 +4139,109 @@ Returns 404 if the script is not found.
 
 Update a commissioning script.
 
-:param name`
+- `param name`
    The name of the script.
 
-:type name`
+- `type name`
    unicode
 
-:param title`
+- `param title`
    The title of the script.
 
-:type title`
+- `type title`
    unicode
 
-:param description`
+- `param description`
    A description of what the script does.
 
-:type description`
+- `type description`
    unicode
 
-:param tags`
+- `param tags`
    A comma seperated list of tags for this script.
 
-:type tags`
+- `type tags`
    unicode
 
-:param type`
+- `param type`
    The type defines when the script should be used. Can be
-       testing or commissioning, defaults to testing.
+   testing or commissioning, defaults to testing.
 
-:type script_type`
+- `type script_type`
    unicode
 
-:param hardware_type`
+- `param hardware_type`
    The hardware_type defines what type of hardware
-       the script is assoicated with. May be CPU, memory, storage, or node.
+   the script is assoicated with. May be CPU, memory, storage, or node.
 
-:type hardware_type`
+- `type hardware_type`
    unicode
 
-:param parallel`
+- `param parallel`
    Whether the script may be run in parallel with other
-       scripts. May be disabled to run by itself, instance to run along
-        scripts with the same name, or any to run along any script.
+   scripts. May be disabled to run by itself, instance to run along
+   scripts with the same name, or any to run along any script.
 
-:type parallel`
+- `type parallel`
    unicode
 
-:param timeout`
+- `param timeout`
    How long the script is allowed to run before failing.
-       0 gives unlimited time, defaults to 0.
+   0 gives unlimited time, defaults to 0.
 
-:type timeout`
+- `type timeout`
    unicode
 
-:param timeout`
+- `param timeout`
    How long the script is allowed to run before failing.
-       0 gives unlimited time, defaults to 0.
+   0 gives unlimited time, defaults to 0.
 
-:type timeout`
+- `type timeout`
    unicode
 
-:param destructive`
+- `param destructive`
    Whether or not the script overwrites data on any
-       drive on the running system. Destructive scripts can not be run on
-        deployed systems. Defaults to false.
+   drive on the running system. Destructive scripts can not be run on
+   deployed systems. Defaults to false.
 
-:type destructive`
+- `type destructive`
    boolean
 
-:param script`
+- `param script`
    The content of the script to be uploaded in binary form.
-       note: this is not a normal parameter, but a file upload. Its
-        filename is ignored; MAAS will know it by the name you pass to the
-        request. Optionally you can ignore the name and script parameter in
-        favor of uploading a single file as part of the request.
+   note: this is not a normal parameter, but a file upload. Its filename
+   is ignored; MAAS will know it by the name you pass to the request.
+   Optionally you can ignore the name and script parameter in favor of
+   uploading a single file as part of the request.
 
-:param comment`
+- `param comment`
    A comment about what this change does.
 
-:type comment`
+- `type comment`
    unicode
 
-:param for_hardware`
+- `param for_hardware`
    A list of modalias, PCI IDs, and/or USB IDs the
-       script will automatically run on. Must start with modalias:,
-        pci:
+   script will automatically run on. Must start with modalias:, pci:
 
 ,
    or usb:.
 
-:type for_hardware`
+- `type for_hardware`
    unicode
 
-:param may_reboot`
+- `param may_reboot`
    Whether or not the script may reboot the system
-       while running.
+   while running.
 
-:type may_reboot`
+- `type may_reboot`
    boolean
 
-:param recommission`
+- `param recommission`
    Whether builtin commissioning scripts should be
-       rerun after successfully running this scripts.
+   rerun after successfully running this scripts.
 
-:type recommission`
+- `type recommission`
    boolean
 
 ### Node Script Result
@@ -4270,24 +4262,24 @@ View a specific set of results.
 id can either by the script set id, current-commissioning, current-testing, or
 current-installation.
 
-:param hardware_type`
+- `param hardware_type`
    Only return scripts for the given hardware type.
-       Can be node, cpu, memory, or storage. Defaults to all.
+   Can be node, cpu, memory, or storage. Defaults to all.
 
-:type script_type`
+- `type script_type`
    unicode
 
-:param include_output`
+- `param include_output`
    Include base64 encoded output from the script.
 
-:type include_output`
+- `type include_output`
    bool
 
-:param filters`
+- `param filters`
    A comma seperated list to show only results that ran
-       with a script name, tag, or id.
+   with a script name, tag, or id.
 
-:type filters`
+- `type filters`
    unicode
 
 ##### `GET /api/2.0/nodes/{system_id}/results/{id}/ op=download`
@@ -4297,31 +4289,31 @@ Download a compressed tar containing all results.
 id can either by the script set id, current-commissioning, current-testing, or
 current-installation.
 
-:param hardware_type`
+- `param hardware_type`
    Only return scripts for the given hardware type.
-       Can be node, cpu, memory, or storage. Defaults to all.
+   Can be node, cpu, memory, or storage. Defaults to all.
 
-:type script_type`
+- `type script_type`
    unicode
 
-:param filters`
+- `param filters`
    A comma seperated list to show only results that ran
-       with a script name or tag.
+   with a script name or tag.
 
-:type filters`
+- `type filters`
    unicode
 
-:param output`
+- `param output`
    Can be either combined, stdout, stderr, or all. By
-       default only the combined output is returned.
+   default only the combined output is returned.
 
-:type output`
+- `type output`
    unicode
 
-:param filetype`
+- `param filetype`
    Filetype to output, can be txt or tar.xz
 
-:type format`
+- `type format`
    unicode
 
 ### Node Script Result
@@ -4332,31 +4324,31 @@ Manage node script results.
 
 Return a list of script results grouped by run.
 
-:param type`
+- `param type`
    Only return scripts with the given type. This can be
-       commissioning, testing, or installion. Defaults to showing all.
+   commissioning, testing, or installion. Defaults to showing all.
 
-:type type`
+- `type type`
    unicode
 
-:param hardware_type`
+- `param hardware_type`
    Only return scripts for the given hardware type.
-       Can be node, cpu, memory, or storage. Defaults to all.
+   Can be node, cpu, memory, or storage. Defaults to all.
 
-:type script_type`
+- `type script_type`
    unicode
 
-:param include_output`
+- `param include_output`
    Include base64 encoded output from the script.
 
-:type include_output`
+- `type include_output`
    bool
 
-:param filters`
+- `param filters`
    A comma seperated list to show only results
-       with a script name or tag.
+   with a script name or tag.
 
-:type filters`
+- `type filters`
    unicode
 
 ### Node Scripts
@@ -4369,137 +4361,136 @@ Manage custom scripts.
 
 Return a list of stored scripts.
 
-:param type`
+- `param type`
    Only return scripts with the given type. This can be
-       testing or commissioning. Defaults to showing both.
+   testing or commissioning. Defaults to showing both.
 
-:type type`
+- `type type`
    unicode
 
-:param hardware_type`
+- `param hardware_type`
    Only return scripts for the given hardware type.
-       Can be node, cpu, memory, or storage. Defaults to all.
+   Can be node, cpu, memory, or storage. Defaults to all.
 
-:type hardware_type`
+- `type hardware_type`
    unicode
 
-:param include_script`
+- `param include_script`
    Include the base64 encoded script content.
 
-:type include_script`
+- `type include_script`
    bool
 
-:param filters`
+- `param filters`
    A comma seperated list to show only results
-       with a script name or tag.
+   with a script name or tag.
 
-:type filters`
+- `type filters`
    unicode
 
 ##### `POST /api/2.0/scripts/`
 
 Create a new script.
 
-:param name`
+- `param name`
    The name of the script.
 
-:type name`
+- `type name`
    unicode
 
-:param title`
+- `param title`
    The title of the script.
 
-:type title`
+- `type title`
    unicode
 
-:param description`
+- `param description`
    A description of what the script does.
 
-:type description`
+- `type description`
    unicode
 
-:param tags`
+- `param tags`
    A comma seperated list of tags for this script.
 
-:type tags`
+- `type tags`
    unicode
 
-:param type`
+- `param type`
    The script_type defines when the script should be used.
-       Can be testing or commissioning, defaults to testing.
+   Can be testing or commissioning, defaults to testing.
 
-:type script_type`
+- `type script_type`
    unicode
 
-:param hardware_type`
+- `param hardware_type`
    The hardware_type defines what type of hardware
-       the script is assoicated with. May be CPU, memory, storage, or node.
+   the script is assoicated with. May be CPU, memory, storage, or node.
 
-:type hardware_type`
+- `type hardware_type`
    unicode
 
-:param parallel`
+- `param parallel`
    Whether the script may be run in parallel with other
-       scripts. May be disabled to run by itself, instance to run along
-        scripts with the same name, or any to run along any script.
+   scripts. May be disabled to run by itself, instance to run along
+   scripts with the same name, or any to run along any script.
 
-:type parallel`
+- `type parallel`
    unicode
 
-:param timeout`
+- `param timeout`
    How long the script is allowed to run before failing.
-       0 gives unlimited time, defaults to 0.
+   0 gives unlimited time, defaults to 0.
 
-:type timeout`
+- `type timeout`
    unicode
 
-:param destructive`
+- `param destructive`
    Whether or not the script overwrites data on any
-       drive on the running system. Destructive scripts can not be run on
-        deployed systems. Defaults to false.
+   drive on the running system. Destructive scripts can not be run on
+   deployed systems. Defaults to false.
 
-:type destructive`
+- `type destructive`
    boolean
 
-:param script`
+- `param script`
    The content of the script to be uploaded in binary form.
-       note: this is not a normal parameter, but a file upload. Its
-        filename is ignored; MAAS will know it by the name you pass to the
-        request. Optionally you can ignore the name and script parameter in
-        favor of uploading a single file as part of the request.
+   note: this is not a normal parameter, but a file upload. Its filename
+   is ignored; MAAS will know it by the name you pass to the request.
+   Optionally you can ignore the name and script parameter in favor of
+   uploading a single file as part of the request.
 
-:type script`
+- `type script`
    unicode
 
-:param comment`
+- `param comment`
    A comment about what this change does.
 
-:type comment`
+- `type comment`
    unicode
 
-:param for_hardware`
+- `param for_hardware`
    A list of modalias, PCI IDs, and/or USB IDs the
-       script will automatically run on. Must start with modalias:,
-        pci:
+   script will automatically run on. Must start with modalias:, pci:
 
 ,
    or usb:.
 
-:type for_hardware`
+- `type for_hardware`
    unicode
 
-:param may_reboot`
+- `param may_reboot`
    Whether or not the script may reboot the system
-       while running.
+   while running.
 
-:type may_reboot`
+- `type may_reboot`
    boolean
 
-:param recommission`
+- `param recommission`
    Whether builtin commissioning scripts should be
-       rerun after successfully running this scripts.
+   rerun after successfully running this scripts.
 
-:type recommission`
+- `type recommission`
    boolean
 
 ### Nodes
@@ -4512,48 +4503,48 @@ List Nodes visible to the user, optionally filtered by criteria.
 
 Nodes are sorted by id (i.e. most recent last) and grouped by type.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only nodes relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to see multiple nodes.
+   with the matching hostname will be returned. This can be specified
+   multiple times to see multiple nodes.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param mac_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the
-       node owning the specified MAC address will be returned. This can be
-        specified multiple times to see multiple nodes.
+   node owning the specified MAC address will be returned. This can be
+   specified multiple times to see multiple nodes.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes relating to the
-       nodes with matching system ids will be returned.
+   nodes with matching system ids will be returned.
 
-:type id`
+- `type id`
    unicode
 
-:param domain`
+- `param domain`
    An optional name for a dns domain. Only nodes relating
-       to the nodes in the domain will be returned.
+   to the nodes in the domain will be returned.
 
-:type domain`
+- `type domain`
    unicode
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes relating
-       to the nodes in the zone will be returned.
+   to the nodes in the zone will be returned.
 
-:type zone`
+- `type zone`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the
-       nodes with matching agent names will be returned.
+   nodes with matching agent names will be returned.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/nodes/ op=is_registered`
@@ -4561,16 +4552,16 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
 
-:param mac_address`
+- `param mac_address`
    The mac address to be checked.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:return`
+- `return`
    'true' or 'false'.
 
-:rtype`
+- `rtype`
    unicode
 
 Returns 400 if any mandatory parameters are missing.
@@ -4579,13 +4570,13 @@ Returns 400 if any mandatory parameters are missing.
 
 Assign multiple nodes to a physical zone at once.
 
-:param zone`
+- `param zone`
    Zone name. If omitted, the zone is "none" and the nodes
-       will be taken out of their physical zones.
+   will be taken out of their physical zones.
 
-:param nodes`
+- `param nodes`
    system_ids of the nodes whose zones are to be set.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -4632,36 +4623,36 @@ Create a notification.
 
 This is available to admins *only*.
 
-:param message`
+- `param message`
    The message for this notification. May contain basic
-       HTML; this will be sanitised before display.
+   HTML; this will be sanitised before display.
 
-:param context`
+- `param context`
    Optional JSON context. The root object *must* be an
-       object (i.e. a mapping). The values herein can be referenced by
-        message with Python's "format" (not %) codes.
+   object (i.e. a mapping). The values herein can be referenced by
+   message with Python's "format" (not %) codes.
 
-:param category`
+- `param category`
    Optional category. Choose from: error, warning,
-       success, or info. Defaults to info.
+   success, or info. Defaults to info.
 
-:param ident`
+- `param ident`
    Optional unique identifier for this notification.
 
-:param user`
+- `param user`
    Optional user ID this notification is intended for. By
-       default it will not be targeted to any individual user.
+   default it will not be targeted to any individual user.
 
-:param users`
+- `param users`
    Optional boolean, true to notify all users, defaults to
-       false, i.e. not targeted to all users.
+   false, i.e. not targeted to all users.
 
-:param admins`
+- `param admins`
    Optional boolean, true to notify all admins, defaults to
-       false, i.e. not targeted to all admins.
+   false, i.e. not targeted to all admins.
 
-Note: if neither user nor users nor admins is set, the notification will
-not be seen by anyone.
+Note: if neither user nor users nor admins is set, the notification will not
+be seen by anyone.
 
 ### Package Repositories
 
@@ -4675,48 +4666,48 @@ List all Package Repositories.
 
 Create a Package Repository.
 
-:param name`
+- `param name`
    The name of the Package Repository.
 
-:type name`
+- `type name`
    unicode
 
-:param url`
+- `param url`
    The url of the Package Repository.
 
-:type url`
+- `type url`
    unicode
 
-:param distributions`
+- `param distributions`
    Which package distributions to include.
 
-:type distributions`
+- `type distributions`
    unicode
 
-:param disabled_pockets`
+- `param disabled_pockets`
    The list of pockets to disable.
 
-:param disabled_components`
+- `param disabled_components`
    The list of components to disable. Only
-       applicable to the default Ubuntu repositories.
+   applicable to the default Ubuntu repositories.
 
-:param components`
+- `param components`
    The list of components to enable. Only applicable
-       to custom repositories.
+   to custom repositories.
 
-:param arches`
+- `param arches`
    The list of supported architectures.
 
-:param key`
+- `param key`
    The authentication key to use with the repository.
 
-:type key`
+- `type key`
    unicode
 
-:param enabled`
+- `param enabled`
    Whether or not the repository is enabled.
 
-:type enabled`
+- `type enabled`
    boolean
 
 ### Package Repository
@@ -4741,48 +4732,48 @@ Returns 404 if the repository is not found.
 
 Update a Package Repository.
 
-:param name`
+- `param name`
    The name of the Package Repository.
 
-:type name`
+- `type name`
    unicode
 
-:param url`
+- `param url`
    The url of the Package Repository.
 
-:type url`
+- `type url`
    unicode
 
-:param distributions`
+- `param distributions`
    Which package distributions to include.
 
-:type distributions`
+- `type distributions`
    unicode
 
-:param disabled_pockets`
+- `param disabled_pockets`
    The list of pockets to disable.
 
-:param disabled_components`
+- `param disabled_components`
    The list of components to disable. Only
-       applicable to the default Ubuntu repositories.
+   applicable to the default Ubuntu repositories.
 
-:param components`
+- `param components`
    The list of components to enable. Only applicable
-       to custom repositories.
+   to custom repositories.
 
-:param arches`
+- `param arches`
    The list of supported architectures.
 
-:param key`
+- `param key`
    The authentication key to use with the repository.
 
-:type key`
+- `type key`
    unicode
 
-:param enabled`
+- `param enabled`
    Whether or not the repository is enabled.
 
-:type enabled`
+- `type enabled`
    boolean
 
 Returns 404 if the Package Repository is not found.
@@ -4807,13 +4798,13 @@ Returns 404 if the node, block device, or partition are not found.
 
 Format a partition.
 
-:param fstype`
+- `param fstype`
    Type of filesystem.
 
-:param uuid`
+- `param uuid`
    The UUID for the filesystem.
 
-:param label`
+- `param label`
    The label for the filesystem.
 
 Returns 403 when the user doesn't have the ability to format the partition.
@@ -4823,10 +4814,10 @@ Returns 404 if the node, block device, or partition is not found.
 
 Mount the filesystem on partition.
 
-:param mount_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-:param mount_options`
+- `param mount_options`
    Options to pass to mount(8).
 
 Returns 403 when the user doesn't have the ability to mount the partition.
@@ -4858,15 +4849,15 @@ Returns 404 if the node or the block device are not found.
 
 Create a partition on the block device.
 
-:param size`
+- `param size`
    The size of the partition. If not specified, all
-       available space will be used.
+   available space will be used.
 
-:param uuid`
+- `param uuid`
    UUID for the partition. Only used if the partition table
-       type for the block device is GPT.
+   type for the block device is GPT.
 
-:param bootable`
+- `param bootable`
    If the partition should be marked bootable.
 
 Returns 404 if the node or the block device are not found.
@@ -4903,7 +4894,7 @@ Returns 404 if the pod is not found.
 
 Add a tag to Pod.
 
-:param tag`
+- `param tag`
    The tag being added.
 
 Returns 404 if the Pod is not found. Returns 403 if the user is not allowed to
@@ -4915,38 +4906,38 @@ Compose a machine from Pod.
 
 All fields below are optional:
 
-:param cores`
+- `param cores`
    Minimum number of CPU cores.
 
-:param memory`
+- `param memory`
    Minimum amount of memory (MiB).
 
-:param cpu_speed`
+- `param cpu_speed`
    Minimum amount of CPU speed (MHz).
 
-:param architecture`
+- `param architecture`
    Architecture for the machine. Must be an
-       architecture that the pod supports.
+   architecture that the pod supports.
 
-:param storage`
+- `param storage`
    A list of storage constraint identifiers, in the form:
-       &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;`
+   &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
 
 > ...\]
 
-:type storage`
+- `type storage`
    unicode
 
-:param hostname`
+- `param hostname`
    Hostname for the newly composed machine.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param domain`
+- `param domain`
    ID of domain to place the newly composed machine in.
 
-:param zone`
+- `param zone`
    ID of zone place the newly composed machine in.
 
 Returns 404 if the pod is not found. Returns 403 if the user does not have
@@ -4966,7 +4957,7 @@ permission to refresh the pod.
 
 Remove a tag from Pod.
 
-:param tag`
+- `param tag`
    The tag being removed.
 
 Returns 404 if the Pod is not found. Returns 403 if the user is not allowed to
@@ -4976,11 +4967,11 @@ update the Pod.
 
 Update a specific Pod.
 
-:param name`
+- `param name`
    Name for the pod (optional).
 
-Note: 'type' cannot be updated on a Pod. The Pod must be deleted and
-re-added to change the type.
+Note: 'type' cannot be updated on a Pod. The Pod must be deleted and re-added
+to change the type.
 
 Returns 404 if the pod is not found. Returns 403 if the user does not have
 permission to update the pod.
@@ -4999,16 +4990,16 @@ Get a listing of all the pods.
 
 Create a Pod.
 
-:param type`
+- `param type`
    Type of pod to create (rsd, virsh).
 
-:param name`
+- `param name`
    Name for the pod (optional).
 
-:param zone`
+- `param zone`
    Name of the zone for the pod (optional).
 
-:param tags`
+- `param tags`
    A tag or tags (separated by comma) for the pod.
 
 Returns 503 if the pod could not be discovered. Returns 404 if the pod is not
@@ -5040,8 +5031,8 @@ Obtain various system details.
 
 For example, LLDP and `lshw` XML dumps.
 
-Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
-like "lldp" or "lshw".
+Returns a `{detail_type: xml, ...}` map, where `detail_type` is something like
+"lldp" or "lshw".
 
 Note that this is returned as BSON and not JSON. This is for efficiency, but
 mainly because JSON can't do binary content without applying additional
@@ -5080,12 +5071,12 @@ state. The reply to this could be delayed by up to 30 seconds while waiting
 for the power controller to respond. Use this method sparingly as it ties up
 an appserver thread while waiting.
 
-:param system_id`
+- `param system_id`
    The node to query.
 
-:return`
+- `return`
    a dict whose key is "state" with a value of one of
-       'on' or 'off'.
+   'on' or 'off'.
 
 Returns 404 if the node is not found. Returns node's power state.
 
@@ -5093,10 +5084,10 @@ Returns 404 if the node is not found. Returns node's power state.
 
 Abort a node's current operation.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the node could not be found. Returns 403 if the user does not
@@ -5112,10 +5103,10 @@ Returns 404 if the rack controller is not found.
 
 Ignore failed tests and put node back into a usable state.
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
@@ -5125,22 +5116,22 @@ permission to ignore tests for the node.
 
 Power off a node.
 
-:param stop_mode`
+- `param stop_mode`
    An optional power off mode. If 'soft',
-       perform a soft power down if the node's power type supports it,
-        otherwise perform a hard power off. For all values other than 'soft',
-        and by default, perform a hard power off. A soft power off generally
-        asks the OS to shutdown the system gracefully before powering off,
-        while a hard power off occurs immediately without any warning to the
-        OS.
+   perform a soft power down if the node's power type supports it,
+   otherwise perform a hard power off. For all values other than 'soft',
+   and by default, perform a hard power off. A soft power off generally
+   asks the OS to shutdown the system gracefully before powering off,
+   while a hard power off occurs immediately without any warning to the
+   OS.
 
-:type stop_mode`
+- `type stop_mode`
    unicode
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Returns 404 if the node is not found. Returns 403 if the user does not have
@@ -5150,17 +5141,17 @@ permission to stop the node.
 
 Turn on a node.
 
-:param user_data`
+- `param user_data`
    If present, this blob of user-data to be made
-       available to the nodes through the metadata service.
+   available to the nodes through the metadata service.
 
-:type user_data`
+- `type user_data`
    base64-encoded unicode
 
-:param comment`
+- `param comment`
    Optional comment for the event log.
 
-:type comment`
+- `type comment`
    unicode
 
 Ideally we'd have MIME multipart and content-transfer-encoding etc. deal with
@@ -5176,19 +5167,19 @@ relevant cluster interface.
 
 Begin testing process for a node.
 
-:param enable_ssh`
+- `param enable_ssh`
    Whether to enable SSH for the testing environment
-       using the user's SSH key(s).
+   using the user's SSH key(s).
 
-:type enable_ssh`
+- `type enable_ssh`
    bool ('0' for False, '1' for True)
 
-:param testing_scripts`
+- `param testing_scripts`
    A comma seperated list of testing script names
-       and tags to be run. By default all tests tagged 'commissioning' will
-        be run.
+   and tags to be run. By default all tests tagged 'commissioning' will
+   be run.
 
-:type testing_scripts`
+- `type testing_scripts`
    string
 
 A node in the 'ready', 'allocated', 'deployed', 'broken', or any failed state
@@ -5203,39 +5194,39 @@ Returns 404 if the node is not found.
 
 Update a specific Rack controller.
 
-:param power_type`
+- `param power_type`
    The new power type for this rack controller. If you
-       use the default value, power_parameters will be set to the empty
-        string. Available to admin users. See the [Power types]() section for
-        a list of the available power types.
+   use the default value, power_parameters will be set to the empty
+   string. Available to admin users. See the [Power types]() section for
+   a list of the available power types.
 
-:type power_type`
+- `type power_type`
    unicode
 
-:param [power_parameters](){param1}`
+- `param power_parameters_{param1}`
    The new value for the 'param1'
-       power parameter. Note that this is dynamic as the available parameters
-        depend on the selected value of the rack controller's power_type.
-        Available to admin users. See the [Power types]() section for a list
-        of the available power parameters for each power type.
+   power parameter. Note that this is dynamic as the available parameters
+   depend on the selected value of the rack controller's power_type.
+   Available to admin users. See the [Power types]() section for a list
+   of the available power parameters for each power type.
 
-:type [power_parameters](){param1}`
+- `type power_parameters_{param1}`
    unicode
 
-:param power_parameters_skip_check`
+- `param power_parameters_skip_check`
    Whether or not the new power
-       parameters for this rack controller should be checked against the
-        expected power parameters for the rack controller's power type ('true'
-        or 'false'). The default is 'false'.
+   parameters for this rack controller should be checked against the
+   expected power parameters for the rack controller's power type ('true'
+   or 'false'). The default is 'false'.
 
-:type power_parameters_skip_check`
+- `type power_parameters_skip_check`
    unicode
 
-:param zone`
+- `param zone`
    Name of a valid physical zone in which to place this
-       rack controller.
+   rack controller.
 
-:type zone`
+- `type zone`
    unicode
 
 Returns 404 if the rack controller is not found. Returns 403 if the user does
@@ -5251,55 +5242,55 @@ List Nodes visible to the user, optionally filtered by criteria.
 
 Nodes are sorted by id (i.e. most recent last) and grouped by type.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only nodes relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to see multiple nodes.
+   with the matching hostname will be returned. This can be specified
+   multiple times to see multiple nodes.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param mac_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the
-       node owning the specified MAC address will be returned. This can be
-        specified multiple times to see multiple nodes.
+   node owning the specified MAC address will be returned. This can be
+   specified multiple times to see multiple nodes.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes relating to the
-       nodes with matching system ids will be returned.
+   nodes with matching system ids will be returned.
 
-:type id`
+- `type id`
    unicode
 
-:param domain`
+- `param domain`
    An optional name for a dns domain. Only nodes relating
-       to the nodes in the domain will be returned.
+   to the nodes in the domain will be returned.
 
-:type domain`
+- `type domain`
    unicode
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes relating
-       to the nodes in the zone will be returned.
+   to the nodes in the zone will be returned.
 
-:type zone`
+- `type zone`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the
-       nodes with matching agent names will be returned.
+   nodes with matching agent names will be returned.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/rackcontrollers/ op=describe_power_types`
 
 Query all of the rack controllers for power information.
 
-:return`
+- `return`
    a list of dicts that describe the power types in this format.
 
 ##### `GET /api/2.0/rackcontrollers/ op=is_registered`
@@ -5307,16 +5298,16 @@ Query all of the rack controllers for power information.
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
 
-:param mac_address`
+- `param mac_address`
    The mac address to be checked.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:return`
+- `return`
    'true' or 'false'.
 
-:rtype`
+- `rtype`
    unicode
 
 Returns 400 if any mandatory parameters are missing.
@@ -5325,14 +5316,14 @@ Returns 400 if any mandatory parameters are missing.
 
 Retrieve power parameters for multiple machines.
 
-:param id`
+- `param id`
    An optional list of system ids. Only machines with
-       matching system ids will be returned.
+   matching system ids will be returned.
 
-:type id`
+- `type id`
    iterable
 
-:return`
+- `return`
    A dictionary of power parameters, keyed by machine system_id.
 
 Raises 403 if the user is not an admin.
@@ -5345,13 +5336,13 @@ Import the boot images on all rack controllers.
 
 Assign multiple nodes to a physical zone at once.
 
-:param zone`
+- `param zone`
    Zone name. If omitted, the zone is "none" and the nodes
-       will be taken out of their physical zones.
+   will be taken out of their physical zones.
 
-:param nodes`
+- `param nodes`
    system_ids of the nodes whose zones are to be set.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -5376,37 +5367,37 @@ Returns 404 if the machine or RAID is not found.
 
 Update RAID on a machine.
 
-:param name`
+- `param name`
    Name of the RAID.
 
-:param uuid`
+- `param uuid`
    UUID of the RAID.
 
-:param add_block_devices`
+- `param add_block_devices`
    Block devices to add to the RAID.
 
-:param remove_block_devices`
+- `param remove_block_devices`
    Block devices to remove from the RAID.
 
-:param add_spare_devices`
+- `param add_spare_devices`
    Spare block devices to add to the RAID.
 
-:param remove_spare_devices`
+- `param remove_spare_devices`
    Spare block devices to remove
-       from the RAID.
+   from the RAID.
 
-:param add_partitions`
+- `param add_partitions`
    Partitions to add to the RAID.
 
-:param remove_partitions`
+- `param remove_partitions`
    Partitions to remove from the RAID.
 
-:param add_spare_partitions`
+- `param add_spare_partitions`
    Spare partitions to add to the RAID.
 
-:param remove_spare_partitions`
+- `param remove_spare_partitions`
    Spare partitions to remove from the
-       RAID.
+   RAID.
 
 Returns 404 if the machine or RAID is not found. Returns 409 if the machine is
 not Ready.
@@ -5425,25 +5416,25 @@ Returns 404 if the machine is not found.
 
 Creates a RAID
 
-:param name`
+- `param name`
    Name of the RAID.
 
-:param uuid`
+- `param uuid`
    UUID of the RAID.
 
-:param level`
+- `param level`
    RAID level.
 
-:param block_devices`
+- `param block_devices`
    Block devices to add to the RAID.
 
-:param spare_devices`
+- `param spare_devices`
    Spare block devices to add to the RAID.
 
-:param partitions`
+- `param partitions`
    Partitions to add to the RAID.
 
-:param spare_partitions`
+- `param spare_partitions`
    Spare partitions to add to the RAID.
 
 Returns 404 if the machine is not found. Returns 409 if the machine is not
@@ -5475,8 +5466,8 @@ Obtain various system details.
 
 For example, LLDP and `lshw` XML dumps.
 
-Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
-like "lldp" or "lshw".
+Returns a `{detail_type: xml, ...}` map, where `detail_type` is something like
+"lldp" or "lshw".
 
 Note that this is returned as BSON and not JSON. This is for efficiency, but
 mainly because JSON can't do binary content without applying additional
@@ -5501,39 +5492,39 @@ Returns 404 if the node is not found.
 
 Update a specific Region controller.
 
-:param power_type`
+- `param power_type`
    The new power type for this region controller. If
-       you use the default value, power_parameters will be set to the empty
-        string. Available to admin users. See the [Power types]() section for
-        a list of the available power types.
+   you use the default value, power_parameters will be set to the empty
+   string. Available to admin users. See the [Power types]() section for
+   a list of the available power types.
 
-:type power_type`
+- `type power_type`
    unicode
 
-:param [power_parameters](){param1}`
+- `param power_parameters_{param1}`
    The new value for the 'param1'
-       power parameter. Note that this is dynamic as the available parameters
-        depend on the selected value of the region controller's power_type.
-        Available to admin users. See the [Power types]() section for a list
-        of the available power parameters for each power type.
+   power parameter. Note that this is dynamic as the available parameters
+   depend on the selected value of the region controller's power_type.
+   Available to admin users. See the [Power types]() section for a list
+   of the available power parameters for each power type.
 
-:type [power_parameters](){param1}`
+- `type power_parameters_{param1}`
    unicode
 
-:param power_parameters_skip_check`
+- `param power_parameters_skip_check`
    Whether or not the new power
-       parameters for this region controller should be checked against the
-        expected power parameters for the region controller's power type
-        ('true' or 'false'). The default is 'false'.
+   parameters for this region controller should be checked against the
+   expected power parameters for the region controller's power type
+   ('true' or 'false'). The default is 'false'.
 
-:type power_parameters_skip_check`
+- `type power_parameters_skip_check`
    unicode
 
-:param zone`
+- `param zone`
    Name of a valid physical zone in which to place this
-       region controller.
+   region controller.
 
-:type zone`
+- `type zone`
    unicode
 
 Returns 404 if the region controller is not found. Returns 403 if the user
@@ -5549,48 +5540,48 @@ List Nodes visible to the user, optionally filtered by criteria.
 
 Nodes are sorted by id (i.e. most recent last) and grouped by type.
 
-:param hostname`
+- `param hostname`
    An optional hostname. Only nodes relating to the node
-       with the matching hostname will be returned. This can be specified
-        multiple times to see multiple nodes.
+   with the matching hostname will be returned. This can be specified
+   multiple times to see multiple nodes.
 
-:type hostname`
+- `type hostname`
    unicode
 
-:param mac_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the
-       node owning the specified MAC address will be returned. This can be
-        specified multiple times to see multiple nodes.
+   node owning the specified MAC address will be returned. This can be
+   specified multiple times to see multiple nodes.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:param id`
+- `param id`
    An optional list of system ids. Only nodes relating to the
-       nodes with matching system ids will be returned.
+   nodes with matching system ids will be returned.
 
-:type id`
+- `type id`
    unicode
 
-:param domain`
+- `param domain`
    An optional name for a dns domain. Only nodes relating
-       to the nodes in the domain will be returned.
+   to the nodes in the domain will be returned.
 
-:type domain`
+- `type domain`
    unicode
 
-:param zone`
+- `param zone`
    An optional name for a physical zone. Only nodes relating
-       to the nodes in the zone will be returned.
+   to the nodes in the zone will be returned.
 
-:type zone`
+- `type zone`
    unicode
 
-:param agent_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the
-       nodes with matching agent names will be returned.
+   nodes with matching agent names will be returned.
 
-:type agent_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/regioncontrollers/ op=is_registered`
@@ -5598,16 +5589,16 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
 
-:param mac_address`
+- `param mac_address`
    The mac address to be checked.
 
-:type mac_address`
+- `type mac_address`
    unicode
 
-:return`
+- `return`
    'true' or 'false'.
 
-:rtype`
+- `rtype`
    unicode
 
 Returns 400 if any mandatory parameters are missing.
@@ -5616,13 +5607,13 @@ Returns 400 if any mandatory parameters are missing.
 
 Assign multiple nodes to a physical zone at once.
 
-:param zone`
+- `param zone`
    Zone name. If omitted, the zone is "none" and the nodes
-       will be taken out of their physical zones.
+   will be taken out of their physical zones.
 
-:param nodes`
+- `param nodes`
    system_ids of the nodes whose zones are to be set.
-       (An empty list is acceptable).
+   (An empty list is acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -5664,8 +5655,8 @@ name is "key".
 
 Import the requesting user's SSH keys.
 
-Import SSH keys for a given protocol and authorization ID in
-protocol:auth_id format.
+Import SSH keys for a given protocol and authorization ID in protocol:auth_id
+format.
 
 ### SSL Key
 
@@ -5722,10 +5713,10 @@ Returns 404 if the space is not found.
 
 Update space.
 
-:param name`
+- `param name`
    Name of the space.
 
-:param description`
+- `param description`
    Description of the space.
 
 Returns 404 if the space is not found.
@@ -5742,10 +5733,10 @@ List all spaces.
 
 Create a space.
 
-:param name`
+- `param name`
    Name of the space.
 
-:param description`
+- `param description`
    Description of the space.
 
 ### Static route
@@ -5768,16 +5759,16 @@ Returns 404 if the static route is not found.
 
 Update static route.
 
-:param source`
+- `param source`
    Source subnet for the route.
 
-:param destination`
+- `param destination`
    Destination subnet for the route.
 
-:param gateway_ip`
+- `param gateway_ip`
    IP address of the gateway on the source subnet.
 
-:param metric`
+- `param metric`
    Weight of the route on a deployed machine.
 
 Returns 404 if the static route is not found.
@@ -5794,16 +5785,16 @@ List all static routes.
 
 Create a static route.
 
-:param source`
+- `param source`
    Source subnet for the route.
 
-:param destination`
+- `param destination`
    Destination subnet for the route.
 
-:param gateway_ip`
+- `param gateway_ip`
    IP address of the gateway on the source subnet.
 
-:param metric`
+- `param metric`
    Weight of the route on a deployed machine.
 
 ### Subnet
@@ -5830,11 +5821,11 @@ Returns a summary of IP addresses assigned to this subnet.
 
 with_username
    If False, suppresses the display of usernames associated with each
-    address. (Default: True)
+   address. (Default: True)
 
 with_summary
    If False, suppresses the display of nodes, BMCs, and and DNS records
-    associated with each address. (Default: True)
+   associated with each address. (Default: True)
 
 with_node_summary
    Deprecated form of with_summary.
@@ -5849,12 +5840,11 @@ Returns 404 if the subnet is not found.
 
 Returns statistics for the specified subnet, including:
 
-num_available: the number of available IP addresses
-largest_available: the largest number of contiguous free IP addresses
-num_unavailable: the number of unavailable IP addresses
-total_addresses: the sum of the available plus unavailable addresses
-usage: the (floating point) usage percentage of this subnet
-usage_string: the (formatted unicode) usage percentage of this subnet
+num_available: the number of available IP addresses largest_available: the
+largest number of contiguous free IP addresses num_unavailable: the number of
+unavailable IP addresses total_addresses: the sum of the available plus
+unavailable addresses usage: the (floating point) usage percentage of this
+subnet usage_string: the (formatted unicode) usage percentage of this subnet
 ranges: the specific IP ranges present in ths subnet (if specified)
 
 ###### Optional parameters
@@ -5864,7 +5854,7 @@ include_ranges
 
 include_suggestions
    If True, includes the suggested gateway and dynamic range for this subnet,
-    if it were to be configured.
+   if it were to be configured.
 
 Returns 404 if the subnet is not found.
 
@@ -5942,17 +5932,17 @@ description
 
 vlan
    VLAN this subnet belongs to. Defaults to the default VLAN for the provided
-    fabric or defaults to the default VLAN in the default fabric (if
-    unspecified).
+   fabric or defaults to the default VLAN in the default fabric (if
+   unspecified).
 
 fabric
    Fabric for the subnet. Defaults to the fabric the provided VLAN belongs
-    to, or defaults to the default fabric.
+   to, or defaults to the default fabric.
 
 vid
    VID of the VLAN this subnet belongs to. Only used when vlan is not
-    provided. Picks the VLAN with this VID in the provided fabric or the
-    default fabric if one is not given.
+   provided. Picks the VLAN with this VID in the provided fabric or the
+   default fabric if one is not given.
 
 space
    Space this subnet is in. Defaults to the default space.
@@ -5962,11 +5952,11 @@ gateway_ip
 
 rdns_mode
    How reverse DNS is handled for this subnet. One of: 0 (Disabled), 1
-    (Enabled), or 2 (RFC2317). Disabled means no reverse zone is created;
-    Enabled means generate the reverse zone; RFC2317 extends Enabled to create
-    the necessary parent zone with the appropriate CNAME resource records for
-    the network, if the network is small enough to require the support
-    described in RFC2317.
+   (Enabled), or 2 (RFC2317). Disabled means no reverse zone is created;
+   Enabled means generate the reverse zone; RFC2317 extends Enabled to create
+   the necessary parent zone with the appropriate CNAME resource records for
+   the network, if the network is small enough to require the support
+   described in RFC2317.
 
 allow_proxy
    Configure maas-proxy to allow requests from this subnet.
@@ -5977,16 +5967,16 @@ dns_servers
 managed
    In MAAS 2.0+, all subnets are assumed to be managed by default.
 
-    Only managed subnets allow DHCP to be enabled on their related dynamic
-    ranges. (Thus, dynamic ranges become "informational only"; an indication
-    that another DHCP server is currently handling them, or that MAAS will
-    handle them when the subnet is enabled for management.)
+   Only managed subnets allow DHCP to be enabled on their related dynamic
+   ranges. (Thus, dynamic ranges become "informational only"; an indication
+   that another DHCP server is currently handling them, or that MAAS will
+   handle them when the subnet is enabled for management.)
 
-    Managed subnets do not allow IP allocation by default. The meaning of a
-    "reserved" IP range is reversed for an unmanaged subnet. (That is, for
-    managed subnets, "reserved" means "MAAS cannot allocate any IP address
-    within this reserved block". For unmanaged subnets, "reserved" means "MAAS
-    must allocate IP addresses only from reserved IP ranges".
+   Managed subnets do not allow IP allocation by default. The meaning of a
+   "reserved" IP range is reversed for an unmanaged subnet. (That is, for
+   managed subnets, "reserved" means "MAAS cannot allocate any IP address
+   within this reserved block". For unmanaged subnets, "reserved" means "MAAS
+   must allocate IP addresses only from reserved IP ranges".
 
 ### Tag
 
@@ -6054,23 +6044,23 @@ Returns 404 if the tag is not found.
 
 Add or remove nodes being associated with this tag.
 
-:param add`
+- `param add`
    system_ids of nodes to add to this tag.
 
-:param remove`
+- `param remove`
    system_ids of nodes to remove from this tag.
 
-:param definition`
+- `param definition`
    (optional) If supplied, the definition will be
-       validated against the current definition of the tag. If the value does
-        not match, then the update will be dropped (assuming this was just a
-        case of a worker being out-of-date)
+   validated against the current definition of the tag. If the value does
+   not match, then the update will be dropped (assuming this was just a
+   case of a worker being out-of-date)
 
-:param rack_controller`
+- `param rack_controller`
    A system ID of a rack controller that did the
-       processing. This value is optional. If not supplied, the requester
-        must be a superuser. If supplied, then the requester must be the rack
-        controller.
+   processing. This value is optional. If not supplied, the requester
+   must be a superuser. If supplied, then the requester must be the rack
+   controller.
 
 Returns 404 if the tag is not found. Returns 401 if the user does not have
 permission to update the nodes. Returns 409 if 'definition' doesn't match the
@@ -6080,17 +6070,17 @@ current definition.
 
 Update a specific Tag.
 
-:param name`
+- `param name`
    The name of the Tag to be created. This should be a short
-       name, and will be used in the URL of the tag.
+   name, and will be used in the URL of the tag.
 
-:param comment`
+- `param comment`
    A long form description of what the tag is meant for.
-       It is meant as a human readable description of the tag.
+   It is meant as a human readable description of the tag.
 
-:param definition`
+- `param definition`
    An XPATH query that will be evaluated against the
-       hardware_details stored for all nodes (output of lshw -xml).
+   hardware_details stored for all nodes (output of lshw -xml).
 
 Returns 404 if the tag is not found.
 
@@ -6108,24 +6098,24 @@ Get a listing of all tags that are currently defined.
 
 Create a new Tag.
 
-:param name`
+- `param name`
    The name of the Tag to be created. This should be a short
-       name, and will be used in the URL of the tag.
+   name, and will be used in the URL of the tag.
 
-:param comment`
+- `param comment`
    A long form description of what the tag is meant for.
-       It is meant as a human readable description of the tag.
+   It is meant as a human readable description of the tag.
 
-:param definition`
+- `param definition`
    An XPATH query that will be evaluated against the
-       hardware_details stored for all nodes (output of lshw -xml).
+   hardware_details stored for all nodes (output of lshw -xml).
 
-:param kernel_opts`
+- `param kernel_opts`
    Can be None. If set, nodes associated with this tag
-       will add this string to their kernel options when booting. The value
-        overrides the global 'kernel_opts' setting. If more than one tag is
-        associated with a node, the one with the lowest alphabetical name will
-        be picked (eg 01-my-tag will be taken over 99-tag-name).
+   will add this string to their kernel options when booting. The value
+   overrides the global 'kernel_opts' setting. If more than one tag is
+   associated with a node, the one with the lowest alphabetical name will
+   be picked (eg 01-my-tag will be taken over 99-tag-name).
 
 Returns 401 if the user is not an admin.
 
@@ -6155,32 +6145,32 @@ Returns the currently logged in user.
 
 Create a MAAS user account.
 
-This is not safe: the password is sent in plaintext. Avoid it for
-production, unless you are confident that you can prevent eavesdroppers from
-observing the request.
+This is not safe: the password is sent in plaintext. Avoid it for production,
+unless you are confident that you can prevent eavesdroppers from observing the
+request.
 
-:param username`
+- `param username`
    Identifier-style username for the new user.
 
-:type username`
+- `type username`
    unicode
 
-:param email`
+- `param email`
    Email address for the new user.
 
-:type email`
+- `type email`
    unicode
 
-:param password`
+- `param password`
    Password for the new user.
 
-:type password`
+- `type password`
    unicode
 
-:param is_superuser`
+- `param is_superuser`
    Whether the new user is to be an administrator.
 
-:type is_superuser`
+- `type is_superuser`
    bool ('0' for False, '1' for True)
 
 Returns 400 if any mandatory parameters are missing.
@@ -6189,14 +6179,13 @@ Returns 400 if any mandatory parameters are missing.
 
 Information about this MAAS instance.
 
-> This returns a JSON dictionary with information about this MAAS
-> instance:`
+> This returns a JSON dictionary with information about this MAAS instance:
 >
-> > {
-> >    'version': '1.8.0', 'subversion'` 'alpha10+bzr3750',
-> >     'capabilities': \['capability1', 'capability2', ...\]
-> >
-> > }
+>     {
+>         'version': '1.8.0',
+>         'subversion': 'alpha10+bzr3750',
+>         'capabilities': ['capability1', 'capability2', ...]
+>     }
 
 ##### `GET /api/2.0/version/`
 
@@ -6222,64 +6211,64 @@ Returns 404 if the fabric or VLAN is not found.
 
 Update VLAN.
 
-:param name`
+- `param name`
    Name of the VLAN.
 
-:type name`
+- `type name`
    unicode
 
-:param description`
+- `param description`
    Description of the VLAN.
 
-:type description`
+- `type description`
    unicode
 
-:param vid`
+- `param vid`
    VLAN ID of the VLAN.
 
-:type vid`
+- `type vid`
    integer
 
-:param mtu`
+- `param mtu`
    The MTU to use on the VLAN.
 
-:type mtu`
+- `type mtu`
    integer
 
-:param dhcp_on`
+- `param dhcp_on`
    Whether or not DHCP should be managed on the VLAN.
 
-:type dhcp_on`
+- `type dhcp_on`
    boolean
 
-:param primary_rack`
+- `param primary_rack`
    The primary rack controller managing the VLAN.
 
-:type primary_rack`
+- `type primary_rack`
    system_id
 
-:param secondary_rack`
+- `param secondary_rack`
    The secondary rack controller manging the VLAN.
 
-:type secondary_rack`
+- `type secondary_rack`
    system_id
 
-:param relay_vlan`
+- `param relay_vlan`
    Only set when this VLAN will be using a DHCP relay
-       to forward DHCP requests to another VLAN that MAAS is or will run the
-        DHCP server. MAAS will not run the DHCP relay itself, it must be
-        configured to proxy reqests to the primary and/or secondary rack
-        controller interfaces for the VLAN specified in this field.
+   to forward DHCP requests to another VLAN that MAAS is or will run the
+   DHCP server. MAAS will not run the DHCP relay itself, it must be
+   configured to proxy reqests to the primary and/or secondary rack
+   controller interfaces for the VLAN specified in this field.
 
-:type relay_vlan`
+- `type relay_vlan`
    ID of VLAN
 
-:param space`
+- `param space`
    The space this VLAN should be placed in. Passing in an
-       empty string (or the string 'undefined') will cause the VLAN to be
-        placed in the 'undefined' space.
+   empty string (or the string 'undefined') will cause the VLAN to be
+   placed in the 'undefined' space.
 
-:type space`
+- `type space`
    unicode
 
 Returns 404 if the fabric or VLAN is not found.
@@ -6298,36 +6287,36 @@ Returns 404 if the fabric is not found.
 
 Create a VLAN.
 
-:param name`
+- `param name`
    Name of the VLAN.
 
-:type name`
+- `type name`
    unicode
 
-:param description`
+- `param description`
    Description of the VLAN.
 
-:type description`
+- `type description`
    unicode
 
-:param vid`
+- `param vid`
    VLAN ID of the VLAN.
 
-:type vid`
+- `type vid`
    integer
 
-:param mtu`
+- `param mtu`
    The MTU to use on the VLAN.
 
-:type mtu`
+- `type mtu`
    integer
 
-:param space`
+- `param space`
    The space this VLAN should be placed in. Passing in an
-       empty string (or the string 'undefined') will cause the VLAN to be
-        placed in the 'undefined' space.
+   empty string (or the string 'undefined') will cause the VLAN to be
+   placed in the 'undefined' space.
 
-:type space`
+- `type space`
    unicode
 
 ### Volume group
@@ -6351,13 +6340,13 @@ Returns 404 if the machine or volume group is not found.
 
 Create a logical volume in the volume group.
 
-:param name`
+- `param name`
    Name of the logical volume.
 
-:param uuid`
+- `param uuid`
    (optional) UUID of the logical volume.
 
-:param size`
+- `param size`
    Size of the logical volume.
 
 Returns 404 if the machine or volume group is not found. Returns 409 if the
@@ -6367,7 +6356,7 @@ machine is not Ready.
 
 Delete a logical volume in the volume group.
 
-:param id`
+- `param id`
    ID of the logical volume.
 
 Returns 403 if no logical volume with id. Returns 404 if the machine or volume
@@ -6377,23 +6366,23 @@ group is not found. Returns 409 if the machine is not Ready.
 
 Read volume group on a machine.
 
-:param name`
+- `param name`
    Name of the volume group.
 
-:param uuid`
+- `param uuid`
    UUID of the volume group.
 
-:param add_block_devices`
+- `param add_block_devices`
    Block devices to add to the volume group.
 
-:param remove_block_devices`
+- `param remove_block_devices`
    Block devices to remove from the
-       volume group.
+   volume group.
 
-:param add_partitions`
+- `param add_partitions`
    Partitions to add to the volume group.
 
-:param remove_partitions`
+- `param remove_partitions`
    Partitions to remove from the volume group.
 
 Returns 404 if the machine or volume group is not found. Returns 409 if the
@@ -6413,16 +6402,16 @@ Returns 404 if the machine is not found.
 
 Create a volume group belonging to machine.
 
-:param name`
+- `param name`
    Name of the volume group.
 
-:param uuid`
+- `param uuid`
    (optional) UUID of the volume group.
 
-:param block_devices`
+- `param block_devices`
    Block devices to add to the volume group.
 
-:param partitions`
+- `param partitions`
    Partitions to add to the volume group.
 
 Returns 404 if the machine is not found. Returns 409 if the machine is not
@@ -6433,9 +6422,9 @@ Ready.
 Manage a physical zone.
 
 > Any node is in a physical zone, or "zone" for short. The meaning of a
-> physical zone is up to you: it could identify e.g. a server rack, a
-> network, or a data centre. Users can then allocate nodes from specific
-> physical zones, to suit their redundancy or performance requirements.
+> physical zone is up to you: it could identify e.g. a server rack, a network,
+> or a data centre. Users can then allocate nodes from specific physical
+> zones, to suit their redundancy or performance requirements.
 >
 > This functionality is only available to administrators. Other users can view
 > physical zones, but not modify them.
@@ -6473,16 +6462,16 @@ Get a listing of all the physical zones.
 
 Create a new physical zone.
 
-:param name`
+- `param name`
    Identifier-style name for the new zone.
 
-:type name`
+- `type name`
    unicode
 
-:param description`
+- `param description`
    Free-form description of the new zone.
 
-:type description`
+- `type description`
    unicode
 
 ## Power types
@@ -6540,7 +6529,7 @@ Power parameters:
 Power parameters:
 
 -   power_driver (Power driver). Choices: 'LAN' (LAN \[IPMI 1.5\]),
-    'LAN_2_0' (LAN_2_0 \[IPMI 2.0\]) Default: 'LAN_2_0'.
+   'LAN_2_0' (LAN_2_0 \[IPMI 2.0\]) Default: 'LAN_2_0'.
 -   power_address (IP address).
 -   power_user (Power user).
 -   power_pass (Power password).
@@ -6567,7 +6556,7 @@ Power parameters:
 -   power_user (MSCM CLI API user).
 -   power_pass (MSCM CLI API password).
 -   node_id (Node ID - Must adhere to cXnY format (X=cartridge number, Y=node
-    number).).
+   number).).
 
 ### msftocs (Microsoft OCS - Chassis Manager)
 
@@ -6607,9 +6596,8 @@ Power parameters:
 -   power_address (Power address).
 -   power_user (Power user).
 -   power_pass (Power password).
--   power_control (Power control type). Choices: 'ipmi' (IPMI),
-    'restapi' (REST API v0.9), 'restapi2' (REST API v2.0) Default:
-    'ipmi'.
+-   power_control (Power control type). Choices: 'ipmi' (IPMI), 'restapi'
+   (REST API v0.9), 'restapi2' (REST API v2.0) Default: 'ipmi'.
 
 ### ucsm (Cisco UCS Manager)
 
