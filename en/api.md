@@ -1,7 +1,6 @@
 Title: API | MAAS
 table_of_contents: True
 
-
 # MAAS API
 
 Restful MAAS API.
@@ -56,28 +55,14 @@ For example, to list all machines, you might GET "/api/2.0/machines".
 
 Manage the current logged-in user.
 
-##### `GET /api/2.0/account/` `op=list_authorisation_tokens`
-
-List authorisation tokens available to the currently logged-in user.
-
-- `return`
-   list of dictionaries representing each key's name and token.
-
 ##### `POST /api/2.0/account/` `op=create_authorisation_token`
 
 Create an authorisation OAuth token and OAuth consumer.
 
-- `param name`
-   Optional name of the token that will be generated.
-
-- `type name`
-   unicode
-
 - `return`
-   a json dict with four keys: 'token\_key', 'token\_secret',
-    'consumer\_key' and 'name'(e.g. {token\_key: 's65244576fgqs',
-    token\_secret: 'qsdfdhv34', consumer\_key: '68543fhj854fg', name:
-    'MAAS consumer'}).
+   a json dict with three keys: 'token_key', 'token_secret' and
+   'consumer_key' (e.g. {token_key: 's65244576fgqs', token_secret:
+   'qsdfdhv34', consumer_key: '68543fhj854fg'}).
 
 - `rtype`
    string (json)
@@ -86,56 +71,40 @@ Create an authorisation OAuth token and OAuth consumer.
 
 Delete an authorisation OAuth token and the related OAuth consumer.
 
-- `param token\_key`
+- `param token_key`
    The key of the token to be deleted.
 
-- `type token\_key`
-   unicode
-
-##### `POST /api/2.0/account/` `op=update_token_name`
-
-Modify the consumer name of an authorisation OAuth token.
-
-- `param token`
-   Can be the whole token or only the token key.
-
-- `type token`
-   unicode
-
-- `param name`
-   New name of the token.
-
-- `type name`
+- `type token_key`
    unicode
 
 ### Bcache Cache Set
 
 Manage bcache cache set on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/bcache-cache-set/{cache_set_id}/`
 
 Delete cache set on a machine.
 
 Returns 400 if the cache set is in use. Returns 404 if the machine or
 cache set is not found. Returns 409 if the machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/bcache-cache-set/{cache_set_id}/`
 
 Read bcache cache set on a machine.
 
 Returns 404 if the machine or cache set is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/bcache-cache-set/{cache_set_id}/`
 
 Delete bcache on a machine.
 
-- `param cache\_device`
+- `param cache_device`
    Cache block device to replace current one.
 
-- `param cache\_partition`
+- `param cache_partition`
    Cache partition to replace current one.
 
-Specifying both a cache\_device and a cache\_partition is not allowed.
+Specifying both a cache_device and a cache_partition is not allowed.
 
 Returns 404 if the machine or the cache set is not found. Returns 409 if
 the machine is not Ready.
@@ -154,35 +123,35 @@ Returns 404 if the machine is not found.
 
 Creates a Bcache Cache Set.
 
-- `param cache\_device`
+- `param cache_device`
    Cache block device.
 
-- `param cache\_partition`
+- `param cache_partition`
    Cache partition.
 
-Specifying both a cache\_device and a cache\_partition is not allowed.
+Specifying both a cache_device and a cache_partition is not allowed.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+Returns 404 if the machine is not found. Returns 409 if the machine is not
+Ready.
 
 ### Bcache Device
 
 Manage bcache device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/bcache/{bcache_id}/`
 
 Delete bcache on a machine.
 
 Returns 404 if the machine or bcache is not found. Returns 409 if the
 machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/bcache/{bcache_id}/`
 
 Read bcache device on a machine.
 
 Returns 404 if the machine or bcache is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/bcache/{bcache_id}/`
 
 Delete bcache on a machine.
 
@@ -192,20 +161,20 @@ Delete bcache on a machine.
 - `param uuid`
    UUID of the Bcache.
 
-- `param cache\_set`
+- `param cache_set`
    Cache set to replace current one.
 
-- `param backing\_device`
+- `param backing_device`
    Backing block device to replace current one.
 
-- `param backing\_partition`
+- `param backing_partition`
    Backing partition to replace current one.
 
-- `param cache\_mode`
+- `param cache_mode`
    Cache mode (writeback, writethrough, writearound).
 
-Specifying both a device and a partition for a given role (cache
-or backing) is not allowed.
+Specifying both a device and a partition for a given role (cache or
+backing) is not allowed.
 
 Returns 404 if the machine or the bcache is not found. Returns 409 if the
 machine is not Ready.
@@ -230,29 +199,29 @@ Creates a Bcache.
 - `param uuid`
    UUID of the Bcache.
 
-- `param cache\_set`
+- `param cache_set`
    Cache set.
 
-- `param backing\_device`
+- `param backing_device`
    Backing block device.
 
-- `param backing\_partition`
+- `param backing_partition`
    Backing partition.
 
-- `param cache\_mode`
+- `param cache_mode`
    Cache mode (WRITEBACK, WRITETHROUGH, WRITEAROUND).
 
-Specifying both a device and a partition for a given role (cache
-or backing) is not allowed.
+Specifying both a device and a partition for a given role (cache or
+backing) is not allowed.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+Returns 404 if the machine is not found. Returns 409 if the machine is not
+Ready.
 
 ### Block device
 
 Manage a block device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{device_id}/`
 
 Delete block device on a machine.
 
@@ -260,24 +229,35 @@ Returns 404 if the machine or block device is not found. Returns 403 if
 the user is not allowed to delete the block device. Returns 409 if the
 machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/`
 
 Read block device on node.
 
 Returns 404 if the machine or block device is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=add_tag`
+##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=add_tag`
 
 Add a tag to block device on a machine.
 
 - `param tag`
    The tag being added.
 
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to update the block device. Returns 409 if the
-machine is not Ready.
+Returns 404 if the machine or block device is not found. Returns 403 if the
+user is not allowed to update the block device. Returns 409 if the machine
+is not Ready.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=format`
+##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=remove_tag`
+
+Remove a tag from block device on a machine.
+
+- `param tag`
+   The tag being removed.
+
+Returns 404 if the machine or block device is not found. Returns 403 if the
+user is not allowed to update the block device. Returns 409 if the machine
+is not Ready.
+
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=format`
 
 Format block device with filesystem.
 
@@ -288,102 +268,64 @@ Format block device with filesystem.
    UUID of the filesystem.
 
 Returns 403 when the user doesn't have the ability to format the block
-device. Returns 404 if the machine or block device is not found. Returns
-409 if the machine is not Ready or Allocated.
+device. Returns 404 if the machine or block device is not found. Returns 409
+if the machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=mount`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=mount`
 
 Mount the filesystem on block device.
 
-- `param mount\_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-- `param mount\_options`
+- `param mount_options`
    Options to pass to mount(8).
 
 Returns 403 when the user doesn't have the ability to mount the block
-device. Returns 404 if the machine or block device is not found. Returns
-409 if the machine is not Ready or Allocated.
+device. Returns 404 if the machine or block device is not found. Returns 409
+if the machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=remove_tag`
-
-Remove a tag from block device on a machine.
-
-- `param tag`
-   The tag being removed.
-
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to update the block device. Returns 409 if the
-machine is not Ready.
-
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=set_boot_disk`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=set_boot_disk`
 
 Set this block device as the boot disk for the machine.
 
 Returns 400 if the block device is a virtual block device. Returns 404 if
 the machine or block device is not found. Returns 403 if the user is not
-allowed to update the block device. Returns 409 if the machine is not
-Ready or Allocated.
+allowed to update the block device. Returns 409 if the machine is not Ready
+ or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=unformat`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=unformat`
 
 Unformat block device with filesystem.
 
-Returns 400 if the block device is not formatted, currently mounted, or
-part of a filesystem group. Returns 403 when the user doesn't have the
-ability to unformat the block device. Returns 404 if the machine or block
-device is not found. Returns 409 if the machine is not Ready or Allocated.
+Returns 400 if the block device is not formatted, currently mounted, or part
+of a filesystem group. Returns 403 when the user doesn't have the ability to
+unformat the block device. Returns 404 if the machine or block device is not
+found. Returns 409 if the machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/` `op=unmount`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/` `op=unmount`
 
 Unmount the filesystem on block device.
 
 Returns 400 if the block device is not formatted or not currently mounted.
 Returns 403 when the user doesn't have the ability to unmount the block
-device. Returns 404 if the machine or block device is not found. Returns
-409 if the machine is not Ready or Allocated.
+device. Returns 404 if the machine or block device is not found. Returns 409
+if the machine is not Ready or Allocated.
 
-##### `PUT /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/blockdevices/{device_id}/`
 
 Update block device on a machine.
 
-Machines must have a status of Ready to have access to all options.
-Machines with Deployed status can only have the name, model, serial,
-and/or id\_path updated for a block device. This is intented to allow a
-bad block device to be replaced while the machine remains deployed.
+Fields for physical block device: :param name: Name of the block device.
+param model: Model of the block device. :param serial: Serial number of
+the block device. :param id_path: (optional) Only used if model and
+serial cannot be provided. This should be a path that is fixed and doesn't
+change depending on the boot order or kernel version. :param size: Size of
+the block device. :param block_size: Block size of the block device.
 
-Fields for physical block device:
-
-- `param name`
-   Name of the block device.
-
-- `param model`
-   Model of the block device.
-
-- `param serial`
-   Serial number of the block device.
-
-- `param id\_path`
-   (optional) Only used if model and serial cannot be provided. This
-    should be a path that is fixed and doesn't change depending on the
-    boot order or kernel version.
-
-- `param size`
-   Size of the block device.
-
-- `param block\_size`
-   Block size of the block device.
-
-Fields for virtual block device:
-
-- `param name`
-   Name of the block device.
-
-- `param uuid`
-   UUID of the block device.
-
-- `param size`
-   Size of the block device. (Only allowed for logical volumes.)
+Fields for virtual block device: :param name: Name of the block device.
+param uuid: UUID of the block device. :param size: Size of the block
+device. (Only allowed for logical volumes.)
 
 Returns 404 if the machine or block device is not found. Returns 403 if
 the user is not allowed to update the block device. Returns 409 if the
@@ -412,7 +354,7 @@ Create a physical block device.
 - `param serial`
    Serial number of the block device.
 
-- `param id\_path`
+- `param id_path`
    (optional) Only used if model and serial cannot be provided. This
     should be a path that is fixed and doesn't change depending on the
     boot order or kernel version.
@@ -420,7 +362,7 @@ Create a physical block device.
 - `param size`
    Size of the block device.
 
-- `param block\_size`
+- `param block_size`
    Block size of the block device.
 
 Returns 404 if the node is not found.
@@ -448,10 +390,6 @@ List all boot resources.
 - `param type`
    Type of boot resources to list. Default: all
 
-##### `GET /api/2.0/boot-resources/` `op=is_importing`
-
-Return import status.
-
 ##### `POST /api/2.0/boot-resources/`
 
 Uploads a new boot resource.
@@ -469,16 +407,12 @@ Uploads a new boot resource.
    Filetype for uploaded content. (Default: tgz)
 
 - `param content`
-   Image content. Note: this is not a normal parameter, but a
-    file upload.
+   Image content. Note: this is not a normal parameter, but a file
+    upload.
 
 ##### `POST /api/2.0/boot-resources/` `op=import`
 
 Import the boot resources.
-
-##### `POST /api/2.0/boot-resources/` `op=stop_import`
-
-Stop import of boot resources.
 
 ### Boot source
 
@@ -499,10 +433,10 @@ Update a specific boot source.
 - `param url`
    The URL of the BootSource.
 
-- `param keyring\_filename`
+- `param keyring_filename`
    The path to the keyring file for this BootSource.
 
-- `param keyring\_data`
+- `param keyring_filename`
    The GPG keyring for this BootSource, base64-encoded data.
 
 ### Boot source selection
@@ -576,17 +510,17 @@ Create a new boot source.
 - `param url`
    The URL of the BootSource.
 
-- `param keyring\_filename`
+- `param keyring_filename`
    The path to the keyring file for this BootSource.
 
-- `param keyring\_data`
+- `param keyring_data`
    The GPG keyring for this BootSource, base64-encoded.
 
 ### Commissioning script
 
 Manage a custom commissioning script.
 
-> This functionality is only available to administrators.
+This functionality is only available to administrators.
 
 ##### `DELETE /api/2.0/commissioning-scripts/{name}`
 
@@ -604,7 +538,7 @@ Update a commissioning script.
 
 Manage custom commissioning scripts.
 
-> This functionality is only available to administrators.
+This functionality is only available to administrators.
 
 ##### `GET /api/2.0/commissioning-scripts/`
 
@@ -622,10 +556,10 @@ don't need to follow this convention, but not doing so opens you up to
 risks w.r.t. encoding and ordering. The name must not contain any
 whitespace, quotes, or apostrophes.
 
-A commissioning machine will run each of the scripts in
-lexicographical order. There are no promises about how non-ASCII
-characters are sorted, or even how upper-case letters are sorted relative
-to lower-case letters. So where ordering matters, use unique numbers.
+A commissioning machine will run each of the scripts in lexicographical
+order. There are no promises about how non-ASCII characters are sorted, or
+even how upper-case letters are sorted relative to lower-case letters. So
+where ordering matters, use unique numbers.
 
 Scripts built into MAAS will have names starting with "00-maas" or
 "99-maas" to ensure that they run first or last, respectively.
@@ -650,34 +584,34 @@ commissioning machine in the exact form in which it was uploaded.
 
 Manage an individual DHCP snippet.
 
-> The DHCP snippet is identified by its id.
+The DHCP snippet is identified by its id.
 
-##### `DELETE /api/2.0/dhcp-snippets/{id}/`
+##### `DELETE /api/2.0/dhcp-snippets/{dhcp_snippet_id}/`
 
 Delete a DHCP snippet.
 
 Returns 404 if the DHCP snippet is not found.
 
-##### `GET /api/2.0/dhcp-snippets/{id}/`
+##### `GET /api/2.0/dhcp-snippets/{dhcp_snippet_id}/`
 
 Read DHCP snippet.
 
 Returns 404 if the snippet is not found.
 
-##### `POST /api/2.0/dhcp-snippets/{id}/` `op=revert`
+##### `POST /api/2.0/dhcp-snippets/{dhcp_snippet_id}/` `op=revert`
 
 Revert the value of a DHCP snippet to an earlier revision.
 
 - `param to`
    What revision in the DHCP snippet's history to revert to. This can
-    either be an ID or a negative number representing how far back to go.
+   either be an ID or a negative number representing how far back to go.
 
 - `type to`
    integer
 
 Returns 404 if the DHCP snippet is not found.
 
-##### `PUT /api/2.0/dhcp-snippets/{id}/`
+##### `PUT /api/2.0/dhcp-snippets/{dhcp_snippet_id}/`
 
 Update a DHCP snippet.
 
@@ -720,11 +654,11 @@ Update a DHCP snippet.
 - `type subnet`
    unicode
 
-- `param global\_snippet`
+- `param global_snippet`
    Set the DHCP snippet to be a global option. This removes any node or
     subnet links.
 
-- `type global\_snippet`
+- `type global_snippet`
    boolean
 
 Returns 404 if the DHCP snippet is not found.
@@ -742,8 +676,8 @@ List all DHCP snippets.
 Create a DHCP snippet.
 
 - `param name`
-   The name of the DHCP snippet. This is required to create a new
-    DHCP snippet.
+   The name of the DHCP snippet. This is required to create a new DHCP
+    snippet.
 
 - `type name`
    unicode
@@ -768,24 +702,24 @@ Create a DHCP snippet.
    boolean
 
 - `param node`
-   The node this snippet applies to. Cannot be used with subnet
-    or global\_snippet.
+   The node this snippet applies to. Cannot be used with subnet or
+    global_snippet.
 
 - `type node`
    unicode
 
 - `param subnet`
-   The subnet this snippet applies to. Cannot be used with node
-    or global\_snippet.
+   The subnet this snippet applies to. Cannot be used with node or
+    global_snippet.
 
 - `type subnet`
    unicode
 
-- `param global\_snippet`
+- `param global_snippet`
    Whether or not this snippet is to be applied globally. Cannot be used
     with node or subnet.
 
-- `type global\_snippet`
+- `type global_snippet`
    boolean
 
 Returns 404 if the DHCP snippet is not found.
@@ -794,27 +728,27 @@ Returns 404 if the DHCP snippet is not found.
 
 Manage dnsresource.
 
-##### `DELETE /api/2.0/dnsresources/{id}/`
+##### `DELETE /api/2.0/dnsresources/{dnsresource_id}/`
 
 Delete dnsresource.
 
 Returns 403 if the user does not have permission to delete the
 dnsresource. Returns 404 if the dnsresource is not found.
 
-##### `GET /api/2.0/dnsresources/{id}/`
+##### `GET /api/2.0/dnsresources/{dnsresource_id}/`
 
 Read dnsresource.
 
 Returns 404 if the dnsresource is not found.
 
-##### `PUT /api/2.0/dnsresources/{id}/`
+##### `PUT /api/2.0/dnsresources/{dnsresource_id}/`
 
 Update dnsresource.
 
 - `param fqdn`
    Hostname (with domain) for the dnsresource.
 
-- `param ip\_address`
+- `param ip_address`
    Address to assign to the dnsresource.
 
 Returns 403 if the user does not have permission to update the
@@ -824,20 +758,20 @@ dnsresource. Returns 404 if the dnsresource is not found.
 
 Manage dnsresourcerecord.
 
-##### `DELETE /api/2.0/dnsresourcerecords/{id}/`
+##### `DELETE /api/2.0/dnsresourcerecords/{dnsresourcerecord_id}/`
 
 Delete dnsresourcerecord.
 
 Returns 403 if the user does not have permission to delete the
 dnsresourcerecord. Returns 404 if the dnsresourcerecord is not found.
 
-##### `GET /api/2.0/dnsresourcerecords/{id}/`
+##### `GET /api/2.0/dnsresourcerecords/{dnsresourcerecord_id}/`
 
 Read dnsresourcerecord.
 
 Returns 404 if the dnsresourcerecord is not found.
 
-##### `PUT /api/2.0/dnsresourcerecords/{id}/`
+##### `PUT /api/2.0/dnsresourcerecords/{dnsresourcerecord_id}/`
 
 Update dnsresourcerecord.
 
@@ -865,17 +799,17 @@ List all dnsresourcerecords.
    restrict the listing to entries of the given name.
 
 - `param rrtype`
-   restrict the listing to entries which have records of the
-    given rrtype.
+   restrict the listing to entries which have records of the given
+    rrtype.
 
 ##### `POST /api/2.0/dnsresourcerecords/`
 
 Create a dnsresourcerecord.
 
 - `param fqdn`
-   Hostname (with domain) for the dnsresource. Either fqdn or
-    (name, domain) must be specified. Fqdn is ignored if either name or
-    domain is given.
+   Hostname (with domain) for the dnsresource. Either fqdn or (name,
+    domain) must be specified. Fqdn is ignored if either name or domain is
+    given.
 
 - `param name`
    Hostname (without domain)
@@ -904,17 +838,17 @@ List all resources for the specified criteria.
    restrict the listing to entries of the given name.
 
 - `param rrtype`
-   restrict the listing to entries which have records of the
-    given rrtype.
+   restrict the listing to entries which have records of the given
+    rrtype.
 
 ##### `POST /api/2.0/dnsresources/`
 
 Create a dnsresource.
 
 - `param fqdn`
-   Hostname (with domain) for the dnsresource. Either fqdn or
-    (name, domain) must be specified. Fqdn is ignored if either name or
-    domain is given.
+   Hostname (with domain) for the dnsresource. Either fqdn or (name,
+    domain) must be specified. Fqdn is ignored if either name or domain is
+    given.
 
 - `param name`
    Hostname (without domain)
@@ -922,17 +856,17 @@ Create a dnsresource.
 - `param domain`
    Domain (name or id)
 
-- `param address\_ttl`
+- `param address_ttl`
    Default ttl for entries in this zone.
 
-- `param ip\_addresses`
+- `param ip_addresses`
    (optional) Address (ip or id) to assign to the dnsresource.
 
 ### Device
 
 Manage an individual device.
 
-> The device is identified by its system\_id.
+The device is identified by its system_id.
 
 ##### `DELETE /api/2.0/devices/{system_id}/`
 
@@ -957,9 +891,9 @@ For example, LLDP and `lshw` XML dumps.
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
 like "lldp" or "lshw".
 
-Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
-additional encoding like base-64.
+Note that this is returned as BSON and not JSON. This is for efficiency, but
+mainly because JSON can't do binary content without applying additional
+encoding like base-64.
 
 Returns 404 if the node is not found.
 
@@ -967,8 +901,8 @@ Returns 404 if the node is not found.
 
 Obtain power parameters.
 
-This method is reserved for admin users and returns a 403 if the user is
-not one.
+This method is reserved for admin users and returns a 403 if the user is not
+one.
 
 This returns the power parameters, if any, configured for a node. For some
 types of power control this will include private information such as
@@ -987,8 +921,8 @@ have permission to reset the device.
 
 Reset a device's network options.
 
-Returns 404 if the device is not found Returns 403 if the user does not
-have permission to reset the device.
+Returns 404 if the device is not found Returns 403 if the user does not have
+permission to reset the device.
 
 ##### `POST /api/2.0/devices/{system_id}/` `op=set_owner_data`
 
@@ -1021,9 +955,9 @@ Update a specific device.
    unicode
 
 - `param parent`
-   Optional system\_id to indicate this device's parent. If the parent is
-    already set and this parameter is omitted, the parent will
-    be unchanged.
+   Optional system_id to indicate this device's parent. If the parent is
+    already set and this parameter is omitted, the parent will be
+    unchanged.
 
 - `type parent`
    unicode
@@ -1055,12 +989,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type hostname`
    unicode
 
-- `param mac\_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the node owning the
     specified MAC address will be returned. This can be specified multiple
     times to see multiple nodes.
 
-- `type mac\_address`
+- `type mac_address`
    unicode
 
 - `param id`
@@ -1084,11 +1018,11 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type zone`
    unicode
 
-- `param agent\_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the nodes with matching
     agent names will be returned.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 ##### `POST /api/2.0/devices/`
@@ -1107,10 +1041,10 @@ Create a new device.
 - `type domain`
    unicode
 
-- `param mac\_addresses`
+- `param mac_addresses`
    One or more MAC addresses for the device.
 
-- `type mac\_addresses`
+- `type mac_addresses`
    unicode
 
 - `param parent`
@@ -1125,152 +1059,32 @@ Assign multiple nodes to a physical zone at once.
 
 - `param zone`
    Zone name. If omitted, the zone is "none" and the nodes will be taken
-    out of their physical zones.
+   out of their physical zones.
 
 - `param nodes`
-   system\_ids of the nodes whose zones are to be set. (An empty list
-    is acceptable).
+   system_ids of the nodes whose zones are to be set. (An empty list is
+   acceptable).
 
 Raises 403 if the user is not an admin.
 
-### Discoveries
+### Domain
 
-Query observed discoveries.
+Manage domain.
 
-##### `GET /api/2.0/discovery/`
-
-Lists all the devices MAAS has discovered.
-
-Discoveries are listed in the order they were last observed on the network
-(most recent first).
-
-##### `GET /api/2.0/discovery/` `op=by_unknown_ip`
-
-Lists all discovered devices which have an unknown IP address.
-
-Filters the list of discovered devices by excluding any discoveries where
-a known MAAS node is configured with the IP address of the discovery, or
-has been observed using it after it was assigned by a MAAS-managed
-DHCP server.
-
-Discoveries are listed in the order they were last observed on the network
-(most recent first).
-
-##### `GET /api/2.0/discovery/` `op=by_unknown_ip_and_mac`
-
-Lists all discovered devices which are completely unknown to MAAS.
-
-Filters the list of discovered devices by excluding any discoveries where
-a known MAAS node is configured with either the MAC address or the IP
-address of the discovery.
-
-Discoveries are listed in the order they were last observed on the network
-(most recent first).
-
-##### `GET /api/2.0/discovery/` `op=by_unknown_mac`
-
-Lists all discovered devices which have an unknown IP address.
-
-Filters the list of discovered devices by excluding any discoveries where
-an interface known to MAAS is configured with MAC address of
-the discovery.
-
-Discoveries are listed in the order they were last observed on the network
-(most recent first).
-
-##### `POST /api/2.0/discovery/` `op=clear`
-
-Deletes all discovered neighbours and/or mDNS entries.
-
-- `param mdns`
-   if True, deletes all mDNS entries.
-
-- `param neighbours`
-   if True, deletes all neighbour entries.
-
-- `param all`
-   if True, deletes all discovery data.
-
-##### `POST /api/2.0/discovery/` `op=scan`
-
-Immediately run a neighbour discovery scan on all rack networks.
-
-This command causes each connected rack controller to execute the
-'maas-rack scan-network' command, which will scan all CIDRs configured on
-the rack controller using 'nmap' (if it is installed) or 'ping'.
-
-Network discovery must not be set to 'disabled' for this command to
-be useful.
-
-Scanning will be started in the background, and could take a long time on
-rack controllers that do not have 'nmap' installed and are connected to
-large networks.
-
-If the call is a success, this method will return a dictionary of results
-as follows:
-
-result: A human-readable string summarizing the results.
-scan\_attempted\_on: A list of rack 'system\_id' values where a scan
-was attempted. (That is, an RPC connection was successful and a subsequent
-call was intended.)
-
-failed\_to\_connect\_to: A list of rack 'system\_id' values where the RPC
-connection failed.
-
-scan\_started\_on: A list of rack 'system\_id' values where a scan was
-successfully started.
-
-scan\_failed\_on: A list of rack 'system\_id' values where a scan was
-attempted, but failed because a scan was already in progress.
-
-rpc\_call\_timed\_out\_on: A list of rack 'system\_id' values where the
-RPC connection was made, but the call timed out before a ten second
-timeout elapsed.
-
-- `param cidr`
-   The subnet CIDR(s) to scan (can be specified multiple times). If not
-    specified, defaults to all networks.
-
-- `param force`
-   If True, will force the scan, even if all networks are specified.
-    (This may not be the best idea, depending on acceptable use
-    agreements, and the politics of the organization that owns
-    the network.) Default: False.
-
-- `param always\_use\_ping`
-   If True, will force the scan to use 'ping' even if 'nmap'
-    is installed. Default: False.
-
-- `param slow`
-   If True, and 'nmap' is being used, will limit the scan to nine packets
-    per second. If the scanner is 'ping', this option has no effect.
-    Default: False.
-
-- `param threads`
-   The number of threads to use during scanning. If 'nmap' is the
-    scanner, the default is one thread per 'nmap' process. If 'ping' is
-    the scanner, the default is four threads per CPU.
-
-### Discovery
-
-Read or delete an observed discovery.
-
-`GET /api/2.0/discovery/{discovery_id}/` Domain ====== Manage domain.
-
-##### `DELETE /api/2.0/domains/{id}/`
+##### `DELETE /api/2.0/domains/{domain_id}/`
 
 Delete domain.
 
 Returns 403 if the user does not have permission to update the
 dnsresource. Returns 404 if the domain is not found.
 
-##### `GET /api/2.0/domains/{id}/`
+##### `GET /api/2.0/domains/{domain_id}/`
 
 Read domain.
 
 Returns 404 if the domain is not found.
 
-##### `PUT /api/2.0/domains/{id}/`
+##### `PUT /api/2.0/domains/{domain_id}/`
 
 Update domain.
 
@@ -1315,66 +1129,57 @@ Set the SOA serial number (for all DNS zones.)
 
 Retrieve filtered node events.
 
-> A specific Node's events is identified by specifying one or more ids,
-> hostnames, or mac addresses as a list.
+A specific Node's events is identified by specifying one or more ids,
+hostnames, or mac addresses as a list.
 
 ##### `GET /api/2.0/events/` `op=query`
 
-List Node events, optionally filtered by various criteria via URL
-query parameters.
+List Node events, optionally filtered by various criteria via URL query
+parameters.
 
 - `param hostname`
-   An optional hostname. Only events relating to the node with the
-    matching hostname will be returned. This can be specified multiple
-    times to get events relating to more than one node.
+   An optional hostname. Only events relating to the node with the matching
+   hostname will be returned. This can be specified multiple times to get
+   events relating to more than one node.
 
-- `param mac\_address`
+- `param mac_address`
    An optional list of MAC addresses. Only nodes with matching MAC
-    addresses will be returned.
+   addresses will be returned.
 
 - `param id`
-   An optional list of system ids. Only nodes with matching system ids
-    will be returned.
+   An optional list of system ids. Only nodes with matching system ids will
+   be returned.
 
 - `param zone`
-   An optional name for a physical zone. Only nodes in the zone will
-    be returned.
+   An optional name for a physical zone. Only nodes in the zone will be
+   `return`ed.
 
-- `param agent\_name`
-   An optional agent name. Only nodes with matching agent names will
-    be returned.
+- `param agent_name`
+   An optional agent name. Only nodes with matching agent names will be
+   `return`ed.
 
 - `param level`
    Desired minimum log level of returned events. Returns this level of
-    events and greater. Choose from: CRITICAL, DEBUG, ERROR, INFO,
-    WARNING. The default is INFO.
-
-- `param limit`
-   Optional number of events to return. Default 100. Maximum: 1000.
-
-- `param before`
-   Optional event id. Defines where to start returning older events.
-
-- `param after`
-   Optional event id. Defines where to start returning newer events.
+   events and greater. Choose from: CRITICAL, DEBUG, ERROR, INFO, WARNING.
+   The default is INFO.
 
 ### Fabric
 
 Manage fabric.
 
-##### `DELETE /api/2.0/fabrics/{id}/`
+##### `DELETE /api/2.0/fabrics/{fabric_id}/`
 
 Delete fabric.
 
 Returns 404 if the fabric is not found.
 
-##### `GET /api/2.0/fabrics/{id}/`
+##### `GET /api/2.0/fabrics/{fabric_id}/`
 
 Read fabric.
 
 Returns 404 if the fabric is not found.
 
-##### `PUT /api/2.0/fabrics/{id}/`
+##### `PUT /api/2.0/fabrics/{fabric_id}/`
 
 Update fabric.
 
@@ -1384,7 +1189,7 @@ Update fabric.
 - `param description`
    Description of the fabric.
 
-- `param class\_type`
+- `param class_type`
    Class type of the fabric.
 
 Returns 404 if the fabric is not found.
@@ -1407,26 +1212,26 @@ Create a fabric.
 - `param description`
    Description of the fabric.
 
-- `param class\_type`
+- `param class_type`
    Class type of the fabric.
 
 ### Fan Network
 
 Manage Fan Network.
 
-##### `DELETE /api/2.0/fannetworks/{id}/`
+##### `DELETE /api/2.0/fannetworks/{fannetwork_id}/`
 
 Delete fannetwork.
 
 Returns 404 if the fannetwork is not found.
 
-##### `GET /api/2.0/fannetworks/{id}/`
+##### `GET /api/2.0/fannetworks/{fannetwork_id}/`
 
 Read fannetwork.
 
 Returns 404 if the fannetwork is not found.
 
-##### `PUT /api/2.0/fannetworks/{id}/`
+##### `PUT /api/2.0/fannetworks/{fannetwork_id}/`
 
 Update fannetwork.
 
@@ -1442,7 +1247,7 @@ Update fannetwork.
 - `param dhcp`
    confiugre dhcp server for overlay net
 
-- `param host\_reserve`
+- `param host_reserve`
    number of IP addresses to reserve for host
 
 - `param bridge`
@@ -1477,7 +1282,7 @@ Create a fannetwork.
 - `param dhcp`
    confiugre dhcp server for overlay net
 
-- `param host\_reserve`
+- `param host_reserve`
    number of IP addresses to reserve for host
 
 - `param bridge`
@@ -1490,7 +1295,7 @@ Create a fannetwork.
 
 Manage a FileStorage object.
 
-> The file is identified by its filename and owner.
+The file is identified by its filename and owner.
 
 ##### `DELETE /api/2.0/files/{filename}/`
 
@@ -1568,7 +1373,7 @@ Add a new file to the file storage.
    Actual file data with content type application/octet-stream
 
 Returns 400 if any of these conditions apply:
-   -   The filename is missing from the parameters
+-   The filename is missing from the parameters
 -   The file data is missing
 -   More than one file is supplied
 
@@ -1578,35 +1383,9 @@ Manage IP addresses allocated by MAAS.
 
 ##### `GET /api/2.0/ipaddresses/`
 
-List IP addresses known to MAAS.
+List IPAddresses.
 
-By default, gets a listing of all IP addresses allocated to the
-requesting user.
-
-- `param ip`
-   If specified, will only display information for the specified
-    IP address.
-
-- `type ip`
-   unicode (must be an IPv4 or IPv6 address)
-
-If the requesting user is a MAAS administrator, the following options may
-also be supplied:
-
-- `param all`
-   If True, all reserved IP addresses will be shown. (By default, only
-    addresses of type 'User reserved' that are assigned to the requesting
-    user are shown.)
-
-- `type all`
-   bool
-
-- `param owner`
-   If specified, filters the list to show only IP addresses owned by the
-    specified username.
-
-- `type user`
-   unicode
+Get a listing of all IPAddresses allocated to the requesting user.
 
 ##### `POST /api/2.0/ipaddresses/` `op=release`
 
@@ -1618,81 +1397,65 @@ Release an IP address that was previously reserved by the user.
 - `type ip`
    unicode
 
-- `param force`
-   If True, allows a MAAS administrator to force an IP address to be
-    released, even if it is not a user-reserved IP address or does not
-    belong to the requesting user. Use with caution.
-
-- `type force`
-   bool
-
 Returns 404 if the provided IP address is not found.
 
 ##### `POST /api/2.0/ipaddresses/` `op=reserve`
 
 Reserve an IP address for use outside of MAAS.
 
-Returns an IP adddress, which MAAS will not allow any of its known nodes
-to use; it is free for use by the requesting user until released by
-the user.
+Returns an IP adddress, which MAAS will not allow any of its known nodes to
+use; it is free for use by the requesting user until released by the user.
 
-The user may supply either a subnet or a specific IP address within
-a subnet.
+The user may supply either a subnet or a specific IP address within a
+subnet.
 
 - `param subnet`
-   CIDR representation of the subnet on which the IP reservation
-    is required. e.g. 10.1.2.0/24
+   CIDR representation of the subnet on which the IP reservation is
+   required. e.g. 10.1.2.0/24
 
-- `param ip`
+- `param ip_address`
    The IP address, which must be within a known subnet.
 
-- `param ip\_address`
-   (Deprecated.) Alias for 'ip' parameter. Provided for
-    backward compatibility.
-
 - `param hostname`
-   The hostname to use for the specified IP address. If no domain
-    component is given, the default domain will be used.
+   The hostname to use for the specified IP address. If no domain component
+   is given, the default domain will be used.
 
 - `param mac`
    The MAC address that should be linked to this reservation.
 
 Returns 400 if there is no subnet in MAAS matching the provided one, or a
-ip\_address is supplied, but a corresponding subnet could not be found.
+ip_address is supplied, but a corresponding subnet could not be found.
 Returns 503 if there are no more IP addresses available.
 
 ### IP Range
 
 Manage IP range.
 
-##### `DELETE /api/2.0/ipranges/{id}/`
+##### `DELETE /api/2.0/ipranges/{iprange_id}/`
 
 Delete IP range.
 
-Returns 403 if not owner of IP range. Returns 404 if the IP range is
-not found.
+Returns 403 if not owner of IP range. Returns 404 if the IP range is not
+found.
 
-##### `GET /api/2.0/ipranges/{id}/`
+##### `GET /api/2.0/ipranges/{iprange_id}/`
 
 Read IP range.
 
 Returns 404 if the IP range is not found.
 
-##### `PUT /api/2.0/ipranges/{id}/`
+##### `PUT /api/2.0/ipranges/{iprange_id}/`
 
 Update IP range.
 
-- `param start\_ip`
+- `param start_ip`
    Start IP address of this range (inclusive).
 
-- `param end\_ip`
+- `param end_ip`
    End IP address of this range (inclusive).
 
-- `param comment`
-   A description of this range. (optional)
-
-Returns 403 if not owner of IP range. Returns 404 if the IP Range is
-not found.
+Returns 403 if not owner of IP range. Returns 404 if the IP Range is not
+found.
 
 ### IP Ranges
 
@@ -1709,17 +1472,14 @@ Create an IP range.
 - `param type`
    Type of this range. (dynamic or reserved)
 
-- `param start\_ip`
+- `param start_ip`
    Start IP address of this range (inclusive).
 
-- `param end\_ip`
+- `param end_ip`
    End IP address of this range (inclusive).
 
 - `param subnet`
    Subnet this range is associated with. (optional)
-
-- `param comment`
-   A description of this range. (optional)
 
 Returns 403 if standard users tries to create a dynamic IP range.
 
@@ -1727,19 +1487,19 @@ Returns 403 if standard users tries to create a dynamic IP range.
 
 Manage a node's or device's interface.
 
-##### `DELETE /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/interfaces/{interface_id}/`
 
 Delete interface on node.
 
 Returns 404 if the node or interface is not found.
 
-##### `GET /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/interfaces/{interface_id}/`
 
 Read interface on node.
 
 Returns 404 if the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=add_tag`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/{interface_id}/` `op=add_tag`
 
 Add a tag to interface on a node.
 
@@ -1749,59 +1509,43 @@ Add a tag to interface on a node.
 Returns 404 if the node or interface is not found. Returns 403 if the user
 is not allowed to update the interface.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=disconnect`
-
-Disconnect an interface.
-
-Deletes any linked subnets and IP addresses, and disconnects the interface
-from any associated VLAN.
-
-Returns 404 if the node or interface is not found.
-
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=link_subnet`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/{interface_id}/` `op=link_subnet`
 
 Link interface to a subnet.
 
 - `param mode`
-   AUTO, DHCP, STATIC or LINK\_UP connection to subnet.
+   AUTO, DHCP, STATIC or LINK_UP connection to subnet.
 
 - `param subnet`
    Subnet linked to interface.
 
-- `param ip\_address`
+- `param ip_address`
    IP address for the interface in subnet. Only used when mode is STATIC.
-    If not provided an IP address from subnet will be auto selected.
+   If not provided an IP address from subnet will be auto selected.
 
-- `param force`
-   If True, allows LINK\_UP to be set on the interface even if other
-    links already exist. Also allows the selection of any VLAN, even a
-    VLAN MAAS does not believe the interface to currently be on. Using
-    this option will cause all other links on the interface to be deleted.
-    (Defaults to False.)
-
-- `param default\_gateway`
+- `param default_gateway`
    True sets the gateway IP address for the subnet as the default gateway
-    for the node this interface belongs to. Option can only be used with
-    the AUTO and STATIC modes.
+   for the node this interface belongs to. Option can only be used with the
+   AUTO and STATIC modes.
 
-Mode definitions: AUTO - Assign this interface a static IP address from
-the provided subnet. The subnet must be a managed subnet. The IP address
-will not be assigned until the node goes to be deployed.
+Mode definitions: AUTO - Assign this interface a static IP address from the
+provided subnet. The subnet must be a managed subnet. The IP address will
+not be assigned until the node goes to be deployed.
 
 DHCP - Bring this interface up with DHCP on the given subnet. Only one
-subnet can be set to DHCP. If the subnet is managed this interface will
-pull from the dynamic IP range.
+subnet can be set to DHCP. If the subnet is managed this interface will pull
+from the dynamic IP range.
 
-STATIC - Bring this interface up with a STATIC IP address on the
-given subnet. Any number of STATIC links can exist on an interface.
+STATIC - Bring this interface up with a STATIC IP address on the given
+subnet. Any number of STATIC links can exist on an interface.
 
-LINK\_UP - Bring this interface up only on the given subnet. No IP address
+LINK_UP - Bring this interface up only on the given subnet. No IP address
 will be assigned to this interface. The interface cannot have any current
 AUTO, DHCP or STATIC links.
 
 Returns 404 if the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=remove_tag`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/{interface_id}/` `op=remove_tag`
 
 Remove a tag from interface on a node.
 
@@ -1811,22 +1555,24 @@ Remove a tag from interface on a node.
 Returns 404 if the node or interface is not found. Returns 403 if the user
 is not allowed to update the interface.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=set_default_gateway`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/{interface_id}/`
+##### `op=set_default_gateway`
 
 Set the node to use this interface as the default gateway.
 
-If this interface has more than one subnet with a gateway IP in the same
-IP address family then specifying the ID of the link on this interface
-is required.
+If this interface has more than one subnet with a gateway IP in the same IP
+address family then specifying the ID of the link on this interface is
+required.
 
-- `param link\_id`
+- `param link_id`
    ID of the link on this interface to select the default gateway IP
-    address from.
+   address from.
 
 Returns 400 if the interface has not AUTO or STATIC links. Returns 404 if
 the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/` `op=unlink_subnet`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/{interface_id}/`
+##### `op=unlink_subnet`
 
 Unlink interface to a subnet.
 
@@ -1835,82 +1581,29 @@ Unlink interface to a subnet.
 
 Returns 404 if the node or interface is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/interfaces/{interface_id}/`
 
 Update interface on node.
 
-Machines must has status of Ready or Broken to have access to all options.
-Machines with Deployed status can only have the name and/or mac\_address
-updated for an interface. This is intented to allow a bad interface to be
-replaced while the machine remains deployed.
+Fields for physical interface: :param name: Name of the interface. :param
+mac_address: MAC address of the interface. :param tags: Tags for the
+interface. :param vlan: Untagged VLAN the interface is connected to.
 
-Fields for physical interface:
+Fields for bond interface: :param name: Name of the interface. :param
+mac_address: MAC address of the interface. :param tags: Tags for the
+interface. :param vlan: Tagged VLAN the interface is connected to. :param
+parents: Parent interfaces that make this bond.
 
-- `param name`
-   Name of the interface.
-
-- `param mac\_address`
-   MAC address of the interface.
-
-- `param tags`
-   Tags for the interface.
-
-- `param vlan`
-   Untagged VLAN the interface is connected to. If not set then the
-    interface is considered disconnected.
-
-Fields for bond interface:
-
-- `param name`
-   Name of the interface.
-
-- `param mac\_address`
-   MAC address of the interface.
-
-- `param tags`
-   Tags for the interface.
-
-- `param vlan`
-   Untagged VLAN the interface is connected to. If not set then the
-    interface is considered disconnected.
-
-- `param parents`
-   Parent interfaces that make this bond.
-
-Fields for VLAN interface:
-
-- `param tags`
-   Tags for the interface.
-
-- `param vlan`
-   Tagged VLAN the interface is connected to.
-
-- `param parent`
-   Parent interface for this VLAN interface.
-
-Fields for bridge interface:
-
-- `param name`
-   Name of the interface.
-
-- `param mac\_address`
-   MAC address of the interface.
-
-- `param tags`
-   Tags for the interface.
-
-- `param vlan`
-   VLAN the interface is connected to.
-
-- `param parent`
-   Parent interface for this bridge interface.
+Fields for VLAN interface: :param tags: Tags for the interface. :param
+vlan: VLAN the interface is connected to. :param parent: Parent interface
+for this VLAN interface.
 
 Following are extra parameters that can be set on all interface types:
 
 - `param mtu`
    Maximum transmission unit.
 
-- `param accept\_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
 - `param autoconf`
@@ -1918,122 +1611,28 @@ Following are extra parameters that can be set on all interface types:
 
 Following are parameters specific to bonds:
 
-- `param bond-mode`
+- `param bond_mode`
    The operating mode of the bond. (Default: active-backup).
 
-- `param bond-miimon`
+- `param bond_miimon`
    The link monitoring freqeuncy in milliseconds. (Default: 100).
 
-- `param bond-downdelay`
+- `param bond_downdelay`
    Specifies the time, in milliseconds, to wait before disabling a slave
     after a link failure has been detected.
 
-- `param bond-updelay`
+- `param bond_updelay`
    Specifies the time, in milliseconds, to wait before enabling a slave
     after a link recovery has been detected.
 
-- `param bond-lacp\_rate`
+- `param bond_lacp_rate`
    Option specifying the rate in which we'll ask our link partner to
-    transmit LACPDU packets in 802.3ad mode. Available options are fast
-    or slow. (Default: slow).
+    transmit LACPDU packets in 802.3ad mode. Available options are fast or
+    slow. (Default: slow).
 
-- `param bond-xmit\_hash\_policy`
+- `param bond_xmit_hash_policy`
    The transmit hash policy to use for slave selection in balance-xor,
     802.3ad, and tlb modes.
-
-Supported bonding modes (bond-mode):
-
-balance-rr - Transmit packets in sequential order from the first available
-slave through the last. This mode provides load balancing and
-fault tolerance.
-
-active-backup - Only one slave in the bond is active. A different slave
-becomes active if, and only if, the active slave fails. The bond's MAC
-address is externally visible on only one port (network adapter) to avoid
-confusing the switch.
-
-balance-xor - Transmit based on the selected transmit hash policy. The
-default policy is a simple \[(source MAC address XOR'd with destination
-MAC address XOR packet type ID) modulo slave count\].
-
-broadcast - Transmits everything on all slave interfaces. This mode
-provides fault tolerance.
-
-802.3ad - IEEE 802.3ad Dynamic link aggregation. Creates aggregation
-groups that share the same speed and duplex settings. Utilizes all slaves
-in the active aggregator according to the 802.3ad specification.
-
-balance-tlb - Adaptive transmit load balancing: channel bonding that does
-not require any special switch support.
-
-balance-alb - Adaptive load balancing: includes balance-tlb plus receive
-load balancing (rlb) for IPV4 traffic, and does not require any special
-switch support. The receive load balancing is achieved by ARP negotiation.
-
-Following are parameters specific to bridges:
-
-- `param bridge\_stp`
-   Turn spanning tree protocol on or off. (Default: False).
-
-- `param bridge\_fd`
-   Set bridge forward delay to time seconds. (Default: 15).
-
-Returns 404 if the node or interface is not found.
-
-### Interfaces
-
-Manage interfaces on a node.
-
-##### `GET /api/2.0/nodes/{system_id}/interfaces/`
-
-List all interfaces belonging to a machine, device, or rack controller.
-
-Returns 404 if the node is not found.
-
-##### `POST /api/2.0/nodes/{system_id}/interfaces/` `op=create_bond`
-
-Create a bond interface on a machine.
-
-- `param name`
-   Name of the interface.
-
-- `param mac\_address`
-   MAC address of the interface.
-
-- `param tags`
-   Tags for the interface.
-
-- `param vlan`
-   VLAN the interface is connected to. If not provided then the interface
-    is considered disconnected.
-
-- `param parents`
-   Parent interfaces that make this bond.
-
-Following are parameters specific to bonds:
-
-- `param bond\_mode`
-   The operating mode of the bond. (Default: active-backup).
-
-- `param bond\_miimon`
-   The link monitoring freqeuncy in milliseconds. (Default: 100).
-
-- `param bond\_downdelay`
-   Specifies the time, in milliseconds, to wait before disabling a slave
-    after a link failure has been detected.
-
-- `param bond\_updelay`
-   Specifies the time, in milliseconds, to wait before enabling a slave
-    after a link recovery has been detected.
-
-- `param bond\_lacp\_rate`
-   Option specifying the rate in which we'll ask our link partner to
-    transmit LACPDU packets in 802.3ad mode. Available options are fast
-    or slow. (Default: slow).
-
-- `param bond\_xmit\_hash\_policy`
-   The transmit hash policy to use for slave selection in balance-xor,
-    802.3ad, and tlb modes. (Default: layer2)
 
 Supported bonding modes (bond-mode): balance-rr - Transmit packets in
 sequential order from the first available slave through the last. This
@@ -2062,27 +1661,26 @@ balance-alb - Adaptive load balancing: includes balance-tlb plus receive
 load balancing (rlb) for IPV4 traffic, and does not require any special
 switch support. The receive load balancing is achieved by ARP negotiation.
 
-Following are extra parameters that can be set on the interface:
+Returns 404 if the node or interface is not found.
 
-- `param mtu`
-   Maximum transmission unit.
+### Interfaces
 
-- `param accept\_ra`
-   Accept router advertisements. (IPv6 only)
+Manage interfaces on a node.
 
-- `param autoconf`
-   Perform stateless autoconfiguration. (IPv6 only)
+##### `GET /api/2.0/nodes/{system_id}/interfaces/`
+
+List all interfaces belonging to a machine, device, or rack controller.
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/` `op=create_bridge`
+##### `POST /api/2.0/nodes/{system_id}/interfaces/` `op=create_bond`
 
-Create a bridge interface on a machine.
+Create a bond interface on a machine.
 
 - `param name`
    Name of the interface.
 
-- `param mac\_address`
+- `param mac_address`
    MAC address of the interface.
 
 - `param tags`
@@ -2091,23 +1689,67 @@ Create a bridge interface on a machine.
 - `param vlan`
    VLAN the interface is connected to.
 
-- `param parent`
-   Parent interface for this bridge interface.
+- `param parents`
+   Parent interfaces that make this bond.
 
-Following are parameters specific to bridges:
+Following are parameters specific to bonds:
 
-- `param bridge\_stp`
-   Turn spanning tree protocol on or off. (Default: False).
+- `param bond_mode`
+   The operating mode of the bond. (Default: active-backup).
 
-- `param bridge\_fd`
-   Set bridge forward delay to time seconds. (Default: 15).
+- `param bond_miimon`
+   The link monitoring freqeuncy in milliseconds. (Default: 100).
+
+- `param bond_downdelay`
+   Specifies the time, in milliseconds, to wait before disabling a slave
+   after a link failure has been detected.
+
+- `param bond_updelay`
+   Specifies the time, in milliseconds, to wait before enabling a slave
+   after a link recovery has been detected.
+
+- `param bond_lacp_rate`
+   Option specifying the rate in which we'll ask our link partner to
+   transmit LACPDU packets in 802.3ad mode. Available options are fast or
+   slow. (Default: slow).
+
+- `param bond_xmit_hash_policy`
+   The transmit hash policy to use for slave selection in balance-xor,
+   802.3ad, and tlb modes. (Default: layer2)
+
+Supported bonding modes (bond-mode): balance-rr - Transmit packets in
+sequential order from the first available slave through the last. This mode
+provides load balancing and fault tolerance.
+
+active-backup - Only one slave in the bond is active. A different slave
+becomes active if, and only if, the active slave fails. The bond's MAC
+address is externally visible on only one port (network adapter) to avoid
+confusing the switch.
+
+balance-xor - Transmit based on the selected transmit hash policy. The
+default policy is a simple \[(source MAC address XOR'd with destination MAC
+address XOR packet type ID) modulo slave count\].
+
+broadcast - Transmits everything on all slave interfaces. This mode provides
+fault tolerance.
+
+802.3ad - IEEE 802.3ad Dynamic link aggregation. Creates aggregation groups
+that share the same speed and duplex settings. Utilizes all slaves in the
+active aggregator according to the 802.3ad specification.
+
+balance-tlb - Adaptive transmit load balancing: channel bonding that does
+not require any special switch support.
+
+balance-alb - Adaptive load balancing: includes balance-tlb plus receive
+load balancing (rlb) for IPV4 traffic, and does not require any special
+switch support. The receive load balancing is achieved by ARP negotiation.
 
 Following are extra parameters that can be set on the interface:
 
 - `param mtu`
    Maximum transmission unit.
 
-- `param accept\_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
 - `param autoconf`
@@ -2122,22 +1764,21 @@ Create a physical interface on a machine and device.
 - `param name`
    Name of the interface.
 
-- `param mac\_address`
+- `param mac_address`
    MAC address of the interface.
 
 - `param tags`
    Tags for the interface.
 
 - `param vlan`
-   Untagged VLAN the interface is connected to. If not provided then the
-    interface is considered disconnected.
+   Untagged VLAN the interface is connected to.
 
 Following are extra parameters that can be set on the interface:
 
 - `param mtu`
    Maximum transmission unit.
 
-- `param accept\_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
 - `param autoconf`
@@ -2163,7 +1804,7 @@ Following are extra parameters that can be set on the interface:
 - `param mtu`
    Maximum transmission unit.
 
-- `param accept\_ra`
+- `param accept_ra`
    Accept router advertisements. (IPv6 only)
 
 - `param autoconf`
@@ -2190,11 +1831,11 @@ Update license key.
 - `param osystem`
    Operating system that the key belongs to.
 
-- `param distro\_series`
+- `param distro_series`
    OS release that the key belongs to.
 
-- `param license\_key`
-   License key for osystem/distro\_series combo.
+- `param license_key`
+   License key for osystem/distro_series combo.
 
 ### License Keys
 
@@ -2211,11 +1852,11 @@ Define a license key.
 - `param osystem`
    Operating system that the key belongs to.
 
-- `param distro\_series`
+- `param distro_series`
    OS release that the key belongs to.
 
-- `param license\_key`
-   License key for osystem/distro\_series combo.
+- `param license_key`
+   License key for osystem/distro_series combo.
 
 ### MAAS server
 
@@ -2228,118 +1869,51 @@ Get a config value.
 - `param name`
    The name of the config item to be retrieved.
 
-Available configuration items:
+Available configuration items: 
 
-active\_discovery\_interval
-   Active subnet mapping interval. When enabled, each rack will scan
-    subnets enabled for active mapping. This helps ensure discovery
-    information is accurate and complete.
-
-boot\_images\_auto\_import
-   Automatically import/refresh the boot images every 60 minutes.
-
-commissioning\_distro\_series
-   Default Ubuntu release used for commissioning.
-
-completed\_intro
-   Marks if the initial intro has been completed..
-
-curtin\_verbose
-   Run the fast-path installer with higher verbosity. This provides more
-    detail in the installation logs..
-
-default\_distro\_series
-   Default OS release used for deployment.
-
-default\_dns\_ttl
-   Default Time-To-Live for the DNS.. If no TTL value is specified at a
-    more specific point this is how long DNS responses are valid,
-    in seconds.
-
-default\_min\_hwe\_kernel
-   Default Minimum Kernel Version. The default minimum kernel version
-    used on all new and commissioned nodes.
-
-default\_osystem
-   Default operating system used for deployment.
-
-default\_storage\_layout
-   Default storage layout. Storage layout that is applied to a node when
-    it is commissioned. Available choices are: 'bcache' (Bcache layout),
-    'flat' (Flat layout), 'lvm' (LVM layout).
-
-disk\_erase\_with\_quick\_erase
-   Use quick erase by default when erasing disks.. This is not a secure
-    erase; it wipes only the beginning and end of each disk.
-
-disk\_erase\_with\_secure\_erase
-   Use secure erase by default when erasing disks.. Will only be used on
-    devices that support secure erase. Other devices will fall back to
-    full wipe or quick erase depending on the selected options.
-
-dnssec\_validation
-   Enable DNSSEC validation of upstream zones. Only used when MAAS is
-    running its own DNS server. This value is used as the value of
-    'dnssec\_validation' in the DNS server config.
-
-enable\_analytics
-   Enable MAAS UI usage of Google Analytics. This helps the developers of
-    MAAS to identify usage statistics to further development..
-
-enable\_disk\_erasing\_on\_release
-   Erase nodes' disks prior to releasing.. Forces users to always erase
-    disks when releasing.
-
-enable\_http\_proxy
-   Enable the use of an APT and HTTP/HTTPS proxy. Provision nodes to use
-    the built-in HTTP proxy (or user specified proxy) for APT. MAAS also
-    uses the proxy for downloading boot images.
-
-enable\_third\_party\_drivers
-   Enable the installation of proprietary drivers (i.e. HPVSA).
-
-http\_proxy
-   Proxy for APT and HTTP/HTTPS. This will be passed onto provisioned
-    nodes to use as a proxy for APT traffic. MAAS also uses the proxy for
-    downloading boot images. If no URL is provided, the built-in MAAS
-    proxy will be used.
-
-kernel\_opts
-   Boot parameters to pass to the kernel by default.
-
-maas\_name
-   MAAS name.
-
-network\_discovery
-   . When enabled, MAAS will use passive techniques (such as listening to
-    ARP requests and mDNS advertisements) to observe networks attached to
-    rack controllers. Active subnet mapping will also be available to be
-    enabled on the configured subnets.
-
-ntp\_external\_only
-   Use external NTP servers only. Configure all region controller hosts,
-    rack controller hosts, and subsequently deployed machines to refer
-    directly to the configured external NTP servers. Otherwise only region
-    controller hosts will be configured to use those external NTP servers,
-    rack contoller hosts will in turn refer to the regions' NTP servers,
-    and deployed machines will refer to the racks' NTP servers.
-
-ntp\_servers
-   Addresses of NTP servers. NTP servers, specified as IP addresses or
-    hostnames delimited by commas and/or spaces, to be used as time
-    references for MAAS itself, the machines MAAS deploys, and devices
-    that make use of MAAS's DHCP services.
-
-upstream\_dns
-   Upstream DNS used to resolve domains not managed by this MAAS
-    (space-separated IP addresses). Only used when MAAS is running its own
-    DNS server. This value is used as the value of 'forwarders' in the DNS
-    server config.
-
-windows\_kms\_host
-   Windows KMS activation host. FQDN or IP address of the host that
-    provides the KMS Windows activation service. (Only needed for Windows
-    deployments using KMS activation.)
+- boot_images_auto_import: Automatically import/refresh the boot images every
+  60 minutes. 
+- commissioning_distro_series: Default Ubuntu release used for commissioning. 
+- curtin_verbose: Run the fast-path installer with higher verbosity. This
+  provides more detail in the installation logs.
+- default_distro_series: Default OS release used for deployment. 
+- default_dns_ttl: Default Time-To-Live for the DNS.. If no TTL value is
+  specified at a more specific point this is how long DNS responses are valid, in
+  seconds. 
+- default_min_hwe_kernel: Default Minimum Kernel Version. The default minimum
+  kernel version used on all new and commissioned nodes. -
+- default_osystem: Default operating system used for deployment. 
+- default_storage_layout: Default storage layout. Storage layout that is
+  applied to a node when it is commissioned. Available choices are: 'bcache'
+(Bcache layout), 'flat' (Flat layout), 'lvm' (LVM layout). 
+- dnssec_validation: Enable DNSSEC validation of upstream zones. Only used when
+  MAAS is running its own DNS server. This value is used as the value of
+'dnssec_validation' in the DNS server config. 
+- enable_disk_erasing_on_release: Erase nodes' disks prior to releasing.
+- enable_http_proxy: Enable the use of an APT and HTTP/HTTPS proxy.  Provision
+  nodes to use the built-in HTTP proxy (or user specified proxy) for APT. MAAS
+  also uses the proxy for downloading boot images. 
+- enable_third_party_drivers: Enable the installation of proprietary drivers
+  (i.e. HPVSA). 
+- http_proxy: Proxy for APT and HTTP/HTTPS. This will be passed onto
+  provisioned nodes to use as a proxy for APT traffic. MAAS also uses the proxy
+  for downloading boot images. If no URL is provided, the built-in MAAS proxy
+  will be used. 
+- kernel_opts: Boot parameters to pass to the kernel by default. 
+- maas_name: MAAS name. 
+- main_archive: Main archive. Archive used by nodes to retrieve packages for
+  Intel architectures.  E.g.  <http://archive.ubuntu.com/ubuntu>. 
+- ntp_server: Address of NTP server for nodes. NTP server address passed to nodes
+  via a DHCP response.  e.g. ntp.ubuntu.com 
+- ports_archive: Ports archive.  Archive used by nodes to retrieve packages for
+  non-Intel architectures. E.g. <http://ports.ubuntu.com/ubuntu-ports>. 
+- upstream_dns: Upstream DNS used to
+  resolve domains not managed by this MAAS (space-separated IP addresses).  Only
+  used when MAAS is running its own DNS server. This value is used as the value
+  of 'forwarders' in the DNS server config. 
+- windows_kms_host: Windows KMS activation host. FQDN or IP address of the host
+  that provides the KMS Windows activation service. (Only needed for Windows
+  deployments using KMS activation.)
 
 ##### `POST /api/2.0/maas/` `op=set_config`
 
@@ -2351,124 +1925,56 @@ Set a config value.
 - `param value`
    The value of the config item to be set.
 
-Available configuration items:
+Available configuration items: 
 
-active\_discovery\_interval
-   Active subnet mapping interval. When enabled, each rack will scan
-    subnets enabled for active mapping. This helps ensure discovery
-    information is accurate and complete.
-
-boot\_images\_auto\_import
-   Automatically import/refresh the boot images every 60 minutes.
-
-commissioning\_distro\_series
-   Default Ubuntu release used for commissioning.
-
-completed\_intro
-   Marks if the initial intro has been completed..
-
-curtin\_verbose
-   Run the fast-path installer with higher verbosity. This provides more
-    detail in the installation logs..
-
-default\_distro\_series
-   Default OS release used for deployment.
-
-default\_dns\_ttl
-   Default Time-To-Live for the DNS.. If no TTL value is specified at a
-    more specific point this is how long DNS responses are valid,
-    in seconds.
-
-default\_min\_hwe\_kernel
-   Default Minimum Kernel Version. The default minimum kernel version
-    used on all new and commissioned nodes.
-
-default\_osystem
-   Default operating system used for deployment.
-
-default\_storage\_layout
-   Default storage layout. Storage layout that is applied to a node when
-    it is commissioned. Available choices are: 'bcache' (Bcache layout),
-    'flat' (Flat layout), 'lvm' (LVM layout).
-
-disk\_erase\_with\_quick\_erase
-   Use quick erase by default when erasing disks.. This is not a secure
-    erase; it wipes only the beginning and end of each disk.
-
-disk\_erase\_with\_secure\_erase
-   Use secure erase by default when erasing disks.. Will only be used on
-    devices that support secure erase. Other devices will fall back to
-    full wipe or quick erase depending on the selected options.
-
-dnssec\_validation
-   Enable DNSSEC validation of upstream zones. Only used when MAAS is
-    running its own DNS server. This value is used as the value of
-    'dnssec\_validation' in the DNS server config.
-
-enable\_analytics
-   Enable MAAS UI usage of Google Analytics. This helps the developers of
-    MAAS to identify usage statistics to further development..
-
-enable\_disk\_erasing\_on\_release
-   Erase nodes' disks prior to releasing.. Forces users to always erase
-    disks when releasing.
-
-enable\_http\_proxy
-   Enable the use of an APT and HTTP/HTTPS proxy. Provision nodes to use
-    the built-in HTTP proxy (or user specified proxy) for APT. MAAS also
-    uses the proxy for downloading boot images.
-
-enable\_third\_party\_drivers
-   Enable the installation of proprietary drivers (i.e. HPVSA).
-
-http\_proxy
-   Proxy for APT and HTTP/HTTPS. This will be passed onto provisioned
-    nodes to use as a proxy for APT traffic. MAAS also uses the proxy for
-    downloading boot images. If no URL is provided, the built-in MAAS
-    proxy will be used.
-
-kernel\_opts
-   Boot parameters to pass to the kernel by default.
-
-maas\_name
-   MAAS name.
-
-network\_discovery
-   . When enabled, MAAS will use passive techniques (such as listening to
-    ARP requests and mDNS advertisements) to observe networks attached to
-    rack controllers. Active subnet mapping will also be available to be
-    enabled on the configured subnets.
-
-ntp\_external\_only
-   Use external NTP servers only. Configure all region controller hosts,
-    rack controller hosts, and subsequently deployed machines to refer
-    directly to the configured external NTP servers. Otherwise only region
-    controller hosts will be configured to use those external NTP servers,
-    rack contoller hosts will in turn refer to the regions' NTP servers,
-    and deployed machines will refer to the racks' NTP servers.
-
-ntp\_servers
-   Addresses of NTP servers. NTP servers, specified as IP addresses or
-    hostnames delimited by commas and/or spaces, to be used as time
-    references for MAAS itself, the machines MAAS deploys, and devices
-    that make use of MAAS's DHCP services.
-
-upstream\_dns
-   Upstream DNS used to resolve domains not managed by this MAAS
-    (space-separated IP addresses). Only used when MAAS is running its own
-    DNS server. This value is used as the value of 'forwarders' in the DNS
-    server config.
-
-windows\_kms\_host
-   Windows KMS activation host. FQDN or IP address of the host that
-    provides the KMS Windows activation service. (Only needed for Windows
-    deployments using KMS activation.)
+- boot_images_auto_import: Automatically import/refresh the boot images every
+  60 minutes.  -commissioning_distro_series: Default Ubuntu release used for
+  commissioning. 
+- curtin_verbose: Run the fast-path installer with higher verbosity. This
+  provides more detail in the installation logs.. 
+- default_distro_series: Default OS release used for deployment. 
+- default_dns_ttl: Default Time-To-Live for the DNS.. If no TTL value is
+  specified at a more specific point this is how long DNS responses are valid in seconds. 
+- default_min_hwe_kernel: Default Minimum Kernel Version. The default minimum
+  kernel version used on all new and commissioned nodes. 
+- default_osystem: Default operating system used for deployment. 
+- default_storage_layout: Default storage layout. Storage layout that is
+  applied to a node when it is commissioned. Available choices are: 'bcache'
+  (Bcache layout), 'flat' (Flat layout), 'lvm' (LVM layout). 
+- dnssec_validation: Enable DNSSEC validation of upstream zones. Only used when
+  MAAS is running its own DNS server. This value is used as the value of
+  'dnssec_validation' in the DNS server config. 
+- enable_disk_erasing_on_release: Erase nodes' disks prior to releasing..
+- enable_http_proxy: Enable the use of an APT and HTTP/HTTPS proxy.  Provision
+  nodes to use the built-in HTTP proxy (or user specified proxy) for APT. MAAS
+also uses the proxy for downloading boot images. 
+- enable_third_party_drivers: Enable the installation of proprietary drivers
+  (i.e. HPVSA). 
+- http_proxy: Proxy for APT and HTTP/HTTPS. This will be passed onto
+  provisioned nodes to use as a proxy for APT traffic. MAAS also uses the proxy
+  for downloading boot images. If no URL is provided, the built-in MAAS proxy
+  will be used. 
+- kernel_opts: Boot parameters to pass to the kernel by default. 
+- maas_name: MAAS name. 
+- main_archive: Main archive. Archive used by nodes to retrieve packages for
+  Intel architectures.  E.g.  <http://archive.ubuntu.com/ubuntu>. 
+- ntp_server: Address of NTP server for nodes. NTP server address passed to
+  nodes via a DHCP response.  e.g. ntp.ubuntu.com 
+- ports_archive: Ports archive. Archive used by nodes to retrieve packages for
+  non-Intel architectures. E.g. <http://ports.ubuntu.com/ubuntu-ports>. 
+- upstream_dns: Upstream DNS used
+  to resolve domains not managed by this MAAS (space-separated IP addresses).
+  Only used when MAAS is running its own DNS server. This value is used as the
+  value of 'forwarders' in the DNS server config. 
+- windows_kms_host: Windows KMS activation host. FQDN or IP address of the host
+  that provides the KMS Windows activation service. (Only needed for Windows
+  deployments using KMS activation.)
 
 ### Machine
 
 Manage an individual Machine.
 
-> The Machine is identified by its system\_id.
+The Machine is identified by its system_id.
 
 ##### `DELETE /api/2.0/machines/{system_id}/`
 
@@ -2493,9 +1999,9 @@ For example, LLDP and `lshw` XML dumps.
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
 like "lldp" or "lshw".
 
-Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
-additional encoding like base-64.
+Note that this is returned as BSON and not JSON. This is for efficiency, but
+mainly because JSON can't do binary content without applying additional
+encoding like base-64.
 
 Returns 404 if the node is not found.
 
@@ -2503,15 +2009,15 @@ Returns 404 if the node is not found.
 
 Return the rendered curtin configuration for the machine.
 
-Returns 404 if the machine could not be found. Returns 403 if the user
-does not have permission to get the curtin configuration.
+Returns 404 if the machine could not be found. Returns 403 if the user does
+not have permission to get the curtin configuration.
 
 ##### `GET /api/2.0/machines/{system_id}/` `op=power_parameters`
 
 Obtain power parameters.
 
-This method is reserved for admin users and returns a 403 if the user is
-not one.
+This method is reserved for admin users and returns a 403 if the user is not
+ one.
 
 This returns the power parameters, if any, configured for a node. For some
 types of power control this will include private information such as
@@ -2523,12 +2029,12 @@ Returns 404 if the node is not found.
 
 Query the power state of a node.
 
-Send a request to the node's power controller which asks it about the
-node's state. The reply to this could be delayed by up to 30 seconds while
-waiting for the power controller to respond. Use this method sparingly as
-it ties up an appserver thread while waiting.
+Send a request to the node's power controller which asks it about the node's
+state. The reply to this could be delayed by up to 30 seconds while waiting
+for the power controller to respond. Use this method sparingly as it ties up
+an appserver thread while waiting.
 
-- `param system\_id`
+- `param system_id`
    The node to query.
 
 - `return`
@@ -2548,8 +2054,8 @@ Abort a machine's current operation.
 
 This currently only supports aborting of the 'Disk Erasing' operation.
 
-Returns 404 if the machine could not be found. Returns 403 if the user
-does not have permission to abort the current operation.
+Returns 404 if the machine could not be found. Returns 403 if the user does
+not have permission to abort the current operation.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=clear_default_gateways`
 
@@ -2570,32 +2076,32 @@ If the default gateways need to be specific for this machine you can set
 which interface and subnet's gateway to use when this machine is deployed
 with the interfaces set-default-gateway API.
 
-Returns 404 if the machine could not be found. Returns 403 if the user
-does not have permission to clear the default gateways.
+Returns 404 if the machine could not be found. Returns 403 if the user does
+not have permission to clear the default gateways.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=commission`
 
 Begin commissioning process for a machine.
 
-- `param enable\_ssh`
-   Whether to enable SSH for the commissioning environment using the
-    user's SSH key(s).
+- `param enable_ssh`
+   Whether to enable SSH for the commissioning environment using the user's
+   SSH key(s).
 
-- `type enable\_ssh`
+- `type enable_ssh`
    bool ('0' for False, '1' for True)
 
-- `param skip\_networking`
+- `param skip_networking`
    Whether to skip re-configuring the networking on the machine after the
-    commissioning has completed.
+   commissioning has completed.
 
-- `type skip\_networking`
+- `type skip_networking`
    bool ('0' for False, '1' for True)
 
-- `param skip\_storage`
+- `param skip_storage`
    Whether to skip re-configuring the storage on the machine after the
-    commissioning has completed.
+   commissioning has completed.
 
-- `type skip\_storage`
+- `type skip_storage`
    bool ('0' for False, '1' for True)
 
 A machine in the 'ready', 'declared' or 'failed test' state may initiate a
@@ -2610,25 +2116,25 @@ Returns 404 if the machine is not found.
 
 Deploy an operating system to a machine.
 
-- `param user\_data`
-   If present, this blob of user-data to be made available to the
-    machines through the metadata service.
+- `param user_data`
+   If present, this blob of user-data to be made available to the machines
+   through the metadata service.
 
-- `type user\_data`
+- `type user_data`
    base64-encoded unicode
 
-- `param distro\_series`
-   If present, this parameter specifies the OS release the machine
-    will use.
+- `param distro_series`
+   If present, this parameter specifies the OS release the machine will
+   use.
 
-- `type distro\_series`
+- `type distro_series`
    unicode
 
-- `param hwe\_kernel`
+- `param hwe_kernel`
    If present, this parameter specified the kernel to be used on the
-    machine
+   machine
 
-- `type hwe\_kernel`
+- `type hwe_kernel`
    unicode
 
 - `param comment`
@@ -2642,18 +2148,9 @@ with the encapsulation of binary data, but couldn't make it work with the
 framework in reasonable time so went for a dumb, manual encoding instead.
 
 Returns 404 if the machine is not found. Returns 403 if the user does not
-have permission to start the machine. Returns 503 if the start-up
-attempted to allocate an IP address, and there were no IP addresses
-available on the relevant cluster interface.
-
-##### `POST /api/2.0/machines/{system_id}/` `op=exit_rescue_mode`
-
-Exit rescue mode process for a machine.
-
-A machine in the 'rescue mode' state may exit the rescue mode process.
-
-Returns 404 if the machine is not found. Returns 403 if the user does not
-have permission to exit the rescue mode process for this machine.
+have permission to start the machine. Returns 503 if the start-up attempted
+to allocate an IP address, and there were no IP addresses available on the
+relevant cluster interface.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=mark_broken`
 
@@ -2662,14 +2159,14 @@ Mark a node as 'broken'.
 If the node is allocated, release it first.
 
 - `param comment`
-   Optional comment for the event log. Will be displayed on the node as
-    an error description until marked fixed.
+   Optional comment for the event log. Will be displayed on the node as an
+   error description until marked fixed.
 
 - `type comment`
    unicode
 
-Returns 404 if the node is not found. Returns 403 if the user does not
-have permission to mark the node broken.
+Returns 404 if the node is not found. Returns 403 if the user does not have
+permission to mark the node broken.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=mark_fixed`
 
@@ -2690,12 +2187,12 @@ Mount a special-purpose filesystem, like tmpfs.
 
 - `param fstype`
    The filesystem type. This must be a filesystem that does not require a
-    block special device.
+   block special device.
 
-- `param mount\_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-- `param mount\_option`
+- `param mount_option`
    Options to pass to mount(8).
 
 Returns 403 when the user is not permitted to mount the partition.
@@ -2704,15 +2201,15 @@ Returns 403 when the user is not permitted to mount the partition.
 
 Power off a node.
 
-- `param stop\_mode`
-   An optional power off mode. If 'soft', perform a soft power down if
-    the node's power type supports it, otherwise perform a hard power off.
-    For all values other than 'soft', and by default, perform a hard
-    power off. A soft power off generally asks the OS to shutdown the
-    system gracefully before powering off, while a hard power off occurs
-    immediately without any warning to the OS.
+- `param stop_mode`
+   An optional power off mode. If 'soft', perform a soft power down if the
+   node's power type supports it, otherwise perform a hard power off. For
+   all values other than 'soft', and by default, perform a hard power off.
+   A soft power off generally asks the OS to shutdown the system gracefully
+   before powering off, while a hard power off occurs immediately without
+   any warning to the OS.
 
-- `type stop\_mode`
+- `type stop_mode`
    unicode
 
 - `param comment`
@@ -2721,18 +2218,18 @@ Power off a node.
 - `type comment`
    unicode
 
-Returns 404 if the node is not found. Returns 403 if the user does not
-have permission to stop the node.
+Returns 404 if the node is not found. Returns 403 if the user does not have
+permission to stop the node.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=power_on`
 
 Turn on a node.
 
-- `param user\_data`
+- `param user_data`
    If present, this blob of user-data to be made available to the nodes
-    through the metadata service.
+   through the metadata service.
 
-- `type user\_data`
+- `type user_data`
    base64-encoded unicode
 
 - `param comment`
@@ -2745,10 +2242,10 @@ Ideally we'd have MIME multipart and content-transfer-encoding etc. deal
 with the encapsulation of binary data, but couldn't make it work with the
 framework in reasonable time so went for a dumb, manual encoding instead.
 
-Returns 404 if the node is not found. Returns 403 if the user does not
-have permission to start the machine. Returns 503 if the start-up
-attempted to allocate an IP address, and there were no IP addresses
-available on the relevant cluster interface.
+Returns 404 if the node is not found. Returns 403 if the user does not have
+permission to start the machine. Returns 503 if the start-up attempted to
+allocate an IP address, and there were no IP addresses available on the
+relevant cluster interface.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=release`
 
@@ -2760,53 +2257,9 @@ Release a machine. Opposite of Machines.allocate.
 - `type comment`
    unicode
 
-- `param erase`
-   Erase the disk when releasing.
-
-- `type erase`
-   boolean
-
-- `param secure\_erase`
-   Use the drive's secure erase feature if available. In some cases this
-    can be much faster than overwriting the drive. Some drives implement
-    secure erasure by overwriting themselves so this could still be slow.
-
-- `type secure\_erase`
-   boolean
-
-- `param quick\_erase`
-   Wipe 1MiB at the start and at the end of the drive to make data
-    recovery inconvenient and unlikely to happen by accident. This is
-    not secure.
-
-- `type quick\_erase`
-   boolean
-
-If neither secure\_erase nor quick\_erase are specified, MAAS will
-overwrite the whole disk with null bytes. This can be very slow.
-
-If both secure\_erase and quick\_erase are specified and the drive does
-NOT have a secure erase feature, MAAS will behave as if only quick\_erase
-was specified.
-
-If secure\_erase is specified and quick\_erase is NOT specified and the
-drive does NOT have a secure erase feature, MAAS will behave as if
-secure\_erase was NOT specified, i.e. will overwrite the whole disk with
-null bytes. This can be very slow.
-
 Returns 404 if the machine is not found. Returns 403 if the user doesn't
 have permission to release the machine. Returns 409 if the machine is in a
 state where it may not be released.
-
-##### `POST /api/2.0/machines/{system_id}/` `op=rescue_mode`
-
-Begin rescue mode process for a machine.
-
-A machine in the 'deployed' or 'broken' state may initiate the rescue
-mode process.
-
-Returns 404 if the machine is not found. Returns 403 if the user does not
-have permission to start the rescue mode process for this machine.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=restore_default_configuration`
 
@@ -2849,58 +2302,58 @@ Changes the storage layout on the machine.
 
 This can only be preformed on an allocated machine.
 
-Note: This will clear the current storage layout and any extra
-configuration and replace it will the new layout.
+Note: This will clear the current storage layout and any extra configuration
+and replace it will the new layout.
 
-- `param storage\_layout`
+- `param storage_layout`
    Storage layout for the machine. (flat, lvm, and bcache)
 
 The following are optional for all layouts:
 
-- `param boot\_size`
+- `param boot_size`
    Size of the boot partition.
 
-- `param root\_size`
+- `param root_size`
    Size of the root partition.
 
-- `param root\_device`
+- `param root_device`
    Physical block device to place the root partition.
 
 The following are optional for LVM:
 
-- `param vg\_name`
+- `param vg_name`
    Name of created volume group.
 
-- `param lv\_name`
+- `param lv_name`
    Name of created logical volume.
 
-- `param lv\_size`
+- `param lv_size`
    Size of created logical volume.
 
 The following are optional for Bcache:
 
-- `param cache\_device`
+- `param cache_device`
    Physical block device to use as the cache device.
 
-- `param cache\_mode`
+- `param cache_mode`
    Cache mode for bcache device. (writeback, writethrough, writearound)
 
-- `param cache\_size`
+- `param cache_size`
    Size of the cache partition to create on the cache device.
 
-- `param cache\_no\_part`
-   Don't create a partition on the cache device. Use the entire disk as
-    the cache device.
+- `param cache_no_part`
+   Don't create a partition on the cache device. Use the entire disk as the
+   cache device.
 
 Returns 400 if the machine is currently not allocated. Returns 404 if the
-machine could not be found. Returns 403 if the user does not have
-permission to set the storage layout.
+machine could not be found. Returns 403 if the user does not have permission
+to set the storage layout.
 
 ##### `POST /api/2.0/machines/{system_id}/` `op=unmount_special`
 
 Unmount a special-purpose filesystem, like tmpfs.
 
-- `param mount\_point`
+- `param mount_point`
    Path on the filesystem to unmount.
 
 Returns 403 when the user is not permitted to unmount the partition.
@@ -2927,38 +2380,38 @@ Update a specific Machine.
 - `type architecture`
    unicode
 
-- `param min\_hwe\_kernel`
+- `param min_hwe_kernel`
    A string containing the minimum kernel version allowed to be ran on
     this machine.
 
-- `type min\_hwe\_kernel`
+- `type min_hwe_kernel`
    unicode
 
-- `param power\_type`
+- `param power_type`
    The new power type for this machine. If you use the default value,
-    power\_parameters will be set to the empty string. Available to admin
-    users. See the Power types\_ section for a list of the available
+    power_parameters will be set to the empty string. Available to admin
+    users. See the [Power types]() section for a list of the available
     power types.
 
-- `type power\_type`
+- `type power_type`
    unicode
 
-- `param power\_parameters\_{param1}`
+- `param [power_parameters](){param1}`
    The new value for the 'param1' power parameter. Note that this is
     dynamic as the available parameters depend on the selected value of
-    the Machine's power\_type. Available to admin users. See the
-    Power types\_ section for a list of the available power parameters for
-    each power type.
+    the Machine's power_type. Available to admin users. See the [Power
+    types]() section for a list of the available power parameters for each
+    power type.
 
-- `type power\_parameters\_{param1}`
+- `type [power_parameters](){param1}`
    unicode
 
-- `param power\_parameters\_skip\_check`
+- `param power_parameters_skip_check`
    Whether or not the new power parameters for this machine should be
     checked against the expected power parameters for the machine's power
 - `type ('true' or 'false'). The default is 'false'.`
 
-- `type power\_parameters\_skip\_check`
+- `type power_parameters_skip_check`
    unicode
 
 - `param zone`
@@ -2967,24 +2420,24 @@ Update a specific Machine.
 - `type zone`
    unicode
 
-- `param swap\_size`
+- `param swap_size`
    Specifies the size of the swap file, in bytes. Field accept K, M, G
     and T suffixes for values expressed respectively in kilobytes,
     megabytes, gigabytes and terabytes.
 
-- `type swap\_size`
+- `type swap_size`
    unicode
 
-- `param disable\_ipv4`
-   Deprecated. If specified, must be False.
+- `param disable_ipv4`
+   Whether or not IPv4 should be enabled on the machine.
 
-- `type disable\_ipv4`
+- `type disable_ipv4`
    boolean
 
-- `param cpu\_count`
+- `param cpu_count`
    The amount of CPU cores the machine has.
 
-- `type cpu\_count`
+- `type cpu_count`
    integer
 
 - `param memory`
@@ -3014,12 +2467,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type hostname`
    unicode
 
-- `param mac\_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the node owning the
     specified MAC address will be returned. This can be specified multiple
     times to see multiple nodes.
 
-- `type mac\_address`
+- `type mac_address`
    unicode
 
 - `param id`
@@ -3043,11 +2496,11 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type zone`
    unicode
 
-- `param agent\_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the nodes with matching
     agent names will be returned.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/machines/` `op=list_allocated`
@@ -3060,13 +2513,13 @@ Retrieve power parameters for multiple machines.
 
 - `param id`
    An optional list of system ids. Only machines with matching system ids
-    will be returned.
+   will be returned.
 
 - `type id`
    iterable
 
 - `return`
-   A dictionary of power parameters, keyed by machine system\_id.
+   A dictionary of power parameters, keyed by machine system_id.
 
 Raises 403 if the user is not an admin.
 
@@ -3080,7 +2533,7 @@ anonymous enlistment (and when the enlistment is done by a non-admin), the
 machine is held in the "New" state for approval by a MAAS admin.
 
 The minimum data required is: architecture=&lt;arch string&gt; (e.g.
-"i386/generic") mac\_addresses=&lt;value&gt; (e.g. "aa:bb:cc:dd:ee:ff")
+"i386/generic") mac_addresses=&lt;value&gt; (e.g. "aa:bb:cc:dd:ee:ff")
 
 - `param architecture`
    A string containing the architecture type of the machine. (For
@@ -3090,11 +2543,11 @@ The minimum data required is: architecture=&lt;arch string&gt; (e.g.
 - `type architecture`
    unicode
 
-- `param min\_hwe\_kernel`
+- `param min_hwe_kernel`
    A string containing the minimum kernel version allowed to be ran on
     this machine.
 
-- `type min\_hwe\_kernel`
+- `type min_hwe_kernel`
    unicode
 
 - `param subarchitecture`
@@ -3105,13 +2558,13 @@ The minimum data required is: architecture=&lt;arch string&gt; (e.g.
 - `type subarchitecture`
    unicode
 
-- `param mac\_addresses`
+- `param mac_addresses`
    One or more MAC addresses for the machine. To specify more than one
     MAC address, the parameter must be specified twice. (such as "machines
-    new
-    mac\_addresses=01:02:03:04:05:06 mac\_addresses=02:03:04:05:06:07")
+    new mac_addresses=01:02:03:04:05:06
+    mac_addresses=02:03:04:05:06:07")
 
-- `type mac\_addresses`
+- `type mac_addresses`
    unicode
 
 - `param hostname`
@@ -3126,10 +2579,10 @@ The minimum data required is: architecture=&lt;arch string&gt; (e.g.
 - `type domain`
    unicode
 
-- `param power\_type`
+- `param power_type`
    A power management type, if applicable (e.g. "virsh", "ipmi").
 
-- `type power\_type`
+- `type power_type`
    unicode
 
 ##### `POST /api/2.0/machines/` `op=accept`
@@ -3138,24 +2591,24 @@ Accept declared machines into the MAAS.
 
 Machines can be enlisted in the MAAS anonymously or by non-admin users, as
 opposed to by an admin. These machines are held in the New state; a MAAS
-admin must first verify the authenticity of these enlistments, and
-accept them.
+admin must first verify the authenticity of these enlistments, and accept
+them.
 
-Enlistments can be accepted en masse, by passing multiple machines to
-this call. Accepting an already accepted machine is not an error, but
-accepting one that is already allocated, broken, etc. is.
+Enlistments can be accepted en masse, by passing multiple machines to this
+call. Accepting an already accepted machine is not an error, but accepting
+one that is already allocated, broken, etc. is.
 
 - `param machines`
-   system\_ids of the machines whose enlistment is to be accepted. (An
-    empty list is acceptable).
+   system_ids of the machines whose enlistment is to be accepted. (An
+   empty list is acceptable).
 
 - `return`
-   The system\_ids of any machines that have their status changed by
-    this call. Thus, machines that were already accepted are excluded from
-    the result.
+   The system_ids of any machines that have their status changed by this
+   call. Thus, machines that were already accepted are excluded from the
+   result.
 
-Returns 400 if any of the machines do not exist. Returns 403 if the user
-is not an admin.
+Returns 400 if any of the machines do not exist. Returns 403 if the user is
+not an admin.
 
 ##### `POST /api/2.0/machines/` `op=accept_all`
 
@@ -3163,28 +2616,28 @@ Accept all declared machines into the MAAS.
 
 Machines can be enlisted in the MAAS anonymously or by non-admin users, as
 opposed to by an admin. These machines are held in the New state; a MAAS
-admin must first verify the authenticity of these enlistments, and
-accept them.
+admin must first verify the authenticity of these enlistments, and accept
+them.
 
 - `return`
-   Representations of any machines that have their status changed by
-    this call. Thus, machines that were already accepted are excluded from
-    the result.
+   Representations of any machines that have their status changed by this
+   call. Thus, machines that were already accepted are excluded from the
+   result.
 
 ##### `POST /api/2.0/machines/` `op=add_chassis`
 
 Add special hardware types.
 
-- `param chassis\_type`
-   The type of hardware. mscm is the type for the Moonshot Chassis
-    Manager. msftocs is the type for the Microsoft OCS Chassis Manager.
-    powerkvm is the type for Virtual Machines on Power KVM, managed by
-    Virsh. seamicro15k is the type for the Seamicro 1500 Chassis. ucsm is
-    the type for the Cisco UCS Manager. virsh is the type for virtual
-    machines managed by Virsh. vmware is the type for virtual machines
-    managed by VMware.
+- `param chassis_type`
+   The type of hardware. mscm is the type for the Moonshot Chassis Manager.
+   msftocs is the type for the Microsoft OCS Chassis Manager. powerkvm is
+   the type for Virtual Machines on Power KVM, managed by Virsh.
+   seamicro15k is the type for the Seamicro 1500 Chassis. ucsm is the type
+   for the Cisco UCS Manager. virsh is the type for virtual machines
+   managed by Virsh. vmware is the type for virtual machines managed by
+   VMware.
 
-- `type chassis\_type`
+- `type chassis_type`
    unicode
 
 - `param hostname`
@@ -3194,31 +2647,31 @@ Add special hardware types.
    unicode
 
 - `param username`
-   The username used to access the chassis. This field is required for
-    the seamicro15k, vmware, mscm, msftocs, and ucsm chassis types.
+   The username used to access the chassis. This field is required for the
+   seamicro15k, vmware, mscm, msftocs, and ucsm chassis types.
 
 - `type username`
    unicode
 
 - `param password`
-   The password used to access the chassis. This field is required for
-    the seamicro15k, vmware, mscm, msftocs, and ucsm chassis types.
+   The password used to access the chassis. This field is required for the
+   seamicro15k, vmware, mscm, msftocs, and ucsm chassis types.
 
 - `type password`
    unicode
 
-- `param accept\_all`
+- `param accept_all`
    If true, all enlisted machines will be commissioned.
 
-- `type accept\_all`
+- `type accept_all`
    unicode
 
-- `param rack\_controller`
-   The system\_id of the rack controller to send the add chassis
-    command through. If none is specifed MAAS will automatically determine
-    the rack controller to use.
+- `param rack_controller`
+   The system_id of the rack controller to send the add chassis command
+   through. If none is specifed MAAS will automatically determine the rack
+   controller to use.
 
-- `type rack\_controller`
+- `type rack_controller`
    unicode
 
 - `param domain`
@@ -3230,19 +2683,18 @@ Add special hardware types.
 The following are optional if you are adding a virsh, vmware, or powerkvm
 chassis:
 
-- `param prefix\_filter`
+- `param prefix_filter`
    Filter machines with supplied prefix.
 
-- `type prefix\_filter`
+- `type prefix_filter`
    unicode
 
 The following are optional if you are adding a seamicro15k chassis:
 
-- `param power\_control`
-   The power\_control to use, either ipmi (default), restapi,
-    or restapi2.
+- `param power_control`
+   The power_control to use, either ipmi (default), restapi, or restapi2.
 
-- `type power\_control`
+- `type power_control`
    unicode
 
 The following are optional if you are adding a vmware or msftocs chassis.
@@ -3256,8 +2708,7 @@ The following are optional if you are adding a vmware or msftocs chassis.
 The following are optioanl if you are adding a vmware chassis:
 
 - `param protocol`
-   The protocol to use when accessing the VMware chassis
-    (default: https).
+   The protocol to use when accessing the VMware chassis (default: https).
 
 - `type protocol`
    unicode
@@ -3265,243 +2716,128 @@ The following are optioanl if you are adding a vmware chassis:
 - `return`
    A string containing the chassis powered on by which rack controller.
 
-Returns 404 if no rack controller can be found which has access to the
-given URL. Returns 403 if the user does not have access to the rack
-controller. Returns 400 if the required parameters were not passed.
+Returns 404 if no rack controller can be found which has access to the given
+URL. Returns 403 if the user does not have access to the rack controller.
+Returns 400 if the required parameters were not passed.
 
 ##### `POST /api/2.0/machines/` `op=allocate`
 
 Allocate an available machine for deployment.
 
 Constraints parameters can be used to allocate a machine that possesses
-certain characteristics. All the constraints are optional and when
-multiple constraints are provided, they are combined using
-'AND' semantics.
+certain characteristics. All the constraints are optional and when multiple
+constraints are provided, they are combined using 'AND' semantics.
 
 - `param name`
-   Hostname or FQDN of the desired machine. If a FQDN is specified, both
-    the domain and the hostname portions must match.
+   Hostname of the desired machine.
 
 - `type name`
    unicode
 
-- `param system\_id`
-   system\_id of the desired machine.
+- `param system_id`
+   system_id of the desired machine.
 
-- `type system\_id`
+- `type system_id`
    unicode
 
 - `param arch`
    Architecture of the returned machine (e.g. 'i386/generic', 'amd64',
-    'armhf/highbank', etc.).
-
-    If multiple architectures are specified, the machine to acquire may
-    match any of the given architectures. To request multiple
-    architectures, this parameter must be repeated in the request with
-    each value.
+     'armhf/highbank', etc.).
 
 - `type arch`
-   unicode (accepts multiple)
-
-- `param cpu\_count`
-   Minimum number of CPUs a returned machine must have.
-
-> A machine with additional CPUs may be allocated if there is no exact
-> match, or if the 'mem' constraint is not also specified.
-
-- `type cpu\_count`
-   positive integer
-
-- `param mem`
-   The minimum amount of memory (expressed in MB) the returned machine
-    must have. A machine with additional memory may be allocated if there
-    is no exact match, or the 'cpu\_count' constraint is not
-    also specified.
-
-- `type mem`
-   positive integer
-
-- `param tags`
-   Tags the machine must match in order to be acquired.
-
-> If multiple tag names are specified, the machine must be tagged with all
-> of them. To request multiple tags, this parameter must be repeated in
-> the request with each value.
-
-- `type tags`
-   unicode (accepts multiple)
-
-- `param not\_tags`
-   Tags the machine must NOT match.
-
-> If multiple tag names are specified, the machine must NOT be tagged with
-> ANY of them. To request exclusion of multiple tags, this parameter must
-> be repeated in the request with each value.
-
-- `type tags`
-   unicode (accepts multiple)
-
-- `param zone`
-   Physical zone name the machine must be located in.
-
-- `type zone`
    unicode
 
-- `type not\_in\_zone`
-   List of physical zones from which the machine must not be acquired.
+- `param cpu_count`
+   The minium number of CPUs the returned machine must have.
 
-    If multiple zones are specified, the machine must NOT be associated
-    with ANY of them. To request multiple zones to exclude, this parameter
-    must be repeated in the request with each value.
-
-- `type not\_in\_zone`
-   unicode (accepts multiple)
-
-- `param subnets`
-   Subnets that must be linked to the machine.
-
-> "Linked to" means the node must be configured to acquire an address in
-> the specified subnet, have a static IP address in the specified subnet,
-> or have been observed to DHCP from the specified subnet during
-> commissioning time (which implies that it *could* have an address on the
-> specified subnet).
->
-> Subnets can be specified by one of the following criteria:
->
-> -   &lt;id&gt;: match the subnet by its 'id' field
-> -   fabric:&lt;fabric-spec&gt;: match all subnets in a given fabric.
-> -   ip:&lt;ip-address&gt;: Match the subnet containing
->     &lt;ip-address&gt; with the with the longest-prefix match.
-> -   name:&lt;subnet-name&gt;: Match a subnet with the given name.
-> -   space:&lt;space-spec&gt;: Match all subnets in a given space.
-> -   vid:&lt;vid-integer&gt;: Match a subnet on a VLAN with the
->     specified VID. Valid values range from 0 through 4094 (inclusive).
->     An untagged VLAN can be specified by using the value "0".
-> -   vlan:&lt;vlan-spec&gt;: Match all subnets on the given VLAN.
->
-> Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
-> specifiers are only useful for the 'not\_spaces' version of this
-> constraint, because they will most likely force the query to match ALL
-> the subnets in each fabric, space, or VLAN, and thus not return
-> any nodes. (This is not a particularly useful behavior, so may be
-> changed in the future.)
->
-> If multiple subnets are specified, the machine must be associated with
-> all of them. To request multiple subnets, this parameter must be
-> repeated in the request with each value.
->
-> Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
-
-- `type subnets`
-   unicode (accepts multiple)
-
-- `param not\_subnets`
-   Subnets that must NOT be linked to the machine.
-
-> See the 'subnets' constraint documentation above for more information
-> about how each subnet can be specified.
->
-> If multiple subnets are specified, the machine must NOT be associated
-> with ANY of them. To request multiple subnets to exclude, this parameter
-> must be repeated in the request with each value. (Or a fabric, space, or
-> VLAN specifier may be used to match multiple subnets).
->
-> Note that this replaces the leagcy 'not\_networks' constraint in
-> MAAS 1.x.
-
-- `type not\_subnets`
-   unicode (accepts multiple)
-
-- `param storage`
-   A list of storage constraint identifiers, in the form:
-    &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:...\]
-
-- `type storage`
-   unicode
+- `type cpu_count`
+   int
 
 - `param interfaces`
    A labeled constraint map associating constraint labels with interface
-    properties that should be matched. Returned nodes must have one or
-    more interface matching the specified constraints. The labeled
-    constraint map must be in the format:
-    `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
-
-    Each key can be one of the following:
-
--   id: Matches an interface with the specific id
--   fabric: Matches an interface attached to the specified fabric.
--   fabric\_class: Matches an interface attached to a fabric with the
-        specified class.
--   ip: Matches an interface with the specified IP address assigned
-        to it.
--   mode: Matches an interface with the specified mode. (Currently,
-        the only supported mode is "unconfigured".)
--   name: Matches an interface with the specified name. (For
-        example, "eth0".)
--   hostname: Matches an interface attached to the node with the
-        specified hostname.
--   subnet: Matches an interface attached to the specified subnet.
--   space: Matches an interface attached to the specified space.
--   subnet\_cidr: Matches an interface attached to the specified
-        subnet CIDR. (For example, "192.168.0.0/24".)
--   type: Matches an interface of the specified type. (Valid types:
-        "physical", "vlan", "bond", "bridge", or "unknown".)
--   vlan: Matches an interface on the specified VLAN.
--   vid: Matches an interface on a VLAN with the specified VID.
--   tag: Matches an interface tagged with the specified tag.
+   properties that should be matched. Returned nodes must have one or more
+   interface matching the specified constraints. The labeled constraint map
+   must be in the format: `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
+   Each key can be one of the following: - id: Matches an interface with
+   the specific id - fabric: Matches an interface attached to the specified
+   fabric. - fabric_class: Matches an interface attached to a fabric with
+   the specified class. - ip: Matches an interface with the specified IP
+   address assigned to it. - mode: Matches an interface with the specified
+   mode. (Currently, the only supported mode is "unconfigured".) - name:
+   Matches an interface with the specified name. (For example, "eth0".) -
+   hostname: Matches an interface attached to the node with the specified
+   hostname. - subnet: Matches an interface attached to the specified
+   subnet. - space: Matches an interface attached to the specified space. -
+   subnet_cidr: Matches an interface attached to the specified subnet
+   CIDR. (For example, "192.168.0.0/24".) - type: Matches an interface of
+   the specified type. (Valid types: "physical", "vlan", "bond", "bridge",
+   or "unknown".) - vlan: Matches an interface on the specified VLAN. -
+   vid: Matches an interface on a VLAN with the specified VID. - tag:
+   Matches an interface tagged with the specified tag.
 
 - `type interfaces`
    unicode
 
-- `param fabrics`
-   Set of fabrics that the machine must be associated with in order to
-    be acquired.
+- `param mem`
+   The minimum amount of memory (expressed in MB) the returned machine must
+   have.
 
-    If multiple fabrics names are specified, the machine can be in any of
-    the specified fabrics. To request multiple possible fabrics to match,
-    this parameter must be repeated in the request with each value.
+- `type mem`
+   float
 
-- `type fabrics`
-   unicode (accepts multiple)
+- `param tags`
+   List of tags the returned machine must have.
 
-- `param not\_fabrics`
-   Fabrics the machine must NOT be associated with in order to
-    be acquired.
+- `type tags`
+   list of unicodes
 
-    If multiple fabrics names are specified, the machine must NOT be in
-    ANY of them. To request exclusion of multiple fabrics, this parameter
-    must be repeated in the request with each value.
+- `param not_tags`
+   List of tags the acquired machine must not have.
 
-- `type not\_fabrics`
-   unicode (accepts multiple)
+- `type tags`
+   List of unicodes.
 
-- `param fabric\_classes`
-   Set of fabric class types whose fabrics the machine must be associated
-    with in order to be acquired.
+- `param networks`
+   List of networks (defined in MAAS) to which the machine must be
+   attached. A network can be identified by the name assigned to it in
+   MAAS; or by an ip: prefix followed by any IP address that falls within
+   the network; or a vlan: prefix followed by a numeric VLAN tag, e.g.
+   vlan:23 for VLAN number 23. Valid VLAN tags must be in the range of 1 to
+   4094 inclusive.
 
-    If multiple fabrics class types are specified, the machine can be in
-    any matching fabric. To request multiple possible fabrics class types
-    to match, this parameter must be repeated in the request with
-    each value.
+- `type networks`
+   list of unicodes
 
-- `type fabric\_classes`
-   unicode (accepts multiple)
+- `param not_networks`
+   List of networks (defined in MAAS) to which the machine must not be
+   attached. The returned machine won't be attached to any of the specified
+   networks. A network can be identified by the name assigned to it in
+   MAAS; or by an ip: prefix followed by any IP address that falls within
+   the network; or a vlan: prefix followed by a numeric VLAN tag, e.g.
+   vlan:23 for VLAN number 23. Valid VLAN tags must be in the range of 1 to
+   4094 inclusive.
 
-- `param not\_fabric\_classes`
-   Fabric class types whose fabrics the machine must NOT be associated
-    with in order to be acquired.
+- `type not_networks`
+   list of unicodes
 
-    If multiple fabrics names are specified, the machine must NOT be in
-    ANY of them. To request exclusion of multiple fabrics, this parameter
-    must be repeated in the request with each value.
+- `param zone`
+   An optional name for a physical zone the acquired machine should be
+   located in.
 
-- `type not\_fabric\_classes`
-   unicode (accepts multiple)
+- `type zone`
+   unicode
 
-- `param agent\_name`
+- `type not_in_zone`
+   Optional list of physical zones from which the machine should not be
+   acquired.
+
+- `type not_in_zone`
+   List of unicodes.
+
+- `param agent_name`
    An optional agent name to attach to the acquired machine.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 - `param comment`
@@ -3510,47 +2846,26 @@ multiple constraints are provided, they are combined using
 - `type comment`
    unicode
 
-- `param bridge\_all`
-   Optionally create a bridge interface for every configured interface on
-    the machine. The created bridges will be removed once the machine is
-    released. (Default: False)
-
-- `type bridge\_all`
-   boolean
-
-- `param bridge\_stp`
-   Optionally turn spanning tree protocol on or off for the bridges
-    created on every configured interface. (Default: off)
-
-- `type bridge\_stp`
-   boolean
-
-- `param bridge\_fd`
-   Optionally adjust the forward delay to time seconds. (Default: 15)
-
-- `type bridge\_fd`
-   integer
-
-- `param dry\_run`
+- `param dry_run`
    Optional boolean to indicate that the machine should not actually be
-    acquired (this is for support/troubleshooting, or users who want to
-    see which machine would match a constraint, without acquiring
-    a machine). Defaults to False.
+   acquired (this is for support/troubleshooting, or users who want to see
+   which machine would match a constraint, without acquiring a machine).
+   Defaults to False.
 
-- `type dry\_run`
+- `type dry_run`
    bool
 
 - `param verbose`
    Optional boolean to indicate that the user would like additional
-    verbosity in the constraints\_by\_type field (each constraint will be
-    prefixed by verbose\_, and contain the full data structure that
-    indicates which machine(s) matched).
+   verbosity in the constraints_by_type field (each constraint will be
+   prefixed by verbose_, and contain the full data structure that
+   indicates which machine(s) matched).
 
-- `type verbose`
+- `type verbosej
    bool
 
-Returns 409 if a suitable machine matching the constraints could not
-be found.
+Returns 409 if a suitable machine matching the constraints could not be
+found.
 
 ##### `POST /api/2.0/machines/` `op=release`
 
@@ -3559,8 +2874,8 @@ Release multiple machines.
 This places the machines back into the pool, ready to be reallocated.
 
 - `param machines`
-   system\_ids of the machines which are to be released. (An empty list
-    is acceptable).
+   system_ids of the machines which are to be released. (An empty list is
+   acceptable).
 
 - `param comment`
    Optional comment for the event log.
@@ -3569,14 +2884,13 @@ This places the machines back into the pool, ready to be reallocated.
    unicode
 
 - `return`
-   The system\_ids of any machines that have their status changed by
-    this call. Thus, machines that were already released are excluded from
-    the result.
+   The system_ids of any machines that have their status changed by this
+   call. Thus, machines that were already released are excluded from the
+   result.
 
-Returns 400 if any of the machines cannot be found. Returns 403 if the
-user does not have permission to release any of the machines. Returns a
-409 if any of the machines could not be released due to their
-current state.
+Returns 400 if any of the machines cannot be found. Returns 403 if the user
+does not have permission to release any of the machines. Returns a 409 if
+any of the machines could not be released due to their current state.
 
 ##### `POST /api/2.0/machines/` `op=set_zone`
 
@@ -3587,8 +2901,8 @@ Assign multiple nodes to a physical zone at once.
     out of their physical zones.
 
 - `param nodes`
-   system\_ids of the nodes whose zones are to be set. (An empty list
-    is acceptable).
+   system_ids of the nodes whose zones are to be set. (An empty list is
+   acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -3596,7 +2910,7 @@ Raises 403 if the user is not an admin.
 
 Manage a network.
 
-> This endpoint is deprecated. Use the new 'subnet' endpoint instead.
+This endpoint is deprecated. Use the new 'subnet' endpoint instead.
 
 ##### `DELETE /api/2.0/networks/{name}/`
 
@@ -3637,26 +2951,26 @@ This endpoint is no longer available. Use the 'subnet' endpoint instead.
     consist only of letters, digits, dashes, and underscores.
 
 - `param ip`
-   Base IP address for the network, e.g. 10.1.0.0. The host bits will
-    be zeroed.
+   Base IP address for the network, e.g. 10.1.0.0. The host bits will be
+    zeroed.
 
 - `param netmask`
    Subnet mask to indicate which parts of an IP address are part of the
     network address. For example, 255.255.255.0.
 
-- `param vlan\_tag`
+- `param vlan_tag`
    Optional VLAN tag: a number between 1 and 0xffe (4094) inclusive, or
     zero for an untagged network.
 
 - `param description`
-   Detailed description of the network for the benefit of users
-    and administrators.
+   Detailed description of the network for the benefit of users and
+    administrators.
 
 ### Networks
 
 Manage the networks.
 
-> This endpoint is deprecated. Use the new 'subnets' endpoint instead.
+This endpoint is deprecated. Use the new 'subnets' endpoint instead.
 
 ##### `GET /api/2.0/networks/`
 
@@ -3664,8 +2978,8 @@ List networks.
 
 - `param node`
    Optionally, nodes which must be attached to any returned networks. If
-    more than one node is given, the result will be restricted to networks
-    that these nodes have in common.
+   more than one node is given, the result will be restricted to networks
+   that these nodes have in common.
 
 ##### `POST /api/2.0/networks/`
 
@@ -3677,7 +2991,7 @@ This endpoint is no longer available. Use the 'subnets' endpoint instead.
 
 Manage an individual Node.
 
-> The Node is identified by its system\_id.
+> The Node is identified by its system_id.
 
 ##### `DELETE /api/2.0/nodes/{system_id}/`
 
@@ -3702,9 +3016,9 @@ For example, LLDP and `lshw` XML dumps.
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
 like "lldp" or "lshw".
 
-Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
-additional encoding like base-64.
+Note that this is returned as BSON and not JSON. This is for efficiency, but
+mainly because JSON can't do binary content without applying additional
+encoding like base-64.
 
 Returns 404 if the node is not found.
 
@@ -3712,8 +3026,8 @@ Returns 404 if the node is not found.
 
 Obtain power parameters.
 
-This method is reserved for admin users and returns a 403 if the user is
-not one.
+This method is reserved for admin users and returns a 403 if the user is not
+one.
 
 This returns the power parameters, if any, configured for a node. For some
 types of power control this will include private information such as
@@ -3729,11 +3043,11 @@ Read the collection of NodeResult in the MAAS.
 
 List NodeResult visible to the user, optionally filtered.
 
-- `param system\_id`
+- `param system_id`
    An optional list of system ids. Only the results related to the nodes
     with these system ids will be returned.
 
-- `type system\_id`
+- `type system_id`
    iterable
 
 - `param name`
@@ -3743,9 +3057,9 @@ List NodeResult visible to the user, optionally filtered.
 - `type name`
    iterable
 
-- `param result\_type`
-   An optional result\_type. Only the results with the specified
-    result\_type will be returned.
+- `param result_type`
+   An optional result_type. Only the results with the specified
+    result_type will be returned.
 
 - `type name`
    iterable
@@ -3768,12 +3082,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type hostname`
    unicode
 
-- `param mac\_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the node owning the
     specified MAC address will be returned. This can be specified multiple
     times to see multiple nodes.
 
-- `type mac\_address`
+- `type mac_address`
    unicode
 
 - `param id`
@@ -3797,11 +3111,11 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type zone`
    unicode
 
-- `param agent\_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the nodes with matching
     agent names will be returned.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 ##### `POST /api/2.0/nodes/` `op=set_zone`
@@ -3810,145 +3124,32 @@ Assign multiple nodes to a physical zone at once.
 
 - `param zone`
    Zone name. If omitted, the zone is "none" and the nodes will be taken
-    out of their physical zones.
+   out of their physical zones.
 
 - `param nodes`
-   system\_ids of the nodes whose zones are to be set. (An empty list
-    is acceptable).
+   system_ids of the nodes whose zones are to be set. (An empty list is
+   acceptable).
 
 Raises 403 if the user is not an admin.
-
-### Package Repositories
-
-Manage the collection of all Package Repositories in MAAS.
-
-##### `GET /api/2.0/package-repositories/`
-
-List all Package Repositories.
-
-##### `POST /api/2.0/package-repositories/`
-
-Create a Package Repository.
-
-- `param name`
-   The name of the Package Repository.
-
-- `type name`
-   unicode
-
-- `param url`
-   The url of the Package Repository.
-
-- `type url`
-   unicode
-
-- `param distributions`
-   Which package distributions to include.
-
-- `type distributions`
-   unicode
-
-- `param disabled\_pockets`
-   The list of pockets to disable.
-
-- `param components`
-   The list of components to enable.
-
-- `param arches`
-   The list of supported architectures.
-
-- `param key`
-   The authentication key to use with the repository.
-
-- `type key`
-   unicode
-
-- `param enabled`
-   Whether or not the repository is enabled.
-
-- `type enabled`
-   boolean
-
-### Package Repository
-
-Manage an individual Package Repository.
-
-> The Package Repository is identified by its id.
-
-##### `DELETE /api/2.0/package-repositories/{id}/`
-
-Delete a Package Repository.
-
-Returns 404 if the Package Repository is not found.
-
-##### `GET /api/2.0/package-repositories/{id}/`
-
-Read Package Repository.
-
-Returns 404 if the repository is not found.
-
-##### `PUT /api/2.0/package-repositories/{id}/`
-
-Update a Package Repository.
-
-- `param name`
-   The name of the Package Repository.
-
-- `type name`
-   unicode
-
-- `param url`
-   The url of the Package Repository.
-
-- `type url`
-   unicode
-
-- `param distributions`
-   Which package distributions to include.
-
-- `type distributions`
-   unicode
-
-- `param disabled\_pockets`
-   The list of pockets to disable.
-
-- `param components`
-   The list of components to enable.
-
-- `param arches`
-   The list of supported architectures.
-
-- `param key`
-   The authentication key to use with the repository.
-
-- `type key`
-   unicode
-
-- `param enabled`
-   Whether or not the repository is enabled.
-
-- `type enabled`
-   boolean
-
-Returns 404 if the Package Repository is not found.
 
 ### Partitions
 
 Manage partition on a block device.
 
-##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
 
 Delete partition.
 
 Returns 404 if the node, block device, or partition are not found.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
 
 Read partition.
 
 Returns 404 if the node, block device, or partition are not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}` `op=format`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
+##### `op=format`
 
 Format a partition.
 
@@ -3961,35 +3162,36 @@ Format a partition.
 - `param label`
    The label for the filesystem.
 
-Returns 403 when the user doesn't have the ability to format the
-partition. Returns 404 if the node, block device, or partition is
-not found.
+Returns 403 when the user doesn't have the ability to format the partition.
+Returns 404 if the node, block device, or partition is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}` `op=mount`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
+##### `op=mount`
 
 Mount the filesystem on partition.
 
-- `param mount\_point`
+- `param mount_point`
    Path on the filesystem to mount.
 
-- `param mount\_options`
+- `param mount_options`
    Options to pass to mount(8).
 
 Returns 403 when the user doesn't have the ability to mount the partition.
 Returns 404 if the node, block device, or partition is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}` `op=unformat`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
+##### `op=unformat`
 
 Unformat a partition.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}` `op=unmount`
+##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{partition_id}`
+##### `op=unmount`
 
 Unmount the filesystem on partition.
 
 Returns 400 if the partition is not formatted or not currently mounted.
-Returns 403 when the user doesn't have the ability to unmount the
-partition. Returns 404 if the node, block device, or partition is
-not found.
+Returns 403 when the user doesn't have the ability to unmount the partition.
+Returns 404 if the node, block device, or partition is not found.
 
 ### Partitions
 
@@ -4021,7 +3223,7 @@ Returns 404 if the node or the block device are not found.
 
 Manage an individual rack controller.
 
-> The rack controller is identified by its system\_id.
+The rack controller is identified by its system_id.
 
 ##### `DELETE /api/2.0/rackcontrollers/{system_id}/`
 
@@ -4046,9 +3248,9 @@ For example, LLDP and `lshw` XML dumps.
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
 like "lldp" or "lshw".
 
-Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
-additional encoding like base-64.
+Note that this is returned as BSON and not JSON. This is for efficiency, but
+mainly because JSON can't do binary content without applying additional
+encoding like base-64.
 
 Returns 404 if the node is not found.
 
@@ -4056,8 +3258,8 @@ Returns 404 if the node is not found.
 
 List all available boot images.
 
-Shows all available boot images and lists whether they are in sync with
-the region.
+Shows all available boot images and lists whether they are in sync with the
+region.
 
 Returns 404 if the rack controller is not found.
 
@@ -4065,8 +3267,8 @@ Returns 404 if the rack controller is not found.
 
 Obtain power parameters.
 
-This method is reserved for admin users and returns a 403 if the user is
-not one.
+This method is reserved for admin users and returns a 403 if the user is not
+one.
 
 This returns the power parameters, if any, configured for a node. For some
 types of power control this will include private information such as
@@ -4078,12 +3280,12 @@ Returns 404 if the node is not found.
 
 Query the power state of a node.
 
-Send a request to the node's power controller which asks it about the
-node's state. The reply to this could be delayed by up to 30 seconds while
-waiting for the power controller to respond. Use this method sparingly as
-it ties up an appserver thread while waiting.
+Send a request to the node's power controller which asks it about the node's
+state. The reply to this could be delayed by up to 30 seconds while waiting
+for the power controller to respond. Use this method sparingly as it ties up
+an appserver thread while waiting.
 
-- `param system\_id`
+- `param system_id`
    The node to query.
 
 - `return`
@@ -4101,15 +3303,15 @@ Returns 404 if the rack controller is not found.
 
 Power off a node.
 
-- `param stop\_mode`
-   An optional power off mode. If 'soft', perform a soft power down if
-    the node's power type supports it, otherwise perform a hard power off.
-    For all values other than 'soft', and by default, perform a hard
-    power off. A soft power off generally asks the OS to shutdown the
-    system gracefully before powering off, while a hard power off occurs
-    immediately without any warning to the OS.
+- `param stop_mode`
+   An optional power off mode. If 'soft', perform a soft power down if the
+   node's power type supports it, otherwise perform a hard power off. For
+   all values other than 'soft', and by default, perform a hard power off.
+   A soft power off generally asks the OS to shutdown the system gracefully
+   before powering off, while a hard power off occurs immediately without
+   any warning to the OS.
 
-- `type stop\_mode`
+- `type stop_mode`
    unicode
 
 - `param comment`
@@ -4118,18 +3320,18 @@ Power off a node.
 - `type comment`
    unicode
 
-Returns 404 if the node is not found. Returns 403 if the user does not
-have permission to stop the node.
+Returns 404 if the node is not found. Returns 403 if the user does not have
+permission to stop the node.
 
 ##### `POST /api/2.0/rackcontrollers/{system_id}/` `op=power_on`
 
 Turn on a node.
 
-- `param user\_data`
+- `param user_data`
    If present, this blob of user-data to be made available to the nodes
-    through the metadata service.
+   through the metadata service.
 
-- `type user\_data`
+- `type user_data`
    base64-encoded unicode
 
 - `param comment`
@@ -4142,40 +3344,40 @@ Ideally we'd have MIME multipart and content-transfer-encoding etc. deal
 with the encapsulation of binary data, but couldn't make it work with the
 framework in reasonable time so went for a dumb, manual encoding instead.
 
-Returns 404 if the node is not found. Returns 403 if the user does not
-have permission to start the machine. Returns 503 if the start-up
-attempted to allocate an IP address, and there were no IP addresses
-available on the relevant cluster interface.
+Returns 404 if the node is not found. Returns 403 if the user does not have
+permission to start the machine. Returns 503 if the start-up attempted to
+allocate an IP address, and there were no IP addresses available on the
+relevant cluster interface.
 
 ##### `PUT /api/2.0/rackcontrollers/{system_id}/`
 
 Update a specific Rack controller.
 
-- `param power\_type`
+- `param power_type`
    The new power type for this rack controller. If you use the default
-    value, power\_parameters will be set to the empty string. Available to
-    admin users. See the Power types\_ section for a list of the available
-    power types.
+   value, power_parameters will be set to the empty string. Available to
+   admin users. See the [Power types]() section for a list of the
+   available power types.
 
-- `type power\_type`
+- `type power_type`
    unicode
 
-- `param power\_parameters\_{param1}`
+- `param [power_parameters](){param1}`
    The new value for the 'param1' power parameter. Note that this is
-    dynamic as the available parameters depend on the selected value of
-    the rack controller's power\_type. Available to admin users. See the
-    Power types\_ section for a list of the available power parameters for
-    each power type.
+   dynamic as the available parameters depend on the selected value of
+   the rack controller's power_type. Available to admin users. See the
+   [Power types]() section for a list of the available power parameters
+   for each power type.
 
-- `type power\_parameters\_{param1}`
+- `type [power_parameters](){param1}`
    unicode
 
-- `param power\_parameters\_skip\_check`
+- `param power_parameters_skip_check`
    Whether or not the new power parameters for this rack controller
-    should be checked against the expected power parameters for the rack
-    controller's power type ('true' or 'false'). The default is 'false'.
+   should be checked against the expected power parameters for the rack
+   controller's power type ('true' or 'false'). The default is 'false'.
 
-- `type power\_parameters\_skip\_check`
+- `type power_parameters_skip_check`
    unicode
 
 - `param zone`
@@ -4205,12 +3407,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type hostname`
    unicode
 
-- `param mac\_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the node owning the
     specified MAC address will be returned. This can be specified multiple
     times to see multiple nodes.
 
-- `type mac\_address`
+- `type mac_address`
    unicode
 
 - `param id`
@@ -4234,11 +3436,11 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type zone`
    unicode
 
-- `param agent\_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the nodes with matching
     agent names will be returned.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 ##### `GET /api/2.0/rackcontrollers/` `op=describe_power_types`
@@ -4254,13 +3456,13 @@ Retrieve power parameters for multiple machines.
 
 - `param id`
    An optional list of system ids. Only machines with matching system ids
-    will be returned.
+   will be returned.
 
 - `type id`
    iterable
 
 - `return`
-   A dictionary of power parameters, keyed by machine system\_id.
+   A dictionary of power parameters, keyed by machine system_id.
 
 Raises 403 if the user is not an admin.
 
@@ -4274,11 +3476,11 @@ Assign multiple nodes to a physical zone at once.
 
 - `param zone`
    Zone name. If omitted, the zone is "none" and the nodes will be taken
-    out of their physical zones.
+   out of their physical zones.
 
 - `param nodes`
-   system\_ids of the nodes whose zones are to be set. (An empty list
-    is acceptable).
+   system_ids of the nodes whose zones are to be set. (An empty list is
+   acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -4286,20 +3488,20 @@ Raises 403 if the user is not an admin.
 
 Manage a specific RAID device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/raid/{raid_id}/`
 
 Delete RAID on a machine.
 
 Returns 404 if the machine or RAID is not found. Returns 409 if the
 machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/raid/{raid_id}/`
 
 Read RAID device on a machine.
 
 Returns 404 if the machine or RAID is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/raid/{raid_id}/`
 
 Update RAID on a machine.
 
@@ -4309,28 +3511,28 @@ Update RAID on a machine.
 - `param uuid`
    UUID of the RAID.
 
-- `param add\_block\_devices`
+- `param add_block_devices`
    Block devices to add to the RAID.
 
-- `param remove\_block\_devices`
+- `param remove_block_devices`
    Block devices to remove from the RAID.
 
-- `param add\_spare\_devices`
+- `param add_spare_devices`
    Spare block devices to add to the RAID.
 
-- `param remove\_spare\_devices`
+- `param remove_spare_devices`
    Spare block devices to remove from the RAID.
 
-- `param add\_partitions`
+- `param add_partitions`
    Partitions to add to the RAID.
 
-- `param remove\_partitions`
+- `param remove_partitions`
    Partitions to remove from the RAID.
 
-- `param add\_spare\_partitions`
+- `param add_spare_partitions`
    Spare partitions to add to the RAID.
 
-- `param remove\_spare\_partitions`
+- `param remove_spare_partitions`
    Spare partitions to remove from the RAID.
 
 Returns 404 if the machine or RAID is not found. Returns 409 if the
@@ -4359,26 +3561,26 @@ Creates a RAID
 - `param level`
    RAID level.
 
-- `param block\_devices`
+- `param block_devices`
    Block devices to add to the RAID.
 
-- `param spare\_devices`
+- `param spare_devices`
    Spare block devices to add to the RAID.
 
 - `param partitions`
    Partitions to add to the RAID.
 
-- `param spare\_partitions`
+- `param spare_partitions`
    Spare partitions to add to the RAID.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+Returns 404 if the machine is not found. Returns 409 if the machine is not
+Ready.
 
 ### RegionController
 
 Manage an individual region controller.
 
-> The region controller is identified by its system\_id.
+The region controller is identified by its system_id.
 
 ##### `DELETE /api/2.0/regioncontrollers/{system_id}/`
 
@@ -4403,9 +3605,9 @@ For example, LLDP and `lshw` XML dumps.
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is something
 like "lldp" or "lshw".
 
-Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
-additional encoding like base-64.
+Note that this is returned as BSON and not JSON. This is for efficiency, but
+mainly because JSON can't do binary content without applying additional
+encoding like base-64.
 
 Returns 404 if the node is not found.
 
@@ -4413,8 +3615,8 @@ Returns 404 if the node is not found.
 
 Obtain power parameters.
 
-This method is reserved for admin users and returns a 403 if the user is
-not one.
+This method is reserved for admin users and returns a 403 if the user is not
+one.
 
 This returns the power parameters, if any, configured for a node. For some
 types of power control this will include private information such as
@@ -4426,36 +3628,36 @@ Returns 404 if the node is not found.
 
 Update a specific Region controller.
 
-- `param power\_type`
+- `param power_type`
    The new power type for this region controller. If you use the default
-    value, power\_parameters will be set to the empty string. Available to
-    admin users. See the Power types\_ section for a list of the available
-    power types.
+    value, power_parameters will be set to the empty string. Available to
+    admin users. See the [Power types]() section for a list of the
+    available power types.
 
-- `type power\_type`
+- `type power_type`
    unicode
 
-- `param power\_parameters\_{param1}`
+- `param [power_parameters](){param1}`
    The new value for the 'param1' power parameter. Note that this is
     dynamic as the available parameters depend on the selected value of
-    the region controller's power\_type. Available to admin users. See the
-    Power types\_ section for a list of the available power parameters for
-    each power type.
+    the region controller's power_type. Available to admin users. See the
+    [Power types]() section for a list of the available power parameters
+    for each power type.
 
-- `type power\_parameters\_{param1}`
+- `type [power_parameters](){param1}`
    unicode
 
-- `param power\_parameters\_skip\_check`
+- `param power_parameters_skip_check`
    Whether or not the new power parameters for this region controller
     should be checked against the expected power parameters for the region
     controller's power type ('true' or 'false'). The default is 'false'.
 
-- `type power\_parameters\_skip\_check`
+- `type power_parameters_skip_check`
    unicode
 
 - `param zone`
-   Name of a valid physical zone in which to place this
-    region controller.
+   Name of a valid physical zone in which to place this region
+    controller.
 
 - `type zone`
    unicode
@@ -4481,12 +3683,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type hostname`
    unicode
 
-- `param mac\_address`
+- `param mac_address`
    An optional MAC address. Only nodes relating to the node owning the
     specified MAC address will be returned. This can be specified multiple
     times to see multiple nodes.
 
-- `type mac\_address`
+- `type mac_address`
    unicode
 
 - `param id`
@@ -4510,11 +3712,11 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type zone`
    unicode
 
-- `param agent\_name`
+- `param agent_name`
    An optional agent name. Only nodes relating to the nodes with matching
     agent names will be returned.
 
-- `type agent\_name`
+- `type agent_name`
    unicode
 
 ##### `POST /api/2.0/regioncontrollers/` `op=set_zone`
@@ -4523,11 +3725,11 @@ Assign multiple nodes to a physical zone at once.
 
 - `param zone`
    Zone name. If omitted, the zone is "none" and the nodes will be taken
-    out of their physical zones.
+   out of their physical zones.
 
 - `param nodes`
-   system\_ids of the nodes whose zones are to be set. (An empty list
-    is acceptable).
+   system_ids of the nodes whose zones are to be set. (An empty list is
+   acceptable).
 
 Raises 403 if the user is not an admin.
 
@@ -4535,16 +3737,16 @@ Raises 403 if the user is not an admin.
 
 Manage an SSH key.
 
-> SSH keys can be retrieved or deleted.
+SSH keys can be retrieved or deleted.
 
-##### `DELETE /api/2.0/account/prefs/sshkeys/{id}/`
+##### `DELETE /api/2.0/account/prefs/sshkeys/{keyid}/`
 
 DELETE an SSH key.
 
 Returns 404 if the key does not exist. Returns 401 if the key does not
 belong to the calling user.
 
-##### `GET /api/2.0/account/prefs/sshkeys/{id}/`
+##### `GET /api/2.0/account/prefs/sshkeys/{keyid}/`
 
 GET an SSH key.
 
@@ -4565,32 +3767,25 @@ Add a new SSH key to the requesting user's account.
 The request payload should contain the public SSH key data in form data
 whose name is "key".
 
-##### `POST /api/2.0/account/prefs/sshkeys/` `op=import`
-
-Import the requesting user's SSH keys.
-
-Import SSH keys for a given protocol and authorization ID in
-protocol:auth\_id format.
-
 ### SSL Key
 
 Manage an SSL key.
 
-> SSL keys can be retrieved or deleted.
+SSL keys can be retrieved or deleted.
 
-##### `DELETE /api/2.0/account/prefs/sslkeys/{id}/`
+##### `DELETE /api/2.0/account/prefs/sslkeys/{keyid}/`
 
 DELETE an SSL key.
 
 Returns 401 if the key does not belong to the requesting user. Returns 204
 if the key is successfully deleted.
 
-##### `GET /api/2.0/account/prefs/sslkeys/{id}/`
+##### `GET /api/2.0/account/prefs/sslkeys/{keyid}/`
 
 GET an SSL key.
 
-Returns 404 if the key with id is not found. Returns 401 if the key does
-not belong to the requesting user.
+Returns 404 if the keyid is not found. Returns 401 if the key does not
+belong to the requesting user.
 
 ### SSL Keys
 
@@ -4611,19 +3806,19 @@ name is "key".
 
 Manage space.
 
-##### `DELETE /api/2.0/spaces/{id}/`
+##### `DELETE /api/2.0/spaces/{space_id}/`
 
 Delete space.
 
 Returns 404 if the space is not found.
 
-##### `GET /api/2.0/spaces/{id}/`
+##### `GET /api/2.0/spaces/{space_id}/`
 
 Read space.
 
 Returns 404 if the space is not found.
 
-##### `PUT /api/2.0/spaces/{id}/`
+##### `PUT /api/2.0/spaces/{space_id}/`
 
 Update space.
 
@@ -4653,121 +3848,63 @@ Create a space.
 - `param description`
    Description of the space.
 
-### Static route
-
-Manage static route.
-
-##### `DELETE /api/2.0/static-routes/{id}/`
-
-Delete static route.
-
-Returns 404 if the static route is not found.
-
-##### `GET /api/2.0/static-routes/{id}/`
-
-Read static route.
-
-Returns 404 if the static route is not found.
-
-##### `PUT /api/2.0/static-routes/{id}/`
-
-Update static route.
-
-- `param source`
-   Source subnet for the route.
-
-- `param destination`
-   Destination subnet for the route.
-
-- `param gateway\_ip`
-   IP address of the gateway on the source subnet.
-
-- `param metric`
-   Weight of the route on a deployed machine.
-
-Returns 404 if the static route is not found.
-
-### Static routes
-
-Manage static routes.
-
-##### `GET /api/2.0/static-routes/`
-
-List all static routes.
-
-##### `POST /api/2.0/static-routes/`
-
-Create a static route.
-
-- `param source`
-   Source subnet for the route.
-
-- `param destination`
-   Destination subnet for the route.
-
-- `param gateway\_ip`
-   IP address of the gateway on the source subnet.
-
-- `param metric`
-   Weight of the route on a deployed machine.
-
 ### Subnet
 
 Manage subnet.
 
-##### `DELETE /api/2.0/subnets/{id}/`
+##### `DELETE /api/2.0/subnets/{subnet_id}/`
 
 Delete subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/`
+##### `GET /api/2.0/subnets/{subnet_id}/`
 
 Read subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/` `op=ip_addresses`
+##### `GET /api/2.0/subnets/{subnet_id}/` `op=ip_addresses`
 
 Returns a summary of IP addresses assigned to this subnet.
 
-Optional arguments: with\_username: (default=True) if False, suppresses
-the display of usernames associated with each address.
-with\_node\_summary: (default=True) if False, suppresses the display of
-any node associated with each address.
+Optional arguments: with_username: (default=True) if False, suppresses the
+display of usernames associated with each address. with_node_summary:
+(default=True) if False, suppresses the display of any node associated with
+each address.
 
-##### `GET /api/2.0/subnets/{id}/` `op=reserved_ip_ranges`
+##### `GET /api/2.0/subnets/{subnet_id}/` `op=reserved_ip_ranges`
 
 Lists IP ranges currently reserved in the subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/` `op=statistics`
+##### `GET /api/2.0/subnets/{subnet_id}/` `op=statistics`
 
 Returns statistics for the specified subnet, including:
 
-num\_available - the number of available IP addresses largest\_available -
-the largest number of contiguous free IP addresses num\_unavailable - the
-number of unavailable IP addresses total\_addresses - the sum of the
+num_available - the number of available IP addresses largest_available -
+the largest number of contiguous free IP addresses num_unavailable - the
+number of unavailable IP addresses total_addresses - the sum of the
 available plus unavailable addresses usage - the (floating point) usage
-percentage of this subnet usage\_string - the (formatted unicode) usage
+percentage of this subnet usage_string - the (formatted unicode) usage
 percentage of this subnet ranges - the specific IP ranges present in ths
 subnet (if specified)
 
-Optional arguments: include\_ranges: if True, includes detailed
-information about the usage of this range. include\_suggestions: if True,
-includes the suggested gateway and dynamic range for this subnet, if it
-were to be configured.
+Optional arguments: include_ranges: if True, includes detailed information
+about the usage of this range. include_suggestions: if True, includes the
+suggested gateway and dynamic range for this subnet, if it were to be
+configured.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/` `op=unreserved_ip_ranges`
+##### `GET /api/2.0/subnets/{subnet_id}/` `op=unreserved_ip_ranges`
 
 Lists IP ranges currently unreserved in the subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `PUT /api/2.0/subnets/{id}/`
+##### `PUT /api/2.0/subnets/{subnet_id}/`
 
 Update subnet.
 
@@ -4786,16 +3923,16 @@ Update subnet.
 - `param cidr`
    The network CIDR for this subnet.
 
-- `param gateway\_ip`
+- `param gateway_ip`
    The gateway IP address for this subnet.
 
-- `param rdns\_mode`
+- `param rdns_mode`
    How reverse DNS is handled for this subnet.
 
-- `param allow\_proxy`
+- `param allow_proxy`
    Configure maas-proxy to allow requests from this subnet.
 
-- `param dns\_servers`
+- `param dns_servers`
    Comma-seperated list of DNS servers for this subnet.
 
 Returns 404 if the subnet is not found.
@@ -4827,9 +3964,9 @@ Create a subnet.
     provided fabric or defaults to the default VLAN in the default fabric.
 
 - `param vid`
-   VID of the VLAN this subnet belongs to. Only used when vlan is
-    not provided. Picks the VLAN with this VID in the provided fabric or
-    the default fabric if one is not given.
+   VID of the VLAN this subnet belongs to. Only used when vlan is not
+    provided. Picks the VLAN with this VID in the provided fabric or the
+    default fabric if one is not given.
 
 - `param space`
    Space this subnet is in. Defaults to the default space.
@@ -4837,10 +3974,10 @@ Create a subnet.
 - `param cidr`
    The network CIDR for this subnet.
 
-- `param gateway\_ip`
+- `param gateway_ip`
    The gateway IP address for this subnet.
 
-- `param rdns\_mode`
+- `param rdns_mode`
    How reverse DNS is handled for this subnet. One of: 0 (Disabled), 1
     (Enabled), or 2 (RFC2317). Disabled means no reverse zone is created;
     Enabled means generate the reverse zone; RFC2317 extends Enabled to
@@ -4848,20 +3985,20 @@ Create a subnet.
     records for the network, if the network is small enough to require the
     support described in RFC2317.
 
-- `param allow\_proxy`
+- `param allow_proxy`
    Configure maas-proxy to allow requests from this subnet.
 
-- `param dns\_servers`
+- `param dns_servers`
    Comma-seperated list of DNS servers for this subnet.
 
 ### Tag
 
 Manage a Tag.
 
-> Tags are properties that can be associated with a Node and serve as criteria
-> for selecting and allocating nodes.
->
-> A Tag is identified by its name.
+Tags are properties that can be associated with a Node and serve as criteria
+for selecting and allocating nodes.
+
+A Tag is identified by its name.
 
 ##### `DELETE /api/2.0/tags/{name}/`
 
@@ -4910,9 +4047,9 @@ Returns 404 if the tag is not found.
 
 Manually trigger a rebuild the tag &lt;=&gt; node mapping.
 
-This is considered a maintenance operation, which should normally not
-be necessary. Adding nodes or updating a tag's definition should
-automatically trigger the appropriate changes.
+This is considered a maintenance operation, which should normally not be
+necessary. Adding nodes or updating a tag's definition should automatically
+trigger the appropriate changes.
 
 Returns 404 if the tag is not found.
 
@@ -4921,21 +4058,21 @@ Returns 404 if the tag is not found.
 Add or remove nodes being associated with this tag.
 
 - `param add`
-   system\_ids of nodes to add to this tag.
+   system_ids of nodes to add to this tag.
 
 - `param remove`
-   system\_ids of nodes to remove from this tag.
+   system_ids of nodes to remove from this tag.
 
 - `param definition`
    (optional) If supplied, the definition will be validated against the
-    current definition of the tag. If the value does not match, then the
-    update will be dropped (assuming this was just a case of a worker
-    being out-of-date)
+   current definition of the tag. If the value does not match, then the
+   update will be dropped (assuming this was just a case of a worker being
+   out-of-date)
 
-- `param rack\_controller`
-   A system ID of a rack controller that did the processing. This value
-    is optional. If not supplied, the requester must be a superuser. If
-    supplied, then the requester must be the rack controller.
+- `param rack_controller`
+   A system ID of a rack controller that did the processing. This value is
+   optional. If not supplied, the requester must be a superuser. If
+   supplied, then the requester must be the rack controller.
 
 Returns 404 if the tag is not found. Returns 401 if the user does not have
 permission to update the nodes. Returns 409 if 'definition' doesn't match
@@ -4954,7 +4091,7 @@ Update a specific Tag.
     human readable description of the tag.
 
 - `param definition`
-   An XPATH query that will be evaluated against the hardware\_details
+   An XPATH query that will be evaluated against the hardware_details
     stored for all nodes (output of lshw -xml).
 
 Returns 404 if the tag is not found.
@@ -4982,28 +4119,21 @@ Create a new Tag.
     human readable description of the tag.
 
 - `param definition`
-   An XPATH query that will be evaluated against the hardware\_details
+   An XPATH query that will be evaluated against the hardware_details
     stored for all nodes (output of lshw -xml).
 
-- `param kernel\_opts`
+- `param kernel_opts`
    Can be None. If set, nodes associated with this tag will add this
     string to their kernel options when booting. The value overrides the
-    global 'kernel\_opts' setting. If more than one tag is associated with
+    global 'kernel_opts' setting. If more than one tag is associated with
     a node, the one with the lowest alphabetical name will be picked (eg
     01-my-tag will be taken over 99-tag-name).
 
 Returns 401 if the user is not an admin.
 
-### User
+### Users
 
-Manage a user account.
-
-##### `DELETE /api/2.0/users/{username}/`
-
-Deletes a user
-
-`GET /api/2.0/users/{username}/` Users ===== Manage the user accounts of this
-MAAS.
+Manage the user accounts of this MAAS.
 
 ##### `GET /api/2.0/users/`
 
@@ -5039,10 +4169,10 @@ from observing the request.
 - `type password`
    unicode
 
-- `param is\_superuser`
+- `param is_superuser`
    Whether the new user is to be an administrator.
 
-- `type is\_superuser`
+- `type is_superuser`
    bool ('0' for False, '1' for True)
 
 Returns 400 if any mandatory parameters are missing.
@@ -5051,13 +4181,15 @@ Returns 400 if any mandatory parameters are missing.
 
 Information about this MAAS instance.
 
-> This returns a JSON dictionary with information about this MAAS instance:
->
->     {
->         'version': '1.8.0',
->         'subversion': 'alpha10+bzr3750',
->         'capabilities': ['capability1', 'capability2', ...]
->     }
+This returns a JSON dictionary with information about this MAAS instance:
+
+```bash
+    {
+        'version': '1.8.0',
+        'subversion': 'alpha10+bzr3750',
+        'capabilities': ['capability1', 'capability2', ...]
+    }
+```
 
 ##### `GET /api/2.0/version/`
 
@@ -5107,23 +4239,23 @@ Update VLAN.
 - `type mtu`
    integer
 
-Param dhcp\_on
+Param dhcp_on
    Whether or not DHCP should be managed on the VLAN.
 
-- `type dhcp\_on`
+- `type dhcp_on`
    boolean
 
-- `param primary\_rack`
+- `param primary_rack`
    The primary rack controller managing the VLAN.
 
-- `type primary\_rack`
-   system\_id
+- `type primary_rack`
+   system_id
 
-- `param secondary\_rack`
+- `param secondary_rack`
    The secondary rack controller manging the VLAN.
 
-- `type secondary\_rack`
-   system\_id
+- `type secondary_rack`
+   system_id
 
 Returns 404 if the fabric or VLAN is not found.
 
@@ -5154,20 +4286,21 @@ Create a VLAN.
 
 Manage volume group on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `DELETE /api/2.0/nodes/{system_id}/volume-group/{volume_group_id}/`
 
 Delete volume group on a machine.
 
 Returns 404 if the machine or volume group is not found. Returns 409 if
 the machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `GET /api/2.0/nodes/{system_id}/volume-group/{volume_group_id}/`
 
 Read volume group on a machine.
 
 Returns 404 if the machine or volume group is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/volume-group/{id}/` `op=create_logical_volume`
+##### `POST /api/2.0/nodes/{system_id}/volume-group/{volume_group_id}/`
+##### `op=create_logical_volume`
 
 Create a logical volume in the volume group.
 
@@ -5180,10 +4313,11 @@ Create a logical volume in the volume group.
 - `param size`
    Size of the logical volume.
 
-Returns 404 if the machine or volume group is not found. Returns 409 if
-the machine is not Ready.
+Returns 404 if the machine or volume group is not found. Returns 409 if the
+machine is not Ready.
 
-##### `POST /api/2.0/nodes/{system_id}/volume-group/{id}/` `op=delete_logical_volume`
+##### `POST /api/2.0/nodes/{system_id}/volume-group/{volume_group_id}/`
+##### `op=delete_logical_volume`
 
 Delete a logical volume in the volume group.
 
@@ -5193,7 +4327,7 @@ Delete a logical volume in the volume group.
 Returns 403 if no logical volume with id. Returns 404 if the machine or
 volume group is not found. Returns 409 if the machine is not Ready.
 
-##### `PUT /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `PUT /api/2.0/nodes/{system_id}/volume-group/{volume_group_id}/`
 
 Read volume group on a machine.
 
@@ -5203,16 +4337,16 @@ Read volume group on a machine.
 - `param uuid`
    UUID of the volume group.
 
-- `param add\_block\_devices`
+- `param add_block_devices`
    Block devices to add to the volume group.
 
-- `param remove\_block\_devices`
+- `param remove_block_devices`
    Block devices to remove from the volume group.
 
-- `param add\_partitions`
+- `param add_partitions`
    Partitions to add to the volume group.
 
-- `param remove\_partitions`
+- `param remove_partitions`
    Partitions to remove from the volume group.
 
 Returns 404 if the machine or volume group is not found. Returns 409 if
@@ -5238,26 +4372,26 @@ Create a volume group belonging to machine.
 - `param uuid`
    (optional) UUID of the volume group.
 
-- `param block\_devices`
+- `param block_devices`
    Block devices to add to the volume group.
 
 - `param partitions`
    Partitions to add to the volume group.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+Returns 404 if the machine is not found. Returns 409 if the machine is not
+Ready.
 
 ### Zone
 
 Manage a physical zone.
 
-> Any node is in a physical zone, or "zone" for short. The meaning of a
-> physical zone is up to you: it could identify e.g. a server rack, a network,
-> or a data centre. Users can then allocate nodes from specific physical
-> zones, to suit their redundancy or performance requirements.
->
-> This functionality is only available to administrators. Other users can view
-> physical zones, but not modify them.
+Any node is in a physical zone, or "zone" for short. The meaning of a
+physical zone is up to you: it could identify e.g. a server rack, a network,
+or a data centre. Users can then allocate nodes from specific physical
+zones, to suit their redundancy or performance requirements.
+
+This functionality is only available to administrators. Other users can view
+physical zones, but not modify them.
 
 ##### `DELETE /api/2.0/zones/{name}/`
 
@@ -5319,140 +4453,132 @@ Power parameters:
 
 Power parameters:
 
--   power\_address (Power address).
--   power\_id (Power ID).
--   power\_pass (Power password (optional)).
+-   power_address (Power address).
+-   power_id (Power ID).
+-   power_pass (Power password (optional)).
 
 ### vmware (VMWare)
 
 Power parameters:
 
--   power\_vm\_name (VM Name (if UUID unknown)).
--   power\_uuid (VM UUID (if known)).
--   power\_address (VMware hostname).
--   power\_user (VMware username).
--   power\_pass (VMware password).
--   power\_port (VMware API port (optional)).
--   power\_protocol (VMware API protocol (optional)).
+-   power_vm_name (VM Name (if UUID unknown)).
+-   power_uuid (VM UUID (if known)).
+-   power_address (VMware hostname).
+-   power_user (VMware username).
+-   power_pass (VMware password).
+-   power_port (VMware API port (optional)).
+-   power_protocol (VMware API protocol (optional)).
 
-### fence\_cdu (Sentry Switch CDU)
+### fence_cdu (Sentry Switch CDU)
 
 Power parameters:
 
--   power\_address (Power address).
--   power\_id (Power ID).
--   power\_user (Power user).
--   power\_pass (Power password).
+-   power_address (Power address).
+-   power_id (Power ID).
+-   power_user (Power user).
+-   power_pass (Power password).
 
 ### ipmi (IPMI)
 
 Power parameters:
 
--   power\_driver (Power driver). Choices: 'LAN' (LAN \[IPMI 1.5\]),
-'LAN\_2\_0' (LAN\_2\_0 \[IPMI 2.0\]) Default: 'LAN\_2\_0'.
--   power\_address (IP address).
--   power\_user (Power user).
--   power\_pass (Power password).
--   mac\_address (Power MAC).
+-   power_driver (Power driver). Choices: 'LAN' (LAN \[IPMI 1.5\]),
+'LAN_2_0' (LAN_2_0 \[IPMI 2.0\]) Default: 'LAN_2_0'.
+-   power_address (IP address).
+-   power_user (Power user).
+-   power_pass (Power password).
+-   mac_address (Power MAC).
 
 ### moonshot (HP Moonshot - iLO4 (IPMI))
 
 Power parameters:
 
--   power\_address (Power address).
--   power\_user (Power user).
--   power\_pass (Power password).
--   power\_hwaddress (Power hardware address).
+-   power_address (Power address).
+-   power_user (Power user).
+-   power_pass (Power password).
+-   power_hwaddress (Power hardware address).
 
 ### sm15k (SeaMicro 15000)
 
 Power parameters:
 
--   system\_id (System ID).
--   power\_address (Power address).
--   power\_user (Power user).
--   power\_pass (Power password).
--   power\_control (Power control type). Choices: 'ipmi' (IPMI), 'restapi'
+-   system_id (System ID).
+-   power_address (Power address).
+-   power_user (Power user).
+-   power_pass (Power password).
+-   power_control (Power control type). Choices: 'ipmi' (IPMI), 'restapi'
 (REST API v0.9), 'restapi2' (REST API v2.0) Default: 'ipmi'.
 
 ### amt (Intel AMT)
 
 Power parameters:
 
--   power\_pass (Power password).
--   power\_address (Power address).
+-   power_pass (Power password).
+-   power_address (Power address).
 
 ### dli (Digital Loggers, Inc. PDU)
 
 Power parameters:
 
--   outlet\_id (Outlet ID).
--   power\_address (Power address).
--   power\_user (Power user).
--   power\_pass (Power password).
-
-### wedge (Facebook's Wedge)
-
-Power parameters:
-
--   power\_address (IP address).
--   power\_user (Power user).
--   power\_pass (Power password).
+-   outlet_id (Outlet ID).
+-   power_address (Power address).
+-   power_user (Power user).
+-   power_pass (Power password).
 
 ### ucsm (Cisco UCS Manager)
 
 Power parameters:
 
 -   uuid (Server UUID).
--   power\_address (URL for XML API).
--   power\_user (API user).
--   power\_pass (API password).
+-   power_address (URL for XML API).
+-   power_user (API user).
+-   power_pass (API password).
 
 ### mscm (HP Moonshot - iLO Chassis Manager)
 
 Power parameters:
 
--   power\_address (IP for MSCM CLI API).
--   power\_user (MSCM CLI API user).
--   power\_pass (MSCM CLI API password).
--   node\_id (Node ID - Must adhere to cXnY format (X=cartridge number,
-Y=node number).).
+-   power_address (IP for MSCM CLI API).
+-   power_user (MSCM CLI API user).
+-   power_pass (MSCM CLI API password).
+-   node_id (Node ID - Must adhere to cXnY format (X=cartridge number, Y=node
+number).).
 
 ### msftocs (Microsoft OCS - Chassis Manager)
 
 Power parameters:
 
--   power\_address (Power address).
--   power\_port (Power port).
--   power\_user (Power user).
--   power\_pass (Power password).
--   blade\_id (Blade ID (Typically 1-24)).
+-   power_address (Power address).
+-   power_port (Power port).
+-   power_user (Power user).
+-   power_pass (Power password).
+-   blade_id (Blade ID (Typically 1-24)).
 
 ### apc (American Power Conversion (APC) PDU)
 
 Power parameters:
 
--   power\_address (IP for APC PDU).
--   node\_outlet (APC PDU node outlet number (1-16)).
--   power\_on\_delay (Power ON outlet delay (seconds)). Default: '5'.
+-   power_address (IP for APC PDU).
+-   node_outlet (APC PDU node outlet number (1-16)).
+-   power_on_delay (Power ON outlet delay (seconds)). Default: '5'.
 
 ### hmc (IBM Hardware Management Console (HMC))
 
 Power parameters:
 
--   power\_address (IP for HMC).
--   power\_user (HMC username).
--   power\_pass (HMC password).
--   server\_name (HMC Managed System server name).
+-   power_address (IP for HMC).
+-   power_user (HMC username).
+-   power_pass (HMC password).
+-   server_name (HMC Managed System server name).
 -   lpar (HMC logical partition).
 
 ### nova (OpenStack Nova)
 
 Power parameters:
 
--   nova\_id (Host UUID).
--   os\_tenantname (Tenant name).
--   os\_username (Username).
--   os\_password (Password).
--   os\_authurl (Auth URL).
+-   nova_id (Host UUID).
+-   os_tenantname (Tenant name).
+-   os_username (Username).
+-   os_password (Password).
+-   os_authurl (Auth URL).
 
