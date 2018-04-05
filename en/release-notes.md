@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.4
 
 MAAS 2.4 is currently under development. The current release is 
-[MAAS 2.4.0 (alpha2)][currentrelease]. See 
+[MAAS 2.4.0 (beta1)][currentrelease]. See 
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
@@ -24,6 +24,113 @@ sudo apt install maas
 The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
+
+## 2.4.0 (beta1)
+
+### Debian package `maas-dns` no longer needed
+
+The Debian package, *maas-dns*, has been made a transitional package. This
+package previously provided some post-installation configuration to prepare
+*bind* to be managed by MAAS, but it required *maas-region-api* to be installed
+first. 
+
+To streamline the installation and make it easier for users to install MAAS
+within high-availability environments, the configuration of *bind* has been
+integrated into the ‘maas-region-api’ package itself. Subsequently, ‘maas-dns’
+is now a dummy transitional package that can be removed.
+
+### New Features & Improvements
+
+#### Further internal optimisation
+
+Major internal surgery to MAAS 2.4 continues to improve various areas not visible
+to the user. These updates will advance the overall performance of MAAS in
+larger environments and include:
+
+**Database query optimisation**
+
+Further reductions in the number of database queries have been made,
+significantly cutting the queries made by the boot source cache image import
+process from over 100 to just under 5.
+
+**UI optimisation**
+
+MAAS is being optimised to reduce the amount of data using the websocket API to
+render the UI. These improvements target the processing of data *only* for
+viewable information, improving various legacy areas. Currently, the work done
+for this release includes:
+
+- Only load historic script results (e.g. old commissioning/testing results)
+  when requested / accessed by the user, instead of always making them
+  available over the websocket.
+- Only load node objects in listing pages when the specific object type is
+  requested. For instance, only load machines when accessing the machines tab
+  instead of also loading devices and controllers.
+- Change the UI mechanism to only request OS Information only on initial page
+  load rather than every 10 seconds.
+
+**KVM pod improvements**
+
+This release provides more updates to KVM pods:
+
+- **Added overcommit ratios for CPU and memory.**
+  When composing or allocating machines, previous versions of MAAS allow the
+  user to request resources regardless of resource availability. This caused
+  problems when dynamically allocating machines as it allowed users to create
+  an infinite number of machines when the physical host was over committed.
+  This new feature allows administrators to control the amount of resources
+  they want to over commit.
+
+
+- **Added filter for which pods or pod types to avoid when allocating machines,**
+  Provides users with the ability to select which pods, or pod types, *not* to
+  allocate resources from. This makes it particularly useful when dynamically
+  allocating machines when MAAS has a large number of pods.
+
+**DNS UI improvements**
+
+MAAS 2.0 introduced the ability to manage DNS and to create resources records
+such as A, AAA and CNAME. However, as the UI only supported adding and removing
+domains, most of this functionality was only available via the API.
+
+This release adds the ability to manage not only DNS domains but also
+the following resource records within the web UI:
+
+- Edit domains (e.g. TTL, name, authoritative).
+- Create and delete resource records (A, AAA, CNAME, TXT, etc).
+- Edit resource records.
+
+**Navigation UI improvements**
+
+MAAS 2.4 beta 1 changes the top-level navigation:
+- *Zones* renamed to *AZs* (Availability Zones).
+- *Machines*, *Devices* and *Controllers* have been moved from *Hardware* to
+  the top-level menu.
+
+*Minor improvements*
+
+- **IPMI machines boot type can now be forced.**
+  Hardware manufactures have been upgrading their BMC firmware versions to be
+  more compliant with the Intel IPMI 2.0 spec. Unfortunately, the IPMI 2.0 spec
+  has made changes that provide a non-backward compatible user experience. For
+  example, if the administrator configures their machine to always PXE boot over
+  EFI, and the user executes an IPMI command without specifying the boot type,
+  the machine would use the value of the configured BIOS. However, with  these
+  new changes, the user is required to always specify a boot type, avoiding a
+  fallback to the BIOS. As such, MAAS now allows the selection of a boot type
+  (auto, legacy, efi) to force the machine to always PXE with the desired type
+  (on the next boot only) .
+
+- **Skip BMC configuration on commissioning.**
+  The API now provides an option to skip BMC auto-configuration during
+  commissioning for IPMI systems. This option helps admins keep the credentials
+  provided over the API when adding new nodes.
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.4.0beta1](https://launchpad.net/maas/+milestone/2.4.0beta1)
 
 ## 2.4.0 (alpha2)
 
@@ -262,7 +369,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0-(alpha2)
+[currentrelease]: release-notes.md#2.4.0-(beta1)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
