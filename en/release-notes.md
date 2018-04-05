@@ -73,7 +73,7 @@ for this release includes:
 
 This release provides more updates to KVM pods:
 
-- **Added overcommit ratios for CPU and memory.**
+- **Added over-commit ratios for CPU and memory.**
   When composing or allocating machines, previous versions of MAAS allow the
   user to request resources regardless of resource availability. This caused
   problems when dynamically allocating machines as it allowed users to create
@@ -118,7 +118,7 @@ MAAS 2.4 beta 1 changes the top-level navigation:
   the machine would use the value of the configured BIOS. However, with  these
   new changes, the user is required to always specify a boot type, avoiding a
   fallback to the BIOS. As such, MAAS now allows the selection of a boot type
-  (auto, legacy, efi) to force the machine to always PXE with the desired type
+  (auto, legacy, EFI) to force the machine to always PXE with the desired type
   (on the next boot only) .
 
 - **Skip BMC configuration on commissioning.**
