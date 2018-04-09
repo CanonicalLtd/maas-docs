@@ -74,11 +74,8 @@ Create an authorisation OAuth token and OAuth consumer.
 - `return`
    a json dict with four keys: 'token_key',
    'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
-   's65244576fgqs', token_secret:
-
-   'qsdfdhv34',
+   's65244576fgqs', token_secret: 'qsdfdhv34',
    consumer_key: '68543fhj854fg', name:
-
    'MAAS consumer'}).
 
 - `rtype`
@@ -2702,6 +2699,13 @@ Begin commissioning process for a machine.
 - `type enable_ssh`
    bool ('0' for False, '1' for True)
 
+- `param skip_bmc_config`
+   Whether to skip re-configuration of the BMC
+   for IPMI based machines.
+
+- `type skip_bmc_config`
+   bool ('0' for False, '1' for True)
+
 - `param skip_networking`
    Whether to skip re-configuring the networking
    on the machine after the commissioning has completed.
@@ -4970,6 +4974,12 @@ Update a specific Pod.
 - `param name`
    Name for the pod (optional).
 
+- `param cpu_over_commit_ratio`
+   CPU over commit ratio (optional).
+
+- `param memory_over_commit_ratio`
+   Memory over commit ratio (optional).
+
 Note: 'type' cannot be updated on a Pod. The Pod must be deleted and re-added
 to change the type.
 
@@ -5001,6 +5011,14 @@ Create a Pod.
 
 - `param tags`
    A tag or tags (separated by comma) for the pod.
+
+- `param cpu_over_commit_ratio`
+   CPU over commit ratio for the
+   pod (optional).
+
+- `param memory_over_commit_ratio`
+   Memory over commit ratio for
+   the pod (optional).
 
 Returns 503 if the pod could not be discovered. Returns 404 if the pod is not
 found. Returns 403 if the user does not have permission to create a pod.
@@ -6530,6 +6548,8 @@ Power parameters:
 
 -   power_driver (Power driver). Choices: 'LAN' (LAN \[IPMI 1.5\]),
    'LAN_2_0' (LAN_2_0 \[IPMI 2.0\]) Default: 'LAN_2_0'.
+-   power_boot_type (Power boot type). Choices: 'auto' (Automatic), 'legacy'
+   (Legacy boot), 'efi' (EFI boot) Default: 'auto'.
 -   power_address (IP address).
 -   power_user (Power user).
 -   power_pass (Power password).
