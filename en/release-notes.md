@@ -3,8 +3,8 @@ table_of_contents: True
 
 # Release Notes 2.4
 
-MAAS 2.4 is currently under development. The current release is
-[MAAS 2.4.0 (alpha2)][currentrelease]. See
+MAAS 2.4 is currently under development. The current release is 
+[MAAS 2.4.0 (beta1)][currentrelease]. See 
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
@@ -25,121 +25,223 @@ The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
 
-## 2.4.0 (alpha2)
+## 2.4.0 (beta1)
 
-### NTP services now provided by Chrony
+### Debian package `maas-dns` no longer needed
 
-Starting with 2.4 Alpha 2, and in common with changes being made to Ubuntu Server,
-MAAS replaces ‘ntpd’ with Chrony for the NTP protocol. MAAS will handle the upgrade
-process and automatically resume NTP service operation.
+The Debian package, *maas-dns*, has been made a transitional package. This
+package previously provided some post-installation configuration to prepare
+*bind* to be managed by MAAS, but it required *maas-region-api* to be installed
+first. 
 
-### Vanilla CSS Framework Transition
-
-MAAS 2.4 is undergoing a Vanilla CSS framework transition to a new version of Vanilla,
-which will bring a fresher look to the MAAS UI. This framework transition is currently a 
-work in progress and not all of the UI have been fully updated. Please expect to see some
-inconsistencies in this new release.
+To streamline the installation and make it easier for users to install MAAS
+within high-availability environments, the configuration of *bind* has been
+integrated into the ‘maas-region-api’ package itself. Subsequently, ‘maas-dns’
+is now a dummy transitional package that can be removed.
 
 ### New Features & Improvements
 
-#### NTP services now provided by Chrony.
+#### Further internal optimisation
 
-Starting from MAAS 2.4alpha2, chrony is now the default NTP service, replacing ntpd.
-This work has been done to align with the Ubuntu Server and Security team to support
-chrony instead of `ntpd`. MAAS will continue to provide services exactly the same way and
-users will not be affected by the changes, handling the upgrade process transparently.
+Major internal surgery to MAAS 2.4 continues to improve various areas not visible
+to the user. These updates will advance the overall performance of MAAS in
+larger environments and include:
+
+**Database query optimisation**
+
+Further reductions in the number of database queries have been made,
+significantly cutting the queries made by the boot source cache image import
+process from over 100 to just under 5.
+
+**UI optimisation**
+
+MAAS is being optimised to reduce the amount of data using the websocket API to
+render the UI. These improvements target the processing of data *only* for
+viewable information, improving various legacy areas. Currently, the work done
+for this release includes:
+
+- Only load historic script results (e.g. old commissioning/testing results)
+  when requested / accessed by the user, instead of always making them
+  available over the websocket.
+- Only load node objects in listing pages when the specific object type is
+  requested. For instance, only load machines when accessing the machines tab
+  instead of also loading devices and controllers.
+- Change the UI mechanism to only request OS Information only on initial page
+  load rather than every 10 seconds.
+
+**KVM pod improvements**
+
+This release provides more updates to KVM pods:
+
+- **Added over-commit ratios for CPU and memory.**
+  When composing or allocating machines, previous versions of MAAS allow the
+  user to request resources regardless of resource availability. This caused
+  problems when dynamically allocating machines as it allowed users to create
+  an infinite number of machines when the physical host was over committed.
+  This new feature allows administrators to control the amount of resources
+  they want to over commit.
+
+
+- **Added filter for which pods or pod types to avoid when allocating machines,**
+  Provides users with the ability to select which pods, or pod types, *not* to
+  allocate resources from. This makes it particularly useful when dynamically
+  allocating machines when MAAS has a large number of pods.
+
+**DNS UI improvements**
+
+MAAS 2.0 introduced the ability to manage DNS and to create resources records
+such as A, AAA and CNAME. However, as the UI only supported adding and removing
+domains, most of this functionality was only available via the API.
+
+This release adds the ability to manage not only DNS domains but also
+the following resource records within the web UI:
+
+- Edit domains (e.g. TTL, name, authoritative).
+- Create and delete resource records (A, AAA, CNAME, TXT, etc).
+- Edit resource records.
+
+**Navigation UI improvements**
+
+MAAS 2.4 beta 1 changes the top-level navigation:
+- *Zones* renamed to *AZs* (Availability Zones).
+- *Machines*, *Devices* and *Controllers* have been moved from *Hardware* to
+  the top-level menu.
+
+*Minor improvements*
+
+- **IPMI machines boot type can now be forced.**
+  Hardware manufactures have been upgrading their BMC firmware versions to be
+  more compliant with the Intel IPMI 2.0 spec. Unfortunately, the IPMI 2.0 spec
+  has made changes that provide a non-backward compatible user experience. For
+  example, if the administrator configures their machine to always PXE boot over
+  EFI, and the user executes an IPMI command without specifying the boot type,
+  the machine would use the value of the configured BIOS. However, with  these
+  new changes, the user is required to always specify a boot type, avoiding a
+  fallback to the BIOS. As such, MAAS now allows the selection of a boot type
+  (auto, legacy, EFI) to force the machine to always PXE with the desired type
+  (on the next boot only) .
+
+- **Skip BMC configuration on commissioning.**
+  The API now provides an option to skip BMC auto-configuration during
+  commissioning for IPMI systems. This option helps admins keep the credentials
+  provided over the API when adding new nodes.
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.4.0beta1](https://launchpad.net/maas/+milestone/2.4.0beta1)
+
+## 2.4.0 (alpha2)
+
+### NTP services provided by Chrony
+
+Starting with 2.4.0 alpha 2, and in common with changes made to Ubuntu Server,
+‘ntpd’ has been replaced with [Chrony][chrony] for the NTP protocol.
+
+MAAS will handle the upgrade process automatically and resume NTP service operation.
+
+### Vanilla CSS Framework Transition
+
+MAAS 2.4.0 is transitioning to a new version of the
+[Vanilla CSS framework][vanilla], which will bring a fresher look to the MAAS
+web UI. This transition is currently *work-in-progress* and not all of the UI
+have been fully updated. As a result, expect to see some inconsistencies in new
+release.
+
+### New Features & Improvements
+
+#### NTP services provided by Chrony
+
+Starting with 2.4.0 alpha 2, and in common with changes made to Ubuntu Server,
+MAAS replaces ‘ntpd’ with [chrony][chrony] for the NTP protocol. MAAS will
+continue to provide services exactly the same way and users will not be
+affected by the change. The upgrade process is handled transparently.
+
 This means that:
 
- - MAAS will configure chrony as peers on all Region Controllers
- - MAAS will configure chrony as a client of peers for all Rack Controllers
- - Machines will use the Rack Controllers as they do today
+- MAAS will configure chrony as peers on all Region Controllers
+- MAAS will configure chrony as a client of peers for all Rack Controllers
+- Machines will use Rack Controllers as they do today
 
-#### MAAS Internals optimisation
+#### MAAS internals optimisation
 
-MAAS 2.4 is currently undergoing major surgery to improve various areas of operation
-that are not visible to the user. These updates will improve the overall performance of
-MAAS in larger environments. These improvements include:
+MAAS 2.4 is currently undergoing major surgery to improve various areas of
+operation that are not visible to the user. These updates will improve the
+overall performance of MAAS in larger environments.
 
+These improvements include:
 
- - **AsyncIO based event loop**
-    MAAS has an event loop which performs various internal actions. In older versions
-    of MAAS, the event loop was managed by the default twisted event loop. MAAS now uses
-    an asyncio based event loop, driven by uvloop, which is targeted at improving
-    internal performance.
+**AsyncIO based event loop**
 
- - **Improved daemon management**
-   MAAS has changed the way daemons are run to allow users to see both `regiond` 
-   and `rackd` as processes in the process list.
-   As part of these changes, `regiond` workers are now managed by a master `regiond`
-   process. In older versions of MAAS each worker was directly run by `systemd`.
-   The master process is now in charge of ensuring workers are running at all times,
-   and re-spawning new workers in case of failures. This also allows users to see the
-   worker hierarchy in the process list.
+MAAS has an event loop which performs various internal actions. In older
+versions of MAAS, the event loop was managed by the default *Twisted* event
+loop. MAAS now uses an AsyncIO based event loop, driven by uvloop, which is
+targeted at improving internal performance.
 
+**Improved daemon management**
 
- - **Ability to increase the number of regiond workers**
-   Following the improved way MAAS daemons are run, further internal changes have been made to allow the number of regiond workers to be increased automatically. This allows MAAS to scale to handle more internal operations in larger environments.
-   While this capability is already available, it is not yet enabled by default. It will become available in the following milestone release.
+MAAS has changed the way daemons are run to allow users to see both ‘regiond’
+and ‘rackd’ as processes in the process list.
 
+As part of these changes, regiond workers are now managed by a master regiond
+process. In older versions of MAAS, each worker was directly run by systemd. The
+master process is now in charge of ensuring workers are running at all times,
+re-spawning new workers in case of failures. This also allows users to see the
+worker hierarchy in the process list.
 
-- **Database query optimizations**
-   In the process of inspecting the internal operations of MAAS, it was discovered that multiple unnecessary database queries are performed for various operations. Optimising these requires internal improvements to reduce the footprint of these operations. Some areas that have been addressed in this release include:
+**Ability to increase the number of regiond workers**
 
-     *  When saving node objects (e.g. making any update of a machine, device, rack controller, etc), MAAS validated changes across various fields. This required an increased number of queries for fields, even when they were not being updated. MAAS now tracks specific fields that change and only performs queries for those fields.
-     Example: To update a power state, MAAS would perform 11 queries. After these
-     improvements, only 1 query is now performed.
+Following the improved way MAAS daemons are run, further internal changes have
+been made to allow the number of regiond workers to be increased automatically.
+This allows MAAS to scale to handle an increased number of internal operations
+in larger environments.
 
-     * On every transaction, MAAS performed 2 queries to update the timestamp.
-     This has now been consolidated into a single query per transaction.
+While this capability is already available, it is not yet available by default.
+It will become available in the following milestone release.
 
-   These changes  greatly improve MAAS performance and database utilisation in
-   larger environments. More improvements will continue to be made as we continue
-   to examine various areas in MAAS.
+**Database query optimisation**
 
+Internal improvements have been made to reduce the footprint and number of
+database queries. Some areas that have been addressed in this release include:
 
- - **UI optimisations**
-   MAAS is now being optimised to reduce the amount of data loaded in the websocket API to render the UI. This is targeted at only processing data for viewable information, improving various legacy areas. Currently, the work done in this area includes:
+- When saving node objects (e.g. making any update of a machine, device, rack
+  controller, etc), MAAS validated changes across various fields. This
+  required an increased number of queries for fields, even when they were not
+  being updated. MAAS now tracks specific fields that change and only performs
+  queries for those fields.  For example, to update a power state, MAAS would
+  perform 11 queries. After these improvements, only 1 query is now performed.
 
-   Script results are only loaded for viewable nodes in the machine listing page, reducing the overall amount of data loaded.
+- On every transaction, MAAS performed 2 queries to update the timestamp. This
+  has now been consolidated into a single query per transaction.
 
-   The node object is updated in the websocket only when something has changed in the database, reducing the data transferred to the clients as well as the amount of internal queries.
+These changes greatly improves MAAS performance and database utilisation in
+larger environments. More improvements will continue to be made as we continue
+to examine various areas in MAAS.
+
+#### UI optimisation
+
+MAAS is being optimised to reduce the amount of data loaded in the WebSocket
+API to render the UI. This is targeted at only processing data for viewable
+information, improving various legacy areas. Currently, the work done in this
+area includes:
+
+- Script results are only loaded for viewable nodes in the machine listing
+  page, reducing the overall amount of data loaded.
+- The node object is updated in the WebSocket only when something has changed
+  in the database, reducing the data transferred to the clients as well as the
+  amount of internal queries.
 
 #### Audit logging
 
-Continuing with the audit logging improvements, alpha2 now adds audit logging for all
-user actions that affect Hardware Testing & Commissioning.
+Continuing with the audit logging improvements, *alpha2* now adds audit logging
+for all user actions that affect Hardware Testing & Commissioning.
 
-#### KVM pod improvements
+### Issues fixed in this release
 
-MAAS’ KVM pods was initially developed as a feature to help developers quickly iterate
-and test new functionality while developing MAAS. This, however, became a feature that
-allows not only developers, but also administrators to make better use of resources across
-their datacenter. Since the feature was initially create for developers, some features
-were lacking. As such, in 2.4 we are improving the usability of KVM pods:
+For all the issues fixed in this release, please refer to:
 
-
- - **Pod AZ’s**
-   MAAS now allows setting the physical zone for the pod. This
-   helps administrators by conceptually placing their KVM pods
-   in an AZ, which enables them to request/allocate machines on
-   demand based on its AZ. All VM’s created from a pod will
-   inherit the AZ.
-
-
- - **Pod tagging**
-   MAAS now adds the ability to set tags for a pod. This allows
-   administrators to use tags to allow/prevent the creation of a
-   VM inside the pod using tags. For example, if the administrator
-   would like a machine with a ‘tag’ named `virtual`, MAAS will
-   filter all physical machines and only consider other VM’s or
-   a KVM pod for machine allocation.
-
-### Bug fixes
-
-Please refer to the following for all bug fixes in this release.
-
-https://launchpad.net/maas/+milestone/2.4.0alpha2
-
+[https://launchpad.net/maas/+milestone/2.4.0alpha2](https://launchpad.net/maas/+milestone/2.4.0alpha2)
 
 ## 2.4.0 (alpha1)
 
@@ -267,7 +369,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0_(alpha2)
+[currentrelease]: release-notes.md#2.4.0-(beta1)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
@@ -281,3 +383,5 @@ in the following locations:
 [freenode]: https://freenode.net/
 [mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
 [hardware-scripts]: nodes-scripts.md
+[chrony]: https://chrony.tuxfamily.org/
+[vanilla]: https://vanillaframework.io/
