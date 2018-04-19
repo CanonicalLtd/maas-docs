@@ -73,8 +73,8 @@ overwrite them. Otherwise, you'll need to merge the new changes into the files
 manually. 
 
 At the end of the upgrade, if you see processing errors with the `maas`,
-`squid3`, `maas-dns`, or `maas-region-controller` packages, or if the upgrade
-complains about unmet dependencies with the MAAS packages, try the following:
+`squid3` or `maas-region-controller` packages, or if the upgrade complains
+about unmet dependencies with the MAAS packages, try the following:
 
 ```bash
 sudo apt -f install
