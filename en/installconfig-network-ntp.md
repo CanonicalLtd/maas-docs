@@ -24,15 +24,15 @@ and machines. This also allows an existing NTP infrastructure to be used for
 the above systems. This is done by choosing the NTP server(s) and selecting the
 'External Only' option. The region controller *always* uses an external site.
 
-On the 'Settings' page, select the 'General' tab and scroll down to the
-'Network Configuration' section:
+On the 'Settings' page, select the 'Network services' tab and scroll down to the
+'NTP' section:
 
-![configure NTP][img__2.2_configure-ntp]
+![configure NTP][img__configure-ntp]
 
 Apply any changes by pressing the 'Save' button.
 
 
 <!-- LINKS -->
 
-[img__2.2_configure-ntp]: ../media/installconfig-network-ntp__2.2_configure-ntp.png
+[img__configure-ntp]: ../media/installconfig-network-ntp__2.4_configure-ntp.png
 [chrony]: https://chrony.tuxfamily.org/
