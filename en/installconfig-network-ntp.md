@@ -3,10 +3,10 @@ Title: NTP
 
 # NTP
 
-MAAS provides managed NTP services (with `ntpd`) for all region and rack
-controllers. This allows MAAS to both keep its own controllers synchronized,
-and keep deployed machines synchronized as well. NTP is configured on the
-Settings page.
+MAAS provides managed NTP services (with [Chrony][chrony]) for all region and
+rack controllers. This allows MAAS to both keep its own controllers
+synchronized, and keep deployed machines synchronized as well. NTP is
+configured on the Settings page.
 
 The region controller configures the NTP service to keep its time synchronized
 from one or more external sources. By default, the MAAS region controller uses
@@ -35,3 +35,4 @@ Apply any changes by pressing the 'Save' button.
 <!-- LINKS -->
 
 [img__2.2_configure-ntp]: ../media/installconfig-network-ntp__2.2_configure-ntp.png
+[chrony]: https://chrony.tuxfamily.org/
