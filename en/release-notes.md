@@ -25,7 +25,7 @@ The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
 
-## 2.4.0 (beta1)
+## 2.4.0 (beta2)
 
 ### New Features & Improvements
 
@@ -39,7 +39,7 @@ The service monitor interval has also been reduced to 30 seconds. The monitor
 tracks the status of the various services provided alongside MAAS (DNS, NTP,
 Proxy).
 
-Various web UI performance improvements, including better filtering of node
+Various web UI performance improvements include better filtering of node
 types for machines, pods and zones.
 
 #### KVM pod improvements
@@ -48,35 +48,35 @@ This release adds the following to KVM pod functionality:
 
 **Define a default storage pool**
 
-This feature allows users to select the default storage pool to use when
-composing machines, in case multiple pools have been defined. Otherwise, MAAS
-will pick the storage pool automatically, depending which pool has the most
-available space.
+- This feature allows users to select the default storage pool to use when
+  composing machines, in case multiple pools have been defined. Otherwise, MAAS
+  will pick the storage pool automatically, depending which pool has the most
+  available space.
 
 **Allow machines to be allocated with different storage pools**
 
-From the API, you can now request a machine with multiple storage devices from
-different storage pools. This feature uses storage tags to automatically map a
-storage pool in *libvirt* with a storage tag in MAAS.
+- From the API, you can now request a machine with multiple storage devices from
+  different storage pools. This feature uses storage tags to automatically map a
+  storage pool in *libvirt* with a storage tag in MAAS.
 
 #### UI improvements
 
 **YUI finally dropped in favor of AngularJS**
 
-MAAS has now fully dropped the use of [YUI][yui] for the web UI. The final
-sections using this were the Settings and login pages. Both have now been
-transitioned to use AngularJS instead.
+- MAAS has now fully dropped the use of [YUI][yui] for the web UI. The final
+  sections using this were the Settings and login pages. Both have now been
+  transitioned to use AngularJS instead.
 
 **Settings page reorganisation**
 
-The web UI MAAS setting pages has been reorganised into tabs, making
-configuration options easier to find.
+- The web UI MAAS setting pages has been reorganised into tabs, making
+  configuration options easier to find.
 
 #### Minor improvements
 
 **API for default DNS domain selection**
 
-A default DNS domain can now be defined from the API.
+- A default DNS domain can now be defined from the API.
 
 **Vanilla framework upgrade**
 
