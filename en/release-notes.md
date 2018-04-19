@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.4
 
 MAAS 2.4 is currently under development. The current release is 
-[MAAS 2.4.0 (beta1)][currentrelease]. See 
+[MAAS 2.4.0 (beta2)][currentrelease]. See 
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
@@ -24,6 +24,72 @@ sudo apt install maas
 The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
+
+## 2.4.0 (beta2)
+
+### New Features & Improvements
+
+#### Continued internal optimisation
+
+On the backend, the image download process has been improved to ensure rack
+controllers start to download images immediately after the region controller
+has finished downloading images.
+
+The service monitor interval has also been reduced to 30 seconds. The monitor
+tracks the status of the various services provided alongside MAAS (DNS, NTP,
+Proxy).
+
+Various web UI performance improvements include better filtering of node
+types for machines, pods and zones.
+
+#### KVM pod improvements
+
+This release adds the following to KVM pod functionality:
+
+**Define a default storage pool**
+
+- This feature allows users to select the default storage pool to use when
+  composing machines, in case multiple pools have been defined. Otherwise, MAAS
+  will pick the storage pool automatically, depending which pool has the most
+  available space.
+
+**Allow machines to be allocated with different storage pools**
+
+- From the API, you can now request a machine with multiple storage devices from
+  different storage pools. This feature uses storage tags to automatically map a
+  storage pool in *libvirt* with a storage tag in MAAS.
+
+#### UI improvements
+
+**YUI finally dropped in favor of AngularJS**
+
+- MAAS has now fully dropped the use of [YUI][yui] for the web UI. The final
+  sections using this were the Settings and login pages. Both have now been
+  transitioned to use AngularJS instead.
+
+**Settings page reorganisation**
+
+- The web UI MAAS setting pages has been reorganised into tabs, making
+  configuration options easier to find.
+
+#### Minor improvements
+
+**API for default DNS domain selection**
+
+- A default DNS domain can now be defined from the API.
+
+**Vanilla framework upgrade**
+
+We would like to thank the Ubuntu web team for their continued hard work
+upgrading MAAS to the latest version of the Vanilla framework. MAAS is looking
+better and more consistent every day!
+
+### Issues fixed in this release
+
+For all the issues fixed in this release, please refer to:
+
+[https://launchpad.net/maas/+milestone/2.4.0beta2](https://launchpad.net/maas/+milestone/2.4.0beta2)
+
 
 ## 2.4.0 (beta1)
 
@@ -369,7 +435,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0-(beta1)
+[currentrelease]: release-notes.md#2.4.0-(beta2)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
@@ -385,3 +451,4 @@ in the following locations:
 [hardware-scripts]: nodes-scripts.md
 [chrony]: https://chrony.tuxfamily.org/
 [vanilla]: https://vanillaframework.io/
+[yui]: https://en.wikipedia.org/wiki/YUI_Library
