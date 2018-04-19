@@ -117,7 +117,7 @@ sudo systemctl restart postgresql
 On a secondary host, add the new API server by installing `maas-region-api`:
 
 ```bash
-sudo apt install maas-region-api maas-dns
+sudo apt install maas-region-api
 ```
 
 The `/etc/maas/regiond.conf` file from the primary API server will be needed.
