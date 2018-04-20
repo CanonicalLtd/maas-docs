@@ -133,7 +133,6 @@ sudo scp ubuntu@$PRIMARY_API_SERVER:regiond.conf /etc/maas/regiond.conf
 sudo chown root:maas /etc/maas/regiond.conf
 sudo chmod 640 /etc/maas/regiond.conf
 sudo maas-region local_config_set --database-host $PRIMARY_PG_SERVER
-sudo maas-region edit_named_options --migrate-conflicting-options
 sudo systemctl restart bind9
 sudo systemctl start maas-regiond
 ```
