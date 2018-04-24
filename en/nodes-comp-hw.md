@@ -50,7 +50,7 @@ or URL followed by a port), 'Pod user', and 'Pod password' from the RSD
 administrator. Then click 'Save pod'.
 
 Once added, MAAS will automatically discover and store the resources that a
-Pod contains. Any pre-composed machines will also appear on the 'Nodes' page
+Pod contains. Any pre-composed machines will also appear on the 'Machines' page
 and be commissioned. 
 
 This is how a Virsh Pod is added:
@@ -65,9 +65,10 @@ Virsh Pod notes:
   libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
   the VLAN associated with the libvirt subnet of 192.168.122.0/24.
 - MAAS will first look for a libvirt network named 'maas', then for 'default'.
-- KVM guests subsequently created (composed) will not, by default, have a
-  graphics card added at the libvirt level. See
-  [LP #1688066][launchpad-bug-1688066].
+- A default *storage pool* can optionally be set. This feature uses storage
+  tags to automatically map a storage pool in libvirt with a storage tag in
+  MAAS. With no default storage pool defined, MAAS selects the storage pool with
+  the most available space.
 
 ### List Pods
 
@@ -79,29 +80,43 @@ The new Pod, including a summary of contained resources, will be listed on the
 ### View Pod details
 
 Clicking a Pod's name on the 'Pods' page will reveal the resources contained
-within it:
+within it, including its total number of CPU cores, the amount of total RAM and
+local storage. These values update to reflect usage and remaining resources.
+
+The main view also lists the machines contained within the pod.
 
 ![pod details][img__pod-details]
+
+### Configuration
+
+Pods have several configuration options. These that are modified by selecting the
+'Configuration' tab and clicking 'Edit'. These options include a pod's
+location, password, network zone and default storage pool.
+
+Additionally, two sliders are used to set *over commmit* ratios for CPU and
+memory resources. Over committed resources are those allocated beyond what's
+available to the pod. These sliders allow you to strictly limit whether CPU and
+memory can be over committed, and to what extent.
+
+![pod configuration][img__pod-compose-config]
 
 ### Compose Pod machine
 
 While on a Pod's details view, begin the machine composition process by
-pressing the 'Compose machine' button:
+selecting 'Compose' from the 'Take action' dropdown menu:
 
 ![pod compose machine][img__pod-compose-machine]
 
 Fill in the fields (many are optional) and hit 'Compose machine' to finish. You
 will be brought back to the Pod's details view. In a few moments the new
-machine will be auto-commissioned:
+machine will be auto-commissioned.
 
-![pod compose machine commissioning][img__pod-compose-machine-commissioning]
-
-The main 'Nodes' page should reflect this as well.
+The main 'Machines' page should reflect this as well.
 
 As expected, the new machine's resources will be deducted from the Pod's
 resources:
 
-![pod machine resources deducted][img__pod-compose-machine-deducted]
+![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
 ### Decompose a Pod machine
 
@@ -120,7 +135,7 @@ Confirm by hitting the 'Delete machine' button.
     This operation can also be achieved by simply deleting the corresponding
     MAAS node in the regular way.
 
-Once done, you will be transported back to the main 'Nodes' page.
+Once done, you will be transported back to the main 'Machines' page.
 
 ### Delete a Pod
 
@@ -140,13 +155,13 @@ corresponding nodes from MAAS.
 [webui]: installconfig-webui.md
 [launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
 
-[img__pod-initial-page]: ../media/nodes-comp-hw__2.2_pod-initial-page.png
-[img__pod-add-rsd]: ../media/nodes-comp-hw__2.2_pod-add-rsd.png
-[img__pod-add-virsh]: ../media/nodes-comp-hw__2.2_pod-add-virsh.png
-[img__pod-list]: ../media/nodes-comp-hw__2.2_pod-list.png
-[img__pod-details]: ../media/nodes-comp-hw__2.2_pod-details.png
-[img__pod-compose-machine]: ../media/nodes-comp-hw__2.2_pod-compose-machine.png
-[img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.2_pod-compose-machine-commissioning.png
-[img__pod-compose-machine-deducted]: ../media/nodes-comp-hw__2.2_pod-compose-machine-deducted.png
-[img__pod-decompose-machine]: ../media/nodes-comp-hw__2.2_pod-decompose-machine.png
-[img__pod-delete]: ../media/nodes-comp-hw__2.2_pod-delete.png
+[img__pod-initial-page]: ../media/nodes-comp-hw__2.4_pod-initial-page.png
+[img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
+[img__pod-add-virsh]: ../media/nodes-comp-hw__2.4_pod-add-virsh.png
+[img__pod-list]: ../media/nodes-comp-hw__2.4_pod-list.png
+[img__pod-details]: ../media/nodes-comp-hw__2.4_pod-details.png
+[img__pod-compose-config]: ./media/nodes-comp-hw__2.4_pod-compose-config.png
+[img__pod-compose-machine]: ../media/nodes-comp-hw__2.4_pod-compose-machine.png
+[img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.4_pod-compose-machine-commissioning.png
+[img__pod-decompose-machine]: ../media/nodes-comp-hw__2.4_pod-decompose-machine.png
+[img__pod-delete]: ../media/nodes-comp-hw__2.4_pod-delete.png
