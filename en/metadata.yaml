@@ -65,7 +65,7 @@ navigation:
           - title: Commissioning and Hardware testing scripts
             location: nodes-scripts.md
 
-          - title: Composable hardware
+          - title: Pods
             location: nodes-comp-hw.md
 
             children:
