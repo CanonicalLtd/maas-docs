@@ -1,13 +1,12 @@
-Title: Composable Hardware
+Title: Pods
 TODO:  Track bug: https://bugs.launchpad.net/maas/+bug/1688066
 table_of_contents: True
 
 
-# Composable Hardware
+# Pods
 
-Composable hardware allows for the dynamic composition of nodes from a pool
-of available hardware resources (e.g. disk space, memory, cores). MAAS calls
-such a collection of resources a *Pod*.
+Pods, or composable hardware, allow for the dynamic composition of nodes from a pool
+of available hardware resources (e.g. disk space, memory, cores).
 
 This enables a machine request to be made without having machines pre-built.
 Modelling tools, such as [Juju][about-juju], can leverage this functionality
@@ -34,7 +33,7 @@ See [Web UI][webui] for how to get started with the web UI.
 Composable hardware systems are managed on the 'Pods' page, which is initially
 empty:
 
-![initial pods page][img__2.2_pod-initial-page]
+![initial pods page][img__pod-initial-page]
 
 
 ### Add a Pod
@@ -44,7 +43,7 @@ Add/register a Pod by using the 'Add pod' button.
 The first example depicts an RSD Pod being added. After choosing 'Rack Scale
 Design' for 'Pod type' the below form will appear:
 
-![add RSD pod][img__2.2_pod-add-rsd]
+![add RSD pod][img__pod-add-rsd]
 
 Fill in the fields. You will need to get values for 'Pod address' (IP address
 or URL followed by a port), 'Pod user', and 'Pod password' from the RSD
@@ -56,7 +55,7 @@ and be commissioned. 
 
 This is how a Virsh Pod is added:
 
-![add Virsh pod][img__2.2_pod-add-virsh]
+![add Virsh pod][img__pod-add-virsh]
 
 Virsh Pod notes:
 
@@ -75,34 +74,34 @@ Virsh Pod notes:
 The new Pod, including a summary of contained resources, will be listed on the
 'Pods' page:
 
-![save pod][img__2.2_pod-list]
+![save pod][img__pod-list]
 
 ### View Pod details
 
 Clicking a Pod's name on the 'Pods' page will reveal the resources contained
 within it:
 
-![pod details][img__2.2_pod-details]
+![pod details][img__pod-details]
 
 ### Compose Pod machine
 
 While on a Pod's details view, begin the machine composition process by
 pressing the 'Compose machine' button:
 
-![pod compose machine][img__2.2_pod-compose-machine]
+![pod compose machine][img__pod-compose-machine]
 
 Fill in the fields (many are optional) and hit 'Compose machine' to finish. You
 will be brought back to the Pod's details view. In a few moments the new
 machine will be auto-commissioned:
 
-![pod compose machine commissioning][img__2.2_pod-compose-machine-commissioning]
+![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
 The main 'Nodes' page should reflect this as well.
 
 As expected, the new machine's resources will be deducted from the Pod's
 resources:
 
-![pod machine resources deducted][img__2.2_pod-compose-machine-deducted]
+![pod machine resources deducted][img__pod-compose-machine-deducted]
 
 ### Decompose a Pod machine
 
@@ -113,7 +112,7 @@ be Deleted.
 While on a Pod's details view, select the machine to decompose and choose the
 'Delete' button from the dropdown menu:
 
-![pod decompose machine][img__2.2_pod-decompose-machine]
+![pod decompose machine][img__pod-decompose-machine]
 
 Confirm by hitting the 'Delete machine' button.
 
@@ -128,7 +127,7 @@ Once done, you will be transported back to the main 'Nodes' page.
 While on the main Pods page, select a Pod and choose the 'Delete' action from
 the dropdown menu. Hit 'Delete 1 pod' to confirm the action:
 
-![pod delete][img__2.2_pod-delete]
+![pod delete][img__pod-delete]
 
 Deleting a Pod will also decompose all its machines, thereby also removing all
 corresponding nodes from MAAS.
@@ -141,13 +140,13 @@ corresponding nodes from MAAS.
 [webui]: installconfig-webui.md
 [launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
 
-[img__2.2_pod-initial-page]: ../media/nodes-comp-hw__2.2_pod-initial-page.png
-[img__2.2_pod-add-rsd]: ../media/nodes-comp-hw__2.2_pod-add-rsd.png
-[img__2.2_pod-add-virsh]: ../media/nodes-comp-hw__2.2_pod-add-virsh.png
-[img__2.2_pod-list]: ../media/nodes-comp-hw__2.2_pod-list.png
-[img__2.2_pod-details]: ../media/nodes-comp-hw__2.2_pod-details.png
-[img__2.2_pod-compose-machine]: ../media/nodes-comp-hw__2.2_pod-compose-machine.png
-[img__2.2_pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.2_pod-compose-machine-commissioning.png
-[img__2.2_pod-compose-machine-deducted]: ../media/nodes-comp-hw__2.2_pod-compose-machine-deducted.png
-[img__2.2_pod-decompose-machine]: ../media/nodes-comp-hw__2.2_pod-decompose-machine.png
-[img__2.2_pod-delete]: ../media/nodes-comp-hw__2.2_pod-delete.png
+[img__pod-initial-page]: ../media/nodes-comp-hw__2.2_pod-initial-page.png
+[img__pod-add-rsd]: ../media/nodes-comp-hw__2.2_pod-add-rsd.png
+[img__pod-add-virsh]: ../media/nodes-comp-hw__2.2_pod-add-virsh.png
+[img__pod-list]: ../media/nodes-comp-hw__2.2_pod-list.png
+[img__pod-details]: ../media/nodes-comp-hw__2.2_pod-details.png
+[img__pod-compose-machine]: ../media/nodes-comp-hw__2.2_pod-compose-machine.png
+[img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.2_pod-compose-machine-commissioning.png
+[img__pod-compose-machine-deducted]: ../media/nodes-comp-hw__2.2_pod-compose-machine-deducted.png
+[img__pod-decompose-machine]: ../media/nodes-comp-hw__2.2_pod-decompose-machine.png
+[img__pod-delete]: ../media/nodes-comp-hw__2.2_pod-delete.png
