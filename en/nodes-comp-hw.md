@@ -160,7 +160,7 @@ corresponding nodes from MAAS.
 [img__pod-add-virsh]: ../media/nodes-comp-hw__2.4_pod-add-virsh.png
 [img__pod-list]: ../media/nodes-comp-hw__2.4_pod-list.png
 [img__pod-details]: ../media/nodes-comp-hw__2.4_pod-details.png
-[img__pod-compose-config]: ./media/nodes-comp-hw__2.4_pod-compose-config.png
+[img__pod-compose-config]: ../media/nodes-comp-hw__2.4_pod-compose-config.png
 [img__pod-compose-machine]: ../media/nodes-comp-hw__2.4_pod-compose-machine.png
 [img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.4_pod-compose-machine-commissioning.png
 [img__pod-decompose-machine]: ../media/nodes-comp-hw__2.4_pod-decompose-machine.png
