@@ -260,9 +260,9 @@ lease that is not associated with any known node or device. Such an interface
 cannot be user-created.
 
 
-## Node actions
+## Machine actions
 
-Node *actions* are essentially: "things you can do with nodes". They can be
+Machine *actions* are essentially: "things you can do with nodes". They can be
 triggered via the web UI or the MAAS CLI. With the former, they are managed
 with the 'Take action' button in the top right corner. An action usually
 changes the *status* (see next section) of a node. Below is the full list of
@@ -336,6 +336,19 @@ A newly-commissioned node ('Ready') can also be marked broken.
 ### Mark fixed
 Fixes a broken node. Changes a node's status from 'Broken' to 'Ready'.
 
+### Lock
+Marks a machine as *locked*. This prevents the user from performing actions on
+machines that could change their state. For example, a locked machine cannot be
+mistakenly *powered off* or *released*.
+
+A machine in a locked state has a padlock symbol next to its name, both when
+selected and within the machine list.
+
+![machine locked state][img__machine-lock]
+
+### Override failed
+Allows a machine marked as ‘Failed testing’ to be usable. 
+
 ### Power off
 Turns a node's underlying machine off.
 
@@ -351,7 +364,6 @@ confirming the action. A default erasure setting can be configured on the
 Settings page. See [Disk erasure][storage-erasure] for details.
 
 ### Rescue mode
-
 Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
 This allows a user to SSH to the machine for maintenance purposes. This can be
 done for a Deployed or Broken node as well as for a node that failed to deploy.
@@ -366,6 +378,12 @@ then to 'Rescue mode' when the operation is complete.
 ### Set Zone
 Puts the node in a specific zone.
 
+### Test hardware
+Allows the user to select and run scripts to test a machine's underlying
+hardware. See [Hardware testing][hardware-testing] for further details.
+
+### Unlock
+Releases a machine from a *locked* state.
 
 ## Node statuses
 
@@ -416,6 +434,10 @@ The node failed to commission.
 ### Failed Deployment
 The node failed to deploy.
 
+### Locked
+It's not strictly a status, but a machine showing a 'padlock' symbol adjacent to its name
+is in a *locked* state. 
+
 ### New
 The first stage of a node's life in MAAS. Typically, a node with this status
 has just been added to MAAS.
@@ -435,6 +457,7 @@ action 'Rescue mode'.
 <!-- IMAGES -->
 
 [img__fabrics-spaces]: ../media/intro-concepts__fabrics-spaces.png
+[img__machine-lock]: ../media/intro-concepts__2.4_machine-lock.png
 
 <!-- LINKS -->
 
@@ -451,3 +474,4 @@ action 'Rescue mode'.
 [storage-erasure]: installconfig-storage-erasure.md
 [composable-hardware]: nodes-comp-hw.md
 [upgrade-maas]: installconfig-upgrade-to-2.md#ip-range-changes
+[hardware-testing]: nodes-hw-testing.md
