@@ -89,14 +89,15 @@ The main view also lists the machines contained within the pod.
 
 ### Configuration
 
-Pods have several configuration options. These that are modified by selecting the
-'Configuration' tab and clicking 'Edit'. These options include a pod's
-location, password, network zone and default storage pool.
+Pods have several configuration options. These are modified by selecting the
+'Configuration' tab and clicking 'Edit'. Options include a pod's location,
+password, network zone.
 
-Additionally, two sliders are used to set *over commmit* ratios for CPU and
-memory resources. Over committed resources are those allocated beyond what's
-available to the pod. These sliders allow you to strictly limit whether CPU and
-memory can be over committed, and to what extent.
+For Virsh pods, you can also change the default storage pool and two sliders
+are used to set *over commmit* ratios for CPU and memory resources. Over
+committed resources are those allocated beyond what's available to the pod.
+These sliders allow you to strictly limit whether CPU and memory can be over
+committed, and to what extent.
 
 ![pod configuration][img__pod-compose-config]
 
