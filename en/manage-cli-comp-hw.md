@@ -15,11 +15,13 @@ To register/add a Pod:
 
 ```bash
 maas $PROFILE pods create type=$POD_TYPE power_address=$POWER_ADDRESS \
-	[power_user=$USERNAME] [power_pass=$PASSWORD]
+	[power_user=$USERNAME] [power_pass=$PASSWORD] [zone=$ZONE] \
+	[tags=$TAG1,$TAG2,...]
 ```
 
-In the case of the Virsh power type, both USERNAME and PASSWORD are not
-needed.
+In the case of the Virsh power type, both USERNAME and PASSWORD are optional.
+ZONE and TAGS are optional for all pods.
+
 
 For example, to create an RSD pod:
 
