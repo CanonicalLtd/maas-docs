@@ -23,8 +23,9 @@ The commissioning scripts will talk to the region API server to ensure that
 everything is in order and that eventual deployment will succeed.
 
 The image used is, by default, the latest Ubuntu LTS release and should not
-require changing. However, it can be configured in the web UI in the 'Settings'
-page.
+require changing. However, it can be configured in the 'Settings' page of the
+web UI by selecting the 'General' tab and scrolling down to the *Commissioning*
+section.
 
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
 the 'Take action' dropdown menu.
