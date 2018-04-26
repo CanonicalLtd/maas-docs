@@ -361,7 +361,8 @@ from 'Deployed' (or 'Allocated') to 'Ready'. Includes action 'Power off'.
 
 The user has the opportunity to erase the node's storage (disks) before
 confirming the action. A default erasure setting can be configured on the
-Settings page. See [Disk erasure][storage-erasure] for details.
+Storage tab of the Settings page. See [Disk erasure][storage-erasure] for
+details.
 
 ### Rescue mode
 Boot a node ephemerally (Ubuntu running in memory on the underlying machine).
