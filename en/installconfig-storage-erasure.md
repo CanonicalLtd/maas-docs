@@ -40,8 +40,8 @@ making data recovery difficult but not impossible.
 
 ## Default configuration
 
-A default erasure configuration can be set on the 'Settings' page. Scroll down
-to the 'Storage' section:
+A default erasure configuration can be set on the 'Settings' page by selecting
+the 'Storage' tab. 
 
 ![disk erasure default settings][img__storage-erasure-default-settings]
 
