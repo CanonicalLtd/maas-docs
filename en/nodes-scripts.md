@@ -274,10 +274,11 @@ The YAML file must represent a dictionary with the following fields:
 
 ## Upload procedure
 
-Scripts can be uploaded to MAAS using the web UI. Select the 'Settings' page and
-look for the 'Commissioning scripts' section near the top. Within the
-Commissioning scripts section, use the *Choose file* button to open a
-requester, locate the script, and select *Upload script* to upload it to MAAS. 
+Scripts can be uploaded to MAAS using the web UI. Select the 'User scripts' tab
+of the 'Settings' page - the 'Commissioning scripts' section is near the top.
+Within the Commissioning scripts section, click the *Upload script* button
+followed by 'Choose file' to open a requester, locate the script, and select
+*Upload* to upload it to MAAS. 
 
 A status message of *Commissioning script created* will appear and you'll now
 be able to select your script from the Node's '[Test hardware][hardware-testing]' page. 
