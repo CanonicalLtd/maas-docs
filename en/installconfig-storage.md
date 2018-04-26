@@ -163,7 +163,7 @@ Layouts can be set globally and on a per-node basis.
 
 All nodes will have a default layout applied when commissioned. An
 administrator can configure the default layout on the 'Settings' page, under
-the 'General' tab. The section is labelled 'Storage':
+the 'Storage' tab.
 
 ![default storage layout][img__2.2_default-storage-layout]
 
