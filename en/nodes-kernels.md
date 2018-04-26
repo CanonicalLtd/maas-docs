@@ -111,9 +111,9 @@ for how to perform these three configurations from the CLI.
 ### Default minimum kernel
 
 To set the default minimum enlistment and commissioning kernel (based on Ubuntu
-release: GA kernel) for all machines visit the 'Settings' page and select a
-kernel in the 'Default Minimum Kernel Version' field. Don't forget to click
-'Save'.
+release: GA kernel) for all machines visit the 'General' tab of the 'Settings'
+page and select a kernel in the 'Default Minimum Kernel Version' field of the
+*Commissioning* section. Don't forget to click 'Save'.
 
 ![default minimum kernel][img__2.2_default-minimum-kernel]
 
