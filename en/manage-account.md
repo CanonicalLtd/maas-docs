@@ -6,8 +6,7 @@ table_of_contents: True
 
 # User Accounts
 
-User accounts are managed from the 'Settings' page under the 'General' tab. In
-the 'Users and Keys' section the list of current users will be shown.
+User accounts are managed from the 'Users' tab of the 'Settings' page. 
 
 ![current users][img__2.2_current-users]
 
@@ -77,8 +76,8 @@ password' to finish.
 ![change user password][img__2.2_change-user-password]
 
 !!! Note:
-    An administrator can change any user's password from within the 'Settings'
-    page. 
+    An administrator can change any user's password from within the 'Users' tab
+    of the 'Settings' page. 
 
 
 <!-- LINKS -->
