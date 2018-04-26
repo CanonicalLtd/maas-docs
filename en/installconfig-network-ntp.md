@@ -6,7 +6,7 @@ Title: NTP
 MAAS provides managed NTP services (with [Chrony][chrony]) for all region and
 rack controllers. This allows MAAS to both keep its own controllers
 synchronised, and keep deployed machines synchronised as well. NTP is
-configured on the Settings page.
+configured on the 'Network services' tab of the 'Settings' page.
 
 The region controller configures the NTP service to keep its time synchronised
 from one or more external sources. By default, the MAAS region controller uses
