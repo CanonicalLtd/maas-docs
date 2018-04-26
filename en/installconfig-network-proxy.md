@@ -41,8 +41,8 @@ See the [MAAS CLI][cli-configure-proxying] for how to configure proxying with
 the CLI. Note that per-subnet proxy configuration can only be accomplished via
 the CLI.
 
-In the web UI, visit the 'Settings' page, select the 'General' tab and scroll
-down to the 'Proxy' section. Any changes made are applied by pressing the
+In the web UI, visit the 'Settings' page and select the 'Network services' tab.
+The 'Proxy' section is at the top. Any changes made are applied by pressing the
 'Save' button.
 
 ![Configure proxy][img__configure-proxy]
