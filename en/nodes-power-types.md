@@ -11,9 +11,10 @@ This is done via a communication channel with the [BMC][wikipedia-bmc] card of
 the node's underlying system. A newly added node is therefore incomplete until
 its power type has been configured.
 
-To configure a node's power type begin by selecting the node (on the 'Nodes'
-page) and entering its 'Power' tab. If the power type is undefined the
-following will be displayed:
+To configure a node's power type, begin by clicking on the node from the
+'Machines' page of the web UI followed by its 'Configuration' tab. Scroll down
+for *Power configuration*. If the power type is undefined the following will be
+displayed:
 
 ![power types undefined][img__2.2_power-types-undefined]
 
