@@ -194,9 +194,9 @@ You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
 that is stored in file `/var/lib/maas/secret` on the API server.
 
-You can get the above information from the web UI by visiting the 'Nodes' page,
-then the Controller tab, and clicking the button 'Add rack controller'. Here
-is an example of what you may see:
+You can get the above information from the web UI by visiting the 'Controllers'
+page and clicking the button 'Add rack controller'. Here is an example of what
+you may see:
 
 ![cli-install-rackd][img__2.2_cli-install-rackd]
 
