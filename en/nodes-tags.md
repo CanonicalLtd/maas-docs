@@ -20,7 +20,7 @@ deploy services onto machines managed by MAAS.
 
 !!! Note: 
     Newly-created tags immediately become available as a filter in the
-    'Nodes' page in the web UI. 
+    'Machines' page in the web UI. 
 
 
 ## Tag definitions
@@ -81,7 +81,7 @@ This definition is used elsewhere in this documentation. See this
 
 ## Tag listing and tags as search filters
 
-To list all tags visit the 'Nodes' tab and expand the 'Tags' subsection in the
+To list all tags visit the 'Machines' tab and expand the 'Tags' subsection in the
 left pane.
 
 This view is also where one can use tags as node search filters. Select one, or
@@ -101,8 +101,9 @@ alongside a tag or editing the search expression.
 
 ## Tag assignment
 
-To view a node's currently assigned tags stay on the 'Nodes' page and select
-the node in question. Tags that are currently assigned will be displayed.
+To view a node's currently assigned tags stay on the 'Machines' page and click
+on the node in question. Tags that are currently assigned will be displayed in
+the *Tags* pane of the 'Machine summary'.
 
 The following three actions are done while in a node's edit mode (click the
 'Edit' button):
@@ -128,8 +129,9 @@ within the web UI and when allocating machines from the API.
 Network interface tags can only be assigned when a node is in either a 'Ready'
 or a 'Broken' state.
 
-With the machine selected from the 'Nodes' page, on the 'Interfaces' tab use
-the 'Edit' button (pencil icon) of an interface:
+With the machine selected from the 'Machines' page, on the 'Interfaces' tab use
+the 'Edit Physical' button from the 'Actions' menu icon to the right of an
+interface:
 
 ![tags: net interface][img__tags-net-interface]
 

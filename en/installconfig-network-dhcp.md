@@ -9,8 +9,8 @@ MAAS enlists and commissions nodes through the use of its own DHCP server
 running on an untagged VLAN. Although this *MAAS-managed DHCP* can also be
 part of the deploy phase, an *external DHCP server* can optionally be used
 instead for this purpose (on a tagged VLAN). If MAAS detects an external DHCP
-server it will display it on the rack controller's page ('Nodes' page >
-'Controller' tab > select rack controller) in the web UI.
+server it will display it on the rack controller's page, accessible by
+selecting 'Controllers' from the top menu in the web UI.
 
 Normally the machine subnet is on the untagged VLAN, but if this is not the case
 then DHCP packets will need to be specially routed between the subnet and the
