@@ -119,7 +119,7 @@ navigation:
           - title: STP
             location: installconfig-network-stp.md
 
-          - title: Zones
+          - title: Availability Zones (AZs)
             location: manage-zones.md
 
       - title: Storage
