@@ -104,7 +104,7 @@ doesn't have any. Go forth and [add a node][add-nodes] now. Obviously, you need
 a spare physical system (but KVM works too). In the web UI, confirm that the
 import of images has finished!
 
-Go to the 'Nodes' page in the web UI. A successfully added node will soon
+Go to the 'Machines' page in the web UI. A successfully added node will soon
 appear there with a status of *New*. It will also have a funny name. Whatever,
 you're still a rock star!
 
