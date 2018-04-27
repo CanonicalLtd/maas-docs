@@ -1,8 +1,8 @@
-Title: Zones
+Title: Availability Zones
 table_of_contents: True
 
 
-# Zones
+# Availability Zones
 
 The concept of a *zone*, and examples of how they can be used, are provided in
 the [Concepts and terms][concepts-zones] page. The current page covers how to
@@ -19,30 +19,30 @@ All these actions require administrative privileges.
 
 ## Add a zone
 
-To create a zone, navigate to the 'Zones' page and use the 'Add zone' button.
-Simply enter a name for the zone and click 'Add zone'.
+To create a zone, navigate to the 'AZs' page of the web UI and use the 'Add
+AZ' button.  Simply enter a name for the zone and click 'Add AZ'.
 
 ![add zone][img__add-zone]
 
 
 ## Edit a zone
 
-To edit a zone, on the 'Zones' page select a zone and use the 'Edit zone'
-button. Doing so will allow a change to be made to the name and a description
-for the zone added or edited.
+To edit a zone, on the 'AZs' page select a zone and use the 'Edit' button.
+Doing so will allow a change to be made to the name and a description for the
+zone added or edited.
 
 
 ## Delete a zone
 
-To delete a zone, on the 'Zones' page select a zone and use the 'Delete zone'
+To delete a zone, on the 'AZs' page select a zone and use the 'Delete AZ'
 button. Doing so will also move any potential node associations to the default
 zone.
 
 
 ## Assign a node to a zone
 
-To assign a node to a zone, from the 'Nodes' page, select a node (or multiple
-nodes) and choose 'Set Zone' using the 'Take action' button. After selecting a
+To assign a node to a zone, from the 'Machines' page, select a node (or multiple
+nodes) and choose 'Set zone' using the 'Take action' button. After selecting a
 zone hit the 'Set zone...' button to apply the change.
 
 You can also edit a node's 'Configuration' page to change its zone.

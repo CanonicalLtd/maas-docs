@@ -119,18 +119,18 @@ page and select a kernel in the 'Default Minimum Kernel Version' field of the
 
 ### Machine minimum kernel
 
-To set the minimum deploy kernel on a machine basis, select a machine from the
-'Nodes' page and switch to its 'Settings' page. Click 'Edit' in the 'Machine
-settings' section, select a kernel in the 'Minimum Kernel' field followed by
-'Save changes'.
+To set the minimum deploy kernel on a machine basis, click on a machine from
+the 'Machines' page of the web UI and switch to its 'Configuration' page. Click
+'Edit' in the 'Machine configuration' section, select a kernel in the 'Minimum
+Kernel' field followed by 'Save changes'.
 
 ![machine minimum kernel][img__machine-minimum-kernel]
 
 ### Machine kernel during deployment
 
-To set a specific kernel during deployment, select a machine from the 'Nodes'
-page and choose 'Deploy' under 'Take action'. Then select a kernel in the
-(third) kernel field. Hit 'Deploy machine' to initiate the deployment.
+To set a specific kernel during deployment, select a machine from the
+'Machines' page and choose 'Deploy' under 'Take action'. Then select a kernel
+in the (third) kernel field. Hit 'Deploy machine' to initiate the deployment.
 
 ![machine during deploy kernel][img__machine-during-deploy-kernel]
 
