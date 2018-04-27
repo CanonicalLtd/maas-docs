@@ -114,8 +114,8 @@ See [KVM/virsh power type example][power-types-example-virsh].
 ## Add a node manually
 
 Enlistment can be done manually if the hardware specifications of the
-underlying machine are known. On the 'Nodes' page click the 'Add hardware'
-button and then select 'Machine'.
+underlying machine are known. On the 'Machines' page of the web UI, click the
+'Add hardware' button and then select 'Machine'.
 
 Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
 being added:
