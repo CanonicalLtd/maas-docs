@@ -41,8 +41,8 @@ zone.
 
 ## Assign a node to a zone
 
-To assign a node to a zone, from the 'Nodes' page, select a node (or multiple
-nodes) and choose 'Set Zone' using the 'Take action' button. After selecting a
+To assign a node to a zone, from the 'Machines' page, select a node (or multiple
+nodes) and choose 'Set zone' using the 'Take action' button. After selecting a
 zone hit the 'Set zone...' button to apply the change.
 
 You can also edit a node's 'Configuration' page to change its zone.
