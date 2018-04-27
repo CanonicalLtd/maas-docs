@@ -62,11 +62,11 @@ If you ever want to unregister a rack controller, which is probably something
 you would only do to an *extra* one you may have added, you will need to
 *delete* it from the region API server; there is no 'unregister' command.
 
-To do so, navigate to the 'Nodes' page and then the 'Controller' tab. Enter the
+To do so, navigate to the 'Controllers' page of the web UI. Enter the
 controller's page by clicking on the machine you want to delete and select
-'Delete' from the dropdown (and then 'Go'). MAAS will do the right thing if the
-controller was used for DHCP HA (i.e. DHCP HA will no longer be enabled since
-there is no longer the possibility of having it).
+'Delete' from the dropdown (and then 'Delete controller'). MAAS will do the
+right thing if the controller was used for DHCP HA (i.e. DHCP HA will no longer
+be enabled since there is no longer the possibility of having it).
 
 Although similar, this is not conceptually equivalent to deleting a MAAS node.
 Here, you are deleting a machine that is a part of MAAS itself.

@@ -57,8 +57,9 @@ See [MAAS CLI][manage-cli] for logging in via the CLI and working with the CLI.
 
 The Dashboard will be a central hub for the user to branch out to other parts
 of the web UI to perform certain operations. For now, it points to the main
-pages of the web UI such as Nodes, Images and Subnets. It is also where the
-results of [Device discovery][device-discovery] are recorded.
+pages of the web UI such as Machines, Devices, Controllers, Pods, Images, DNS,
+AZs, Subnets and Settings. It is also where the results of 
+[Device discovery][device-discovery] are recorded.
 
 The Dashboard is available by clicking the MAAS icon (top-left corner). Its URL
 is:
