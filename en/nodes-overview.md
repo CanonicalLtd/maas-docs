@@ -3,8 +3,8 @@ table_of_contents: True
 
 # Node overview
 
-Select 'Nodes' from the top menu of the MAAS web UI to display a table listing
-all the nodes MAAS currently knows about. 
+Select 'Machines' from the top menu of the MAAS web UI to display a table
+listing all the nodes MAAS currently knows about. 
 
 ![web UI nodes table][img__nodes-table]
 
@@ -18,6 +18,8 @@ The columns list the following details for each node:
 - **Owner**: The MAAS account responsible for the node.
 - **Cores**: The number of CPU cores detected on the node.
 - **RAM**: The amount of RAM, in GiB, detected on the node.
+- **Disks**: The number of drives detected on the node.
+- **Storage**: The amount of storage, in GB, detected on the node.
 
 Values within the table update to reflect the changing state of each node, such
 as during commissioning or deployment. These values are augmented by green,
