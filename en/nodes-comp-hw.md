@@ -25,6 +25,24 @@ MAAS currently supports two such architectures:
 See [MAAS CLI - Composable hardware][cli-comp-hw] for how to manage composable
 hardware with the CLI.
 
+#### Virsh pod considerations
+
+When using Virsh pods, the KVM host will typically have a network bridge set up with
+a libvirt network configured to use it.
+
+Alternatively, if KVM and MAAS reside on the same system, the default NAT
+libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
+the VLAN associated with the libvirt subnet of 192.168.122.0/24. MAAS will
+first look for a libvirt network named 'maas', then for 'default'.
+
+Virsh pods can optionally use a default *storage pool*. This feature uses
+storage tags to map a storage pool in libvirt with a storage tag in MAAS.
+
+- with no default storage pool defined, MAAS selects the storage pool with the
+  most available space. 
+- when a default storage pool is defined, all machines subsequently composed
+  within the pod will have their storage block devices created from the default
+  storage pool.
 
 ## Web UI
 
@@ -57,19 +75,6 @@ This is how a Virsh Pod is added:
 
 ![add Virsh pod][img__pod-add-virsh]
 
-Virsh Pod notes:
-
-- Typically, the KVM host will have a network bridge set up with a libvirt
-  network configured to use it.
-- Alternatively, if KVM and MAAS reside on the same system the default NAT
-  libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
-  the VLAN associated with the libvirt subnet of 192.168.122.0/24.
-- MAAS will first look for a libvirt network named 'maas', then for 'default'.
-- A default *storage pool* can optionally be set. This feature uses storage
-  tags to automatically map a storage pool in libvirt with a storage tag in
-  MAAS. With no default storage pool defined, MAAS selects the storage pool with
-  the most available space.
-
 ### List Pods
 
 The new Pod, including a summary of contained resources, will be listed on the
@@ -93,11 +98,23 @@ Pods have several configuration options. These are modified by selecting the
 'Configuration' tab and clicking 'Edit'. Options include a pod's location,
 password, network zone.
 
-For Virsh pods, you can also change the default storage pool and two sliders
-are used to set *over commmit* ratios for CPU and memory resources. Over
-committed resources are those allocated beyond what's available to the pod.
-These sliders allow you to strictly limit whether CPU and memory can be over
-committed, and to what extent.
+On Virsh pods, you can also change the default storage pool. Additionally, two
+sliders are used to set *over commmit* ratio multipliers for CPU and memory
+resources.
+
+Over committed resources are those allocated beyond what's available in the
+physical resource. These sliders allow you to strictly limit whether CPU and
+memory can be over committed, and to what extent. The input fields to the right
+of the sliders accept floating point values from 0 to 10, with a default value
+of 1.
+
+The following shows theoretical examples of these ratios and how they affect
+physical resource allocation:
+
+- `8 physical CPU cores  * 1 multiplier     = 8 virtual CPU cores`
+- `8 physical CPU cores  * 0.5 multiplier   = 4 virtual CPU cores`
+- `32 physical CPU cores * 10.0 multiplier  = 320 virtual CPU cores`
+- `128GB physical Memory  * 5.5 multiplier  = 704G virtual Memory`
 
 ![pod configuration][img__pod-compose-config]
 
@@ -155,6 +172,7 @@ corresponding nodes from MAAS.
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [webui]: installconfig-webui.md
 [launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
+[virsh-pods]: nodes-comp-virsh.md
 
 [img__pod-initial-page]: ../media/nodes-comp-hw__2.4_pod-initial-page.png
 [img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
