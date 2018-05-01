@@ -68,11 +68,6 @@ navigation:
           - title: Pods
             location: nodes-comp-hw.md
 
-            children:
-
-              - title: Virsh Pods
-                location: comp-hw-virsh-pods.md
-
           - title: Custom node setup
             location: nodes-custom.md
 
