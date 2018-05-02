@@ -99,7 +99,7 @@ Pods have several configuration options. These are modified by selecting the
 password, network zone.
 
 On Virsh pods, you can also change the default storage pool. Additionally, two
-sliders are used to set *over commmit* ratio multipliers for CPU and memory
+sliders are used to set *over commit* ratio multipliers for CPU and memory
 resources.
 
 Over committed resources are those allocated beyond what's available in the
