@@ -6,7 +6,9 @@ table_of_contents: True
 
 This is a list of composable hardware tasks which can be performed with the
 MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
-[Composable hardware][composable-hardware] for an overview of the subject.
+[Composable hardware][composable-hardware] for an overview of the subject,
+including important details on the differences between *RSD* pods and *Virsh*
+pods.
 
 
 ## Register a Pod
@@ -32,6 +34,23 @@ And to create a Virsh pod:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system
+```
+
+See [Pod configuration][over-commit] for details on Virsh over commit ratios
+and storage pools, as used in the following examples.
+
+Create a Virsh pod with over commit ratios:
+
+```bash
+maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
+        power_pass=example cpu_over_commit_ratio=0.3 memory_over_commit_ratio=4.6
+```
+
+Create a Virsh pod that uses a default storage pool:
+
+```bash
+maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
+        power_pass=example default_storage_pool=pool1
 ```
 
 
@@ -61,13 +80,29 @@ Sample output:
         "name": "civil-hermit",
 ```
 
-
 ## List resources of a Pod
 
 To list an individual Pod's resources:
 
 ```bash
 maas $PROFILE pod read $POD_ID
+```
+
+
+## Update Pod configuration
+
+Update over commit ratios for a Virsh pod:
+
+```bash
+maas $PROFILE pod update $POD_ID power_address=qemu+ssh://ubuntu@192.168.1.2/system \
+        power_pass=example cpu_over_commit_ratio=2.5 memory_over_commit_ratio=10.0
+```
+
+Update the default storage pool used by a Virsh pod:
+
+```bash
+maas $PROFILE pod update $POD_ID power_address=qemu+ssh://ubuntu@192.168.1.2/system \
+        power_pass=example default_storage_pool=pool2
 ```
 
 
@@ -127,6 +162,13 @@ maas $PROFILE pod compose $POD_ID \
 	cores=40 cpu_speed=2000 memory=7812 architecture="amd64/generic"
 ```
 
+Compose a Virsh machine with two disks; one from *pool1* and the other from
+*pool2*:
+
+```bash
+maas $PROFILE pod compose $POD_ID storage=root:32(pool1),home:64(pool2)
+```
+
 
 ## Compose and allocate a Pod machine
 
@@ -175,3 +217,4 @@ maas $PROFILE pod delete $POD_ID
 
 [manage-cli]: manage-cli.md
 [composable-hardware]: nodes-comp-hw.md
+[over-commit]: nodes-comp-hw.md#configuration
