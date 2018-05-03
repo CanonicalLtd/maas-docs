@@ -27,7 +27,7 @@ LTS package archive or you can download the source from:
 ## 2.4.0 (beta3)
 
 This release addresses various UI and backend issues, improving the stability
-of MAAS 2.4. See below for a list of all 31 bug fixes in this release:
+of MAAS 2.4. See below for a list of all 31 bugs fixed in this release:
 
 [https://launchpad.net/maas/+milestone/2.4.0beta3](https://launchpad.net/maas/+milestone/2.4.0beta3)
 
