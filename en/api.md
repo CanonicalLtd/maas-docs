@@ -73,10 +73,9 @@ Create an authorisation OAuth token and OAuth consumer.
 
 - `return`
    a json dict with four keys: 'token_key',
-   'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
-   's65244576fgqs', token_secret: 'qsdfdhv34',
-   consumer_key: '68543fhj854fg', name:
-   'MAAS consumer'}).
+   'token_secret', 'consumer_key' and 'name'
+   (e.g. {token_key: 's65244576fgqs', token_secret: 'qsdfdhv34',
+   consumer_key: '68543fhj854fg', name: 'MAAS consumer'}).
 
 - `rtype`
    string (json)
