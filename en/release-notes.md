@@ -24,6 +24,13 @@ The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
 
+## 2.4.0 (beta3)
+
+This release addresses various UI and backend issues, improving the stability
+of MAAS 2.4. See below for a list of all 31 bug fixes in this release:
+
+[https://launchpad.net/maas/+milestone/2.4.0beta3](https://launchpad.net/maas/+milestone/2.4.0beta3)
+
 ## 2.4.0 (beta2)
 
 ### New Features & Improvements
@@ -434,7 +441,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0-(beta2)
+[currentrelease]: release-notes.md#2.4.0-(beta3)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
