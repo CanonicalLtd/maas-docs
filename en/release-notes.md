@@ -4,13 +4,12 @@ table_of_contents: True
 # Release Notes 2.4
 
 MAAS 2.4 is currently under development. The current release is 
-[MAAS 2.4.0 (beta2)][currentrelease]. See 
+[MAAS 2.4.0 (beta3)][currentrelease]. See 
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
-The development version of MAAS is available from the *proposed* repository of
-the upcoming Ubuntu 18.04 LTS (Bionic Beaver) release and the MAAS Next PPA
-repository.
+The development version of MAAS is available for Ubuntu 18.04 LTS (Bionic
+Beaver) from the MAAS Next PPA repository.
 
 To install from the MAAS Next PPA (ppa:maas/next) repository:
 
