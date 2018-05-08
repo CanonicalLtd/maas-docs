@@ -27,7 +27,7 @@ web UI by selecting the 'General' tab and scrolling down to the *Commissioning*
 section.
 
 To commission, on the 'Machines' page, select a node and choose 'Commission' under
-the 'Take action' dropdown menu.
+the 'Take action' drop-down menu.
 
 ![commission][img__commission]
 
