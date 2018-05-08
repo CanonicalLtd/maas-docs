@@ -44,7 +44,7 @@ These options include:
   previously configured for the machine. See [Networking][network-details] for
   more information.
 
-- **Retain storage configuratoin**: When enabled, preserves any storage settings
+- **Retain storage configuration**: When enabled, preserves any storage settings
   previously configured for the machine. See [Storage][storage-details] for
   more details.
 
@@ -60,7 +60,7 @@ Click the *Hardware tests* field to reveal a drop-down list of tests to add and
 run during commissioning. See [Hardware testing][hardware-testing]) for more
 information on hardware testing scripts.
 
-Finalize the directive by hitting 'Commission machine'.
+Finalise the directive by hitting 'Commission machine'.
 
 While a node is commissioning its status will change to *Commissioning*. During
 this time the node's network topology will be discovered. This will prompt one
