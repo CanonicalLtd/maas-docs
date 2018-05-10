@@ -93,13 +93,13 @@ table.logos th, table.logos td{
 <tr>
 
 <td align="center" valign="center" border-width="0px" >
-<img src="../media/intro-explore__2.3_welcome1.png" alt="First page of Welcome settings" />
+<img src="../media/intro-explore__2.4_welcome1.png" alt="First page of Welcome settings" />
 <br />
 <i>Welcome</i> sets global values...
 </td>
 
 <td align="center" valign="center" border-width="0px">
-<img src="../media/intro-explore__2.3_welcome2.png" alt="Second page of Welcome settings" />
+<img src="../media/intro-explore__2.4_welcome2.png" alt="Second page of Welcome settings" />
 <br />
 ...before the MAAS <i>Dashboard</i>
 </td>
@@ -231,13 +231,13 @@ table.logos th, table.logos td{
 <tr>
 
 <td align="center" valign="center" border-width="0px" >
-<img src="../media/intro-explore__2.3_pods1.png" alt="Login to JAAS" />
+<img src="../media/intro-explore__2.4_pods1.png" alt="List pod machines" />
 <br />
 Pods abstract multiple resources...
 </td>
 
 <td align="center" valign="center" border-width="0px">
-<img src="../media/intro-explore__2.3_pods2.png" alt="Login to JAAS" />
+<img src="../media/intro-explore__2.4_pods2.png" alt="Compose a pod machine" />
 <br />
 ...into pools of composable hardware
 </td>
@@ -249,12 +249,12 @@ Pods abstract multiple resources...
 
 <!-- IMAGES -->
 
-[img__login]: ../media/intro-explore__2.3_login.png
-[img__disco]: ../media/intro-explore__2.3_disco.png
+[img__login]: ../media/intro-explore__2.4_login.png
+[img__disco]: ../media/intro-explore__2.4_disco.png
 [img__netconcepts]: ../media/intro-concepts__fabrics-spaces.png
-[img__subnets]: ../media/intro-explore__2.3_subnets.png
-[img__images]: ../media/intro-explore__2.3_images.png
-[img__deploy]: ../media/intro-explore__2.3_deploy.png
+[img__subnets]: ../media/intro-explore__2.4_subnets.png
+[img__images]: ../media/intro-explore__2.4_images.png
+[img__deploy]: ../media/intro-explore__2.4_deploy.png
 
 <!-- LINKS -->
 
