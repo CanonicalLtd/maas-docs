@@ -1,6 +1,5 @@
 Title: Commission Nodes
 TODO:  Add link to CLI for setting global commissioning kernel
-       Explain web UI checkboxes: 'Allow SSH access', 'Retain network configuration' and 'Retain storage configuration'
 
 
 # Commission Nodes
@@ -28,16 +27,40 @@ web UI by selecting the 'General' tab and scrolling down to the *Commissioning*
 section.
 
 To commission, on the 'Machines' page, select a node and choose 'Commission' under
-the 'Take action' dropdown menu.
+the 'Take action' drop-down menu.
 
 ![commission][img__commission]
 
 You have the option of selecting some extra parameters (checkboxes) and
-performing hardware tests (see [Hardware testing][hardware-testing]).
+performing hardware tests.
 
+These options include:
+
+- **Allow SSH access and prevent machine powering off**: Machines are
+  normally powered off after commissioning. This option keeps the machine
+  on and enables SSH so you can access the machine.
+
+- **Retain network configuration**: When enabled, preserves any custom network settings
+  previously configured for the machine. See [Networking][network-details] for
+  more information.
+
+- **Retain storage configuration**: When enabled, preserves any storage settings
+  previously configured for the machine. See [Storage][storage-details] for
+  more details.
+
+- **Update firmware**: Runs scripts tagged with 'update_firmware. See
+  [Testing scripts][hardware-type] for more details.
+
+- **Configure HBA**: Runs scripts tagged with 'configure_hba'. As above,
+  see [Testing scripts][hardware-type] for further details.
+ 
 ![confirm commission][img__commission-confirm]
 
-Finalize the directive by hitting 'Commission machine'.
+Click the *Hardware tests* field to reveal a drop-down list of tests to add and
+run during commissioning. See [Hardware testing][hardware-testing]) for more
+information on hardware testing scripts.
+
+Finalise the directive by hitting 'Commission machine'.
 
 While a node is commissioning its status will change to *Commissioning*. During
 this time the node's network topology will be discovered. This will prompt one
@@ -78,7 +101,8 @@ The following window will appear:
 ![configure interface][img__configure-interface]
 
 There are four modes to choose from that determine how an address on the subnet
-gets assigned when the node is eventually deployed:
+gets assigned when the node is eventually deployed. These modes are selected by
+clicking on the 'IP mode' drop-down menu.
 
 - **Auto assign**: MAAS will assign a random static address (`iface eth0 inet
   static`). The pool of available addresses depends on whether the subnet is
@@ -194,13 +218,16 @@ allocation time using the API.
 [subnet-management]: installconfig-network-subnet-management.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [hardware-testing]: nodes-hw-testing.md
+[storage-details]: installconfig-storage.md
+[network-details]: installconfig-networking.md
+[hardware-type]: nodes-scripts.md#automatic-script-selection-by-hardware-type
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
 [manage-cli-interfaces]: manage-cli-interfaces.md
 
-[img__commission]: ../media/nodes-commission__2.2_commission.png
-[img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
-[img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
-[img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
-[img__configure-setbond]: ../media/nodes-commission__2.3_configure-setbond.png
-[img__configure-bond]: ../media/nodes-commission__2.3_configure-bond.png
-[img__configure-bridge]: ../media/nodes-commission__2.3_configure-bridge.png
+[img__commission]: ../media/nodes-commission__2.4_commission.png
+[img__commission-confirm]: ../media/nodes-commission__2.4_commission-confirm.png
+[img__configure-interface]: ../media/nodes-commission__2.4_configure-interface.png
+[img__edit-interface]: ../media/nodes-commission__2.4_edit-interface.png
+[img__configure-setbond]: ../media/nodes-commission__2.4_configure-setbond.png
+[img__configure-bond]: ../media/nodes-commission__2.4_configure-bond.png
+[img__configure-bridge]: ../media/nodes-commission__2.4_configure-bridge.png
