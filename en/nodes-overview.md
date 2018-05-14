@@ -72,15 +72,17 @@ The menu includes links to the following:
 - **Interfaces**: Network and interface configuration for a node.
 - **Storage**: File system, partitioning and storage overview.
 - **Commissioning**: Timestamped completion and status log from the commissioning process.
+- **Hardware tests**: Status and output logs for current and previous tests.
 - **Logs**: Raw log output, switchable between YAML and XML output.
-- **Events**: Timestamped status updates for events and actions performed on the node.
+- **Events**: Timestamped status updates for events and actions performed on
+  the node.
 - **Configuration**: Machine and power configuration options.
 
 <!-- LINKS -->
 
 [node-actions]: intro-concepts.md#node-actions
 
-[img__nodes-action]: ../media/nodes-manage__2.3_take-action.png
-[img__nodes-table]: ../media/nodes-manage__2.3_table.png
-[img__node-details]: ../media/nodes-manage__2.3_details.png
-[img__node-menu]: ../media/nodes-manage__2.3_node-menu.png
+[img__nodes-action]: ../media/nodes-manage__2.4_take-action.png
+[img__nodes-table]: ../media/nodes-manage__2.4_table.png
+[img__node-details]: ../media/nodes-manage__2.4_details.png
+[img__node-menu]: ../media/nodes-manage__2.4_node-menu.png
