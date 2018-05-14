@@ -120,7 +120,7 @@ underlying machine are known. On the 'Machines' page of the web UI, click the
 Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
 being added:
 
-![add node manually][img__2.2_add-node-manually]
+![add node manually][img__add-node-manually]
 
 !!! Note:
     The underlying machine will still need to be configured to boot over the
@@ -139,7 +139,7 @@ chosen. Here, KVM is again used as an example.
 Fill in the resulting form as below. In the case of KVM, not all of the fields
 require values.
 
-![add node via chassis][img__2.2_add-node-chassis]
+![add node via chassis][img__add-node-chassis]
 
 !!! Note:
     As with the manual method, the underlying machines will require netbooting.
@@ -160,5 +160,5 @@ Yet another way to add nodes is to use the composable hardware feature. See the
 [power-types-example-virsh]: nodes-power-types.md#example:-virsh-(kvm)-power-type
 [composable-hardware]: nodes-comp-hw.md
 
-[img__2.2_add-node-manually]: ../media/nodes-add__2.2_add-node-manually.png
-[img__2.2_add-node-chassis]: ../media/nodes-add__2.2_add-node-chassis.png
+[img__add-node-manually]: ../media/nodes-add__2.4_add-node-manually.png
+[img__add-node-chassis]: ../media/nodes-add__2.4_add-node-chassis.png
