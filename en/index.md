@@ -135,5 +135,5 @@ machine to the pool.
 [api]: api.md
 
 <!-- IMAGES -->
-[img__webui]: ../media/intro__2.3_webui.png
+[img__webui]: ../media/intro__2.4_webui.png
 [img__arch-overview]: ../media/intro-arch-overview.png
