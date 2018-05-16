@@ -16,7 +16,7 @@ To configure a node's power type, begin by clicking on the node from the
 for *Power configuration*. If the power type is undefined the following will be
 displayed:
 
-![power types undefined][img__2.2_power-types-undefined]
+![power types undefined][img__power-types-undefined]
 
 Choose a type in the dropdown menu that corresponds to the node's underlying
 machine's BMC card.
@@ -31,7 +31,7 @@ performed on the node. This is a good indication of whether MAAS can
 communicate properly with the node. A successful power check will quickly
 result in a power status of "Power off". A failed one will show:
 
-![power types power error][img__2.2_power-types-power-error]
+![power types power error][img__power-types-power-error]
 
 If you get such an error double-check your entered values by editing the power
 type. Also consider another power type altogether. Another cause may be at the
@@ -46,7 +46,7 @@ selected and the 'Power address' of `qemu+ssh://ubuntu@192.168.1.2/system` has
 been entered (replace values as appropriate). Finally, and out of necessity for
 virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node2`.
 
-![power types example: virsh][img__2.2_power-types-example-virsh]
+![power types example: virsh][img__power-types-example-virsh]
 
 !!! Note:
     The node's hostname *according to MAAS* is a randomly chosen string (here
@@ -58,6 +58,9 @@ how to edit a power type with the CLI.
 
 See [Add nodes][add-nodes-kvm-guest-nodes] for help in setting up MAAS and KVM
 to work together.
+
+Multiple Virsh machines running on the same host are managed and composed using
+[Pods][pods]. 
 
 
 ## BMC driver support
@@ -94,8 +97,9 @@ currently supported by MAAS.
 [wikipedia-bmc]: https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface#Baseboard_management_controller
 [cli-update-node-hostname-and-power-parameters]: manage-cli-advanced.md#update-node-hostname-and-power-parameters
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
+[pods]: nodes-comp-hw.md
 
-[img__2.2_power-types-undefined]: ../media/nodes-power-types__2.2_undefined.png
-[img__power-types-selection]: ../media/nodes-power-types__2.3_selection.png
-[img__2.2_power-types-example-virsh]: ../media/nodes-power-types__2.2_example-virsh.png
-[img__2.2_power-types-power-error]: ../media/nodes-power-types__2.2_power-error.png
+[img__power-types-undefined]: ../media/nodes-power-types__2.4_undefined.png
+[img__power-types-selection]: ../media/nodes-power-types__2.4_selection.png
+[img__power-types-example-virsh]: ../media/nodes-power-types__2.4_example-virsh.png
+[img__power-types-power-error]: ../media/nodes-power-types__2.4_power-error.png
