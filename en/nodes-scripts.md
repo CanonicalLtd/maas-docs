@@ -281,9 +281,10 @@ followed by 'Choose file' to open a requester, locate the script, and select
 *Upload* to upload it to MAAS. 
 
 A status message of *Commissioning script created* will appear and you'll now
-be able to select your script from the Node's '[Test hardware][hardware-testing]' page. 
+be able to select your script after selecting [Test hardware][hardware-testing]
+from a machine's 'Take action' menu. 
 
-![select custom script][nodes-hw-scripts__2.2_select]
+![select custom script][nodes-hw-scripts__select]
 
 !!! Note: 
     MAAS executes scripts in lexicographical order. This allows you to control
@@ -295,16 +296,15 @@ be able to select your script from the Node's '[Test hardware][hardware-testing]
 Clicking on the title of a completed or failed script will reveal the output
 from that specific script.
 
-![failed script output][nodes-hw-scripts__2.2_fail]
+![failed script output][nodes-hw-scripts__fail]
 
 If you need further details, especially when writing and running your own
 scripts, connect to a node and examine its logs and environment.
 
 To do this, enable *Allow SSH access and prevent machine from powering off*
-from the 'Test hardware' page of the web UI before starting commissioning or
-testing.
+when selecting 'Test hardware' from the machine 'Take action' menu.
 
-![enable SSH within Test Hardware][nodes-hw-scripts__2.2_ssh]
+![enable SSH within Test Hardware][nodes-hw-scripts__ssh]
 
 As scripts operate within an ephemeral version of Ubuntu, enabling this option
 stops the node from shutting down, allowing you to connect and probe a script's
@@ -339,6 +339,6 @@ the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 [maas-scripts-cli]: nodes-scripts-cli.md
 
 <!-- IMAGES -->
-[nodes-hw-scripts__2.2_select]: ../media/nodes-hw-scripts__2.2_select.png
-[nodes-hw-scripts__2.2_fail]: ../media/nodes-hw-scripts__2.2_fail.png
-[nodes-hw-scripts__2.2_ssh]: ../media/nodes-hw-scripts__2.2_ssh.png
+[nodes-hw-scripts__select]: ../media/nodes-hw-scripts__2.4_select.png
+[nodes-hw-scripts__fail]: ../media/nodes-hw-scripts__2.2_fail.png
+[nodes-hw-scripts__ssh]: ../media/nodes-hw-scripts__2.4_ssh.png
