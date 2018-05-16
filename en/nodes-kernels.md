@@ -115,7 +115,7 @@ release: GA kernel) for all machines visit the 'General' tab of the 'Settings'
 page and select a kernel in the 'Default Minimum Kernel Version' field of the
 *Commissioning* section. Don't forget to click 'Save'.
 
-![default minimum kernel][img__2.2_default-minimum-kernel]
+![default minimum kernel][img__default-minimum-kernel]
 
 ### Machine minimum kernel
 
@@ -146,6 +146,6 @@ release (series) before deploying the node.
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
 [cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]: manage-cli-kernels.md#set-a-default-minimum-kernel-for-enlistment-and-commissioning
 
-[img__2.2_default-minimum-kernel]: ../media/nodes-kernels__2.2_default-minimum-kernel.png
-[img__machine-minimum-kernel]: ../media/nodes-kernels__2.3_machine-minimum-kernel.png
-[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.3_machine-during-deploy-kernel.png
+[img__default-minimum-kernel]: ../media/nodes-kernels__2.4_default-minimum-kernel.png
+[img__machine-minimum-kernel]: ../media/nodes-kernels__2.4_machine-minimum-kernel.png
+[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.4_machine-during-deploy-kernel.png
