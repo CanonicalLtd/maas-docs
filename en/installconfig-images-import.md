@@ -32,6 +32,21 @@ status updated as the import is processed:
 
 To remove an image, simply unselect it and click 'Save selection'.
 
+## Image mirrors
+
+Ubuntu images can also be hosted on a mirror, which is configured by selecting
+'Custom' beneath 'Choose source'. Enter the mirror URL and click 'Connect'. 
+
+Advanced options, such as using a GPG key or keyring to validate the mirror
+path, are revealed by clicking 'Show advanced options':
+
+![image mirror configuration][img__mirror]
+
+Optionally, a local mirror can be set up as the boot source. MAAS will then use
+it instead of the standard internet-based server. This will reduce the time
+required to complete the image import step significantly. See [Local image
+mirror][mirror] for instructions on doing this.
+
 
 ## Other images
 
@@ -43,14 +58,6 @@ can be imported and used just like the Ubuntu images above.
 ![other images importing][img__other-images-importing]
 
 
-## Using a local mirror
-
-Optionally, a local mirror can be set up as the boot source. MAAS will then use
-it instead of the standard internet-based server. This will reduce the time
-required to complete the image import step significantly. See
-[Local image mirror][mirror] for instructions on doing this.
-
-
 <!-- LINKS -->
 
 [cli-select-images]: manage-cli-images.md#select-images
@@ -58,6 +65,7 @@ required to complete the image import step significantly. See
 [images-boot-image-sources]: installconfig-images.md#boot-image-sources
 [mirror]: installconfig-images-mirror.md
 
-[img__select-and-import-images]: ../media/installconfig-images-import__2.3_select-and-import-images.png
-[img__ubuntu-images-importing]: ../media/installconfig-images-import__2.3_ubuntu-images-importing.png
-[img__other-images-importing]: ../media/installconfig-images-import__2.3_other-images-importing.png
+[img__select-and-import-images]: ../media/installconfig-images-import__2.4_select-and-import-images.png
+[img__ubuntu-images-importing]: ../media/installconfig-images-import__2.4_ubuntu-images-importing.png
+[img__other-images-importing]: ../media/installconfig-images-import__2.4_other-images-importing.png
+[img__mirror]: ../media/installconfig-images-import__2.4_mirror.png
