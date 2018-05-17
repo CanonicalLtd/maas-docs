@@ -89,9 +89,8 @@ several, tags. The nodes that satisfy all selected tags will display on the
 right pane. Notice there is a search field at the top of the right pane. This
 is where one can type in a search expression.
 
-Below, tags 'gpu2' and 'virtual' have been selected (with the mouse) and the
-search field automatically reflects this. Three nodes satisfy this search
-filter (they have either of these tags).
+Below, tag 'virtual' has been selected (with the mouse) and the search field
+automatically reflects this. Five nodes satisfy this search filter.
 
 ![tags: search][img__tags-search]
 
@@ -105,8 +104,8 @@ To view a node's currently assigned tags stay on the 'Machines' page and click
 on the node in question. Tags that are currently assigned will be displayed in
 the *Tags* pane of the 'Machine summary'.
 
-The following three actions are done while in a node's edit mode (click the
-'Edit' button):
+Select the 'Configuration' tab and then the 'Edit' button alongside 'Machine
+configuration' to edit tags:
 
 - To unassign a tag hit the 'x' character alongside a tag.
 - To create a rudimentary tag type the name of the new tag in the 'Add a tag'
@@ -122,9 +121,9 @@ Changes are applied by pressing the 'Save changes' button.
 
 ### Tags for network interfaces
 
-Alongside tags for an entire node, it's also possible to assign tags to
-specific network interfaces. These tags can be used when searching for nodes
-within the web UI and when allocating machines from the API. 
+It's also possible to assign tags to specific network interfaces. These tags
+can be used when searching for nodes within the web UI and when allocating
+machines from the API. 
 
 Network interface tags can only be assigned when a node is in either a 'Ready'
 or a 'Broken' state.
@@ -134,6 +133,25 @@ the 'Edit Physical' button from the 'Actions' menu icon to the right of an
 interface:
 
 ![tags: net interface][img__tags-net-interface]
+
+To add a tag, type its name into the 'Tags' field and press Enter. Repeat as
+desired. Use the small 'x' next to a tag to unassign the tag.
+
+Changes are applied by pressing the 'Save' button.
+
+### Tags for storage configuration
+
+Alongside tags for an entire node and network interfaces, tags can also be
+defined for storage devices. As with other tags, these can be used when
+searching for nodes within the web UI, where they appear beneath the 'Storage
+tag' filter, and when allocating machines from the API.
+
+To add a tag to a storage device, click on the machine with the storage you
+wish to tag on the 'Machines' page of the web UI and open the 'Storage' tab.
+Use the menu in the 'Actions' column beneath 'Available disks and partitions'
+to select 'Edit disk' for your chosen device:
+
+![tags: storage][img__tags-storage]
 
 To add a tag, type its name into the 'Tags' field and press Enter. Repeat as
 desired. Use the small 'x' next to a tag to unassign the tag.
@@ -162,6 +180,7 @@ aliases.
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
 [cli-tags]: manage-cli-tags.md 
 
-[img__tags-search]: ../media/nodes-tags__2.3_tags-filter.png
-[img__tags-add-remove]: ../media/nodes-tags__2.3_tags-add_remove.png
-[img__tags-net-interface]: ../media/nodes-tags__2.3_tags-net-interface.png
+[img__tags-search]: ../media/nodes-tags__2.4_tags-filter.png
+[img__tags-add-remove]: ../media/nodes-tags__2.4_tags-add_remove.png
+[img__tags-net-interface]: ../media/nodes-tags__2.4_tags-net-interface.png
+[img__tags-storage]: ../media/nodes-tags__2.4_tags-storage.png
