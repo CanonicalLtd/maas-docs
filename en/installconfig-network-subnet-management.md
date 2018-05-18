@@ -62,4 +62,4 @@ from managed or unmanaged subnets.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [cli-control-subnet-management]: manage-cli-common.md#control-subnet-management
 
-[img__subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.3_management-toggle.png
+[img__subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.4_management-toggle.png
