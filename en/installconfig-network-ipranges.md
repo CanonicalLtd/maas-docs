@@ -28,7 +28,7 @@ to enter start and end addresses for the range as well as a comment.
 Below is an example window when creating a 'reserved range' (both windows are
 actually identical):
 
-![reserved IP range][img__2.2_add-reserved-iprange]
+![reserved IP range][img__add-reserved-iprange]
 
 Click the 'Reserve' button when done.
 
@@ -54,4 +54,4 @@ button at the far right of the row corresponding to the subnet in question.
 [dhcp]: installconfig-network-dhcp.md
 [cli-create-a-reserved-ip-range]: manage-cli-common.md#create-a-reserved-ip-range
 
-[img__2.2_add-reserved-iprange]: ../media/installconfig-network-ipranges__2.2_add-reserved-iprange.png
+[img__add-reserved-iprange]: ../media/installconfig-network-ipranges__2.4_add-reserved-iprange.png
