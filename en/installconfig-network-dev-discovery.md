@@ -25,4 +25,4 @@ discovery dashboard.
 
 [dashboard]: installconfig-webui.md#maas-dashboard
 
-[img__network-discovery]: ../media/installconfig-networking__2.3_discovery.png
+[img__network-discovery]: ../media/installconfig-networking__2.4_discovery.png
