@@ -4,7 +4,7 @@ table_of_contents: True
 # Release Notes 2.4
 
 MAAS 2.4 is currently under development. The current release is 
-[MAAS 2.4.0 (beta3)][currentrelease]. See 
+[MAAS 2.4.0 (RC1)][currentrelease]. See 
 [Historical release notes][historical-release-notes] for release notes for
 stable versions.
 
@@ -23,6 +23,13 @@ sudo apt install maas
 The official Python client library for MAAS is available in the Ubuntu 18.04
 LTS package archive or you can download the source from:
 [https://github.com/maas/python-libmaas/releases](https://github.com/maas/python-libmaas/releases)
+
+## 2.4.0 (RC1)
+
+See below for a list of all 28 bugs fixed in this release:
+
+[https://launchpad.net/maas/+milestone/2.4.0rc1](https://launchpad.net/maas/+milestone/2.4.0rc1)
+
 
 ## 2.4.0 (beta3)
 
@@ -441,7 +448,7 @@ in the following locations:
   ask questions.
 
 <!-- LINKS -->
-[currentrelease]: release-notes.md#2.4.0-(beta3)
+[currentrelease]: release-notes.md#2.4.0-(rc1)
 [snapio]: https://snapcraft.io/
 [snapinstall]: installconfig-snap-install.md
 [historical-release-notes]: release-notes-all.md
