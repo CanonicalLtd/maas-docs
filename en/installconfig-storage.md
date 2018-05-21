@@ -165,7 +165,7 @@ All nodes will have a default layout applied when commissioned. An
 administrator can configure the default layout on the 'Settings' page, under
 the 'Storage' tab.
 
-![default storage layout][img__2.2_default-storage-layout]
+![default storage layout][img__default-storage-layout]
 
 See [Disk erasure][storage-erasure] for an explanation of the options related
 to the erasing of disks.
@@ -208,4 +208,4 @@ for details.
 [cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
 [cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
 
-[img__2.2_default-storage-layout]: ../media/installconfig-storage__2.2_default-storage-layout.png
+[img__default-storage-layout]: ../media/installconfig-storage__2.4_default-storage-layout.png
