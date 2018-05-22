@@ -19,8 +19,8 @@ In the above example the following networking elements can be seen: *fabrics*,
 *VLANs*, *subnets*, and *spaces*. Due to the nature of the particular network
 topology being represented here, some elements are used multiple times. To be
 clear, in this example there are 2 fabrics, 1 VLAN, and 5 subnets, and 2
-(undefined) spaces. All such elements should be detected automatically by MAAS
-but if they're not each can be added manually using the 'Add' button. 
+spaces. All such elements should be detected automatically by MAAS but if
+they're not each can be added manually using the 'Add' button. 
 
 This main view can also be filtered either by fabrics or by spaces through the
 use of the 'Group by' dropdown.
@@ -76,7 +76,7 @@ the icons to the right of each entry.
 
 The **Utilisation** section:
 
-![networking subnets utilisation][img__2.2_subnets-utilisation]
+![networking subnets utilisation][img__subnets-utilisation]
 
 'Subnet addresses' shows the total number of addresses associated
 with the subnet, here 254. 'Availability' shows how many of those addresses
@@ -93,7 +93,7 @@ treated separately in [IP ranges][ipranges].
 
 The **Used** section:
 
-![networking subnets used][img__2.2_subnets-used]
+![networking subnets used][img__subnets-used]
 
 This section displays hosts (including controllers) associated with the used
 addresses along with related bits of host information.
@@ -106,9 +106,9 @@ addresses along with related bits of host information.
 [ipranges]: installconfig-network-ipranges.md
 [subnet-management]: installconfig-network-subnet-management.md
 
-[img__subnets]: ../media/installconfig-networking__2.3_subnets.png
-[img__subnets-summary]: ../media/installconfig-networking__2.3_subnets-summary.png
-[img__subnets-routes]: ../media/installconfig-networking__2.3_subnets-routes.png
-[img__2.2_subnets-utilisation]: ../media/installconfig-networking__2.2_subnets-utilisation.png
-[img__subnets-reserved]: ../media/installconfig-networking__2.3_subnets-reserved.png
-[img__2.2_subnets-used]: ../media/installconfig-networking__2.2_subnets-used.png
+[img__subnets]: ../media/installconfig-networking__2.4_subnets.png
+[img__subnets-summary]: ../media/installconfig-networking__2.4_subnets-summary.png
+[img__subnets-routes]: ../media/installconfig-networking__2.4_subnets-routes.png
+[img__subnets-utilisation]: ../media/installconfig-networking__2.4_subnets-utilisation.png
+[img__subnets-reserved]: ../media/installconfig-networking__2.4_subnets-reserved.png
+[img__subnets-used]: ../media/installconfig-networking__2.4_subnets-used.png
