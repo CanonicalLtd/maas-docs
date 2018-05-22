@@ -8,7 +8,7 @@ table_of_contents: True
 
 User accounts are managed from the 'Users' tab of the 'Settings' page. 
 
-![current users][img__2.2_current-users]
+![current users][img__current-users]
 
 !!! Note: 
     A currently logged in user cannot delete himself from the web UI.
@@ -36,11 +36,11 @@ preferences.
 
 ### SSH keys
 
-Before either a user can deploy a machine they must import at least one public
-SSH key into MAAS. This is so the deployed machine can be accessed. Obviously
-the user will need to be in possession of the corresponding private key. See
-[Public key authentication][ssh.com-what-is-public-key-auth] (ssh.com) if
-you're not familiar with SSH keys.
+Before a user can deploy a machine they must import at least one public SSH key
+into MAAS. This is so the deployed machine can be accessed. Obviously the user
+will need to be in possession of the corresponding private key. See [Public key
+authentication][ssh.com-what-is-public-key-auth] (ssh.com) if you're not
+familiar with SSH keys.
 
 !!! Note:
     An initial SSH key is normally imported during a user's initial login to the
@@ -56,7 +56,7 @@ Public keys residing on either [Launchpad][help.launchpad.net-accounts] or
 'Import' button to add any keys MAAS discovers to the current user's MAAS
 account.
 
-![add user SSH key][img__2.2_add-user-ssh-key]
+![add user SSH key][img__add-user-ssh-key]
 
 
 ### API key
@@ -73,7 +73,7 @@ The password for the current user can be changed at the bottom of the page by
 entering the old password and entering the new password (twice). Click 'Save
 password' to finish. 
 
-![change user password][img__2.2_change-user-password]
+![change user password][img__change-user-password]
 
 !!! Note:
     An administrator can change any user's password from within the 'Users' tab
@@ -89,7 +89,7 @@ password' to finish.
 [manage-cli]: manage-cli.md
 [juju-maas-cloud]: https://jujucharms.com/docs/stable/clouds-maas
 
-[img__2.2_current-users]: ../media/manage-user-accounts__2.2_current-users.png
-[img__add-user]: ../media/manage-user-accounts__2.3_add-user.png
-[img__2.2_add-user-ssh-key]: ../media/manage-user-accounts__2.2_add-user-ssh-key.png
-[img__2.2_change-user-password]: ../media/manage-user-accounts__2.2_change-user-password.png
+[img__current-users]: ../media/manage-user-accounts__2.4_current-users.png
+[img__add-user]: ../media/manage-user-accounts__2.4_add-user.png
+[img__add-user-ssh-key]: ../media/manage-user-accounts__2.4_add-user-ssh-key.png
+[img__change-user-password]: ../media/manage-user-accounts__2.4_change-user-password.png
