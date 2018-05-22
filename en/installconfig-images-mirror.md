@@ -61,10 +61,8 @@ with `cron`) to ensure the mirror contains the latest images.
 
 ## Configure MAAS to use the local mirror
 
-To point MAAS to the local image server (mirror) using the web UI navigate to
-the Settings tab and scroll down to the 'Boot Images' section. Then fill in the
-fields 'Sync URL' and 'Keyring Path' using the values, respectively, for
-variables 'URL' and 'KEYRING_FILE' from above.
+See [Image mirrors][web-ui] to learn how to configure MAAS to use the local
+image server (mirror) using the web UI.
 
 See [CLI Image Management][cli-add-an-image-source] for instructions on how to
 do this with the CLI.
@@ -73,3 +71,4 @@ do this with the CLI.
 <!-- LINKS -->
 
 [cli-add-an-image-source]: manage-cli-images.md#add-an-image-source
+[web-ui]: installconfig-images-import.md#image-mirrors

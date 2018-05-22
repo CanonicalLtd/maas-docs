@@ -26,7 +26,7 @@ To launch a test, select the target machine from the 'Machines' page and use
 the 'Take action' drop-down menu to select 'Test hardware'. When ready, hit the
 'Test machine' button. Here, a test is being applied to a deployed node:
 
-![hw test deployed node][img__2.2_hw-testing-deployed]
+![hw test deployed node][img__hw-testing-deployed]
 
 There is the option of not powering off the node and to allow SSH access.
 
@@ -34,7 +34,7 @@ A default test will be selected (`smartctl-validate`, a hard drive test) but
 others can be chosen by clicking the 'Select scripts' label. Doing so will
 reveal the following choices:
 
-![hw test deployed node choices][img__2.2_hw-testing-deployed-choices]
+![hw test deployed node choices][img__hw-testing-deployed-choices]
 
 ## Included scripts
 
@@ -71,5 +71,5 @@ these scripts work and how you can write your own.
 [nodes-hw-scripts]: nodes-scripts.md
 
 <!-- IMAGES -->
-[img__2.2_hw-testing-deployed]: ../media/nodes-hw-testing__2.2_deployed.png
-[img__2.2_hw-testing-deployed-choices]: ../media/nodes-hw-testing__2.2_deployed-choices.png
+[img__hw-testing-deployed]: ../media/nodes-hw-testing__2.4_deployed.png
+[img__hw-testing-deployed-choices]: ../media/nodes-hw-testing__2.4_deployed-choices.png
