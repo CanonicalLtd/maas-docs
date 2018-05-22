@@ -44,8 +44,8 @@ path, are revealed by clicking 'Show advanced options':
 
 Optionally, a local mirror can be set up as the boot source. MAAS will then use
 it instead of the standard internet-based server. This will reduce the time
-required to complete the image import step significantly. See [Local image
-mirror][mirror] for instructions on doing this.
+required to complete the image import step significantly. See 
+[Local image mirror][mirror] for instructions on doing this.
 
 
 ## Other images
