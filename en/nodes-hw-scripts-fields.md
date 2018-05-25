@@ -134,4 +134,4 @@ The YAML file must represent a dictionary with the following fields:
 <!-- LINKS -->
 [snapcraft]: https://snapcraft.io/
 [maas-scripts]: nodes-hw-scripts.md
-[maas-scripts-cli]: nodes-hw-scripts-cli.md
+[maas-scripts-cli]: nodes-scripts-cli.md
