@@ -136,7 +136,7 @@ late_commands:
 [curtin]: https://launchpad.net/curtin
 [cloud-init]: https://launchpad.net/cloud-init
 [node-enlistment]: nodes-add.html#enlistment
-[node-deployment]: installconfig-nodes-deploy.html
-[node-commission]: nodes-commission.html
+[node-deployment]: nodes-deploy.md
+[node-commission]: nodes-commission.md
 [tempita]: https://raw.githubusercontent.com/ravenac95/tempita/master/docs/index.txt
-[system-id]: manage-cli-common#determine-a-node's-system-id
+[system-id]: manage-cli-common.md#determine-a-node-system-id
