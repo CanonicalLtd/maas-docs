@@ -12,7 +12,7 @@ logging. See below for more details on each of these.
 
 If you're new to MAAS, take a look at [Explore MAAS][explore-maas] to
 get an overview of its installation and capabilities, and if you need a more
-comprehensive overview of the changes in this release, take a look at the
+comprehensive review of the changes in this release, take a look at the
 [release notes][release-notes].
 
 ## Performance improvements
