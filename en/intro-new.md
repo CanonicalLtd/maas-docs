@@ -67,6 +67,7 @@ new version offering a cleaner and more concise user experience.
 
 ![new web UI][whatsnew]
 
+
 <!-- LINKS -->
 [explore-maas]: intro-explore.md
 [canonical]: https://www.canonical.com/
