@@ -37,7 +37,7 @@ Performance improvements include:
 
 KVM (virtual machine) pods are now a fully fledged part of the MAAS ecosystem,
 with support for AZs, tagging, over-commit ratios and storage pools, letting
-users compose virtual resources just as easily as physical resources
+users compose virtual resources just as easily as physical resources.
 
 ![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
@@ -66,9 +66,6 @@ and refinements. The CSS framework has also been completely replaced, with the
 new version offering a cleaner and more concise user experience.
 
 ![new web UI][whatsnew]
-
-For a more comprehensive look at the many great new features in MAAS 2.4, take
-a look at the [release notes][release-notes].
 
 <!-- LINKS -->
 [explore-maas]: intro-explore.md
