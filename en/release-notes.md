@@ -30,7 +30,7 @@ However, so as to not break deployments when upgrading from the previous LTS
 release, MAAS continued to have *apache2* as a dependency. This was purely to
 provide a reverse proxy to allow users to connect via port 80.
 
-The availability of the MAAS *snap* changes that behaviour, longer providing
+The availability of the MAAS *snap* changes that behaviour, no longer providing
 web UI access on port 80. To remain consistent with the snap, the Debian
 package removes its dependency on *apache2* and drops proxy access via port 80.
 
@@ -48,7 +48,7 @@ is now a dummy transitional package that can be removed.
 
 #### NTP services provided by Chrony
 
-In common with changes made to Ubuntu Server, ‘ntpd’ has been replaced with
+In common with changes made to Ubuntu Server, *ntpd* has been replaced with
 [Chrony][chrony] for the NTP protocol. MAAS will handle the upgrade process
 automatically and resume NTP service operation.
 
@@ -79,7 +79,7 @@ environments and include:
 **Improved daemon management**
 
 - MAAS has changed the way daemons are run to allow users to see both
-  ‘regiond’ and ‘rackd’ as processes in the process list.
+  *regiond* and *rackd* as processes in the process list.
 - As part of these changes, regiond workers are now managed by a master
   regiond process. In older versions of MAAS, each worker was directly run
   by systemd. The master process is now in charge of ensuring workers are running
@@ -108,7 +108,7 @@ database queries. Some areas that have been addressed in this release include:
   This has now been consolidated into a single query per transaction.
 - Further reductions in the number of database queries have been made,
   significantly cutting the queries made by the boot source cache image
-  import process from over 100 to just under 5.  These changes greatly improves
+  import process from over 100 to just under 5.  These changes greatly improve
   MAAS performance and database utilisation in larger environments. More
   improvements will continue to be made as we continue to examine various areas
   in MAAS.
@@ -133,7 +133,7 @@ includes:
 - Only load node objects in listing pages when the specific object type is
   requested. For instance, only load machines when accessing the machines tab
   instead of also loading devices and controllers.
-- Change the UI mechanism to only request OS Information only on initial page
+- Change the UI mechanism to only request OS details only on initial page
   load rather than every 10 seconds.
 
 #### KVM pod improvements
@@ -156,7 +156,7 @@ with the following improvements:
 - MAAS now adds the ability to set tags for a pod. This allows administrators to use tags
   to allow/prevent the creation of a VM inside the pod using tags. For example, if the
   administrator would like a machine with a ‘tag’ named ‘virtual’, MAAS will filter all
-  physical machines and only consider other VM’s or a KVM pod for machine allocation.
+  physical machines and only consider other VMs or a KVM pod for machine allocation.
 
 **Added over-commit ratios for CPU and memory.**
 
@@ -190,7 +190,7 @@ See the [Pods documentation][pods-docs] for further details.
 
 #### NTP services now provided by Chrony
 
-In common with changes made to Ubuntu Server, ‘ntpd’ has been replaced with
+In common with changes made to Ubuntu Server, *ntpd* has been replaced with
 Chrony for the NTP protocol. MAAS will handle the upgrade process automatically
 and resume NTP service operation.
 
@@ -279,7 +279,7 @@ Top-level navigation has now changed to:
 
 **Settings page reorganisation**
 
-- The web UI MAAS setting pages has been reorganised into tabs, making
+- The web UI MAAS setting pages have been reorganised into tabs, making
   configuration options easier to find.
 
 #### Other improvements
@@ -298,7 +298,7 @@ changes, the user is required to always specify a boot type, avoiding a
 fallback to the BIOS. 
 
 As such, MAAS now allows the selection of a boot type (auto, legacy, EFI) to
-force the machine to always PXE with the desired type (on the next boot only) .
+force the machine to always PXE-boot with the desired type (on the next boot only) .
 
 **API to Skip BMC configuration on commissioning**
 
