@@ -46,7 +46,7 @@ Most resources offer a choice of GET or POST operations. In those cases these
 methods will take one special parameter, called op, to indicate what it is you
 want to do.
 
-For example, to list all machines, you might GET "/api/2.0/machines".
+For example, to list all machines, you might GET "/MAAS/api/2.0/machines".
 
 ## Operations
 
@@ -54,14 +54,14 @@ For example, to list all machines, you might GET "/api/2.0/machines".
 
 Manage the current logged-in user.
 
-##### `GET /api/2.0/account/ op=list_authorisation_tokens`
+##### `GET /MAAS/api/2.0/account/ op=list_authorisation_tokens`
 
 List authorisation tokens available to the currently logged-in user.
 
 - `return`
    list of dictionaries representing each key's name and token.
 
-##### `POST /api/2.0/account/ op=create_authorisation_token`
+##### `POST /MAAS/api/2.0/account/ op=create_authorisation_token`
 
 Create an authorisation OAuth token and OAuth consumer.
 
@@ -73,14 +73,14 @@ Create an authorisation OAuth token and OAuth consumer.
 
 - `return`
    a json dict with four keys: 'token_key',
-   'token_secret', 'consumer_key' and 'name'
-   (e.g. {token_key: 's65244576fgqs', token_secret: 'qsdfdhv34',
-   consumer_key: '68543fhj854fg', name: 'MAAS consumer'}).
+   'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
+   's65244576fgqs', token_secret: 'qsdfdhv34', consumer_key: '68543fhj854fg', name:
+   'MAAS consumer'}).
 
 - `rtype`
    string (json)
 
-##### `POST /api/2.0/account/ op=delete_authorisation_token`
+##### `POST /MAAS/api/2.0/account/ op=delete_authorisation_token`
 
 Delete an authorisation OAuth token and the related OAuth consumer.
 
@@ -90,7 +90,7 @@ Delete an authorisation OAuth token and the related OAuth consumer.
 - `type token_key`
    unicode
 
-##### `POST /api/2.0/account/ op=update_token_name`
+##### `POST /MAAS/api/2.0/account/ op=update_token_name`
 
 Modify the consumer name of an authorisation OAuth token.
 
@@ -110,20 +110,20 @@ Modify the consumer name of an authorisation OAuth token.
 
 Manage bcache cache set on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
 
 Delete cache set on a machine.
 
 Returns 400 if the cache set is in use. Returns 404 if the machine or cache
 set is not found. Returns 409 if the machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
 
 Read bcache cache set on a machine.
 
 Returns 404 if the machine or cache set is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
 
 Delete bcache on a machine.
 
@@ -142,13 +142,13 @@ machine is not Ready.
 
 Manage bcache cache sets on a machine.
 
-##### `GET /api/2.0/nodes/{system_id}/bcache-cache-sets/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/`
 
 List all bcache cache sets belonging to a machine.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/bcache-cache-sets/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/`
 
 Creates a Bcache Cache Set.
 
@@ -167,20 +167,20 @@ Ready.
 
 Manage bcache device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
 
 Delete bcache on a machine.
 
 Returns 404 if the machine or bcache is not found. Returns 409 if the machine
 is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
 
 Read bcache device on a machine.
 
 Returns 404 if the machine or bcache is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/bcache/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
 
 Delete bcache on a machine.
 
@@ -212,13 +212,13 @@ machine is not Ready.
 
 Manage bcache devices on a machine.
 
-##### `GET /api/2.0/nodes/{system_id}/bcaches/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/bcaches/`
 
 List all bcache devices belonging to a machine.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/bcaches/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/bcaches/`
 
 Creates a Bcache.
 
@@ -250,7 +250,7 @@ Ready.
 
 Manage a block device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
 
 Delete block device on a machine.
 
@@ -258,13 +258,13 @@ Returns 404 if the machine or block device is not found. Returns 403 if the
 user is not allowed to delete the block device. Returns 409 if the machine is
 not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
 
 Read block device on node.
 
 Returns 404 if the machine or block device is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=add_tag`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=add_tag`
 
 Add a tag to block device on a machine.
 
@@ -275,7 +275,7 @@ Returns 404 if the machine or block device is not found. Returns 403 if the
 user is not allowed to update the block device. Returns 409 if the machine is
 not Ready.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=format`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=format`
 
 Format block device with filesystem.
 
@@ -289,7 +289,7 @@ Returns 403 when the user doesn't have the ability to format the block device.
 Returns 404 if the machine or block device is not found. Returns 409 if the
 machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=mount`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=mount`
 
 Mount the filesystem on block device.
 
@@ -303,7 +303,7 @@ Returns 403 when the user doesn't have the ability to mount the block device.
 Returns 404 if the machine or block device is not found. Returns 409 if the
 machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=remove_tag`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=remove_tag`
 
 Remove a tag from block device on a machine.
 
@@ -314,7 +314,7 @@ Returns 404 if the machine or block device is not found. Returns 403 if the
 user is not allowed to update the block device. Returns 409 if the machine is
 not Ready.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=set_boot_disk`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=set_boot_disk`
 
 Set this block device as the boot disk for the machine.
 
@@ -323,7 +323,7 @@ machine or block device is not found. Returns 403 if the user is not allowed
 to update the block device. Returns 409 if the machine is not Ready or
 Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unformat`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unformat`
 
 Unformat block device with filesystem.
 
@@ -332,7 +332,7 @@ of a filesystem group. Returns 403 when the user doesn't have the ability to
 unformat the block device. Returns 404 if the machine or block device is not
 found. Returns 409 if the machine is not Ready or Allocated.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unmount`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unmount`
 
 Unmount the filesystem on block device.
 
@@ -341,7 +341,7 @@ Returns 403 when the user doesn't have the ability to unmount the block
 device. Returns 404 if the machine or block device is not found. Returns 409
 if the machine is not Ready or Allocated.
 
-##### `PUT /api/2.0/nodes/{system_id}/blockdevices/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
 
 Update block device on a machine.
 
@@ -391,13 +391,13 @@ not Ready.
 
 Manage block devices on a machine.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/`
 
 List all block devices belonging to a machine.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/`
 
 Create a physical block device.
 
@@ -427,11 +427,11 @@ Returns 404 if the node is not found.
 
 Manage a boot resource.
 
-##### `DELETE /api/2.0/boot-resources/{id}/`
+##### `DELETE /MAAS/api/2.0/boot-resources/{id}/`
 
 Delete boot resource.
 
-##### `GET /api/2.0/boot-resources/{id}/`
+##### `GET /MAAS/api/2.0/boot-resources/{id}/`
 
 Read a boot resource.
 
@@ -439,18 +439,18 @@ Read a boot resource.
 
 Manage the boot resources.
 
-##### `GET /api/2.0/boot-resources/`
+##### `GET /MAAS/api/2.0/boot-resources/`
 
 List all boot resources.
 
 - `param type`
    Type of boot resources to list. Default: all
 
-##### `GET /api/2.0/boot-resources/ op=is_importing`
+##### `GET /MAAS/api/2.0/boot-resources/ op=is_importing`
 
 Return import status.
 
-##### `POST /api/2.0/boot-resources/`
+##### `POST /MAAS/api/2.0/boot-resources/`
 
 Uploads a new boot resource.
 
@@ -471,11 +471,11 @@ Uploads a new boot resource.
    Image content. Note: this is not a normal parameter,
    but a file upload.
 
-##### `POST /api/2.0/boot-resources/ op=import`
+##### `POST /MAAS/api/2.0/boot-resources/ op=import`
 
 Import the boot resources.
 
-##### `POST /api/2.0/boot-resources/ op=stop_import`
+##### `POST /MAAS/api/2.0/boot-resources/ op=stop_import`
 
 Stop import of boot resources.
 
@@ -483,15 +483,15 @@ Stop import of boot resources.
 
 Manage a boot source.
 
-##### `DELETE /api/2.0/boot-sources/{id}/`
+##### `DELETE /MAAS/api/2.0/boot-sources/{id}/`
 
 Delete a specific boot source.
 
-##### `GET /api/2.0/boot-sources/{id}/`
+##### `GET /MAAS/api/2.0/boot-sources/{id}/`
 
 Read a boot source.
 
-##### `PUT /api/2.0/boot-sources/{id}/`
+##### `PUT /MAAS/api/2.0/boot-sources/{id}/`
 
 Update a specific boot source.
 
@@ -510,15 +510,15 @@ Update a specific boot source.
 
 Manage a boot source selection.
 
-##### `DELETE /api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+##### `DELETE /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
 
 Delete a specific boot source.
 
-##### `GET /api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+##### `GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
 
 Read a boot source selection.
 
-##### `PUT /api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+##### `PUT /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
 
 Update a specific boot source selection.
 
@@ -542,13 +542,13 @@ Update a specific boot source selection.
 
 Manage the collection of boot source selections.
 
-##### `GET /api/2.0/boot-sources/{boot_source_id}/selections/`
+##### `GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/`
 
 List boot source selections.
 
 Get a listing of a boot source's selections.
 
-##### `POST /api/2.0/boot-sources/{boot_source_id}/selections/`
+##### `POST /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/`
 
 Create a new boot source selection.
 
@@ -572,13 +572,13 @@ Create a new boot source selection.
 
 Manage the collection of boot sources.
 
-##### `GET /api/2.0/boot-sources/`
+##### `GET /MAAS/api/2.0/boot-sources/`
 
 List boot sources.
 
 Get a listing of boot sources.
 
-##### `POST /api/2.0/boot-sources/`
+##### `POST /MAAS/api/2.0/boot-sources/`
 
 Create a new boot source.
 
@@ -597,19 +597,19 @@ Create a new boot source.
 
 Manage a custom commissioning script.
 
-> This functionality is only available to administrators.
->
-> This endpoint has been deprecated in favor of the node-script endpoint.
+This functionality is only available to administrators.
 
-##### `DELETE /api/2.0/commissioning-scripts/{name}`
+This endpoint has been deprecated in favor of the node-script endpoint.
+
+##### `DELETE /MAAS/api/2.0/commissioning-scripts/{name}`
 
 Delete a commissioning script.
 
-##### `GET /api/2.0/commissioning-scripts/{name}`
+##### `GET /MAAS/api/2.0/commissioning-scripts/{name}`
 
 Read a commissioning script.
 
-##### `PUT /api/2.0/commissioning-scripts/{name}`
+##### `PUT /MAAS/api/2.0/commissioning-scripts/{name}`
 
 Update a commissioning script.
 
@@ -617,15 +617,15 @@ Update a commissioning script.
 
 Manage custom commissioning scripts.
 
-> This functionality is only available to administrators.
->
-> This endpoint has been deprecated in favor of the node-scripts endpoint.
+This functionality is only available to administrators.
 
-##### `GET /api/2.0/commissioning-scripts/`
+This endpoint has been deprecated in favor of the node-scripts endpoint.
+
+##### `GET /MAAS/api/2.0/commissioning-scripts/`
 
 List commissioning scripts.
 
-##### `POST /api/2.0/commissioning-scripts/`
+##### `POST /MAAS/api/2.0/commissioning-scripts/`
 
 Create a new commissioning script.
 
@@ -665,21 +665,21 @@ exact form in which it was uploaded.
 
 Manage an individual DHCP snippet.
 
-> The DHCP snippet is identified by its id.
+The DHCP snippet is identified by its id.
 
-##### `DELETE /api/2.0/dhcp-snippets/{id}/`
+##### `DELETE /MAAS/api/2.0/dhcp-snippets/{id}/`
 
 Delete a DHCP snippet.
 
 Returns 404 if the DHCP snippet is not found.
 
-##### `GET /api/2.0/dhcp-snippets/{id}/`
+##### `GET /MAAS/api/2.0/dhcp-snippets/{id}/`
 
 Read DHCP snippet.
 
 Returns 404 if the snippet is not found.
 
-##### `POST /api/2.0/dhcp-snippets/{id}/ op=revert`
+##### `POST /MAAS/api/2.0/dhcp-snippets/{id}/ op=revert`
 
 Revert the value of a DHCP snippet to an earlier revision.
 
@@ -693,7 +693,7 @@ Revert the value of a DHCP snippet to an earlier revision.
 
 Returns 404 if the DHCP snippet is not found.
 
-##### `PUT /api/2.0/dhcp-snippets/{id}/`
+##### `PUT /MAAS/api/2.0/dhcp-snippets/{id}/`
 
 Update a DHCP snippet.
 
@@ -749,11 +749,11 @@ Returns 404 if the DHCP snippet is not found.
 
 Manage the collection of all DHCP snippets in MAAS.
 
-##### `GET /api/2.0/dhcp-snippets/`
+##### `GET /MAAS/api/2.0/dhcp-snippets/`
 
 List all DHCP snippets.
 
-##### `POST /api/2.0/dhcp-snippets/`
+##### `POST /MAAS/api/2.0/dhcp-snippets/`
 
 Create a DHCP snippet.
 
@@ -810,20 +810,20 @@ Returns 404 if the DHCP snippet is not found.
 
 Manage dnsresource.
 
-##### `DELETE /api/2.0/dnsresources/{id}/`
+##### `DELETE /MAAS/api/2.0/dnsresources/{id}/`
 
 Delete dnsresource.
 
 Returns 403 if the user does not have permission to delete the dnsresource.
 Returns 404 if the dnsresource is not found.
 
-##### `GET /api/2.0/dnsresources/{id}/`
+##### `GET /MAAS/api/2.0/dnsresources/{id}/`
 
 Read dnsresource.
 
 Returns 404 if the dnsresource is not found.
 
-##### `PUT /api/2.0/dnsresources/{id}/`
+##### `PUT /MAAS/api/2.0/dnsresources/{id}/`
 
 Update dnsresource.
 
@@ -840,20 +840,20 @@ Returns 404 if the dnsresource is not found.
 
 Manage dnsresourcerecord.
 
-##### `DELETE /api/2.0/dnsresourcerecords/{id}/`
+##### `DELETE /MAAS/api/2.0/dnsresourcerecords/{id}/`
 
 Delete dnsresourcerecord.
 
 Returns 403 if the user does not have permission to delete the
 dnsresourcerecord. Returns 404 if the dnsresourcerecord is not found.
 
-##### `GET /api/2.0/dnsresourcerecords/{id}/`
+##### `GET /MAAS/api/2.0/dnsresourcerecords/{id}/`
 
 Read dnsresourcerecord.
 
 Returns 404 if the dnsresourcerecord is not found.
 
-##### `PUT /api/2.0/dnsresourcerecords/{id}/`
+##### `PUT /MAAS/api/2.0/dnsresourcerecords/{id}/`
 
 Update dnsresourcerecord.
 
@@ -870,7 +870,7 @@ dnsresourcerecord. Returns 404 if the dnsresourcerecord is not found.
 
 Manage DNS resource records (e.g. CNAME, MX, NS, SRV, TXT)
 
-##### `GET /api/2.0/dnsresourcerecords/`
+##### `GET /MAAS/api/2.0/dnsresourcerecords/`
 
 List all dnsresourcerecords.
 
@@ -884,7 +884,7 @@ List all dnsresourcerecords.
    restrict the listing to entries which have
    records of the given rrtype.
 
-##### `POST /api/2.0/dnsresourcerecords/`
+##### `POST /MAAS/api/2.0/dnsresourcerecords/`
 
 Create a DNS resource record.
 
@@ -913,7 +913,7 @@ Create a DNS resource record.
 
 Manage dnsresources.
 
-##### `GET /api/2.0/dnsresources/`
+##### `GET /MAAS/api/2.0/dnsresources/`
 
 List all resources for the specified criteria.
 
@@ -927,7 +927,7 @@ List all resources for the specified criteria.
    restrict the listing to entries which have
    records of the given rrtype.
 
-##### `POST /api/2.0/dnsresources/`
+##### `POST /MAAS/api/2.0/dnsresources/`
 
 Create a dnsresource.
 
@@ -953,9 +953,9 @@ Create a dnsresource.
 
 Manage an individual device.
 
-> The device is identified by its system_id.
+The device is identified by its system_id.
 
-##### `DELETE /api/2.0/devices/{system_id}/`
+##### `DELETE /MAAS/api/2.0/devices/{system_id}/`
 
 Delete a specific Device.
 
@@ -963,13 +963,13 @@ Returns 404 if the device is not found. Returns 403 if the user does not have
 permission to delete the device. Returns 204 if the device is successfully
 deleted.
 
-##### `GET /api/2.0/devices/{system_id}/`
+##### `GET /MAAS/api/2.0/devices/{system_id}/`
 
 Read a specific Node.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/devices/{system_id}/ op=details`
+##### `GET /MAAS/api/2.0/devices/{system_id}/ op=details`
 
 Obtain various system details.
 
@@ -984,7 +984,7 @@ encoding like base-64.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/devices/{system_id}/ op=power_parameters`
+##### `GET /MAAS/api/2.0/devices/{system_id}/ op=power_parameters`
 
 Obtain power parameters.
 
@@ -997,21 +997,21 @@ and secret keys.
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/devices/{system_id}/ op=restore_default_configuration`
+##### `POST /MAAS/api/2.0/devices/{system_id}/ op=restore_default_configuration`
 
 Reset a device's configuration to its initial state.
 
 Returns 404 if the device is not found. Returns 403 if the user does not have
 permission to reset the device.
 
-##### `POST /api/2.0/devices/{system_id}/ op=restore_networking_configuration`
+##### `POST /MAAS/api/2.0/devices/{system_id}/ op=restore_networking_configuration`
 
 Reset a device's network options.
 
 Returns 404 if the device is not found Returns 403 if the user does not have
 permission to reset the device.
 
-##### `POST /api/2.0/devices/{system_id}/ op=set_owner_data`
+##### `POST /MAAS/api/2.0/devices/{system_id}/ op=set_owner_data`
 
 Set key/value data for the current owner.
 
@@ -1025,7 +1025,7 @@ allocated to a user.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission.
 
-##### `PUT /api/2.0/devices/{system_id}/`
+##### `PUT /MAAS/api/2.0/devices/{system_id}/`
 
 Update a specific device.
 
@@ -1063,7 +1063,7 @@ permission to update the device.
 
 Manage the collection of all the devices in the MAAS.
 
-##### `GET /api/2.0/devices/`
+##### `GET /MAAS/api/2.0/devices/`
 
 List Nodes visible to the user, optionally filtered by criteria.
 
@@ -1113,7 +1113,7 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type agent_name`
    unicode
 
-##### `GET /api/2.0/devices/ op=is_registered`
+##### `GET /MAAS/api/2.0/devices/ op=is_registered`
 
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
@@ -1132,7 +1132,7 @@ Returns whether or not the given MAC address is registered within this MAAS
 
 Returns 400 if any mandatory parameters are missing.
 
-##### `POST /api/2.0/devices/`
+##### `POST /MAAS/api/2.0/devices/`
 
 Create a new device.
 
@@ -1161,7 +1161,7 @@ Create a new device.
 - `type parent`
    unicode
 
-##### `POST /api/2.0/devices/ op=set_zone`
+##### `POST /MAAS/api/2.0/devices/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
@@ -1179,14 +1179,14 @@ Raises 403 if the user is not an admin.
 
 Query observed discoveries.
 
-##### `GET /api/2.0/discovery/`
+##### `GET /MAAS/api/2.0/discovery/`
 
 Lists all the devices MAAS has discovered.
 
 Discoveries are listed in the order they were last observed on the network
 (most recent first).
 
-##### `GET /api/2.0/discovery/ op=by_unknown_ip`
+##### `GET /MAAS/api/2.0/discovery/ op=by_unknown_ip`
 
 Lists all discovered devices which have an unknown IP address.
 
@@ -1197,7 +1197,7 @@ been observed using it after it was assigned by a MAAS-managed DHCP server.
 Discoveries are listed in the order they were last observed on the network
 (most recent first).
 
-##### `GET /api/2.0/discovery/ op=by_unknown_ip_and_mac`
+##### `GET /MAAS/api/2.0/discovery/ op=by_unknown_ip_and_mac`
 
 Lists all discovered devices which are completely unknown to MAAS.
 
@@ -1208,7 +1208,7 @@ the discovery.
 Discoveries are listed in the order they were last observed on the network
 (most recent first).
 
-##### `GET /api/2.0/discovery/ op=by_unknown_mac`
+##### `GET /MAAS/api/2.0/discovery/ op=by_unknown_mac`
 
 Lists all discovered devices which have an unknown IP address.
 
@@ -1218,7 +1218,7 @@ interface known to MAAS is configured with MAC address of the discovery.
 Discoveries are listed in the order they were last observed on the network
 (most recent first).
 
-##### `POST /api/2.0/discovery/ op=clear`
+##### `POST /MAAS/api/2.0/discovery/ op=clear`
 
 Deletes all discovered neighbours and/or mDNS entries.
 
@@ -1231,7 +1231,7 @@ Deletes all discovered neighbours and/or mDNS entries.
 - `param all`
    if True, deletes all discovery data.
 
-##### `POST /api/2.0/discovery/ op=scan`
+##### `POST /MAAS/api/2.0/discovery/ op=scan`
 
 Immediately run a neighbour discovery scan on all rack networks.
 
@@ -1293,26 +1293,36 @@ elapsed.
 
 Read or delete an observed discovery.
 
-##### `GET /api/2.0/discovery/{discovery_id}/`
+##### `GET /MAAS/api/2.0/discovery/{discovery_id}/`
 
 ### Domain
 
 Manage domain.
 
-##### `DELETE /api/2.0/domains/{id}/`
+##### `DELETE /MAAS/api/2.0/domains/{id}/`
 
 Delete domain.
 
-Returns 403 if the user does not have permission to update the dnsresource.
-Returns 404 if the domain is not found.
+Returns 403 if the user does not have permission to update the domain. Returns
+404 if the domain is not found.
 
-##### `GET /api/2.0/domains/{id}/`
+##### `GET /MAAS/api/2.0/domains/{id}/`
 
 Read domain.
 
 Returns 404 if the domain is not found.
 
-##### `PUT /api/2.0/domains/{id}/`
+##### `POST /MAAS/api/2.0/domains/{id}/ op=set_default`
+
+Set the specified domain to be the default.
+
+If any unallocated nodes are using the previous default domain, changes them
+to use the new default domain.
+
+Returns 403 if the user does not have permission to update the default domain.
+Returns 404 if the domain is not found.
+
+##### `PUT /MAAS/api/2.0/domains/{id}/`
 
 Update domain.
 
@@ -1332,11 +1342,11 @@ Returns 404 if the domain is not found.
 
 Manage domains.
 
-##### `GET /api/2.0/domains/`
+##### `GET /MAAS/api/2.0/domains/`
 
 List all domains.
 
-##### `POST /api/2.0/domains/`
+##### `POST /MAAS/api/2.0/domains/`
 
 Create a domain.
 
@@ -1346,7 +1356,7 @@ Create a domain.
 - `param authoritative`
    Class type of the domain.
 
-##### `POST /api/2.0/domains/ op=set_serial`
+##### `POST /MAAS/api/2.0/domains/ op=set_serial`
 
 Set the SOA serial number (for all DNS zones.)
 
@@ -1357,10 +1367,10 @@ Set the SOA serial number (for all DNS zones.)
 
 Retrieve filtered node events.
 
-> A specific Node's events is identified by specifying one or more ids,
-> hostnames, or mac addresses as a list.
+A specific Node's events is identified by specifying one or more ids,
+hostnames, or mac addresses as a list.
 
-##### `GET /api/2.0/events/ op=query`
+##### `GET /MAAS/api/2.0/events/ op=query`
 
 List Node events, optionally filtered by various criteria via URL query
 parameters.
@@ -1411,19 +1421,19 @@ parameters.
 
 Manage fabric.
 
-##### `DELETE /api/2.0/fabrics/{id}/`
+##### `DELETE /MAAS/api/2.0/fabrics/{id}/`
 
 Delete fabric.
 
 Returns 404 if the fabric is not found.
 
-##### `GET /api/2.0/fabrics/{id}/`
+##### `GET /MAAS/api/2.0/fabrics/{id}/`
 
 Read fabric.
 
 Returns 404 if the fabric is not found.
 
-##### `PUT /api/2.0/fabrics/{id}/`
+##### `PUT /MAAS/api/2.0/fabrics/{id}/`
 
 Update fabric.
 
@@ -1442,11 +1452,11 @@ Returns 404 if the fabric is not found.
 
 Manage fabrics.
 
-##### `GET /api/2.0/fabrics/`
+##### `GET /MAAS/api/2.0/fabrics/`
 
 List all fabrics.
 
-##### `POST /api/2.0/fabrics/`
+##### `POST /MAAS/api/2.0/fabrics/`
 
 Create a fabric.
 
@@ -1463,19 +1473,19 @@ Create a fabric.
 
 Manage Fan Network.
 
-##### `DELETE /api/2.0/fannetworks/{id}/`
+##### `DELETE /MAAS/api/2.0/fannetworks/{id}/`
 
 Delete fannetwork.
 
 Returns 404 if the fannetwork is not found.
 
-##### `GET /api/2.0/fannetworks/{id}/`
+##### `GET /MAAS/api/2.0/fannetworks/{id}/`
 
 Read fannetwork.
 
 Returns 404 if the fannetwork is not found.
 
-##### `PUT /api/2.0/fannetworks/{id}/`
+##### `PUT /MAAS/api/2.0/fannetworks/{id}/`
 
 Update fannetwork.
 
@@ -1506,11 +1516,11 @@ Returns 404 if the fannetwork is not found.
 
 Manage Fan Networks.
 
-##### `GET /api/2.0/fannetworks/`
+##### `GET /MAAS/api/2.0/fannetworks/`
 
 List all fannetworks.
 
-##### `POST /api/2.0/fannetworks/`
+##### `POST /MAAS/api/2.0/fannetworks/`
 
 Create a fannetwork.
 
@@ -1539,13 +1549,13 @@ Create a fannetwork.
 
 Manage a FileStorage object.
 
-> The file is identified by its filename and owner.
+The file is identified by its filename and owner.
 
-##### `DELETE /api/2.0/files/{filename}/`
+##### `DELETE /MAAS/api/2.0/files/{filename}/`
 
 Delete a FileStorage object.
 
-##### `GET /api/2.0/files/{filename}/`
+##### `GET /MAAS/api/2.0/files/{filename}/`
 
 GET a FileStorage object as a json object.
 
@@ -1555,7 +1565,7 @@ The 'content' of the file is base64-encoded.
 
 Manage the collection of all the files in this MAAS.
 
-##### `DELETE /api/2.0/files/`
+##### `DELETE /MAAS/api/2.0/files/`
 
 Delete a FileStorage object.
 
@@ -1565,7 +1575,7 @@ Delete a FileStorage object.
 - `type filename`
    unicode
 
-##### `GET /api/2.0/files/`
+##### `GET /MAAS/api/2.0/files/`
 
 List the files from the file storage.
 
@@ -1577,7 +1587,7 @@ The returned files are ordered by file name and the content is excluded.
 - `type prefix`
    string
 
-##### `GET /api/2.0/files/ op=get`
+##### `GET /MAAS/api/2.0/files/ op=get`
 
 Get a named file from the file storage.
 
@@ -1590,7 +1600,7 @@ Get a named file from the file storage.
 - `return`
    The file is returned in the response content.
 
-##### `GET /api/2.0/files/ op=get_by_key`
+##### `GET /MAAS/api/2.0/files/ op=get_by_key`
 
 Get a file from the file storage using its key.
 
@@ -1603,7 +1613,7 @@ Get a file from the file storage using its key.
 - `return`
    The file is returned in the response content.
 
-##### `POST /api/2.0/files/`
+##### `POST /MAAS/api/2.0/files/`
 
 Add a new file to the file storage.
 
@@ -1626,7 +1636,7 @@ Returns 400 if any of these conditions apply:
 
 Manage IP addresses allocated by MAAS.
 
-##### `GET /api/2.0/ipaddresses/`
+##### `GET /MAAS/api/2.0/ipaddresses/`
 
 List IP addresses known to MAAS.
 
@@ -1658,7 +1668,7 @@ be supplied:
 - `type user`
    unicode
 
-##### `POST /api/2.0/ipaddresses/ op=release`
+##### `POST /MAAS/api/2.0/ipaddresses/ op=release`
 
 Release an IP address that was previously reserved by the user.
 
@@ -1684,7 +1694,7 @@ Release an IP address that was previously reserved by the user.
 
 Returns 404 if the provided IP address is not found.
 
-##### `POST /api/2.0/ipaddresses/ op=reserve`
+##### `POST /MAAS/api/2.0/ipaddresses/ op=reserve`
 
 Reserve an IP address for use outside of MAAS.
 
@@ -1720,20 +1730,20 @@ Returns 503 if there are no more IP addresses available.
 
 Manage IP range.
 
-##### `DELETE /api/2.0/ipranges/{id}/`
+##### `DELETE /MAAS/api/2.0/ipranges/{id}/`
 
 Delete IP range.
 
 Returns 403 if not owner of IP range. Returns 404 if the IP range is not
 found.
 
-##### `GET /api/2.0/ipranges/{id}/`
+##### `GET /MAAS/api/2.0/ipranges/{id}/`
 
 Read IP range.
 
 Returns 404 if the IP range is not found.
 
-##### `PUT /api/2.0/ipranges/{id}/`
+##### `PUT /MAAS/api/2.0/ipranges/{id}/`
 
 Update IP range.
 
@@ -1753,11 +1763,11 @@ found.
 
 Manage IP ranges.
 
-##### `GET /api/2.0/ipranges/`
+##### `GET /MAAS/api/2.0/ipranges/`
 
 List all IP ranges.
 
-##### `POST /api/2.0/ipranges/`
+##### `POST /MAAS/api/2.0/ipranges/`
 
 Create an IP range.
 
@@ -1782,19 +1792,19 @@ Returns 403 if standard users tries to create a dynamic IP range.
 
 Manage a node's or device's interface.
 
-##### `DELETE /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
 
 Delete interface on node.
 
 Returns 404 if the node or interface is not found.
 
-##### `GET /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
 
 Read interface on node.
 
 Returns 404 if the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=add_tag`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=add_tag`
 
 Add a tag to interface on a node.
 
@@ -1804,7 +1814,7 @@ Add a tag to interface on a node.
 Returns 404 if the node or interface is not found. Returns 403 if the user is
 not allowed to update the interface.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=disconnect`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=disconnect`
 
 Disconnect an interface.
 
@@ -1813,7 +1823,7 @@ from any associated VLAN.
 
 Returns 404 if the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=link_subnet`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=link_subnet`
 
 Link interface to a subnet.
 
@@ -1857,7 +1867,7 @@ AUTO, DHCP or STATIC links.
 
 Returns 404 if the node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=remove_tag`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=remove_tag`
 
 Remove a tag from interface on a node.
 
@@ -1867,7 +1877,7 @@ Remove a tag from interface on a node.
 Returns 404 if the node or interface is not found. Returns 403 if the user is
 not allowed to update the interface.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=set_default_gateway`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=set_default_gateway`
 
 Set the node to use this interface as the default gateway.
 
@@ -1882,7 +1892,7 @@ required.
 Returns 400 if the interface has not AUTO or STATIC links. Returns 404 if the
 node or interface is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/{id}/ op=unlink_subnet`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=unlink_subnet`
 
 Unlink interface to a subnet.
 
@@ -1891,7 +1901,7 @@ Unlink interface to a subnet.
 
 Returns 404 if the node or interface is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/interfaces/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
 
 Update interface on node.
 
@@ -2043,13 +2053,13 @@ Returns 404 if the node or interface is not found.
 
 Manage interfaces on a node.
 
-##### `GET /api/2.0/nodes/{system_id}/interfaces/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/interfaces/`
 
 List all interfaces belonging to a machine, device, or rack controller.
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/ op=create_bond`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_bond`
 
 Create a bond interface on a machine.
 
@@ -2142,7 +2152,7 @@ Following are extra parameters that can be set on the interface:
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/ op=create_bridge`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_bridge`
 
 Create a bridge interface on a machine.
 
@@ -2184,7 +2194,7 @@ Following are extra parameters that can be set on the interface:
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/ op=create_physical`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_physical`
 
 Create a physical interface on a machine and device.
 
@@ -2214,7 +2224,7 @@ Following are extra parameters that can be set on the interface:
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/interfaces/ op=create_vlan`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_vlan`
 
 Create a VLAN interface on a machine.
 
@@ -2244,15 +2254,15 @@ Returns 404 if the node is not found.
 
 Manage a license key.
 
-##### `DELETE /api/2.0/license-key/{osystem}/{distro_series}`
+##### `DELETE /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
 
 Delete license key.
 
-##### `GET /api/2.0/license-key/{osystem}/{distro_series}`
+##### `GET /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
 
 Read license key.
 
-##### `PUT /api/2.0/license-key/{osystem}/{distro_series}`
+##### `PUT /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
 
 Update license key.
 
@@ -2269,11 +2279,11 @@ Update license key.
 
 Manage the license keys.
 
-##### `GET /api/2.0/license-keys/`
+##### `GET /MAAS/api/2.0/license-keys/`
 
 List license keys.
 
-##### `POST /api/2.0/license-keys/`
+##### `POST /MAAS/api/2.0/license-keys/`
 
 Define a license key.
 
@@ -2290,7 +2300,7 @@ Define a license key.
 
 Manage the MAAS server.
 
-##### `GET /api/2.0/maas/ op=get_config`
+##### `GET /MAAS/api/2.0/maas/ op=get_config`
 
 Get a config value.
 
@@ -2433,7 +2443,7 @@ Available configuration items:
    the KMS Windows activation service. (Only needed for Windows deployments
    using KMS activation.)
 
-##### `POST /api/2.0/maas/ op=set_config`
+##### `POST /MAAS/api/2.0/maas/ op=set_config`
 
 Set a config value.
 
@@ -2583,9 +2593,9 @@ Available configuration items:
 
 Manage an individual Machine.
 
-> The Machine is identified by its system_id.
+The Machine is identified by its system_id.
 
-##### `DELETE /api/2.0/machines/{system_id}/`
+##### `DELETE /MAAS/api/2.0/machines/{system_id}/`
 
 Delete a specific Node.
 
@@ -2593,13 +2603,13 @@ Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to delete the node. Returns 204 if the node is successfully
 deleted.
 
-##### `GET /api/2.0/machines/{system_id}/`
+##### `GET /MAAS/api/2.0/machines/{system_id}/`
 
 Read a specific Node.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/machines/{system_id}/ op=details`
+##### `GET /MAAS/api/2.0/machines/{system_id}/ op=details`
 
 Obtain various system details.
 
@@ -2614,14 +2624,14 @@ encoding like base-64.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/machines/{system_id}/ op=get_curtin_config`
+##### `GET /MAAS/api/2.0/machines/{system_id}/ op=get_curtin_config`
 
 Return the rendered curtin configuration for the machine.
 
 Returns 404 if the machine could not be found. Returns 403 if the user does
 not have permission to get the curtin configuration.
 
-##### `GET /api/2.0/machines/{system_id}/ op=power_parameters`
+##### `GET /MAAS/api/2.0/machines/{system_id}/ op=power_parameters`
 
 Obtain power parameters.
 
@@ -2634,7 +2644,7 @@ and secret keys.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/machines/{system_id}/ op=query_power_state`
+##### `GET /MAAS/api/2.0/machines/{system_id}/ op=query_power_state`
 
 Query the power state of a node.
 
@@ -2652,7 +2662,7 @@ an appserver thread while waiting.
 
 Returns 404 if the node is not found. Returns node's power state.
 
-##### `POST /api/2.0/machines/{system_id}/ op=abort`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=abort`
 
 Abort a node's current operation.
 
@@ -2665,7 +2675,7 @@ Abort a node's current operation.
 Returns 404 if the node could not be found. Returns 403 if the user does not
 have permission to abort the current operation.
 
-##### `POST /api/2.0/machines/{system_id}/ op=clear_default_gateways`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=clear_default_gateways`
 
 Clear any set default gateways on the machine.
 
@@ -2687,7 +2697,7 @@ interfaces set-default-gateway API.
 Returns 404 if the machine could not be found. Returns 403 if the user does
 not have permission to clear the default gateways.
 
-##### `POST /api/2.0/machines/{system_id}/ op=commission`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=commission`
 
 Begin commissioning process for a machine.
 
@@ -2745,7 +2755,7 @@ tests were changed after it previously commissioned.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/machines/{system_id}/ op=deploy`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=deploy`
 
 Deploy an operating system to a machine.
 
@@ -2821,7 +2831,7 @@ permission to start the machine. Returns 503 if the start-up attempted to
 allocate an IP address, and there were no IP addresses available on the
 relevant cluster interface.
 
-##### `POST /api/2.0/machines/{system_id}/ op=exit_rescue_mode`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=exit_rescue_mode`
 
 Exit rescue mode process for a machine.
 
@@ -2830,7 +2840,7 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to exit the rescue mode process for this machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=lock`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=lock`
 
 Mark a deployed machine as locked, to prevent changes.
 
@@ -2845,7 +2855,7 @@ A locked machine cannot be released or modified.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission lock the machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=mark_broken`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=mark_broken`
 
 Mark a node as 'broken'.
 
@@ -2861,7 +2871,7 @@ If the node is allocated, release it first.
 Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to mark the node broken.
 
-##### `POST /api/2.0/machines/{system_id}/ op=mark_fixed`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=mark_fixed`
 
 Mark a broken node as fixed and set its status as 'ready'.
 
@@ -2874,7 +2884,7 @@ Mark a broken node as fixed and set its status as 'ready'.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to mark the machine fixed.
 
-##### `POST /api/2.0/machines/{system_id}/ op=mount_special`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=mount_special`
 
 Mount a special-purpose filesystem, like tmpfs.
 
@@ -2890,7 +2900,7 @@ Mount a special-purpose filesystem, like tmpfs.
 
 Returns 403 when the user is not permitted to mount the partition.
 
-##### `POST /api/2.0/machines/{system_id}/ op=override_failed_testing`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=override_failed_testing`
 
 Ignore failed tests and put node back into a usable state.
 
@@ -2903,7 +2913,7 @@ Ignore failed tests and put node back into a usable state.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to ignore tests for the node.
 
-##### `POST /api/2.0/machines/{system_id}/ op=power_off`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=power_off`
 
 Power off a node.
 
@@ -2928,7 +2938,7 @@ Power off a node.
 Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to stop the node.
 
-##### `POST /api/2.0/machines/{system_id}/ op=power_on`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=power_on`
 
 Turn on a node.
 
@@ -2954,7 +2964,7 @@ permission to start the machine. Returns 503 if the start-up attempted to
 allocate an IP address, and there were no IP addresses available on the
 relevant cluster interface.
 
-##### `POST /api/2.0/machines/{system_id}/ op=release`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=release`
 
 Release a machine. Opposite of Machines.allocate.
 
@@ -3003,7 +3013,7 @@ Returns 404 if the machine is not found. Returns 403 if the user doesn't have
 permission to release the machine. Returns 409 if the machine is in a state
 where it may not be released.
 
-##### `POST /api/2.0/machines/{system_id}/ op=rescue_mode`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=rescue_mode`
 
 Begin rescue mode process for a machine.
 
@@ -3013,28 +3023,28 @@ process.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to start the rescue mode process for this machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=restore_default_configuration`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=restore_default_configuration`
 
 Reset a machine's configuration to its initial state.
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to reset the machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=restore_networking_configuration`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=restore_networking_configuration`
 
 Reset a machine's networking options to its initial state.
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to reset the machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=restore_storage_configuration`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=restore_storage_configuration`
 
 Reset a machine's storage options to its initial state.
 
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to reset the machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=set_owner_data`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=set_owner_data`
 
 Set key/value data for the current owner.
 
@@ -3048,7 +3058,7 @@ allocated to a user.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission.
 
-##### `POST /api/2.0/machines/{system_id}/ op=set_storage_layout`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=set_storage_layout`
 
 Changes the storage layout on the machine.
 
@@ -3104,7 +3114,7 @@ Returns 400 if the machine is currently not allocated. Returns 404 if the
 machine could not be found. Returns 403 if the user does not have permission
 to set the storage layout.
 
-##### `POST /api/2.0/machines/{system_id}/ op=test`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=test`
 
 Begin testing process for a node.
 
@@ -3131,7 +3141,7 @@ testing started.
 
 Returns 404 if the node is not found.
 
-##### `POST /api/2.0/machines/{system_id}/ op=unlock`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=unlock`
 
 Mark a machine as unlocked, allowing changes.
 
@@ -3144,7 +3154,7 @@ Mark a machine as unlocked, allowing changes.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission unlock the machine.
 
-##### `POST /api/2.0/machines/{system_id}/ op=unmount_special`
+##### `POST /MAAS/api/2.0/machines/{system_id}/ op=unmount_special`
 
 Unmount a special-purpose filesystem, like tmpfs.
 
@@ -3153,7 +3163,7 @@ Unmount a special-purpose filesystem, like tmpfs.
 
 Returns 403 when the user is not permitted to unmount the partition.
 
-##### `PUT /api/2.0/machines/{system_id}/`
+##### `PUT /MAAS/api/2.0/machines/{system_id}/`
 
 Update a specific Machine.
 
@@ -3251,7 +3261,7 @@ permission to update the machine.
 
 Manage the collection of all the machines in the MAAS.
 
-##### `GET /api/2.0/machines/`
+##### `GET /MAAS/api/2.0/machines/`
 
 List Nodes visible to the user, optionally filtered by criteria.
 
@@ -3301,7 +3311,7 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type agent_name`
    unicode
 
-##### `GET /api/2.0/machines/ op=is_registered`
+##### `GET /MAAS/api/2.0/machines/ op=is_registered`
 
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
@@ -3320,11 +3330,11 @@ Returns whether or not the given MAC address is registered within this MAAS
 
 Returns 400 if any mandatory parameters are missing.
 
-##### `GET /api/2.0/machines/ op=list_allocated`
+##### `GET /MAAS/api/2.0/machines/ op=list_allocated`
 
 Fetch Machines that were allocated to the User/oauth token.
 
-##### `GET /api/2.0/machines/ op=power_parameters`
+##### `GET /MAAS/api/2.0/machines/ op=power_parameters`
 
 Retrieve power parameters for multiple machines.
 
@@ -3340,7 +3350,7 @@ Retrieve power parameters for multiple machines.
 
 Raises 403 if the user is not an admin.
 
-##### `POST /api/2.0/machines/`
+##### `POST /MAAS/api/2.0/machines/`
 
 Create a new Machine.
 
@@ -3383,7 +3393,7 @@ The minimum data required is: architecture=&lt;arch string&gt; (e.g.
 03:04:05:06
    mac_addresses=02:03:
 
-> 04:05:06:07")
+04:05:06:07")
 
 - `type mac_addresses`
    unicode
@@ -3408,7 +3418,7 @@ The minimum data required is: architecture=&lt;arch string&gt; (e.g.
 - `type power_type`
    unicode
 
-##### `POST /api/2.0/machines/ op=accept`
+##### `POST /MAAS/api/2.0/machines/ op=accept`
 
 Accept declared machines into the MAAS.
 
@@ -3432,7 +3442,7 @@ that is already allocated, broken, etc. is.
 Returns 400 if any of the machines do not exist. Returns 403 if the user is
 not an admin.
 
-##### `POST /api/2.0/machines/ op=accept_all`
+##### `POST /MAAS/api/2.0/machines/ op=accept_all`
 
 Accept all declared machines into the MAAS.
 
@@ -3445,7 +3455,7 @@ must first verify the authenticity of these enlistments, and accept them.
    by this call. Thus, machines that were already accepted are excluded
    from the result.
 
-##### `POST /api/2.0/machines/ op=add_chassis`
+##### `POST /MAAS/api/2.0/machines/ op=add_chassis`
 
 Add special hardware types.
 
@@ -3550,7 +3560,7 @@ Returns 404 if no rack controller can be found which has access to the given
 URL. Returns 403 if the user does not have access to the rack controller.
 Returns 400 if the required parameters were not passed.
 
-##### `POST /api/2.0/machines/ op=allocate`
+##### `POST /MAAS/api/2.0/machines/ op=allocate`
 
 Allocate an available machine for deployment.
 
@@ -3586,8 +3596,8 @@ constraints are provided, they are combined using 'AND' semantics.
 - `param cpu_count`
    Minimum number of CPUs a returned machine must have.
 
-   > A machine with additional CPUs may be allocated if there is no exact
-   > match, or if the 'mem' constraint is not also specified.
+   A machine with additional CPUs may be allocated if there is no exact
+   match, or if the 'mem' constraint is not also specified.
 
 - `type cpu_count`
    positive integer
@@ -3604,9 +3614,9 @@ constraints are provided, they are combined using 'AND' semantics.
 - `param tags`
    Tags the machine must match in order to be acquired.
 
-   > If multiple tag names are specified, the machine must be tagged with all
-   > of them. To request multiple tags, this parameter must be repeated in
-   > the request with each value.
+   If multiple tag names are specified, the machine must be tagged with all
+   of them. To request multiple tags, this parameter must be repeated in
+   the request with each value.
 
 - `type tags`
    unicode (accepts multiple)
@@ -3614,9 +3624,9 @@ constraints are provided, they are combined using 'AND' semantics.
 - `param not_tags`
    Tags the machine must NOT match.
 
-   > If multiple tag names are specified, the machine must NOT be tagged with
-   > ANY of them. To request exclusion of multiple tags, this parameter must
-   > be repeated in the request with each value.
+   If multiple tag names are specified, the machine must NOT be tagged with
+   ANY of them. To request exclusion of multiple tags, this parameter must
+   be repeated in the request with each value.
 
 - `type tags`
    unicode (accepts multiple)
@@ -3665,16 +3675,16 @@ constraints are provided, they are combined using 'AND' semantics.
 - `param subnets`
    Subnets that must be linked to the machine.
 
-   > "Linked to" means the node must be configured to acquire an address in
-   > the specified subnet, have a static IP address in the specified subnet,
-   > or have been observed to DHCP from the specified subnet during
-   > commissioning time (which implies that it *could* have an address on the
-   > specified subnet).
-   >
-   > Subnets can be specified by one of the following criteria:
-   >
-   > -   &lt;id&gt;: match the subnet by its 'id' field
-   > -   fabric:&lt;fabric-spec&gt;:
+   "Linked to" means the node must be configured to acquire an address in
+   the specified subnet, have a static IP address in the specified subnet,
+   or have been observed to DHCP from the specified subnet during
+   commissioning time (which implies that it *could* have an address on the
+   specified subnet).
+  
+   Subnets can be specified by one of the following criteria:
+  
+   -   &lt;id&gt;: match the subnet by its 'id' field
+   -   fabric:&lt;fabric-spec&gt;:
 
    match all subnets in a given fabric.
    -   ip:&lt;ip-address&gt;:
@@ -3682,7 +3692,7 @@ constraints are provided, they are combined using 'AND' semantics.
    Match the subnet containing &lt;ip-address&gt; with
    the with the longest-prefix match.
 
-   > -   name:&lt;subnet-name&gt;:
+   -   name:&lt;subnet-name&gt;:
 
    Match a subnet with the given name.
    -   space:&lt;space-spec&gt;:
@@ -3694,22 +3704,22 @@ constraints are provided, they are combined using 'AND' semantics.
    VID. Valid values range from 0 through 4094 (inclusive). An untagged
    VLAN can be specified by using the value "0".
 
-   > -   vlan:&lt;vlan-spec&gt;:
+   -   vlan:&lt;vlan-spec&gt;:
 
    Match all subnets on the given VLAN.
 
-   > Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
-   > specifiers are only useful for the 'not_spaces' version of this
-   > constraint, because they will most likely force the query to match ALL
-   > the subnets in each fabric, space, or VLAN, and thus not return any
-   > nodes. (This is not a particularly useful behavior, so may be changed in
-   > the future.)
-   >
-   > If multiple subnets are specified, the machine must be associated with
-   > all of them. To request multiple subnets, this parameter must be
-   > repeated in the request with each value.
-   >
-   > Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
+   Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
+   specifiers are only useful for the 'not_spaces' version of this
+   constraint, because they will most likely force the query to match ALL
+   the subnets in each fabric, space, or VLAN, and thus not return any
+   nodes. (This is not a particularly useful behavior, so may be changed in
+   the future.)
+  
+   If multiple subnets are specified, the machine must be associated with
+   all of them. To request multiple subnets, this parameter must be
+   repeated in the request with each value.
+  
+   Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
 
 - `type subnets`
    unicode (accepts multiple)
@@ -3717,16 +3727,16 @@ constraints are provided, they are combined using 'AND' semantics.
 - `param not_subnets`
    Subnets that must NOT be linked to the machine.
 
-   > See the 'subnets' constraint documentation above for more information
-   > about how each subnet can be specified.
-   >
-   > If multiple subnets are specified, the machine must NOT be associated
-   > with ANY of them. To request multiple subnets to exclude, this parameter
-   > must be repeated in the request with each value. (Or a fabric, space, or
-   > VLAN specifier may be used to match multiple subnets).
-   >
-   > Note that this replaces the leagcy 'not_networks' constraint in MAAS
-   > 1.x.
+   See the 'subnets' constraint documentation above for more information
+   about how each subnet can be specified.
+  
+   If multiple subnets are specified, the machine must NOT be associated
+   with ANY of them. To request multiple subnets to exclude, this parameter
+   must be repeated in the request with each value. (Or a fabric, space, or
+   VLAN specifier may be used to match multiple subnets).
+  
+   Note that this replaces the leagcy 'not_networks' constraint in MAAS
+   1.x.
 
 - `type not_subnets`
    unicode (accepts multiple)
@@ -3735,7 +3745,7 @@ constraints are provided, they are combined using 'AND' semantics.
    A list of storage constraint identifiers, in the form:
    &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
 
-> ...\]
+...\]
 
 - `type storage`
    unicode
@@ -3874,7 +3884,7 @@ constraints are provided, they are combined using 'AND' semantics.
 
 Returns 409 if a suitable machine matching the constraints could not be found.
 
-##### `POST /api/2.0/machines/ op=release`
+##### `POST /MAAS/api/2.0/machines/ op=release`
 
 Release multiple machines.
 
@@ -3899,7 +3909,7 @@ Returns 400 if any of the machines cannot be found. Returns 403 if the user
 does not have permission to release any of the machines. Returns a 409 if any
 of the machines could not be released due to their current state.
 
-##### `POST /api/2.0/machines/ op=set_zone`
+##### `POST /MAAS/api/2.0/machines/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
@@ -3917,37 +3927,37 @@ Raises 403 if the user is not an admin.
 
 Manage a network.
 
-> This endpoint is deprecated. Use the new 'subnet' endpoint instead.
+This endpoint is deprecated. Use the new 'subnet' endpoint instead.
 
-##### `DELETE /api/2.0/networks/{name}/`
+##### `DELETE /MAAS/api/2.0/networks/{name}/`
 
 Delete network definition.
 
 This endpoint is no longer available. Use the 'subnet' endpoint instead.
 
-##### `GET /api/2.0/networks/{name}/`
+##### `GET /MAAS/api/2.0/networks/{name}/`
 
 Read network definition.
 
-##### `GET /api/2.0/networks/{name}/ op=list_connected_macs`
+##### `GET /MAAS/api/2.0/networks/{name}/ op=list_connected_macs`
 
 Returns the list of MAC addresses connected to this network.
 
 Only MAC addresses for nodes visible to the requesting user are returned.
 
-##### `POST /api/2.0/networks/{name}/ op=connect_macs`
+##### `POST /MAAS/api/2.0/networks/{name}/ op=connect_macs`
 
 Connect the given MAC addresses to this network.
 
 This endpoint is no longer available. Use the 'subnet' endpoint instead.
 
-##### `POST /api/2.0/networks/{name}/ op=disconnect_macs`
+##### `POST /MAAS/api/2.0/networks/{name}/ op=disconnect_macs`
 
 Disconnect the given MAC addresses from this network.
 
 This endpoint is no longer available. Use the 'subnet' endpoint instead.
 
-##### `PUT /api/2.0/networks/{name}/`
+##### `PUT /MAAS/api/2.0/networks/{name}/`
 
 Update network definition.
 
@@ -3978,9 +3988,9 @@ This endpoint is no longer available. Use the 'subnet' endpoint instead.
 
 Manage the networks.
 
-> This endpoint is deprecated. Use the new 'subnets' endpoint instead.
+This endpoint is deprecated. Use the new 'subnets' endpoint instead.
 
-##### `GET /api/2.0/networks/`
+##### `GET /MAAS/api/2.0/networks/`
 
 List networks.
 
@@ -3989,7 +3999,7 @@ List networks.
    networks. If more than one node is given, the result will be
    restricted to networks that these nodes have in common.
 
-##### `POST /api/2.0/networks/`
+##### `POST /MAAS/api/2.0/networks/`
 
 Define a network.
 
@@ -3999,9 +4009,9 @@ This endpoint is no longer available. Use the 'subnets' endpoint instead.
 
 Manage an individual Node.
 
-> The Node is identified by its system_id.
+The Node is identified by its system_id.
 
-##### `DELETE /api/2.0/nodes/{system_id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/`
 
 Delete a specific Node.
 
@@ -4009,13 +4019,13 @@ Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to delete the node. Returns 204 if the node is successfully
 deleted.
 
-##### `GET /api/2.0/nodes/{system_id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/`
 
 Read a specific Node.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/nodes/{system_id}/ op=details`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/ op=details`
 
 Obtain various system details.
 
@@ -4030,7 +4040,7 @@ encoding like base-64.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/nodes/{system_id}/ op=power_parameters`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/ op=power_parameters`
 
 Obtain power parameters.
 
@@ -4047,7 +4057,7 @@ Returns 404 if the node is not found.
 
 Read the collection of NodeResult in the MAAS.
 
-##### `GET /api/2.0/installation-results/`
+##### `GET /MAAS/api/2.0/installation-results/`
 
 List NodeResult visible to the user, optionally filtered.
 
@@ -4076,11 +4086,11 @@ List NodeResult visible to the user, optionally filtered.
 
 Manage or view a custom script.
 
-##### `DELETE /api/2.0/scripts/{name}`
+##### `DELETE /MAAS/api/2.0/scripts/{name}`
 
 Delete a script.
 
-##### `GET /api/2.0/scripts/{name}`
+##### `GET /MAAS/api/2.0/scripts/{name}`
 
 Return a script's metadata.
 
@@ -4090,7 +4100,7 @@ Return a script's metadata.
 - `type include_script`
    bool
 
-##### `GET /api/2.0/scripts/{name} op=download`
+##### `GET /MAAS/api/2.0/scripts/{name} op=download`
 
 Download a script.
 
@@ -4101,7 +4111,7 @@ Download a script.
 - `type revision`
    integer
 
-##### `POST /api/2.0/scripts/{name} op=add_tag`
+##### `POST /MAAS/api/2.0/scripts/{name} op=add_tag`
 
 Add a single tag to a script.
 
@@ -4113,7 +4123,7 @@ Add a single tag to a script.
 
 Returns 404 if the script is not found.
 
-##### `POST /api/2.0/scripts/{name} op=remove_tag`
+##### `POST /MAAS/api/2.0/scripts/{name} op=remove_tag`
 
 Remove a single tag to a script.
 
@@ -4125,7 +4135,7 @@ Remove a single tag to a script.
 
 Returns 404 if the script is not found.
 
-##### `POST /api/2.0/scripts/{name} op=revert`
+##### `POST /MAAS/api/2.0/scripts/{name} op=revert`
 
 Revert a script to an earlier version.
 
@@ -4138,7 +4148,7 @@ Revert a script to an earlier version.
 
 Returns 404 if the script is not found.
 
-##### `PUT /api/2.0/scripts/{name}`
+##### `PUT /MAAS/api/2.0/scripts/{name}`
 
 Update a commissioning script.
 
@@ -4251,14 +4261,14 @@ Update a commissioning script.
 
 Manage node script results.
 
-##### `DELETE /api/2.0/nodes/{system_id}/results/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/results/{id}/`
 
 Delete a set of results.
 
 id can either by the script set id, current-commissioning, current-testing, or
 current-installation.
 
-##### `GET /api/2.0/nodes/{system_id}/results/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/`
 
 View a specific set of results.
 
@@ -4285,7 +4295,7 @@ current-installation.
 - `type filters`
    unicode
 
-##### `GET /api/2.0/nodes/{system_id}/results/{id}/ op=download`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/ op=download`
 
 Download a compressed tar containing all results.
 
@@ -4323,7 +4333,7 @@ current-installation.
 
 Manage node script results.
 
-##### `GET /api/2.0/nodes/{system_id}/results/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/results/`
 
 Return a list of script results grouped by run.
 
@@ -4358,9 +4368,9 @@ Return a list of script results grouped by run.
 
 Manage custom scripts.
 
-> This functionality is only available to administrators.
+This functionality is only available to administrators.
 
-##### `GET /api/2.0/scripts/`
+##### `GET /MAAS/api/2.0/scripts/`
 
 Return a list of stored scripts.
 
@@ -4391,7 +4401,7 @@ Return a list of stored scripts.
 - `type filters`
    unicode
 
-##### `POST /api/2.0/scripts/`
+##### `POST /MAAS/api/2.0/scripts/`
 
 Create a new script.
 
@@ -4500,7 +4510,7 @@ Create a new script.
 
 Manage the collection of all the nodes in the MAAS.
 
-##### `GET /api/2.0/nodes/`
+##### `GET /MAAS/api/2.0/nodes/`
 
 List Nodes visible to the user, optionally filtered by criteria.
 
@@ -4550,7 +4560,7 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type agent_name`
    unicode
 
-##### `GET /api/2.0/nodes/ op=is_registered`
+##### `GET /MAAS/api/2.0/nodes/ op=is_registered`
 
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
@@ -4569,7 +4579,7 @@ Returns whether or not the given MAC address is registered within this MAAS
 
 Returns 400 if any mandatory parameters are missing.
 
-##### `POST /api/2.0/nodes/ op=set_zone`
+##### `POST /MAAS/api/2.0/nodes/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
@@ -4587,15 +4597,15 @@ Raises 403 if the user is not an admin.
 
 Manage an individual notification.
 
-##### `DELETE /api/2.0/notifications/{id}/`
+##### `DELETE /MAAS/api/2.0/notifications/{id}/`
 
 Delete a specific notification.
 
-##### `GET /api/2.0/notifications/{id}/`
+##### `GET /MAAS/api/2.0/notifications/{id}/`
 
 Read a specific notification.
 
-##### `POST /api/2.0/notifications/{id}/ op=dismiss`
+##### `POST /MAAS/api/2.0/notifications/{id}/ op=dismiss`
 
 Dismiss a specific notification.
 
@@ -4604,7 +4614,7 @@ the invoking user.
 
 It is safe to call multiple times for the same notification.
 
-##### `PUT /api/2.0/notifications/{id}/`
+##### `PUT /MAAS/api/2.0/notifications/{id}/`
 
 Update a specific notification.
 
@@ -4614,13 +4624,13 @@ See NotificationsHandler.create for field information.
 
 Manage the collection of all the notifications in MAAS.
 
-##### `GET /api/2.0/notifications/`
+##### `GET /MAAS/api/2.0/notifications/`
 
 List notifications relevant to the invoking user.
 
 Notifications that have been dismissed are *not* returned.
 
-##### `POST /api/2.0/notifications/`
+##### `POST /MAAS/api/2.0/notifications/`
 
 Create a notification.
 
@@ -4661,11 +4671,11 @@ be seen by anyone.
 
 Manage the collection of all Package Repositories in MAAS.
 
-##### `GET /api/2.0/package-repositories/`
+##### `GET /MAAS/api/2.0/package-repositories/`
 
 List all Package Repositories.
 
-##### `POST /api/2.0/package-repositories/`
+##### `POST /MAAS/api/2.0/package-repositories/`
 
 Create a Package Repository.
 
@@ -4717,21 +4727,21 @@ Create a Package Repository.
 
 Manage an individual Package Repository.
 
-> The Package Repository is identified by its id.
+The Package Repository is identified by its id.
 
-##### `DELETE /api/2.0/package-repositories/{id}/`
+##### `DELETE /MAAS/api/2.0/package-repositories/{id}/`
 
 Delete a Package Repository.
 
 Returns 404 if the Package Repository is not found.
 
-##### `GET /api/2.0/package-repositories/{id}/`
+##### `GET /MAAS/api/2.0/package-repositories/{id}/`
 
 Read Package Repository.
 
 Returns 404 if the repository is not found.
 
-##### `PUT /api/2.0/package-repositories/{id}/`
+##### `PUT /MAAS/api/2.0/package-repositories/{id}/`
 
 Update a Package Repository.
 
@@ -4785,19 +4795,19 @@ Returns 404 if the Package Repository is not found.
 
 Manage partition on a block device.
 
-##### `DELETE /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
 
 Delete partition.
 
 Returns 404 if the node, block device, or partition are not found.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
 
 Read partition.
 
 Returns 404 if the node, block device, or partition are not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=format`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=format`
 
 Format a partition.
 
@@ -4813,7 +4823,7 @@ Format a partition.
 Returns 403 when the user doesn't have the ability to format the partition.
 Returns 404 if the node, block device, or partition is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=mount`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=mount`
 
 Mount the filesystem on partition.
 
@@ -4826,11 +4836,11 @@ Mount the filesystem on partition.
 Returns 403 when the user doesn't have the ability to mount the partition.
 Returns 404 if the node, block device, or partition is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unformat`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unformat`
 
 Unformat a partition.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unmount`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unmount`
 
 Unmount the filesystem on partition.
 
@@ -4842,13 +4852,13 @@ Returns 404 if the node, block device, or partition is not found.
 
 Manage partitions on a block device.
 
-##### `GET /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
 
 List all partitions on the block device.
 
 Returns 404 if the node or the block device are not found.
 
-##### `POST /api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
 
 Create a partition on the block device.
 
@@ -4869,18 +4879,18 @@ Returns 404 if the node or the block device are not found.
 
 Manage an individual pod.
 
-> The pod is identified by its id.
+The pod is identified by its id.
 
-##### `DELETE /api/2.0/pods/{id}/`
+##### `DELETE /MAAS/api/2.0/pods/{id}/`
 
 Delete a specific Pod.
 
 Returns 404 if the pod is not found. Returns 403 if the user does not have
 permission to delete the pod. Returns 204 if the pod is successfully deleted.
 
-##### `GET /api/2.0/pods/{id}/`
+##### `GET /MAAS/api/2.0/pods/{id}/`
 
-##### `GET /api/2.0/pods/{id}/ op=parameters`
+##### `GET /MAAS/api/2.0/pods/{id}/ op=parameters`
 
 Obtain pod parameters.
 
@@ -4893,17 +4903,20 @@ keys.
 
 Returns 404 if the pod is not found.
 
-##### `POST /api/2.0/pods/{id}/ op=add_tag`
+##### `POST /MAAS/api/2.0/pods/{id}/ op=add_tag`
 
 Add a tag to Pod.
 
 - `param tag`
    The tag being added.
 
+- `type tag`
+   unicode
+
 Returns 404 if the Pod is not found. Returns 403 if the user is not allowed to
 update the Pod.
 
-##### `POST /api/2.0/pods/{id}/ op=compose`
+##### `POST /MAAS/api/2.0/pods/{id}/ op=compose`
 
 Compose a machine from Pod.
 
@@ -4912,21 +4925,33 @@ All fields below are optional:
 - `param cores`
    Minimum number of CPU cores.
 
+- `type cores`
+   unicode
+
 - `param memory`
    Minimum amount of memory (MiB).
 
+- `type memory`
+   unicode
+
 - `param cpu_speed`
    Minimum amount of CPU speed (MHz).
+
+- `type cpu_speed`
+   unicode
 
 - `param architecture`
    Architecture for the machine. Must be an
    architecture that the pod supports.
 
+- `param architecture`
+   unicode
+
 - `param storage`
    A list of storage constraint identifiers, in the form:
    &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
 
-> ...\]
+...\]
 
 - `type storage`
    unicode
@@ -4940,13 +4965,19 @@ All fields below are optional:
 - `param domain`
    ID of domain to place the newly composed machine in.
 
+- `type domain`
+   unicode
+
 - `param zone`
    ID of zone place the newly composed machine in.
+
+- `type zone`
+   unicode
 
 Returns 404 if the pod is not found. Returns 403 if the user does not have
 permission to compose machine.
 
-##### `POST /api/2.0/pods/{id}/ op=refresh`
+##### `POST /MAAS/api/2.0/pods/{id}/ op=refresh`
 
 Refresh a specific Pod.
 
@@ -4956,28 +4987,40 @@ machines.
 Returns 404 if the pod is not found. Returns 403 if the user does not have
 permission to refresh the pod.
 
-##### `POST /api/2.0/pods/{id}/ op=remove_tag`
+##### `POST /MAAS/api/2.0/pods/{id}/ op=remove_tag`
 
 Remove a tag from Pod.
 
 - `param tag`
    The tag being removed.
 
+- `type tag`
+   unicode
+
 Returns 404 if the Pod is not found. Returns 403 if the user is not allowed to
 update the Pod.
 
-##### `PUT /api/2.0/pods/{id}/`
+##### `PUT /MAAS/api/2.0/pods/{id}/`
 
 Update a specific Pod.
 
 - `param name`
    Name for the pod (optional).
 
+- `type name`
+   unicode
+
 - `param cpu_over_commit_ratio`
    CPU over commit ratio (optional).
 
+- `type cpu_over_commit_ratio`
+   unicode
+
 - `param memory_over_commit_ratio`
    Memory over commit ratio (optional).
+
+- `type memory_over_commit_ratio`
+   unicode
 
 Note: 'type' cannot be updated on a Pod. The Pod must be deleted and re-added
 to change the type.
@@ -4989,35 +5032,59 @@ permission to update the pod.
 
 Manage the collection of all the pod in the MAAS.
 
-##### `GET /api/2.0/pods/`
+##### `GET /MAAS/api/2.0/pods/`
 
 List pods.
 
 Get a listing of all the pods.
 
-##### `POST /api/2.0/pods/`
+##### `POST /MAAS/api/2.0/pods/`
 
 Create a Pod.
 
 - `param type`
-   Type of pod to create (rsd, virsh).
+   Type of pod to create (rsd, virsh) (required).
+
+- `type name`
+   unicode
+
+- `param power_address`
+   Address for power control of the pod (required).
+
+- `type power_address`
+   unicode
+
+- `param power_user`
+   User for power control of the pod
+   (required for rsd).
+
+- `type power_user`
+   unicode
+
+- `param power_pass`
+   Password for power control of the pod
+   (required for rsd).
+
+- `type power_pass`
+   unicode
 
 - `param name`
    Name for the pod (optional).
 
+- `type name`
+   unicode
+
 - `param zone`
    Name of the zone for the pod (optional).
 
+- `type zone`
+   unicode
+
 - `param tags`
-   A tag or tags (separated by comma) for the pod.
+   A tag or tags (separated by comma) for the pod (optional).
 
-- `param cpu_over_commit_ratio`
-   CPU over commit ratio for the
-   pod (optional).
-
-- `param memory_over_commit_ratio`
-   Memory over commit ratio for
-   the pod (optional).
+- `type tags`
+   unicode
 
 Returns 503 if the pod could not be discovered. Returns 404 if the pod is not
 found. Returns 403 if the user does not have permission to create a pod.
@@ -5026,9 +5093,9 @@ found. Returns 403 if the user does not have permission to create a pod.
 
 Manage an individual rack controller.
 
-> The rack controller is identified by its system_id.
+The rack controller is identified by its system_id.
 
-##### `DELETE /api/2.0/rackcontrollers/{system_id}/`
+##### `DELETE /MAAS/api/2.0/rackcontrollers/{system_id}/`
 
 Delete a specific Node.
 
@@ -5036,13 +5103,13 @@ Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to delete the node. Returns 204 if the node is successfully
 deleted.
 
-##### `GET /api/2.0/rackcontrollers/{system_id}/`
+##### `GET /MAAS/api/2.0/rackcontrollers/{system_id}/`
 
 Read a specific Node.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/rackcontrollers/{system_id}/ op=details`
+##### `GET /MAAS/api/2.0/rackcontrollers/{system_id}/ op=details`
 
 Obtain various system details.
 
@@ -5057,7 +5124,7 @@ encoding like base-64.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/rackcontrollers/{system_id}/ op=list_boot_images`
+##### `GET /MAAS/api/2.0/rackcontrollers/{system_id}/ op=list_boot_images`
 
 List all available boot images.
 
@@ -5066,7 +5133,7 @@ region.
 
 Returns 404 if the rack controller is not found.
 
-##### `GET /api/2.0/rackcontrollers/{system_id}/ op=power_parameters`
+##### `GET /MAAS/api/2.0/rackcontrollers/{system_id}/ op=power_parameters`
 
 Obtain power parameters.
 
@@ -5079,7 +5146,7 @@ and secret keys.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/rackcontrollers/{system_id}/ op=query_power_state`
+##### `GET /MAAS/api/2.0/rackcontrollers/{system_id}/ op=query_power_state`
 
 Query the power state of a node.
 
@@ -5097,7 +5164,7 @@ an appserver thread while waiting.
 
 Returns 404 if the node is not found. Returns node's power state.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=abort`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=abort`
 
 Abort a node's current operation.
 
@@ -5110,13 +5177,13 @@ Abort a node's current operation.
 Returns 404 if the node could not be found. Returns 403 if the user does not
 have permission to abort the current operation.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=import_boot_images`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=import_boot_images`
 
 Import the boot images on this rack controller.
 
 Returns 404 if the rack controller is not found.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=override_failed_testing`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=override_failed_testing`
 
 Ignore failed tests and put node back into a usable state.
 
@@ -5129,7 +5196,7 @@ Ignore failed tests and put node back into a usable state.
 Returns 404 if the machine is not found. Returns 403 if the user does not have
 permission to ignore tests for the node.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=power_off`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=power_off`
 
 Power off a node.
 
@@ -5154,7 +5221,7 @@ Power off a node.
 Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to stop the node.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=power_on`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=power_on`
 
 Turn on a node.
 
@@ -5180,7 +5247,7 @@ permission to start the machine. Returns 503 if the start-up attempted to
 allocate an IP address, and there were no IP addresses available on the
 relevant cluster interface.
 
-##### `POST /api/2.0/rackcontrollers/{system_id}/ op=test`
+##### `POST /MAAS/api/2.0/rackcontrollers/{system_id}/ op=test`
 
 Begin testing process for a node.
 
@@ -5207,7 +5274,7 @@ testing started.
 
 Returns 404 if the node is not found.
 
-##### `PUT /api/2.0/rackcontrollers/{system_id}/`
+##### `PUT /MAAS/api/2.0/rackcontrollers/{system_id}/`
 
 Update a specific Rack controller.
 
@@ -5253,7 +5320,7 @@ not have permission to update the rack controller.
 
 Manage the collection of all rack controllers in MAAS.
 
-##### `GET /api/2.0/rackcontrollers/`
+##### `GET /MAAS/api/2.0/rackcontrollers/`
 
 List Nodes visible to the user, optionally filtered by criteria.
 
@@ -5303,14 +5370,14 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type agent_name`
    unicode
 
-##### `GET /api/2.0/rackcontrollers/ op=describe_power_types`
+##### `GET /MAAS/api/2.0/rackcontrollers/ op=describe_power_types`
 
 Query all of the rack controllers for power information.
 
 - `return`
    a list of dicts that describe the power types in this format.
 
-##### `GET /api/2.0/rackcontrollers/ op=is_registered`
+##### `GET /MAAS/api/2.0/rackcontrollers/ op=is_registered`
 
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
@@ -5329,7 +5396,7 @@ Returns whether or not the given MAC address is registered within this MAAS
 
 Returns 400 if any mandatory parameters are missing.
 
-##### `GET /api/2.0/rackcontrollers/ op=power_parameters`
+##### `GET /MAAS/api/2.0/rackcontrollers/ op=power_parameters`
 
 Retrieve power parameters for multiple machines.
 
@@ -5345,11 +5412,11 @@ Retrieve power parameters for multiple machines.
 
 Raises 403 if the user is not an admin.
 
-##### `POST /api/2.0/rackcontrollers/ op=import_boot_images`
+##### `POST /MAAS/api/2.0/rackcontrollers/ op=import_boot_images`
 
 Import the boot images on all rack controllers.
 
-##### `POST /api/2.0/rackcontrollers/ op=set_zone`
+##### `POST /MAAS/api/2.0/rackcontrollers/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
@@ -5367,20 +5434,20 @@ Raises 403 if the user is not an admin.
 
 Manage a specific RAID device on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
 
 Delete RAID on a machine.
 
 Returns 404 if the machine or RAID is not found. Returns 409 if the machine is
 not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
 
 Read RAID device on a machine.
 
 Returns 404 if the machine or RAID is not found.
 
-##### `PUT /api/2.0/nodes/{system_id}/raid/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
 
 Update RAID on a machine.
 
@@ -5423,13 +5490,13 @@ not Ready.
 
 Manage all RAID devices on a machine.
 
-##### `GET /api/2.0/nodes/{system_id}/raids/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/raids/`
 
 List all RAID devices belonging to a machine.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/raids/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/raids/`
 
 Creates a RAID
 
@@ -5461,9 +5528,9 @@ Ready.
 
 Manage an individual region controller.
 
-> The region controller is identified by its system_id.
+The region controller is identified by its system_id.
 
-##### `DELETE /api/2.0/regioncontrollers/{system_id}/`
+##### `DELETE /MAAS/api/2.0/regioncontrollers/{system_id}/`
 
 Delete a specific Node.
 
@@ -5471,13 +5538,13 @@ Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to delete the node. Returns 204 if the node is successfully
 deleted.
 
-##### `GET /api/2.0/regioncontrollers/{system_id}/`
+##### `GET /MAAS/api/2.0/regioncontrollers/{system_id}/`
 
 Read a specific Node.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/regioncontrollers/{system_id}/ op=details`
+##### `GET /MAAS/api/2.0/regioncontrollers/{system_id}/ op=details`
 
 Obtain various system details.
 
@@ -5492,7 +5559,7 @@ encoding like base-64.
 
 Returns 404 if the node is not found.
 
-##### `GET /api/2.0/regioncontrollers/{system_id}/ op=power_parameters`
+##### `GET /MAAS/api/2.0/regioncontrollers/{system_id}/ op=power_parameters`
 
 Obtain power parameters.
 
@@ -5505,7 +5572,7 @@ and secret keys.
 
 Returns 404 if the node is not found.
 
-##### `PUT /api/2.0/regioncontrollers/{system_id}/`
+##### `PUT /MAAS/api/2.0/regioncontrollers/{system_id}/`
 
 Update a specific Region controller.
 
@@ -5551,7 +5618,7 @@ does not have permission to update the region controller.
 
 Manage the collection of all region controllers in MAAS.
 
-##### `GET /api/2.0/regioncontrollers/`
+##### `GET /MAAS/api/2.0/regioncontrollers/`
 
 List Nodes visible to the user, optionally filtered by criteria.
 
@@ -5601,7 +5668,7 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 - `type agent_name`
    unicode
 
-##### `GET /api/2.0/regioncontrollers/ op=is_registered`
+##### `GET /MAAS/api/2.0/regioncontrollers/ op=is_registered`
 
 Returns whether or not the given MAC address is registered within this MAAS
 (and attached to a non-retired node).
@@ -5620,7 +5687,7 @@ Returns whether or not the given MAC address is registered within this MAAS
 
 Returns 400 if any mandatory parameters are missing.
 
-##### `POST /api/2.0/regioncontrollers/ op=set_zone`
+##### `POST /MAAS/api/2.0/regioncontrollers/ op=set_zone`
 
 Assign multiple nodes to a physical zone at once.
 
@@ -5638,16 +5705,16 @@ Raises 403 if the user is not an admin.
 
 Manage an SSH key.
 
-> SSH keys can be retrieved or deleted.
+SSH keys can be retrieved or deleted.
 
-##### `DELETE /api/2.0/account/prefs/sshkeys/{id}/`
+##### `DELETE /MAAS/api/2.0/account/prefs/sshkeys/{id}/`
 
 DELETE an SSH key.
 
 Returns 404 if the key does not exist. Returns 401 if the key does not belong
 to the calling user.
 
-##### `GET /api/2.0/account/prefs/sshkeys/{id}/`
+##### `GET /MAAS/api/2.0/account/prefs/sshkeys/{id}/`
 
 GET an SSH key.
 
@@ -5657,18 +5724,18 @@ Returns 404 if the key does not exist.
 
 Manage the collection of all the SSH keys in this MAAS.
 
-##### `GET /api/2.0/account/prefs/sshkeys/`
+##### `GET /MAAS/api/2.0/account/prefs/sshkeys/`
 
 List all keys belonging to the requesting user.
 
-##### `POST /api/2.0/account/prefs/sshkeys/`
+##### `POST /MAAS/api/2.0/account/prefs/sshkeys/`
 
 Add a new SSH key to the requesting user's account.
 
 The request payload should contain the public SSH key data in form data whose
 name is "key".
 
-##### `POST /api/2.0/account/prefs/sshkeys/ op=import`
+##### `POST /MAAS/api/2.0/account/prefs/sshkeys/ op=import`
 
 Import the requesting user's SSH keys.
 
@@ -5679,16 +5746,16 @@ format.
 
 Manage an SSL key.
 
-> SSL keys can be retrieved or deleted.
+SSL keys can be retrieved or deleted.
 
-##### `DELETE /api/2.0/account/prefs/sslkeys/{id}/`
+##### `DELETE /MAAS/api/2.0/account/prefs/sslkeys/{id}/`
 
 DELETE an SSL key.
 
 Returns 401 if the key does not belong to the requesting user. Returns 204 if
 the key is successfully deleted.
 
-##### `GET /api/2.0/account/prefs/sslkeys/{id}/`
+##### `GET /MAAS/api/2.0/account/prefs/sslkeys/{id}/`
 
 GET an SSL key.
 
@@ -5699,11 +5766,11 @@ belong to the requesting user.
 
 Operations on multiple keys.
 
-##### `GET /api/2.0/account/prefs/sslkeys/`
+##### `GET /MAAS/api/2.0/account/prefs/sslkeys/`
 
 List all keys belonging to the requesting user.
 
-##### `POST /api/2.0/account/prefs/sslkeys/`
+##### `POST /MAAS/api/2.0/account/prefs/sslkeys/`
 
 Add a new SSL key to the requesting user's account.
 
@@ -5714,19 +5781,19 @@ The request payload should contain the SSL key data in form data whose name is
 
 Manage space.
 
-##### `DELETE /api/2.0/spaces/{id}/`
+##### `DELETE /MAAS/api/2.0/spaces/{id}/`
 
 Delete space.
 
 Returns 404 if the space is not found.
 
-##### `GET /api/2.0/spaces/{id}/`
+##### `GET /MAAS/api/2.0/spaces/{id}/`
 
 Read space.
 
 Returns 404 if the space is not found.
 
-##### `PUT /api/2.0/spaces/{id}/`
+##### `PUT /MAAS/api/2.0/spaces/{id}/`
 
 Update space.
 
@@ -5742,11 +5809,11 @@ Returns 404 if the space is not found.
 
 Manage spaces.
 
-##### `GET /api/2.0/spaces/`
+##### `GET /MAAS/api/2.0/spaces/`
 
 List all spaces.
 
-##### `POST /api/2.0/spaces/`
+##### `POST /MAAS/api/2.0/spaces/`
 
 Create a space.
 
@@ -5760,19 +5827,19 @@ Create a space.
 
 Manage static route.
 
-##### `DELETE /api/2.0/static-routes/{id}/`
+##### `DELETE /MAAS/api/2.0/static-routes/{id}/`
 
 Delete static route.
 
 Returns 404 if the static route is not found.
 
-##### `GET /api/2.0/static-routes/{id}/`
+##### `GET /MAAS/api/2.0/static-routes/{id}/`
 
 Read static route.
 
 Returns 404 if the static route is not found.
 
-##### `PUT /api/2.0/static-routes/{id}/`
+##### `PUT /MAAS/api/2.0/static-routes/{id}/`
 
 Update static route.
 
@@ -5794,11 +5861,11 @@ Returns 404 if the static route is not found.
 
 Manage static routes.
 
-##### `GET /api/2.0/static-routes/`
+##### `GET /MAAS/api/2.0/static-routes/`
 
 List all static routes.
 
-##### `POST /api/2.0/static-routes/`
+##### `POST /MAAS/api/2.0/static-routes/`
 
 Create a static route.
 
@@ -5818,19 +5885,19 @@ Create a static route.
 
 Manage subnet.
 
-##### `DELETE /api/2.0/subnets/{id}/`
+##### `DELETE /MAAS/api/2.0/subnets/{id}/`
 
 Delete subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/`
+##### `GET /MAAS/api/2.0/subnets/{id}/`
 
 Read subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/ op=ip_addresses`
+##### `GET /MAAS/api/2.0/subnets/{id}/ op=ip_addresses`
 
 Returns a summary of IP addresses assigned to this subnet.
 
@@ -5847,13 +5914,13 @@ with_summary
 with_node_summary
    Deprecated form of with_summary.
 
-##### `GET /api/2.0/subnets/{id}/ op=reserved_ip_ranges`
+##### `GET /MAAS/api/2.0/subnets/{id}/ op=reserved_ip_ranges`
 
 Lists IP ranges currently reserved in the subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/ op=statistics`
+##### `GET /MAAS/api/2.0/subnets/{id}/ op=statistics`
 
 Returns statistics for the specified subnet, including:
 
@@ -5875,13 +5942,13 @@ include_suggestions
 
 Returns 404 if the subnet is not found.
 
-##### `GET /api/2.0/subnets/{id}/ op=unreserved_ip_ranges`
+##### `GET /MAAS/api/2.0/subnets/{id}/ op=unreserved_ip_ranges`
 
 Lists IP ranges currently unreserved in the subnet.
 
 Returns 404 if the subnet is not found.
 
-##### `PUT /api/2.0/subnets/{id}/`
+##### `PUT /MAAS/api/2.0/subnets/{id}/`
 
 Update the specified subnet.
 
@@ -5926,11 +5993,11 @@ Returns 404 if the subnet is not found.
 
 Manage subnets.
 
-##### `GET /api/2.0/subnets/`
+##### `GET /MAAS/api/2.0/subnets/`
 
 List all subnets.
 
-##### `POST /api/2.0/subnets/`
+##### `POST /MAAS/api/2.0/subnets/`
 
 Create a subnet.
 
@@ -5999,55 +6066,55 @@ managed
 
 Manage a Tag.
 
-> Tags are properties that can be associated with a Node and serve as criteria
-> for selecting and allocating nodes.
->
-> A Tag is identified by its name.
+Tags are properties that can be associated with a Node and serve as criteria
+for selecting and allocating nodes.
 
-##### `DELETE /api/2.0/tags/{name}/`
+A Tag is identified by its name.
+
+##### `DELETE /MAAS/api/2.0/tags/{name}/`
 
 Delete a specific Tag.
 
 Returns 404 if the tag is not found. Returns 204 if the tag is successfully
 deleted.
 
-##### `GET /api/2.0/tags/{name}/`
+##### `GET /MAAS/api/2.0/tags/{name}/`
 
 Read a specific Tag.
 
 Returns 404 if the tag is not found.
 
-##### `GET /api/2.0/tags/{name}/ op=devices`
+##### `GET /MAAS/api/2.0/tags/{name}/ op=devices`
 
 Get the list of devices that have this tag.
 
 Returns 404 if the tag is not found.
 
-##### `GET /api/2.0/tags/{name}/ op=machines`
+##### `GET /MAAS/api/2.0/tags/{name}/ op=machines`
 
 Get the list of machines that have this tag.
 
 Returns 404 if the tag is not found.
 
-##### `GET /api/2.0/tags/{name}/ op=nodes`
+##### `GET /MAAS/api/2.0/tags/{name}/ op=nodes`
 
 Get the list of nodes that have this tag.
 
 Returns 404 if the tag is not found.
 
-##### `GET /api/2.0/tags/{name}/ op=rack_controllers`
+##### `GET /MAAS/api/2.0/tags/{name}/ op=rack_controllers`
 
 Get the list of rack controllers that have this tag.
 
 Returns 404 if the tag is not found.
 
-##### `GET /api/2.0/tags/{name}/ op=region_controllers`
+##### `GET /MAAS/api/2.0/tags/{name}/ op=region_controllers`
 
 Get the list of region controllers that have this tag.
 
 Returns 404 if the tag is not found.
 
-##### `POST /api/2.0/tags/{name}/ op=rebuild`
+##### `POST /MAAS/api/2.0/tags/{name}/ op=rebuild`
 
 Manually trigger a rebuild the tag &lt;=&gt; node mapping.
 
@@ -6057,7 +6124,7 @@ trigger the appropriate changes.
 
 Returns 404 if the tag is not found.
 
-##### `POST /api/2.0/tags/{name}/ op=update_nodes`
+##### `POST /MAAS/api/2.0/tags/{name}/ op=update_nodes`
 
 Add or remove nodes being associated with this tag.
 
@@ -6083,7 +6150,7 @@ Returns 404 if the tag is not found. Returns 401 if the user does not have
 permission to update the nodes. Returns 409 if 'definition' doesn't match the
 current definition.
 
-##### `PUT /api/2.0/tags/{name}/`
+##### `PUT /MAAS/api/2.0/tags/{name}/`
 
 Update a specific Tag.
 
@@ -6105,13 +6172,13 @@ Returns 404 if the tag is not found.
 
 Manage the collection of all the Tags in this MAAS.
 
-##### `GET /api/2.0/tags/`
+##### `GET /MAAS/api/2.0/tags/`
 
 List Tags.
 
 Get a listing of all tags that are currently defined.
 
-##### `POST /api/2.0/tags/`
+##### `POST /MAAS/api/2.0/tags/`
 
 Create a new Tag.
 
@@ -6140,25 +6207,25 @@ Returns 401 if the user is not an admin.
 
 Manage a user account.
 
-##### `DELETE /api/2.0/users/{username}/`
+##### `DELETE /MAAS/api/2.0/users/{username}/`
 
 Deletes a user
 
-##### `GET /api/2.0/users/{username}/`
+##### `GET /MAAS/api/2.0/users/{username}/`
 
 ### Users
 
 Manage the user accounts of this MAAS.
 
-##### `GET /api/2.0/users/`
+##### `GET /MAAS/api/2.0/users/`
 
 List users.
 
-##### `GET /api/2.0/users/ op=whoami`
+##### `GET /MAAS/api/2.0/users/ op=whoami`
 
 Returns the currently logged in user.
 
-##### `POST /api/2.0/users/`
+##### `POST /MAAS/api/2.0/users/`
 
 Create a MAAS user account.
 
@@ -6196,15 +6263,15 @@ Returns 400 if any mandatory parameters are missing.
 
 Information about this MAAS instance.
 
-> This returns a JSON dictionary with information about this MAAS instance:
->
->     {
->         'version': '1.8.0',
->         'subversion': 'alpha10+bzr3750',
->         'capabilities': ['capability1', 'capability2', ...]
->     }
+This returns a JSON dictionary with information about this MAAS instance:
 
-##### `GET /api/2.0/version/`
+    {
+        'version': '1.8.0',
+        'subversion': 'alpha10+bzr3750',
+        'capabilities': ['capability1', 'capability2', ...]
+    }
+
+##### `GET /MAAS/api/2.0/version/`
 
 Version and capabilities of this MAAS instance.
 
@@ -6212,19 +6279,19 @@ Version and capabilities of this MAAS instance.
 
 Manage VLAN on a fabric.
 
-##### `DELETE /api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
+##### `DELETE /MAAS/api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
 
 Delete VLAN on fabric.
 
 Returns 404 if the fabric or VLAN is not found.
 
-##### `GET /api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
+##### `GET /MAAS/api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
 
 Read VLAN on fabric.
 
 Returns 404 if the fabric or VLAN is not found.
 
-##### `PUT /api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
+##### `PUT /MAAS/api/2.0/fabrics/{fabric_id}/vlans/{vid}/`
 
 Update VLAN.
 
@@ -6294,13 +6361,13 @@ Returns 404 if the fabric or VLAN is not found.
 
 Manage VLANs on a fabric.
 
-##### `GET /api/2.0/fabrics/{fabric_id}/vlans/`
+##### `GET /MAAS/api/2.0/fabrics/{fabric_id}/vlans/`
 
 List all VLANs belonging to fabric.
 
 Returns 404 if the fabric is not found.
 
-##### `POST /api/2.0/fabrics/{fabric_id}/vlans/`
+##### `POST /MAAS/api/2.0/fabrics/{fabric_id}/vlans/`
 
 Create a VLAN.
 
@@ -6340,20 +6407,20 @@ Create a VLAN.
 
 Manage volume group on a machine.
 
-##### `DELETE /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `DELETE /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
 
 Delete volume group on a machine.
 
 Returns 404 if the machine or volume group is not found. Returns 409 if the
 machine is not Ready.
 
-##### `GET /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
 
 Read volume group on a machine.
 
 Returns 404 if the machine or volume group is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/volume-group/{id}/ op=create_logical_volume`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/ op=create_logical_volume`
 
 Create a logical volume in the volume group.
 
@@ -6369,7 +6436,7 @@ Create a logical volume in the volume group.
 Returns 404 if the machine or volume group is not found. Returns 409 if the
 machine is not Ready.
 
-##### `POST /api/2.0/nodes/{system_id}/volume-group/{id}/ op=delete_logical_volume`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/ op=delete_logical_volume`
 
 Delete a logical volume in the volume group.
 
@@ -6379,7 +6446,7 @@ Delete a logical volume in the volume group.
 Returns 403 if no logical volume with id. Returns 404 if the machine or volume
 group is not found. Returns 409 if the machine is not Ready.
 
-##### `PUT /api/2.0/nodes/{system_id}/volume-group/{id}/`
+##### `PUT /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
 
 Read volume group on a machine.
 
@@ -6409,13 +6476,13 @@ machine is not Ready.
 
 Manage volume groups on a machine.
 
-##### `GET /api/2.0/nodes/{system_id}/volume-groups/`
+##### `GET /MAAS/api/2.0/nodes/{system_id}/volume-groups/`
 
 List all volume groups belonging to a machine.
 
 Returns 404 if the machine is not found.
 
-##### `POST /api/2.0/nodes/{system_id}/volume-groups/`
+##### `POST /MAAS/api/2.0/nodes/{system_id}/volume-groups/`
 
 Create a volume group belonging to machine.
 
@@ -6438,28 +6505,28 @@ Ready.
 
 Manage a physical zone.
 
-> Any node is in a physical zone, or "zone" for short. The meaning of a
-> physical zone is up to you: it could identify e.g. a server rack, a network,
-> or a data centre. Users can then allocate nodes from specific physical
-> zones, to suit their redundancy or performance requirements.
->
-> This functionality is only available to administrators. Other users can view
-> physical zones, but not modify them.
+Any node is in a physical zone, or "zone" for short. The meaning of a
+physical zone is up to you: it could identify e.g. a server rack, a network,
+or a data centre. Users can then allocate nodes from specific physical
+zones, to suit their redundancy or performance requirements.
 
-##### `DELETE /api/2.0/zones/{name}/`
+This functionality is only available to administrators. Other users can view
+physical zones, but not modify them.
+
+##### `DELETE /MAAS/api/2.0/zones/{name}/`
 
 DELETE request. Delete zone.
 
 Returns 404 if the zone is not found. Returns 204 if the zone is successfully
 deleted.
 
-##### `GET /api/2.0/zones/{name}/`
+##### `GET /MAAS/api/2.0/zones/{name}/`
 
 GET request. Return zone.
 
 Returns 404 if the zone is not found.
 
-##### `PUT /api/2.0/zones/{name}/`
+##### `PUT /MAAS/api/2.0/zones/{name}/`
 
 PUT request. Update zone.
 
@@ -6469,13 +6536,13 @@ Returns 404 if the zone is not found.
 
 Manage physical zones.
 
-##### `GET /api/2.0/zones/`
+##### `GET /MAAS/api/2.0/zones/`
 
 List zones.
 
 Get a listing of all the physical zones.
 
-##### `POST /api/2.0/zones/`
+##### `POST /MAAS/api/2.0/zones/`
 
 Create a new physical zone.
 
@@ -6634,6 +6701,7 @@ Power parameters:
 -   power_address (Virsh address).
 -   power_pass (Virsh password (optional)).
 -   power_id (Virsh VM ID).
+-   default_storage_pool (Default storage pool (optional)).
 
 ### vmware (VMware)
 
@@ -6687,4 +6755,5 @@ Parameters:
 -   power_address (Virsh address).
 -   power_pass (Virsh password (optional)).
 -   power_id (Virsh VM ID).
+-   default_storage_pool (Default storage pool (optional)).
 
