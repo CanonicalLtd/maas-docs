@@ -29,8 +29,9 @@ The username can be anything. You will also be prompted to supply a password
 for the user. The command option `--password=$PASSWORD` can be used to specify
 one but, depending on your environment, this may pose a security risk.
 
-!!! Note: At this time MAAS does not make use of the email address. However, it
-may do so in the future.
+!!! Note:
+    At this time MAAS does not make use of the email address. However, it
+    may do so in the future.
 
 You can now log in here:
 
