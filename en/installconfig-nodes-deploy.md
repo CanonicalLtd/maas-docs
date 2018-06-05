@@ -25,10 +25,11 @@ will undergo the following process:
     1. curtin installation script is run
     1. Squashfs image (same as above) is placed on disk
 
-!!! Note: The *curtin* installer uses an image-based method and is now the only
-installer used by MAAS. The older *debian-installer* (preseed) method has been
-removed. Some remnants of preseed may still be found however. See
-`/etc/maas/preseed` directory.
+!!! Note:
+    The *curtin* installer uses an image-based method and is now the only
+    installer used by MAAS. The older *debian-installer* (preseed) method has been
+    removed. Some remnants of preseed may still be found however. See
+    `/etc/maas/preseed` directory.
 
 The agent that triggers deployment varies depending on how the nodes are
 intended to be used in the long term. For instance, if the nodes are destined
