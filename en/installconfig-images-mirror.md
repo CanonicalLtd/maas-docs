@@ -24,9 +24,10 @@ IMAGE_SRC=https://images.maas.io/ephemeral-v2/daily/
 IMAGE_DIR=/var/www/html/maas/images/ephemeral-v2/daily
 ```
 
-!!! Note: If you wish to use older images (which change far less frequently,
-but which will lack security updates), you can use the 'releases' stream.
-Simply replace the word 'daily' with 'releases' in two of the above variables.
+!!! Note:
+    If you wish to use older images (which change far less frequently,
+    but which will lack security updates), you can use the 'releases' stream.
+    Simply replace the word 'daily' with 'releases' in two of the above variables.
 
 The below example is a good choice for the year 2016. It selects all available
 kernels that are compatible with either Ubuntu 14.04 (Trusty) and Ubuntu 16.04
