@@ -22,8 +22,9 @@ around! Proceed to the [web UI][web-ui] now. This will involve the creation of
 an administrator user. Notice how the web UI (API server) is accessed via port
 5240 and not port 80.
 
-!!! Note: Although the web UI may be accessed via port 80, this is not
-guaranteed to work in future versions of MAAS.
+!!! Note:
+    Although the web UI may be accessed via port 80, this is not
+    guaranteed to work in future versions of MAAS.
 
 
 ## Zones
@@ -55,8 +56,9 @@ While you were in the web UI you may have seen a hint to *import boot images*.
 you have discovered how to import them. You will see that you have the choice
 to use the CLI to do this. Either way: achievement unlocked!
 
-!!! Note: The import process can take a while. Consider moving on and coming
-back. Just ensure that the import has completed prior to adding a node.
+!!! Note:
+    The import process can take a while. Consider moving on and coming
+    back. Just ensure that the import has completed prior to adding a node.
 
 
 ## Access the MAAS CLI
