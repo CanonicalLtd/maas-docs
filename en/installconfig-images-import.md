@@ -26,9 +26,10 @@ the import process has completed.
 
 To remove an image, simply deselect it and click 'Apply Changes'.
 
-!!! Note: Image sync occurs hourly and the availability of new images is
-influenced by the image stream MAAS is configured to use. See
-[Boot image sources][images-boot-image-sources].
+!!! Note:
+    Image sync occurs hourly and the availability of new images is
+    influenced by the image stream MAAS is configured to use. See
+    [Boot image sources][images-boot-image-sources].
 
 
 ## Other images

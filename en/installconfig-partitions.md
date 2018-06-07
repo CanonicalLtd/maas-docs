@@ -121,8 +121,9 @@ Machine-readable output follows:
 }
 ```
 
-!!! Note: You cannot format partitions that are used to make another virtual
-block device.
+!!! Note:
+    You cannot format partitions that are used to make another virtual
+    block device.
 
 ### Unformat Partition
 

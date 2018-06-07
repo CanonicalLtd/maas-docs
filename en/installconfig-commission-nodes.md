@@ -42,8 +42,9 @@ While a node is commissioning its status will change to *Commissioning*.
 See [MAAS CLI](manage-cli-common.md#commission-all-machines) for how to
 commission all machines with the 'New' status.
 
-!!! Note: If your node has more than one network interface you may need to tell
-MAAS which one to use. Do this by marking it *Broken* (see next section).
+!!! Note:
+    If your node has more than one network interface you may need to tell
+    MAAS which one to use. Do this by marking it *Broken* (see next section).
 
 Once a node is commissioned its status will change to *Ready*. Consider taking
 this time to [tag your node](installconfig-tags.md).

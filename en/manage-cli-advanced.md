@@ -98,8 +98,9 @@ sudo apt install maas-rack-controller
 sudo maas-rack register
 ```
 
-!!! Note: The register command is only needed if the rack controller is not
-being added to a system that already houses an API server.
+!!! Note:
+    The register command is only needed if the rack controller is not
+    being added to a system that already houses an API server.
 
 You will be asked for the URL of the region API server. If you provide a
 hostname ensure it is resolvable. Next, you will be prompted for the secret key
@@ -117,8 +118,9 @@ Based on the above, then, we could have also entered:
 sudo maas-rack register --url http://10.248.0.3:5240/MAAS --secret 30e5413d5b684620700b3105b02965c0
 ```
 
-!!! Note: The web UI example does not refer to port 5240 but this should be
-fixed soon.
+!!! Note:
+    The web UI example does not refer to port 5240 but this should be
+    fixed soon.
 
 
 ## List rack controllers

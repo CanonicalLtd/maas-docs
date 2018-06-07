@@ -18,8 +18,9 @@ Because MAAS was designed to work well with
 MAAS tags for application deployments. Juju is the recommended way to deploy
 services onto machines managed by MAAS.
 
-!!! Note: Newly-created tags immediately become available as a filter in the
-'Nodes' tab in the web UI. 
+!!! Note:
+    Newly-created tags immediately become available as a filter in the
+    'Nodes' tab in the web UI. 
 
 
 ## Tag definitions

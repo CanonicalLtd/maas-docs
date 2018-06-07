@@ -25,7 +25,8 @@ on the local machine (`::1`, the IPv6 equivalent of `localhost`):
 http://[::1]:5240/MAAS/
 ```
 
-!!! Note: Most BMCs can only be controlled over IPv4.
+!!! Note:
+    Most BMCs can only be controlled over IPv4.
 
 
 ## Enable IPv6

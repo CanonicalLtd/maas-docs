@@ -125,8 +125,9 @@ Default is false, meaning to create a partition using the given `cache_size`.
 If set to true no partition will be created and the raw cache device will be
 used as the cache.
 
-!!! Note: The /boot/efi partition on all layouts will only be created on nodes
-that deploy with UEFI.
+!!! Note:
+    The /boot/efi partition on all layouts will only be created on nodes
+    that deploy with UEFI.
 
 ## Setting the Layout
 
@@ -166,5 +167,6 @@ If a node is already acquired and you want to adjust the storage layout the
 ```bash
 maas admin machine set-storage-layout <node-id> storage_layout=lvm lv_size=<size>
 ```
-!!! Warning: This will completely remove any previous storage configuration on all
-block devices.
+!!! Warning:
+    This will completely remove any previous storage configuration on all
+    block devices.

@@ -131,7 +131,8 @@ maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 You will also need to set a default gateway (see
 [below][anchor__set-a-default-gateway]).
 
-!!! Note: DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
+!!! Note: 
+    DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
 
 ## Set a DNS forwarder
