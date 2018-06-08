@@ -1,5 +1,5 @@
-(|en/?|2.4.0/?)?: /2.3/en/
-en/(?P<page>.+): /2.3/en/{page}
+(|en/?|2.4.0/?)?: /2.4/en/
+en/(?P<page>.+): /2.4/en/{page}
 (?P<version>[0-9-\._]+|devel)(/|/index)?: /{version}/en/
 (?P<version>[0-9-\._]+|devel)/(?P<language>[a-zA-Z]{2})(/index)?: /{version}/{language}/
 devel/en/intel-rsd/?: /devel/en/nodes-comp-hw
