@@ -35,7 +35,7 @@ A node booting with UEFI is supported by every layout type. In such a case, an
 EFI boot partition (`/boot/efi`) will be automatically created. Other than
 setting the node to boot from UEFI, no other action is required of the user.
 
-!!! Warning: 
+!!! Negative "Warning":
     UEFI is either used by the node throughout its lifecycle or it's not. For
     example, do not enlist a node with UEFI enabled and then disable it before
     commissioning. It won't work!
