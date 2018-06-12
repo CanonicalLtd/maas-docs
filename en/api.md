@@ -3701,8 +3701,7 @@ constraints are provided, they are combined using 'AND' semantics.
    -   vid:&lt;vid-integer&gt;:
 
    Match a subnet on a VLAN with the specified
-   VID. Valid values range from 0 through 4094 (inclusive). An untagged
-   VLAN can be specified by using the value "0".
+   VID. Valid values range from 0 through 4094 (inclusive).
 
    -   vlan:&lt;vlan-spec&gt;:
 
