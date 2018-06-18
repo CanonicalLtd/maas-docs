@@ -88,9 +88,8 @@ the pool and is available for use ("Ready" state).
 MAAS controls machines through IPMI (or another BMC) or converged chassis
 controller such as Cisco UCS.
 
-!!! Warning: 
+!!! Negative "Warning":
     A machine destined for MAAS will have its disk space overwritten.
-    
     A node in the pool is under MAAS's sole control and should not be provisioned
     using other methods.
 
