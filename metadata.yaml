@@ -1,2 +1,35 @@
 site_title: MAAS documentation
-site_logo_url: https://assets.ubuntu.com/v1/5f3d3c45-maas-logo-cropped.svg
+site_logo_url: 'https://assets.ubuntu.com/v1/4fac1d52-MAAS-Logo.svg'
+site_favicon: 'https://assets.ubuntu.com/v1/5922a009-maas-favicon-32px.png'
+site_remove_navigation_title: true
+
+site_navigation:
+  - title: Install
+    location: https://maas.io/install
+
+  - title: Architecture
+    location: https://maas.io/how-it-works
+
+  - title: Tour
+    location: https://maas.io/tour
+
+  - title: Docs
+    location: /
+    selected: true
+
+  - title: Contact us
+    location: https://maas.io/contact-us
+
+site_navigation_colors:
+  active: '#e95420'
+  background: '#000'
+  border: '#666'
+  hover: '#e95420'
+  text: '#fff'
+
+site_footer_links:
+  - title: 'Legal information'
+    location: https://www.ubuntu.com/legal
+    
+  - title: 'Report a bug on this site'
+    location: https://github.com/CanonicalLtd/maas-docs/issues/new
