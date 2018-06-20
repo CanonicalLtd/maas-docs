@@ -23,7 +23,7 @@ Nodes include:
 - Machines
 - Devices
 
-See [Machine actions][machine-actions] and [Node statuses](node-statuses) below for an overview of a node's life cycle.
+See [Machine actions][machine-actions] and [Node statuses][node-statuses] below for an overview of a node's life cycle.
 
 ### Controllers
 
