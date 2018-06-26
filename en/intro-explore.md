@@ -177,7 +177,7 @@ where one or more can be selected and operated on.
 When it comes to running applications, MAAS can deploy any supported variant of
 Ubuntu, including LTS and non-LTS versions for x86, ARM, PPC and s390x systems.
 Both CentOS 7 and CentOS 6 can also be deployed to your machines, as can
-Windows, RHEL and SUSE images with [Ubuntu Advantage][ubuntu-advantage].
+Windows and RHEL images with [Ubuntu Advantage][ubuntu-advantage].
 
 ![Image import overview][img__images]
 

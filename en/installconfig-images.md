@@ -5,7 +5,7 @@ Title: Images
 
 MAAS supports the images it generates for stable Ubuntu releases and for CentOS
 6.6 and CentOS 7. [Ubuntu Advantage][ubuntu-advantage] is needed in order to
-use Windows, RHEL and SUSE images or in order to build a custom image for any
+use Windows and RHEL images or in order to build a custom image for any
 operating system.
 
 Images are stored in the region controller's database, from where the rack
