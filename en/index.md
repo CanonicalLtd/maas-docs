@@ -32,7 +32,7 @@ required they are "released" back into the pool. MAAS integrates all the tools
 you require in one smooth experience. It includes:
 
 - web UI (optimised for mobile devices)
-- Ubuntu, CentOS, Windows, RHEL and SUSE installation support
+- Ubuntu, CentOS, Windows, and RHEL installation support
 - open source IP address management (IPAM)
 - full API/CLI support
 - high availability (optional)
@@ -56,7 +56,7 @@ configuration and large-scale automation.
 ![web UI showing node view][img__webui]
 
 !!! Note: 
-    Windows, RHEL and SUSE images require
+    Windows and RHEL images require
     [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
 
 
