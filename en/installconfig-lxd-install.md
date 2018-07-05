@@ -64,7 +64,7 @@ And replace the `{}` after *config* with the following (excluding `config:`):
 config:
   raw.lxc: |-
     lxc.cgroup.devices.allow = c 10:237 rwm
-    lxc.aa_profile = unconfined
+    lxc.apparmor.profile = unconfined
     lxc.cgroup.devices.allow = b 7:* rwm
   security.privileged: "true"
 ```
@@ -83,13 +83,13 @@ When correctly configured, the above command outputs
 Launch the LXD container:
 
 ```bash
-lxc launch -p maas ubuntu:16.04 xenial-maas
+lxc launch -p maas ubuntu:16.04 bionic-maas
 ```
 
 Once the container is running, it can be accessed with:
 
 ```bash
-lxc exec xenial-maas bash
+lxc exec bionic-maas bash
 ```
 
 ### Install MAAS
