@@ -15,7 +15,7 @@
    id="svg8170"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fabric-diagram-gm6.svgz"
+   sodipodi:docname="intro-concepts__fabrics-spaces.svg"
    inkscape:export-filename="/home/graham/canonical/build/maas/maas-docs/media/intro-concepts__fabrics-spaces.png"
    inkscape:export-xdpi="91.849998"
    inkscape:export-ydpi="91.849998">
@@ -1817,21 +1817,22 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="573.18273"
+     inkscape:cx="850.9284"
      inkscape:cy="530.0892"
      inkscape:document-units="px"
      inkscape:current-layer="g4649"
      showgrid="false"
      inkscape:window-width="1935"
      inkscape:window-height="1093"
-     inkscape:window-x="1087"
-     inkscape:window-y="100"
+     inkscape:window-x="911"
+     inkscape:window-y="232"
      inkscape:window-maximized="0"
      inkscape:snap-to-guides="false"
      inkscape:snap-grids="false"
      inkscape:snap-others="false"
      inkscape:snap-nodes="false"
-     inkscape:snap-global="false" />
+     inkscape:snap-global="false"
+     showguides="false" />
   <metadata
      id="metadata8175">
     <rdf:RDF>
@@ -2181,19 +2182,6 @@
            sodipodi:role="line"
            x="22.951591"
            y="485.86255">Router</tspan></text>
-      <text
-         transform="scale(1.0000825,0.99991751)"
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="22.951591"
-         y="396.86871"
-         id="text3545-6-5-9-8-61-3"
-         sodipodi:linespacing="125%"><tspan
-           id="tspan73756-9"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98999999"
-           sodipodi:role="line"
-           x="22.951591"
-           y="396.86871">Region</tspan></text>
       <path
          style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:2.60533118;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#TriangleInM-1-4-0-0-8-8-3-6);marker-end:url(#marker31939-4-0-8-7-8-8-6-5)"
          d="m 755.72767,527.21759 0,38.32121"
@@ -2258,12 +2246,12 @@
       <rect
          rx="32.338699"
          ry="33.086735"
-         y="346.06213"
+         y="410.34784"
          x="0.47623026"
-         height="643.54718"
+         height="579.26147"
          width="976.27167"
          id="rect43730-1"
-         style="fill:#ff00ff;fill-opacity:0;fill-rule:evenodd;stroke:#808080;stroke-width:3.62874055;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:#d40000;fill-opacity:0;fill-rule:evenodd;stroke:#979797;stroke-width:1.92900002;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:3.85800004, 7.71600007999999882;stroke-opacity:1;stroke-dashoffset:0;stroke-linecap:round" />
       <g
          inkscape:label="Layer 1"
          id="layer1-92-1-2-2-8-6-5-4-8"
