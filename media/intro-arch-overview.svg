@@ -17,7 +17,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="intro-arch-overview.svg"
-   inkscape:export-filename="/home/graham/Desktop/intro-arch-overview.png"
+   inkscape:export-filename="/home/graham/canonical/build/maas/maas-docs/media/intro-arch-overview.png"
    inkscape:export-xdpi="104.35"
    inkscape:export-ydpi="104.35">
   <defs
@@ -2090,16 +2090,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="416.77908"
-     inkscape:cy="379.95444"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="208.41697"
+     inkscape:cy="506.86244"
      inkscape:document-units="px"
      inkscape:current-layer="g4649"
      showgrid="true"
      inkscape:window-width="1916"
      inkscape:window-height="1268"
-     inkscape:window-x="1090"
-     inkscape:window-y="124"
+     inkscape:window-x="981"
+     inkscape:window-y="96"
      inkscape:window-maximized="0"
      inkscape:snap-to-guides="false"
      inkscape:snap-grids="true"
@@ -2158,15 +2158,6 @@
          width="150.59775"
          id="rect43730-2"
          style="fill:#ff00ff;fill-opacity:0;fill-rule:evenodd;stroke:#007aa6;stroke-width:3.4000001;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:10.20000004, 3.40000001;stroke-dashoffset:11.90000057;stroke-opacity:1" />
-      <rect
-         rx="28.641634"
-         ry="31.586716"
-         y="431.31943"
-         x="83.242943"
-         height="446.37128"
-         width="686.37128"
-         id="rect43730-1"
-         style="fill:#ff00ff;fill-opacity:0;fill-rule:evenodd;stroke:#808080;stroke-width:3.62874079;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <rect
          rx="19.382929"
          ry="30.461727"
