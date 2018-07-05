@@ -2,7 +2,7 @@
     "scripts": {
       "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite build/ .extra templates",
       "watch": "watch -p './**/*.md' -c 'yarn run build-css'",
-      "build": "documentation-builder --base-directory . --output-path templates --output-media-path 'static/media' --media-url '/static/media' --tag-manager-code 'GTM-K92JCQ' --search-domain 'docs.maas.io' --search-url 'https://docs.ubuntu.com/search' --search-placeholder 'Search MAAS docs' --no-link-extensions --build-version-branches",
+      "build": "documentation-builder --base-directory . --output-path templates --output-media-path 'static/media' --media-url '/static/media' --tag-manager-code 'GTM-K92JCQ' --search-domain 'docs.maas.io' --search-url 'https://docs.ubuntu.com/search' --search-placeholder 'Search MAAS docs' --no-link-extensions --build-version-branches --site-root https://maas.io/",
       "test": "",
       "serve": "cd dist && FLASK_DEBUG=true FLASK_APP=app.py flask run -h 0.0.0.0 -p $PORT"
     },
