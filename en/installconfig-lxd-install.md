@@ -65,7 +65,7 @@ And replace the `{}` after *config* with the following (excluding `config:`):
 config:
   raw.lxc: |-
     lxc.cgroup.devices.allow = c 10:237 rwm
-    lxc.aa_profile = unconfined
+    lxc.apparmor.profile = unconfined
     lxc.cgroup.devices.allow = b 7:* rwm
   security.privileged: "true"
 ```
@@ -84,7 +84,7 @@ When correctly configured, the above command outputs
 Once the profile has been created, you can now launch the LXC container:
 
 ```bash
-lxc launch -p maas ubuntu:16.04 xenial-maas
+lxc launch -p maas ubuntu:16.04 bionic-maas
 ```
 
 ### Install MAAS
@@ -93,7 +93,7 @@ Once the container is running, you can now install MAAS. First you need to
 access the container with:
 
 ```bash
-lxc exec xenial-maas bash
+lxc exec bionic-maas bash
 ```
 
 ### Install MAAS
