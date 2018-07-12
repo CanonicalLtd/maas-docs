@@ -162,4 +162,4 @@ aliases.
 
 [img__2.2_tags-search]: ../media/nodes-tags__2.2_tags-filter.png
 [img__2.2_tags-add-remove]: ../media/nodes-tags__2.2_tags-add_remove.png
-[img__2.2_tags-net-interface]: ../media/nodes-tags__2.2_tags-net-interface.png
+[img__tags-net-interface]: ../media/nodes-tags__2.2_tags-net-interface.png

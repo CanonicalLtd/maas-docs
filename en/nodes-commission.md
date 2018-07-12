@@ -29,12 +29,12 @@ page.
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
 the 'Take action' dropdown menu.
 
-![commission][img__2.2_commission]
+![commission][img__commission]
 
 You have the option of selecting some extra parameters (checkboxes) and
 performing hardware tests (see [Hardware testing][hardware-testing]).
 
-![confirm commission][img__2.2_commission-confirm]
+![confirm commission][img__commission-confirm]
 
 Finalize the directive by hitting 'Commission machine'.
 
@@ -69,11 +69,11 @@ an IP assignment mode. Tags can also be assigned to specific network interfaces
 
 Click the pencil icon for the interface to be edited:
 
-![edit interface][img__2.2_edit-interface]
+![edit interface][img__edit-interface]
 
 The following window will appear:
 
-![configure interface][img__2.2_configure-interface]
+![configure interface][img__configure-interface]
 
 There are four modes to choose from that determine how an address on the subnet
 gets assigned when the node is eventually deployed:
@@ -160,7 +160,7 @@ A bridge is created by selecting an interface and clicking the now-active
 'Create bridge' button. A form will appear that will allow a MAC address, STP,
 and a tag to be configured.
 
-![configure bridge][img__2.2_configure-bridge]
+![configure bridge][img__configure-bridge]
 
 Press the 'Save' button when you're done.
 
@@ -196,9 +196,9 @@ allocation time using the API.
 [manage-cli-interfaces]: manage-cli-interfaces.md
 
 [img__commission]: ../media/nodes-commission__2.2_commission.png
-[img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
-[img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
-[img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
+[img__commission-confirm]: ../media/nodes-commission__2.2_commission-confirm.png
+[img__configure-interface]: ../media/nodes-commission__2.2_configure-interface.png
+[img__edit-interface]: ../media/nodes-commission__2.2_edit-interface.png
 [img__configure-setbond]: ../media/nodes-commission__2.3_configure-setbond.png
 [img__configure-bond]: ../media/nodes-commission__2.3_configure-bond.png
-[img__configure-bridge]: ../media/nodes-commission__2.3_configure-bridge.png
+[img__configure-bridge]: ../media/nodes-commission__2.2_configure-bridge.png
