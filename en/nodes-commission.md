@@ -30,7 +30,7 @@ page.
 To commission, on the 'Nodes' page, select a node and choose 'Commission' under
 the 'Take action' dropdown menu (orange button).
 
-![commission][img__2.1_commission]
+![commission][img__commission]
 
 You have the option of selecting some extra parameters (checkboxes). Then
 finalize the directive by hitting 'Go'.
@@ -185,8 +185,8 @@ allocation time using the API.
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
 [manage-cli-interfaces]: manage-cli-interfaces.md
 
-[img__commission]: ../media/nodes-commission__2.2_commission.png
-[img__commission-confirm]: ../media/nodes-commission__2.3_commission-confirm.png
+[img__commission]: ../media/nodes-commission__2.1_commission.png
+[img__commission-go]: ../media/nodes-commission__commission-go.png
 [img__configure-interface]: ../media/nodes-commission__2.3_configure-interface.png
 [img__edit-interface]: ../media/nodes-commission__2.3_edit-interface.png
 [img__configure-setbond]: ../media/nodes-commission__2.3_configure-setbond.png
