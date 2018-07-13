@@ -34,7 +34,7 @@ but *libvirt* can also be operated from the command line.
     [VirtualBox][virtualbox], which may be useful if you want to test MAAS from
     a Microsoft Windows or macOS environment. 
 
-Assuming a base installation of [Ubuntu 16.04 LTS(Xenial) server][xenial-link]
+Assuming a base installation of [Ubuntu 18.04 LTS(Bionic) server][bionic-link]
 running on a fresh *libvirt* instance or real hardware, matching the 
 [minimum requirements][requirements], MAAS is installed with the following
 command:
@@ -261,6 +261,7 @@ Pods abstract multiple resources...
 [libvirt]: https://libvirt.org/drvqemu.html
 [virtualbox]: https://www.virtualbox.org
 [xenial-link]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
+[bionic-link]: https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes
 [libvirt-install]: https://help.ubuntu.com/lts/serverguide/libvirt.html
 [ubuntu-advantage]: https://www.ubuntu.com/support
 [requirements]: intro-requirements.md#test-environment
