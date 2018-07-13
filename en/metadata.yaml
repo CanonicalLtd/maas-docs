@@ -151,6 +151,9 @@ navigation:
           - title: Getting help
             location: troubleshoot-getting-help.md
 
+          - title: Upgrade from 1.9 to 2.x
+            location: installconfig-upgrade-to-2.md
+
   - title: Command reference
     location: manage-cli.md
 
