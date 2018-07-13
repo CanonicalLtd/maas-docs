@@ -31,7 +31,7 @@ according to your specific deployment requirements.
 ### PostgreSQL export
 
 This procedure assumes the region and rack controllers are on the same machine,
-that MAAS is installed on Ubuntu 16.04 LTS (Xenial) and restoration will be to
+that MAAS is installed on Ubuntu 18.04 LTS (Bionic) and restoration will be to
 identical hardware, including the network configuration.
 
 To backup your PostgreSQL database to a file called `dump.sql` in your home
