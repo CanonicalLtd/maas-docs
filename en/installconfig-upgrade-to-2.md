@@ -3,7 +3,16 @@ Title: Upgrade from 1.9 to 2.x
 
 # Upgrade from 1.9 to 2.x
 
-MAAS 2.0 is only supported on Ubuntu 16.04 LTS (Xenial Xerus). This is because
+MAAS 2.4 is only supported on Ubuntu 18.04 (Bionic Beaver). This is because
+changes in the base dependencies of Ubuntu 18.04 LTS mean that newer versions
+of MAAS will not be back-portable, and consequently, to upgrade to MAAS 2.4 and
+all future versions, you will need to first upgrade to 2.3. This is covered
+below. 
+
+See [Upgrade 2.3 to 2.4 from Ubuntu 16.04][upgrade-24] for further
+details on upgrading from 2.3 to 2.4
+
+MAAS 2.3 is only supported on Ubuntu 16.04 LTS (Xenial Xerus). This is because
 16.04 defaults to Python 3, whereas previous versions of Ubuntu defaulted to
 Python 2.
 
@@ -12,7 +21,7 @@ the latter reaches the end of its support cycle. See
 [Ubuntu Releases][ubuntu-wiki-releases] for release and EOL dates for all
 Ubuntu versions.
 
-Upgrading from 1.9 to 2.x will therefore involve upgrading the version of
+Upgrading from 1.9 to 2.3 will therefore involve upgrading the version of
 Ubuntu to 16.04 LTS. In so doing, the MAAS database and MAAS configuration will
 be migrated. See the [Xenial Release Notes][xenial-release-notes-upgrading] for
 upgrading to Xenial.
@@ -87,6 +96,7 @@ the latest version of MAAS.
 
 <!-- LINKS -->
 
+[upgrade-24]: installconfig-upgrade-postgres.md
 [postgresql-ha]: manage-ha-postgresql.md
 [ubuntu-wiki-releases]: https://wiki.ubuntu.com/Releases
 [xenial-release-notes-upgrading]: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes#Upgrading_from_Ubuntu_14.04_LTS_or_15.10
