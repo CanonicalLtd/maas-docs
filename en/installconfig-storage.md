@@ -35,10 +35,7 @@ A node booting with UEFI is supported by every layout type. In such a case, an
 EFI boot partition (`/boot/efi`) will be automatically created. Other than
 setting the node to boot from UEFI, no other action is required of the user.
 
-!!! Negative "Warning":
-    UEFI is either used by the node throughout its lifecycle or it's not. For
-    example, do not enlist a node with UEFI enabled and then disable it before
-    commissioning. It won't work!
+> ⚠ UEFI is either used by the node throughout its lifecycle or it's not. For example, do not enlist a node with UEFI enabled and then disable it before commissioning. It won't work!
 
 The EFI partition, if created, will be the first partition (`sda1`) and will
 have a FAT32 filesystem with a size of 512 MB.

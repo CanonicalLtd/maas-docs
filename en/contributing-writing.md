@@ -142,8 +142,7 @@ A standard 'Note' type admonishment:
 A standard 'Warning' type admonishment:
 
 ```no-highlight
-!!! Warning: 
-    Data will be lost unless you do the right thing.
+> ⚠ Data will be lost unless you do the right thing.
 ```
 
 A 'Positive' type admonishment with title:
@@ -171,8 +170,7 @@ The above examples will appear as:
 
 > ⓘ If KVM-backed nodes are used, ensure that the 'maas' user on the rack controller can connect to the KVM host using a passphraseless private SSH key.
 
-!!! Warning: 
-    Data will be lost unless you do the right thing.
+> ⚠ Data will be lost unless you do the right thing.
 
 !!! Positive "High score":
     A positive note that should include a title.

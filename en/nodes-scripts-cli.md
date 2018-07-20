@@ -70,9 +70,7 @@ to:
 maas $PROFILE node-script revert $SCRIPT_NAME to=$VERSION_ID
 ```
 
-!!! Negative "Warning":
-    The history for later modifications will be lost when reverting to an earlier
-    version of the script.
+> ⚠ The history for later modifications will be lost when reverting to an earlier version of the script.
 
 To download a script, enter the following:
 
