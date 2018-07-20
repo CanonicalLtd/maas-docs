@@ -9,9 +9,7 @@ which should, by now, be enabled in your MAAS environment, and PXE, which you
 tell the system in question to use when it boots. This unattended manner of
 adding a node is called *enlistment*.
 
-!!! Note: 
-    Configuring a computer to boot over PXE is done via its BIOS and is
-    often referred to as "netboot" or "network boot".
+> ⓘ Configuring a computer to boot over PXE is done via its BIOS and is often referred to as "netboot" or "network boot".
 
 Regardless of how a node is added, there are no special requirements for the
 underlying machine. In particular, there is no need to install an operating
@@ -85,9 +83,7 @@ a user on the KVM host with the permission to communicate with the libvirt
 daemon. The latter is achieved via group membership, typically the `libvirtd`
 group.
 
-!!! Note: 
-    You may need to (temporarily) configure sshd on the KVM host to
-    honour password authentication for the `ssh-copy-id` command to succeed.
+> ⓘ You may need to (temporarily) configure sshd on the KVM host to honour password authentication for the `ssh-copy-id` command to succeed.
 
 Still as user 'maas', test connecting to the KVM host with virsh:
 
@@ -97,10 +93,7 @@ virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 
 This should work seamlessly because the private key is passphraseless.
 
-!!! Note:
-    Insufficient permissions for $USER may cause the `virsh` command to fail
-    with an error such as `failed to connect to the hypervisor`. Check the
-    user's group membership.
+> ⓘ Insufficient permissions for $USER may cause the `virsh` command to fail with an error such as `failed to connect to the hypervisor`. Check the user's group membership.
 
 Exit from the 'maas' user's shell:
 
@@ -122,9 +115,7 @@ being added:
 
 ![add node manually][img__add-node-manually]
 
-!!! Note:
-    The underlying machine will still need to be configured to boot over the
-    network in order to be commissioned. MAAS will not do this for you.
+> ⓘ The underlying machine will still need to be configured to boot over the network in order to be commissioned. MAAS will not do this for you.
 
 
 ## Add nodes via a chassis
@@ -141,8 +132,7 @@ require values.
 
 ![add node via chassis][img__add-node-chassis]
 
-!!! Note:
-    As with the manual method, the underlying machines will require netbooting.
+> ⓘ As with the manual method, the underlying machines will require netbooting.
 
 
 ## Add nodes via a Pod

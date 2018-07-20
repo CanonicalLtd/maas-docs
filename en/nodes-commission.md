@@ -176,8 +176,7 @@ menu:
 
 Press the 'Save' button when you're done.
 
-!!! Note: 
-    The MAC address defaults to the MAC address of the primary interface.
+> ⓘ The MAC address defaults to the MAC address of the primary interface.
 
 
 ### Bridge interfaces

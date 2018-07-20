@@ -43,9 +43,7 @@ renamed 'Take action' and provides access to the various
 
 ![web UI node take action menu][img__nodes-action]
 
-!!! Note:
-    The 'Filter by' section limits the nodes listed in the table to selected
-    keywords and node attributes. 
+> ⓘ The 'Filter by' section limits the nodes listed in the table to selected keywords and node attributes. 
 
 ## Node details
 

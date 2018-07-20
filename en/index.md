@@ -18,9 +18,7 @@ other technologies. In particular, it is designed to work especially well with
 arrangement: MAAS manages the machines and Juju manages the services running on
 those machines.
 
-!!! Note: 
-    KVM guests can also act as MAAS nodes as long as they are set to boot 
-    from the network (PXE).
+> ⓘ KVM guests can also act as MAAS nodes as long as they are set to boot  from the network (PXE).
 
 
 ## What MAAS offers
@@ -55,9 +53,7 @@ configuration and large-scale automation.
 
 ![web UI showing node view][img__webui]
 
-!!! Note: 
-    Windows and RHEL images require
-    [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
+> ⓘ Windows and RHEL images require [Ubuntu Advantage][ubuntu-advantage] to work properly with MAAS. 
 
 
 ## Key components and colocation of all services

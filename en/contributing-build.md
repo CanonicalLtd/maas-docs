@@ -26,9 +26,7 @@ Install the builder. On Ubuntu 16.04 LTS:
 sudo snap install documentation-builder
 ```
 
-!!! Note:
-    You will first need to install package `squashfuse` if you're doing this in
-    a LXD container.
+> ⓘ You will first need to install package `squashfuse` if you're doing this in a LXD container.
 
 To build the HTML, while in the root of the MAAS docs repository:
 

@@ -61,9 +61,7 @@ For example, to set it to the 16.04 GA kernel:
 maas $PROFILE maas set-config name=default_min_hwe_kernel value=ga-16.04
 ```
 
-!!! Note:
-    The command option `default_min_hwe_kernel` appears to apply to only 
-    HWE kernels but this is not the case.
+> ⓘ The command option `default_min_hwe_kernel` appears to apply to only  HWE kernels but this is not the case.
 
 
 ## Set a minimum deploy kernel for a machine
@@ -80,9 +78,7 @@ For example, to set it to the HWE 16.04 kernel:
 maas $PROFILE machine update $SYSTEM_ID min_hwe_kernel=hwe-16.04
 ```
 
-!!! Note:
-    The command option `default_min_hwe_kernel` appears to apply to only 
-    HWE kernels but this is not the case.
+> ⓘ The command option `default_min_hwe_kernel` appears to apply to only  HWE kernels but this is not the case.
 
 
 ## Set a specific kernel during machine deployment
@@ -104,9 +100,7 @@ For example, to deploy a Xenial node with the HWE 16.04 edge kernel:
 maas $PROFILE machine deploy $SYSTEM_ID distro_series=xenial hwe_kernel=hwe-16.04-edge
 ```
 
-!!! Note:
-    The command option `hwe_kernel` appears to apply to only HWE kernels but
-    this is not the case.
+> ⓘ The command option `hwe_kernel` appears to apply to only HWE kernels but this is not the case.
 
 
 <!-- LINKS -->

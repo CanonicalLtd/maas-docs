@@ -21,8 +21,7 @@ via SSH to the 'ubuntu' user account providing an SSH key has been imported to
 the user's MAAS account. This is explained in
 [SSH keys][user-accounts-ssh-keys].
 
-!!! Note:
-    Juju has its own way of adding SSH keys to machines under its control.
+> ⓘ Juju has its own way of adding SSH keys to machines under its control.
 
 To deploy, the underlying machine needs to be configured to netboot (this
 should already have been done during the commissioning stage). Such a machine
@@ -36,11 +35,7 @@ will undergo the following process:
     1. curtin installation script is run
     1. Squashfs image (same as above) is placed on disk
 
-!!! Note: 
-    The *curtin* installer uses an image-based method and is now the only
-    installer used by MAAS. Although the older *debian-installer* method has been
-    removed curtin continues to support preseed files. See the `/etc/maas/preseed`
-    directory.
+> ⓘ The *curtin* installer uses an image-based method and is now the only installer used by MAAS. Although the older *debian-installer* method has been removed curtin continues to support preseed files. See the `/etc/maas/preseed` directory.
 
 Before deploying you should:
 

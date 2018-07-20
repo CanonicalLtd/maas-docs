@@ -101,9 +101,7 @@ Machine-readable output follows:
 
 ```
 
-!!! Note:
-    There is no machine-readable output after the successful execution of the
-    delete command.
+> ⓘ There is no machine-readable output after the successful execution of the delete command.
 
 ## Create a VLAN interface
 
@@ -150,9 +148,7 @@ maas $PROFILE interfaces create-vlan $SYSTEM_ID vlan=$OUTPUT_VLAN_ID \
 parent=$IFACE_ID
 ```
 
-!!! Note:
-    **OUTPUT_VLAN_ID** corresponds to the *id* value output when the VLAN was
-    created. 
+> ⓘ **OUTPUT_VLAN_ID** corresponds to the *id* value output when the VLAN was created. 
 
 The following example contains values that correspond to the output above:
 

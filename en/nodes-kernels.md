@@ -38,11 +38,7 @@ enables more hardware. Hence, HWE is an acronym for HardWare Enablement.
 Clearly, any kernel improvements and new features are also gained by installing
 an HWE kernel.
 
-!!! Note: 
-    There is the notion of an HWE *stack*. This refers to the (graphical)
-    X portion (in addition to the kernel) when the Ubuntu host is running a desktop
-    environment. This is not the case with MAAS as nodes are provisioned strictly
-    as non-graphical servers.
+> ⓘ There is the notion of an HWE *stack*. This refers to the (graphical) X portion (in addition to the kernel) when the Ubuntu host is running a desktop environment. This is not the case with MAAS as nodes are provisioned strictly as non-graphical servers.
 
 Note that these backported/HWE kernels are only available for LTS releases
 (e.g. Trusty, Xenial, etc). For example, the first available HWE kernel for

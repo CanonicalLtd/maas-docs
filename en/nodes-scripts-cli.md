@@ -12,10 +12,7 @@ result automation.
 
 To use the CLI, first make sure you are [logged in][maas-cli-login].
 
-!!! Note:
-    For further details on which metadata fields can be used within scripts,
-    and what they do, see 
-    [Commissioning and Hardware Testing Scripts][maas-scripts-fields].
+> ⓘ For further details on which metadata fields can be used within scripts, and what they do, see  [Commissioning and Hardware Testing Scripts][maas-scripts-fields].
 
 ## Script management
 
@@ -145,9 +142,7 @@ maas $PROFILE node-script-result download $SYSTEM_ID $RUN_ID output=all \
  filetype=tar.xz > $LOCAL_FILENAME
 ```
 
-!!! Note:
-    **$RUN_ID** is labelled `id` in the verbose result output. See [Determine a
-    node's system ID][system-id] for details on retrieving **$SYSTEM_ID**.
+> ⓘ **$RUN_ID** is labelled `id` in the verbose result output. See [Determine a node's system ID][system-id] for details on retrieving **$SYSTEM_ID**.
 
 <!-- LINKS -->
 [hardware-testing]: nodes-scripts.md

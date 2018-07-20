@@ -183,9 +183,7 @@ that layout providing this is done while the node has a status of 'Ready'. This
 is only possible via the CLI at this time (see
 [MAAS CLI - advanced tasks][cli-set-storage-layout]).
 
-!!! Note:
-    Only an administrator can modify storage at the block device level (providing
-    the node has a status of 'Ready').
+> ⓘ Only an administrator can modify storage at the block device level (providing the node has a status of 'Ready').
 
 
 ## Final storage modifications

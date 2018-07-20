@@ -43,8 +43,7 @@ To commission a node:
 maas $PROFILE machine commission $SYSTEM_ID
 ```
 
-!!! Note:
-    To commission a node it must have a status of 'New'.
+> ⓘ To commission a node it must have a status of 'New'.
 
 
 To commission all nodes in the 'New' state:
@@ -70,8 +69,7 @@ To acquire/allocate a specific node:
 maas $PROFILE machines allocate system_id=$SYSTEM_ID
 ```
 
-!!! Note:
-    To acquire a node it must have a status of 'Ready'.
+> ⓘ To acquire a node it must have a status of 'Ready'.
 
 
 ## Deploy a node
@@ -82,9 +80,7 @@ To deploy a node:
 maas $PROFILE machine deploy $SYSTEM_ID
 ```
 
-!!! Note:
-    To deploy with the CLI the node must have a status of 'Allocated'. See
-    'Acquire a node' above (or use the [web UI][acquire-nodes]).
+> ⓘ To deploy with the CLI the node must have a status of 'Allocated'. See 'Acquire a node' above (or use the [web UI][acquire-nodes]).
 
 See [Deploy nodes][deploy-nodes].
 
@@ -173,8 +169,7 @@ maas $PROFILE vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True \
 You will also need to set a default gateway (see
 [below][anchor__set-a-default-gateway]).
 
-!!! Note: 
-    DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
+> ⓘ DHCP for PXE booting will need to be enabled on the 'untagged' VLAN.
 
 See [DHCP][dhcp] for more on this subject.
 

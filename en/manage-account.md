@@ -10,8 +10,7 @@ User accounts are managed from the 'Users' tab of the 'Settings' page.
 
 ![current users][img__current-users]
 
-!!! Note: 
-    A currently logged in user cannot delete himself from the web UI.
+> ⓘ A currently logged in user cannot delete himself from the web UI.
 
 
 ## Add a user
@@ -42,9 +41,7 @@ will need to be in possession of the corresponding private key. See [Public key
 authentication][ssh.com-what-is-public-key-auth] (ssh.com) if you're not
 familiar with SSH keys.
 
-!!! Note:
-    An initial SSH key is normally imported during a user's initial login to the
-    web UI (see [Configuration journey][config-journey]).
+> ⓘ An initial SSH key is normally imported during a user's initial login to the web UI (see [Configuration journey][config-journey]).
 
 To add a locally generated public key, select 'Upload' from the 'Source' menu
 and paste the complete contents of your key file, usually called `id_rsa.pub`,
@@ -75,9 +72,7 @@ password' to finish.
 
 ![change user password][img__change-user-password]
 
-!!! Note:
-    An administrator can change any user's password from within the 'Users' tab
-    of the 'Settings' page. 
+> ⓘ An administrator can change any user's password from within the 'Users' tab of the 'Settings' page. 
 
 
 <!-- LINKS -->

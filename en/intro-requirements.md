@@ -56,11 +56,7 @@ environment are considered.
    - A rack controller is duplicated on a fourth host: 2.5 GB memory, 2.5 GHz CPU,
      and 40 GB of disk space.  
  
-!!! Note: 
-    Figures in the above two tables are for the MAAS infrastructure only.
-    That is, they do not cover resources needed on the nodes that will subsequently
-    be added to MAAS. That said, node machines should have IPMI-based BMC
-    controllers for power cycling, see [BMC power types][power-types].
+> ⓘ Figures in the above two tables are for the MAAS infrastructure only. That is, they do not cover resources needed on the nodes that will subsequently be added to MAAS. That said, node machines should have IPMI-based BMC controllers for power cycling, see [BMC power types][power-types].
 
 Examples of factors that influence hardware specifications include:
 
