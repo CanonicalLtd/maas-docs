@@ -1,5 +1,3 @@
-Title: CLI Image Management
-table_of_contents: True
 
 
 # CLI Image Management

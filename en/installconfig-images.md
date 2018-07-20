@@ -1,5 +1,3 @@
-Title: Images
-TODO:  bug tracking: https://github.com/canonical-webteam/documentation-builder/issues/83
 
 
 # Images

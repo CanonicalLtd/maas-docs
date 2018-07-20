@@ -1,5 +1,3 @@
-Title: What is MAAS?
-table_of_contents: True
 
 # Requirements
 

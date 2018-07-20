@@ -1,7 +1,3 @@
-Title: Building the Docs
-TODO: can add more user-friendly instructions on setting up local web server
-      talk about entr utility
-table_of_contents: True
 
 
 # Building the Docs

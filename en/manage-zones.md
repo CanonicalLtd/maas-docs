@@ -1,5 +1,3 @@
-Title: Availability Zones
-table_of_contents: True
 
 
 # Availability Zones

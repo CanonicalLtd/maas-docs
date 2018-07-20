@@ -1,5 +1,3 @@
-Title: CLI Interface Management
-table_of_contents: True
 
 
 # CLI Interface Management

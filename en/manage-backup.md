@@ -1,5 +1,3 @@
-Title: Backup
-table_of_contents: off
 
 # Backup
 

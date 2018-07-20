@@ -1,4 +1,3 @@
-Title: Install from Packages
 
 
 # Install from Packages

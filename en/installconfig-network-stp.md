@@ -1,4 +1,3 @@
-Title: STP
 
 
 # STP

@@ -1,5 +1,3 @@
-Title: API Authentication
-table_of_contents: True
 
 # API authentication
 

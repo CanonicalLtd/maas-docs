@@ -1,5 +1,3 @@
-Title: Add Nodes
-table_of_contents: True
 
 
 # Add Nodes

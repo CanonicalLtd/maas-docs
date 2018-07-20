@@ -1,4 +1,3 @@
-Title: Partitions
 
 
 # Partitions

@@ -1,6 +1,3 @@
-Title: CLI Kernel Management
-TODO:  Confirm whether kernel boot options really override default/global options such as those given by GRUB's GRUB_CMDLINE_LINUX_DEFAULT variable
-table_of_contents: True
 
 
 # CLI Kernel Management

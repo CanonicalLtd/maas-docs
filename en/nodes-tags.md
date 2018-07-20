@@ -1,7 +1,3 @@
-Title: Tags
-TODO:  Cover how tags are used in the web UI (including XML output for a node)
-       Track bug: https://bugs.launchpad.net/maas/+bug/1608629 (UI and tags)
-table_of_contents: True
 
 
 # Tags

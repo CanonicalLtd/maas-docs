@@ -1,5 +1,3 @@
-Title: Install from ISO
-TODO:  Check debian-installer bug: https://goo.gl/abMnu8 and reword stuff appropriately
 
 
 # Install from ISO

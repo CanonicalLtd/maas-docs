@@ -1,6 +1,3 @@
-Title: Pods
-TODO:  Track bug: https://bugs.launchpad.net/maas/+bug/1688066
-table_of_contents: True
 
 
 # Pods

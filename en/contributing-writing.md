@@ -1,5 +1,3 @@
-Title: Writing Guide
-table_of_contents: True
 
 
 # Writing Guide
@@ -65,10 +63,6 @@ This information is written as key:value pairs **at the very top** of the
 page. For example:
 
 ```no-highlight
-Title: Install from ISO
-TODO: images need updating when Ubuntu 17.04 is released
-      check for changes to bug https://pad.lv/1625211 and modify text accordingly
-table_of_contents: True
 
 # Title of document
 

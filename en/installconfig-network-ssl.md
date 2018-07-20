@@ -1,6 +1,3 @@
-Title: SSL
-TODO:  Critical: review required
-       modify Apache redirection wording if this redirection is ever removed
 
 
 # SSL

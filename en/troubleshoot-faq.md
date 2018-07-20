@@ -1,6 +1,3 @@
-Title: Troubleshooting
-TODO:  critical: review needed
-table_of_contents: True
 
 
 # Troubleshooting

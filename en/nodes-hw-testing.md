@@ -1,5 +1,3 @@
-Title: Hardware Testing
-TODO:  Display test output (require metal-based nodes)
 
 
 # Hardware Testing

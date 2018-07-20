@@ -1,5 +1,3 @@
-Title: What's new in 2.4
-table_of_contents: True
 
 # What's new in 2.4
 

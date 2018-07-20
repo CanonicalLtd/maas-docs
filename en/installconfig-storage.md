@@ -1,12 +1,3 @@
-Title: Storage
-TODO:  Describe the Storage web UI page
-       Explain how to perform actions: LVM, RAID, Bcache, modify filesystems
-       Bug tracking: https://pad.lv/1636933
-       Bug tracking: https://pad.lv/1698891
-       Bug tracking: https://pad.lv/1698895
-       The 'block devices' and 'partitions' pages have been removed from the menu. They should be reviewed. If worthy, they should be moved to the CLI section
-       Re the above, partitions *are* block devices (?)
-table_of_contents: True
 
 
 # Storage

@@ -1,4 +1,3 @@
-Title: Local Image Mirror
 
 
 # Local Image Mirror

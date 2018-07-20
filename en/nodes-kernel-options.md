@@ -1,4 +1,3 @@
-Title: Kernel Boot Options
 
 
 # Kernel Boot Options

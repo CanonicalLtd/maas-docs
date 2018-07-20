@@ -1,4 +1,3 @@
-Title: Upgrade from 1.9 to 2.x
 
 
 # Upgrade from 1.9 to 2.x

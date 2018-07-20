@@ -1,5 +1,3 @@
-Title: Install with LXD
-TODO:  Text needs a review
 
 
 # Install with LXD

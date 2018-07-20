@@ -1,7 +1,3 @@
-Title: BMC Power Types
-TODO:  Provide examples for setting up common power types (BMCs)
-       Consider putting power check troubleshooting notes on the troubleshooting page
-table_of_contents: True
 
 
 # BMC Power Types

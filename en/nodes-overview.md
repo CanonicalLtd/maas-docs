@@ -1,5 +1,3 @@
-Title: Node overview
-table_of_contents: True
 
 # Node overview
 

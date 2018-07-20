@@ -1,5 +1,3 @@
-Title: Commissioning and Hardware Testing Scripts
-table_of_contents: True
 
 # Commissioning and Hardware Testing Scripts
 

@@ -1,6 +1,3 @@
-Title: CLI
-TODO:  Foldouts cannot be used with syntax highlighting: https://git.io/v14BR (affects all CLI pages)
-table_of_contents: True
 
 
 # MAAS CLI

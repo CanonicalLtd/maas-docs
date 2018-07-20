@@ -1,6 +1,3 @@
-Title: API Client
-TODO:  bug tracking: https://github.com/canonical-webteam/documentation-builder/issues/83
-table_of_contents: True
 
 
 # API Client

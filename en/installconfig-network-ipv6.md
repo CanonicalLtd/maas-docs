@@ -1,4 +1,3 @@
-Title: IPv6
 
 
 # IPv6

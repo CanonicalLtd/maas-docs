@@ -1,5 +1,3 @@
-Title: Deploy Nodes
-TODO:  Link to curtin resources for users wishing to customize the install
 
 
 # Deploy Nodes

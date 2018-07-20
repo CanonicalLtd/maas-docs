@@ -1,4 +1,3 @@
-Title: Rack Controller
 
 
 # Rack Controller

@@ -1,6 +1,3 @@
-Title: Package Repositories
-TODO:  Add link for setting up a private package repository
-table_of_contents: True
 
 
 # Package Repositories

@@ -1,5 +1,3 @@
-Title: Commission Nodes
-TODO:  Add link to CLI for setting global commissioning kernel
 
 
 # Commission Nodes

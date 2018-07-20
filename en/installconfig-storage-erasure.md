@@ -1,4 +1,3 @@
-Title: Disk Erasure
 
 
 # Disk Erasure

@@ -1,4 +1,3 @@
-Title: Configuration Journey
 
 
 # Configuration Journey 

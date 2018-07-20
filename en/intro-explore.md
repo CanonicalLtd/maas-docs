@@ -1,5 +1,3 @@
-Title: Explore MAAS
-table_of_contents: True
 
 # Explore MAAS
 

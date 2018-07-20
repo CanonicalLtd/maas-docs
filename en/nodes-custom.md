@@ -1,5 +1,3 @@
-Title: Custom node setup
-table_of_contents: True
 
 # Custom node setup (preseed)
 

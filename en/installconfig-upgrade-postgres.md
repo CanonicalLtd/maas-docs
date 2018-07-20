@@ -1,4 +1,3 @@
-Title: Upgrade 2.3 to 2.4 from Ubuntu 16.04
 
 # Upgrade 2.3 to 2.4 from Ubuntu 16.04
 

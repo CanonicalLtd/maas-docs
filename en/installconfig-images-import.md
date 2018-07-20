@@ -1,5 +1,3 @@
-Title: Select and Import Images
-TODO:  There is a rumor of changing the rackd:region image sync frequency from 5 min to 15
 
 
 # Select and Import Images

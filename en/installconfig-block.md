@@ -1,4 +1,3 @@
-Title: Block Devices
 
 # Block Devices
 

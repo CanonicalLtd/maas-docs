@@ -1,7 +1,3 @@
-Title: Common CLI Tasks
-TODO:  Decide whether explicit examples are needed everywhere
-       There is a nuance between a single reserved address and a single address in a range (start and end addresses being the same). this could use some digging
-table_of_contents: True
 
 
 # Common CLI Tasks

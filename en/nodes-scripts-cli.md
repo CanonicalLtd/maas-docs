@@ -1,5 +1,3 @@
-Title: CLI Testing Scripts
-table_of_contents: True
 
 # CLI Testing Scripts
 

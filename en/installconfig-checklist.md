@@ -1,5 +1,3 @@
-Title: Installation and Configuration Checklist
-table_of_contents: True
 
 
 # Installation and Configuration Checklist

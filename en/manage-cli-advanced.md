@@ -1,7 +1,3 @@
-Title: Advanced CLI Tasks
-TODO:  Update nodes-tags.md to show assigning tags to machines with web UI; then link to it (for entry 'specify boot option') 
-       bug tracking: https://pad.lv/1700795 (IP assignment mode)
-table_of_contents: True
 
 
 # Advanced CLI Tasks

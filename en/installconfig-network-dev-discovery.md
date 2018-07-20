@@ -1,4 +1,3 @@
-Title: Network Discovery
 
 
 # Network Discovery

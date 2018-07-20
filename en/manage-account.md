@@ -1,7 +1,3 @@
-Title: User Accounts
-TODO:  This requires a full treatment (delete user, other user preferences)
-       Needs a better explanation of admin vs. non-admin
-table_of_contents: True
 
 
 # User Accounts

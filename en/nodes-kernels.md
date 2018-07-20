@@ -1,6 +1,3 @@
-Title: Ubuntu Kernels
-TODO:  Warning: Ubuntu codenames are used
-table_of_contents: True
 
 
 # Ubuntu Kernels

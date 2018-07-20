@@ -1,4 +1,3 @@
-Title: Getting Help
 
 
 # Getting Help
