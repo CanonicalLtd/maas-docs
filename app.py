@@ -8,6 +8,7 @@ import flask
 # Local packages
 import routing
 
+SITE_URL = 'https://docs.maas.io'
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 app = flask.Flask(
@@ -86,7 +87,14 @@ def find_file_or_redirect():
     )
 
     if os.path.isfile(app.template_folder + file_path):
-        return flask.render_template(file_path)
+        (_, _, remaining_path) = routing.split_path(
+            flask.request.path, languages, versions
+        )
+        canonical_url = SITE_URL + '/' + versions[0] + remaining_path
+        context = {
+            "canonical_url": canonical_url
+        }
+        return flask.render_template(file_path, **context)
     else:
         new_path = template_finder.find_alternate_path(
             flask.request.path,
