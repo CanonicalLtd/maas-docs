@@ -43,7 +43,6 @@ controller, starting with MAAS 2.5, HTTP metadata, DNS, syslog and Squid are
 proxied through rack controllers.
 
 !!! Note:
-
     For single-rack/region clusters, machines will continue to communicate with
     the region controller directly.
 
@@ -115,8 +114,8 @@ See [Resource pools][resource-pools] in the official MAAS documentation for more
 detailed information.
 
 !!! Note:
-    Note that the resource-pool feature has been backported to MAAS 2.4 and is
-    available in MAAS 2.4.1.
+    The resource-pool feature has been backported to MAAS 2.4 and is available
+    in MAAS 2.4.1.
 
 ## ESXi deployment
 
