@@ -23,7 +23,7 @@ Nodes include:
 - Machines
 - Devices
 
-See [Node actions][node-actions] below for an overview of a node's life cycle.
+See [Machine actions][machine-actions] and [Node statuses][node-statuses] below for an overview of a node's life cycle.
 
 ### Controllers
 
@@ -462,7 +462,8 @@ action 'Rescue mode'.
 
 <!-- LINKS -->
 
-[node-actions]: #node-actions
+[machine-actions]: #machine-actions
+[node-statuses]: #node-statuses
 [maas-ha]: manage-ha.md
 [zone-examples]: intro-concepts-zones.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju

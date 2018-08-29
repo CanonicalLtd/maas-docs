@@ -1,81 +1,166 @@
-Title: What's new in 2.4
+Title: What's new in 2.5
+TODO:  (1) Add section to 'Rack controller' that explains the new way machines
+       communicate with MAAS. (2) Fix '#' items in the link list (3) make sure linked
+       sections have the promised information.
 table_of_contents: True
 
-# What's new in 2.4
+# What's new in 2.5
 
-Welcome to MAAS 2.4, a major update to [Canonical's][canonical] *Metal as a
-Service* - the smartest way to manage bare metal.
+Welcome to MAAS 2.5, a major update to [Canonical's][canonical] *Metal as a
+Service* - The smartest way to manage bare metal.
 
-This release improves performance, runs scripts for both hardware
-tests and firmware updates, composes virtual hardware and enables audit
-logging. See below for more details on each of these.
+This latest release of MAAS:
 
-If you're new to MAAS, take a look at [Explore MAAS][explore-maas] to
-get an overview of its installation and capabilities, and if you need a more
-comprehensive review of the changes in this release, take a look at the
-[release notes][release-notes].
++ Improves communications between controllers and machines
++ Simplifies setting up high-availibility environments
++ Provides additional KVM Pod features
+    + Virtual machine composition
+    + Storage pools
+    + New architectures
++ Adds new features for adding and commissioning machines
++ Introduces resource pools
++ Introduces ESXi deployment
++ Enhances the MAAS web UI by using the latest [Vanilla framework][vanilla]
++ Improves API documentation
 
-## Performance improvements
+See below for more details on each of these.
 
-Refining performance has been the emphasis for this release, with many 
-internal and external optimisations. As a result, MAAS 2.4 is now both
-noticeably more efficient and more responsive than earlier versions, especially
-in larger environments.
+If you're new to MAAS, take a look at [Explore MAAS][explore-maas] to get an
+overview of its installation and capabilities, and if you need a more
+comprehensive review of the changes in this release, include known issues,
+workarounds and bug fixes, take a look at the detailed release notes in the
+following MAAS Discourse topics:
 
-Performance improvements include:
++ [MAAS 2.5.0 alpha 1][release-notes-alpha-1].
++ [MAAS 2.5.0 alpha 2][release-notes-alpha-2].
 
-- migration from *Twisted* to *AsyncIO* for event loop handling
-- database query optimisations include the reduction of boot source image cache queries
-  from 100 to under 5, timestamp queries from 2 to 1 and the ability to track
-  changes across specific fields when saving machines
-- rack controllers now commence image downloads immediately after the region
-  controller has finished downloading images
-- *regiond* workers are now scaled automatically. This allows MAAS to handle an
-  increased number of internal operations in larger environments
+## Improvements to communication between controllers and machines
 
-## Pods for composable hardware
+In previous versions of MAAS, machines interacted directly with the region
+controller to access HTTP metadata, DNS, syslog and Squid (proxy). Because some
+MAAS environments restrict communications between machines and the region
+controller, starting with MAAS 2.5, HTTP metadata, DNS, syslog and Squid are
+proxied through rack controllers.
 
-KVM (virtual machine) pods are now a fully fledged part of the MAAS ecosystem,
-with support for AZs, tagging, over-commit ratios and storage pools, letting
-users compose virtual resources just as easily as physical resources.
+!!! Note:
+    For single-rack/region clusters, machines will continue to communicate with
+    the region controller directly.
 
-![pod compose machine commissioning][img__pod-compose-machine-commissioning]
+See [Rack controller][rack-controller] for more detailed information about how
+rack controllers communicate with MAAS.
 
-See the [Pods][pods-doc] documentation for more details.
+## Simplifying rack-to-region configuration in high-availibility (HA) setups
 
-## Firmware updates and hardware testing scripts 
+In previous versions of MAAS, rack controllers were always configured against a
+single region controller. Although rack controllers would automatically discover
+all other region controllers, a rack controller could communicate only with the
+configured region controller endpoint, leaving it unable to communicate with the
+region if the configured region controller went down.
 
-Addressing some of the challenges administrators face when performing tasks at
-scale, the scripting and testing framework has been expanded to support custom
-scripts as well as firmware upgrades. These are in addition to the many scripts
-already bundled with MAAS.
+Starting with MAAS 2.5, users can specify multiple region-controller endpoints
+for a single rack controller, greatly simplifying HA setup. In addition, MAAS
+can now automatically discover and track all region controllers in a single
+cluster. If a rack controller is unable to communicate with its configured
+region controller, MAAS will attempt to connect it to another automatically.
 
-![select custom script][nodes-hw-scripts__select]
+For details, see [Multiple region-controller endpoints][multiregion-endpoints].
 
-See [Commissioning and Hardware Testing Scripts][test-scripts] for more
-information on creating and running your own scripts.
+## Additional KVM pod features
 
-MAAS 2.4 also introduces [audit logging][audit-logging], enabling
-administrators to monitor when a user changes permissions or settings.
+### Composing KVM virtual machines from a pod with interfaces
 
-## Web UI overhaul
+Starting with MAAS 2.5.0, users can compose KVM virtual machines from a pod with
+interfaces. Using the command-line interface (CLI), the `machines allocate` and
+`pod compose` endpoints support an `interfaces` constraint, which allows
+selecting KVM pod NICs.
 
-Finally, the web-based user interface has had a comprehensive overhaul,
-featuring a reorganised main menu and settings page alongside many new options
-and refinements. The CSS framework has also been completely replaced, with the
-new version offering a cleaner and more concise user experience.
+For more details, see [Composing KVM virtual machines][composing-kvm-machines].
 
-![new web UI][whatsnew]
+### Storage pools
 
+MAAS now [tracks storage-pool usage][storage-pool-usage] via libvirt.
+
+### New architecture support
+
+KVM pods now support `arm64` and `ppc64el` architectures. KVM pod hypervisors for
+these architectures must be running on Ubuntu 18.04 (bionic) or greater.
+
+## New features for adding and commissioning machines
+
+### Adding machines with IPMI credentials
+
+In previous versions of MAAS, users were required to provide the MAC address of
+the PXE interface when adding new machines. In MAAS 2.5, users only need to
+specify IPMI credentials or a non-PXE MAC address for non-IPMI machines. MAAS
+automatically discovers the machine and runs the enlistment configuration by
+matching either the BMC address or a non-PXE MAC address.
+
+See [Add nodes][add-nodes] for more information.
+
+### Commissioning scripts during enlistment
+
+Starting with MAAS 2.5, MAAS runs all provided commissioning scripts during
+enlistment, gathering the minimum required information. Administrators can
+subsequently make a machine "Ready" simply by running hardware tests.
+
+For more details, see [Commission nodes][commission-nodes].
+
+## Resource pools
+
+MAAS 2.5 introduces resouce pools. Administrators can now organize machines into
+pools and restrict access to specific users.
+
+See [Resource pools][resource-pools] in the official MAAS documentation for more
+detailed information.
+
+!!! Note:
+    The resource-pool feature has been backported to MAAS 2.4 and is available
+    in MAAS 2.4.1.
+
+## ESXi deployment
+
+MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
+
++ Network configuration is not yet supported. MAAS 2.5.0 provides basic
+  networking configuration: static IP addresses on non-VLAN or bonded
+  interfaces. Future versions of MAAS will support NIC teaming and VLANs.
++ Post-installation is not available over preseeds, for example
+  `curtin_userdata`. Users can customize images they create to deploy with MAAS.
+
+!!! Note:
+    Currently, ESXi support is provided for [Ubuntu Advantage][advantage]
+    customers only.
+
+Find more information at [ESXi deployment][esxi].
+
+## Enhanced web UI
+
+The MAAS web interface has been refreshed with the latest [Vanilla
+framework][vanilla]. Vanilla provides fine-grain control of spacing and padding,
+allowing more information to be displayed clearly in less space. In addition,
+interactions and forms are more consistent throughout the UI. Finally, the
+machine-listing page includes the IP address assigned to each machine.
+
+
+## API documentation improvements
+
+MAAS 2.5.0 introduces improved API documentation for Zones and Resource pools.
+Future versions of MAAS will provide enhanced API documentation across all
+operations.
 
 <!-- LINKS -->
+[storage-pool-usage]: #
+[multiregion-endpoints]: #
+[resource-pools]: #
+[composing-kvm-machines]: #
+[esxi]: https://docs.maas.io/devel/en/installconfig-images
+[commission-nodes]: https://docs.maas.io/devel/en/nodes-commission
+[add-nodes]: https://docs.maas.io/devel/en/nodes-add
+[rack-controller]: https://docs.maas.io/devel/en/installconfig-rack
+[advantage]: https://www.ubuntu.com/support
+[vanilla]: https://vanillaframework.io/
 [explore-maas]: intro-explore.md
 [canonical]: https://www.canonical.com/
-[release-notes]: release-notes.md
-[pods-doc]: https://docs.maas.io/2.4/en/nodes-comp-hw
-[test-scripts]: https://docs.maas.io/2.4/en/nodes-scripts
-[audit-logging]: https://docs.maas.io/2.4/en/manage-audit-events
+[release-notes-alpha-1]: https://discourse.maas.io/t/maas-2-5-0-alpha-1/106
+[release-notes-alpha-2]: https://discourse.maas.io/t/maas-2-5-0-alpha-2-released/155
 
-[img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.4_pod-compose-machine-commissioning.png
-[nodes-hw-scripts__select]: ../media/nodes-hw-scripts__2.4_select.png
-[whatsnew]: ../media/whats-new__2.4_webui.png
