@@ -315,21 +315,5 @@ For more questions, please find us:
 
 
 <!-- LINKS -->
-[historical-notes]: release-notes-all.md 
-[curtin]: https://launchpad.net/curtin
-[cloudinit]: https://cloud-init.io/
-[tgt]: http://stgt.sourceforge.net/
-[snapio]: https://snapcraft.io/
-[maasapi]: api.html
-[djangolts]: https://docs.djangoproject.com/en/1.11/releases/1.11/
-[fio]: https://github.com/axboe/fio
-[7zip]: http://www.7-zip.org
-[ephemeral]: #ephemeral-images-now-use-http
-[contactus]: https://maas.io/contact-us
-[snapinstall]: installconfig-snap-install.md
-[hardware-testing]: nodes-hw-testing.md
-[testing-scripts]: nodes-scripts.md
-[node-overview]: nodes-overview.md
-[maas-freenode]: http://webchat.freenode.net/?channels=maas
-[freenode]: https://freenode.net/
-[mailing-list]: https://lists.ubuntu.com/mailman/listinfo/Maas-devel
+
+[historical-release-notes]: release-notes-all.md
