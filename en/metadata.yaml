@@ -45,14 +45,11 @@ navigation:
           - title: Upgrade from 1.9 to 2.0
             location: installconfig-upgrade-to-2.md
 
-          - title: Commissioning and Hardware testing scripts
-            location: nodes-scripts.md
+      - title: Rack controller
+        location: installconfig-rack.md
 
-          - title: Composable hardware
-            location: nodes-comp-hw.md
-
-          - title: Custom node setup
-            location: nodes-custom.md
+      - title: Web UI
+        location: installconfig-webui.md
 
       - title: Images
         location: installconfig-images.md
@@ -197,8 +194,9 @@ navigation:
       - title: API client
         location: manage-libmaas.md
 
-      - title: Hardware testing scripts
-        location: nodes-scripts-cli.md
+  - title: Troubleshoot
+
+    children:
 
       - title: FAQ
         location: troubleshoot-faq.md
