@@ -105,7 +105,7 @@ the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
 [bundled-scripts]: nodes-hw-testing.md#included-scripts
 [maas-cli]: manage-cli.md
 [ssh-keys]: manage-account.md#ssh-keys
-[maas-scripts-cli]: nodes-scripts-cli.md
+[maas-scripts-cli]: nodes-hw-scripts-cli.md
 [maas-scripts-fields]: nodes-hw-scripts-fields.md
 
 <!-- IMAGES -->
