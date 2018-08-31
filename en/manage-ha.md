@@ -1,52 +1,47 @@
 Title: High Availability
 TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
-       Remove the part about stopping apache2 once port 80 redirect is removed from MAAS
-       Remove comment about 80:5240 redirect once apache/redirect is removed from MAAS
-       Update link to HAProxy upstream manual if haproxy 1.6 not used by default
-       See expanded comment on ports in this document (it's important; no pun intended)
-       There should be a section devoted to verifying that the various aspects of HA are working
 table_of_contents: True
 
 
 # High Availability
 
-This page will describe how to provide high availability (HA) for MAAS at both
-the rack controller level and the region controller level. See
-[Concepts and terms][concepts-controllers] for detailed information on what
-services are provided by each of those levels.
+This page describes how to provide high availability (HA) for MAAS at both the
+rack controller level and the region controller level. See [Concepts and
+terms][concepts-controllers] for detailed information on what services are
+provided by each of those levels.
+
+## Rack/Region controller communication
+
 
 
 ## Rack controller HA
 
-Although DHCP is handled at the rack controller level one should not worry
-about a second MAAS-managed DHCP service coming online and causing disruption.
-DHCP software is added intelligently when a new rack controller is installed
-and DHCP HA will become available as an option.
+HA environments require multiple rack controllers to act as failovers in the
+event that a rack controller fails.
 
-Install a second rack controller by reading [Rack controller][install-rackd].
+Install rack controllers by reading [Rack controller][install-rackd].
 
 ### BMC HA
 
-HA for BMC control (node power cycling) is provided out of the box once a
-second rack controller is present. MAAS will automatically identify which rack
-controller is responsible for a BMC and communication will be set up
-accordingly.
+HA for BMC control (node power cycling) is provided out of the box once a second
+rack controller is present. MAAS will automatically identify which rack
+controller is responsible for a BMC and set up communication accordingly.
 
 ### DHCP HA
 
 DHCP HA affects node management (enlistment, commissioning and deployment). It
-enables a primary and a secondary DHCP instance to serve the same VLAN where
-all lease information is replicated between rack controllers. DHCP needs to be
-MAAS-managed in order for DHCP HA to work.
+enables a primary and a secondary DHCP instance to serve the same VLAN where all
+lease information is replicated between rack controllers. MAAS-managed DHCP is a
+requirement for DHCP HA.
 
-If DHCP is being enabled for the first time after a second rack controller is
-added then enable it according to [Enabling DHCP][enabling-dhcp].
+If you are enabling DHCP for the first time after adding a second rack
+controller, please read [Enabling DHCP][enabling-dhcp].
 
-However, if the initial rack controller already has DHCP enabled then a
-reconfiguration of DHCP is in order. Simply access the VLAN in question (via
-the 'Subnets' page) and choose action 'Reconfigure DHCP'. There you will see
-the second rack controller appearing in the 'Secondary controller' field. All
-you should have to do is press the 'Reconfigure DHCP' button:
+However, if you have already enabled DHCP on your initial rack controller,
+you'll need to reconfigure DHCP. Simply access the appropriate VLAN (via the
+'Subnets' page) and choose action 'Reconfigure DHCP'. There, you will see the
+second rack controller in the 'Secondary controller' field. All you should have
+to do is press the 'Reconfigure DHCP' button:
 
 ![reconfigure DHCP][img__reconfigure-dhcp]
 
@@ -54,7 +49,7 @@ The setup of rack controller HA is now complete.
 
 !!! Note:
     For HA purposes, DHCP provisioning will take into account multiple DNS
-    services when there is more than one region controller on a single region.    
+    services when there is more than one region controller on a single region.
 
 
 ## Region controller HA
@@ -105,8 +100,8 @@ host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
 ```
 
 !!! Note:
-    It is very common for the primary database server and the primary API
-    server to reside on the same host.
+    Primary database server and the primary API server often reside on the
+    same host.
 
 Apply this change by restarting the database:
 
@@ -188,112 +183,6 @@ Now restart the load balancer to have these changes take effect:
 
 ```bash
 sudo systemctl restart haproxy
-```
-
-### Virtual IP
-
-A *virtual IP* (VIP) will be used as the effective IP address of all region API
-servers. This will be done with the aid of the
-[Keepalived][upstream-keepalived] routing software.
-
-On each API server host, install the software, load a kernel module, set it to
-load upon reboot and pass a kernel option:
-
-```bash
-sudo apt install keepalived
-sudo modprobe ip_vs
-echo 'ip_vs' | sudo tee -a /etc/modules
-echo 'net.ipv4.ip_nonlocal_bind=1' | sudo tee /etc/sysctl.d/60-keepalived-nonlocal.conf
-sudo systemctl restart procps
-```
-
-Create the file `/etc/keepalived/keepalived.conf` (see the
-[keepalived.conf man page][keepalived-man-page] as a reference) based on the
-example below. Either `apache2` or `haproxy` will be referred to, depending on
-whether load balancing (haproxy) was implemented or not (see previous section).
-
-The following variables are used:
-
-- INTERFACE: The network interface (e.g. eth0) from which the API server can be
-  reached by MAAS clients.
-- PASSWORD: Participating servers authenticate with one another using this
-  chosen password in order to synchronize. This example uses a cleartext
-  password (auth_type PASS).
-- VIP: The virtual IP. This is any IP address available on the subnet.
-- PRIORITY: An integer (1-255) that indicates a preference for the
-  corresponding API server to claim the VIP. A larger value indicates a greater
-  preference. For example, the preferred primary could have 150 while the
-  preferred secondary could have 100.
-
-Their values are represented when they are preceded with the '$' character
-(e.g. $VIP). These are to be replaced with actual values in the file.
-
-```no-highlight
-### Un-comment next 4 lines if using haproxy
-#vrrp_script chk_haproxy {
-#    script "killall -0 haproxy"
-#    interval 2
-#}
-
-### Un-comment next 4 lines if using apache2
-#vrrp_script chk_apache2 {
-#    script "killall -0 apache2"
-#    interval 2
-#}
-
-vrrp_script chk_named {
-    script "killall -0 named"
-    interval 2
-}
-
-vrrp_instance maas_region {
-    state MASTER
-    interface $INTERFACE
-    priority $PRIORITY
-    virtual_router_id 51
-    authentication {
-        auth_type PASS
-        auth_pass $PASSWORD
-    }
-    track_script {
-        ### Un-comment next line if using haproxy
-        #chk_haproxy
-        ### Un-comment next line if using apache2
-        #chk_apache2
-        chk_named
-    }
-    virtual_ipaddress {
-        $VIP
-    }
-}
-```
-
-Restart the daemon to have these changes take effect:
-
-```bash
-sudo systemctl restart keepalived
-```
-
-!!! Note:
-    If this is being done inside a container, its host needs the ip\_vs
-    module loaded and the sysctl change. A restart of the container will then be
-    required.
-
-Finally, for all API servers, replace the original IP address in the MAAS URL
-with that of the VIP. Then inform all rack controllers of that change.
-
-To adjust an API server:
-
-```bash
-sudo maas-region local_config_set --maas-url http://$VIP/MAAS
-sudo systemctl restart maas-regiond
-```
-
-To adjust a rack controller:
-
-```bash
-sudo maas-rack config --region-url http://$VIP/MAAS
-sudo systemctl restart maas-rackd
 ```
 
 The configuration of region controller HA is now complete.
