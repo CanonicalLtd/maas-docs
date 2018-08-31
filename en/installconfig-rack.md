@@ -7,8 +7,9 @@ A rack controller can be connected to multiple VLANs, each from a different
 network interface. This provides a scaling factor that can help as a network
 architecture grows in size.
 
-In regards to region controller and rack controller communication, each rack
-controller must be able to initiate TCP connections:
+## Communication with the region controller
+
+Each rack controller must be able to initiate TCP connections:
 
 - for HTTP, to each region controller on port 5240. If high availability is
   implemented then this will typically become port 80. See
@@ -16,7 +17,6 @@ controller must be able to initiate TCP connections:
 - for RPC, to each region controller between port 5250 and 5259 inclusive. This
   permits up to 10 `maas-regiond` processes on each region controller host. At
   present this is not configurable.
-
 
 ## Install a rack controller
 
@@ -76,9 +76,15 @@ Here, you are deleting a machine that is a part of MAAS itself.
     machine to re-instate itself as a rack controller. This behaviour may change
     with future versions of MAAS.
 
+## Region/Rack/Machine communication and high-availability environments
+
+Please see [High availability][manage-hd] for more information about how rack
+controllers communicate with region controllers and machines as well as how to
+use rack controllers in an HA environment.
 
 <!-- LINKS -->
 
+[manage-hd]: manage-hd.md
 [install-from-iso]: installconfig-iso-install.md
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
 [install-from-packages]: installconfig-package-install.md

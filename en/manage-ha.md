@@ -2,7 +2,6 @@ Title: High Availability
 TODO:  CDO QA (irc: cgregan/jog) might be testing/using installing HA via Juju
 table_of_contents: True
 
-
 # High Availability
 
 This page describes how to provide high availability (HA) for MAAS at both the
@@ -10,16 +9,66 @@ rack controller level and the region controller level. See [Concepts and
 terms][concepts-controllers] for detailed information on what services are
 provided by each of those levels.
 
-## Rack/Region controller communication
+## Communication between machines and rack controllers
 
+In multi-region/rack clusters (i.e. HA), all machine communication with MAAS is
+proxied through rack controllers, including HTTP metadata, DNS, syslog and Squid
+proxy.  Note that in single-region/rack clusters, the region controller manages
+communication.
 
+Proxying through rack controllers is useful in environments where communication
+between machines and region controllers is restricted for some reason.
+
+### DNS/Squid proxy
+
+MAAS creates an internal DNS domain (not manageable by the user) and a special
+DNS resource for each subnet that is managed by MAAS. Each subnet includes all
+rack controllers that have an IP on that subnet. Booting machines use the subnet
+DNS resource to resolve the rack controller available for communication. If
+multiple rack controllers belong to the same subnet, MAAS uses a round-robin
+algorithm to balance the load across multiple rack controllers. This ensures
+that machines always have a rack controller.
+
+The rack controller installs and configures `bind` as a forwarder. All machines
+communicate via the rack controller directly.
+
+!!! Note:
+    Zone management and maintenance still happen within the region controller.
+
+### HTTP
+
+The rack controller installs `nginx`, which serves as a proxy and as an HTTP
+server, binding to port 5248. Machines contact the metadata server via the rack
+controller.
 
 ## Rack controller HA
 
-HA environments require multiple rack controllers to act as failovers in the
-event that a rack controller fails.
+Please see [Rack controller][install-rackd] to learn how to install rack
+controllers.
 
-Install rack controllers by reading [Rack controller][install-rackd].
+## Multiple region endpoints
+
+Administrators can specify multiple region-controller endpoints for a single
+rack controller by adding entries to `/etc/maas/rackd.conf`.
+
+E.g.
+
+```
+.
+.
+.
+maas_url:
+  - http://<ip 1>:<port>/MAAS/
+  - http://<ip 2>:<port>/MAAS/
+.
+.
+.
+```
+
+Note that future releases of MAAS will include the ability to automatically
+discover and track all available region controllers in a single cluster, as well
+as automatically attempt to connect to them in the event that one becomes
+inaccessible.
 
 ### BMC HA
 
@@ -58,7 +107,6 @@ Implementing region controller HA involves setting up:
 
 - PostgreSQL HA
 - Secondary API server(s)
-- Virtual IP address
 
 Load balancing is optional.
 
@@ -100,8 +148,7 @@ host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
 ```
 
 !!! Note:
-    Primary database server and the primary API server often reside on the
-    same host.
+    The primary database and API servers often reside on the same host.
 
 Apply this change by restarting the database:
 
@@ -138,21 +185,24 @@ Check the log files for any errors:
 - `/var/log/maas/maas.log`
 - `/var/log/syslog`
 
-### Load balancing (optional)
+### Load balancing with HAProxy (optional)
 
-Load balancing can be added with the [HAProxy][upstream-haproxy] load
-balancer software.
+Load balancing can be added with [HAProxy][upstream-haproxy] load balancing
+software to support multiple API servers. In this setup, HAProxy provides access
+to the MAAS web UI and API.
 
-On each API server host, before `haproxy` is installed, `apache2` needs to be
-stopped (and disabled). This is because both apache2 and haproxy listen on the
-same port (TCP 80). Recall that Apache is only used to redirect port 80 to port
-5240.
+!!! Note:
+    If you happen to have Apache running on the same server where you intend to
+    install HAProxy, you will need to stop and disable `apache2`, because
+    HAProxy binds to port 80.
+
+#### Install
 
 ```bash
-sudo systemctl stop apache2
-sudo systemctl disable apache2
 sudo apt install haproxy
 ```
+
+#### Configure
 
 Configure each API server's load balancer by copying the following into
 `/etc/haproxy/haproxy.cfg` (see the
@@ -194,6 +244,7 @@ port 80 (as opposed to port 5240).**
 <!-- LINKS -->
 
 [concepts-controllers]: intro-concepts.md#controllers
+[rackd-communication]: installconfig-rack.md#communication-between-machines-and-rack-controllers
 [install-rackd]: installconfig-rack.md#install-a-rack-controller
 [enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
 [keepalived-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf
