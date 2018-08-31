@@ -6,14 +6,8 @@ Title: IPv6
 Current support for IPv6 in MAAS is similar to support for IPv4 but with the
 following caveats:
 
-- MAAS uses IPv4 for its internal operation (adding/deploying nodes).
-- IPv6 is only supported on networks where MAAS also manages IPv4 DHCP.
-- A node's network interface can be on only a single IPv6 subnet.
-- A rack controller's network interface can only manage a single IPv6 subnet.
-
 A rack controller in an IPv6 context needs to have the region API server URL
-specified by hostname. See [Install a rack controller][install-rackd] for
-details.
+specified with brackets for the URL. 
 
 The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
 server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
@@ -31,8 +25,7 @@ http://[::1]:5240/MAAS/
 ## Enable IPv6
 
 You enable IPv6 networking in the same way that you enable IPv4 networking:
-configure a separate rack controller interface for your IPv6 subnet, in
-addition to the one you need for your IPv4 subnet. The IPv6 interface must
+configure a separate rack controller interface for your IPv6 subnet. The IPv6 interface must
 define a static address range. Provided that you already have a functioning
 IPv6 network, that's all there is to it. The following sections will go into
 more detail about what is supported, what is needed, and what to do if you
