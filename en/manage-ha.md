@@ -17,7 +17,7 @@ proxy.  Note that in single-region/rack clusters, the region controller manages
 communication.
 
 Proxying through rack controllers is useful in environments where communication
-between machines and region controllers is restricted for some reason.
+between machines and region controllers.
 
 ### DNS/Squid proxy
 
@@ -43,10 +43,10 @@ controller.
 
 ## Rack controller HA
 
-Please see [Rack controller][install-rackd] to learn how to install rack
-controllers.
+Multiple rack controllers are necessary to acheive high availability. Please see
+[Rack controller][install-rackd] to learn how to install rack controllers.
 
-## Multiple region endpoints
+### Multiple region endpoints
 
 Administrators can specify multiple region-controller endpoints for a single
 rack controller by adding entries to `/etc/maas/rackd.conf`.
