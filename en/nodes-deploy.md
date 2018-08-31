@@ -91,6 +91,28 @@ action.
 
 See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
 
+## Customizing node deployments
+
+Machine deployments can be customized by passing custom cloud-init user-data. This allows for customization per-deployment basis, similarly to how its done in other cloud environments.
+
+This capability is only available over the CLI (API).
+
+As an example, cloud-init user-data allows you to provide a script to be used as a user data. In this example you can create a script as follows (install.sh):
+
+```bash
+#!/bin/sh
+(
+echo ======== Hi World ======================
+echo ============== $(date) =================
+apt-get install apache2
+) | tee /install-apache2.log
+```
+
+Now, you can deploy the machine and provide this user data:
+```bash
+script=$(base64 install.sh)
+maas < user > machine deploy < system-id > user_data=$script distro_series=bionic
+```
 
 <!-- LINKS -->
 
