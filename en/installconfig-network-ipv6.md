@@ -3,22 +3,16 @@ Title: IPv6
 
 # IPv6
 
-Current support for IPv6 in MAAS is similar to support for IPv4 but with the
-following caveats:
+Support for IPv6 in MAAS is similar to support for IPv4. Please note the
+following:
 
-- MAAS uses IPv4 for its internal operation (adding/deploying nodes).
-- IPv6 is only supported on networks where MAAS also manages IPv4 DHCP.
-- A node's network interface can be on only a single IPv6 subnet.
-- A rack controller's network interface can only manage a single IPv6 subnet.
++ A rack controller in an IPv6 context needs to have the region API server URL
+  specified with brackets, similar to the example below.
 
-A rack controller in an IPv6 context needs to have the region API server URL
-specified by hostname. See [Install a rack controller][install-rackd] for
-details.
-
-The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
-server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
-address in a URL surround it with square brackets. For example, on the local
-machine (`::1`, the IPv6 equivalent of `localhost`):
++ The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
+  server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
+  address in a URL, surround it with square brackets. For example, on the local
+  machine (`::1`, the IPv6 equivalent of `localhost`):
 
 ```nohighlight
 http://[::1]:5240/MAAS/
@@ -27,12 +21,10 @@ http://[::1]:5240/MAAS/
 !!! Note: 
     Most BMCs can only be controlled over IPv4.
 
-
 ## Enable IPv6
 
 You enable IPv6 networking in the same way that you enable IPv4 networking:
-configure a separate rack controller interface for your IPv6 subnet, in
-addition to the one you need for your IPv4 subnet. The IPv6 interface must
+configure a separate rack controller interface for your IPv6 subnet. The IPv6 interface must
 define a static address range. Provided that you already have a functioning
 IPv6 network, that's all there is to it. The following sections will go into
 more detail about what is supported, what is needed, and what to do if you
