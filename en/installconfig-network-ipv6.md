@@ -3,16 +3,16 @@ Title: IPv6
 
 # IPv6
 
-Current support for IPv6 in MAAS is similar to support for IPv4 but with the
-following caveats:
+Support for IPv6 in MAAS is similar to support for IPv4. Please note the
+following:
 
-A rack controller in an IPv6 context needs to have the region API server URL
-specified with brackets for the URL. 
++ A rack controller in an IPv6 context needs to have the region API server URL
+  specified with brackets, similar to the example below.
 
-The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
-server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
-address in a URL surround it with square brackets. For example, on the local
-machine (`::1`, the IPv6 equivalent of `localhost`):
++ The [Web UI][webui] and the [MAAS CLI][manage-cli] (logging in to the API
+  server) can be accessed in the same way on both IPv4 and IPv6. To use an IPv6
+  address in a URL, surround it with square brackets. For example, on the local
+  machine (`::1`, the IPv6 equivalent of `localhost`):
 
 ```nohighlight
 http://[::1]:5240/MAAS/
@@ -20,7 +20,6 @@ http://[::1]:5240/MAAS/
 
 !!! Note: 
     Most BMCs can only be controlled over IPv4.
-
 
 ## Enable IPv6
 
