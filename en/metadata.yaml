@@ -67,6 +67,9 @@ navigation:
 
           - title: Commissioning and Hardware testing scripts
             location: nodes-scripts.md
+          
+          - title: Resource pools
+            location: nodes-resource-pools.md
 
           - title: Pods
             location: nodes-comp-hw.md
