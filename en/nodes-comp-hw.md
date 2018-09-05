@@ -1,5 +1,5 @@
 Title: Pods
-TODO:  Track bug: https://bugs.launchpad.net/maas/+bug/1688066
+TODO:  
 table_of_contents: True
 
 
@@ -9,7 +9,7 @@ Pods, or composable hardware, allow for the dynamic composition of nodes from a 
 of available hardware resources (e.g. disk space, memory, cores).
 
 This enables a machine request to be made without having machines pre-built.
-Modelling tools, such as [Juju][about-juju], can leverage this functionality
+Modeling tools, such as [Juju][about-juju], can leverage this functionality
 when requesting a machine from MAAS, which will dynamically **create** and
 Deploy one. Machines can also be requested directly from within MAAS.
 
@@ -25,7 +25,9 @@ MAAS currently supports two such architectures:
 See [MAAS CLI - Composable hardware][cli-comp-hw] for how to manage composable
 hardware with the CLI.
 
-#### Virsh pod considerations
+## Virsh pods
+
+### Networking
 
 When using Virsh pods, the KVM host will typically have a network bridge set up with
 a libvirt network configured to use it.
@@ -35,14 +37,177 @@ libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
 the VLAN associated with the libvirt subnet of 192.168.122.0/24. MAAS will
 first look for a libvirt network named 'maas', then for 'default'.
 
+MAAS supports more complex methods for assigning interfaces to pods. See [the
+Interfaces section][pod-interfaces] below for more information.
+
+<details>
+
+<summary>Use the MAAS CLI to manage VM interfaces</summary>
+
+&nbsp;
+
+Using the CLI and the `interfaces` constraint, you can compose virtual machines
+with interfaces, allowing the selection of pod NICs. `interfaces` contstraints
+are available in the [`machines allocate`][api-allocate] or [`pod
+compose`][api-compose] endpoints.
+
+If you don't specify an `interfaces` constraint, MAAS maintains backward
+compatibility by checking for a `maas` network, then a `default` network to
+which to connect the virtual machine.
+
+If you specify an `interfaces` constraint, MAAS creates a `bridge` or `macvlan`
+attachment to the networks that match the given contraint. MAAS prefers `bridge`
+interface attachments when possible, since this typically results in successful
+communication.
+
+#### Interface constraint examples
+
+Consider the following interfaces constraint:
+
+```
+interfaces=eth0:space=maas,eth1:space=storage
+```
+
+Assuming the pod is deployed on a machine or controller with access to the
+`maas` and `storage` [spaces][spaces], MAAS will create an `eth0` interface
+bound to the `maas` space and an `eth1` interface bound to the `storage` space.
+
+Another example tells MAAS to assign unallocated IP addresses:
+
+```
+interfaces=eth0:ip=192.168.0.42
+```
+
+MAAS automatically converts the `ip` constraint to a VLAN constraint (for the
+VLAN where its subnet can be found) and assigns the IP address to the
+newly-composed machine upon allocation.
+
+See the [MAAS API documentation][api-allocate] for a list of all constraint
+keys.
+
+</details>
+
+### Storage
+
 Virsh pods can optionally use a default *storage pool*. This feature uses
 storage tags to map a storage pool in libvirt with a storage tag in MAAS.
 
-- with no default storage pool defined, MAAS selects the storage pool with the
-  most available space. 
-- when a default storage pool is defined, all machines subsequently composed
+- With no default storage pool defined, MAAS selects the storage pool with the
+  most available space.
+- When a default storage pool is defined, all machines subsequently composed
   within the pod will have their storage block devices created from the default
   storage pool.
+
+See [libvirt storage][about-libvirt-storage] for more information about libvirt
+storage.
+
+<details>
+<summary>Use the MAAS CLI to track libvirt storage pools.</summary>
+
+&nbsp;
+
+Retrieve pod storage pool information with the following command:
+
+```
+maas $PROFILE pod read $POD_ID
+```
+
+Where `$PROFILE` is your MAAS login id and `$POD_ID` is the integer ID of your
+pod. The output contains a list of storage pools associated with your pod and
+contains usage information.
+
+Example:
+
+```
+Success.
+Machine-readable output follows:
+{
+    "used": {
+        "cores": 50,
+        "memory": 31744,
+        "local_storage": 63110426112
+    },
+    "name": "more-toad",
+    "id": 5,
+    "available": {
+        "cores": 5,
+        "memory": 4096,
+        "local_storage": 153199988295
+    },
+    "architectures": [],
+    "cpu_over_commit_ratio": 1.0,
+    "storage_pools": [
+        {
+            "id": "pool_id-zvPk9C",
+            "name": "name-m0M4ZR",
+            "type": "lvm",
+            "path": "/var/lib/name-m0M4ZR",
+            "total": 47222731890,
+            "used": 17226931712,
+            "available": 29995800178,
+            "default": true
+        },
+        {
+            "id": "pool_id-qF87Ps",
+            "name": "name-ZMaIta",
+            "type": "lvm",
+            "path": "/var/lib/name-ZMaIta",
+            "total": 98566956569,
+            "used": 15466229760,
+            "available": 83100726809,
+            "default": false
+        },
+        {
+            "id": "pool_id-a6lyw5",
+            "name": "name-RmDPfs",
+            "type": "lvm",
+            "path": "/var/lib/name-RmDPfs",
+            "total": 70520725948,
+            "used": 30417264640,
+            "available": 40103461308,
+            "default": false
+        }
+    ],
+    "total": {
+        "cores": 55,
+        "memory": 35840,
+        "local_storage": 216310414407
+    },
+    "tags": [],
+    "type": "virsh",
+    "memory_over_commit_ratio": 1.0,
+    "pool": {
+        "name": "default",
+        "description": "Default pool",
+        "id": 0,
+        "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+    },
+    "zone": {
+        "name": "default",
+        "description": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/zones/default/"
+    },
+    "capabilities": [
+        "dynamic_local_storage",
+        "composable"
+    ],
+    "host": {
+        "system_id": null,
+        "__incomplete__": true
+    },
+    "default_macvlan_mode": null,
+    "resource_uri": "/MAAS/api/2.0/pods/5/"
+}
+```
+
+</details>
+
+### Supported architectures
+
+MAAS KVM pods support `amd64`-, `ppc64el`-, and `arm64`-based architectures,
+provided hypervisors for these architectures are running at least Ubuntu 18.04.
+MAAS KVM pods running on `amd64` support older versions of Ubuntu.
 
 ## Web UI
 
@@ -71,9 +236,12 @@ Once added, MAAS will automatically discover and store the resources that a
 Pod contains. Any pre-composed machines will also appear on the 'Machines' page
 and be commissioned. 
 
-This is how a Virsh Pod is added:
+#### Virsh pods
+
+This is how a virsh pod is added:
 
 ![add Virsh pod][img__pod-add-virsh]
+
 
 ### List Pods
 
@@ -168,11 +336,16 @@ corresponding nodes from MAAS.
 
 <!-- LINKS -->
 
+[pod-interfaces]: nodes-comp-hw.md#interfaces
+[api-allocate]: api.md#post-maasapi20machines-opallocate
+[api-compose]: api.md#post-maasapi20podsid-opcompose
+[spaces]: intro-concepts.md#spaces
 [cli-comp-hw]: manage-cli-comp-hw.md
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [webui]: installconfig-webui.md
 [launchpad-bug-1688066]: https://bugs.launchpad.net/maas/+bug/1688066
 [virsh-pods]: nodes-comp-virsh.md
+[about-libvirt-storage]: https://libvirt.org/storage.html
 
 [img__pod-initial-page]: ../media/nodes-comp-hw__2.4_pod-initial-page.png
 [img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
