@@ -1,0 +1,6 @@
+1. Mangled example in the first section about authorisation
+2. Pod section has mangled bit: <label> . . . with no ``
+3. Pod section also has mangled list of keys that needs to be manually converted
+   to - `foo`: blah
+4. Mangled list in the beginning of http method types: GET, POST, PUT, DELETE
+5. Search for 'for_hardware'
