@@ -43,7 +43,7 @@ fi
 (
   set -x
   cd $API_MD_DIR
-  printf "Title: API | MAAS\ntable_of_contents: True\n\n" > api.md; cat $API_RST | sed -n '/========/,$p' | sed -E '/\.\. raw:: html|^::/!s/:/:\n / 2' | sed '/^::/!s/^:\([a-z0-9 _{}]*\):/MDSTARTDEF\1MDENDDEF/g' | sed 's/_{/MDCURLYFIX/g' | pandoc --from=rst --to=markdown+backtick_code_blocks+pipe_tables+definition_lists+compact_definition_lists --column=78 --atx-headers | sed 's/MDSTARTDEF/-/1' | sed 's/MDENDDEF//g' | sed 's/MDCURLYFIX/_{/g'| sed 's/: / /g'| sed 's/\\_/_/g'| sed 's/#### /##### /g'| sed 's/^ / /g'  | sed 's/\[Power types\]()/[Power types](#power-types)/' >> api.md
+  printf "Title: API | MAAS\ntable_of_contents: True\n\n" > api.md; cat $API_RST | sed -n '/========/,$p' | sed -E '/\.\. raw:: html|^::/!s/:/:\n / 2' | sed '/^::/!s/^:\([a-z0-9 _{}]*\):/MDSTARTDEF\1MDENDDEF/g' | sed 's/_{/MDCURLYFIX/g' | pandoc --from=rst --to=markdown+backtick_code_blocks+pipe_tables+definition_lists+compact_definition_lists --column=78 --atx-headers | sed 's/MDSTARTDEF/- `/1' | sed 's/MDENDDEF/`:/g' | sed 's/MDCURLYFIX/_{/g'| sed 's/: / /g'| sed 's/\\_/_/g'| sed 's/#### /##### /g'| sed 's/^ / /g'  | sed 's/\[Power types\]()/[Power types](#power-types)/' >> api.md
   set +x
   echo "Conversion completed. See $API_MD_DIR/api.md."
 )
