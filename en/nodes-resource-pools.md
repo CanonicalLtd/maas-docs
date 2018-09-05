@@ -52,7 +52,6 @@ back to the default resource pool.
 
 <!-- LINKS -->
 
-[cli-resource-pools]: manage-cli-resource-pools.md
 [webui]: installconfig-webui.md
 
 [img__add-pool]: ../media/nodes-resource-pools__2.5_add-pool.png
