@@ -14,9 +14,6 @@ This latest release of MAAS:
 + Improves communications between controllers and machines
 + Simplifies setting up high-availability environments
 + Provides additional KVM Pod features
-    + Virtual machine composition
-    + Storage pools
-    + New architectures
 + Adds new features for adding and commissioning machines
 + Introduces resource pools
 + Introduces ESXi deployment
@@ -133,7 +130,7 @@ MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
 + Network configuration is not yet supported. MAAS 2.5.0 provides basic
   networking configuration: static IP addresses on non-VLAN or bonded
   interfaces. Future versions of MAAS will support NIC teaming and VLANs.
-+ Post-installation is not available over preseeds, for example
++ Post-installation is not available over preseeds, for example:
   `curtin_userdata`. Users can customize images they create to deploy with MAAS.
 
 !!! Note:

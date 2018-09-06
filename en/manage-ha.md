@@ -5,7 +5,7 @@ table_of_contents: True
 # High Availability
 
 This page describes how to provide high availability (HA) for MAAS at both the
-rack controller level and the region controller level. See [Concepts and
+rack-controller level and the region-controller level. See [Concepts and
 terms][concepts-controllers] for detailed information on what services are
 provided by each of those levels.
 

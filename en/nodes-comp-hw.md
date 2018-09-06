@@ -204,9 +204,10 @@ Machine-readable output follows:
 
 ### Supported architectures
 
-MAAS KVM pods support `amd64`-, `ppc64el`-, and `arm64`-based architectures,
-provided hypervisors for these architectures are running at least Ubuntu 18.04.
-MAAS KVM pods running on `amd64` support older versions of Ubuntu.
+MAAS KVM pods support `i386`-, `amd64`-, `ppc64el`- and `arm64`-based
+architectures, provided hypervisors for these architectures are running at least
+Ubuntu 18.04.  MAAS KVM pods running on `amd64` support older versions of
+Ubuntu.
 
 ## Web UI
 
