@@ -35,7 +35,7 @@ netboot. Such a machine will undergo the following process:
 1. kernel and initrd are received over TFTP
 1. machine boots
 1. initrd mounts a Squashfs image ephemerally over HTTP
-1. cloud-init runs enlistment scripts
+1. cloud-init runs enlistment and commissioning scripts
 1. machine shuts down
 
 The enlistment scripts will send the region API server information about the
@@ -43,9 +43,12 @@ machine, including the architecture, MAC address and other details which will
 be stored in the database. This information-gathering process is known as
 *automatic discovery*.
 
-Since any system booting off the network can enlist, the enlistment and
-commission steps are separate. This allows an administrator to "accept" an
-enlisted machine into MAAS.
+After the enlistment process, the machine will be placed in the 'New' state.
+
+!!! Note:
+    In subsequent releases of MAAS, administrators will be able to make a
+    machine 'Ready' simply by running hardware tests. For now, administrators
+    will need to Commission the new machine.
 
 As an alternative to enlistment, an administrator can add a node manually (see
 [below][anchor-add-a-node-manually]). Typically this is done when enlistment
