@@ -81,9 +81,8 @@ and what information a script is gathering. A script can have the following fiel
   MAAS will allow up to 20 minutes between heatbeats while running a script
   with `may_reboot` set to True.
 - `recommission`: After all commissioning scripts have finished running rerun
-- `script_type`: *commissioning* or *test*. Commissioning script or hardware
-  testing script.
-
+- `script_type`: *commissioning* or *test*. Indicates whether the script should
+  be run during commissioning or hardware testing.
 
 ## Parameters
 
