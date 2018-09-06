@@ -82,6 +82,8 @@ and what information a script is gathering. A script can have the following fiel
   with `may_reboot` set to True.
 - `recommission`: After all commissioning scripts have finished running rerun
   the builtin commissioning scripts to rediscover hardware.
+- `script_type`: *commissioning* or *test*. Indicates whether the script should
+  be run during commissioning or hardware testing.
 
 
 ## Parameters
