@@ -98,7 +98,7 @@ specify IPMI credentials or a non-PXE MAC address for non-IPMI machines. MAAS
 automatically discovers the machine and runs the enlistment configuration by
 matching either the BMC address or the non-PXE MAC address.
 
-See [Add nodes][add-nodes] for more information.
+See [Power types][api-power-types] for more information.
 
 ### Commissioning scripts during enlistment
 
@@ -108,6 +108,10 @@ subsequently make a machine "Ready" simply by running hardware tests.
 
 For more details, see [Commission nodes][commission-nodes], and [Add
 nodes][enlistment-nodes].
+
+For more information about enlistment, commissioning and creating customized
+commissioning scripts, see [Add nodes][enlistment-nodes], [Commission
+nodes][commission-nodes], and [Commission scripts][commission-scripts].
 
 ## Resource pools
 
@@ -135,7 +139,7 @@ MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
     Currently, ESXi support is provided for [Ubuntu Advantage][advantage]
     customers only.
 
-For more informationa about MAAS images, see [Images][images].
+For more information about MAAS images, see [Images][images].
 
 ## Enhanced web UI
 
@@ -152,6 +156,7 @@ MAAS 2.5.0 introduces improved API documentation for [Zones][api-zones] and
 enhanced API documentation across all operations.
 
 <!-- LINKS -->
+[api-power-types]: api.md#power-types
 [api-zones]: api.md#zones
 [api-resource-pools]: api.md#resource-pools
 [supported-architectures]: nodes-comp-hw.md#supported-architectures
@@ -160,6 +165,7 @@ enhanced API documentation across all operations.
 [composing-kvm-machines]: nodes-comp-hw.md#virsh-pods
 [high-availability]: manage-ha.md
 [images]: installconfig-images.md
+[commission-scripts]: nodes-scripts.md
 [commission-nodes]: nodes-commission.md
 [enlistment-nodes]: nodes-add.md#enlistment
 [add-nodes]: nodes-add.md

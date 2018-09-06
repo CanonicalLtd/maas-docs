@@ -3,15 +3,20 @@ table_of_contents: True
 
 # Commissioning and Hardware Testing Scripts
 
-Commissioning and hardware testing scripts are used by MAAS while
-commissioning and testing a node respectively. *Commissioning scripts* are used
-to configure hardware or perform other tasks during commissioning, such as
-updating firmware, whereas *hardware testing scripts* are used to evaluate system
-hardware and report its status. 
+MAAS runs various scripts during enlistment, commissioning and testing to
+collect data about nodes. *Commissioning scripts* are used to configure hardware
+or perform other tasks during commissioning, such as updating firmware, whereas
+*hardware testing scripts* are used to evaluate system hardware and report its
+status.
 
-Scripts can be selected to run from web UI 
-[during commissioning][maas-commission], by [testing
-hardware][hardware-testing] or from the [command line][maas-scripts-cli].
+!!! Note:
+    MAAS runs built-in commissioning scripts only during enlistment. This means
+    custom commission scripts will have access to data collected during
+    enlistment by the built-in scripts.
+
+Scripts can be selected to run from web UI [during
+commissioning][maas-commission], by [testing hardware][hardware-testing] or from
+the [command line][maas-scripts-cli].
 
 This page explains the various metadata fields used within these scripts, how
 parameters are passed to scripts and how any results are returned, along with
@@ -19,10 +24,21 @@ examples of both commissioning and hardware testing scripts.
 
 !!! Note:
     By default, all commissioning scripts will be run except those which use the
-    `for_hardware` feature. Similarly, any test script tagged `commissioning` will
-    be run during commissioning or testing. 
-    [See below](#automatic-script-selection-by-hardware-type) for more details.
+    `for_hardware` feature. Similarly, any test script tagged `commissioning`
+    using the `script_type` parameter will be run during commissioning or
+    testing.  [See below](#automatic-script-selection-by-hardware-type) for more
+    details.
 
+A typical administrator workflow (with node states) using customized
+commissioning scripts is represented here:
+
+Add node -> Enlistment (runs built-in commissioning scripts) -> New ->
+Commission (runs built-in and custom commissioning scripts) -> Ready -> Deploy
+
+!!! Note:
+    In subsequent releases of MAAS, administrators will be able to make a
+    machine 'Ready' simply by running hardware tests. For now, administrators
+    will need to Commission the new machine.
 
 ## Metadata fields
 
@@ -78,7 +94,7 @@ and what information a script is gathering. A script can have the following fiel
     - `Mainboard Vendor`: Starts with 'mainboard_vendor:'.
     - `Mainboard Product`: Starts with 'mainboard_product:'.
 - `may_reboot`: When True indicates to MAAS the script may reboot the machine.
-  MAAS will allow up to 20 minutes between heatbeats while running a script
+  MAAS will allow up to 20 minutes between heartbeats while running a script
   with `may_reboot` set to True.
 - `recommission`: After all commissioning scripts have finished running rerun
 - `script_type`: *commissioning* or *test*. Indicates whether the script should

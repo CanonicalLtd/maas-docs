@@ -43,7 +43,7 @@ controller.
 
 ## Rack controller HA
 
-Multiple rack controllers are necessary to acheive high availability. Please see
+Multiple rack controllers are necessary to achieve high availability. Please see
 [Rack controller][install-rackd] to learn how to install rack controllers.
 
 ### Multiple region endpoints

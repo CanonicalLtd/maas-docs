@@ -15,7 +15,7 @@ undergo the following process:
 1. kernel and initrd are received over TFTP
 1. machine boots
 1. initrd mounts a Squashfs image ephemerally over HTTP
-1. cloud-init runs commissioning scripts
+1. cloud-init runs built in and [custom commissioning scripts][nodes-scripts]
 1. machine shuts down
 
 The commissioning scripts will talk to the region API server to ensure that
@@ -210,6 +210,7 @@ allocation time using the API.
 
 <!-- LINKS -->
 
+[nodes-scripts]: nodes-scripts.md
 [add-nodes]: nodes-add.md
 [cli-commission-a-node]: manage-cli-common.md#commission-a-node
 [tags]: nodes-tags.md

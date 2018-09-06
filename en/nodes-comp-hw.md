@@ -37,8 +37,8 @@ libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
 the VLAN associated with the libvirt subnet of 192.168.122.0/24. MAAS will
 first look for a libvirt network named 'maas', then for 'default'.
 
-MAAS supports more complex methods for assigning interfaces to pods. See [the
-Interfaces section][pod-interfaces] below for more information.
+MAAS supports more complex methods for assigning interfaces to pods. Open the
+following section for more information.
 
 <details>
 
@@ -47,7 +47,7 @@ Interfaces section][pod-interfaces] below for more information.
 &nbsp;
 
 Using the CLI and the `interfaces` constraint, you can compose virtual machines
-with interfaces, allowing the selection of pod NICs. `interfaces` contstraints
+with interfaces, allowing the selection of pod NICs. `interfaces` constraints
 are available in the [`machines allocate`][api-allocate] or [`pod
 compose`][api-compose] endpoints.
 
@@ -56,7 +56,7 @@ compatibility by checking for a `maas` network, then a `default` network to
 which to connect the virtual machine.
 
 If you specify an `interfaces` constraint, MAAS creates a `bridge` or `macvlan`
-attachment to the networks that match the given contraint. MAAS prefers `bridge`
+attachment to the networks that match the given constraint. MAAS prefers `bridge`
 interface attachments when possible, since this typically results in successful
 communication.
 
@@ -336,7 +336,6 @@ corresponding nodes from MAAS.
 
 <!-- LINKS -->
 
-[pod-interfaces]: nodes-comp-hw.md#interfaces
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [api-compose]: api.md#post-maasapi20podsid-opcompose
 [spaces]: intro-concepts.md#spaces

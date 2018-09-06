@@ -22,10 +22,6 @@ understand node statuses and node actions. See
 [Node statuses][concepts-statuses] and [Node actions][concepts-actions]
 respectively.
 
-Typically, the next step will be to *commission* the node. See
-[Commission nodes][commission-nodes].
-
-
 ## Enlistment
 
 As explained, to enlist, the underlying machine needs to be configured to
@@ -35,7 +31,7 @@ netboot. Such a machine will undergo the following process:
 1. kernel and initrd are received over TFTP
 1. machine boots
 1. initrd mounts a Squashfs image ephemerally over HTTP
-1. cloud-init runs enlistment and commissioning scripts
+1. cloud-init runs enlistment and built-in commissioning scripts
 1. machine shuts down
 
 The enlistment scripts will send the region API server information about the
@@ -45,10 +41,16 @@ be stored in the database. This information-gathering process is known as
 
 After the enlistment process, the machine will be placed in the 'New' state.
 
+Typically, the next step will be to *commission* the node. See
+[Commission nodes][commission-nodes].
+
 !!! Note:
-    In subsequent releases of MAAS, administrators will be able to make a
-    machine 'Ready' simply by running hardware tests. For now, administrators
-    will need to Commission the new machine.
+
+    MAAS runs built-in commissioning scripts during the enlistment phase so that
+    when you commission a node, any customized commissioning scripts you add
+    will have access to data collected during enlistment. Follow the link above
+    for more information about commissioning and commission scripts.
+
 
 As an alternative to enlistment, an administrator can add a node manually (see
 [below][anchor-add-a-node-manually]). Typically this is done when enlistment
@@ -98,7 +100,8 @@ Still as user 'maas', test connecting to the KVM host with virsh:
 virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 ```
 
-This should work seamlessly because the private key is passphraseless.
+This should work seamlessly because the private key does not require a
+passphrase.
 
 !!! Note:
     Insufficient permissions for $USER may cause the `virsh` command to fail
