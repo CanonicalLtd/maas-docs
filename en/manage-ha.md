@@ -11,13 +11,13 @@ provided by each of those levels.
 
 ## Communication between machines and rack controllers
 
-In multi-region/rack clusters (i.e. HA), all machine communication with MAAS is
+In multi-region/rack clusters (i.e. HA clusters), all machine communication with MAAS is
 proxied through rack controllers, including HTTP metadata, DNS, syslog and Squid
 proxy.  Note that in single-region/rack clusters, the region controller manages
 communication.
 
 Proxying through rack controllers is useful in environments where communication
-between machines and region controllers.
+between machines and region controllers is restricted.
 
 ### DNS/Squid proxy
 
@@ -187,7 +187,7 @@ Check the log files for any errors:
 
 ### Load balancing with HAProxy (optional)
 
-Load balancing can be added with [HAProxy][upstream-haproxy] load balancing
+Load balancing can be added with [HAProxy][upstream-haproxy] load-balancing
 software to support multiple API servers. In this setup, HAProxy provides access
 to the MAAS web UI and API.
 

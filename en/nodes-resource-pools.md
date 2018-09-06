@@ -8,9 +8,6 @@ Resource pools allow administrators to logically group resources (nodes) into
 pools. All MAAS installations have a resource pool named "default." New machines
 are automatically added to the default resource pool.
 
-See [MAAS CLI - Resource pools][cli-resource-pools] for how to manage
-resource pools with the CLI.
-
 ## Web UI
 
 See [Web UI][webui] for how to get started with the web UI.

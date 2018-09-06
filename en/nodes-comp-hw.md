@@ -47,8 +47,8 @@ following section for more information.
 &nbsp;
 
 Using the CLI and the `interfaces` constraint, you can compose virtual machines
-with interfaces, allowing the selection of pod NICs. `interfaces` constraints
-are available in the [`machines allocate`][api-allocate] or [`pod
+with interfaces, allowing the selection of pod NICs. The `interfaces` constraint
+is available in the [`machines allocate`][api-allocate] or [`pod
 compose`][api-compose] endpoints.
 
 If you don't specify an `interfaces` constraint, MAAS maintains backward
@@ -98,8 +98,7 @@ storage tags to map a storage pool in libvirt with a storage tag in MAAS.
   within the pod will have their storage block devices created from the default
   storage pool.
 
-See [libvirt storage][about-libvirt-storage] for more information about libvirt
-storage.
+See [libvirt storage][about-libvirt-storage] for more information.
 
 <details>
 <summary>Use the MAAS CLI to track libvirt storage pools.</summary>

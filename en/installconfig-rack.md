@@ -78,13 +78,13 @@ Here, you are deleting a machine that is a part of MAAS itself.
 
 ## Region/Rack/Machine communication and high-availability environments
 
-Please see [High availability][manage-hd] for more information about how rack
+Please see [High availability][manage-ha] for more information about how rack
 controllers communicate with region controllers and machines as well as how to
 use rack controllers in an HA environment.
 
 <!-- LINKS -->
 
-[manage-hd]: manage-hd.md
+[manage-ha]: manage-ha.md
 [install-from-iso]: installconfig-iso-install.md
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
 [install-from-packages]: installconfig-package-install.md

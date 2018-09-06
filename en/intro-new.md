@@ -39,15 +39,16 @@ following MAAS Discourse topics:
 In previous versions of MAAS, machines interacted directly with the region
 controller to access HTTP metadata, DNS, syslog and Squid (proxy). Because some
 MAAS environments restrict communications between machines and the region
-controller, starting with MAAS 2.5, HTTP metadata, DNS, syslog and Squid are
-proxied through rack controllers.
+controller, starting with MAAS 2.5, for multi-rack/region clusters, HTTP
+metadata, DNS, syslog and Squid are proxied through rack controllers.
 
 !!! Note:
     For single-rack/region clusters, machines will continue to communicate with
     the region controller directly.
 
-See [Rack controller][rack-controller] for more detailed information about how
-rack controllers communicate with MAAS.
+See [High availability][high-availability] for more detailed information about
+how rack controllers and machines communicate with MAAS in multi-rack/region
+clusters.
 
 ## Simplifying rack-to-region configuration in high-availability (HA) setups
 
@@ -102,12 +103,12 @@ See [Power types][api-power-types] for more information.
 
 ### Commissioning scripts during enlistment
 
-Starting with MAAS 2.5, MAAS runs all provided commissioning scripts during
-enlistment, gathering the minimum required information. Administrators can
-subsequently make a machine "Ready" simply by running hardware tests.
+Starting with MAAS 2.5, MAAS runs all built-in commissioning scripts during
+enlistment so that the collected data may be used during commissioning when
+MAAS runs user-provided custom scripts.
 
-For more details, see [Commission nodes][commission-nodes], and [Add
-nodes][enlistment-nodes].
+In a future MAAS release, machines will be able to enter the Ready state
+automatically after enlistment if a node passes the hardware tests.
 
 For more information about enlistment, commissioning and creating customized
 commissioning scripts, see [Add nodes][enlistment-nodes], [Commission
