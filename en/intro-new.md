@@ -58,10 +58,11 @@ configured region controller endpoint, leaving it unable to communicate with the
 region if the configured region controller went down.
 
 Starting with MAAS 2.5, users can specify multiple region-controller endpoints
-for a single rack controller, greatly simplifying HA setup. In addition, MAAS
-can now automatically discover and track all region controllers in a single
-cluster. If a rack controller is unable to communicate with its configured
-region controller, MAAS will attempt to connect it to another automatically.
+for a single rack controller, greatly simplifying HA setup. In addition, in a
+subsequent release, MAAS will be able to automatically discover and track all
+region controllers in a single cluster. If a rack controller is unable to
+communicate with its configured region controller, MAAS will attempt to connect
+it to another automatically.
 
 For details, see [High availability][high-availability].
 
@@ -85,6 +86,8 @@ MAAS now [tracks storage-pool usage][storage-pool-usage] via libvirt.
 KVM pods now support `arm64` and `ppc64el` architectures. KVM pod hypervisors
 for these architectures must be running on Ubuntu 18.04 (bionic) or greater.
 
+See [Supported architectures][supported-architectures] for more information.
+
 ## New features for adding and commissioning machines
 
 ### Adding machines with IPMI credentials
@@ -103,7 +106,8 @@ Starting with MAAS 2.5, MAAS runs all provided commissioning scripts during
 enlistment, gathering the minimum required information. Administrators can
 subsequently make a machine "Ready" simply by running hardware tests.
 
-For more details, see [Commission nodes][commission-nodes].
+For more details, see [Commission nodes][commission-nodes], and [Add
+nodes][enlistment-nodes].
 
 ## Resource pools
 
@@ -131,7 +135,7 @@ MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
     Currently, ESXi support is provided for [Ubuntu Advantage][advantage]
     customers only.
 
-Find more information at [ESXi deployment][esxi].
+For more informationa about MAAS images, see [Images][images].
 
 ## Enhanced web UI
 
@@ -143,19 +147,23 @@ machine-listing page includes the IP address assigned to each machine.
 
 ## API documentation improvements
 
-MAAS 2.5.0 introduces improved API documentation for Zones and Resource pools.
-Future versions of MAAS will provide enhanced API documentation across all
-operations.
+MAAS 2.5.0 introduces improved API documentation for [Zones][api-zones] and
+[Resource pools][api-resource-pools].  Future versions of MAAS will provide
+enhanced API documentation across all operations.
 
 <!-- LINKS -->
-[storage-pool-usage]: #
-[resource-pools]: #
-[composing-kvm-machines]: #
-[high-availability]: https://docs.maas.io/devel/en/manage-ha
-[esxi]: https://docs.maas.io/devel/en/installconfig-images
-[commission-nodes]: https://docs.maas.io/devel/en/nodes-commission
-[add-nodes]: https://docs.maas.io/devel/en/nodes-add
-[rack-controller]: https://docs.maas.io/devel/en/installconfig-rack
+[api-zones]: api.md#zones
+[api-resource-pools]: api.md#resource-pools
+[supported-architectures]: nodes-comp-hw.md#supported-architectures
+[resource-pools]: nodes-resource-pools.md
+[storage-pool-usage]: nodes-comp-hw.md#storage
+[composing-kvm-machines]: nodes-comp-hw.md#virsh-pods
+[high-availability]: manage-ha.md
+[images]: installconfig-images.md
+[commission-nodes]: nodes-commission.md
+[enlistment-nodes]: nodes-add.md#enlistment
+[add-nodes]: nodes-add.md
+[rack-controller]: installconfig-rack.md
 [advantage]: https://www.ubuntu.com/support
 [vanilla]: https://vanillaframework.io/
 [explore-maas]: intro-explore.md
