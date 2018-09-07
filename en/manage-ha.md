@@ -240,9 +240,21 @@ The configuration of region controller HA is now complete.
 **The API server(s) must be now be referenced (e.g. web UI, MAAS CLI) using
 port 80 (as opposed to port 5240).**
 
+## Snap
+
+Setting up high-availability using snaps is relatively easy. To use snaps
+instead of a package distribution of MAAS:
+
+1. Set up PostgreSQL for high-availability as [explained
+   above][postgresql-setup]. PostgreSQL should run outside of the snap.
+1. [Install][snap-install] the MAAS snap.
+1. [Configure the snap][snap-config] by specifying the role appropriate for your particular
+   setup.
 
 <!-- LINKS -->
 
+[snap-config]: installconfig-snap-install.md#initialisation
+[snap-install]: installconfig-snap-install.md#install-from-snap
 [concepts-controllers]: intro-concepts.md#controllers
 [rackd-communication]: installconfig-rack.md#communication-between-machines-and-rack-controllers
 [install-rackd]: installconfig-rack.md#install-a-rack-controller
@@ -251,6 +263,7 @@ port 80 (as opposed to port 5240).**
 [upstream-keepalived]: http://www.keepalived.org/
 [upstream-haproxy-manual]: http://cbonte.github.io/haproxy-dconv/1.6/configuration.html
 [upstream-haproxy]: http://www.haproxy.org/
+[postgresql-setup]: manage-ha.md#postgresql-ha
 [postgresql-ha]: manage-ha-postgresql.md
 [upstream-postgresql-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html
 
