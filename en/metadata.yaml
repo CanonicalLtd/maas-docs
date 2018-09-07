@@ -1,11 +1,12 @@
 navigation:
-  - title: Get started
-    location: index.md
-
+  - title: Introduction
     children:
 
-      - title: About MAAS
+      - title: Home
         location: index.md
+
+      - title: About MAAS
+        location: intro-what-is-maas.md
 
       - title: Explore MAAS
         location: intro-explore.md
