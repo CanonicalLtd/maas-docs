@@ -66,7 +66,7 @@ For details, see [High availability][high-availability].
 
 ## Additional KVM pod features
 
-### Composing KVM virtual machines from a pod with interfaces
+### Composing KVM virtual machines with interface constraints
 
 Starting with MAAS 2.5.0, users can compose KVM virtual machines from a pod with
 interfaces. Using the command-line interface (CLI), the `machines allocate` and
