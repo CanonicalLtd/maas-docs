@@ -42,7 +42,8 @@ following section for more information.
 
 <details>
 
-<summary>Use the MAAS CLI to manage VM interfaces</summary>
+<summary>Use the MAAS CLI to compose KVM virtual machines with interface
+constraints</summary>
 
 &nbsp;
 
