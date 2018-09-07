@@ -2,7 +2,7 @@
     "scripts": {
       "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite build/ .extra templates",
       "watch": "watch -p './**/*.md' -c 'yarn run build-css'",
-      "build": "documentation-builder --template-path template.html --base-directory . --output-path build --output-media-path 'build/media' --media-url '/media' --tag-manager-code 'GTM-K92JCQ' --search-domain 'docs.maas.io' --search-url 'https://docs.ubuntu.com/search' --search-placeholder 'Search MAAS docs' --no-link-extensions --build-version-branches --site-root https://maas.io/"
+      "build": "documentation-builder --template-path template.html --base-directory . --output-path build --output-media-path 'build/media' --media-url '/media' --tag-manager-code 'GTM-K92JCQ' --search-domain 'docs.maas.io' --search-url 'https://www.ubuntu.com/search' --search-placeholder 'Search MAAS docs' --no-link-extensions --build-version-branches --site-root https://maas.io/"
     },
     "dependencies": {
       "watch-cli": "^0.2.2"
