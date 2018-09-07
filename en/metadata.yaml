@@ -142,8 +142,8 @@ navigation:
       - title: Concepts & terms
         location: intro-concepts.md
 
-      - title: Upgrade from 2.3
-        location: installconfig-upgrade-postgres.md
+      - title: Upgrading MAAS
+        location: installconfig-upgrade.md
 
       - title: Troubleshoot
 

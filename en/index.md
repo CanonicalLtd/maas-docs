@@ -31,10 +31,10 @@ homepage: true
         <div>
             <h2>What's new</h2>
             <ul class="p-list">
-                <li class="p-list__item"><a href="/en/release-notes">MAAS 2.4 release notes&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="release-notes.html">MAAS 2.5 release notes&nbsp;&rsaquo;</a></li>
                 <li class="p-list__item"><a href="https://blog.ubuntu.com/2018/03/06/maas-for-the-home">MAAS for the home</a></li>
                 <li class="p-list__item"><a href="https://tutorials.ubuntu.com/tutorial/create-kvm-pods-with-maas#0">Create KVM pods with MAAS</a></li>
-                <li class="p-list__item"><a href="/en/intro-explore">Explore MAAS&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="intro-explore.html">Explore MAAS&nbsp;&rsaquo;</a></li>
             </ul>
         </div>
         <hr class="is-deep">
