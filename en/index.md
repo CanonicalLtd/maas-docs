@@ -17,10 +17,10 @@ homepage: true
             <div class="col-6">
                 <h2>Getting started</h2>
                 <ul class="p-list">
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas">What is MAAS?&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/installconfig-snap-install">Install MAAS&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="intro-what-is-maas.html">What is MAAS?&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="intro-what-is-maas.html#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="intro-what-is-maas.html#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="installconfig-snap-install.html">Install MAAS&nbsp;&rsaquo;</a></li>
                 </ul>
             </div>
             <div class="col-6">
