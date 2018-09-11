@@ -5,8 +5,8 @@ table_of_contents: True
 
 # Pods
 
-Pods, or composable hardware, allow for the dynamic composition of nodes from a pool
-of available hardware resources (e.g. disk space, memory, cores).
+Pods, or composable hardware, allow for the dynamic composition of nodes from a
+pool of available hardware resources (e.g. disk space, memory, cores).
 
 This enables a machine request to be made without having machines pre-built.
 Modeling tools, such as [Juju][about-juju], can leverage this functionality
@@ -286,6 +286,17 @@ physical resource allocation:
 - `128GB physical Memory  * 5.5 multiplier  = 704G virtual Memory`
 
 ![pod configuration][img__pod-compose-config]
+
+Over committing resources allows a user to compose many VMs with the
+understanding that they may not all run at once, thereby over burdening the
+physical host.
+
+Over committing resources allows a user to compose many MAAS-managed VMs without
+worrying about the physical limitations of the host. For example, on a physical
+host with 4 cores and 12 GB of memory, you could compose 4 virsh nodes, each
+using 2 cores and 4 GB of memory, obviously over-committing the available
+physical resources. Provided you never run all 4 simultaneously, you'd have all
+the benefits of MAAS-managed VMs without over-taxing your host.
 
 ### Compose Pod machine
 
