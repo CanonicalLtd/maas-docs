@@ -17,10 +17,10 @@ homepage: true
             <div class="col-6">
                 <h2>Getting started</h2>
                 <ul class="p-list">
-                    <li class="p-list__item"><a href="intro-what-is-maas.html">What is MAAS?&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="intro-what-is-maas.html#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="intro-what-is-maas.html#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="installconfig-snap-install.html">Install MAAS&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/en/intro-what-is-maas">What is MAAS?&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/en/intro-what-is-maas#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/en/intro-what-is-maas#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/en/installconfig-snap-install">Install MAAS&nbsp;&rsaquo;</a></li>
                 </ul>
             </div>
             <div class="col-6">
@@ -31,10 +31,10 @@ homepage: true
         <div>
             <h2>What's new</h2>
             <ul class="p-list">
-                <li class="p-list__item"><a href="release-notes.html">MAAS 2.5 release notes&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="/en/release-notes.html">MAAS 2.5 release notes&nbsp;&rsaquo;</a></li>
                 <li class="p-list__item"><a href="https://blog.ubuntu.com/2018/03/06/maas-for-the-home">MAAS for the home</a></li>
                 <li class="p-list__item"><a href="https://tutorials.ubuntu.com/tutorial/create-kvm-pods-with-maas#0">Create KVM pods with MAAS</a></li>
-                <li class="p-list__item"><a href="intro-explore.html">Explore MAAS&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="/en/intro-explore">Explore MAAS&nbsp;&rsaquo;</a></li>
             </ul>
         </div>
         <hr class="is-deep">
