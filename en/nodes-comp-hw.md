@@ -287,10 +287,6 @@ physical resource allocation:
 
 ![pod configuration][img__pod-compose-config]
 
-Over committing resources allows a user to compose many VMs with the
-understanding that they may not all run at once, thereby over burdening the
-physical host.
-
 Over committing resources allows a user to compose many MAAS-managed VMs without
 worrying about the physical limitations of the host. For example, on a physical
 host with 4 cores and 12 GB of memory, you could compose 4 virsh nodes, each
