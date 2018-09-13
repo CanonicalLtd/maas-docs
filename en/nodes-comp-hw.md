@@ -146,7 +146,7 @@ using 2 cores and 4 GB of memory, obviously over-committing the available
 physical resources. Provided you never run all 4 simultaneously, you'd have all
 the benefits of MAAS-managed VMs without over-taxing your host.
 
-### Compose pod machine
+### Compose a pod machine
 
 While on a pod's details view, begin the machine composition process by
 selecting 'Compose' from the 'Take action' dropdown menu:
