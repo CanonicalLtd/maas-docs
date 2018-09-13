@@ -10,9 +10,9 @@ This is a list of advanced tasks to perform with the MAAS CLI. See
 [MAAS CLI][manage-cli] on how to get started.
 
 
-## Update node hostname and power parameters
+## Edit node hostname and power parameters
 
-To update the hostname and power parameters of a node:
+To edit the hostname and power parameters of a node:
 
 ```bash
 maas $PROFILE machine update $SYSTEM_ID \

@@ -53,6 +53,9 @@ navigation:
 
           - title: Deploy nodes
             location: nodes-deploy.md
+          
+          - title: Custom node setup
+            location: nodes-custom.md
 
           - title: Tags
             location: nodes-tags.md
@@ -74,9 +77,6 @@ navigation:
 
           - title: Pods
             location: nodes-comp-hw.md
-
-          - title: Custom node setup
-            location: nodes-custom.md
 
       - title: Images
         location: installconfig-images.md

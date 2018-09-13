@@ -171,6 +171,45 @@ Compose a Virsh machine with two disks; one from *pool1* and the other from
 maas $PROFILE pod compose $POD_ID storage=root:32(pool1),home:64(pool2)
 ```
 
+### Interface constraints
+
+Using the `interfaces` constraint, you can compose virtual machines with
+interfaces, allowing the selection of pod NICs.
+
+If you don't specify an `interfaces` constraint, MAAS maintains backward
+compatibility by checking for a `maas` network, then a `default` network to
+which to connect the virtual machine.
+
+If you specify an `interfaces` constraint, MAAS creates a `bridge` or `macvlan`
+attachment to the networks that match the given constraint. MAAS prefers `bridge`
+interface attachments when possible, since this typically results in successful
+communication.
+
+#### Interface constraint examples
+
+Consider the following interfaces constraint:
+
+```
+interfaces=eth0:space=maas,eth1:space=storage
+```
+
+Assuming the pod is deployed on a machine or controller with access to the
+`maas` and `storage` [spaces][spaces], MAAS will create an `eth0` interface
+bound to the `maas` space and an `eth1` interface bound to the `storage` space.
+
+Another example tells MAAS to assign unallocated IP addresses:
+
+```
+interfaces=eth0:ip=192.168.0.42
+```
+
+MAAS automatically converts the `ip` constraint to a VLAN constraint (for the
+VLAN where its subnet can be found) and assigns the IP address to the
+newly-composed machine upon allocation.
+
+See the [MAAS API documentation][api-allocate] for a list of all constraint
+keys.
+
 
 ## Compose and allocate a Pod machine
 
@@ -193,6 +232,100 @@ included in the output:
 maas $PROFILE machine read $SYSTEM_ID
 ```
 
+## Track libvirt storage pools
+
+Retrieve pod storage pool information with the following command:
+
+```
+maas $PROFILE pod read $POD_ID
+```
+
+Example:
+
+```
+Success.
+Machine-readable output follows:
+{
+    "used": {
+        "cores": 50,
+        "memory": 31744,
+        "local_storage": 63110426112
+    },
+    "name": "more-toad",
+    "id": 5,
+    "available": {
+        "cores": 5,
+        "memory": 4096,
+        "local_storage": 153199988295
+    },
+    "architectures": [],
+    "cpu_over_commit_ratio": 1.0,
+    "storage_pools": [
+        {
+            "id": "pool_id-zvPk9C",
+            "name": "name-m0M4ZR",
+            "type": "lvm",
+            "path": "/var/lib/name-m0M4ZR",
+            "total": 47222731890,
+            "used": 17226931712,
+            "available": 29995800178,
+            "default": true
+        },
+        {
+            "id": "pool_id-qF87Ps",
+            "name": "name-ZMaIta",
+            "type": "lvm",
+            "path": "/var/lib/name-ZMaIta",
+            "total": 98566956569,
+            "used": 15466229760,
+            "available": 83100726809,
+            "default": false
+        },
+        {
+            "id": "pool_id-a6lyw5",
+            "name": "name-RmDPfs",
+            "type": "lvm",
+            "path": "/var/lib/name-RmDPfs",
+            "total": 70520725948,
+            "used": 30417264640,
+            "available": 40103461308,
+            "default": false
+        }
+    ],
+    "total": {
+        "cores": 55,
+        "memory": 35840,
+        "local_storage": 216310414407
+    },
+    "tags": [],
+    "type": "virsh",
+    "memory_over_commit_ratio": 1.0,
+    "pool": {
+        "name": "default",
+        "description": "Default pool",
+        "id": 0,
+        "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+    },
+    "zone": {
+        "name": "default",
+        "description": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/zones/default/"
+    },
+    "capabilities": [
+        "dynamic_local_storage",
+        "composable"
+    ],
+    "host": {
+        "system_id": null,
+        "__incomplete__": true
+    },
+    "default_macvlan_mode": null,
+    "resource_uri": "/MAAS/api/2.0/pods/5/"
+}
+```
+
+</details>
 
 ## Decompose a Pod machine
 

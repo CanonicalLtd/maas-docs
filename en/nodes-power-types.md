@@ -53,8 +53,8 @@ virsh, the value of 'Power ID' is the KVM domain (guest) name, here `node2`.
     `dear.ant`). This would normally be edited to reflect the hostname of the
     underlying machine.
 
-See [MAAS CLI][cli-update-node-hostname-and-power-parameters] for an example of
-how to edit a power type with the CLI.
+See [MAAS CLI][cli-edit-node-hostname-and-power-parameters] for an example of
+how to edit power parameters with the CLI.
 
 See [Add nodes][add-nodes-kvm-guest-nodes] for help in setting up MAAS and KVM
 to work together.
@@ -95,7 +95,7 @@ currently supported by MAAS.
 <!-- LINKS -->
 
 [wikipedia-bmc]: https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface#Baseboard_management_controller
-[cli-update-node-hostname-and-power-parameters]: manage-cli-advanced.md#update-node-hostname-and-power-parameters
+[cli-edit-node-hostname-and-power-parameters]: manage-cli-advanced.md#edit-node-hostname-and-power-parameters
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 [pods]: nodes-comp-hw.md
 

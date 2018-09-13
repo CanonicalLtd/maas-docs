@@ -336,9 +336,9 @@ holds the scripts, output and tools for current session, in particular:
 
 ## Command line access
 
-If you need more control over the running and management of testing scripts,
-the [MAAS CLI][maas-cli] includes options not available from the web UI. See
-the [CLI Hardware Testing Scripts][maas-scripts-cli] documentation for details.
+For information about managing scripts, applying tags to scripts and seeing
+script results using the CLI, please see [CLI Hardware Testing
+Scripts][maas-scripts-cli].
 
 
 <!-- LINKS -->

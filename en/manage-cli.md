@@ -98,19 +98,41 @@ maas login $PROFILE $MAAS_URL - < $API_KEY_FILE
 
 ## Get help
 
-To access command help:
+MAAS has a powerful built-in help reference, which you can access in stages to
+understand how to build commands.
+
+The `maas` command accepts the `-h` or `--help` argument after every keyword and
+will display results with increasing detail.
+
+For example, suppose you were interested in tag management, but didn't know
+where to start. You might try this:
 
 ```bash
-maas $PROFILE -h
+maas $PROFILE --help
 ```
 
-Further examples:
+At this stage, you'll see all available MAAS commands, including the `tag` and
+`tags` commands, along with a brief explanation of what each command does. To
+see what the `tag` and `tags` commands have to offer, try:
 
 ```bash
-maas $PROFILE tags -h
-maas $PROFILE tags read -h
+maas $PROFILE tag --help
 ```
 
+And:
+
+```bash
+maas $PROFILE tags --help
+```
+
+Suppose you want to create a new rudimentary tag. Find the next level of help
+like this:
+
+```bash
+maas admin tags create --help
+```
+
+In this way, you can discover all that the MAAS CLI has to offer.
 
 ## Log out
 

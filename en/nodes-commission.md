@@ -116,11 +116,11 @@ clicking on the 'IP mode' drop-down menu.
 
 - **Unconfigured**: The interface will be left unconfigured.
 
-See [Concepts and terms][concepts-ipranges] for the definitions of reserved
-range types and [MAAS CLI - advanced tasks][cli-change-ip-assignment-mode] for
-changing the mode with the CLI.
-
 Press the 'Save' button to apply the changes.
+
+See [Concepts and terms][concepts-ipranges] for the definitions of reserved
+range types and [MAAS CLI - advanced tasks][cli-change-ip-assignment-mode] to
+learn how to change the IP-assignment mode of a network interface using the CLI.
 
 ### Bond interfaces
 

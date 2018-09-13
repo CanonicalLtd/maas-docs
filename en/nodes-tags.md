@@ -6,22 +6,21 @@ table_of_contents: True
 
 # Tags
 
-MAAS tags are used to identify machines under its control. The main purpose of
-tags is to be able to easily deploy services onto machines that meet certain
-criteria. 
+Using MAAS tags, you can easily deploy services on machines that meet certain
+criteria. Tags are a convenient way to assign descriptive words to machines,
+interfaces, and storage devices.
 
-For instance, a tag could identify nodes which possess fast GPUs. Such a tag
-would help if you were planning to deploy software which used GPU-accelerated
-CUDA or OpenCL libraries. 
+MAAS supports XPath expressions in tags (see below), which makes auto-assigning
+tags to matching hardware possible. For instance, you could tag nodes that
+possess fast GPUs and then deploy software that used GPU-accelerated CUDA or
+OpenCL libraries.
 
-Because MAAS was designed to work well with [Juju][about-juju], the latter
-supports MAAS tags for application deployments. Juju is the recommended way to
-deploy services onto machines managed by MAAS.
+Because [Juju][about-juju] is the recommended way to deploy services on machines
+managed by MAAS (see [below][tag-manage]), it supports MAAS tags for application
+deployments.
 
-!!! Note: 
-    Newly-created tags immediately become available as a filter in the
-    'Machines' page in the web UI. 
-
+To understand the true power of MAAS tags, it is important to understand tag
+definitions.
 
 ## Tag definitions
 
@@ -74,11 +73,6 @@ our tag definition:
 ```nohighlight
 //node[@id="display"]/'clock units="Hz"' > 1000000000
 ```
-
-This definition is used elsewhere in this documentation. See this
-[MAAS CLI example][cli-example-tag-creation-and-auto-assignment].
-
-
 ## Tag listing and tags as search filters
 
 To list all tags visit the 'Machines' tab and expand the 'Tags' subsection in the
@@ -96,7 +90,6 @@ automatically reflects this. Five nodes satisfy this search filter.
 
 Remove a tag from the search filter by either hitting the 'x' character
 alongside a tag or editing the search expression.
-
 
 ## Tag assignment
 
@@ -119,11 +112,15 @@ configuration' to edit tags:
 
 Changes are applied by pressing the 'Save changes' button.
 
+!!! Note:
+    New tags become available as a filter in the 'Machines' page in the web UI
+    immediately after you add them.
+
 ### Tags for network interfaces
 
 It's also possible to assign tags to specific network interfaces. These tags
 can be used when searching for nodes within the web UI and when allocating
-machines from the API. 
+machines from the API.
 
 Network interface tags can only be assigned when a node is in either a 'Ready'
 or a 'Broken' state.
@@ -161,19 +158,13 @@ Changes are applied by pressing the 'Save' button.
 
 ## Tag management
 
-With the exception of tag assignment (as shown above), at this time tag
-management, such as creation, deletion, and advanced operations, can only be
-performed via the CLI (see [CLI Tag management][cli-tags]). Also covered there
-is how to use tags in conjunction with Juju (to deploy services) and all tag
-features available with the web UI (listing and searching).
-
-As was shown in the above section, rudimentary tag creation *is* possible in the
-web UI but such tags lack any intelligence. They should be regarded more as node
-aliases.
-
+At this time, other than simple tag assignemts as demonstrated above, the best
+way to manage MAAS tags is by using the CLI (see [CLI Tag management][cli-tags]).
+Juju integration is also covered there.
 
 <!-- LINKS -->
 
+[tag-manage]: #tag-management
 [about-juju]: https://jujucharms.com/docs/stable/about-juju.html
 [upstream-lshw]: http://ezix.org/project/wiki/HardwareLiSter
 [upstream-w3schools]: https://www.w3schools.com/xml/xpath_intro.asp
