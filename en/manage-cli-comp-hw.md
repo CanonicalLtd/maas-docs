@@ -2,7 +2,7 @@ Title: CLI Composable Hardware
 table_of_contents: True
 
 
-# CLI Composable Hardware
+# CLI composable hardware
 
 This is a list of composable hardware tasks which can be performed with the
 MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
@@ -11,9 +11,9 @@ including important details on the differences between *RSD* pods and *Virsh*
 pods.
 
 
-## Register a Pod
+## Register a pod
 
-To register/add a Pod:
+To register/add a pod:
 
 ```bash
 maas $PROFILE pods create type=$POD_TYPE power_address=$POWER_ADDRESS \
@@ -56,15 +56,15 @@ maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2
 ```
 
 
-## List resources of all Pods
+## List resources of all pods
 
-List the resources of all Pods:
+List the resources of all pods:
 
 ```bash
 maas $PROFILE pods read
 ```
 
-For example, this will grab Pod IDs (POD_ID) and their MAAS names:
+For example, this will grab pod IDs (POD_ID) and their MAAS names:
 
 ```bash
 maas $PROFILE pods read | grep -A6 id
@@ -82,16 +82,16 @@ Sample output:
         "name": "civil-hermit",
 ```
 
-## List resources of a Pod
+## List resources of a pod
 
-To list an individual Pod's resources:
+To list an individual pod's resources:
 
 ```bash
 maas $PROFILE pod read $POD_ID
 ```
 
 
-## Update Pod configuration
+## Update pod configuration
 
 Update over commit ratios for a Virsh pod:
 
@@ -108,9 +108,9 @@ maas $PROFILE pod update $POD_ID power_address=qemu+ssh://ubuntu@192.168.1.2/sys
 ```
 
 
-## List Pod connection parameters
+## List pod connection parameters
 
-To list a Pod's connection parameters:
+To list a pod's connection parameters:
 
 ```bash
 maas $PROFILE pod parameters $POD_ID
@@ -127,9 +127,9 @@ Example output:
 ```
 
 
-## Compose Pod machines
+## Compose pod machines
 
-To compose a Pod's machines:
+To compose a pod's machines:
 
 ```bash
 maas $PROFILE pod compose $POD_ID
@@ -155,7 +155,7 @@ Where RESOURCES is a space-separated list from:
 **cores=**requested cores  
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
-**architecture=**requested architecture that Pod must support  
+**architecture=**requested architecture that pod must support  
 
 For example:
 
@@ -211,11 +211,11 @@ See the [MAAS API documentation][api-allocate] for a list of all constraint
 keys.
 
 
-## Compose and allocate a Pod machine
+## Compose and allocate a pod machine
 
-In the absence of any nodes in the 'New' or 'Ready' state, if a Pod of
+In the absence of any nodes in the 'New' or 'Ready' state, if a pod of
 sufficient resources is available, MAAS can automatically compose (add),
-commission, and acquire a Pod machine. This is done with the regular `allocate`
+commission, and acquire a pod machine. This is done with the regular `allocate`
 sub-command:
 
 ```bash
@@ -327,21 +327,21 @@ Machine-readable output follows:
 
 </details>
 
-## Decompose a Pod machine
+## Decompose a pod machine
 
-To decompose a Pod machine by deleting the corresponding MAAS node:
+To decompose a pod machine by deleting the corresponding MAAS node:
 
 ```bash
 maas $PROFILE machine delete $SYSTEM_ID
 ```
 
-If the Pod's resources are now listed (`pod read $POD_ID`), it would be seen
+If the pod's resources are now listed (`pod read $POD_ID`), it would be seen
 that the resources for this machine are available and no longer used.
 
 
-## Delete a Pod
+## Delete a pod
 
-To delete a Pod (and decompose all its machines):
+To delete a pod (and decompose all its machines):
 
 ```bash
 maas $PROFILE pod delete $POD_ID
