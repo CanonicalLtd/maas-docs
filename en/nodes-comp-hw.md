@@ -72,9 +72,9 @@ empty:
 ![initial pods page][img__pod-initial-page]
 
 
-### Add a Pod
+### Add a pod
 
-Add/register a Pod by using the 'Add pod' button.
+Add/register a pod by using the 'Add pod' button.
 
 The first example depicts an RSD Pod being added. After choosing 'Rack Scale
 Design' for 'Pod type' the below form will appear:
@@ -86,7 +86,7 @@ or URL followed by a port), 'Pod user', and 'Pod password' from the RSD
 administrator. Then click 'Save pod'.
 
 Once added, MAAS will automatically discover and store the resources that a
-Pod contains. Any pre-composed machines will also appear on the 'Machines' page
+pod contains. Any pre-composed machines will also appear on the 'Machines' page
 and be commissioned. 
 
 #### Virsh pods
@@ -96,16 +96,16 @@ This is how a virsh pod is added:
 ![add Virsh pod][img__pod-add-virsh]
 
 
-### List Pods
+### List pods
 
-The new Pod, including a summary of contained resources, will be listed on the
+The new pod, including a summary of contained resources, will be listed on the
 'Pods' page:
 
 ![save pod][img__pod-list]
 
-### View Pod details
+### View pod details
 
-Clicking a Pod's name on the 'Pods' page will reveal the resources contained
+Clicking a pod's name on the 'Pods' page will reveal the resources contained
 within it, including its total number of CPU cores, the amount of total RAM and
 local storage. These values update to reflect usage and remaining resources.
 
@@ -146,31 +146,31 @@ using 2 cores and 4 GB of memory, obviously over-committing the available
 physical resources. Provided you never run all 4 simultaneously, you'd have all
 the benefits of MAAS-managed VMs without over-taxing your host.
 
-### Compose Pod machine
+### Compose pod machine
 
-While on a Pod's details view, begin the machine composition process by
+While on a pod's details view, begin the machine composition process by
 selecting 'Compose' from the 'Take action' dropdown menu:
 
 ![pod compose machine][img__pod-compose-machine]
 
 Fill in the fields (many are optional) and hit 'Compose machine' to finish. You
-will be brought back to the Pod's details view. In a few moments the new
+will be brought back to the pod's details view. In a few moments the new
 machine will be auto-commissioned.
 
 The main 'Machines' page should reflect this as well.
 
-As expected, the new machine's resources will be deducted from the Pod's
+As expected, the new machine's resources will be deducted from the pod's
 resources:
 
 ![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
-### Decompose a Pod machine
+### Decompose a pod machine
 
-Decomposing a Pod machine means to send the machine's resources back to the Pod
+Decomposing a pod machine means to send the machine's resources back to the pod
 for reuse. Doing so within MAAS will also cause the corresponding MAAS node to
 be Deleted.
 
-While on a Pod's details view, select the machine to decompose and choose the
+While on a pod's details view, select the machine to decompose and choose the
 'Delete' button from the dropdown menu:
 
 ![pod decompose machine][img__pod-decompose-machine]
@@ -183,14 +183,14 @@ Confirm by hitting the 'Delete machine' button.
 
 Once done, you will be transported back to the main 'Machines' page.
 
-### Delete a Pod
+### Delete a pod
 
-While on the main Pods page, select a Pod and choose the 'Delete' action from
+While on the main pods page, select a pod and choose the 'Delete' action from
 the dropdown menu. Hit 'Delete 1 pod' to confirm the action:
 
 ![pod delete][img__pod-delete]
 
-Deleting a Pod will also decompose all its machines, thereby also removing all
+Deleting a pod will also decompose all its machines, thereby also removing all
 corresponding nodes from MAAS.
 
 
