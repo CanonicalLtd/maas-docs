@@ -29,7 +29,7 @@ examples of both commissioning and hardware testing scripts.
     testing.  [See below](#automatic-script-selection-by-hardware-type) for more
     details.
 
-A typical administrator workflow (with node states) using customized
+A typical administrator workflow (with node states) using customised
 commissioning scripts is represented here:
 
 Add node -> Enlistment (runs built-in commissioning scripts) -> New ->

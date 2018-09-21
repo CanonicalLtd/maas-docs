@@ -6,7 +6,7 @@ Title: Upgrading MAAS
 
 To upgrade MAAS from 2.4 to 2.5:
 
-```
+```bash
 sudo apt upgrade
 ```
 

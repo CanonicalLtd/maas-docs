@@ -9,7 +9,7 @@ Pods, or composable hardware, allow for the dynamic composition of nodes from a
 pool of available hardware resources (e.g. disk space, memory, cores).
 
 This enables a machine request to be made without having machines pre-built.
-Modeling tools, such as [Juju][about-juju], can leverage this functionality
+Modelling tools, such as [Juju][about-juju], can leverage this functionality
 when requesting a machine from MAAS, which will dynamically **create** and
 Deploy one. Machines can also be requested directly from within MAAS.
 

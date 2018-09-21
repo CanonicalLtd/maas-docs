@@ -28,7 +28,7 @@ Customisation in MAAS happens in two ways:
    OS installation, after MAAS changes a machine's status to 'Deployed.'
    Customisations are performed on a per-instances basis, which means that
    user-supplied scripts  must be specified again on redeployment. Cloud-init
-   customisations are the best way for MAAS users to customize their
+   customisations are the best way for MAAS users to customise their
    deployments, similar to how the various cloud services prepare VMs when
    launching instances.
 
@@ -172,7 +172,7 @@ late_commands:
 
 ## Cloud-init
 
-Using cloud-init to customize a node after deployment is relatively easy. If
+Using cloud-init to customise a node after deployment is relatively easy. If
 you're not familiar with the MAAS command-line interface (CLI), start by
 reviewing the [MAAS CLI][cli] page.
 

@@ -23,8 +23,8 @@ the user's MAAS account. This is explained in
 !!! Note:
     Juju has its own way of adding SSH keys to machines under its control.
 
-MAAS also supports node customization with a process called "preseeding." For
-more information about customizing nodes, see [Custom node setup][preseed].
+MAAS also supports node customisation with a process called "preseeding." For
+more information about customising nodes, see [Custom node setup][preseed].
 
 ## Acquire
 
@@ -61,7 +61,7 @@ will undergo the following process:
     The *curtin* installer uses an image-based method and is now the only
     installer used by MAAS. Although the older *debian-installer* method has
     been removed curtin continues to support preseed files. For more information
-    about customizing nodes see [Custom node setup][preseed].
+    about customising nodes see [Custom node setup][preseed].
 
 Before deploying you should:
 

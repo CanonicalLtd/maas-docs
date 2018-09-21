@@ -47,7 +47,7 @@ Typically, the next step will be to *commission* the node. See
 !!! Note:
 
     MAAS runs built-in commissioning scripts during the enlistment phase so that
-    when you commission a node, any customized commissioning scripts you add
+    when you commission a node, any customised commissioning scripts you add
     will have access to data collected during enlistment. Follow the link above
     for more information about commissioning and commission scripts.
 

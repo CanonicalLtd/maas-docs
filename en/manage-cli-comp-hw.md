@@ -189,7 +189,7 @@ communication.
 
 Consider the following interfaces constraint:
 
-```
+```no-highlight
 interfaces=eth0:space=maas,eth1:space=storage
 ```
 
@@ -199,7 +199,7 @@ bound to the `maas` space and an `eth1` interface bound to the `storage` space.
 
 Another example tells MAAS to assign unallocated IP addresses:
 
-```
+```no-highlight
 interfaces=eth0:ip=192.168.0.42
 ```
 
@@ -236,13 +236,13 @@ maas $PROFILE machine read $SYSTEM_ID
 
 Retrieve pod storage pool information with the following command:
 
-```
+```bash
 maas $PROFILE pod read $POD_ID
 ```
 
 Example:
 
-```
+```no-highlight
 Success.
 Machine-readable output follows:
 {

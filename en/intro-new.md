@@ -107,7 +107,7 @@ MAAS runs user-provided custom scripts.
 In a future MAAS release, machines will be able to enter the Ready state
 automatically after enlistment if a node passes the hardware tests.
 
-For more information about enlistment, commissioning and creating customized
+For more information about enlistment, commissioning and creating customised
 commissioning scripts, see [Add nodes][enlistment-nodes], [Commission
 nodes][commission-nodes], and [Commission scripts][commission-scripts].
 
@@ -131,7 +131,7 @@ MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
   networking configuration: static IP addresses on non-VLAN or bonded
   interfaces. Future versions of MAAS will support NIC teaming and VLANs.
 + Post-installation is not available over preseeds, for example:
-  `curtin_userdata`. Users can customize images they create to deploy with MAAS.
+  `curtin_userdata`. Users can customise images they create to deploy with MAAS.
 
 !!! Note:
     Currently, ESXi support is provided for [Ubuntu Advantage][advantage]

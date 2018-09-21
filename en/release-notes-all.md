@@ -1050,7 +1050,7 @@ be installed on each rack controller. Doing so results in faster scans that
 require less network traffic. If nmap is not installed, MAAS will resort to
 scanning using the `ping` utility.
 
-### Offline deployment and customizable APT repositories
+### Offline deployment and customisable APT repositories
 
 MAAS 2.1 improves offline deployment by adding support for *Ubuntu derived
 repositories*, PPAs, and custom APT repositories. This enables MAAS to configure
@@ -1072,7 +1072,7 @@ dependent on Internet connectivity.
   key server.
 
 - Custom repositories can be specified to add additional packages to
-  deployed machines. The distribution and component can be customized as
+  deployed machines. The distribution and component can be customised as
   appropriate. For example, users would be able to add the Google Chrome
   repository, which is as follows:
 
@@ -1088,7 +1088,7 @@ and keep deployed machines synchronized as well.
 
 - The region controller configures the NTP service (ntpd) to keep its time
   synchronized from one or more external sources. By default, the MAAS region
-  controller uses ntp.ubuntu.com. This can be customized on the Settings page.
+  controller uses ntp.ubuntu.com. This can be customised on the Settings page.
 
 - The rack controllers also configure the NTP service (ntpd). They synchronize
   their time with the region controllers.
