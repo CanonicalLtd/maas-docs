@@ -140,7 +140,7 @@ release (series) before deploying the node.
 
 <!-- LINKS -->
 
-[cli-select-images]: manage-cli-images.md#select-images
+[cli-select-images]: manage-cli-images.md#hardware-enablement-(hwe)
 [ubuntu-wiki-hwe]: https://wiki.ubuntu.com/Kernel/LTSEnablementStack
 [ubuntu-wiki-hwe-edge]: https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack#hwe-16.04-edge
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing

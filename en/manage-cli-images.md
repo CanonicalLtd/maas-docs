@@ -26,8 +26,8 @@ maas $PROFILE boot-sources read
 
 ## Select images
 
-To select images (with the intention of later importing them) from a boot
-source:
+Use the `boot-source-selections` command to select images from a boot source.
+After selecting new images, you will need to [import][import] them.
 
 ```bash
 maas $PROFILE boot-source-selections create $SOURCE_ID \
@@ -44,8 +44,10 @@ maas $PROFILE boot-source-selections create 1 \
 	subarches="*" labels="*"
 ```
 
-To get just the latest amd64 HWE kernel available for Trusty, which, at time of
-writing, is from Xenial:
+### Hardware enablement (HWE)
+
+For example, to get just the latest amd64 HWE kernel available for Trusty,
+which, at time of writing, is from Xenial:
 
 ```bash
 maas $PROFILE boot-source-selections create 1 \
@@ -61,9 +63,6 @@ maas $PROFILE boot-source-selections create 1 \
 	os="ubuntu" release="xenial" arches="amd64" \
 	subarches="hwe-16.04" labels="*"
 ```
-
-After new images are selected MAAS will need to import them.
-
 
 ## List image selections
 
@@ -186,6 +185,7 @@ variable values:
 
 <!-- LINKS -->
 
+[import]: #import-newly-selected-images
 [manage-cli]: manage-cli.md
 [images]: installconfig-images.md
 [images-import]: installconfig-images-import.md

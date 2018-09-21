@@ -10,10 +10,16 @@ This is a list of tag management tasks to perform with the MAAS CLI. See
 explanation of the subject.
 
 
+## Rudimentary tag creation
+
+```bash
+maas $PROFILE tags create name=$TAG_NAME
+```
+
 ## Tag creation and auto-assignment
 
-When a definition is supplied during a tag's creation the tag is automatically
-applied to all the nodes that satisfy the definition: 
+When a [definition][definition] is supplied during a tag's creation the tag is
+automatically applied to all the nodes that satisfy the definition:
 
 ```bash
 maas $PROFILE tags create name=$TAG_NAME \
@@ -32,6 +38,11 @@ We recommend that each tag have a short name and a comment that fully describes
 it. Having both will help with usage and for recalling a tag's meaning long
 after it was created.
 
+## Delete a tag
+
+```bash
+maas $PROFILE tag delete $TAG_NAME
+```
 
 ## List all tags
 
@@ -40,7 +51,6 @@ To list all tags present on the region controller:
 ```bash
 maas $PROFILE tags read
 ```
-
 
 ## List nodes/machines labelled with a tag
 
@@ -52,7 +62,7 @@ maas $PROFILE tag machines $TAG_NAME
 ```
 
 
-## Use a tag
+## Juju integration
 
 Although a tag can be used in the web UI as a node search filter the primary
 benefit of tags is realized when Juju is utilized for application deployment.
@@ -113,5 +123,6 @@ maas $PROFILE tag update-nodes $TAG_NAME add=$SYSTEM_ID
 
 <!-- LINKS -->
 
+[definition]: nodes-tags.md#tag-definitions
 [manage-cli]: manage-cli.md
 [tags]: nodes-tags.md

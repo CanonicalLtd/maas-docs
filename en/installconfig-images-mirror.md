@@ -64,11 +64,13 @@ with `cron`) to ensure the mirror contains the latest images.
 See [Image mirrors][web-ui] to learn how to configure MAAS to use the local
 image server (mirror) using the web UI.
 
-See [CLI Image Management][cli-add-an-image-source] for instructions on how to
-do this with the CLI.
+See [Add a boot source][cli-add-a-boot-source] and [Using a local image
+mirror][cli-using-a-local-image-mirror] for instructions on how to do this with
+the CLI.
 
 
 <!-- LINKS -->
 
-[cli-add-an-image-source]: manage-cli-images.md#add-an-image-source
+[cli-using-a-local-image-mirror]: manage-cli-images.md#using-a-local-image-mirror
+[cli-add-a-boot-source]: manage-cli-images.md#add-a-boot-source
 [web-ui]: installconfig-images-import.md#image-mirrors

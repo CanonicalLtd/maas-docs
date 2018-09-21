@@ -1,6 +1,5 @@
 Title: Deploy Nodes
-TODO:  Link to curtin resources for users wishing to customize the install
-
+TODO:  
 
 # Deploy Nodes
 
@@ -24,6 +23,28 @@ the user's MAAS account. This is explained in
 !!! Note:
     Juju has its own way of adding SSH keys to machines under its control.
 
+MAAS also supports node customisation with a process called "preseeding." For
+more information about customising nodes, see [Custom node setup][preseed].
+
+## Acquire
+
+Acquiring a node (sometimes called "allocating" a node) is simply a means of
+reserving the node so that it is no longer available to any other process,
+whether that process be MAAS itself (e.g. another MAAS user) or a process such
+as [Juju][about-juju] that uses MAAS as its source of backing machines.
+
+Before a node is deployed it must therefore always be acquired, resulting in a
+status of 'Allocated'. However, when deploying from the web UI this action is
+performed automatically (and invisibly).
+
+The action remains useful in terms of reserving a node for later use. To
+acquire a node explicitly simply select the node and apply the 'Acquire'
+action.
+
+See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
+
+## Deploy
+
 To deploy, the underlying machine needs to be configured to netboot (this
 should already have been done during the commissioning stage). Such a machine
 will undergo the following process:
@@ -36,11 +57,11 @@ will undergo the following process:
     1. curtin installation script is run
     1. Squashfs image (same as above) is placed on disk
 
-!!! Note: 
+!!! Note:
     The *curtin* installer uses an image-based method and is now the only
-    installer used by MAAS. Although the older *debian-installer* method has been
-    removed curtin continues to support preseed files. See the `/etc/maas/preseed`
-    directory.
+    installer used by MAAS. Although the older *debian-installer* method has
+    been removed curtin continues to support preseed files. For more information
+    about customising nodes see [Custom node setup][preseed].
 
 Before deploying you should:
 
@@ -71,48 +92,7 @@ While a node is deploying its status will change to *Deploying to 'OS'*, where
 LTS').
 
 Once a node has finished deploying its status will change to just the name of
-the OS (e.g. 'Ubuntu 16.04 LTS').
-
-
-## Acquire nodes
-
-Acquiring a node (sometimes called "allocating" a node) is simply a means of
-reserving the node so that it is no longer available to any other process,
-whether that process be MAAS itself (e.g. another MAAS user) or a process such
-as [Juju][about-juju] that uses MAAS as its source of backing machines.
-
-Before a node is deployed it must therefore always be acquired, resulting in a
-status of 'Allocated'. However, when deploying from the web UI this action is
-performed automatically (and invisibly).
-
-The action remains useful in terms of reserving a node for later use. To
-acquire a node explicitly simply select the node and apply the 'Acquire'
-action.
-
-See [MAAS CLI][cli-acquire-a-node] for how to acquire a node with the CLI.
-
-## Customizing node deployments
-
-Machine deployments can be customized by passing custom cloud-init user-data. This allows for customization per-deployment basis, similarly to how its done in other cloud environments.
-
-This capability is only available over the CLI (API).
-
-As an example, cloud-init user-data allows you to provide a script to be used as a user data. In this example you can create a script as follows (install.sh):
-
-```bash
-#!/bin/sh
-(
-echo ======== Hi World ======================
-echo ============== $(date) =================
-apt-get install apache2
-) | tee /install-apache2.log
-```
-
-Now, you can deploy the machine and provide this user data:
-```bash
-script=$(base64 install.sh)
-maas < user > machine deploy < system-id > user_data=$script distro_series=bionic
-```
+the OS (e.g. 'Ubuntu 18.04 LTS').
 
 <!-- LINKS -->
 
@@ -123,6 +103,7 @@ maas < user > machine deploy < system-id > user_data=$script distro_series=bioni
 [about-juju]: https://jujucharms.com/docs/stable/about-juju
 [kernel-boot-options]: nodes-kernel-options.md
 [ubuntu-kernels]: nodes-kernels.md
+[preseed]: nodes-custom.md
 
 [img__deploy]: ../media/nodes-deploy__2.4_deploy.png
 [img__deploy-confirm]: ../media/nodes-deploy__2.4_deploy-confirm.png

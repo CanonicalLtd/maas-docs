@@ -109,7 +109,7 @@ To relay from one VLAN (source) to another VLAN (target):
 
 ## DHCP Snippets
 
-When DHCP is managed from within MAAS, it can be customized through the use of
+When DHCP is managed from within MAAS, it can be customised through the use of
 *DHCP snippets*. These are user defined configuration options that can be
 applied either globally, per subnet, or per node. A global snippet is applied
 to all VLANs, subnets, and nodes. All three types end up in

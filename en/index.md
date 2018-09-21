@@ -17,10 +17,10 @@ homepage: true
             <div class="col-6">
                 <h2>Getting started</h2>
                 <ul class="p-list">
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas">What is MAAS?&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/intro-what-is-maas#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
-                    <li class="p-list__item"><a href="/en/installconfig-snap-install">Install MAAS&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/2.5/en/intro-what-is-maas">What is MAAS?&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/2.5/en/intro-what-is-maas#what-maas-offers">What MAAS offers&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/2.5/en/intro-what-is-maas#how-maas-works">How MAAS works&nbsp;&rsaquo;</a></li>
+                    <li class="p-list__item"><a href="/2.5/en/installconfig-snap-install">Install MAAS&nbsp;&rsaquo;</a></li>
                 </ul>
             </div>
             <div class="col-6">
@@ -31,10 +31,10 @@ homepage: true
         <div>
             <h2>What's new</h2>
             <ul class="p-list">
-                <li class="p-list__item"><a href="/en/release-notes">MAAS 2.4 release notes&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="/2.5/en/release-notes.html">MAAS devel release notes&nbsp;&rsaquo;</a></li>
                 <li class="p-list__item"><a href="https://blog.ubuntu.com/2018/03/06/maas-for-the-home">MAAS for the home</a></li>
                 <li class="p-list__item"><a href="https://tutorials.ubuntu.com/tutorial/create-kvm-pods-with-maas#0">Create KVM pods with MAAS</a></li>
-                <li class="p-list__item"><a href="/en/intro-explore">Explore MAAS&nbsp;&rsaquo;</a></li>
+                <li class="p-list__item"><a href="/2.5/en/intro-explore">Explore MAAS&nbsp;&rsaquo;</a></li>
             </ul>
         </div>
         <hr class="is-deep">
@@ -62,7 +62,7 @@ homepage: true
             <div class="col-6">
                 <h2>Contribute</h2>
                 <ul class="p-list">
-                    <li class="p-list__item"><a class="p-link--external" href="/en/contributing-writing">Contributing guides</a></li>
+                    <li class="p-list__item"><a class="p-link--external" href="/2.5/en/contributing-writing">Contributing guides</a></li>
                     <li class="p-list__item--deep"><a class="p-link--external" href="https://launchpad.net/maas">Push some code</a></li>
                     <li class="p-list__item"><a class="p-link--external" href="https://bugs.launchpad.net/maas/+filebug">File an issue</a></li>
                 </ul>
@@ -70,3 +70,4 @@ homepage: true
         </div>
     </div>
 </div>
+

@@ -14,7 +14,7 @@ helpful:
 - [Kernel boot options][kernel-boot-options] for help on kernel boot options.
 
 
-## Set the default kernel boot options
+## Set global kernel boot options
 
 To set kernel boot options that will be applied to all machines:
 
@@ -22,7 +22,7 @@ To set kernel boot options that will be applied to all machines:
 maas $PROFILE maas set-config name=kernel_opts value='$KERNEL_OPTIONS'
 ```
 
-## Specify kernel boot options for a machine
+## Specify per-node kernel boot options
 
 To specify kernel boot options for an individual machine a tag needs to be
 created:

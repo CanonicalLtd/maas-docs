@@ -178,7 +178,7 @@ To change the default with the CLI see
 
 ### Node layout
 
-An administrator can change the layout for a single node as well as customize
+An administrator can change the layout for a single node as well as customise
 that layout providing this is done while the node has a status of 'Ready'. This
 is only possible via the CLI at this time (see
 [MAAS CLI - advanced tasks][cli-set-storage-layout]).
@@ -191,7 +191,7 @@ is only possible via the CLI at this time (see
 ## Final storage modifications
 
 Once a node has been provisioned with block devices via a layout or
-administrator customization (as mentioned under 'Node layout'), a regular user
+administrator customisation (as mentioned under 'Node layout'), a regular user
 can perform modifications on the resulting storage configuration at the
 filesystem level.
 

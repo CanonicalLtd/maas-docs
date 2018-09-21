@@ -11,7 +11,7 @@ navigation:
       - title: Explore MAAS
         location: intro-explore.md
 
-      - title: What's new in 2.4
+      - title: What's new in 2.5
         location: intro-new.md
 
       - title: Requirements
@@ -53,6 +53,9 @@ navigation:
 
           - title: Deploy nodes
             location: nodes-deploy.md
+          
+          - title: Custom node setup
+            location: nodes-custom.md
 
           - title: Tags
             location: nodes-tags.md
@@ -68,12 +71,12 @@ navigation:
 
           - title: Commissioning and Hardware testing scripts
             location: nodes-scripts.md
+          
+          - title: Resource pools
+            location: nodes-resource-pools.md
 
           - title: Pods
             location: nodes-comp-hw.md
-
-          - title: Custom node setup
-            location: nodes-custom.md
 
       - title: Images
         location: installconfig-images.md
@@ -139,8 +142,8 @@ navigation:
       - title: Concepts & terms
         location: intro-concepts.md
 
-      - title: Upgrade from 2.3
-        location: installconfig-upgrade-postgres.md
+      - title: Upgrading MAAS
+        location: installconfig-upgrade.md
 
       - title: Troubleshoot
 

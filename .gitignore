@@ -38,6 +38,7 @@ package-lock.json
 
 # [build] Built files
 /build/
+en/build/
 /parts/
 /prime/
 /stage/
