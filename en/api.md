@@ -25,10 +25,10 @@ error message and the api version are returned as plaintext.
 
 The following HTTP methods are available for accessing the API:
 
--   GET (for information retrieval and queries),
--   POST (for asking the system to do things),
--   PUT (for updating objects), and
--   DELETE (for deleting objects).
+- GET (for information retrieval and queries),
+- POST (for asking the system to do things),
+- PUT (for updating objects), and
+- DELETE (for deleting objects).
 
 All methods except DELETE may take parameters, but they are not all passed in
 the same way. GET parameters are passed in the URL, as is normal with a GET:
@@ -73,14 +73,9 @@ Create an authorisation OAuth token and OAuth consumer.
    unicode
 
 - `return`:
-   a json dict with four keys 'token_key',
-       'token_secret', 'consumer_key' and 'name'(e.g. {token_key:
-        's65244576fgqs', token_secret:
-
-    'qsdfdhv34',
-       consumer_key '68543fhj854fg', name:
-
-    'MAAS consumer'}).
+   a json dict with four keys 'token_key', 'token_secret', 'consumer_key' and
+   'name'(e.g. {token_key: 's65244576fgqs', token_secret: 'qsdfdhv34',
+   consumer_key '68543fhj854fg', name: 'MAAS consumer'}).
 
 - `rtype`:
    string (json)
@@ -931,6 +926,10 @@ List all resources for the specified criteria.
 - `param rrtype`:
    restrict the listing to entries which have
        records of the given rrtype.
+
+- `param all`:
+   if True, also include implicit DNS records created for
+       nodes registered in MAAS.
 
 ##### `POST /MAAS/api/2.0/dnsresources/`
 
@@ -2426,6 +2425,10 @@ Available configuration items:
    Port to bind the MAAS built-in proxy (default 8000). Defines the port
     used to bind the built-in proxy. The default port is 8000.
 
+- `maas_syslog_port`:
+   Port to bind the MAAS built-in syslog (default 5247). Defines the port
+    used to bind the built-in syslog. The default port is 5247.
+
 - `max_node_commissioning_results`:
    The maximum number of commissioning results runs which are stored.
 
@@ -2440,6 +2443,13 @@ Available configuration items:
     requests and mDNS advertisements) to observe networks attached to rack
     controllers. Active subnet mapping will also be available to be enabled on
     the configured subnets.
+
+- `node_timeout`:
+   Time, in minutes, until the node times out during commissioning, testing,
+    deploying, or entering rescue mode.. Commissioning, testing, deploying,
+    and entering rescue mode all set a timeout when beginning. If MAAS does
+    not hear from the node within the specified number of minutes the node is
+    powered off and set into a failed status.
 
 - `ntp_external_only`:
    Use external NTP servers only. Configure all region controller hosts, rack
@@ -2459,6 +2469,12 @@ Available configuration items:
    Sets IPv4 DNS resolution before IPv6. If prefer_v4_proxy is set, the
     proxy will be set to prefer IPv4 DNS resolution before it attempts to
     perform IPv6 DNS resolution.
+
+- `remote_syslog`:
+   Remote syslog server to forward machine logs. A remote syslog server that
+    MAAS will set on enlisting, commissioning, testing, and deploying machines
+    to send all log messages. Clearing this value will restore the default
+    behaviour of forwarding syslog to MAAS.
 
 - `subnet_ip_exhaustion_threshold_count`:
    If the number of free IP addresses on a subnet becomes less than or equal
@@ -2604,6 +2620,10 @@ Available configuration items:
    Port to bind the MAAS built-in proxy (default 8000). Defines the port
     used to bind the built-in proxy. The default port is 8000.
 
+- `maas_syslog_port`:
+   Port to bind the MAAS built-in syslog (default 5247). Defines the port
+    used to bind the built-in syslog. The default port is 5247.
+
 - `max_node_commissioning_results`:
    The maximum number of commissioning results runs which are stored.
 
@@ -2618,6 +2638,13 @@ Available configuration items:
     requests and mDNS advertisements) to observe networks attached to rack
     controllers. Active subnet mapping will also be available to be enabled on
     the configured subnets.
+
+- `node_timeout`:
+   Time, in minutes, until the node times out during commissioning, testing,
+    deploying, or entering rescue mode.. Commissioning, testing, deploying,
+    and entering rescue mode all set a timeout when beginning. If MAAS does
+    not hear from the node within the specified number of minutes the node is
+    powered off and set into a failed status.
 
 - `ntp_external_only`:
    Use external NTP servers only. Configure all region controller hosts, rack
@@ -2637,6 +2664,12 @@ Available configuration items:
    Sets IPv4 DNS resolution before IPv6. If prefer_v4_proxy is set, the
     proxy will be set to prefer IPv4 DNS resolution before it attempts to
     perform IPv6 DNS resolution.
+
+- `remote_syslog`:
+   Remote syslog server to forward machine logs. A remote syslog server that
+    MAAS will set on enlisting, commissioning, testing, and deploying machines
+    to send all log messages. Clearing this value will restore the default
+    behaviour of forwarding syslog to MAAS.
 
 - `subnet_ip_exhaustion_threshold_count`:
    If the number of free IP addresses on a subnet becomes less than or equal
@@ -2896,6 +2929,13 @@ Deploy an operating system to a machine.
        this machine.
 
 - `type install_rackd`:
+   boolean
+
+- `param install_kvm`:
+   If True, KVM will be installed on this machine and
+       added to MAAS.
+
+- `type install_kvm`:
    boolean
 
 Ideally we'd have MIME multipart and content-transfer-encoding etc. deal with
@@ -3843,40 +3883,41 @@ constraints are provided, they are combined using 'AND' semantics.
 
 - `param storage`:
    A list of storage constraint identifiers, in the form:
-   `label:size(tag[,tag[,...])][,label:...]`
+       label:size(tag[,tag[,...])][,label:....]
 
 - `type storage`:
    unicode
 
 - `param interfaces`:
-   A labeled constraint map associating constraint labels with interface
-   properties that should be matched. Returned nodes must have one or more
-   interface matching the specified constraints. The labeled constraint map must
-   be in the format: `label:key=value[,key2=value2[,...]]`
+   A labeled constraint map associating constraint
+   labels with interface properties that should be matched. Returned
+   nodes must have one or more interface matching the specified
+   constraints. The labeled constraint map must be in the format:
+   `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
 
-    Each key can be one of the following:
+   Each key can be one of the following:
 
-    -   id Matches an interface with the specific id
-    -   fabric Matches an interface attached to the specified fabric.
-    -   fabric_class Matches an interface attached to a fabric with the
-        specified class.
-    -   ip Matches an interface with the specified IP address assigned to
-        it.
-    -   mode Matches an interface with the specified mode. (Currently,
-        the only supported mode is "unconfigured".)
-    -   name Matches an interface with the specified name. (For example,
-        "eth0".)
-    -   hostname Matches an interface attached to the node with the
-        specified hostname.
-    -   subnet Matches an interface attached to the specified subnet.
-    -   space Matches an interface attached to the specified space.
-    -   subnet_cidr Matches an interface attached to the specified
-        subnet CIDR. (For example, "192.168.0.0/24".)
-    -   type Matches an interface of the specified type. (Valid types:
-        "physical", "vlan", "bond", "bridge", or "unknown".)
-    -   vlan Matches an interface on the specified VLAN.
-    -   vid Matches an interface on a VLAN with the specified VID.
-    -   tag Matches an interface tagged with the specified tag.
+   - `id`: Matches an interface with the specific id
+   - `fabric`: Matches an interface attached to the specified fabric.
+   - `fabric_class`: Matches an interface attached to a fabric with the
+     specified class.
+   - `ip`: Matches an interface with the specified IP address assigned to
+     it.
+   - `mode`: Matches an interface with the specified mode. (Currently,
+     the only supported mode is "unconfigured".)
+   - `name`: Matches an interface with the specified name. (For example,
+     "eth0".)
+   - `hostname`: Matches an interface attached to the node with the
+     specified hostname.
+   - `subnet`: Matches an interface attached to the specified subnet.
+   - `space`: Matches an interface attached to the specified space.
+   - `subnet_cidr`: Matches an interface attached to the specified
+     subnet CIDR. (For example, "192.168.0.0/24".)
+   - `type`: Matches an interface of the specified type. (Valid types:
+     "physical", "vlan", "bond", "bridge", or "unknown".)
+   - `vlan`: Matches an interface on the specified VLAN.
+   - `vid`: Matches an interface on a VLAN with the specified VID.
+   - `tag`: Matches an interface tagged with the specified tag.
 
 - `type interfaces`:
    unicode
@@ -4331,8 +4372,8 @@ Update a commissioning script.
    unicode
 
 - `param for_hardware`:
-   A list of modalias, PCI IDs, and/or USB IDs the
-       script will automatically run on. Must start with modalias:, pci:, or usb:.
+   A list of modalias, PCI IDs, and/or USB IDs the script will automatically
+   run on. Must start with `modalias:`, `pci:`, or `usb:`.
 
 - `type for_hardware`:
    unicode
@@ -4577,8 +4618,8 @@ Create a new script.
    unicode
 
 - `param for_hardware`:
-   A list of modalias, PCI IDs, and/or USB IDs the script will automatically run
-   on. Must start with modalias:, pci: , or usb:.
+   A list of modalias, PCI IDs, and/or USB IDs the script will automatically
+   run on. Must start with `modalias:`, `pci:`, or `usb:`.
 
 - `type for_hardware`:
    unicode
@@ -4905,6 +4946,16 @@ Read partition.
 
 Returns 404 if the node, block device, or partition are not found.
 
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=add_tag`
+
+Add a tag to partition.
+
+- `param tag`:
+   The tag being added.
+
+Returns 403 when the user doesn't have the ability to add tag. Returns 404 if
+the node, block device, or partition is not found.
+
 ##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=format`
 
 Format a partition.
@@ -4933,6 +4984,16 @@ Mount the filesystem on partition.
 
 Returns 403 when the user doesn't have the ability to mount the partition.
 Returns 404 if the node, block device, or partition is not found.
+
+##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=remove_tag`
+
+Remove a tag from partition.
+
+- `param tag`:
+   The tag being removed.
+
+Returns 403 when the user doesn't have the ability to add tag. Returns 404 if
+the node, block device, or partition is not found.
 
 ##### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unformat`
 
@@ -5046,43 +5107,45 @@ All fields below are optional:
    unicode
 
 - `param storage`:
-   A list of storage constraint identifiers, in the
-       form `label:size(tag[,tag[,...])][,label:...]`
+   A list of storage constraint identifiers, in the form:
+       &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
+
+> ...\]
 
 - `type storage`:
    unicode
 
 - `param interfaces`:
    A labeled constraint map associating constraint
-   labels with interface properties that should be matched. Returned
-    nodes must have one or more interface matching the specified
-    constraints. The labeled constraint map must be in the format:
-    `label:key=value[,key2=value2[,...]]`
+       labels with interface properties that should be matched. Returned
+        nodes must have one or more interface matching the specified
+        constraints. The labeled constraint map must be in the format:
+        `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
 
-    Each key can be one of the following:
+        Each key can be one of the following:
 
-    -   `id`: Matches an interface with the specific id
-    -   `fabric`: Matches an interface attached to the specified fabric.
-    -   `fabric_class`: Matches an interface attached to a fabric with
-        the specified class.
-    -   `ip`: Matches an interface whose VLAN is on the subnet implied by
-        the given IP address, and allocates the specified IP address for
-        the machine on that interface (if it is available).
-    -   `mode`: Matches an interface with the specified mode. (Currently,
-        the only supported mode is "unconfigured".)
-    -   `name`: Matches an interface with the specified name. (For
-        example, "eth0".)
-    -   `hostname`: Matches an interface attached to the node with the
-        specified hostname.
-    -   `subnet`: Matches an interface attached to the specified subnet.
-    -   `space`: Matches an interface attached to the specified space.
-    -   `subnet_cidr`: Matches an interface attached to the specified
-        subnet CIDR. (For example, "192.168.0.0/24".)
-    -   `type`: Matches an interface of the specified type. (Valid types:
-        "physical", "vlan", "bond", "bridge", or "unknown".)
-    -   `vlan`: Matches an interface on the specified VLAN.
-    -   `vid`: Matches an interface on a VLAN with the specified VID.
-    -   `tag`: Matches an interface tagged with the specified tag.
+        -   id Matches an interface with the specific id
+        -   fabric Matches an interface attached to the specified fabric.
+        -   fabric_class Matches an interface attached to a fabric with the
+            specified class.
+        -   ip Matches an interface whose VLAN is on the subnet implied by
+            the given IP address, and allocates the specified IP address for
+            the machine on that interface (if it is available).
+        -   mode Matches an interface with the specified mode. (Currently,
+            the only supported mode is "unconfigured".)
+        -   name Matches an interface with the specified name. (For example,
+            "eth0".)
+        -   hostname Matches an interface attached to the node with the
+            specified hostname.
+        -   subnet Matches an interface attached to the specified subnet.
+        -   space Matches an interface attached to the specified space.
+        -   subnet_cidr Matches an interface attached to the specified
+            subnet CIDR. (For example, "192.168.0.0/24".)
+        -   type Matches an interface of the specified type. (Valid types:
+            "physical", "vlan", "bond", "bridge", or "unknown".)
+        -   vlan Matches an interface on the specified VLAN.
+        -   vid Matches an interface on a VLAN with the specified VID.
+        -   tag Matches an interface tagged with the specified tag.
 
 - `type interfaces`:
    unicode
@@ -5287,7 +5350,19 @@ Manage an individual rack controller.
 
 ##### `DELETE /MAAS/api/2.0/rackcontrollers/{system_id}/`
 
-Delete a specific Node.
+Delete a specific rack controller.
+
+A rack controller cannot be deleted if it is set to primary_rack on a VLAN
+and another rack controller cannot be used to provide DHCP for said VLAN. Use
+force to override this behavior.
+
+- `param force`:
+   Always delete the rack controller even if its the
+       primary_rack on a VLAN and another rack controller cannot provide
+        DHCP on said VLAN. This will disable DHCP on those VLANs.
+
+- `type force`:
+   boolean
 
 Returns 404 if the node is not found. Returns 403 if the user does not have
 permission to delete the node. Returns 204 if the node is successfully
@@ -5466,7 +5541,7 @@ Returns 404 if the node is not found.
 
 ##### `PUT /MAAS/api/2.0/rackcontrollers/{system_id}/`
 
-Update a specific Rack controller.
+Update a specific rack controller.
 
 - `param power_type`:
    The new power type for this rack controller. If you
@@ -5909,30 +5984,34 @@ Raises 403 if the user is not an admin.
 
 Manage a resource pool.
 
-##### `DELETE /MAAS/api/2.0/resourcepool/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/resourcepool/{id}/``</summary>
+
+&nbsp;
 
 Deletes a resource pool.
 
-<details>
-<summary><b>Parameters</b></summary>
+**Parameters**
 
-------------------------------------------------------------------------------
+&nbsp;
 
--   **{id}** (*URI-string*) Required. The resource pool name/id to delete.
+-   **{id}** (*URL String*) Required. The resource pool name/id to delete.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
+*HTTP Status Code*  204
 
-    {
-        ...
-        'status' '204',
-        ...
-    }
+*Content*
+
+    <no content>
+
+**Error**
+
+&nbsp;
+
+*HTTP Status Code*  Always returns 204.
 
 *Content*
 
@@ -5940,47 +6019,23 @@ Deletes a resource pool.
 
 </details>
 <details>
-<summary><b>Error</b></summary>
+  <summary>``GET /MAAS/api/2.0/resourcepool/{id}/``</summary>
 
-------------------------------------------------------------------------------
-
-*HTTP-header*
-
-    {
-        ...
-        'status' '204',
-        ...
-    }
-
-*Content*
-
-    <no content>
-
-</details>
-##### `GET /MAAS/api/2.0/resourcepool/{id}/`
+&nbsp;
 
 Returns a resource pool.
 
-<details>
-<summary><b>Parameters</b></summary>
+**Parameters**
 
-------------------------------------------------------------------------------
+&nbsp;
 
--   **{id}** (*URI-string*) Required. A resource pool id/name.
+-   **{id}** (*URL String*) Required. A resource pool id/name.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -5991,66 +6046,40 @@ Returns a resource pool.
         "resource_uri" "/MAAS/api/2.0/resourcepool/0/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '404',
-        ...
-    }
+*HTTP Status Code*  404
 
 *Content*
 
     Not Found
 
 </details>
-##### `PUT /MAAS/api/2.0/resourcepool/{id}/`
+<details>
+  <summary>``PUT /MAAS/api/2.0/resourcepool/{id}/``</summary>
+
+&nbsp;
 
 Updates a resource pool's name or description.
 
 Note that any other given parameters are silently ignored.
 
-<details>
-<summary><b>Using PUT methods</b></summary>
-<p>
-`PUT` methods require a list of URL-encoded parameters to be passed in the
-BODY of the request (e.g.
-`name=test-update&description=This+is+a+new+resource+pool+for+updating.`) and
-must contain `Content-Type:'application/x-www-form-urlencoded'` in the HEADER
-in addition to the OAuth authentication headers [as discussed
-here](https://docs.maas.io/2.4/en/api-authentication).
+**Parameters**
 
-</p>
-</details>
-<details>
-<summary><b>Parameters</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
-
--   **{id}** (*URI-string*) Required. The resource pool id/name to update.
--   **description** (*string*) Optional. A brief description of the resource
+-   **{id}** (*URL String*) Required. The resource pool id/name to update.
+-   **description** (*String*) Optional. A brief description of the resource
     pool.
--   **name** (*string*) Optional. The resource pool's new name.
+-   **name** (*String*) Optional. The resource pool's new name.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -6061,19 +6090,11 @@ here](https://docs.maas.io/2.4/en/api-authentication).
         "resource_uri" "/MAAS/api/2.0/resourcepool/80/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '404',
-        ...
-    }
+*HTTP Status Code*  404
 
 *Content*
 
@@ -6084,25 +6105,20 @@ here](https://docs.maas.io/2.4/en/api-authentication).
 
 Manage resource pools.
 
-##### `GET /MAAS/api/2.0/resourcepools/`
+<details>
+  <summary>``GET /MAAS/api/2.0/resourcepools/``</summary>
+
+&nbsp;
 
 Get a listing of all resource pools.
 
 Note that there is always at least one resource pool default.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -6116,45 +6132,26 @@ Note that there is always at least one resource pool default.
     ]
 
 </details>
-</details>
-##### `POST /MAAS/api/2.0/resourcepools/`
+<details>
+  <summary>``POST /MAAS/api/2.0/resourcepools/``</summary>
+
+&nbsp;
 
 Creates a new resource pool.
 
-<details>
-<summary><b>Using POST methods</b></summary>
-<p>
-`POST` methods require a list of URL-encoded parameters to be passed in the
-BODY of the request (e.g.
-`name=test-update&description=This+is+a+new+resource+pool+for+updating.`) and
-must contain `Content-Type:'application/x-www-form-urlencoded'` in the HEADER
-in addition to the OAuth authentication headers [as discussed
-here](https://docs.maas.io/2.4/en/api-authentication).
+**Parameters**
 
-</p>
-</details>
-<details>
-<summary><b>Parameters</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
-
--   **name** (*string*) Required. The new resource pool's name.
--   **description** (*string*) Optional. A brief description of the new
+-   **name** (*String*) Required. The new resource pool's name.
+-   **description** (*String*) Optional. A brief description of the new
     resource pool.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -6165,19 +6162,11 @@ here](https://docs.maas.io/2.4/en/api-authentication).
         "resource_uri" "/MAAS/api/2.0/resourcepool/82/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '400',
-        ...
-    }
+*HTTP Status Code*  400
 
 *Content*
 
@@ -6996,38 +6985,42 @@ Ready.
 
 Manage a physical zone.
 
-> Any node is in a physical zone, or "zone" for short. The meaning of a
-> physical zone is up to you it could identify e.g. a server rack, a network,
-> or a data centre. Users can then allocate nodes from specific physical
-> zones, to suit their redundancy or performance requirements.
->
-> This functionality is only available to administrators. Other users can view
-> physical zones, but not modify them.
+Any node is in a physical zone, or "zone" for short. The meaning of a physical
+zone is up to you it could identify e.g. a server rack, a network, or a data
+centre. Users can then allocate nodes from specific physical zones, to suit
+their redundancy or performance requirements.
 
-##### `DELETE /MAAS/api/2.0/zones/{name}/`
+This functionality is only available to administrators. Other users can view
+physical zones, but not modify them.
+
+<details>
+  <summary>``DELETE /MAAS/api/2.0/zones/{name}/``</summary>
+
+&nbsp;
 
 Deletes a zone.
 
-<details>
-<summary><b>Parameters</b></summary>
+**Parameters**
 
-------------------------------------------------------------------------------
+&nbsp;
 
--   **{name}** (*URI-string*) Required. The zone to delete.
+-   **{name}** (*URL String*) Required. The zone to delete.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
+*HTTP Status Code*  204
 
-    {
-        ...
-        'status' '204',
-        ...
-    }
+*Content*
+
+    <no content>
+
+**Error**
+
+&nbsp;
+
+*HTTP Status Code*  Always returns 204.
 
 *Content*
 
@@ -7035,47 +7028,23 @@ Deletes a zone.
 
 </details>
 <details>
-<summary><b>Error</b></summary>
+  <summary>``GET /MAAS/api/2.0/zones/{name}/``</summary>
 
-------------------------------------------------------------------------------
-
-*HTTP-header*
-
-    {
-        ...
-        'status' '204',
-        ...
-    }
-
-*Content*
-
-    <no content>
-
-</details>
-##### `GET /MAAS/api/2.0/zones/{name}/`
+&nbsp;
 
 Returns a named zone.
 
-<details>
-<summary><b>Parameters</b></summary>
+**Parameters**
 
-------------------------------------------------------------------------------
+&nbsp;
 
--   **{name}** (*URI-string*) Required. A zone name
+-   **{name}** (*URL String*) Required. A zone name
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -7086,66 +7055,40 @@ Returns a named zone.
         "resource_uri" "/MAAS/api/2.0/zones/default/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '404',
-        ...
-    }
+*HTTP Status Code*  404
 
 *Content*
 
     Not Found
 
 </details>
-##### `PUT /MAAS/api/2.0/zones/{name}/`
+<details>
+  <summary>``PUT /MAAS/api/2.0/zones/{name}/``</summary>
+
+&nbsp;
 
 Updates a zone's name or description.
 
 Note that only 'name' and 'description' parameters are honored. Others, such
 as 'resource-uri' or 'id' will be ignored.
 
-<details>
-<summary><b>Using PUT methods</b></summary>
-<p>
-`PUT` methods require a list of URL-encoded parameters to be passed in the
-BODY of the request (e.g.
-`name=test-update&description=This+is+a+new+resource+pool+for+updating.`) and
-must contain `Content-Type:'application/x-www-form-urlencoded'` in the HEADER
-in addition to the OAuth authentication headers [as discussed
-here](https://docs.maas.io/2.4/en/api-authentication).
+**Parameters**
 
-</p>
-</details>
-<details>
-<summary><b>Parameters</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
+-   **{name}** (*URL String*) Required. The zone to update.
+-   **description** (*String*) Optional. A brief description of the new zone.
+-   **name** (*String*) Optional. The zone's new name.
 
--   **{name}** (*URI-string*) Required. The zone to update.
--   **description** (*string*) Optional. A brief description of the new zone.
--   **name** (*string*) Optional. The zone's new name.
+**Success**
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
-
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -7156,19 +7099,11 @@ here](https://docs.maas.io/2.4/en/api-authentication).
         "resource_uri" "/MAAS/api/2.0/zones/test-update-renamed/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '404',
-        ...
-    }
+*HTTP Status Code*  404
 
 *Content*
 
@@ -7179,24 +7114,19 @@ here](https://docs.maas.io/2.4/en/api-authentication).
 
 Manage physical zones.
 
-##### `GET /MAAS/api/2.0/zones/`
+<details>
+  <summary>``GET /MAAS/api/2.0/zones/``</summary>
+
+&nbsp;
 
 Get a listing of all zones. Note that there is always at least one zone:
 default.
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+**Success**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '200',
-        ...
-    }
+*HTTP Status Code*  200
 
 *Content*
 
@@ -7211,44 +7141,25 @@ default.
     ]
 
 </details>
-</details>
-##### `POST /MAAS/api/2.0/zones/`
+<details>
+  <summary>``POST /MAAS/api/2.0/zones/``</summary>
+
+&nbsp;
 
 Creates a new zone.
 
-<details>
-<summary><b>Using POST methods</b></summary>
-<p>
-`POST` methods require a list of URL-encoded parameters to be passed in the
-BODY of the request (e.g.
-`name=test-update&description=This+is+a+new+resource+pool+for+updating.`) and
-must contain `Content-Type:'application/x-www-form-urlencoded'` in the HEADER
-in addition to the OAuth authentication headers [as discussed
-here](https://docs.maas.io/2.4/en/api-authentication).
+**Parameters**
 
-</p>
-</details>
-<details>
-<summary><b>Parameters</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
+-   **name** (*String*) Required. The new zone's name.
+-   **description** (*String*) Optional. A brief description of the new zone.
 
--   **name** (*string*) Required. The new zone's name.
--   **description** (*string*) Optional. A brief description of the new zone.
+**Success**
 
-</details>
-<details>
-<summary><b>Success</b></summary>
+&nbsp;
 
-------------------------------------------------------------------------------
-
-*HTTP-header*
-
-    {
-        ...
-        'status' '204',
-        ...
-    }
+*HTTP Status Code*  204
 
 *Content*
 
@@ -7259,19 +7170,11 @@ here](https://docs.maas.io/2.4/en/api-authentication).
         "resource_uri" "/MAAS/api/2.0/zones/test-hYnxCnjS/"
     }
 
-</details>
-<details>
-<summary><b>Error</b></summary>
+**Error**
 
-------------------------------------------------------------------------------
+&nbsp;
 
-*HTTP-header*
-
-    {
-        ...
-        'status' '400',
-        ...
-    }
+*HTTP Status Code*  400
 
 *Content*
 
