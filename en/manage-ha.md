@@ -11,10 +11,10 @@ provided by each of those levels.
 
 ## Communication between machines and rack controllers
 
-In multi-region/rack clusters (i.e. HA clusters), all machine communication with MAAS is
-proxied through rack controllers, including HTTP metadata, DNS, syslog and Squid
-proxy.  Note that in single-region/rack clusters, the region controller manages
-communication.
+In multi-region/rack clusters (i.e. HA clusters), all machine communication
+with MAAS is proxied through rack controllers, including HTTP metadata, DNS,
+syslog and APT (proxying via Squid).  Note that in single-region/rack clusters,
+the region controller manages communication.
 
 Proxying through rack controllers is useful in environments where communication
 between machines and region controllers is restricted.
@@ -40,6 +40,11 @@ communicate via the rack controller directly.
 The rack controller installs `nginx`, which serves as a proxy and as an HTTP
 server, binding to port 5248. Machines contact the metadata server via the rack
 controller.
+
+### `syslog`
+
+See [Syslog] for more information about MAAS syslog communication as well as how
+to set up a remote syslog server.
 
 ## Rack controller HA
 
@@ -253,6 +258,7 @@ instead of a package distribution of MAAS:
 
 <!-- LINKS -->
 
+[syslog]: installconfig-syslog.md
 [snap-config]: installconfig-snap-install.md#initialisation
 [snap-install]: installconfig-snap-install.md#install-from-snap
 [concepts-controllers]: intro-concepts.md#controllers

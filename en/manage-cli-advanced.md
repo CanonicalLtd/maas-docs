@@ -287,6 +287,29 @@ For example, to set domain.name managed by MAAS to have an MX record and that yo
 maas $PROFILE dnsresource-records create fqdn=maas.io rrtype=mx rrdata='10 smtp.maas.io'
 ```
 
+## Add or update a remote syslog server
+
+To add or update a remote syslog server in your MAAS environment:
+
+```bash
+maas $PROFILE maas set-config name="remote_syslog" value="$SYSLOG_FQDN"
+```
+
+For example, to set your syslog server to `192.168.100.11`:
+
+```bash
+maas $PROFILE maas set-config name="remote_syslog" value=192.168.100.11
+```
+
+If you clear the `remote_syslog` value, MAAS will revert back to default
+behavior, which is to send all syslog information to all MAAS region
+controllers.
+
+For example:
+
+```bash
+maas $PROFILE maas set-config name="remote_syslog" value=""
+```
 
 <!-- LINKS -->
 
