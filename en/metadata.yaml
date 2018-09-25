@@ -123,6 +123,9 @@ navigation:
 
           - title: Availability Zones (AZs)
             location: manage-zones.md
+      
+      - title: Syslog
+        location: installconfig-syslog.md
 
       - title: Storage
         location: installconfig-storage.md
