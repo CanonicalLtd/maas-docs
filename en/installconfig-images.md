@@ -10,11 +10,21 @@ Windows, RHEL and ESXi images to build a custom image for any operating
 system.
 
 Images are stored in the region controller's database, from where the rack
-controller will automatically pull them onto its local disk. 
+controller will automatically pull them onto its local disk.
+
+Note that for ESXi images, network configuration is limited to:
+
+* DHCP
+* Static/auto IP assignments
+* Aliases
+* VLANs
+* Bonds -- bonds are mapped to NIC teaming as follows:
+    + balance-rr -- portid
+    + active-backup -- explicit
+    + 802.3ad -- iphash, LACP rate and XMIT hash policy settings ignored
 
 See [CLI Image Management][cli-images] for information on advanced image
 management.
-
 
 ## Boot sources
 
