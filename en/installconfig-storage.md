@@ -28,6 +28,11 @@ configuration.
 When a node is no longer needed a user can choose from among several disk
 erasure types before releasing it.
 
+!!! Note:
+    MAAS supports storage configuration for CentOS and RHEL deployments. Support
+    includes RAID, LVM, and custom partitioning with different file systems (ZFS
+    and Bcache excluded). This support requires a newer version of Curtin,
+    [available as a PPA][curtinppa].
 
 ## UEFI
 
@@ -207,5 +212,6 @@ for details.
 [storage-erasure]: installconfig-storage-erasure.md
 [cli-default-storage-layout]: manage-cli-advanced.md#set-the-default-storage-layout
 [cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
+[curtinppa]: https://launchpad.net/ubuntu/+source/curtin
 
 [img__default-storage-layout]: ../media/installconfig-storage__2.4_default-storage-layout.png

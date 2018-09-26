@@ -28,16 +28,18 @@ comprehensive review of the changes in this release, including known issues,
 workarounds and bug fixes, take a look at the detailed release notes in the
 following MAAS Discourse topics:
 
-+ [MAAS 2.5.0 alpha 1][release-notes-alpha-1].
-+ [MAAS 2.5.0 alpha 2][release-notes-alpha-2].
++ [MAAS 2.5.0 beta 1][release-notes-beta-1]
++ [MAAS 2.5.0 alpha 2][release-notes-alpha-2]
++ [MAAS 2.5.0 alpha 1][release-notes-alpha-1]
 
 ## Improvements to communication between controllers and machines
 
 In previous versions of MAAS, machines interacted directly with the region
-controller to access HTTP metadata, DNS, syslog and Squid (proxy). Because some
-MAAS environments restrict communications between machines and the region
-controller, starting with MAAS 2.5, for multi-rack/region clusters, HTTP
-metadata, DNS, syslog and Squid are proxied through rack controllers.
+controller to access HTTP metadata, DNS, syslog and APT (proxying via Squid).
+Because some MAAS environments restrict communications between machines and the
+region controller, starting with MAAS 2.5, for multi-rack/region clusters, HTTP
+metadata, DNS, syslog and APT (proxying via Squid) are proxied through rack
+controllers.
 
 !!! Note:
     For single-rack/region clusters, machines will continue to communicate with
@@ -46,6 +48,15 @@ metadata, DNS, syslog and Squid are proxied through rack controllers.
 See [High availability][high-availability] for more detailed information about
 how rack controllers and machines communicate with MAAS in multi-rack/region
 clusters.
+
+### syslog
+
+MAAS rack controllers now communicate syslog information to the region. Users
+can see log information of all region and rack controllers on any region
+controller. In addition, users can configure a remote syslog server when
+sending syslog information to the MAAS controllers isn't desirable. Note that
+this will not forward MAAS controller syslog information to the external server
+-- it only sends machine syslog information.
 
 ## Simplifying rack-to-region configuration in high-availability (HA) setups
 
@@ -64,7 +75,27 @@ it to another automatically.
 
 For details, see [High availability][high-availability].
 
+## Storage support for CentOS (and RHEL)
+
+MAAS supports storage configuration for CentOS and RHEL deployments:
+
+* Custom partitioning (except ZFS or Bcache)
+* LVM
+* RAID
+
+This requires a new Curtin version that is available via [PPA][curtinppa].
+
 ## Additional KVM pod features
+
+### Default networking enhancements
+
+MAAS now checks to see if DHCP is managed by libvirt before attaching to a
+`maas` or `default` network. (Note that if DHCP is managed by libvirt, MAAS will
+not be able to PXE-boot machines.)
+
+MAAS will fall back to attaching to a libvirt-managed network known to be
+DHCP-enabled in MAAS, even if that network is not associated with a network in
+libvirt.
 
 ### Composing KVM virtual machines using interface constraints
 
@@ -125,11 +156,17 @@ detailed information.
 
 ## ESXi deployment
 
-MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+) with limited support:
+MAAS 2.5 can deploy VMWare ESXi hypervisors (v6.7+):
 
-+ Network configuration is not yet supported. MAAS 2.5.0 provides basic
-  networking configuration: static IP addresses on non-VLAN or bonded
-  interfaces. Future versions of MAAS will support NIC teaming and VLANs.
++ Network configuration is limited to
+    * DHCP
+    * Static/auto IP assignments
+    * Aliases
+    * VLANs
+    * Bonds -- bonds are mapped to NIC teaming as follows:
+        + balance-rr -- portid
+        + active-backup -- explicit
+        + 802.3ad -- iphash, LACP rate and XMIT hash policy settings ignored
 + Post-installation is not available over preseeds, for example:
   `curtin_userdata`. Users can customise images they create to deploy with MAAS.
 
@@ -174,3 +211,5 @@ enhanced API documentation across all operations.
 [canonical]: https://www.canonical.com/
 [release-notes-alpha-1]: https://discourse.maas.io/t/maas-2-5-0-alpha-1/106
 [release-notes-alpha-2]: https://discourse.maas.io/t/maas-2-5-0-alpha-2-released/155
+[release-notes-beta-1]: https://discourse.maas.io/t/maas-2-5-0-beta-1-released/174
+[curtinppa]: https://launchpad.net/ubuntu/+source/curtin
