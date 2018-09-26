@@ -34,8 +34,15 @@ a libvirt network configured to use it.
 
 Alternatively, if KVM and MAAS reside on the same system, the default NAT
 libvirt network can be used by disabling DHCP on it and enabling MAAS DHCP on
-the VLAN associated with the libvirt subnet of 192.168.122.0/24. MAAS will
-first look for a libvirt network named 'maas', then for 'default'.
+the VLAN associated with the libvirt subnet of 192.168.122.0/24.
+
+MAAS checks to see if DHCP is managed by libvirt before attaching to a libvirt
+network named `maas` or `default`. (Note that if DHCP is managed by libvirt,
+MAAS will not be able to PXE-boot machines.)
+
+MAAS will fall back to attaching to a libvirt-managed network known to be
+DHCP-enabled in MAAS, even if that network is not associated with a network in
+libvirt.
 
 MAAS supports more complex methods for assigning interfaces to pods [using the
 CLI][interface-constraint].
