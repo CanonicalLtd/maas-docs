@@ -4,9 +4,9 @@ table_of_contents: True
 
 # Resource pools
 
-Resource pools allow administrators to logically group resources (nodes) into
-pools. All MAAS installations have a resource pool named "default." New machines
-are automatically added to the default resource pool.
+Resource pools allow administrators to logically group resources (nodes and
+pods) into pools. All MAAS installations have a resource pool named "default."
+New machines are automatically added to the default resource pool.
 
 ## Web UI
 
@@ -43,14 +43,29 @@ the resource pool and click the Save changes button.
 
 ## Removing a node from a resource pool
 
-To remove a machine from a resource pool, simply follow the procedure above,
-except select "default" as the new resource pool. This will return the machine
-back to the default resource pool.
+To remove a machine from a resource pool, simply follow the same procedure to
+add a node, except select "default" as the new resource pool. This will return
+the machine back to the default resource pool.
+
+## Add a pod to a resource pool
+
+You can add a pod to a resource pool when you create a new pod (see [Pods][createpod]), or
+you can edit a pod's configuration:
+
+![add_pod_to_pool][img__pod-to-pool]
+
+## Removing a pod from a resource pool
+
+To remove a pod from a resource pool, simply follow the same procedure to add a
+pod to a resource pool, except select "default" as the new resource pool. This
+will return the machine back to the default resource pool.
 
 <!-- LINKS -->
 
+[createpod]: nodes-comp-hw.md#add-a-pod
 [webui]: installconfig-webui.md
 
+[img__pod-to-pool]: ../media/nodes-comp-hw__2.5_pod_to_pool.png
 [img__add-pool]: ../media/nodes-resource-pools__2.5_add-pool.png
 [img__delete-pool]: ../media/nodes-resource-pools__2.5_delete-pool.png
 [img__add-machine]: ../media/nodes-resource-pools__2.5_add-machine.png
