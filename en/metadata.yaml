@@ -184,6 +184,9 @@ navigation:
       - title: Tag management
         location: manage-cli-tags.md
 
+      - title: Resource pool management
+        location: manage-cli-resource-pools.md
+
       - title: DHCP snippet management
         location: manage-cli-dhcp-snippets.md
 
