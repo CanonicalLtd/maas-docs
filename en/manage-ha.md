@@ -19,16 +19,16 @@ the region controller manages communication.
 Proxying through rack controllers is useful in environments where communication
 between machines and region controllers is restricted.
 
-MAAS creates an internal DNS domain (not manageable by the user) and a special
-DNS resource for each subnet that is managed by MAAS. Each subnet includes all
+MAAS creates an internal DNS domain, not manageable by the user, and a special
+DNS resource for each subnet that is managed by MAAS.  Each subnet includes all
 rack controllers that have an IP on that subnet. Booting machines use the subnet
 DNS resource to resolve the rack controller available for communication. If
 multiple rack controllers belong to the same subnet, MAAS uses a round-robin
-algorithm to balance the load across multiple rack controllers. This ensures
+algorithm to balance the load across multiple rack controllers.  This ensures
 that machines always have a rack controller.
 
-!!! Note:
-    DNS queries, PXE booting, and NTP polls use IP addresses.
+Machines use this internal domain for HTTP metadata queries, APT (proxying via
+Squid), and Syslog. DNS queries, PXE booting, and NTP polls use IP addresses.
 
 The rack controller installs and configures `bind` as a forwarder. All machines
 communicate via the rack controller directly.
