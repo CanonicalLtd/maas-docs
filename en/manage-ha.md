@@ -19,8 +19,6 @@ the region controller manages communication.
 Proxying through rack controllers is useful in environments where communication
 between machines and region controllers is restricted.
 
-### DNS/Squid proxy
-
 MAAS creates an internal DNS domain (not manageable by the user) and a special
 DNS resource for each subnet that is managed by MAAS. Each subnet includes all
 rack controllers that have an IP on that subnet. Booting machines use the subnet
@@ -29,8 +27,12 @@ multiple rack controllers belong to the same subnet, MAAS uses a round-robin
 algorithm to balance the load across multiple rack controllers. This ensures
 that machines always have a rack controller.
 
+!!! Note:
+    DNS queries, PXE booting, and NTP polls use IP addresses.
+
 The rack controller installs and configures `bind` as a forwarder. All machines
 communicate via the rack controller directly.
+
 
 !!! Note:
     Zone management and maintenance still happen within the region controller.
@@ -41,9 +43,9 @@ The rack controller installs `nginx`, which serves as a proxy and as an HTTP
 server, binding to port 5248. Machines contact the metadata server via the rack
 controller.
 
-### `syslog`
+### Syslog
 
-See [Syslog] for more information about MAAS syslog communication as well as how
+See [Syslog][syslog] for more information about MAAS syslog communication as well as how
 to set up a remote syslog server.
 
 ## Rack controller HA
@@ -53,8 +55,12 @@ Multiple rack controllers are necessary to achieve high availability. Please see
 
 ### Multiple region endpoints
 
-Administrators can specify multiple region-controller endpoints for a single
-rack controller by adding entries to `/etc/maas/rackd.conf`.
+MAAS will automatically discover and track all reachable region controllers in a
+single cluster as well as automatically attempt to connect to them in the event
+that the one being used becomes inaccessible.
+
+Administrators can alternatively specify multiple region-controller endpoints
+for a single rack controller by adding entries to `/etc/maas/rackd.conf`.
 
 E.g.
 
@@ -69,11 +75,6 @@ maas_url:
 .
 .
 ```
-
-Note that future releases of MAAS will include the ability to automatically
-discover and track all available region controllers in a single cluster, as well
-as automatically attempt to connect to them in the event that one becomes
-inaccessible.
 
 ### BMC HA
 
@@ -256,8 +257,16 @@ instead of a package distribution of MAAS:
 1. [Configure the snap][snap-config] by specifying the role appropriate for your particular
    setup.
 
+## VIP
+
+Note that in previous versions of MAAS, a virtual IP was required to serve as
+the effective IP address of all region API servers in high-availability
+environments. Since MAAS 2.5, this is no longer required. See [Virtual
+IP][virtualip] for more information.
+
 <!-- LINKS -->
 
+[virtualip]: https://docs.maas.io/2.4/en/manage-ha#virtual-ip
 [syslog]: installconfig-syslog.md
 [snap-config]: installconfig-snap-install.md#initialisation
 [snap-install]: installconfig-snap-install.md#install-from-snap
