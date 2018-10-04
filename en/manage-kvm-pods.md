@@ -1,21 +1,51 @@
 # KVM (pod)
 
-MAAS can help you to manage your virtual machines. A MAAS KVM pod is a
-collection of virtual machines running on an instance of `libvirt`. You can set
-up a single pod per `libvirt` instance and then use MAAS to compose as many VMs
-as you need. If you have many `libvirt` instances, you can set up a pod to
-control each one.
+A MAAS KVM pod is a collection of virtual machines running on an instance of
+`libvirt`. KVM pods are used primarily for Juju integration, allowing for
+dynamic allocation of VMs with custom interface constraints.
+
+Alternatively, if you would like to use MAAS to manage a collection of VMs, the
+robust web UI provides easy creation and management of VMs logically grouped by
+pod.
 
 Features:
 
-* Overcommit physical resources in situations where you need to create more VMs
-  that can technically run on your server.
-* Assign pods to resource pools to segregate your pods into logical groupings
-* Track `libvirt` storage pool usage and assign default storage pools to your
+- Juju integration
+- At-a-glance visual tools for easy resource management
+- Overcommit physical resources in situations where you need to create more VMs
+  that can technically run on your server
+- Assign pods to resource pools to segregate your pods into logical groupings
+- Track `libvirt` storage pool usage and assign default storage pools to your
   pods
-* Create VMs in multiple subnets
+- Create VMs in multiple subnets
 
-## Add a KVM host (pod) to MAAS
+## KVM pod networking
+
+In order to enable KVM pod networking features, MAAS must be able to correlate
+the IP address of a potential KVM pod host with a host already known to MAAS
+(machine, controller, or device). If it cannot, as would be the case if a
+machine is manually deployed and later set up as a KVM host, MAAS disallows KVM
+networking features because it will not be able to apply what it knows about its
+networking model (VLANs, interfaces, and subnets) to correctly configure the
+hypervisor in the manually deployed host at the time the VM is created.
+
+There are therefore 2 recommmended ways to add a KVM host pod to MAAS:
+
+### 1. Install KVM on an existing and active MAAS controller
+
+
+
+1. Install KVM on an existing and active MAAS controller. This ensures that
+MAAS's networking model will be consistent. Additionally, because MAAS
+controllers are updated in real-time, any changes to the networking model will
+be immediately reflected.
+2. Deploy a machine within MAAS, ticking the "Use as a KVM host" checkbox.  MAAS
+will automatically install KVM as well as ensure that the network model is
+consistent with what is on the deployed machine.
+
+
+
+## Add a KVM host pod to MAAS
 
 ### Add a remote KVM host (libvirt) as a MAAS KVM pod (non-MAAS deployed)
 
@@ -190,3 +220,7 @@ same host or you need more complex network topologies or requirements.
 
 For an in-depth discussion about the differences between bridge vs. macvlan see
 [here](https://hicu.be/bridge-vs-macvlan).
+
+<!-- LINKS -->
+
+[juju]: https://docs.jujucharms.com
