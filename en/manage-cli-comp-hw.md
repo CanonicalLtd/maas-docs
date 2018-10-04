@@ -350,6 +350,7 @@ maas $PROFILE pod delete $POD_ID
 
 <!-- LINKS -->
 
+[api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
 [composable-hardware]: nodes-comp-hw.md
 [over-commit]: nodes-comp-hw.md#configuration
