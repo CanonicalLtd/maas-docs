@@ -45,7 +45,7 @@ ensure that the network model is consistent with what is on the machine.
 One of the main difference between MAAS 2.5 and earlier versions of MAAS is the
 new interface-constraints feature, which allows you to compose a VM with
 specific networking requirements (a full-explanation of the feature is found in
-the folowing section -- for now, knowing the feature exists is enough to
+the following section -- for now, knowing the feature exists is enough to
 continue the discussion). When these requirements are present, MAAS is able
 connect your VMs to the full range of your MAAS-configured network.
 
@@ -102,7 +102,7 @@ MAAS-enabled DHCP on either.
 Maclvan is simpler in design and uses less CPU than bridges, while at the same
 time offering useful features. Setting up macvlan is outside the scope of this
 document, but fortunately, macvlan is installed an enabled by default in
-MAAS-deployed machines. MAAS uses macvlan if a interfaces constraint specificies
+MAAS-deployed machines. MAAS uses macvlan if a interfaces constraint specifies
 a macvlan interface when composing a VM.
 
 You can configure the default macvlan mode of an existing pod using the CLI:
