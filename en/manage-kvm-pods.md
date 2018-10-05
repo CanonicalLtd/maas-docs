@@ -1,12 +1,10 @@
 # KVM (pod)
 
 A MAAS KVM pod is a collection of virtual machines running on an instance of
-`libvirt`. KVM pods are used primarily for Juju integration, allowing for
-dynamic allocation of VMs with custom interface constraints.
-
-Alternatively, if you would like to use MAAS to manage a collection of VMs, the
-robust web UI provides easy creation and management of VMs logically grouped by
-pod.
+libvirt. KVM pods are usefule for Juju integration, allowing for dynamic
+allocation of VMs with custom interface constraints.  Alternatively, if you
+would like to use MAAS to manage a collection of VMs, the robust web UI allows
+you to easily create and manage VMs logically grouped by pod.
 
 Features:
 
@@ -15,7 +13,7 @@ Features:
 - Overcommit physical resources in situations where you need to create more VMs
   that can technically run on your server
 - Assign pods to resource pools to segregate your pods into logical groupings
-- Track `libvirt` storage pool usage and assign default storage pools to your
+- Track libvirt storage pool usage and assign default storage pools to your
   pods
 - Create VMs in multiple subnets
 
@@ -25,142 +23,157 @@ In order to enable KVM pod networking features, MAAS must be able to correlate
 the IP address of a potential KVM pod host with a host already known to MAAS
 (machine, controller, or device). If it cannot, as would be the case if a
 machine is manually deployed and later set up as a KVM host, MAAS disallows KVM
-networking features because it will not be able to apply what it knows about its
-networking model (VLANs, interfaces, and subnets) to correctly configure the
-hypervisor in the manually deployed host at the time the VM is created.
+networking features because it will not be able to apply its networking model
+(VLANs, interfaces, and subnets) when configuring the hypervisor in the manually
+deployed host at the time the VM is created.
 
-There are therefore 2 recommmended ways to add a KVM host pod to MAAS:
+The recommended way of setting up a KVM host is therefore to deploy a machine
+within MAAS and tick the "Use as a KVM host" checkbox (a full explanation is
+found in the following section). MAAS will automatically install KVM as well as
+ensure that the network model is consistent with what is on the machine.
 
-### 1. Install KVM on an existing and active MAAS controller
+!!! Note:
+    There are other ways of setting up KVM Pod hosts that provide easy
+    management of VMs via the MAAS UI. You can, for example, install KVM
+    manually on a deployed node (KVM pod networking will be limited) or on a new
+    rack controller (fully featured KVM pod networking).
+
+### Differences between MAAS 2.5 and 2.4 KVM pod networking
+
+#### Interface constraints
+
+One of the main difference between MAAS 2.5 and earlier versions of MAAS is the
+new interface-constraints feature, which allows you to compose a VM with
+specific networking requirements (a full-explanation of the feature is found in
+the folowing section -- for now, knowing the feature exists is enough to
+continue the discussion). When these requirements are present, MAAS is able
+connect your VMs to the full range of your MAAS-configured network.
+
+#### 2.4 and earlier
+
+MAAS checks for the existence of a libvirt network named `maas`.  The `maas`
+network typically has DHCP disabled in favor of MAAS-enabled DHCP to allow your
+VMs to PXE boot. In addition, NAT port-forwarding to a physical device on the
+host will allow the VMs to reach the Internet.
+
+If MAAS cannot find a `maas` network, it will fallback to libvirt's `default`
+network, which will allow VMs to connect to the Internet but *not* to PXE boot,
+which is not ideal.
+
+!!! Warning:
+    Libvirt's default DHCP server, used by the `default` libvirt network,
+    doesn't provide the necessary metadata required to support PXE booting.
+
+#### 2.5+
+
+Since 2.5, MAAS supports a more robust networking model with regard to KVM,
+provided you deploy KVM host pods with the "Use as a KVM pod host" checkbox
+ticked as discussed in the introduction.
+
+##### With interface constraints
+
+Instead of attaching to a libvirt network like `maas` or `default`, MAAS in
+this case tells the hypervisor on the host to attach the VM directly to a
+constraints-matching underlying bridge or non-bridge interface via macvtap.  In
+addition, if you provide a specific IP address in the constraint string, MAAS
+will try to allocate it and assign it to the interface when the VM is created,
+thereby providing some limited interface configuration upon creating the VM.
+
+##### With *no* interface constraints
+
+If you do not specify interface constraints, how MAAS attaches the VM to a
+network depends on how KVM was installed on the pod host.
+
+If the pod host was deployed by MAAS for use as a KVM host as outlined above,
+MAAS will skip the libvirt `maas` and `default` networks if they are not
+enabled for DHCP in MAAS, instead preferring a DHCP-enabled MAAS network. This
+means you don't have to manually create a MAAS-friendly libvirt network to
+which to attach the VM.
+
+If you've instead installed KVM manually on your host machine after deploying
+via MAAS, MAAS will revert to its 2.4 behavior, namely trying to attach to a
+suitable `maas` or `default` libvirt network, enabling PXE boot if it detects
+MAAS-enabled DHCP on either.
+
+### Bridges
+
+#### Macvlan
+
+Maclvan is simpler in design and uses less CPU than bridges, while at the same
+time offering useful features. Setting up macvlan is outside the scope of this
+document, but fortunately, macvlan is installed an enabled by default in
+MAAS-deployed machines. MAAS uses macvlan if a interfaces constraint specificies
+a macvlan interface when composing a VM.
+
+You can configure the default macvlan mode of an existing pod using the CLI:
+
+```
+maas $PROFILE pod update <pod-id> host=<host> default_macvlan_mode=<mode>
+```
+
+Where:
+
+- `pod-id`: the pod’s MAAS ID
+- `host`: the IP or hostname of the libvirt instance
+- `default_macvlan_mode`:
+    - `private`: VMs with the same parent interface cannot communicate but can
+      reach destinations outside the parent interface
+    - `vepa`: VM communication is forwarded through the parent interface and
+      reflected back if the source and destination of the packet is local to the
+      VMs.  VMs can reach destinations outside the parent interface. Note that
+      this requires a VEPA switching mechanism.
+    - `bridge`: Inter-VM communication is maintained locally (behind the parent
+      interface) and destinations outside are forwarded through the parent
+      interface.
+    - `passthru`: Allows a single VM to be connected directly to the parent
+      interface, which in turn allows the VM to change MAC addresses and other
+      interface parameters.
 
 
+#### Bridge vs. macvlan
 
-1. Install KVM on an existing and active MAAS controller. This ensures that
-MAAS's networking model will be consistent. Additionally, because MAAS
-controllers are updated in real-time, any changes to the networking model will
-be immediately reflected.
-2. Deploy a machine within MAAS, ticking the "Use as a KVM host" checkbox.  MAAS
-will automatically install KVM as well as ensure that the network model is
-consistent with what is on the deployed machine.
+Macvlan is simpler in design than a bridge and therefore can offer better
+thruput and less demand on CPU.
 
+A bridge is better suited for situations where you have more complex network
+topology or require more advanced features.
 
+For an in-depth discussion about the differences between bridge vs. macvlan see
+[here](https://hicu.be/bridge-vs-macvlan).
 
 ## Add a KVM host pod to MAAS
 
-### Add a remote KVM host (libvirt) as a MAAS KVM pod (non-MAAS deployed)
+### 2.5
 
-#### 2.5:
+Once a machine as been added to MAAS and gone through enlistment, commissioning
+and hardware testing, you can deploy it (after acquiring it) as a KVM host by
+ticking the "Use as a KVM host" checkbox:
 
-[TBD: Copy Add-a-pod section from https://docs.maas.io/2.5/en/nodes-comp-hw]
+TBD: SCREENSHOT-WHEN-AVAILABLE
 
-#### 2.4
-
-[TBD: Combine the network setup here
-https://tutorials.ubuntu.com/tutorial/create-kvm-pods-with-maas#3 with
-https://docs.maas.io/2.4/en/nodes-add#kvm-guest-nodes]
-
-## Adding a machine in MAAS as a KVM host
-
-### Deploying a machine in MAAS as a KVM Pod
-
-While not yet available via the MAAS web UI or MAAS CLI, you can tell MAAS to
-deploy a KVM-pod-ready machine. Once MAAS has enlisted, commissioned and
-hardware-tested the machine, and it’s ready to deploy, you can tell MAAS to
-install KVM during deployment via the [MAAS
-API](https://docs.maas.io/2.5/en/api#post-maasapi20machinessystem_id-opdeploy).
-
-!!! Note:
-    The MAAS UI and CLI will soon support this feature.
+You can also use the [MAAS CLI][cli-deploy-kvm] to deploy a machine to use as a
+KVM host.
 
 
-In order to support full KVM pod networking, MAAS will bridge all available
-interfaces on the physical machine.
+### Manual/Pre-2.5
 
-### Converting a MAAS deployed machine into a KVM Pod
+Setting up a manual KVM host in 2.5 or in older version of MAAS requires many
+more manual steps.
 
-#### 2.5
+#### Setting up a `maas` libvirt network
 
-MAAS does not install KVM by default on deployed nodes so you’ll need to
-install KVM:
+Libvirt by default creates a virtual bridge, `virbr0`, through which VMs
+communicate with each other and the Internet. DHCP is supplied by libvirt so
+that new VMs are automatically given an IP address. However, the libvirt DHCP
+server does not supply the necessary metadata to allow for PXE booting that MAAS
+requires. Therefore, you need to create a `maas` network with DHCP disabled and
+NAT port-forwarding enabled. MAAS will look for this libvirt network first
+before falling back to libvirt's `default` network. In that case, PXE booting
+will not work.
 
+You can set up such a `maas` network like this:
 
-```bash
-[TBD: Install kvm instructions]
-```
-
-You can then use macvlan (depending on how you configure it) to connect
-physical interfaces to VMs.
-
-[Based on a quick look in the code, KVM is not installed by default, so this
-section also needs a bit about how to install KVM, right?]
-
-#### 2.4
-
-[TBD: KVM needs to be installed and a bridge needs setting up, like above:
-https://tutorials.ubuntu.com/tutorial/create-kvm-pods-with-maas#3 and
-https://docs.maas.io/2.4/en/nodes-add#kvm-guest-nodes]
-
-## Storage pools
-
-`libvirt` “storage pools” are storage resources managed by `libvirt`. For a
-more in-depth take on `libvirt` storage pools, see
-[here](https://libvirt.org/storage.html). 
-
-MAAS detects available `libvirt` storage pools. You can choose which storage
-pool to use when composing a new VM within a MAAS pod.
-
-In the Storage configuration section:
-
-[storagepool][img__storagepool]
-
-[TBD: Add CLI command from
-https://docs.maas.io/2.5/en/manage-cli-comp-hw#compose-pod-machines: `maas
-admin pod compose storage=root:32(pool1),home:64(pool2)` and explain that
-“root” and “home” are labels -- undocumented in the API so all values needed
-there, :NN is size in GB (presumably) and “pool1” and “pool2” are tags]
-
-## Networking
-
-Networking virtual machines is a complex topic, so only two options will be
-discussed here, as they are typical options.  Using a libvirt network
-
-### 2.5+
-
-Best practice is to use MAAS to deploy a machine to act as a KVM host. In this
-case, MAAS automatically bridges all interfaces on a deployed physical server
-so that KVM pods can communicate with one another and the Internet.
-
-If you are using a server that MAAS didn’t deploy as a remote KVM host, you’ll
-need to set up networking manually so that VMs you create inside a MAAS pod can
-communicate with MAAS, other pods, and the Internet. See the following section
-for more information.
-
-Beginning with 2.5, MAAS first checks if DHCP is enabled in the network used by
-the KVM MAAS host, if it is, PXE booting is disabled. If, however, there is an
-available network known to have DHCP enabled within MAAS, MAAS will default to
-use that network.
-
-### Manual/2.3/2.4
-
-`libvirt` by default creates a virtual bridge, virbr0, through which VMs
-communicate with each other and the Internet. DHCP is supplied so that new VMs
-are automatically given an IP address. 
-
-Typically, DHCP should be disabled in whatever libvirt network MAAS attaches
-to. MAAS looks for a `maas` libvirt network first and attaches to that if it
-exists. If not, MAAS defaults to the `default` network. DHCP should then be
-subsequently enabled within MAAS in order to allow for PXE booting. 
-
-One approach to setting up a `libvirt` network is to set up a virtual bridge
-similar to the default, except without DHCP. If this network connection is
-named `maas`, MAAS will connect to it automatically when run inside a virtual
-machine. The same applies to running MAAS inside an LXD container. You can set
-up a network:
-
-E.g.:
-
-
-```
+```no-highlight
 cat << EOF > maas.xml
 <network>
  <name>maas</name>
@@ -178,49 +191,100 @@ EOF
 virsh net-define maas.xml
 ```
 
-## Bridges
+#### Setting up SSH
 
-### Macvlan
+In order for MAAS to successfully communicate with libvirt on your KVM host
+machine, this example command must succeed from every rack controller as user
+`maas`:
 
-Maclvan is simpler in design and use less CPU than bridges, while at the same
-time offering useful features. Setting up macvlan is outside the scope of this
-document, but once it is set up, you can use the MAAS CLI to configure the
-default macvlan mode of a pod:
-
-```
-maas $PROFILE pod update <pod-id> host=<host> default_macvlan_mode=<mode>
+```bash
+virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 ```
 
-Where:
+Here, `$USER` is a user on your KVM host who is a member of the `libvirtd` unix
+group on the KVM host, and `$KVM_HOST` is the IP of your KVM host.
 
-`pod-id`: the pod’s MAAS ID
-`host`: the IP or hostname of the `libvirt` instance
-`default_macvlan_mode`: 
-	1. `private`: VMs with the same parent interface cannot communicate but can
-        reach destinations outside the parent interface
-	2. `vepa`: VM communication is forwarded through the parent interface and
-        reflected back if the source and destination of the packet is local to the VMs.
-        VMs can reach destinations outside the parent interface. Note that this
-        requires a VEPA switching mechanism.
-	3. `bridge`: Inter-VM communication is maintained locally (behind the
-        parent interface) and destinations outside are forwarded through the parent
-        interface.
-	4. `passthru`: Allows a single VM to be connected directly to the parent
-       interface, which in turn allows the VM to change MAC addresses and other
-       interface parameters.
+Virsh commands will be issued from rack controllers as user `maas`. Therefore,
+you'll need to set up SSH public keys on every rack controller for user `maas`,
+and then add those public keys to your `~/.ssh/authorized_keys` file on your KVM
+host.
+
+First, on every rack controller, the `maas` user will need an SSH keypair (with
+a null passphrase) so the rack controller can query and manage KVM guests
+remotely. A login shell will also be necessary when becoming user `maas` in
+order for SSH to work:
+
+```bash
+sudo chsh -s /bin/bash maas
+sudo su - maas
+ssh-keygen -f ~/.ssh/id_rsa -N ''
+```
+
+Now, enable the `maas` user on every rack controller to log into your KVM host
+without a password via public SSH keys using the `ssh-copy-id` command from
+every rack controller. You will likely need to (temporarily) enable password
+authentication on your KVM host for this command to work. Search for
+`PasswordAuthentication` in `/etc/ssh/sshd_config` on your KVM host.
+
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
+```
+
+This command adds the rack controller's `maas` public SSH key to the KVM host
+user's `~/.ssh/authorized_keys` file.
+
+Remember, `$KVM_HOST` represents the IP address of the KVM host and `$USER`
+represents a user on the KVM host with the permission to communicate with the
+libvirt daemon. The latter is achieved via group membership, typically the
+`libvirtd` group.
+
+Now, as user `maas` on every rack controller, test connecting to the new KVM
+host with virsh:
+
+```bash
+virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
+```
+
+This should work seamlessly because the private key does not require a
+passphrase.
+
+!!! Note:
+    Insufficient permissions for `$USER` may cause the `virsh` command to fail
+    with an error such as `failed to connect to the hypervisor`. Check the
+    `$USER` group membership.
+
+## Storage pools
+
+Libvirt “storage pools” are storage resources managed by libvirt. For a
+more in-depth take on libvirt storage pools, see
+[here](https://libvirt.org/storage.html).
+
+### Web UI
+
+See [Web UI][webui] for how to get started with the web UI.
+
+MAAS detects available libvirt storage pools and displays information about
+each when you select a pod from the Pods page:
+
+![storagepoolusage][img__storagepoolusage]
+
+Additionally, when you compose a new VM within a MAAS pod, you can choose which
+storage pool to use from a dropdown list:
+
+![storagepoolavail][img__storagepoolavail]
 
 
-### Bridge vs. macvlan
+You can also use the [MAAS CLI][cli-compose-with-storage] to compose pod VMs with specific
+storage pool constraints.
 
-Because macvlan uses less CPU and provides better thruput, use it when you want
-to let VMs reach the internet and not each other.
-
-A bridge is better suited for situations where you need to connect VMs on the
-same host or you need more complex network topologies or requirements.
-
-For an in-depth discussion about the differences between bridge vs. macvlan see
-[here](https://hicu.be/bridge-vs-macvlan).
 
 <!-- LINKS -->
 
+
+[img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
+[img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
+
+[cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-machines
+[cli-deploy-kvm]: manage-cli-common.md#deploy-a-node
 [juju]: https://docs.jujucharms.com
+[webui]: installconfig-webui.md

@@ -82,6 +82,12 @@ To deploy a node:
 maas $PROFILE machine deploy $SYSTEM_ID
 ```
 
+To deploy a node as a KVM host:
+
+```bash
+maas $PROFILE machine deploy $SYSTEM_ID install_kvm=True
+```
+
 !!! Note:
     To deploy with the CLI the node must have a status of 'Allocated'. See
     'Acquire a node' above (or use the [web UI][acquire-nodes]).
