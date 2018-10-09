@@ -75,9 +75,6 @@ navigation:
           - title: Resource pools
             location: nodes-resource-pools.md
 
-          - title: Pods
-            location: nodes-comp-hw.md
-
       - title: Images
         location: installconfig-images.md
 
@@ -123,6 +120,9 @@ navigation:
 
           - title: Availability Zones (AZs)
             location: manage-zones.md
+      
+      - title: Pods
+        location: manage-kvm-pods.md
       
       - title: Syslog
         location: installconfig-syslog.md
