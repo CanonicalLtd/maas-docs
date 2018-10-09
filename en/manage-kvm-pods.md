@@ -1,7 +1,7 @@
 # KVM (pod)
 
 A MAAS KVM pod is a collection of virtual machines running on an instance of
-libvirt. KVM pods are usefule for Juju integration, allowing for dynamic
+libvirt. KVM pods are useful for Juju integration, allowing for dynamic
 allocation of VMs with custom interface constraints.  Alternatively, if you
 would like to use MAAS to manage a collection of VMs, the robust web UI allows
 you to easily create and manage VMs logically grouped by pod.
@@ -21,7 +21,7 @@ Features:
 
 In order to enable KVM pod networking features, MAAS must be able to correlate
 the IP address of a potential KVM pod host with a host already known to MAAS
-(machine, controller, or device). If it cannot, as would be the case if a
+(a machine, controller, or device). If it cannot, as would be the case if a
 machine is manually deployed and later set up as a KVM host, MAAS disallows KVM
 networking features because it will not be able to apply its networking model
 (VLANs, interfaces, and subnets) when configuring the hypervisor in the manually
@@ -36,9 +36,10 @@ ensure that the network model is consistent with what is on the machine.
     There are other ways of setting up KVM Pod hosts that provide easy
     management of VMs via the MAAS UI. You can, for example, install KVM
     manually on a deployed node (KVM pod networking will be limited) or on a new
-    rack controller (fully featured KVM pod networking).
+    or existing rack controller (in this case, KVM pod networking will be fully
+    enabled).
 
-### Differences between MAAS 2.5 and 2.4 KVM pod networking
+### Differences between MAAS 2.5 and earlier versions
 
 #### Interface constraints
 
@@ -68,7 +69,8 @@ which is not ideal.
 
 Since 2.5, MAAS supports a more robust networking model with regard to KVM,
 provided you deploy KVM host pods with the "Use as a KVM pod host" checkbox
-ticked as discussed in the introduction.
+ticked as discussed in the introduction (or have installed KVM on a new or
+existing controller).
 
 ##### With interface constraints
 
@@ -84,11 +86,11 @@ thereby providing some limited interface configuration upon creating the VM.
 If you do not specify interface constraints, how MAAS attaches the VM to a
 network depends on how KVM was installed on the pod host.
 
-If the pod host was deployed by MAAS for use as a KVM host as outlined above,
-MAAS will skip the libvirt `maas` and `default` networks if they are not
-enabled for DHCP in MAAS, instead preferring a DHCP-enabled MAAS network. This
-means you don't have to manually create a MAAS-friendly libvirt network to
-which to attach the VM.
+If the pod host was deployed by MAAS for use as a KVM host the recommended way
+outlined above, MAAS will skip the libvirt `maas` and `default` networks if they
+are not enabled for DHCP in MAAS, instead preferring a DHCP-enabled MAAS
+network. This means you don't have to manually create a MAAS-friendly libvirt
+network to which to attach the VM as with previous versions of MAAS.
 
 If you've instead installed KVM manually on your host machine after deploying
 via MAAS, MAAS will revert to its 2.4 behavior, namely trying to attach to a
@@ -99,7 +101,7 @@ MAAS-enabled DHCP on either.
 
 #### Macvlan
 
-Maclvan is simpler in design and uses less CPU than bridges, while at the same
+Maclvan is simpler in design and uses less CPU than a bridge, while at the same
 time offering useful features. Setting up macvlan is outside the scope of this
 document, but fortunately, macvlan is installed an enabled by default in
 MAAS-deployed machines. MAAS uses macvlan if a interfaces constraint specifies
@@ -173,7 +175,7 @@ will not work.
 
 You can set up such a `maas` network like this:
 
-```no-highlight
+```bash
 cat << EOF > maas.xml
 <network>
  <name>maas</name>
@@ -204,15 +206,15 @@ virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
 Here, `$USER` is a user on your KVM host who is a member of the `libvirtd` unix
 group on the KVM host, and `$KVM_HOST` is the IP of your KVM host.
 
-Virsh commands will be issued from rack controllers as user `maas`. Therefore,
-you'll need to set up SSH public keys on every rack controller for user `maas`,
-and then add those public keys to your `~/.ssh/authorized_keys` file on your KVM
-host.
+The `maas` user on your rack controllers will issue all virsh commands.
+Therefore, you'll need to set up SSH public keys on every rack controller for
+user `maas`, and then add those public keys to your `~/.ssh/authorized_keys`
+file on your KVM host.
 
 First, on every rack controller, the `maas` user will need an SSH keypair (with
 a null passphrase) so the rack controller can query and manage KVM guests
 remotely. A login shell will also be necessary when becoming user `maas` in
-order for SSH to work:
+order for SSH to work (by default, the `maas` user has no home directory):
 
 ```bash
 sudo chsh -s /bin/bash maas
@@ -224,7 +226,8 @@ Now, enable the `maas` user on every rack controller to log into your KVM host
 without a password via public SSH keys using the `ssh-copy-id` command from
 every rack controller. You will likely need to (temporarily) enable password
 authentication on your KVM host for this command to work. Search for
-`PasswordAuthentication` in `/etc/ssh/sshd_config` on your KVM host.
+`PasswordAuthentication` in `/etc/ssh/sshd_config` on your KVM host and change
+the value to `yes`. Then, restart ssh: `sudo systemctl restart ssh`.
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
