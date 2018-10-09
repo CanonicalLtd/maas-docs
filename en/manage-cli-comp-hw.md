@@ -154,7 +154,8 @@ Where RESOURCES is a space-separated list from:
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
 **architecture=**requested architecture that pod must support  
-**storage=**requested stroage
+**storage=**requested storage
+**interfaces=** (See [Interface constraints][interfaceconstraints])
 
 For example:
 
@@ -354,6 +355,7 @@ maas $PROFILE pod delete $POD_ID
 
 <!-- LINKS -->
 
+[interfaceconstraints]: #interface-constraints
 [compose-pod-machines]: #compose-pod-machines
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
