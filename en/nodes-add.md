@@ -132,6 +132,29 @@ being added:
     The underlying machine will still need to be configured to boot over the
     network in order to be commissioned. MAAS will not do this for you.
 
+### BMC enlistment
+
+#### 2.4
+
+Note that in MAAS versions prior to 2.5, you are required to provide the MAC
+address of the PXE interface when adding a new machine manually.
+
+#### 2.5+
+
+Beginning with MAAS 2.5:
+
+##### IPMI machines
+
+For IPMI machines, you only need to provide IPMI credentials. MAAS
+automatically discovers the machine and runs enlistment configuration by
+matching the BMC address.
+
+##### Non-IPMI machines
+
+For non-IPMI machines, you must specify a non-PXE MAC address. MAAS
+automatically discovers the machine and runs enlistment configuration by
+matching the non-PXE MAC address.
+
 
 ## Add nodes via a chassis
 
