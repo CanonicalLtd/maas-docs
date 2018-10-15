@@ -35,6 +35,10 @@ sudo snap install maas --devmode --stable
 After entering your password, the snap will download and install from the
 *stable* channel. However, MAAS needs initialising before it's ready to go.
 
+!!! Note:
+    `--devmode` is currently a required argument and gives the MAAS snap access
+    to all system resources, similar to an installed `deb` package.
+
 ## Initialisation
 
 The next step involves initialising MAAS with a *run mode*. Selecting one of
