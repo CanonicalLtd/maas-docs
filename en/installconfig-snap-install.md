@@ -59,7 +59,7 @@ To initialise MAAS and select a run mode, use the `maas init` command with the
 
 ### Example
 
-The following demonstrates the `all` mode, a popular installation choice for
+The following demonstrates the `all` mode, a popular initialisation choice for
 MAAS:
 
 ```bash
