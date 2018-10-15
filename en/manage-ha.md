@@ -253,9 +253,16 @@ instead of a package distribution of MAAS:
 
 1. Set up PostgreSQL for high-availability as [explained
    above][postgresql-setup]. PostgreSQL should run outside of the snap.
-1. [Install][snap-install] the MAAS snap.
-1. [Configure the snap][snap-config] by specifying the role appropriate for your particular
-   setup.
+1. [Install][snap-install] the MAAS snap on each machine you intend to use as a
+rack or region controller.
+1. [Initialise the snap][snap-config] as a `rack` or `region` controller. Note
+that if you intend to use a machine as a region controller, you'll need to tell
+MAAS how to access your PostgreSQL database host with the following arguments:
+    - `--database-host DATABASE_HOST`
+    - `--database-name DATABASE_NAME`
+    - `--database-user DATABASE_USER`
+    - `--database-pass DATABASE_PASS`
+
 
 ## VIP
 
