@@ -184,6 +184,7 @@ cat << EOF > maas.xml
      <port start='1024' end='65535'/>
    </nat>
  </forward>
+ <dns enable="no" />
  <bridge name='virbr1' stp='off' delay='0'/>
  <domain name='testnet'/>
  <ip address='172.16.99.1' netmask='255.255.255.0'>
