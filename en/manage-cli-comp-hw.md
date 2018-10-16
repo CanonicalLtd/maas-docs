@@ -154,8 +154,8 @@ Where RESOURCES is a space-separated list from:
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
 **architecture=**requested architecture that pod must support  
-**storage=**requested storage
-**interfaces=** (See [Interface constraints][interfaceconstraints])
+**storage=**requested storage  
+**interfaces=** (See [Interface constraints][interfaceconstraints])  
 
 For example:
 
