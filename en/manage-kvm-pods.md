@@ -26,7 +26,7 @@ MAAS is set up as a KVM host, enhanced interface selection features will not be
 available.
 
 The recommended way of setting up a KVM host is therefore to deploy a machine
-within MAAS and tick the "Install MAAS-managed KVM" checkbox (a full explanation
+within MAAS and tick the "Install MAAS-managed KVM Pod" checkbox (a full explanation
 is found in the following section). MAAS will automatically install KVM as well
 as ensure that the network model is consistent with what is on the machine.
 
@@ -75,7 +75,7 @@ network.
 #### 2.5+
 
 Since 2.5, MAAS supports enhanced KVM-networking features, provided you deploy
-KVM host pods with the "Install MAAS-managed KVM" checkbox ticked as discussed
+KVM host pods with the "Install MAAS-managed KVM Pod" checkbox ticked as discussed
 in the introduction (or have installed KVM on a new or existing controller).
 
 ##### With interface constraints
@@ -148,9 +148,9 @@ easier to configure and more likely to result in successful communication.
 
 Once a machine as been added to MAAS and gone through enlistment, commissioning
 and hardware testing, you can deploy it (after acquiring it) as a KVM host by
-ticking the "Install MAAS-managed KVM" checkbox:
+ticking the "Install MAAS-managed KVM Pod" checkbox:
 
-TBD: SCREENSHOT-WHEN-AVAILABLE
+![kvmpoddeploy][img__kvmpoddeploy]
 
 You can also use the [MAAS CLI][cli-deploy-kvm] to deploy a machine to use as a
 KVM host.
@@ -261,6 +261,7 @@ storage pool constraints.
 <!-- LINKS -->
 
 
+[img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
 [img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
 [img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
 
