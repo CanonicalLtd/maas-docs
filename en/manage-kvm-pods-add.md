@@ -1,4 +1,4 @@
-# Adding KVM pods
+# Add KVM pods
 
 ## 2.5
 
@@ -17,7 +17,7 @@ KVM host.
 Setting up a manual KVM host in 2.5 or in older version of MAAS requires many
 more manual steps.
 
-### Setting up a `maas` libvirt network
+### Set up a `maas` libvirt network
 
 Libvirt by default creates a virtual bridge, `virbr0`, through which VMs
 communicate with each other and the Internet. DHCP is supplied by libvirt so
@@ -53,7 +53,7 @@ virsh net-define maas.xml
 Note that this network also has NAT port forwarding enabled to allow VMs to
 communicate with the Internet at large. This is useful in test environments.
 
-### Setting up SSH
+### Set up SSH
 
 In order for MAAS to successfully communicate with libvirt on your KVM host
 machine, this example command must succeed from every rack controller as user
@@ -89,9 +89,14 @@ SSH key (e.g. your imported Launchpad keys).
     `$USER` group membership to make sure `$USER` is a member of the `libvirtd`
     group.
 
+### Create a pod
+
+Finally, you'll need to create a pod. See the [Add a pod][addapod] section for
+more information about using the Web UI to do this.
 
 <!-- LINKS -->
 
 
 [img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
+[addapod]: manage-kvm-pods-webui.md#add-a-pod
 [cli-deploy-kvm]: manage-cli-common.md#deploy-a-node

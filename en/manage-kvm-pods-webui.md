@@ -2,8 +2,7 @@
 
 See [Web UI][webui] for how to get started with the web UI.
 
-Composable hardware systems are managed on the 'Pods' page, which is initially
-empty:
+After installing MAAS, the 'Pods' page is typically empty:
 
 ![initial pods page][img__pod-initial-page]
 
@@ -11,7 +10,9 @@ empty:
 ## Add a pod
 
 The recommended way to add a KVM host pod is to deploy a machine as a KVM host
-as explained above. However, you can add a pod manually using the 'Add pod' button.
+as explained [here][kvmdeploy]. However, you can add a pod manually using the
+'Add pod' button (see [the following section][manualkvm] for caveats to this
+approach).
 
 ### Creating a KVM pod manually
 
@@ -70,7 +71,7 @@ using 2 cores and 4 GB of memory, obviously over-committing the available
 physical resources. Provided you never run all 4 simultaneously, you'd have all
 the benefits of MAAS-managed VMs without over-taxing your host.
 
-## Compose a pod machine
+## Compose a virtual machine
 
 While on a pod's details view, begin the machine composition process by
 selecting 'Compose' from the 'Take action' dropdown menu:
@@ -88,24 +89,13 @@ resources:
 
 ![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
-## Decompose a pod machine
+## Delete a virtual machine
 
-Decomposing a pod machine means to send the machine's resources back to the pod
-for reuse. Doing so within MAAS will also cause the corresponding MAAS node to
-be Deleted.
-
-While on a pod's details view, select the machine to decompose and choose the
-'Delete' button from the dropdown menu:
+To delete virtual machine, simply delete it as you would any other MAAS node.
+Select the desired machine from the list of machines and select 'Delete' from
+the 'Take Action' menu.
 
 ![pod decompose machine][img__pod-decompose-machine]
-
-Confirm by hitting the 'Delete machine' button.
-
-!!! Note:
-    This operation can also be achieved by simply deleting the corresponding
-    MAAS node in the regular way.
-
-Once done, you will be transported back to the main 'Machines' page.
 
 ## Delete a pod
 
@@ -133,6 +123,8 @@ corresponding nodes from MAAS.
 [img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
 [img__pod-delete]: ../media/manage-kvm-pods__2.5_pod-delete.png
 
+[kvmdeploy]: manage-kvm-pods-add.md
+[manualkvm]: manage-kvm-pods-add.md#manual/pre-2.5
 [cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-machines
 [storagepools]: manage-kvm-pods-storage-pools.md
 [webui]: installconfig-webui.md
