@@ -6,10 +6,11 @@ controller, or device). If it cannot, for example, if a machine not known to
 MAAS is set up as a KVM host, enhanced interface selection features will not be
 available.
 
-The recommended way of setting up a KVM host is therefore to deploy a machine
-within MAAS and tick the "Install MAAS-managed KVM Pod" checkbox (a full explanation
-is found in the following section). MAAS will automatically install KVM as well
-as ensure that the network model is consistent with what is on the machine.
+The [recommended way of setting up a KVM host][deploykvm] is therefore to deploy
+a machine within MAAS and tick the "Install MAAS-managed KVM Pod" checkbox (a
+full explanation is found [here][deploykvm]). MAAS will automatically install
+KVM as well as ensure that the network model is consistent with what is on the
+machine.
 
 There are other ways of setting up KVM pod hosts that provide easy management of
 VMs via the MAAS UI. You can, for example, install KVM manually on a deployed
@@ -127,4 +128,5 @@ easier to configure and more likely to result in successful communication.
 
 <!-- LINKS -->
 
+[deploykvm]: manage-kvm-pods-add.md
 
