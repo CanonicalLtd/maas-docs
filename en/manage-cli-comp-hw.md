@@ -55,7 +55,6 @@ maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2
         power_pass=example default_storage_pool=pool1
 ```
 
-
 ## List resources of all pods
 
 List the resources of all pods:
@@ -126,10 +125,9 @@ Example output:
 }
 ```
 
-
 ## Compose pod machines
 
-To compose a pod's machines:
+To compose a pod machine:
 
 ```bash
 maas $PROFILE pod compose $POD_ID
@@ -156,6 +154,8 @@ Where RESOURCES is a space-separated list from:
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
 **architecture=**requested architecture that pod must support  
+**storage=**requested storage  
+**interfaces=** (See [Interface constraints][interfaceconstraints])  
 
 For example:
 
@@ -164,8 +164,9 @@ maas $PROFILE pod compose $POD_ID \
 	cores=40 cpu_speed=2000 memory=7812 architecture="amd64/generic"
 ```
 
-Compose a Virsh machine with two disks; one from *pool1* and the other from
-*pool2*:
+Compose a machine with two disks: the first, 32GB from *pool1* mounted at the
+root directory (`/`); the second, 64 GB from *pool2* mounted at the home
+directory (`/home`).
 
 ```bash
 maas $PROFILE pod compose $POD_ID storage=root:32(pool1),home:64(pool2)
@@ -232,7 +233,13 @@ included in the output:
 maas $PROFILE machine read $SYSTEM_ID
 ```
 
-## Track libvirt storage pools
+## Libvirt storage pools
+
+### Composing pod machines with storage pool constraints
+
+See [Compose pod machines][compose-pod-machines].
+
+### Usage
 
 Retrieve pod storage pool information with the following command:
 
@@ -325,8 +332,6 @@ Machine-readable output follows:
 }
 ```
 
-</details>
-
 ## Decompose a pod machine
 
 To decompose a pod machine by deleting the corresponding MAAS node:
@@ -350,6 +355,8 @@ maas $PROFILE pod delete $POD_ID
 
 <!-- LINKS -->
 
+[interfaceconstraints]: #interface-constraints
+[compose-pod-machines]: #compose-pod-machines
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
 [composable-hardware]: nodes-comp-hw.md
