@@ -1,6 +1,6 @@
 # Add KVM pods
 
-## 2.5
+## 2.5+
 
 Once a machine as been added to MAAS and gone through enlistment, commissioning
 and hardware testing, you can deploy it (after acquiring it) as a KVM host by
