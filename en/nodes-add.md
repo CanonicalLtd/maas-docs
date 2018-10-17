@@ -57,65 +57,17 @@ As an alternative to enlistment, an administrator can add a node manually (see
 doesn't work for some reason.
 
 
-## KVM guest nodes
+## KVM host nodes
 
-KVM-backed nodes being common, extra guidance is provided here. The following
-actions will need to be performed on all rack controllers.
+For more information about adding nodes to use as KVM hosts, please see [Add KVM
+pods][kvmhosts].
 
-Begin by ensuring the `virsh` binary is available to the rack controller by
-installing the `libvirt-bin` package:
 
-```bash
-sudo apt install libvirt-bin
-```
+## Adding virtual machines as nodes
 
-Next, the 'maas' user will need an SSH keypair (with a null passphrase) so the
-rack controller can query and manage KVM guests remotely. A login shell will
-also be necessary when becoming user 'maas':
-
-```bash
-sudo chsh -s /bin/bash maas
-sudo su - maas
-ssh-keygen -f ~/.ssh/id_rsa -N ''
-```
-
-Add the public key to file `/home/$USER/.ssh/authorized_keys` on the KVM host:
-
-```bash
-ssh-copy-id -i ~/.ssh/id_rsa $USER@$KVM_HOST
-```
-
-Where $KVM_HOST represents the IP address of the KVM host and $USER represents
-a user on the KVM host with the permission to communicate with the libvirt
-daemon. The latter is achieved via group membership, typically the `libvirtd`
-group.
-
-!!! Note: 
-    You may need to (temporarily) configure sshd on the KVM host to
-    honour password authentication for the `ssh-copy-id` command to succeed.
-
-Still as user 'maas', test connecting to the KVM host with virsh:
-
-```bash
-virsh -c qemu+ssh://$USER@$KVM_HOST/system list --all
-```
-
-This should work seamlessly because the private key does not require a
-passphrase.
-
-!!! Note:
-    Insufficient permissions for $USER may cause the `virsh` command to fail
-    with an error such as `failed to connect to the hypervisor`. Check the
-    user's group membership.
-
-Exit from the 'maas' user's shell:
-
-```bash
-exit
-```
-
-See [KVM/virsh power type example][power-types-example-virsh].
-
+After you have deployed a machine to use as a KVM host, you can "compose" VMs to
+add to MAAS. Please see the [Compose a virtual machine section][kvmwebui] for more
+information.
 
 ## Add a node manually
 
@@ -123,7 +75,7 @@ Enlistment can be done manually if the hardware specifications of the
 underlying machine are known. On the 'Machines' page of the web UI, click the
 'Add hardware' button and then select 'Machine'.
 
-Fill in the form and hit 'Save machine'. In this example, a KVM-backed node is
+Fill in the form and hit 'Save machine'. In this example, IPMI machine is
 being added:
 
 ![add node manually][img__add-node-manually]
@@ -158,30 +110,23 @@ matching the non-PXE MAC address.
 
 ## Add nodes via a chassis
 
-Another option is to add nodes through the *chassis* feature. This is where you
-point MAAS to a hypervisor and all existing virtual machines are added in one
-fell swoop.
-
-To do this, instead of selecting 'Machine' as above, the 'Chassis' item is
-chosen. Here, KVM is again used as an example.
-
-Fill in the resulting form as below. In the case of KVM, not all of the fields
-require values.
+Use the *chassis* feature to add multiple nodes at once. To do this, instead of
+selecting 'Machine' as above, choose 'Chassis' from the drop-down menu. In the
+following example, MAAS will add all available VMs from the given virsh address:
 
 ![add node via chassis][img__add-node-chassis]
+
+The required fields will change based on the type of chassis you choose.
 
 !!! Note:
     As with the manual method, the underlying machines will require netbooting.
 
 
-## Add nodes via a Pod
-
-Yet another way to add nodes is to use the composable hardware feature. See the
-[Composable hardware][composable-hardware] page for details.
-
 
 <!-- LINKS -->
 
+[kvmwebui]: manage-kvm-pods-webui.md#compose-a-virtual-machine
+[kvmhosts]: manage-kvm-pods-add.md
 [concepts-statuses]: intro-concepts.md#node-statuses
 [concepts-actions]: intro-concepts.md#node-actions
 [commission-nodes]: nodes-commission.md
@@ -189,5 +134,5 @@ Yet another way to add nodes is to use the composable hardware feature. See the
 [power-types-example-virsh]: nodes-power-types.md#example:-virsh-(kvm)-power-type
 [composable-hardware]: nodes-comp-hw.md
 
-[img__add-node-manually]: ../media/nodes-add__2.4_add-node-manually.png
+[img__add-node-manually]: ../media/nodes-add__2.5_add-node-manually.png
 [img__add-node-chassis]: ../media/nodes-add__2.4_add-node-chassis.png
