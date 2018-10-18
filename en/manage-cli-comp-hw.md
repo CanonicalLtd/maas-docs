@@ -209,7 +209,7 @@ For example, to compose the following machine:
 - 64 GB disk from storage pool `pool2` to use as the home `/home` partition
 
 ```bash
-maas $PROFILE pod compose $POD_ID storage=root:32(pool1),home:64(pool2)
+maas $PROFILE pod compose $POD_ID "storage=root:32(pool1),home:64(pool2)"
 ```
 
 #### Interfaces
@@ -250,18 +250,25 @@ address to the newly-composed machine upon allocation.
 See the [MAAS API documentation][api-allocate] for a list of all constraint
 keys.
 
-## Compose and allocate a pod machine
+## Compose and allocate a pod VM
 
 In the absence of any nodes in the 'New' or 'Ready' state, if a pod of
 sufficient resources is available, MAAS can automatically compose (add),
-commission, and acquire a pod machine. This is done with the regular `allocate`
+commission, and acquire a pod VM. This is done with the regular `allocate`
 sub-command:
 
 ```bash
 maas $PROFILE machines allocate
 ```
 
-Note that all pod [resource parameters][resources] are available to the `allocate` command.
+Note that all pod [resource parameters][resources] are available to the
+`allocate` command, so based on an example above, the following works:
+
+```bash
+maas $PROFILE machines allocate "storage=root:32(pool1),home:64(pool2)"
+```
+
+Once commissioned and acquired, the new machine will be ready to deploy.
 
 ## List machine parameters
 
@@ -274,9 +281,9 @@ maas $PROFILE machine read $SYSTEM_ID
 
 ## Libvirt storage pools
 
-### Composing pod machines with storage pool constraints
+### Composing pod VMs with storage pool constraints
 
-See [Compose pod machines][compose-pod-machines].
+See [Compose pod virtual machines (VMs)][compose-pod-machines].
 
 ### Usage
 
@@ -371,9 +378,9 @@ Machine-readable output follows:
 }
 ```
 
-## Decompose a pod machine
+## Decompose a pod VM
 
-To decompose a pod machine by deleting the corresponding MAAS node:
+To decompose a pod VM by deleting the corresponding MAAS node:
 
 ```bash
 maas $PROFILE machine delete $SYSTEM_ID
@@ -394,6 +401,7 @@ maas $PROFILE pod delete $POD_ID
 
 <!-- LINKS -->
 
+[spaces]: intro-concepts.md#spaces
 [resources]: #set-resources
 [storage]: #storage
 [architecture]: #architecture
