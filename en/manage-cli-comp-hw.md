@@ -55,18 +55,37 @@ maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2
         power_pass=example default_storage_pool=pool1
 ```
 
+## Find pod id
+
+Here's a simple way to find a pod's ID:
+
+```bash
+maas $PROFILE pods read | egrep "\"name\"|\"id\""
+```
+
+Example output:
+
+```no-highlight
+        "id": "29d6f45a-0772-432a-9de5-631d5db1c3b4",
+                "name": "virtimages",
+                "id": "e5404e3f-a045-4acc-ae11-be657c080790",
+                "name": "images",
+                "id": "30c2ef09-cfca-4a17-b2b0-2b69bf4d62d8",
+                "name": "maas",
+        "name": "MyPod",
+            "name": "default",
+            "id": 0,
+            "name": "default",
+            "id": 1,
+        "id": 1,
+```
+
 ## List resources of all pods
 
 List the resources of all pods:
 
 ```bash
 maas $PROFILE pods read
-```
-
-For example, this will grab pod IDs (POD_ID) and their MAAS names:
-
-```bash
-maas $PROFILE pods read | grep -A6 id
 ```
 
 Sample output:
@@ -125,9 +144,11 @@ Example output:
 }
 ```
 
-## Compose pod machines
+## Compose pod virtual machines (VMs)
 
-To compose a pod machine:
+### Basic
+
+To compose a basic pod VM:
 
 ```bash
 maas $PROFILE pod compose $POD_ID
@@ -142,6 +163,8 @@ Example output for default composing:
 }
 ```
 
+### Set resources
+
 Compose with resources specified:
 
 ```bash
@@ -153,26 +176,43 @@ Where RESOURCES is a space-separated list from:
 **cores=**requested cores  
 **cpu_speed=**requested minimum cpu speed in MHz  
 **memory=**requested memory in MB  
-**architecture=**requested architecture that pod must support  
-**storage=**requested storage  
-**interfaces=** (See [Interface constraints][interfaceconstraints])  
+**architecture=** See [Architecture][architecture] below  
+**storage=** See [Storage][storage] below  
+**interfaces=** See [Interfaces][interfaceconstraints] below  
 
-For example:
+#### Architecture
+
+To list available architectures:
+
+```bash
+maas $PROFILE boot-resources read
+```
+
+Then, for example:
 
 ```bash
 maas $PROFILE pod compose $POD_ID \
 	cores=40 cpu_speed=2000 memory=7812 architecture="amd64/generic"
 ```
 
-Compose a machine with two disks: the first, 32GB from *pool1* mounted at the
-root directory (`/`); the second, 64 GB from *pool2* mounted at the home
-directory (`/home`).
+#### Storage
+
+Storage parameters look like this:
+
+```no-highlight
+storage="<label>:<size in GB>(<storage pool name>),<label>:<size in GB>(<storage pool name>)"
+```
+
+For example, to compose the following machine:
+
+- 32 GB disk from storage pool `pool1` to use as the root `/` partition
+- 64 GB disk from storage pool `pool2` to use as the home `/home` partition
 
 ```bash
 maas $PROFILE pod compose $POD_ID storage=root:32(pool1),home:64(pool2)
 ```
 
-### Interface constraints
+#### Interfaces
 
 Using the `interfaces` constraint, you can compose virtual machines with
 interfaces, allowing the selection of pod NICs.
@@ -186,7 +226,6 @@ attachment to the networks that match the given constraint. MAAS prefers `bridge
 interface attachments when possible, since this typically results in successful
 communication.
 
-#### Interface constraint examples
 
 Consider the following interfaces constraint:
 
@@ -201,16 +240,15 @@ bound to the `maas` space and an `eth1` interface bound to the `storage` space.
 Another example tells MAAS to assign unallocated IP addresses:
 
 ```no-highlight
-interfaces=eth0:ip=192.168.0.42
+interfaces=eth0:ip=172.16.99.42
 ```
 
 MAAS automatically converts the `ip` constraint to a VLAN constraint (for the
-VLAN where its subnet can be found) and assigns the IP address to the
-newly-composed machine upon allocation.
+VLAN where its subnet can be found -- e.g. `172.16.99.0/24`.) and assigns the IP
+address to the newly-composed machine upon allocation.
 
 See the [MAAS API documentation][api-allocate] for a list of all constraint
 keys.
-
 
 ## Compose and allocate a pod machine
 
@@ -223,6 +261,7 @@ sub-command:
 maas $PROFILE machines allocate
 ```
 
+Note that all pod [resource parameters][resources] are available to the `allocate` command.
 
 ## List machine parameters
 
@@ -355,8 +394,11 @@ maas $PROFILE pod delete $POD_ID
 
 <!-- LINKS -->
 
-[interfaceconstraints]: #interface-constraints
-[compose-pod-machines]: #compose-pod-machines
+[resources]: #set-resources
+[storage]: #storage
+[architecture]: #architecture
+[interfaceconstraints]: #interfaces
+[compose-pod-machines]: #compose-pod-virtual-machines-(vms)
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
 [composable-hardware]: nodes-comp-hw.md
