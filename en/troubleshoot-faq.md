@@ -81,6 +81,27 @@ network and most likely won't discover any nodes either.
 **SOLUTION**: You will need to configure your existing DHCP server to point to
 the MAAS server.
 
+### Possible Cause: DHCP not activated properly
+
+If you enabled MAAS to handle a specific segment of your VLAN with DCHP, and still
+the commissioning step does not boot over PXE.
+Note that the maas-dhcpd service was not able to start properly due to a missing
+ConditionPathExists=/var/lib/maas/dhcpd-interfaces.
+
+**SOLUTION**: use the cli to disable and re-enable DHCP on the specific fabric.
+where ubuntu is your admin user (defined at maas init)
+where 427 is your fabric VLAN id.
+```
+sudo apt-get purge maas-rack-controller
+sudo mv  /var/lib/maas/dhcp/ /var/lib/maas/dhcp.bak
+sudo apt-get install maas-rack-controller
+maas-region apikey --username=ubuntu > API_KEY_FILE
+# use the API_KEY_FILE content to login
+maas login ubuntu http://localhost:5240/MAAS/api/2.0
+maas ubuntu vlan update fabric-0 427 dhcp_on=False
+maas ubuntu vlan update fabric-0 427 dhcp_on=True
+sudo systemctl status maas-dhcpd
+```
 
 ## Can't log in to node
 
