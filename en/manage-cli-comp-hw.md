@@ -203,14 +203,26 @@ Storage parameters look like this:
 storage="<label>:<size in GB>(<storage pool name>),<label>:<size in GB>(<storage pool name>)"
 ```
 
-For example, to compose the following machine:
+For example, to compose a machine with the following disks:
 
-- 32 GB disk from storage pool `pool1` to use as the root `/` partition
-- 64 GB disk from storage pool `pool2` to use as the home `/home` partition
+- 32 GB disk from storage pool `pool1`
+- 64 GB disk from storage pool `pool2`
+
+Where we want the first to be used as a bootable root partition `/` and the
+second to be used as a home directory.
+
+First, create the VM:
 
 ```bash
-maas $PROFILE pod compose $POD_ID "storage=root:32(pool1),home:64(pool2)"
+maas $PROFILE pod compose $POD_ID "storage=mylabel:32(pool1),mylabel:64(pool2)"
 ```
+
+Note that the labels, here both `mylabel`, are an ephemeral convenience you
+might find useful in scripting MAAS actions.
+
+MAAS will create a pod VM with 2 disks, `/dev/vda` (32 GB) and `/dev/vdb` (64
+GB). After MAAS enlists, commissions and acquires the machine, you can edit the
+disks before deploying to suit your needs.
 
 #### Interfaces
 
@@ -265,10 +277,14 @@ Note that all pod [resource parameters][resources] are available to the
 `allocate` command, so based on an example above, the following works:
 
 ```bash
-maas $PROFILE machines allocate "storage=root:32(pool1),home:64(pool2)"
+maas $PROFILE machines allocate "storage=Label1:32(pool1),Label2:64(pool2)"
 ```
 
 Once commissioned and acquired, the new machine will be ready to deploy.
+
+!!! Note:
+    The given labels in this case can be used to associate device IDs in the
+    information MAAS dumps about the newly created VM.
 
 ## List machine parameters
 
