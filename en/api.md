@@ -3883,7 +3883,7 @@ constraints are provided, they are combined using 'AND' semantics.
 
 - `param storage`:
    A list of storage constraint identifiers, in the form:
-       label:size(tag[,tag[,...])][,label:....]
+       `label:size(tag[,tag[,...])][,label:....]`
 
 - `type storage`:
    unicode
@@ -3893,7 +3893,7 @@ constraints are provided, they are combined using 'AND' semantics.
    labels with interface properties that should be matched. Returned
    nodes must have one or more interface matching the specified
    constraints. The labeled constraint map must be in the format:
-   `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
+   `label:key=value[,key2=value2[,...]]`
 
    Each key can be one of the following:
 
@@ -5108,9 +5108,7 @@ All fields below are optional:
 
 - `param storage`:
    A list of storage constraint identifiers, in the form:
-       &lt;label&gt;:&lt;size&gt;(&lt;tag&gt;\[,&lt;tag&gt;\[,...\])\]\[,&lt;label&gt;:
-
-> ...\]
+       `label:size(tag[,tag[,...])][,label:....]`
 
 - `type storage`:
    unicode
@@ -5120,7 +5118,7 @@ All fields below are optional:
        labels with interface properties that should be matched. Returned
         nodes must have one or more interface matching the specified
         constraints. The labeled constraint map must be in the format:
-        `<label>:<key>=<value>[,<key2>=<value2>[,...]]`
+        `label:key=value[,key2=value2[,...]]`
 
         Each key can be one of the following:
 
