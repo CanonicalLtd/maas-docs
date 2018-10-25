@@ -6,9 +6,7 @@ table_of_contents: True
 
 This is a list of composable hardware tasks which can be performed with the
 MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
-[Composable hardware][composable-hardware] for an overview of the subject,
-including important details on the differences between *RSD* pods and *Virsh*
-pods.
+[Composable hardware][composable-hardware] for an overview of the subject.
 
 
 ## Register a pod
@@ -38,17 +36,14 @@ And to create a Virsh pod:
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system
 ```
 
-See [Pod configuration][over-commit] for details on Virsh over commit ratios
-and storage pools, as used in the following examples.
-
-Create a Virsh pod with over commit ratios:
+Create a Virsh pod with [overcommitted resources][over-commit]:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
         power_pass=example cpu_over_commit_ratio=0.3 memory_over_commit_ratio=4.6
 ```
 
-Create a Virsh pod that uses a default storage pool:
+Create a Virsh pod that uses a default [storage pool][storagepools]:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
@@ -144,7 +139,7 @@ Example output:
 }
 ```
 
-## Compose pod virtual machines (VMs)
+## Compose pod virtual machines
 
 ### Basic
 
@@ -486,8 +481,9 @@ maas $PROFILE pod delete $POD_ID
 [storage]: #storage
 [architecture]: #architecture
 [interfaceconstraints]: #interfaces
-[compose-pod-machines]: #compose-pod-virtual-machines-(vms)
+[compose-pod-machines]: #compose-pod-virtual-machines-vms
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
-[composable-hardware]: nodes-comp-hw.md
-[over-commit]: nodes-comp-hw.md#configuration
+[composable-hardware]: manage-kvm-pods-intro.md
+[storagepools]: manage-kvm-pods-storage-pools.md
+[over-commit]: manage-kvm-pods-webui.md#overcommit-resources
