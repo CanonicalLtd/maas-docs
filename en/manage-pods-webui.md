@@ -11,29 +11,59 @@ After installing MAAS, the 'Pods' page is typically empty:
 ![initial pods page][img__pod-initial-page]
 
 
-## Add a pod
+## Add a KVM host
 
-The recommended way to add a KVM host pod is to deploy a machine as a KVM host
-as explained [here][kvmdeploy]. However, you can add a pod manually using the
-'Add pod' button (see [the following section][manualkvm] for caveats to this
+The recommended way to add a KVM host is to deploy an acquired machine as a KVM
+host as explained [here][kvmdeploy]. However, you can add a pod manually using
+the 'Add pod' button (see [the following section][manualkvm] for caveats to this
 approach).
 
-### Creating a KVM pod manually
+### Add manually
+
+Add a KVM host by using the 'Add pod' button. Choose 'Virsh (Virtual systems)'
+from the 'Pod type' drop-down menu.
 
 ![add Virsh pod][img__pod-add-virsh]
 
+Here, 'Virsh address' typically looks like:
+
+```no-highlight
+qemu+ssh://<kvm host IP>/system
+```
+
+You can [set up public-key SSH access][setup-ssh] or supply a username and
+password so that MAAS can interact with Virsh on the KVM host.
+
+!!! Note:
+    MAAS will automatically discover and store the resources your KVM host
+    contains. Any existing machines will also appear on the 'Machines' page and
+    be commissioned.
+
+## Add an RSD Pod
+
+Add an RSD Pod by using the 'Add pod' button. Choose 'Rack Scale Design' from
+the Pod type drop-down menu.
+
+![add RSD pod][img__pod-add-rsd]
+
+You will need to get values for 'Pod address' (IP address or URL followed by a
+port), 'Pod user', and 'Pod password' from your RSD administrator.
+
+!!! Note:
+    MAAS will automatically discover and store the resources your RSD Pod
+    contains.
 
 ## List pods
 
-Pods and a summary of contained resources will be listed on the 'Pods' page:
+Pods and a summary of their resources are listed on the 'Pods' page:
 
 ![save pod][img__pod-list]
 
 ## View pod details
 
-Click a pod's name on the 'Pods' page to show the resources contained within it,
-including its total number of CPU cores, the amount of total RAM and local
-storage. These values update to reflect usage and remaining resources.
+One the 'Pods' page, click a pod's name to show the resources that belong to it,
+including total number of CPU cores, the amount of total RAM and local storage.
+These values update to reflect usage and remaining resources.
 
 The main view also lists the machines contained within the pod.
 
@@ -41,14 +71,14 @@ The main view also lists the machines contained within the pod.
 
 ## Configuration
 
-Pods have several configuration options. These are modified by selecting the
+Pods have several configuration options. Modify these by selecting the
 'Configuration' tab and clicking 'Edit'. Options include a pod's location,
 password, network zone, and default storage pool.
 
-### Storage pools
+### KVM host storage pools
 
-See [Storage pools][storagepools] for more information about configuring KVM
-storage pools.
+See [KVM host storage pools][storagepools] for more information about
+configuring KVM storage pools.
 
 ### Overcommit resources
 
@@ -68,43 +98,40 @@ physical resource allocation:
 
 ![pod configuration][img__pod-compose-config]
 
-Overcommitting resources allows a user to compose many MAAS-managed VMs without
+Overcommitting resources allows a user to compose many MAAS-managed machines without
 worrying about the physical limitations of the host. For example, on a physical
 host with 4 cores and 12 GB of memory, you could compose 4 virsh nodes, each
 using 2 cores and 4 GB of memory, obviously over-committing the available
 physical resources. Provided you never run all 4 simultaneously, you'd have all
 the benefits of MAAS-managed VMs without over-taxing your host.
 
-## Compose a virtual machine
+## Compose a machine
 
-While on a pod's details view, begin the machine composition process by
-selecting 'Compose' from the 'Take action' dropdown menu:
+While on a pod's details view, select 'Compose' from the 'Take action' drop-down
+menu to compose a machine.
 
 ![pod compose machine][img__pod-compose-machine]
 
-Fill in the fields (many are optional) and hit 'Compose machine' to finish. You
-will be brought back to the pod's details view. In a few moments the new
-machine will be auto-commissioned.
+Click the 'Compose machine' button when you're finished. MAAS will present the pod
+detail view. In a few moments, your new machine will be auto-commissioned. The
+'Machines' page will reflect this as well.
 
-The main 'Machines' page should reflect this as well.
-
-As expected, the new machine's resources will be deducted from the pod's
-resources:
+The new machine's resources will be deducted from the pod's resources:
 
 ![pod compose machine commissioning][img__pod-compose-machine-commissioning]
 
-## Delete a virtual machine
+## Delete a machine
 
-To delete virtual machine, simply delete it as you would any other MAAS node.
-Select the desired machine from the list of machines and select 'Delete' from
-the 'Take Action' menu.
+To delete a machine, simply delete it as you would any other MAAS node.  Select
+the desired machine from the list of machines and select 'Delete' from the 'Take
+Action' menu.
 
 ![pod decompose machine][img__pod-decompose-machine]
 
 ## Delete a pod
 
 While on the main pods page, select a pod and choose the 'Delete' action from
-the dropdown menu. Hit 'Delete 1 pod' to confirm the action:
+the 'Take action' dropdown menu. Click 'Delete 1 pod' to confirm the action:
 
 ![pod delete][img__pod-delete]
 
@@ -117,7 +144,7 @@ corresponding nodes from MAAS.
 
 
 [img__pod-initial-page]: ../media/manage-kvm-pods__2.5_pod-initial-page.png
-[img__pod-add-rsd]: ../media/manage-kvm-pods__2.5_pod-add-rsd.png
+[img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
 [img__pod-add-virsh]: ../media/manage-kvm-pods__2.5_pod-add-virsh.png
 [img__pod-list]: ../media/manage-kvm-pods__2.5_pod-list.png
 [img__pod-details]: ../media/manage-kvm-pods__2.5_pod-details.png
@@ -127,6 +154,7 @@ corresponding nodes from MAAS.
 [img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
 [img__pod-delete]: ../media/manage-kvm-pods__2.5_pod-delete.png
 
+[setup-ssh]: manage-kvm-pods-add.html#set-up-ssh
 [kvmdeploy]: manage-kvm-pods-add.md
 [manualkvm]: manage-kvm-pods-add.md#manual/pre-2.5
 [cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-machines

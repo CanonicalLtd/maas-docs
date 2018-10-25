@@ -121,25 +121,25 @@ navigation:
           - title: Availability Zones (AZs)
             location: manage-zones.md
       
-      - title: Virtual Machines - KVM pods
-        location: manage-kvm-pods-intro.md
+      - title: Pods
 
         children:
             
             - title: Introduction
-              location: manage-kvm-pods-intro.md
-            
-            - title: Adding KVM pods
-              location: manage-kvm-pods-add.md
-            
-            - title: Storage pools
-              location: manage-kvm-pods-storage-pools.md
-            
-            - title: Networking
-              location: manage-kvm-pods-networking.md
+              location: manage-pods-intro.md
             
             - title: Web UI
-              location: manage-kvm-pods-webui.md
+              location: manage-pods-webui.md
+            
+            - title: Add a KVM host
+              location: manage-kvm-pods-add.md
+            
+            - title: KVM host storage pools
+              location: manage-kvm-pods-storage-pools.md
+            
+            - title: KVM host networking
+              location: manage-kvm-pods-networking.md
+            
       
       - title: Syslog
         location: installconfig-syslog.md
