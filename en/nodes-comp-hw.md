@@ -2,6 +2,9 @@ Title: Pods
 TODO:  
 table_of_contents: True
 
+!!! Warning:
+    This page is deprecated. Please see the new [Virtual Machines - KVM
+    pods][newpage] section in the navigation column.
 
 # Pods
 
@@ -203,6 +206,7 @@ corresponding nodes from MAAS.
 
 <!-- LINKS -->
 
+[newpage]: manage-kvm-pods-intro.md
 [interface-constraint]: manage-cli-comp-hw.md#interface-constraints
 [libvirt-pools]: manage-cli-comp-hw.md#track-libvirt-storage-pools
 [api-allocate]: api.md#post-maasapi20machines-opallocate
@@ -216,8 +220,8 @@ corresponding nodes from MAAS.
 [about-libvirt-storage]: https://libvirt.org/storage.html
 
 [img__pod-initial-page]: ../media/nodes-comp-hw__2.4_pod-initial-page.png
-[img__pod-add-rsd]: ../media/nodes-comp-hw__2.5_pod-add-rsd.png
-[img__pod-add-virsh]: ../media/nodes-comp-hw__2.5_pod-add-virsh.png
+[img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
+[img__pod-add-virsh]: ../media/nodes-comp-hw__2.4_pod-add-virsh.png
 [img__pod-list]: ../media/nodes-comp-hw__2.4_pod-list.png
 [img__pod-details]: ../media/nodes-comp-hw__2.4_pod-details.png
 [img__pod-compose-config]: ../media/nodes-comp-hw__2.4_pod-compose-config.png
