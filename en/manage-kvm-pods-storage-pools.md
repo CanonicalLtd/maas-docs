@@ -1,3 +1,7 @@
+Title: Storage pools
+TODO:  
+table_of_contents: True
+
 # Storage pools
 
 Libvirt “storage pools” are storage resources managed by libvirt. For a
@@ -25,6 +29,6 @@ with specific storage pool constraints.
 [img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
 [img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
 
-[composevm]: manage-kvm-pods-webui.md#compose-a-pod-machine
-[cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-machines
+[composevm]: manage-kvm-pods-webui.md#compose-a-virtual-machine
+[cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-virtual-machines
 

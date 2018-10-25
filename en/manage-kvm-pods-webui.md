@@ -1,3 +1,7 @@
+Title: Web UI
+TODO:  
+table_of_contents: True
+
 # Web UI
 
 See [Web UI][webui] for how to get started with the web UI.
