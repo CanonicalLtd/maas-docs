@@ -125,21 +125,18 @@ navigation:
 
         children:
             
-            - title: Introduction
-              location: manage-pods-intro.md
-            
-            - title: Web UI
-              location: manage-pods-webui.md
-            
-            - title: Add a KVM host
-              location: manage-kvm-pods-add.md
-            
-            - title: KVM host storage pools
-              location: manage-kvm-pods-storage-pools.md
-            
-            - title: KVM host networking
-              location: manage-kvm-pods-networking.md
-            
+          - title: Introduction
+            location: manage-pods-intro.md
+          
+          - title: KVM host networking
+            location: manage-kvm-pods-networking.md
+      
+          - title: Management with UI
+            location: manage-pods-webui.md
+          
+          - title: Management with CLI
+            location: manage-cli-comp-hw.md
+        
       
       - title: Syslog
         location: installconfig-syslog.md

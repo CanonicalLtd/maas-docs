@@ -31,18 +31,18 @@ Features:
 
 ## Next steps
 
-For more information:
-
-[Web UI][webui]  
-[Adding KVM pods][addingkvmpods]  
-[Storage pools][storagepools]  
-[Networking][networking]  
+- [Add a KVM host][addkvmhost]
+- [Add an RSD Pod][addrsdpod]
+- [Configuration][configuration]
+- [KVM host networking][networking]
+- [Using the CLI to work with Pods][cli]
 
 <!-- LINKS -->
 
-[addingkvmpods]: manage-kvm-pods-add.md
-[storagepools]: manage-kvm-pods-storage-pools.md
+[addkvmhost]: manage-pods-webui.md#add-a-kvm-host
+[addrsdpod]: manage-pods-webui.md#add-an-rsd-pod
+[configuration]: manage-pods-webui.md#configuration
 [networking]: manage-kvm-pods-networking.md
-[webui]: manage-kvm-pods-webui.md
+[cli]: manage-cli-comp-hw.md
 
 
