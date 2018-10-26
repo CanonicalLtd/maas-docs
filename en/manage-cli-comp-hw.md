@@ -4,9 +4,9 @@ table_of_contents: True
 
 # CLI composable hardware
 
-This is a list of composable hardware tasks which can be performed with the
-MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the CLI and
-[Composable hardware][composable-hardware] for an overview of the subject.
+This is a list of examples of composable hardware tasks which can be performed
+with the MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the
+CLI and [Pods][composable-hardware] for an overview of the subject.
 
 
 ## Register a pod
@@ -19,9 +19,11 @@ maas $PROFILE pods create type=$POD_TYPE power_address=$POWER_ADDRESS \
 	[tags=$TAG1,$TAG2,...]
 ```
 
-In the case of the Virsh power type, both USERNAME and PASSWORD are optional.
-ZONE and TAGS are optional for all pods.
+!!! Note:
+    Both USERNAME and PASSWORD are optional for the virsh power type.  ZONE and
+    TAGS are optional for all pods.
 
+See the [API reference][api-powertypes] for a listing of available power types.
 
 For example, to create an RSD pod:
 
@@ -30,60 +32,50 @@ maas $PROFILE pods create type=rsd power_address=10.3.0.1:8443 \
 	power_user=admin power_pass=admin
 ```
 
-And to create a Virsh pod:
+And to create a KVM host:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system
 ```
 
-Create a Virsh pod with [overcommitted resources][over-commit]:
+Create a KVM host with [overcommitted resources][over-commit]:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
         power_pass=example cpu_over_commit_ratio=0.3 memory_over_commit_ratio=4.6
 ```
 
-Create a Virsh pod that uses a default [storage pool][storagepools]:
+Create a KVM host that uses a default [storage pool][storagepools]:
 
 ```bash
 maas $PROFILE pods create type=virsh power_address=qemu+ssh://ubuntu@192.168.1.2/system \
         power_pass=example default_storage_pool=pool1
 ```
 
-## Find pod id
+## Find pod IDs
 
-Here's a simple way to find a pod's ID:
+Here's a simple way to find a pod's ID by name using `jq`:
 
 ```bash
-maas $PROFILE pods read | egrep "\"name\"|\"id\""
+maas $PROFILE pods read | jq '.[] | select (.name=="MyPod") | .name, .id'
 ```
+!!! Note:
+    [`jq`][jq] is a command-line JSON processor.
 
 Example output:
 
 ```no-highlight
-        "id": "29d6f45a-0772-432a-9de5-631d5db1c3b4",
-                "name": "virtimages",
-                "id": "e5404e3f-a045-4acc-ae11-be657c080790",
-                "name": "images",
-                "id": "30c2ef09-cfca-4a17-b2b0-2b69bf4d62d8",
-                "name": "maas",
-        "name": "MyPod",
-            "name": "default",
-            "id": 0,
-            "name": "default",
-            "id": 1,
-        "id": 1,
+"MyPod"
+1
 ```
 
 ## List resources of all pods
-
-List the resources of all pods:
 
 ```bash
 maas $PROFILE pods read
 ```
 
-Sample output:
+A portion of sample output:
 
 ```no-highlight
         "id": 93,
@@ -106,14 +98,14 @@ maas $PROFILE pod read $POD_ID
 
 ## Update pod configuration
 
-Update over commit ratios for a Virsh pod:
+Update overcommit ratios for a KVM host:
 
 ```bash
 maas $PROFILE pod update $POD_ID power_address=qemu+ssh://ubuntu@192.168.1.2/system \
         power_pass=example cpu_over_commit_ratio=2.5 memory_over_commit_ratio=10.0
 ```
 
-Update the default storage pool used by a Virsh pod:
+Update the default storage pool used by a KVM host:
 
 ```bash
 maas $PROFILE pod update $POD_ID power_address=qemu+ssh://ubuntu@192.168.1.2/system \
@@ -324,8 +316,7 @@ keys.
 
 In the absence of any nodes in the 'New' or 'Ready' state, if a pod of
 sufficient resources is available, MAAS can automatically compose (add),
-commission, and acquire a pod VM. This is done with the regular `allocate`
-sub-command:
+commission, and acquire a pod VM. This is done with the `allocate` sub-command:
 
 ```bash
 maas $PROFILE machines allocate
@@ -343,12 +334,12 @@ Once commissioned and acquired, the new machine will be ready to deploy.
 !!! Note:
     The labels (i.e. `mylabel1`, `mylabel2`) in this case can be used to
     associate device IDs in the information MAAS dumps about the newly created
-    VM.
+    VM. Try piping the output to: `jq '.constraints_by_type'`.
 
 ## List machine parameters
 
-The MAAS node may be a composed machine in which case its resources will be
-included in the output:
+MAAS VM parameters, including their resources, are listed just like any other
+machine:
 
 ```bash
 maas $PROFILE machine read $SYSTEM_ID
@@ -356,9 +347,9 @@ maas $PROFILE machine read $SYSTEM_ID
 
 ## Libvirt storage pools
 
-### Composing pod VMs with storage pool constraints
+### Composing VMs with storage pool constraints
 
-See [Compose pod virtual machines (VMs)][compose-pod-machines].
+See [Compose pod virtual machines][compose-pod-machines].
 
 ### Usage
 
@@ -453,37 +444,36 @@ Machine-readable output follows:
 }
 ```
 
-## Decompose a pod VM
-
-To decompose a pod VM by deleting the corresponding MAAS node:
+## Delete a pod VM
 
 ```bash
 maas $PROFILE machine delete $SYSTEM_ID
 ```
 
-If the pod's resources are now listed (`pod read $POD_ID`), it would be seen
-that the resources for this machine are available and no longer used.
-
+After a machine is deleted, the machine's resources will be available for other
+VMs.
 
 ## Delete a pod
-
-To delete a pod (and decompose all its machines):
 
 ```bash
 maas $PROFILE pod delete $POD_ID
 ```
 
+!!! Warning:
+    Deleting a pod will automatically delete all machines belonging to that pod.
 
 <!-- LINKS -->
 
+[jq]: https://stedolan.github.io/jq/
+[api-powertypes]: api.md#power-types
 [spaces]: intro-concepts.md#spaces
 [resources]: #set-resources
 [storage]: #storage
 [architecture]: #architecture
 [interfaceconstraints]: #interfaces
-[compose-pod-machines]: #compose-pod-virtual-machines-vms
+[compose-pod-machines]: #compose-pod-virtual-machines
 [api-allocate]: api.md#post-maasapi20machines-opallocate
 [manage-cli]: manage-cli.md
-[composable-hardware]: manage-kvm-pods-intro.md
-[storagepools]: manage-kvm-pods-storage-pools.md
+[composable-hardware]: manage-pods-intro.md
+[storagepools]: manage-pods-webui.md#configuration
 [over-commit]: manage-kvm-pods-webui.md#overcommit-resources

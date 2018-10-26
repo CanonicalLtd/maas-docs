@@ -34,11 +34,13 @@ Features:
 - [Add a KVM host][addkvmhost]
 - [Add an RSD Pod][addrsdpod]
 - [Configuration][configuration]
+- [Compose a machine][addvm]
 - [KVM host networking][networking]
 - [Using the CLI to work with Pods][cli]
 
 <!-- LINKS -->
 
+[addvm]: manage-pods-webui.md#compose-a-machine
 [addkvmhost]: manage-pods-webui.md#add-a-kvm-host
 [addrsdpod]: manage-pods-webui.md#add-an-rsd-pod
 [configuration]: manage-pods-webui.md#configuration

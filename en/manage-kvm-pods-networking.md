@@ -1,43 +1,30 @@
-Title: KVM pod networking
+Title: KVM host networking
 TODO:  
 table_of_contents: True
 
-# KVM pod networking
+# KVM host networking
 
-In order to enable KVM pod networking features, MAAS must be able to correlate
-the IP address of a potential KVM pod host with a host known to MAAS (a machine,
-controller, or device). If it cannot, for example, if a machine not known to
+In order to enable KVM host networking features, MAAS must be able to correlate
+the IP address of a potential KVM host with a device known to MAAS (e.g.  a
+machine or controller). If it cannot, for example, if a machine not known to
 MAAS is set up as a KVM host, enhanced interface selection features will not be
 available.
 
-The [recommended way of setting up a KVM host][deploykvm] is therefore to deploy
-a machine within MAAS and tick the "Install MAAS-managed KVM Pod" checkbox (a
-full explanation is found [here][deploykvm]). MAAS will automatically install
-KVM as well as ensure that the network model is consistent with what is on the
-machine.
+The recommended way of setting up a KVM host is therefore to deploy a machine
+within MAAS and tick the "Install MAAS-managed KVM Host" checkbox (a full
+explanation is found [here][deploykvm]). MAAS will automatically install KVM as
+well as ensure that the network model is consistent with what is on the machine.
 
-There are other ways of setting up KVM pod hosts that provide easy management of
-VMs via the MAAS UI. You can, for example, install KVM manually on a deployed
-node or on a new or existing rack controller.
+There are other ways of setting up KVM hosts that provide easy management of VMs
+via the MAAS UI. You can, for example, install KVM manually on a deployed node
+or on a new or existing rack controller.
 
 !!! Warning:
-    Enhanced KVM pod networking features may not operate correctly when you
+    Enhanced KVM host networking features may not operate correctly when you
     install KVM manaully on a deployed node. (E.g. if any of the host interfaces
     change.)
 
-## Differences between MAAS 2.5 and earlier versions
-
-### Interface constraints
-
-One of the main difference between MAAS 2.5 and earlier versions of MAAS is the
-the application of the interfaces-constraints feature to VMs, which allows
-you to compose a VM with specific networking requirements (a full-explanation of
-the feature is found in the following section &mdash; for now, knowing the feature
-exists is enough to continue the discussion). When these requirements are
-present, MAAS is able connect your VMs to the full range of your MAAS-configured
-network.
-
-### 2.4 and earlier
+## 2.4 and earlier
 
 MAAS requires the use of a DHCP server it can control. Therefore, DHCP must be
 enabled in MAAS (rather than in libvirt) to allow VMs to use network booting
@@ -58,13 +45,15 @@ network.
     disable libvirt's DHCP and enable MAAS DHCP on the `default` network in
     libvirt, or create a separate `maas` network on a VLAN with MAAS DHCP enabled.
 
-### 2.5+
+## 2.5+
 
-Since 2.5, MAAS supports enhanced KVM-networking features, provided you deploy
-KVM host pods with the "Install MAAS-managed KVM Pod" checkbox ticked as discussed
-in the introduction (or have installed KVM on a new or existing controller).
+In MAAS 2.5, you can apply interface-constraints to VMs, which allows you to
+compose a VM with specific networking requirements (a full-explanation of the
+feature is found in the [following section][interface-constraints]). When these
+requirements are present, MAAS is able connect your VMs to the full range of
+your MAAS-configured network.
 
-#### With interface constraints
+### With interface constraints
 
 Instead of attaching to a libvirt network like `maas` or `default`, MAAS in
 this case tells the hypervisor on the host to attach the VM directly to a
@@ -73,12 +62,12 @@ addition, if you provide a specific IP address in the constraint string, MAAS
 will try to allocate it and assign it to the interface when the VM is created,
 thereby providing some limited interface configuration upon creating the VM.
 
-#### With *no* interface constraints
+### With *no* interface constraints
 
 If you do not specify interface constraints, how MAAS attaches the VM to a
-network depends on how KVM was installed on the pod host.
+network depends on how KVM was installed on the host.
 
-If the pod host was deployed by MAAS for use as a KVM host the recommended way
+If the host was deployed by MAAS for use as a KVM host the recommended way
 outlined above, MAAS will skip the libvirt `maas` and `default` networks if they
 are not enabled for DHCP in MAAS, instead preferring a DHCP-enabled MAAS
 network. This means you don't have to manually create a MAAS-friendly libvirt
@@ -96,7 +85,8 @@ detects MAAS-enabled DHCP on either.
 MAAS uses macvlan if an interfaces constraint specifies a macvlan interface when
 composing a VM.
 
-You can configure the default macvlan mode of an existing pod using the CLI:
+You can configure the default macvlan mode of an existing KVM host using the
+CLI:
 
 ```bash
 maas $PROFILE pod update <pod-id> host=<host> default_macvlan_mode=<mode>
@@ -132,5 +122,6 @@ easier to configure and more likely to result in successful communication.
 
 <!-- LINKS -->
 
+[interface-constraints]: manage-cli-comp-hw.md#interfaces
 [deploykvm]: manage-kvm-pods-add.md
 
