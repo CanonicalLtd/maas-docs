@@ -2,16 +2,16 @@ Title: CLI Composable Hardware
 table_of_contents: True
 
 
-# CLI composable hardware
+# CLI pod management
 
-This is a list of examples of composable hardware tasks which can be performed
-with the MAAS CLI. See [MAAS CLI][manage-cli] for how to get started with the
-CLI and [Pods][composable-hardware] for an overview of the subject.
+This is a list of examples of pod-management tasks performed with the MAAS CLI.
+See [MAAS CLI][manage-cli] for how to get started with the CLI and
+[Pods][composable-hardware] for an overview of the subject.
 
 
-## Register a pod
+## Add a pod
 
-To register/add a pod:
+To add a pod:
 
 ```bash
 maas $PROFILE pods create type=$POD_TYPE power_address=$POWER_ADDRESS \

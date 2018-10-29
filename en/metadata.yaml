@@ -131,9 +131,11 @@ navigation:
           - title: KVM host networking
             location: manage-kvm-pods-networking.md
       
-          - title: Manage
+          - title: Manage pods
             location: manage-pods-webui.md
           
+          - title: CLI pod management
+            location: manage-cli-comp-hw.md
       
       - title: Syslog
         location: installconfig-syslog.md
