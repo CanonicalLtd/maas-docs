@@ -67,8 +67,8 @@ thereby providing some limited interface configuration upon creating the VM.
 If you do not specify interface constraints, how MAAS attaches the VM to a
 network depends on how KVM was installed on the host.
 
-If the host was deployed by MAAS for use as a KVM host the recommended way
-outlined above, MAAS will skip the libvirt `maas` and `default` networks if they
+If the [host was deployed by MAAS][deploykvm] for use as a KVM host
+(recommended), MAAS will skip the libvirt `maas` and `default` networks if they
 are not enabled for DHCP in MAAS, instead preferring a DHCP-enabled MAAS
 network. This means you don't have to manually create a MAAS-friendly libvirt
 network to which to attach the VM as with previous versions of MAAS.
@@ -94,8 +94,8 @@ maas $PROFILE pod update <pod-id> host=<host> default_macvlan_mode=<mode>
 
 Where:
 
-- `pod-id`: the pod’s MAAS ID
-- `host`: the IP or hostname of the libvirt instance
+- `pod-id`: [The pod’s MAAS ID][findpodid]
+- `host`: The IP or hostname of the libvirt instance
 - `default_macvlan_mode`:
     - `private`: VMs with the same parent interface cannot communicate but can
       reach destinations outside the parent interface
@@ -122,6 +122,7 @@ easier to configure and more likely to result in successful communication.
 
 <!-- LINKS -->
 
+[findpodid]: manage-cli-comp-hw.md#find-pod-ids
 [interface-constraints]: manage-cli-comp-hw.md#interfaces
-[deploykvm]: manage-kvm-pods-add.md
+[deploykvm]: manage-pods-webui.md#add-a-kvm-host
 
