@@ -1,16 +1,16 @@
-Title: Web UI
+Title: Manage pods
 TODO:  
 table_of_contents: True
 
-# Web UI
+# Manage pods
 
 See [Web UI][webui] for how to get started with the web UI.
+
+## Add a KVM host
 
 After installing MAAS, the 'Pods' page is typically empty:
 
 ![initial pods page][img__pod-initial-page]
-
-## Add a KVM host
 
 ### 2.5+
 
@@ -149,13 +149,7 @@ The main view also lists the machines contained within the pod.
 
 ![pod details][img__pod-details]
 
-## Configuration
-
-Pods have several configuration options. Modify these by selecting the
-'Configuration' tab and clicking 'Edit'. Options include a pod's location,
-password, network zone, and default storage pool.
-
-### KVM host storage pools
+## KVM host storage pools
 
 Libvirt “storage pools” are storage resources managed by libvirt. For a
 more in-depth take on libvirt storage pools, see
@@ -166,13 +160,14 @@ your resource usage at a glance:
 
 ![storagepoolusage][img__storagepoolusage]
 
-When you [compose a new VM within a MAAS pod][composevm], you can choose which
-storage pool to use from a drop-down list:
 
-![storagepoolavail][img__storagepoolavail]
+## Configuration
 
-You can also use the [MAAS CLI][cli-compose-with-storage] to compose pod VMs
-with specific storage pool constraints.
+Pods have several configuration options. Modify these by selecting the
+'Configuration' tab and clicking 'Edit'. Options include a pod's location,
+password, network zone, and default resource pool.
+
+![pod configuration][img__pod-compose-config]
 
 ### Overcommit resources
 
@@ -190,8 +185,6 @@ physical resource allocation:
 - `32 physical CPU cores * 10.0 multiplier  = 320 virtual CPU cores`
 - `128GB physical Memory  * 5.5 multiplier  = 704G virtual Memory`
 
-![pod configuration][img__pod-compose-config]
-
 Overcommitting resources allows a user to compose many MAAS-managed machines without
 worrying about the physical limitations of the host. For example, on a physical
 host with 4 cores and 12 GB of memory, you could compose 4 virsh nodes, each
@@ -205,6 +198,13 @@ While on a pod's details view, select 'Compose' from the 'Take action' drop-down
 menu to compose a machine.
 
 ![pod compose machine][img__pod-compose-machine]
+
+You can choose which storage pool to use from a drop-down list:
+
+![storagepoolavail][img__storagepoolavail]
+
+You can also use the [MAAS CLI][cli-compose-with-storage] to compose pod VMs
+with specific storage pool constraints.
 
 Click the 'Compose machine' button when you're finished. MAAS will present the pod
 detail view. In a few moments, your new machine will be auto-commissioned. The
@@ -229,10 +229,8 @@ the 'Take action' dropdown menu. Click 'Delete 1 pod' to confirm the action:
 
 ![pod delete][img__pod-delete]
 
-Deleting a pod will also decompose all its machines, thereby also removing all
-corresponding nodes from MAAS.
-
-
+!!! Warning:
+    Deleting a pod will also delete all its machines and remove them from MAAS.
 
 <!-- LINKS -->
 

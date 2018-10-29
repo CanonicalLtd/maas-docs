@@ -78,11 +78,11 @@ parent node is deleted or released. This is designed to model and manage the
 virtual machines or containers running inside a MAAS-deployed node.
 
 
-## Composable hardware
+## Pods
 
-Composable hardware is based on an architecture that allows for the dynamic
-composition of machines from a pool of hardware resources (e.g. disk space,
-memory, cores). See [Composable hardware][composable-hardware] for details.
+Pods, also called composable hardware, allow for the dynamic composition of
+machines from a pool of available hardware resources (e.g. disk space, memory,
+cores). See [Pods][composable-hardware] for details.
 
 
 ## Zones
@@ -474,6 +474,6 @@ action 'Rescue mode'.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [subnet-management]: installconfig-network-subnet-management.md
 [storage-erasure]: installconfig-storage-erasure.md
-[composable-hardware]: nodes-comp-hw.md
+[composable-hardware]: manage-pods-intro.md
 [upgrade-maas]: installconfig-upgrade-to-2.md#ip-range-changes
 [hardware-testing]: nodes-hw-testing.md

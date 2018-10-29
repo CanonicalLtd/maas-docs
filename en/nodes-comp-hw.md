@@ -3,8 +3,8 @@ TODO:
 table_of_contents: True
 
 !!! Warning:
-    This page is deprecated. Please see the new [Virtual Machines - KVM
-    pods][newpage] section in the navigation column.
+    This page is deprecated. Please see the new [Pods][newpage] section in the
+    navigation column.
 
 # Pods
 
@@ -206,7 +206,7 @@ corresponding nodes from MAAS.
 
 <!-- LINKS -->
 
-[newpage]: manage-kvm-pods-intro.md
+[newpage]: manage-pods-intro.md
 [interface-constraint]: manage-cli-comp-hw.md#interface-constraints
 [libvirt-pools]: manage-cli-comp-hw.md#track-libvirt-storage-pools
 [api-allocate]: api.md#post-maasapi20machines-opallocate
