@@ -78,7 +78,7 @@ sudo chmod 600 /var/lib/maas/secret
 And after:
 
 ```no-highlight
--rw-r----- 1 maas maas 32 Sep 27 14:15 /var/lib/maas/secret
+-rw------- 1 maas maas 32 Sep 27 14:15 /var/lib/maas/secret
 ```
 
 <!-- LINKS -->
