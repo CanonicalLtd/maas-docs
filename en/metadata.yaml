@@ -137,6 +137,9 @@ navigation:
           - title: CLI pod management
             location: manage-cli-comp-hw.md
       
+      - title: Interactive search
+        location: manage-search.md
+      
       - title: Syslog
         location: installconfig-syslog.md
 
