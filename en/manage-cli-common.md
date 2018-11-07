@@ -18,22 +18,38 @@ To list all nodes (and their characteristics) in the MAAS:
 maas $PROFILE nodes read
 ```
 
-Add a filter to get just their hostnames:
+You can also specify various parameters to narrow your search. In the following
+example, MAAS will return any machines containing 'node2' in the `hostname`
+parameter.
 
 ```bash
-maas $PROFILE nodes read | grep hostname
+maas $PROFILE machines read hostname=node2
 ```
 
+To see a list of all available search parameters:
+
+```bash
+maas $PROFILE machines read --help
+```
 
 ## Determine a node system ID
 
-To determine the system ID of a node based on its MAAS hostname:
+You can use `jq` to determine a node's system ID. For example, here's how to
+output just the `hostname` and `system_id` when searching for a particular
+hostname:
 
 ```bash
-SYSTEM_ID=$(maas $PROFILE nodes read hostname=$HOSTNAME \
-	| grep system_id -m 1 | cut -d '"' -f 4)
+maas $PROFILE machines read | jq '.[] | .hostname, .system_id'
 ```
+!!! Note:
+    [`jq`][jq] is a command-line JSON processor.
 
+Output looks like this:
+
+```no-highlight
+"node2"
+"e8xa8m"
+```
 
 ## Commission a node
 
@@ -300,6 +316,7 @@ See [User Accounts][manage-account] for the latter.
 
 <!-- LINKS -->
 
+[jq]: https://stedolan.github.io/jq/
 [manage-cli]: manage-cli.md
 [concepts-ipranges]: intro-concepts.md#ip-ranges
 [manage-account]: manage-account.md
