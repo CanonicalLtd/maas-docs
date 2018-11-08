@@ -1,239 +1,256 @@
 navigation:
-  - title: Introduction
-    children:
 
-      - title: Home
-        location: index.md
+    - title: Introduction
+      children:
+        - title: Home
+          location: index.md
 
-      - title: About MAAS
-        location: intro-what-is-maas.md
+        - title: About MAAS
+          location: intro-what-is-maas.md
 
-      - title: Explore MAAS
-        location: intro-explore.md
+        - title: Explore MAAS
+          location: intro-explore.md
 
-      - title: What's new in 2.5
-        location: intro-new.md
+        - title: What's new in 2.5
+          location: intro-new.md
 
-      - title: Requirements
-        location: intro-requirements.md
+        - title: Quick start
+          location: https://maas.io/install
 
-  - title: User guide
-    location: installconfig-snap-install.md
+    - title: Installing MAAS
+      children:
+        - title: Requirements
+          location: intro-requirements.md
 
-    children:
-    
-      - title: Install MAAS
-        location: installconfig-snap-install.md
+        - title: Installation
+          location: installconfig-snap-install.md
 
-      - title: Access the web UI
-        location: installconfig-webui.md
-      
-      - title: Controllers
+        - title: Accessing MAAS
+          location: installconfig-webui.md
 
-        children:
+    - title: Controllers
+      children:
+        - title: Introduction
+          location: intro-controllers.md
 
-          - title: Rack controller      
-            location: installconfig-rack.md
+        - title: Adding rack controllers
+          location: installconfig-rack.md
 
-      - title: Nodes
+        - title: Adding region controllers
+          location: installconfig-region.md
 
-        children:
- 
-          - title: Node overview
-            location: nodes-overview.md
-           
-          - title: Add nodes
-            location: nodes-add.md
+        - title: High availability
+          location: manage-ha.md
 
-          - title: BMC power types
-            location: nodes-power-types.md
-      
-          - title: Commission nodes
-            location: nodes-commission.md
+    - title: Machines
+      children:
 
-          - title: Deploy nodes
-            location: nodes-deploy.md
-          
-          - title: Custom node setup
-            location: nodes-custom.md
+        - title: Overview
+          location: nodes-overview.md
 
-          - title: Tags
-            location: nodes-tags.md
+        - title: Add machines
+          location: nodes-add.md
 
-          - title: Kernel boot options
-            location: nodes-kernel-options.md
+        - title: Power management
+          location: nodes-power-types.md
 
-          - title: Ubuntu kernels
-            location: nodes-kernels.md
+        - title: Commission machines
+          location: nodes-commission.md
 
-          - title: Hardware testing
-            location: nodes-hw-testing.md
+        - title: Testing
+          children:
 
-          - title: Commissioning and Hardware testing scripts
-            location: nodes-scripts.md
-          
-          - title: Resource pools
-            location: nodes-resource-pools.md
+            - title: Hardware testing
+              location: nodes-hw-testing.md
 
-      - title: Images
-        location: installconfig-images.md
+            - title: Commissioning and hardware testing scripts
+              location: nodes-scripts.md
 
-        children:
+        - title: Deploy machines
+          location: nodes-deploy.md
 
-          - title: Selection and import
-            location: installconfig-images-import.md
+        - title: Tags
+          location: nodes-tags.md
 
-          - title: Local image mirror
-            location: installconfig-images-mirror.md
+        - title: Customize machine setup
+          location: nodes-custom.md
 
-      - title: Networks
-        location: installconfig-networking.md
+        - title: Kernel boot options
+          location: nodes-kernel-options.md
 
-        children:
+        - title: Organize Machines (Resource pools)
+          location: nodes-resource-pools.md
 
-          - title: Subnet management
-            location: installconfig-network-subnet-management.md
+        - title: Advanced features
+          children:
 
-          - title: DHCP
-            location: installconfig-network-dhcp.md
+            - title: Storage
+              location: installconfig-storage.md
 
-          - title: IP ranges
-            location: installconfig-network-ipranges.md
+            - title: Ubuntu kernels
+              location: nodes-kernels.md
 
-          - title: Proxy
-            location: installconfig-network-proxy.md
+    - title: Pods
+      children:
 
-          - title: NTP
-            location: installconfig-network-ntp.md
+        - title: Introduction
+          location: manage-pods-intro.md
 
-          - title: Network discovery
-            location: installconfig-network-dev-discovery.md
+        - title: KVM host networking
+          location: manage-kvm-pods-networking.md
 
-          - title: IPv6
-            location: installconfig-network-ipv6.md
+        - title: Manage pods
+          location: manage-pods-webui.md
 
-          - title: SSL
-            location: installconfig-network-ssl.md
+        - title: CLI pod management
+          location: manage-cli-comp-hw.md
 
-          - title: STP
-            location: installconfig-network-stp.md
+    - title: Images
+      location: installconfig-images.md
+      children:
 
-          - title: Availability Zones (AZs)
-            location: manage-zones.md
-      
-      - title: Pods
+        - title: Selection and import
+          location: installconfig-images-import.md
 
-        children:
-            
-          - title: Introduction
-            location: manage-pods-intro.md
-          
-          - title: KVM host networking
-            location: manage-kvm-pods-networking.md
-      
-          - title: Manage pods
-            location: manage-pods-webui.md
-          
-          - title: CLI pod management
-            location: manage-cli-comp-hw.md
-      
-      - title: Interactive search
-        location: manage-search.md
-      
-      - title: Syslog
-        location: installconfig-syslog.md
+        - title: Local image mirror
+          location: installconfig-images-mirror.md
 
-      - title: Storage
-        location: installconfig-storage.md
+    - title: Networks
+      location: installconfig-networking.md
+      children:
 
-      - title: User accounts
-        location: manage-account.md
+        - title: Subnet management
+          location: installconfig-network-subnet-management.md
 
-      - title: Package repositories
-        location: manage-repos.md
+        - title: DHCP
+          location: installconfig-network-dhcp.md
 
-      - title: High availability
-        location: manage-ha.md
+        - title: IP ranges
+          location: installconfig-network-ipranges.md
 
-      - title: Backup
-        location: manage-backup.md
+        - title: Proxy
+          location: installconfig-network-proxy.md
 
-      - title: Concepts & terms
-        location: intro-concepts.md
+        - title: NTP
+          location: installconfig-network-ntp.md
 
-      - title: Upgrading MAAS
-        location: installconfig-upgrade.md
+        - title: Network discovery
+          location: installconfig-network-dev-discovery.md
 
-      - title: Troubleshoot
+        - title: IPv6
+          location: installconfig-network-ipv6.md
 
-        children:
+        - title: SSL
+          location: installconfig-network-ssl.md
 
-          - title: FAQ
-            location: troubleshoot-faq.md
+        - title: STP
+          location: installconfig-network-stp.md
 
-          - title: Getting help
-            location: troubleshoot-getting-help.md
+        - title: Availability Zones (AZs)
+          location: manage-zones.md
 
-          - title: Upgrade from 1.9 to 2.x
-            location: installconfig-upgrade-to-2.md
+    - title: Logging
+      children:
 
-  - title: Command reference
-    location: manage-cli.md
+        - title: Syslog
+          location: installconfig-syslog.md
 
-    children:
+    - title: Other
+      children:
 
-      - title: Common tasks
-        location: manage-cli-common.md
+        - title: MAAS security
+          location: manage-maas-security.md
 
-      - title: Audit Event Logs
-        location: manage-audit-events.md 
+        - title: Package repositories
+          location: manage-repos.md
 
-      - title: Kernel management
-        location: manage-cli-kernels.md
+        - title: User accounts
+          location: manage-account.md
 
-      - title: Image management
-        location: manage-cli-images.md
+        - title: Interactive search
+          location: manage-search.md
 
-      - title: Interface management
-        location: manage-cli-interfaces.md
+        - title: Backup
+          location: manage-backup.md
 
-      - title: Tag management
-        location: manage-cli-tags.md
+        - title: Upgrading MAAS
+          location: installconfig-upgrade.md
+          children:
 
-      - title: Resource pool management
-        location: manage-cli-resource-pools.md
+            - title: Upgrade from 2.3 to 2.4
+              location: installconfig-upgrade-postgres.md
 
-      - title: DHCP snippet management
-        location: manage-cli-dhcp-snippets.md
+            - title: Upgrade from 1.9 to 2.x
+              location: installconfig-upgrade-to-2.md
 
-      - title: Hardware testing scripts
-        location: nodes-scripts-cli.md
+        - title: Concepts & terms
+          location: intro-concepts.md
 
-      - title: Advanced tasks
-        location: manage-cli-advanced.md
 
-      - title: Composable hardware
-        location: manage-cli-comp-hw.md
+    - title: Command reference
+      location: manage-cli.md
+      children:
 
-      - title: API client
-        location: manage-libmaas.md
+        - title: Common tasks
+          location: manage-cli-common.md
 
-  - title: API documentation
-    location: api.md
+        - title: Audit Event Logs
+          location: manage-audit-events.md 
 
-    children:
+        - title: Kernel management
+          location: manage-cli-kernels.md
 
-      - title: API reference
-        location: api.md
+        - title: Image management
+          location: manage-cli-images.md
 
-      - title: API authentication
-        location: api-authentication.md
+        - title: Interface management
+          location: manage-cli-interfaces.md
 
-  - title: Release notes
-    location: release-notes.md
+        - title: Tag management
+          location: manage-cli-tags.md
 
-  - title: Help improve these docs
-    location: contributing-writing.md
-  
-  - title: Contact us
-    location: contact-us.md
+        - title: Resource pool management
+          location: manage-cli-resource-pools.md
+
+        - title: DHCP snippet management
+          location: manage-cli-dhcp-snippets.md
+
+        - title: Hardware testing scripts
+          location: nodes-scripts-cli.md
+
+        - title: Advanced tasks
+          location: manage-cli-advanced.md
+
+        - title: Composable hardware
+          location: manage-cli-comp-hw.md
+
+        - title: API client
+          location: manage-libmaas.md
+
+    - title: API documentation
+      location: api.md
+      children:
+
+        - title: API reference
+          location: api.md
+
+        - title: API authentication
+          location: api-authentication.md
+
+    - title: Troubleshoot
+      children:
+
+        - title: FAQ
+          location: troubleshoot-faq.md
+
+        - title: Getting help
+          location: troubleshoot-getting-help.md
+
+    - title: Release notes
+      location: release-notes.md
+
+    - title: Help improve these docs
+      location: contributing-writing.md
+
+    - title: Contact us
+      location: contact-us.md

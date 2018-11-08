@@ -3,7 +3,7 @@ table_of_contents: True
 
 # Explore MAAS
 
-MAAS is designed to scale. But it can be explored effectively with virtual
+MAAS is designed to scale, but it can be explored effectively with virtual
 machines, rather than real hardware, enabling you to experiment with its
 functions and processes without committing real network and hardware resources.
 
@@ -194,7 +194,7 @@ To add a pod of virtual machines, click the 'Add pod' button on the *Pods* page
 of the web UI, give the pod a name and select *Virsh* as the pod type, entering
 the address for the libvirt controlled pool below. 
 
-See [KVM guest nodes][kvm-nodes] for further details on on adding *libvirt*
+See [Pods][kvm-nodes] for further details on on adding *libvirt*
 virtual machines to MAAS.
 
 After a pod has been created, hardware can be *composed* by selecting the pod
@@ -270,7 +270,7 @@ Pods abstract multiple resources...
 [node-overview]: nodes-overview.md
 [tags]: nodes-tags.md
 [composable]: nodes-comp-hw.md
-[kvm-nodes]: nodes-add.md#kvm-guest-nodes
+[kvm-nodes]: manage-pods-intro.html
 [rest-api]: api.md
 [manage-cli]: manage-cli.md
 [installation]: installconfig-snap-install.md
