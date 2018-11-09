@@ -3,7 +3,11 @@ Title: Getting Help
 
 # Getting Help
 
-The two channels you can use to get help debugging a MAAS issue are:
+The best place to get help with your MAAS issue is on the [MAAS Discourse
+forum][discourse]. There, you can interact with the MAAS team as well as search
+for issues similar to your own.
+
+You might also try:
 
 - [Ask Ubuntu][askubuntu-maas] web site
 - [Freenode \#maas][freenode-maas] IRC channel
@@ -38,6 +42,7 @@ to get their hands on it.
 
 <!-- LINKS -->
 
+[discourse]: https://discourse.maas.io/
 [askubuntu-maas]: http://askubuntu.com/questions/ask?tags=maas
 [freenode-maas]: http://webchat.freenode.net/?channels=maas
 [github-sosreport]: https://github.com/sosreport/sosreport
