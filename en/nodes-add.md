@@ -125,8 +125,8 @@ The required fields will change based on the type of chassis you choose.
 
 <!-- LINKS -->
 
-[kvmwebui]: manage-kvm-pods-webui.md#compose-a-virtual-machine
-[kvmhosts]: manage-pods-webui.html#add-a-kvm-host
+[kvmwebui]: manage-pods-webui.md#compose-a-machine
+[kvmhosts]: manage-pods-webui.md#add-a-kvm-host
 [concepts-statuses]: intro-concepts.md#node-statuses
 [concepts-actions]: intro-concepts.md#node-actions
 [commission-nodes]: nodes-commission.md
