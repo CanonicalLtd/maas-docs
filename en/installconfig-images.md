@@ -5,7 +5,7 @@ TODO:  bug tracking: https://github.com/canonical-webteam/documentation-builder/
 # Images
 
 MAAS supports the images it generates for stable Ubuntu releases and for CentOS
-6.6 and CentOS 7. [Ubuntu Advantage MAAS][maas.io] is needed in order to
+6.6 and CentOS 7. [Ubuntu Advantage MAAS][plans-and-pricing] is needed in order to
 use Windows and RHEL images or in order to build a custom image for any
 operating system.
 
@@ -51,7 +51,7 @@ See [Select and Import Images][images-import] to get started with images.
 
 <!-- LINKS -->
 
-[maas.io]: https://maas.io/
+[plans-and-pricing]: https://www.ubuntu.com/support/plans-and-pricing#maas
 [cli-images]: manage-cli-images.md
 [default-boot-source]: https://images.maas.io/ephemeral-v3/daily/
 [mirror]: installconfig-images-mirror.md
