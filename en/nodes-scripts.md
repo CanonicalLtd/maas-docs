@@ -315,24 +315,63 @@ from that specific script.
 ![failed script output][nodes-hw-scripts__fail]
 
 If you need further details, especially when writing and running your own
-scripts, connect to a node and examine its logs and environment.
+scripts, you can connect to a node and examine its logs and environment.
 
 To do this, enable *Allow SSH access and prevent machine from powering off*
 when selecting 'Test hardware' from the machine 'Take action' menu.
 
 ![enable SSH within Test Hardware][nodes-hw-scripts__ssh]
 
-As scripts operate within an ephemeral version of Ubuntu, enabling this option
+Because scripts operate within an ephemeral version of Ubuntu, enabling this option
 stops the node from shutting down, allowing you to connect and probe a script's
-status. 
+status.
 
 As long as you've added your [SSH key][ssh-keys] to MAAS, you can simply
 connect with SSH to the node's IP with a username of `ubuntu`. Type `sudo -i`
-to get root access, and navigate to the `/tmp/user_data.sh.*` directory. This
-holds the scripts, output and tools for current session, in particular:
+to get root access.
 
-- `output/`: Contains standard (**.out**) and error (**.err**) output for each script
-- `testing/`: Contains the scripts MAAS attempts to execute
+### Access individual scripts and log files
+
+#### Commissioning and testing script files
+
+- `/tmp/user_data.sh.*/scripts/commissioning/`: Commissioning scripts
+- `/tmp/user_data.sh.*/scripts/testing/`: Hardware testing scripts
+
+#### Log files
+
+- `/tmp/user_data.sh*/out/`
+- `/var/log/cloud-init-output.log`
+- `/var/log/cloud-init.log`
+
+### Run all scripts manually
+
+You can also run all commissioning and hardware-testing scripts on a machine for
+debugging.
+
+```bash
+/tmp/user_data.sh.*/bin/maas-run-remote-scripts \
+    [--no-download] \
+    [--no-send] \
+    /tmp/user_data.sh.*
+```
+
+Where:
+
+- `--no-download`: Optional. Do not download the scripts from MAAS again.
+- `--no-send`: Optional. Do not send the results to MAAS.
+
+For example, to run all the scripts again without downloading again from MAAS:
+
+```bash
+/tmp/user_data.sh.*/bin/maas-run-remote-scripts --no-download /tmp/user_data.sh.*
+```
+
+Here, all the scripts are run again after downloading from MAAS, but no output
+data is sent to MAAS:
+
+```bash
+/tmp/user_data.sh.*/bin/maas-run-remote-scripts --no-send /tmp/user_data.sh.*
+```
 
 ## Command line access
 

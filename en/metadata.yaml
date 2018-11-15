@@ -75,9 +75,6 @@ navigation:
           - title: Resource pools
             location: nodes-resource-pools.md
 
-          - title: Pods
-            location: nodes-comp-hw.md
-
       - title: Images
         location: installconfig-images.md
 
@@ -123,6 +120,28 @@ navigation:
 
           - title: Availability Zones (AZs)
             location: manage-zones.md
+      
+      - title: Pods
+
+        children:
+            
+          - title: Introduction
+            location: manage-pods-intro.md
+          
+          - title: KVM host networking
+            location: manage-kvm-pods-networking.md
+      
+          - title: Manage pods
+            location: manage-pods-webui.md
+          
+          - title: CLI pod management
+            location: manage-cli-comp-hw.md
+      
+      - title: MAAS security
+        location: manage-maas-security.md
+      
+      - title: Interactive search
+        location: manage-search.md
       
       - title: Syslog
         location: installconfig-syslog.md
@@ -183,6 +202,9 @@ navigation:
 
       - title: Tag management
         location: manage-cli-tags.md
+
+      - title: Resource pool management
+        location: manage-cli-resource-pools.md
 
       - title: DHCP snippet management
         location: manage-cli-dhcp-snippets.md

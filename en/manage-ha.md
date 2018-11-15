@@ -19,18 +19,20 @@ the region controller manages communication.
 Proxying through rack controllers is useful in environments where communication
 between machines and region controllers is restricted.
 
-### DNS/Squid proxy
-
-MAAS creates an internal DNS domain (not manageable by the user) and a special
-DNS resource for each subnet that is managed by MAAS. Each subnet includes all
+MAAS creates an internal DNS domain, not manageable by the user, and a special
+DNS resource for each subnet that is managed by MAAS.  Each subnet includes all
 rack controllers that have an IP on that subnet. Booting machines use the subnet
 DNS resource to resolve the rack controller available for communication. If
 multiple rack controllers belong to the same subnet, MAAS uses a round-robin
-algorithm to balance the load across multiple rack controllers. This ensures
+algorithm to balance the load across multiple rack controllers.  This ensures
 that machines always have a rack controller.
+
+Machines use this internal domain for HTTP metadata queries, APT (proxying via
+Squid), and Syslog. DNS queries, PXE booting, and NTP polls use IP addresses.
 
 The rack controller installs and configures `bind` as a forwarder. All machines
 communicate via the rack controller directly.
+
 
 !!! Note:
     Zone management and maintenance still happen within the region controller.
@@ -41,9 +43,9 @@ The rack controller installs `nginx`, which serves as a proxy and as an HTTP
 server, binding to port 5248. Machines contact the metadata server via the rack
 controller.
 
-### `syslog`
+### Syslog
 
-See [Syslog] for more information about MAAS syslog communication as well as how
+See [Syslog][syslog] for more information about MAAS syslog communication as well as how
 to set up a remote syslog server.
 
 ## Rack controller HA
@@ -53,8 +55,12 @@ Multiple rack controllers are necessary to achieve high availability. Please see
 
 ### Multiple region endpoints
 
-Administrators can specify multiple region-controller endpoints for a single
-rack controller by adding entries to `/etc/maas/rackd.conf`.
+MAAS will automatically discover and track all reachable region controllers in a
+single cluster as well as automatically attempt to connect to them in the event
+that the one being used becomes inaccessible.
+
+Administrators can alternatively specify multiple region-controller endpoints
+for a single rack controller by adding entries to `/etc/maas/rackd.conf`.
 
 E.g.
 
@@ -69,11 +75,6 @@ maas_url:
 .
 .
 ```
-
-Note that future releases of MAAS will include the ability to automatically
-discover and track all available region controllers in a single cluster, as well
-as automatically attempt to connect to them in the event that one becomes
-inaccessible.
 
 ### BMC HA
 
@@ -252,12 +253,28 @@ instead of a package distribution of MAAS:
 
 1. Set up PostgreSQL for high-availability as [explained
    above][postgresql-setup]. PostgreSQL should run outside of the snap.
-1. [Install][snap-install] the MAAS snap.
-1. [Configure the snap][snap-config] by specifying the role appropriate for your particular
-   setup.
+1. [Install][snap-install] the MAAS snap on each machine you intend to use as a
+rack or region controller. You'll need the MAAS shared secret, located here,
+`/var/lib/maas/secret`, on the first region controller you set up.
+1. [Initialise the snap][snap-config] as a `rack` or `region` controller. Note
+that if you intend to use a machine as a region controller, you'll need to tell
+MAAS how to access your PostgreSQL database host with the following arguments:
+    - `--database-host DATABASE_HOST`
+    - `--database-name DATABASE_NAME`
+    - `--database-user DATABASE_USER`
+    - `--database-pass DATABASE_PASS`
+
+
+## VIP
+
+Note that in previous versions of MAAS, a virtual IP was required to serve as
+the effective IP address of all region API servers in high-availability
+environments. Since MAAS 2.5, this is no longer required. See [Virtual
+IP][virtualip] for more information.
 
 <!-- LINKS -->
 
+[virtualip]: https://docs.maas.io/2.4/en/manage-ha#virtual-ip
 [syslog]: installconfig-syslog.md
 [snap-config]: installconfig-snap-install.md#initialisation
 [snap-install]: installconfig-snap-install.md#install-from-snap

@@ -20,8 +20,8 @@ Additionally, you may want to consider an installation within
 local containers and is ideal for testing and experimenting with MAAS.
 
 !!! Note:
-    Implementing high availability via snaps is not yet possible.
-    See [MAAS HA][maas-ha] for more on that topic.
+    See [MAAS HA][maas-ha] for more information about installing MAAS via Snaps
+    in high-availability environments.
 
 ## Install from snap
 
@@ -35,28 +35,41 @@ sudo snap install maas --devmode --stable
 After entering your password, the snap will download and install from the
 *stable* channel. However, MAAS needs initialising before it's ready to go.
 
+!!! Note:
+    `--devmode` is currently a required argument and gives the MAAS snap access
+    to all system resources, similar to an installed `deb` package.
+
 ## Initialisation
 
 The next step involves initialising MAAS with a *run mode*. Selecting one of
 the following modes dictates what services will run on the local system:
 
-- `all` - All services
-- `region` - A region API server only (no database)
-- `rack` - A rack controller only
-- `region+rack` - A region API server and a rack controller (no database)
+| Mode           | Region | Rack | Database | Description                  |
+| -------------- |--------| ---- | -------- | ---------------------------- |
+| `all`          |    X   |   X  |     X    | All services                 |
+| `region`       |    X   |      |          | Region API server only       |
+| `rack`         |        |   X  |          | Rack controller only         |
+| `region+rack`  |    X   |   X  |          | Region API server and rack controller |
+| `none`         |        |      |          | Deinitializes MAAS and stops services |
 
-This list is different from the installation scenarios covered in the package
-install method (see [Install from packages][install-from-packages]) where
-the installation of a "region controller" **will** include a database.
+!!! Warning:
+    This list is different from the installation scenarios covered in the
+    package install method (see [Install from packages][install-from-packages])
+    where the installation of a "region controller" **will**, for example,
+    include a database.
 
 To initialise MAAS and select a run mode, use the `maas init` command with the
 *--mode* argument.
 
-Here, the typical all-in-one design (mode 'all') will be chosen as an example:
+### Example
+
+The following demonstrates the `all` mode, a popular initialisation choice for
+MAAS:
 
 ```bash
 sudo maas init --mode all
 ```
+
 A dialog will appear that will gather some basic information:
 
 ```no-highlight
@@ -69,22 +82,41 @@ Email: admin@example.com
 Import SSH keys [] (lp:user-id or gh:user-id): lp:petermatulis
 ```
 
-Each run mode will prompt for a MAAS URL. The 'all' mode will use this for the
-creation of a new region controller whereas the other three modes will
-interpret it as the URL for an existing region controller.
+!!! Note:
+    The username and password will be used to access the web UI and if you enter
+    a [Launchpad][launchpad] or [GitHub][github] account name with associated
+    SSH key, these will be imported into MAAS automatically.
 
-The 'rack' and 'region+rack' modes will additionally ask for the shared secret
+### MAAS URL
+
+All run modes (except `none`) prompt for a MAAS URL, which is interpreted
+differently depending on the mode:
+
+- `all`, `region+rack`: Used to create a new region controller as well as to
+  tell the rack controller how to find the region controller.
+- `region`: Used to create a new region controller.
+- `rack`: Used to locate the region controller.
+
+### Shared secret
+
+The 'rack' and 'region+rack' modes will additionally ask for a shared secret
 that will allow the new rack controller to register with the region controller.
 
-The username and password will be used to access the web UI and if you enter
-a [Launchpad][launchpad] or [GitHub][github] account name with associated SSH
-key, these will be imported into MAAS automatically.
+### Reinitialising MAAS
 
-A re-initialization is easily achieved. For example, to switch from one mode to
-another, say 'region', simply state it:
+To re-initialise MAAS, for example, to switch from `rack` to `region`:
 
 ```bash
 sudo maas init --mode region
+```
+
+### Additional `init` options
+
+The `init` command can take a number of optional arguments. To list them all as
+well as read a brief description of each:
+
+```bash
+sudo maas init --help
 ```
 
 
