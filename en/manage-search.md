@@ -79,26 +79,13 @@ MAAS will display machines matching `steady` AND `able`.
 In addition to the major filtering categories available in the Filter dropdown
 menu, the following machine properties are available as filters:
 
-- actions
 - architecture
-- commissioning\_script\_count
-- commissioning\_status
-- commissioning\_status\_tooltip
 - cores
 - cpu
-- dhcp\_on
 - distro\_series
-- extra\_macs
-- fabrics
 - fqdn
-- has\_logs
 - ip\_addresses
-- link\_type
 - mac
-- metadata
-- node\_type\_display
-- osystem
-- physical\_disk\_count
 - pod
 - pod-id
 - pool
@@ -109,15 +96,9 @@ menu, the following machine properties are available as filters:
 - release
 - spaces
 - status
-- status\_code
 - storage
 - storage\_tags
-- subnets
 - tags
-- testing\_script\_count
-- testing\_status
-- testing\_status\_tooltip
-- vlan
 - zone
 
 For example, the following will search for a machine that has an interface with
