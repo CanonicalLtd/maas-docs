@@ -145,6 +145,6 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 
-[img__enable-dhcp]: ../media/installconfig-networking-dhcp__2.4_enable-dhcp.png
-[img__relay-dhcp]: ../media/installconfig-networking-dhcp__2.4_relay-dhcp.png
-[img__dhcp-snippets]: ../media/installconfig-networking-dhcp__2.4_dhcp-snippets.png
+[img__enable-dhcp]: https://assets.ubuntu.com/v1/ea11e988-installconfig-networking-dhcp__2.4_enable-dhcp.png
+[img__relay-dhcp]: https://assets.ubuntu.com/v1/a03e710d-installconfig-networking-dhcp__2.4_relay-dhcp.png
+[img__dhcp-snippets]: https://assets.ubuntu.com/v1/1fb46eba-installconfig-networking-dhcp__2.4_dhcp-snippets.png

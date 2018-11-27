@@ -71,5 +71,5 @@ these scripts work and how you can write your own.
 [nodes-hw-scripts]: nodes-scripts.md
 
 <!-- IMAGES -->
-[img__hw-testing-deployed]: ../media/nodes-hw-testing__2.4_deployed.png
-[img__hw-testing-deployed-choices]: ../media/nodes-hw-testing__2.4_deployed-choices.png
+[img__hw-testing-deployed]: https://assets.ubuntu.com/v1/8e876889-nodes-hw-testing__2.4_deployed.png
+[img__hw-testing-deployed-choices]: https://assets.ubuntu.com/v1/ccfefe25-nodes-hw-testing__2.4_deployed-choices.png

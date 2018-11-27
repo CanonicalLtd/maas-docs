@@ -106,9 +106,9 @@ addresses along with related bits of host information.
 [ipranges]: installconfig-network-ipranges.md
 [subnet-management]: installconfig-network-subnet-management.md
 
-[img__subnets]: ../media/installconfig-networking__2.4_subnets.png
-[img__subnets-summary]: ../media/installconfig-networking__2.4_subnets-summary.png
-[img__subnets-routes]: ../media/installconfig-networking__2.4_subnets-routes.png
-[img__subnets-utilisation]: ../media/installconfig-networking__2.4_subnets-utilisation.png
-[img__subnets-reserved]: ../media/installconfig-networking__2.4_subnets-reserved.png
-[img__subnets-used]: ../media/installconfig-networking__2.4_subnets-used.png
+[img__subnets]: https://assets.ubuntu.com/v1/657bb332-installconfig-networking__2.4_subnets.png
+[img__subnets-summary]: https://assets.ubuntu.com/v1/17617b35-installconfig-networking__2.4_subnets-summary.png
+[img__subnets-routes]: https://assets.ubuntu.com/v1/49f5e240-installconfig-networking__2.4_subnets-routes.png
+[img__subnets-utilisation]: https://assets.ubuntu.com/v1/3d3e4b61-installconfig-networking__2.4_subnets-utilisation.png
+[img__subnets-reserved]: https://assets.ubuntu.com/v1/5f9f50f9-installconfig-networking__2.4_subnets-reserved.png
+[img__subnets-used]: https://assets.ubuntu.com/v1/b9e69b0b-installconfig-networking__2.4_subnets-used.png

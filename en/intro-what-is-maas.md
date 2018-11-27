@@ -134,5 +134,5 @@ machine to the pool.
 [api]: api.md
 
 <!-- IMAGES -->
-[img__webui]: ../media/intro__2.4_webui.png
-[img__arch-overview]: ../media/intro-arch-overview.png
+[img__webui]: https://assets.ubuntu.com/v1/3268f400-intro__2.4_webui.png
+[img__arch-overview]: https://assets.ubuntu.com/v1/008fefab-intro-arch-overview.png

@@ -219,13 +219,13 @@ corresponding nodes from MAAS.
 [virsh-pods]: nodes-comp-virsh.md
 [about-libvirt-storage]: https://libvirt.org/storage.html
 
-[img__pod-initial-page]: ../media/nodes-comp-hw__2.4_pod-initial-page.png
-[img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
-[img__pod-add-virsh]: ../media/nodes-comp-hw__2.4_pod-add-virsh.png
-[img__pod-list]: ../media/nodes-comp-hw__2.4_pod-list.png
-[img__pod-details]: ../media/nodes-comp-hw__2.4_pod-details.png
-[img__pod-compose-config]: ../media/nodes-comp-hw__2.4_pod-compose-config.png
-[img__pod-compose-machine]: ../media/nodes-comp-hw__2.4_pod-compose-machine.png
-[img__pod-compose-machine-commissioning]: ../media/nodes-comp-hw__2.4_pod-compose-machine-commissioning.png
-[img__pod-decompose-machine]: ../media/nodes-comp-hw__2.4_pod-decompose-machine.png
-[img__pod-delete]: ../media/nodes-comp-hw__2.4_pod-delete.png
+[img__pod-initial-page]: https://assets.ubuntu.com/v1/c1698d33-nodes-comp-hw__2.4_pod-initial-page.png
+[img__pod-add-rsd]: https://assets.ubuntu.com/v1/2604a48b-nodes-comp-hw__2.4_pod-add-rsd.png
+[img__pod-add-virsh]: https://assets.ubuntu.com/v1/ca39b7a1-nodes-comp-hw__2.4_pod-add-virsh.png
+[img__pod-list]: https://assets.ubuntu.com/v1/6a1e0fc2-nodes-comp-hw__2.4_pod-list.png
+[img__pod-details]: https://assets.ubuntu.com/v1/a3308637-nodes-comp-hw__2.4_pod-details.png
+[img__pod-compose-config]: https://assets.ubuntu.com/v1/10205df8-nodes-comp-hw__2.4_pod-compose-config.png
+[img__pod-compose-machine]: https://assets.ubuntu.com/v1/65eb4f52-nodes-comp-hw__2.4_pod-compose-machine.png
+[img__pod-compose-machine-commissioning]: https://assets.ubuntu.com/v1/0a3d0805-nodes-comp-hw__2.4_pod-compose-machine-commissioning.png
+[img__pod-decompose-machine]: https://assets.ubuntu.com/v1/6ba608fd-nodes-comp-hw__2.4_pod-decompose-machine.png
+[img__pod-delete]: https://assets.ubuntu.com/v1/1c0090c6-nodes-comp-hw__2.4_pod-delete.png

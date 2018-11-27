@@ -290,4 +290,4 @@ IP][virtualip] for more information.
 [postgresql-ha]: manage-ha-postgresql.md
 [upstream-postgresql-docs]: https://www.postgresql.org/docs/9.5/static/high-availability.html
 
-[img__reconfigure-dhcp]: ../media/manage-ha__2.4_reconfigure-dhcp.png
+[img__reconfigure-dhcp]: https://assets.ubuntu.com/v1/8b72d537-manage-ha__2.4_reconfigure-dhcp.png

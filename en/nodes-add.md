@@ -134,5 +134,5 @@ The required fields will change based on the type of chassis you choose.
 [power-types-example-virsh]: nodes-power-types.md#example:-virsh-(kvm)-power-type
 [composable-hardware]: nodes-comp-hw.md
 
-[img__add-node-manually]: ../media/nodes-add__2.5_add-node-manually.png
-[img__add-node-chassis]: ../media/nodes-add__2.4_add-node-chassis.png
+[img__add-node-manually]: https://assets.ubuntu.com/v1/20aa36b2-nodes-add__2.5_add-node-manually.png
+[img__add-node-chassis]: https://assets.ubuntu.com/v1/d5314a8a-nodes-add__2.4_add-node-chassis.png

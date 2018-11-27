@@ -99,6 +99,6 @@ See [Launchpad PPAs][launchpad-ppa-help] for more information on PPAs.
 [sosreport-ppa]: https://launchpad.net/~canonical-support/+archive/ubuntu/support-tools
 [launchpad-ppa-help]: https://help.launchpad.net/Packaging/PPA
 
-[img__default-repo-config]: ../media/manage-repositories__2.4_default-repo-config.png
-[img__add-repo]: ../media/manage-repositories__2.4_add-repo.png
-[img__add-ppa]: ../media/manage-repositories__2.4_add-ppa.png
+[img__default-repo-config]: https://assets.ubuntu.com/v1/77b93794-manage-repositories__2.4_default-repo-config.png
+[img__add-repo]: https://assets.ubuntu.com/v1/1aa1c512-manage-repositories__2.4_add-repo.png
+[img__add-ppa]: https://assets.ubuntu.com/v1/a0962e17-manage-repositories__2.4_add-ppa.png

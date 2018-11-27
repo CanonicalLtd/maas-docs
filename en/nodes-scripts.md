@@ -394,6 +394,6 @@ Scripts][maas-scripts-cli].
 [maas-scripts-cli]: nodes-scripts-cli.md
 
 <!-- IMAGES -->
-[nodes-hw-scripts__select]: ../media/nodes-hw-scripts__2.4_select.png
-[nodes-hw-scripts__fail]: ../media/nodes-hw-scripts__2.2_fail.png
-[nodes-hw-scripts__ssh]: ../media/nodes-hw-scripts__2.4_ssh.png
+[nodes-hw-scripts__select]: https://assets.ubuntu.com/v1/50e08fdf-nodes-hw-scripts__2.4_select.png
+[nodes-hw-scripts__fail]: https://assets.ubuntu.com/v1/855015e5-nodes-hw-scripts__2.2_fail.png
+[nodes-hw-scripts__ssh]: https://assets.ubuntu.com/v1/da793c67-nodes-hw-scripts__2.4_ssh.png

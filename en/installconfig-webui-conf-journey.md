@@ -30,8 +30,8 @@ Below are the default windows and window sections that will appear.
 
 <!-- LINKS -->
 
-[conf-journey-step-1]: ../media/installconfig-webui-conf-journey__region-name.png
-[conf-journey-step-2]: ../media/installconfig-webui-conf-journey__connectivity.png
-[conf-journey-step-3]: ../media/installconfig-webui-conf-journey__2.3_ubuntu-images.png
-[conf-journey-step-4]: ../media/installconfig-webui-conf-journey__2.3_ssh-keys.png
-[conf-journey-step-5]: ../media/installconfig-webui-conf-journey__2.3_successfully-setup.png
+[conf-journey-step-1]: https://assets.ubuntu.com/v1/e863514d-installconfig-webui-conf-journey__region-name.png
+[conf-journey-step-2]: https://assets.ubuntu.com/v1/8000d3f8-installconfig-webui-conf-journey__connectivity.png
+[conf-journey-step-3]: https://assets.ubuntu.com/v1/da15590c-installconfig-webui-conf-journey__2.3_ubuntu-images.png
+[conf-journey-step-4]: https://assets.ubuntu.com/v1/6169ee44-installconfig-webui-conf-journey__2.3_ssh-keys.png
+[conf-journey-step-5]: https://assets.ubuntu.com/v1/fdce8176-installconfig-webui-conf-journey__2.3_successfully-setup.png

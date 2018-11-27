@@ -82,7 +82,7 @@ The menu includes links to the following:
 
 [node-actions]: intro-concepts.md#node-actions
 
-[img__nodes-action]: ../media/nodes-manage__2.4_take-action.png
-[img__nodes-table]: ../media/nodes-manage__2.4_table.png
-[img__node-details]: ../media/nodes-manage__2.4_details.png
-[img__node-menu]: ../media/nodes-manage__2.4_node-menu.png
+[img__nodes-action]: https://assets.ubuntu.com/v1/b2c0a3e2-nodes-manage__2.4_take-action.png
+[img__nodes-table]: https://assets.ubuntu.com/v1/935aec48-nodes-manage__2.4_table.png
+[img__node-details]: https://assets.ubuntu.com/v1/0f4e4ee9-nodes-manage__2.4_details.png
+[img__node-menu]: https://assets.ubuntu.com/v1/63bc33e8-nodes-manage__2.4_node-menu.png
