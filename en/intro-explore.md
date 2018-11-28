@@ -93,13 +93,13 @@ table.logos th, table.logos td{
 <tr>
 
 <td align="center" valign="center" border-width="0px" >
-<img src="../media/intro-explore__2.4_welcome1.png" alt="First page of Welcome settings" />
+<img src="https://assets.ubuntu.com/v1/314996d1-intro-explore__2.4_welcome1.png" alt="First page of Welcome settings" />
 <br />
 <i>Welcome</i> sets global values...
 </td>
 
 <td align="center" valign="center" border-width="0px">
-<img src="../media/intro-explore__2.4_welcome2.png" alt="Second page of Welcome settings" />
+<img src="https://assets.ubuntu.com/v1/efef00d6-intro-explore__2.4_welcome2.png" alt="Second page of Welcome settings" />
 <br />
 ...before the MAAS <i>Dashboard</i>
 </td>
@@ -231,13 +231,13 @@ table.logos th, table.logos td{
 <tr>
 
 <td align="center" valign="center" border-width="0px" >
-<img src="../media/intro-explore__2.4_pods1.png" alt="List pod machines" />
+<img src="https://assets.ubuntu.com/v1/c23bbf61-intro-explore__2.4_pods1.png" alt="List pod machines" />
 <br />
 Pods abstract multiple resources...
 </td>
 
 <td align="center" valign="center" border-width="0px">
-<img src="../media/intro-explore__2.4_pods2.png" alt="Compose a pod machine" />
+<img src="https://assets.ubuntu.com/v1/1bf3ab44-intro-explore__2.4_pods2.png" alt="Compose a pod machine" />
 <br />
 ...into pools of composable hardware
 </td>
@@ -249,12 +249,12 @@ Pods abstract multiple resources...
 
 <!-- IMAGES -->
 
-[img__login]: ../media/intro-explore__2.4_login.png
-[img__disco]: ../media/intro-explore__2.4_disco.png
-[img__netconcepts]: ../media/intro-concepts__fabrics-spaces.png
-[img__subnets]: ../media/intro-explore__2.4_subnets.png
-[img__images]: ../media/intro-explore__2.4_images.png
-[img__deploy]: ../media/intro-explore__2.4_deploy.png
+[img__login]: https://assets.ubuntu.com/v1/b39a79e2-intro-explore__2.4_login.png
+[img__disco]: https://assets.ubuntu.com/v1/93a41d2a-intro-explore__2.4_disco.png
+[img__netconcepts]: https://assets.ubuntu.com/v1/743714e1-intro-concepts__fabrics-spaces.png
+[img__subnets]: https://assets.ubuntu.com/v1/06c5b61e-intro-explore__2.4_subnets.png
+[img__images]: https://assets.ubuntu.com/v1/b0fe47e1-intro-explore__2.4_images.png
+[img__deploy]: https://assets.ubuntu.com/v1/e5b1ad73-intro-explore__2.4_deploy.png
 
 <!-- LINKS -->
 

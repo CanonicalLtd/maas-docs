@@ -66,6 +66,6 @@ will return the machine back to the default resource pool.
 [webui]: installconfig-webui.md
 
 [img__pod-to-pool]: ../media/nodes-comp-hw__2.5_pod_to_pool.png
-[img__add-pool]: ../media/nodes-resource-pools__2.5_add-pool.png
-[img__delete-pool]: ../media/nodes-resource-pools__2.5_delete-pool.png
-[img__add-machine]: ../media/nodes-resource-pools__2.5_add-machine.png
+[img__add-pool]: https://assets.ubuntu.com/v1/2f010325-nodes-resource-pools__2.5_add-pool.png
+[img__delete-pool]: https://assets.ubuntu.com/v1/630ed938-nodes-resource-pools__2.5_delete-pool.png
+[img__add-machine]: https://assets.ubuntu.com/v1/648e7a8e-nodes-resource-pools__2.5_add-machine.png

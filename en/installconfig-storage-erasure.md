@@ -70,5 +70,5 @@ of preference is applied:
 
 [concepts-release-action]: intro-concepts.md#release
 
-[img__storage-erasure-default-settings]: ../media/installconfig-storage-erasure__defaults.png
-[img__storage-erasure-default-node-view]: ../media/installconfig-storage-erasure__defaults-node.png
+[img__storage-erasure-default-settings]: https://assets.ubuntu.com/v1/4e90c4c7-installconfig-storage-erasure__defaults.png
+[img__storage-erasure-default-node-view]: https://assets.ubuntu.com/v1/66e1dcc2-installconfig-storage-erasure__defaults-node.png

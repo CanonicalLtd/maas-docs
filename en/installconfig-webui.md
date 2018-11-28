@@ -75,4 +75,4 @@ is:
 [manage-account]: manage-account.md
 [manage-cli]: manage-cli.md
 [device-discovery]: installconfig-network-dev-discovery.md
-[img__webui-login]: ../media/installconfig-webui__2.4_webui-login.png
+[img__webui-login]: https://assets.ubuntu.com/v1/0d65b074-installconfig-webui__2.4_webui-login.png

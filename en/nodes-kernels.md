@@ -146,6 +146,6 @@ release (series) before deploying the node.
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
 [cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]: manage-cli-kernels.md#set-a-default-minimum-kernel-for-enlistment-and-commissioning
 
-[img__default-minimum-kernel]: ../media/nodes-kernels__2.4_default-minimum-kernel.png
-[img__machine-minimum-kernel]: ../media/nodes-kernels__2.4_machine-minimum-kernel.png
-[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.4_machine-during-deploy-kernel.png
+[img__default-minimum-kernel]: https://assets.ubuntu.com/v1/946f0ffb-nodes-kernels__2.4_default-minimum-kernel.png
+[img__machine-minimum-kernel]: https://assets.ubuntu.com/v1/0dd3f960-nodes-kernels__2.4_machine-minimum-kernel.png
+[img__machine-during-deploy-kernel]: https://assets.ubuntu.com/v1/274c71bd-nodes-kernels__2.4_machine-during-deploy-kernel.png

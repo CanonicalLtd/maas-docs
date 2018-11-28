@@ -65,7 +65,7 @@ can be imported and used just like the Ubuntu images above.
 [images-boot-image-sources]: installconfig-images.md#boot-image-sources
 [mirror]: installconfig-images-mirror.md
 
-[img__select-and-import-images]: ../media/installconfig-images-import__2.4_select-and-import-images.png
-[img__ubuntu-images-importing]: ../media/installconfig-images-import__2.4_ubuntu-images-importing.png
-[img__other-images-importing]: ../media/installconfig-images-import__2.4_other-images-importing.png
-[img__mirror]: ../media/installconfig-images-import__2.4_mirror.png
+[img__select-and-import-images]: https://assets.ubuntu.com/v1/12fd285e-installconfig-images-import__2.4_select-and-import-images.png
+[img__ubuntu-images-importing]: https://assets.ubuntu.com/v1/9369e7fe-installconfig-images-import__2.4_ubuntu-images-importing.png
+[img__other-images-importing]: https://assets.ubuntu.com/v1/19ec9b8f-installconfig-images-import__2.4_other-images-importing.png
+[img__mirror]: https://assets.ubuntu.com/v1/15e5919b-installconfig-images-import__2.4_mirror.png

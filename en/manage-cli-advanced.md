@@ -321,4 +321,4 @@ maas $PROFILE maas set-config name="remote_syslog" value=""
 [storage]: installconfig-storage.md
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 
-[img__2.2_cli-install-rackd]: ../media/manage-maas-cli-advanced__2.2_install-rackd.png
+[img__2.2_cli-install-rackd]: https://assets.ubuntu.com/v1/61fa1b99-manage-maas-cli-advanced__2.2_install-rackd.png

@@ -116,9 +116,9 @@ the MAAS CLI.
 
 <!-- LINKS -->
 
-[img__filterresult]: ../media/manage-search__2.5_filtered-search.png
-[img__filters]: ../media/manage-search__2.5_filters.png
-[img__searchbar]: ../media/manage-search__2.5_searchbar.png
+[img__filterresult]: https://assets.ubuntu.com/v1/7b5d8e86-manage-search__2.5_filtered-search.png
+[img__filters]: https://assets.ubuntu.com/v1/6ac5b4ec-manage-search__2.5_filters.png
+[img__searchbar]: https://assets.ubuntu.com/v1/ccb90c91-manage-search__2.5_searchbar.png
 
 [cli-list-nodes]: manage-cli-common.md#list-nodes
 [maas-cli]: manage-cli.md

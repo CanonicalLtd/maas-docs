@@ -214,4 +214,4 @@ for details.
 [cli-set-storage-layout]: manage-cli-advanced.md#set-a-storage-layout
 [curtinppa]: https://launchpad.net/ubuntu/+source/curtin
 
-[img__default-storage-layout]: ../media/installconfig-storage__2.4_default-storage-layout.png
+[img__default-storage-layout]: https://assets.ubuntu.com/v1/c2f0df7b-installconfig-storage__2.4_default-storage-layout.png

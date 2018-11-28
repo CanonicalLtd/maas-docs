@@ -457,8 +457,8 @@ action 'Rescue mode'.
 
 <!-- IMAGES -->
 
-[img__fabrics-spaces]: ../media/intro-concepts__fabrics-spaces.png
-[img__machine-lock]: ../media/intro-concepts__2.4_machine-lock.png
+[img__fabrics-spaces]: https://assets.ubuntu.com/v1/743714e1-intro-concepts__fabrics-spaces.png
+[img__machine-lock]: https://assets.ubuntu.com/v1/2e342761-intro-concepts__2.4_machine-lock.png
 
 <!-- LINKS -->
 

@@ -253,8 +253,8 @@ image from the web UI to the node you wish to troubleshoot.
 
 
 <!-- IMAGES -->
-[img__webui-images]: ../media/troulbeshoot-faq__2.3_images.png
-[img__webui-deploy]: ../media/troulbeshoot-faq__2.3_deploy.png
+[img__webui-images]: https://assets.ubuntu.com/v1/130aa580-troulbeshoot-faq__2.3_images.png
+[img__webui-deploy]: https://assets.ubuntu.com/v1/f622d104-troulbeshoot-faq__2.3_deploy.png
 <!-- LINKS -->
 
 [cloud-init]: https://launchpad.net/cloud-init
