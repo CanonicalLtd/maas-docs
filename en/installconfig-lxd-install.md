@@ -83,7 +83,7 @@ When correctly configured, the above command outputs
 Launch the LXD container:
 
 ```bash
-lxc launch -p maas ubuntu:16.04 bionic-maas
+lxc launch -p maas ubuntu:18.04 bionic-maas
 ```
 
 Once the container is running, it can be accessed with:
