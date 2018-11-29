@@ -5767,7 +5767,7 @@ testing script names and tags to be run. By default all tests tagged
         },
         "current_commissioning_result_id": 4,
         "raids": [],
-        "storage": 8000.0,
+        "storage": 8000,
         "status_action": "",
         "storage_test_status": 0,
         "status_message": "From 'New' to 'Commissioning'",
@@ -6577,7 +6577,7 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
         },
         "current_commissioning_result_id": 8,
         "raids": [],
-        "storage": 8000.0,
+        "storage": 8000,
         "status_action": "",
         "storage_test_status": -1,
         "status_message": "From 'Entering rescue mode' to 'Exiting rescue mode'",
@@ -11398,7 +11398,7 @@ happen by accident. This is not secure.
 
 *HTTP Status Code* : 403
 
-*Content* : The user does not have permission to deploy this machine.
+*Content* : The user does not have permission to release this machine.
 
 *HTTP Status Code* : 409
 
@@ -11459,7 +11459,7 @@ mode process.
         },
         "current_commissioning_result_id": 8,
         "raids": [],
-        "storage": 8000.0,
+        "storage": 8000,
         "status_action": "",
         "storage_test_status": -1,
         "status_message": "From 'Failed commissioning' to 'Entering rescue mode'",
@@ -13016,7 +13016,7 @@ partition on the cache device. Use the entire disk as the cache device.
         },
         "current_commissioning_result_id": 4,
         "raids": [],
-        "storage": 8000.0,
+        "storage": 8000,
         "status_action": "",
         "storage_test_status": 0,
         "status_message": "From 'New' to 'Commissioning'",
@@ -16132,7 +16132,7 @@ kilobytes, megabytes, gigabytes and terabytes.
 
 *HTTP Status Code* : 403
 
-*Content* : The user does not have permission to delete this machine.
+*Content* : The user does not have permission to update this machine.
 
 <p>&nbsp;</p>
 </details>
@@ -16764,7 +16764,7 @@ each power type.
         "current_commissioning_result_id": 239,
         "distro_series": "",
         "address_ttl": null,
-        "storage": 0.0,
+        "storage": 0,
         "osystem": "",
         "bcaches": [],
         "memory": 0,
@@ -16853,131 +16853,94 @@ accept them.
 
 <p>&nbsp;</p>
 </details>
-#### `POST /MAAS/api/2.0/machines/ op=add_chassis`
+<details>
+  <summary>``POST /MAAS/api/2.0/machines/?op=add_chassis``</summary>
+
+------------------------------------------------------------------------
 
 Add special hardware types.
 
-param chassis\_type
+**Parameters**
 
-:   The type of hardware. mscm is the type for the Moonshot Chassis
-    Manager. msftocs is the type for the Microsoft OCS Chassis Manager.
-    powerkvm is the type for Virtual Machines on Power KVM, managed by
-    Virsh. recs\_box is the type for the christmann RECS|Box servers.
-    seamicro15k is the type for the Seamicro 1500 Chassis. ucsm is the
-    type for the Cisco UCS Manager. virsh is the type for virtual
-    machines managed by Virsh. vmware is the type for virtual machines
-    managed by VMware.
+------------------------------------------------------------------------
 
-type chassis\_type
+**chassis\_type** (*String*): Required. The type of hardware:
 
-:   unicode
+-   `mscm`: Moonshot Chassis Manager.
+-   `msftocs`: Microsoft OCS Chassis Manager.
+-   `powerkvm`: Virtual Machines on Power KVM, managed by Virsh.
+-   `recs_box`: Christmann RECS|Box servers.
+-   `seamicro15k`: Seamicro 1500 Chassis.
+-   `ucsm`: Cisco UCS Manager.
+-   `virsh`: virtual machines managed by Virsh.
+-   `vmware` is the type for virtual machines managed by VMware.
 
-param hostname
+**hostname** (*String*): Required. The URL, hostname, or IP address to
+access the chassis.
 
-:   The URL, hostname, or IP address to access the chassis.
+**username** (*String*): Optional. The username used to access the
+chassis. This field is required for the recs\_box, seamicro15k, vmware,
+mscm, msftocs, and ucsm chassis types.
 
-type url
+**password** (*String*): Optional. The password used to access the
+chassis. This field is required for the `recs_box`, `seamicro15k`,
+`vmware`, `mscm`, `msftocs`, and `ucsm` chassis types.
 
-:   unicode
+**accept\_all** (*String*): Optional. If true, all enlisted machines
+will be commissioned.
 
-param username
+**rack\_controller** (*String*): Optional. The system\_id of the rack
+controller to send the add chassis command through. If none is specifed
+MAAS will automatically determine the rack controller to use.
 
-:   The username used to access the chassis. This field is required for
-    the recs\_box, seamicro15k, vmware, mscm, msftocs, and ucsm chassis
-    types.
+**domain** (*String*): Optional. The domain that each new machine added
+should use.
 
-type username
+**prefix\_filter** (*String*): Optional. (`virsh`, `vmware`, `powerkvm`
+only.) Filter machines with supplied prefix.
 
-:   unicode
+**power\_control** (*String*): Optional. (`seamicro15k` only) The
+power\_control to use, either ipmi (default), restapi, or restapi2. The
+following are optional if you are adding a recs\_box, vmware or msftocs
+chassis.
 
-param password
+**port** (*Int*): Optional. (`recs_box`, `vmware`, `msftocs` only) The
+port to use when accessing the chassis. The following are optioanl if
+you are adding a vmware chassis:
 
-:   The password used to access the chassis. This field is required for
-    the recs\_box, seamicro15k, vmware, mscm, msftocs, and ucsm chassis
-    types.
+**protocol** (*String*): Optional. (`vmware` only) The protocol to use
+when accessing the VMware chassis (default: https). :return: A string
+containing the chassis powered on by which rack controller.
 
-type password
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param accept\_all
+*HTTP Status Code* : 200
 
-:   If true, all enlisted machines will be commissioned.
+*Content* : Asking maas-run to add machines from chassis
 
-type accept\_all
+**Error**
 
-:   unicode
+------------------------------------------------------------------------
 
-param rack\_controller
+*HTTP Status Code* : 403
 
-:   The system\_id of the rack controller to send the add chassis
-    command through. If none is specifed MAAS will automatically
-    determine the rack controller to use.
+*Content* : The user does not have permission to access the rack
+controller.
 
-type rack\_controller
+*HTTP Status Code* : 404
 
-:   unicode
+*Content*
 
-param domain
+    Not Found
 
-:   The domain that each new machine added should use.
+*HTTP Status Code* : 400
 
-type domain
+*Content* : Required parameters are missing.
 
-:   unicode
-
-The following are optional if you are adding a virsh, vmware, or
-powerkvm chassis:
-
-param prefix\_filter
-
-:   Filter machines with supplied prefix.
-
-type prefix\_filter
-
-:   unicode
-
-The following are optional if you are adding a seamicro15k chassis:
-
-param power\_control
-
-:   The power\_control to use, either ipmi (default), restapi, or
-    restapi2.
-
-type power\_control
-
-:   unicode
-
-The following are optional if you are adding a recs\_box, vmware or
-msftocs chassis.
-
-param port
-
-:   The port to use when accessing the chassis.
-
-type port
-
-:   integer
-
-The following are optioanl if you are adding a vmware chassis:
-
-param protocol
-
-:   The protocol to use when accessing the VMware chassis (default:
-    https).
-
-type protocol
-
-:   unicode
-
-return
-
-:   A string containing the chassis powered on by which rack controller.
-
-Returns 404 if no rack controller can be found which has access to the
-given URL. Returns 403 if the user does not have access to the rack
-controller. Returns 400 if the required parameters were not passed.
-
+<p>&nbsp;</p>
+</details>
 <details>
   <summary>``POST /MAAS/api/2.0/machines/?op=allocate``</summary>
 
@@ -17092,7 +17055,7 @@ If multiple subnets are specified, the machine must be associated with
 all of them. To request multiple subnets, this parameter must be
 repeated in the request with each value.
 
-Note that this replaces the leagcy 'networks' constraint in MAAS 1.x.
+Note that this replaces the legacy 'networks' constraint in MAAS 1.x.
 
 **not\_subnets** (*String*): Optional. Subnets that must NOT be linked
 to the machine.
@@ -17141,127 +17104,978 @@ Each key can be one of the following:
 -   `vid`: Matches an interface on a VLAN with the specified VID.
 -   `tag`: Matches an interface tagged with the specified tag.
 
-param fabrics
+**fabrics** (*String*): Optional. Set of fabrics that the machine must
+be associated with in order to be acquired. If multiple fabrics names
+are specified, the machine can be in any of the specified fabrics. To
+request multiple possible fabrics to match, this parameter must be
+repeated in the request with each value.
 
-:   Set of fabrics that the machine must be associated with in order to
-    be acquired.
+**not\_fabrics** (*String*): Optional. Fabrics the machine must NOT be
+associated with in order to be acquired. If multiple fabrics names are
+specified, the machine must NOT be in ANY of them. To request exclusion
+of multiple fabrics, this parameter must be repeated in the request with
+each value.
 
-    If multiple fabrics names are specified, the machine can be in any
-    of the specified fabrics. To request multiple possible fabrics to
-    match, this parameter must be repeated in the request with each
-    value.
+**fabric\_classes** (*String*): Optional. Set of fabric class types
+whose fabrics the machine must be associated with in order to be
+acquired. If multiple fabrics class types are specified, the machine can
+be in any matching fabric. To request multiple possible fabrics class
+types to match, this parameter must be repeated in the request with each
+value.
 
-type fabrics
+**not\_fabric\_classes** (*String*): Optional. Fabric class types whose
+fabrics the machine must NOT be associated with in order to be acquired.
+If multiple fabrics names are specified, the machine must NOT be in ANY
+of them. To request exclusion of multiple fabrics, this parameter must
+be repeated in the request with each value.
 
-:   unicode (accepts multiple)
+**agent\_name** (*String*): Optional. An optional agent name to attach
+to the acquired machine.
 
-param not\_fabrics
+**comment** (*String*): Optional. Comment for the event log.
 
-:   Fabrics the machine must NOT be associated with in order to be
-    acquired.
+**bridge\_all** (*Boolean*): Optional. Optionally create a bridge
+interface for every configured interface on the machine. The created
+bridges will be removed once the machine is released. (Default: False)
 
-    If multiple fabrics names are specified, the machine must NOT be in
-    ANY of them. To request exclusion of multiple fabrics, this
-    parameter must be repeated in the request with each value.
+**bridge\_stp** (*Boolean*): Optional. Optionally turn spanning tree
+protocol on or off for the bridges created on every configured
+interface. (Default: off)
 
-type not\_fabrics
+**bridge\_fd** (*Int*): Optional. Optionally adjust the forward delay to
+time seconds. (Default: 15)
 
-:   unicode (accepts multiple)
+**dry\_run** (*Boolean*): Optional. Optional boolean to indicate that
+the machine should not actually be acquired (this is for
+support/troubleshooting, or users who want to see which machine would
+match a constraint, without acquiring a machine). Defaults to False.
 
-param fabric\_classes
+**verbose** (*Boolean*): Optional. Optional boolean to indicate that the
+user would like additional verbosity in the constraints\_by\_type field
+(each constraint will be prefixed by `verbose_`, and contain the full
+data structure that indicates which machine(s) matched).
 
-:   Set of fabric class types whose fabrics the machine must be
-    associated with in order to be acquired.
+**Success**
 
-    If multiple fabrics class types are specified, the machine can be in
-    any matching fabric. To request multiple possible fabrics class
-    types to match, this parameter must be repeated in the request with
-    each value.
+------------------------------------------------------------------------
 
-type fabric\_classes
+*HTTP Status Code* : 200
 
-:   unicode (accepts multiple)
+*JSON*
 
-param not\_fabric\_classes
+    {
+        "status": 10,
+        "default_gateways": {
+            "ipv4": {
+                "gateway_ip": "172.16.2.1",
+                "link_id": null
+            },
+            "ipv6": {
+                "gateway_ip": null,
+                "link_id": null
+            }
+        },
+        "status_name": "Allocated",
+        "disable_ipv4": false,
+        "iscsiblockdevice_set": [],
+        "other_test_status": 2,
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "boot_disk": {
+            "firmware_version": "firmware_version-Jf2fDS",
+            "system_id": "thr3am",
+            "tags": [
+                "tag-CzTfe7",
+                "tag-LZn1dX",
+                "tag-YVJlCd"
+            ],
+            "id_path": null,
+            "size": 3532084224,
+            "block_size": 1024,
+            "type": "physical",
+            "uuid": null,
+            "filesystem": null,
+            "partitions": [
+                {
+                    "uuid": "f90ccc67-1f7f-43b3-9d1b-baa6e22f96ff",
+                    "size": 3523215360,
+                    "bootable": false,
+                    "tags": [],
+                    "system_id": "thr3am",
+                    "device_id": 18,
+                    "type": "partition",
+                    "filesystem": {
+                        "fstype": "ext4",
+                        "label": "root",
+                        "uuid": "465ddc23-e5ed-48fe-984e-900694477380",
+                        "mount_point": "/",
+                        "mount_options": null
+                    },
+                    "id": 1,
+                    "path": "/dev/disk/by-dname/name-xE9mtJ-part1",
+                    "used_for": "ext4 formatted filesystem mounted at /",
+                    "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/partition/1"
+                }
+            ],
+            "partition_table_type": "MBR",
+            "model": "model-mSnL9L",
+            "storage_pool": "pool_id-QkOjON",
+            "available_size": 0,
+            "id": 18,
+            "used_size": 3528458240,
+            "path": "/dev/disk/by-dname/name-xE9mtJ",
+            "used_for": "MBR partitioned with 1 partition",
+            "serial": "serial-jBitFU",
+            "name": "name-xE9mtJ",
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/"
+        },
+        "address_ttl": null,
+        "physicalblockdevice_set": [
+            {
+                "firmware_version": "firmware_version-Jf2fDS",
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-CzTfe7",
+                    "tag-LZn1dX",
+                    "tag-YVJlCd"
+                ],
+                "id_path": null,
+                "size": 3532084224,
+                "block_size": 1024,
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [
+                    {
+                        "uuid": "f90ccc67-1f7f-43b3-9d1b-baa6e22f96ff",
+                        "size": 3523215360,
+                        "bootable": false,
+                        "tags": [],
+                        "system_id": "thr3am",
+                        "device_id": 18,
+                        "type": "partition",
+                        "filesystem": {
+                            "fstype": "ext4",
+                            "label": "root",
+                            "uuid": "465ddc23-e5ed-48fe-984e-900694477380",
+                            "mount_point": "/",
+                            "mount_options": null
+                        },
+                        "id": 1,
+                        "path": "/dev/disk/by-dname/name-xE9mtJ-part1",
+                        "used_for": "ext4 formatted filesystem mounted at /",
+                        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/partition/1"
+                    }
+                ],
+                "partition_table_type": "MBR",
+                "model": "model-mSnL9L",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 0,
+                "id": 18,
+                "used_size": 3528458240,
+                "path": "/dev/disk/by-dname/name-xE9mtJ",
+                "used_for": "MBR partitioned with 1 partition",
+                "serial": "serial-jBitFU",
+                "name": "name-xE9mtJ",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/"
+            },
+            {
+                "firmware_version": "firmware_version-t3adt6",
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-DAVe6p",
+                    "tag-NZsGtH",
+                    "tag-NVqhqV"
+                ],
+                "id_path": null,
+                "size": 3498806272,
+                "block_size": 1024,
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [],
+                "partition_table_type": null,
+                "model": "model-OHzOYI",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 3498806272,
+                "id": 19,
+                "used_size": 0,
+                "path": "/dev/disk/by-dname/name-EjgNwC",
+                "used_for": "Unused",
+                "serial": "serial-5EZFik",
+                "name": "name-EjgNwC",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/19/"
+            },
+            {
+                "firmware_version": "firmware_version-WJ46L3",
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-WAlxSu",
+                    "tag-p05xzW",
+                    "tag-dwLYRY"
+                ],
+                "id_path": null,
+                "size": 2173730816,
+                "block_size": 4096,
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [],
+                "partition_table_type": null,
+                "model": "model-5btVsu",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 2173730816,
+                "id": 20,
+                "used_size": 0,
+                "path": "/dev/disk/by-dname/name-VhlrVi",
+                "used_for": "Unused",
+                "serial": "serial-SE3O1p",
+                "name": "name-VhlrVi",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+            }
+        ],
+        "storage": 9204.621312000001,
+        "netboot": true,
+        "cpu_test_status": 2,
+        "memory_test_status": 2,
+        "swap_size": null,
+        "cpu_count": 3,
+        "hostname": "calm-cod",
+        "current_installation_result_id": null,
+        "architecture": "i386/generic",
+        "fqdn": "calm-cod.sample",
+        "system_id": "thr3am",
+        "locked": false,
+        "ip_addresses": [
+            "2001:db8:42:0:6556:13fa:7452:70da",
+            "2001:db8:42:0:cf29:e368:ba5b:9977"
+        ],
+        "node_type": 0,
+        "special_filesystems": [],
+        "boot_interface": {
+            "firmware_version": null,
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "space": "management",
+                "primary_rack": "7xtf67",
+                "secondary_rack": "76y7pg",
+                "fabric": "fabric-1",
+                "id": 5003,
+                "fabric_id": 1,
+                "name": "untagged",
+                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+            },
+            "parents": [],
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "tags": [
+                "tag-oplxjR",
+                "tag-QAxfJH",
+                "tag-VOqx2b"
+            ],
+            "enabled": true,
+            "product": null,
+            "links": [
+                {
+                    "id": 14,
+                    "mode": "auto",
+                    "subnet": {
+                        "name": "name-v5djzQ",
+                        "vlan": {
+                            "vid": 0,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "space": "management",
+                            "primary_rack": "7xtf67",
+                            "secondary_rack": "76y7pg",
+                            "fabric": "fabric-1",
+                            "id": 5003,
+                            "fabric_id": 1,
+                            "name": "untagged",
+                            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                        },
+                        "cidr": "172.16.2.0/24",
+                        "rdns_mode": 2,
+                        "gateway_ip": "172.16.2.1",
+                        "dns_servers": [
+                            "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                            "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                            "120.129.237.29"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "management",
+                        "id": 2,
+                        "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                    }
+                }
+            ],
+            "type": "physical",
+            "children": [
+                "eth-lKRYAa.42"
+            ],
+            "vendor": null,
+            "mac_address": "cb:93:ac:d1:ed:65",
+            "discovered": null,
+            "id": 37,
+            "params": "",
+            "name": "eth-lKRYAa",
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+        },
+        "osystem": "",
+        "tag_names": [],
+        "power_state": "on",
+        "commissioning_status_name": "Passed",
+        "status_message": "From 'Ready' to 'Allocated' (to admin)",
+        "cpu_test_status_name": "Passed",
+        "virtualblockdevice_set": [],
+        "commissioning_status": 2,
+        "hwe_kernel": null,
+        "blockdevice_set": [
+            {
+                "id_path": null,
+                "size": 3532084224,
+                "block_size": 1024,
+                "tags": [
+                    "tag-CzTfe7",
+                    "tag-LZn1dX",
+                    "tag-YVJlCd"
+                ],
+                "system_id": "thr3am",
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [
+                    {
+                        "uuid": "f90ccc67-1f7f-43b3-9d1b-baa6e22f96ff",
+                        "size": 3523215360,
+                        "bootable": false,
+                        "tags": [],
+                        "system_id": "thr3am",
+                        "device_id": 18,
+                        "type": "partition",
+                        "filesystem": {
+                            "fstype": "ext4",
+                            "label": "root",
+                            "uuid": "465ddc23-e5ed-48fe-984e-900694477380",
+                            "mount_point": "/",
+                            "mount_options": null
+                        },
+                        "id": 1,
+                        "path": "/dev/disk/by-dname/name-xE9mtJ-part1",
+                        "used_for": "ext4 formatted filesystem mounted at /",
+                        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/partition/1"
+                    }
+                ],
+                "partition_table_type": "MBR",
+                "model": "model-mSnL9L",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 0,
+                "id": 18,
+                "used_size": 3528458240,
+                "path": "/dev/disk/by-dname/name-xE9mtJ",
+                "used_for": "MBR partitioned with 1 partition",
+                "serial": "serial-jBitFU",
+                "name": "name-xE9mtJ",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/18/"
+            },
+            {
+                "id_path": null,
+                "size": 3498806272,
+                "block_size": 1024,
+                "tags": [
+                    "tag-DAVe6p",
+                    "tag-NZsGtH",
+                    "tag-NVqhqV"
+                ],
+                "system_id": "thr3am",
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [],
+                "partition_table_type": null,
+                "model": "model-OHzOYI",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 3498806272,
+                "id": 19,
+                "used_size": 0,
+                "path": "/dev/disk/by-dname/name-EjgNwC",
+                "used_for": "Unused",
+                "serial": "serial-5EZFik",
+                "name": "name-EjgNwC",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/19/"
+            },
+            {
+                "id_path": null,
+                "size": 2173730816,
+                "block_size": 4096,
+                "tags": [
+                    "tag-WAlxSu",
+                    "tag-p05xzW",
+                    "tag-dwLYRY"
+                ],
+                "system_id": "thr3am",
+                "type": "physical",
+                "uuid": null,
+                "filesystem": null,
+                "partitions": [],
+                "partition_table_type": null,
+                "model": "model-5btVsu",
+                "storage_pool": "pool_id-QkOjON",
+                "available_size": 2173730816,
+                "id": 20,
+                "used_size": 0,
+                "path": "/dev/disk/by-dname/name-VhlrVi",
+                "used_for": "Unused",
+                "serial": "serial-SE3O1p",
+                "name": "name-VhlrVi",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+            }
+        ],
+        "owner": "admin",
+        "other_test_status_name": "Passed",
+        "zone": {
+            "name": "zone-north",
+            "description": "xsMaq90fRE",
+            "id": 2,
+            "resource_uri": "/MAAS/api/2.0/zones/zone-north/"
+        },
+        "interface_set": [
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "management",
+                    "primary_rack": "7xtf67",
+                    "secondary_rack": "76y7pg",
+                    "fabric": "fabric-1",
+                    "id": 5003,
+                    "fabric_id": 1,
+                    "name": "untagged",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                },
+                "parents": [],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-oplxjR",
+                    "tag-QAxfJH",
+                    "tag-VOqx2b"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 14,
+                        "mode": "auto",
+                        "subnet": {
+                            "name": "name-v5djzQ",
+                            "vlan": {
+                                "vid": 0,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "management",
+                                "primary_rack": "7xtf67",
+                                "secondary_rack": "76y7pg",
+                                "fabric": "fabric-1",
+                                "id": 5003,
+                                "fabric_id": 1,
+                                "name": "untagged",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                            },
+                            "cidr": "172.16.2.0/24",
+                            "rdns_mode": 2,
+                            "gateway_ip": "172.16.2.1",
+                            "dns_servers": [
+                                "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                                "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                                "120.129.237.29"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "management",
+                            "id": 2,
+                            "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                        }
+                    }
+                ],
+                "type": "physical",
+                "children": [
+                    "eth-lKRYAa.42"
+                ],
+                "vendor": null,
+                "mac_address": "cb:93:ac:d1:ed:65",
+                "discovered": null,
+                "id": 37,
+                "params": "",
+                "name": "eth-lKRYAa",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+            },
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "management",
+                    "primary_rack": "7xtf67",
+                    "secondary_rack": "76y7pg",
+                    "fabric": "fabric-1",
+                    "id": 5003,
+                    "fabric_id": 1,
+                    "name": "untagged",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                },
+                "parents": [],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-LddZkA",
+                    "tag-EDi2sp",
+                    "tag-RwynT2"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 15,
+                        "mode": "auto",
+                        "subnet": {
+                            "name": "name-v5djzQ",
+                            "vlan": {
+                                "vid": 0,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "management",
+                                "primary_rack": "7xtf67",
+                                "secondary_rack": "76y7pg",
+                                "fabric": "fabric-1",
+                                "id": 5003,
+                                "fabric_id": 1,
+                                "name": "untagged",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                            },
+                            "cidr": "172.16.2.0/24",
+                            "rdns_mode": 2,
+                            "gateway_ip": "172.16.2.1",
+                            "dns_servers": [
+                                "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                                "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                                "120.129.237.29"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "management",
+                            "id": 2,
+                            "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                        }
+                    }
+                ],
+                "type": "physical",
+                "children": [
+                    "eth-3ookc5.42"
+                ],
+                "vendor": null,
+                "mac_address": "bc:d3:d5:28:88:dc",
+                "discovered": null,
+                "id": 38,
+                "params": "",
+                "name": "eth-3ookc5",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
+            },
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "management",
+                    "primary_rack": "7xtf67",
+                    "secondary_rack": "76y7pg",
+                    "fabric": "fabric-1",
+                    "id": 5003,
+                    "fabric_id": 1,
+                    "name": "untagged",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                },
+                "parents": [],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-dc12B9",
+                    "tag-D71Hh0",
+                    "tag-PnEfvN"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 16,
+                        "mode": "auto",
+                        "subnet": {
+                            "name": "name-v5djzQ",
+                            "vlan": {
+                                "vid": 0,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "management",
+                                "primary_rack": "7xtf67",
+                                "secondary_rack": "76y7pg",
+                                "fabric": "fabric-1",
+                                "id": 5003,
+                                "fabric_id": 1,
+                                "name": "untagged",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                            },
+                            "cidr": "172.16.2.0/24",
+                            "rdns_mode": 2,
+                            "gateway_ip": "172.16.2.1",
+                            "dns_servers": [
+                                "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                                "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                                "120.129.237.29"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "management",
+                            "id": 2,
+                            "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                        }
+                    }
+                ],
+                "type": "physical",
+                "children": [
+                    "eth-W8E8f0.42"
+                ],
+                "vendor": null,
+                "mac_address": "ad:5a:3e:a3:68:13",
+                "discovered": null,
+                "id": 39,
+                "params": "",
+                "name": "eth-W8E8f0",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
+            },
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 42,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "ipv6-testbed",
+                    "primary_rack": null,
+                    "secondary_rack": null,
+                    "fabric": "fabric-1",
+                    "id": 5004,
+                    "fabric_id": 1,
+                    "name": "42",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                },
+                "parents": [
+                    "eth-lKRYAa"
+                ],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-u0TLLj",
+                    "tag-C09Efp",
+                    "tag-QK7j09"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 17,
+                        "mode": "auto",
+                        "subnet": {
+                            "name": "name-m3vYqT",
+                            "vlan": {
+                                "vid": 42,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "ipv6-testbed",
+                                "primary_rack": null,
+                                "secondary_rack": null,
+                                "fabric": "fabric-1",
+                                "id": 5004,
+                                "fabric_id": 1,
+                                "name": "42",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                            },
+                            "cidr": "2001:db8:42::/64",
+                            "rdns_mode": 2,
+                            "gateway_ip": null,
+                            "dns_servers": [
+                                "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                                "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "ipv6-testbed",
+                            "id": 5,
+                            "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                        }
+                    }
+                ],
+                "type": "vlan",
+                "children": [],
+                "vendor": null,
+                "mac_address": "cb:93:ac:d1:ed:65",
+                "discovered": null,
+                "id": 40,
+                "params": "",
+                "name": "eth-lKRYAa.42",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
+            },
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 42,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "ipv6-testbed",
+                    "primary_rack": null,
+                    "secondary_rack": null,
+                    "fabric": "fabric-1",
+                    "id": 5004,
+                    "fabric_id": 1,
+                    "name": "42",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                },
+                "parents": [
+                    "eth-3ookc5"
+                ],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-EFzacM",
+                    "tag-dxAebl",
+                    "tag-GsPX3m"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 18,
+                        "mode": "static",
+                        "ip_address": "2001:db8:42:0:6556:13fa:7452:70da",
+                        "subnet": {
+                            "name": "name-m3vYqT",
+                            "vlan": {
+                                "vid": 42,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "ipv6-testbed",
+                                "primary_rack": null,
+                                "secondary_rack": null,
+                                "fabric": "fabric-1",
+                                "id": 5004,
+                                "fabric_id": 1,
+                                "name": "42",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                            },
+                            "cidr": "2001:db8:42::/64",
+                            "rdns_mode": 2,
+                            "gateway_ip": null,
+                            "dns_servers": [
+                                "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                                "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "ipv6-testbed",
+                            "id": 5,
+                            "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                        }
+                    }
+                ],
+                "type": "vlan",
+                "children": [],
+                "vendor": null,
+                "mac_address": "bc:d3:d5:28:88:dc",
+                "discovered": null,
+                "id": 41,
+                "params": "",
+                "name": "eth-3ookc5.42",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
+            },
+            {
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 42,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "space": "ipv6-testbed",
+                    "primary_rack": null,
+                    "secondary_rack": null,
+                    "fabric": "fabric-1",
+                    "id": 5004,
+                    "fabric_id": 1,
+                    "name": "42",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                },
+                "parents": [
+                    "eth-W8E8f0"
+                ],
+                "effective_mtu": 1500,
+                "system_id": "thr3am",
+                "tags": [
+                    "tag-cyexYi",
+                    "tag-nnoi80",
+                    "tag-xhApes"
+                ],
+                "enabled": true,
+                "product": null,
+                "links": [
+                    {
+                        "id": 19,
+                        "mode": "static",
+                        "ip_address": "2001:db8:42:0:cf29:e368:ba5b:9977",
+                        "subnet": {
+                            "name": "name-m3vYqT",
+                            "vlan": {
+                                "vid": 42,
+                                "mtu": 1500,
+                                "dhcp_on": false,
+                                "external_dhcp": null,
+                                "relay_vlan": null,
+                                "space": "ipv6-testbed",
+                                "primary_rack": null,
+                                "secondary_rack": null,
+                                "fabric": "fabric-1",
+                                "id": 5004,
+                                "fabric_id": 1,
+                                "name": "42",
+                                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                            },
+                            "cidr": "2001:db8:42::/64",
+                            "rdns_mode": 2,
+                            "gateway_ip": null,
+                            "dns_servers": [
+                                "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                                "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                            ],
+                            "allow_dns": true,
+                            "allow_proxy": true,
+                            "active_discovery": false,
+                            "managed": true,
+                            "space": "ipv6-testbed",
+                            "id": 5,
+                            "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                        }
+                    }
+                ],
+                "type": "vlan",
+                "children": [],
+                "vendor": null,
+                "mac_address": "ad:5a:3e:a3:68:13",
+                "discovered": null,
+                "id": 42,
+                "params": "",
+                "name": "eth-W8E8f0.42",
+                "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
+            }
+        ],
+        "hardware_info": {
+            "system_vendor": "Unknown",
+            "system_product": "Unknown",
+            "system_version": "Unknown",
+            "system_serial": "Unknown",
+            "cpu_model": "Unknown",
+            "mainboard_vendor": "Unknown",
+            "mainboard_product": "Unknown",
+            "mainboard_firmware_version": "Unknown",
+            "mainboard_firmware_date": "Unknown"
+        },
+        "storage_test_status": 2,
+        "volume_groups": [],
+        "status_action": "",
+        "storage_test_status_name": "Passed",
+        "raids": [],
+        "node_type_name": "Machine",
+        "power_type": "virsh",
+        "pod": {
+            "id": 5,
+            "name": "well-hen",
+            "resource_uri": "/MAAS/api/2.0/pods/5/"
+        },
+        "testing_status_name": "Passed",
+        "domain": {
+            "authoritative": true,
+            "ttl": null,
+            "is_default": false,
+            "resource_record_count": 0,
+            "id": 1,
+            "name": "sample",
+            "resource_uri": "/MAAS/api/2.0/domains/1/"
+        },
+        "memory": 8192,
+        "constraints_by_type": {},
+        "current_testing_result_id": 22,
+        "current_commissioning_result_id": 21,
+        "memory_test_status_name": "Passed",
+        "bcaches": [],
+        "testing_status": 2,
+        "distro_series": "",
+        "min_hwe_kernel": null,
+        "cpu_speed": 0,
+        "cache_sets": [],
+        "owner_data": {},
+        "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
+    }
 
-:   Fabric class types whose fabrics the machine must NOT be associated
-    with in order to be acquired.
+**Error**
 
-    If multiple fabrics names are specified, the machine must NOT be in
-    ANY of them. To request exclusion of multiple fabrics, this
-    parameter must be repeated in the request with each value.
+------------------------------------------------------------------------
 
-type not\_fabric\_classes
+*HTTP Status Code* : 409
 
-:   unicode (accepts multiple)
-
-param agent\_name
-
-:   An optional agent name to attach to the acquired machine.
-
-type agent\_name
-
-:   unicode
-
-param comment
-
-:   Optional comment for the event log.
-
-type comment
-
-:   unicode
-
-param bridge\_all
-
-:   Optionally create a bridge interface for every configured interface
-    on the machine. The created bridges will be removed once the machine
-    is released. (Default: False)
-
-type bridge\_all
-
-:   boolean
-
-param bridge\_stp
-
-:   Optionally turn spanning tree protocol on or off for the bridges
-    created on every configured interface. (Default: off)
-
-type bridge\_stp
-
-:   boolean
-
-param bridge\_fd
-
-:   Optionally adjust the forward delay to time seconds. (Default: 15)
-
-type bridge\_fd
-
-:   integer
-
-param dry\_run
-
-:   Optional boolean to indicate that the machine should not actually be
-    acquired (this is for support/troubleshooting, or users who want to
-    see which machine would match a constraint, without acquiring a
-    machine). Defaults to False.
-
-type dry\_run
-
-:   bool
-
-param verbose
-
-:   Optional boolean to indicate that the user would like additional
-    verbosity in the constraints\_by\_type field (each constraint will
-    be prefixed by verbose\_, and contain the full data structure that
-    indicates which machine(s) matched).
-
-type verbose
-
-:   bool
-
-Returns 409 if a suitable machine matching the constraints could not be
-found.
+*Content* : No machine matching the given constraints could be found.
 
 <p>&nbsp;</p>
 </details>
