@@ -29,10 +29,10 @@ HTTP methods and parameter-passing
 
 The following HTTP methods are available for accessing the API:
 
-- GET (for information retrieval and queries),
-- POST (for asking the system to do things),
-- PUT (for updating objects), and
-- DELETE (for deleting objects).
+:   -   GET (for information retrieval and queries),
+    -   POST (for asking the system to do things),
+    -   PUT (for updating objects), and
+    -   DELETE (for deleting objects).
 
 All methods except DELETE may take parameters, but they are not all
 passed in the same way. GET parameters are passed in the URL, as is
@@ -62,424 +62,1466 @@ Operations
 
 Manage the current logged-in user.
 
-#### `GET /MAAS/api/2.0/account/ op=list_authorisation_tokens`
+<details>
+  <summary>``GET /MAAS/api/2.0/account/?op=list_authorisation_tokens``</summary>
+
+------------------------------------------------------------------------
 
 List authorisation tokens available to the currently logged-in user.
 
-return
+**Success**
 
-:   list of dictionaries representing each key's name and token.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/account/ op=create_authorisation_token`
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "name": "MAAS consumer",
+            "token": "6FSsXwk3QsktR96BJd:KVA8C3VTCEg8aYSuy4:c5D88bRZCSSTDwMgwycQEagc7sqd4N9p"
+        },
+        {
+            "name": "mytoken",
+            "token": "QVphn5VQs8QvXuRETw:bNVmuqaTJmP3dbmGwU:fWpkqzKEkq8SeKa26FaN4UuX6CNT44C9"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/account/?op=create_authorisation_token``</summary>
+
+------------------------------------------------------------------------
 
 Create an authorisation OAuth token and OAuth consumer.
 
-param name
+**Parameters**
 
-:   Optional name of the token that will be generated.
+------------------------------------------------------------------------
 
-type name
+**name** (*String*): Optional. Optional name of the token that will be
+generated.
 
-:   unicode
+**Success**
 
-return
+------------------------------------------------------------------------
 
-:   a json dict with four keys: 'token\_key', 'token\_secret',
-    'consumer\_key' and 'name'(e.g. {token\_key: 's65244576fgqs',
-    token\_secret: 'qsdfdhv34', consumer\_key: '68543fhj854fg', name:
-    'MAAS consumer'}).
+*HTTP Status Code* : 200
 
-rtype
+*JSON*
 
-:   string (json)
+    {
+        "token_key": "K6bhJZXCFKWFTfQTk5",
+        "token_secret": "entQ246T7KyyfkwMSWRLuSwycruNDfDG",
+        "consumer_key": "dFTQGcQLNvhJVc2H69",
+        "name": "MAAS consumer"
+    }
 
-#### `POST /MAAS/api/2.0/account/ op=delete_authorisation_token`
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/account/?op=delete_authorisation_token``</summary>
+
+------------------------------------------------------------------------
 
 Delete an authorisation OAuth token and the related OAuth consumer.
 
-param token\_key
+**Parameters**
 
-:   The key of the token to be deleted.
+------------------------------------------------------------------------
 
-type token\_key
+**token\_key** (*String*): Required. The key of the token to be deleted.
 
-:   unicode
+**Success**
 
-#### `POST /MAAS/api/2.0/account/ op=update_token_name`
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/account/?op=update_token_name``</summary>
+
+------------------------------------------------------------------------
 
 Modify the consumer name of an authorisation OAuth token.
 
-param token
+**Parameters**
 
-:   Can be the whole token or only the token key.
+------------------------------------------------------------------------
 
-type token
+**token** (*String*): Required. Can be the whole token or only the token
+key.
 
-:   unicode
+**name** (*String*): Required. New name of the token.
 
-param name
+**Success**
 
-:   New name of the token.
+------------------------------------------------------------------------
 
-type name
+*HTTP Status Code* : 200
 
-:   unicode
+*Content* : Accepted
 
+<p>&nbsp;</p>
+</details>
 ### Bcache Cache Set
 
 Manage bcache cache set on a machine.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Delete bcache cache set on a machine.
 
-Returns 400 if the cache set is in use. Returns 404 if the machine or
-cache set is not found. Returns 409 if the machine is not Ready.
+**Parameters**
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A machine system\_id.
+
+**{id}** (*String*): Required. A cache\_set\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The cache set is in use.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Read bcache cache set on a machine.
 
-Returns 404 if the machine or cache set is not found.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A machine system\_id.
+
+**{id}** (*String*): Required. A cache\_set\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/bcache-cache-set/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Update bcache cache set on a machine.
 
-param cache\_device
+Note: specifying both a cache\_device and a cache\_partition is not
+allowed.
 
-:   Cache block device to replace current one.
+**Parameters**
 
-param cache\_partition
+------------------------------------------------------------------------
 
-:   Cache partition to replace current one.
+**{system\_id}** (*String*): Required. A machine system\_id.
 
-Specifying both a cache\_device and a cache\_partition is not allowed.
+**{id}** (*String*): Required. A cache\_set\_id.
 
-Returns 404 if the machine or the cache set is not found. Returns 409 if
-the machine is not Ready.
+**cache\_device** (*String*): Optional. Cache block device to replace
+current one.
 
+**cache\_partition** (*String*): Optional. Cache partition to replace
+current one.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Bcache Cache Sets
 
 Manage bcache cache sets on a machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/``</summary>
+
+------------------------------------------------------------------------
 
 List all bcache cache sets belonging to a machine.
 
-Returns 404 if the machine is not found.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/`
+------------------------------------------------------------------------
 
-Creates a bcache Cache Set.
+**{system\_id}** (*String*): Required. A machine system\_id.
 
-param cache\_device
+**Success**
 
-:   Cache block device.
+------------------------------------------------------------------------
 
-param cache\_partition
+*HTTP Status Code* : 200
 
-:   Cache partition.
+*JSON*
 
-Specifying both a cache\_device and a cache\_partition is not allowed.
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+**Error**
 
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/bcache-cache-sets/``</summary>
+
+------------------------------------------------------------------------
+
+Creates a bcache cache set.
+
+Note: specifying both a cache\_device and a cache\_partition is not
+allowed.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A machine system\_id.
+
+**cache\_device** (*String*): Optional. Cache block device.
+
+**cache\_partition** (*String*): Optional. Cache partition.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Bcache Device
 
 Manage bcache device on a machine.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Delete bcache on a machine.
 
-Returns 404 if the machine or bcache is not found. Returns 409 if the
-machine is not Ready.
+**Parameters**
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**{id}** (*String*): Required. The bcache id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Read bcache device on a machine.
 
-Returns 404 if the machine or bcache is not found.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**{id}** (*String*): Required. The bcache id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/bcache/{id}/``</summary>
+
+------------------------------------------------------------------------
 
 Update bcache on a machine.
-
-param name
-
-:   Name of the Bcache.
-
-param uuid
-
-:   UUID of the Bcache.
-
-param cache\_set
-
-:   Cache set to replace current one.
-
-param backing\_device
-
-:   Backing block device to replace current one.
-
-param backing\_partition
-
-:   Backing partition to replace current one.
-
-param cache\_mode
-
-:   Cache mode (writeback, writethrough, writearound).
 
 Specifying both a device and a partition for a given role (cache or
 backing) is not allowed.
 
-Returns 404 if the machine or the bcache is not found. Returns 409 if
-the machine is not Ready.
+**Parameters**
 
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**{id}** (*String*): Required. The bcache id.
+
+**name** (*String*): Optional. Name of the Bcache.
+
+**uuid** (*String*): Optional. UUID of the Bcache.
+
+**cache\_set** (*String*): Optional. Cache set to replace current one.
+
+**backing\_device** (*String*): Optional. Backing block device to
+replace current one.
+
+**backing\_partition** (*String*): Optional. Backing partition to
+replace current one.
+
+**cache\_mode** (*String*): Optional. Cache mode: `WRITEBACK`,
+`WRITETHROUGH`, `WRITEAROUND`.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Bcache Devices
 
 Manage bcache devices on a machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/bcaches/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/bcaches/``</summary>
+
+------------------------------------------------------------------------
 
 List all bcache devices belonging to a machine.
 
-Returns 404 if the machine is not found.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/bcaches/`
+------------------------------------------------------------------------
 
-Creates a Bcache.
+**{system\_id}** (*String*): Required. The machine's system\_id.
 
-param name
+**Success**
 
-:   Name of the Bcache.
+------------------------------------------------------------------------
 
-param uuid
+*HTTP Status Code* : 200
 
-:   UUID of the Bcache.
+*JSON*
 
-param cache\_set
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
-:   Cache set.
+**Error**
 
-param backing\_device
+------------------------------------------------------------------------
 
-:   Backing block device.
+*HTTP Status Code* : 404
 
-param backing\_partition
+*Content*
 
-:   Backing partition.
+    Not Found
 
-param cache\_mode
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/bcaches/``</summary>
 
-:   Cache mode (WRITEBACK, WRITETHROUGH, WRITEAROUND).
+------------------------------------------------------------------------
+
+Creates a bcache.
 
 Specifying both a device and a partition for a given role (cache or
 backing) is not allowed.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+**Parameters**
 
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**name** (*String*): Optional. Name of the Bcache.
+
+**uuid** (*String*): Optional. UUID of the Bcache.
+
+**cache\_set** (*String*): Optional. Cache set.
+
+**backing\_device** (*String*): Optional. Backing block device.
+
+**backing\_partition** (*String*): Optional. Backing partition.
+
+**cache\_mode** (*String*): Optional. Cache mode: `WRITEBACK`,
+`WRITETHROUGH`, `WRITEAROUND`.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Block device
 
 Manage a block device on a machine.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/``</summary>
 
-Delete block device on a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to delete the block device. Returns 409 if the
-machine is not Ready.
+Delete block device on a given machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
+**Parameters**
 
-Read block device on node.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or block device is not found.
+**{system\_id}** (*String*): Required. The machine system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=add_tag`
+**{id}** (*String*): Required. The block device's id.
 
-Add a tag to block device on a machine.
+**Success**
 
-param tag
+------------------------------------------------------------------------
 
-:   The tag being added.
+*HTTP Status Code* : 204
 
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to update the block device. Returns 409 if the
-machine is not Ready.
+**Error**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=format`
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to delete the block
+device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a block device on a given machine.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": null,
+        "system_id": "y7388k",
+        "block_size": 1024000,
+        "available_size": 1000000000,
+        "model": "fakemodel",
+        "serial": "123",
+        "used_size": 0,
+        "tags": [],
+        "partition_table_type": null,
+        "partitions": [],
+        "path": "/dev/disk/by-dname/newblockdevice",
+        "size": 1000000000,
+        "id_path": "",
+        "filesystem": null,
+        "storage_pool": null,
+        "name": "newblockdevice",
+        "used_for": "Unused",
+        "id": 73,
+        "type": "physical",
+        "uuid": null,
+        "resource_uri": "/MAAS/api/2.0/nodes/y7388k/blockdevices/73/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=add_tag``</summary>
+
+------------------------------------------------------------------------
+
+Add a tag to block device on a given machine.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**tag** (*String*): Required. The tag being added.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "filesystem": null,
+        "available_size": 2173730816,
+        "model": "model-5btVsu",
+        "type": "physical",
+        "name": "newname",
+        "system_id": "thr3am",
+        "partition_table_type": null,
+        "partitions": [],
+        "size": 2173730816,
+        "id_path": "",
+        "block_size": 4096,
+        "uuid": null,
+        "used_size": 0,
+        "used_for": "Unused",
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY",
+            "newtag"
+        ],
+        "storage_pool": "pool_id-QkOjON",
+        "path": "/dev/disk/by-dname/newname",
+        "id": 20,
+        "serial": "serial-SE3O1p",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to add a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=format``</summary>
+
+------------------------------------------------------------------------
 
 Format block device with filesystem.
 
-param fstype
+**Parameters**
 
-:   Type of filesystem.
+------------------------------------------------------------------------
 
-param uuid
+**{system\_id}** (*String*): Required. The machine system\_id.
 
-:   UUID of the filesystem.
+**{id}** (*String*): Required. The block device's id.
 
-Returns 403 when the user doesn't have the ability to format the block
-device. Returns 404 if the machine or block device is not found. Returns
-409 if the machine is not Ready or Allocated.
+**fstype** (*String*): Required. Type of filesystem.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=mount`
+**uuid** (*String*): Optional. UUID of the filesystem.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "system_id": "thr3am",
+        "partitions": [],
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "uuid": null,
+        "storage_pool": "pool_id-QkOjON",
+        "id": 20,
+        "type": "physical",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "fcc36eca-09fd-4c15-b339-c706ad3b75cf",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "name": "newname",
+        "id_path": "",
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "partition_table_type": null,
+        "model": "model-5btVsu",
+        "used_size": 2173730816,
+        "serial": "serial-SE3O1p",
+        "size": 2173730816,
+        "available_size": 0,
+        "block_size": 4096,
+        "path": "/dev/disk/by-dname/newname",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to format the block
+device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=mount``</summary>
+
+------------------------------------------------------------------------
 
 Mount the filesystem on block device.
 
-param mount\_point
+**Parameters**
 
-:   Path on the filesystem to mount.
+------------------------------------------------------------------------
 
-param mount\_options
+**{system\_id}** (*String*): Required. The machine system\_id.
 
-:   Options to pass to mount(8).
+**{id}** (*String*): Required. The block device's id.
 
-Returns 403 when the user doesn't have the ability to mount the block
-device. Returns 404 if the machine or block device is not found. Returns
-409 if the machine is not Ready or Allocated.
+**mount\_point** (*String*): Required. Path on the filesystem to mount.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=remove_tag`
+**mount\_options** (*String*): Optional. Options to pass to mount(8).
 
-Remove a tag from block device on a machine.
+**Success**
 
-param tag
+------------------------------------------------------------------------
 
-:   The tag being removed.
+*HTTP Status Code* : 200
 
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to update the block device. Returns 409 if the
-machine is not Ready.
+*JSON*
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=set_boot_disk`
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "id": 20,
+        "available_size": 0,
+        "type": "physical",
+        "storage_pool": "pool_id-QkOjON",
+        "system_id": "thr3am",
+        "block_size": 4096,
+        "uuid": null,
+        "id_path": "",
+        "name": "newname",
+        "partitions": [],
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "9a5860a2-497d-433b-98c3-e0059ad1545e",
+            "mount_point": "/media",
+            "mount_options": ""
+        },
+        "size": 2173730816,
+        "partition_table_type": null,
+        "model": "model-5btVsu",
+        "path": "/dev/disk/by-dname/newname",
+        "serial": "serial-SE3O1p",
+        "used_for": "ext4 formatted filesystem mounted at /media",
+        "used_size": 2173730816,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
 
-Set this block device as the boot disk for the machine.
+**Error**
 
-Returns 400 if the block device is a virtual block device. Returns 404
-if the machine or block device is not found. Returns 403 if the user is
-not allowed to update the block device. Returns 409 if the machine is
-not Ready or Allocated.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unformat`
+*HTTP Status Code* : 403
 
-Unformat block device with filesystem.
+*Content* : The user does not have permissions to mount the filesystem.
 
-Returns 400 if the block device is not formatted, currently mounted, or
-part of a filesystem group. Returns 403 when the user doesn't have the
-ability to unformat the block device. Returns 404 if the machine or
-block device is not found. Returns 409 if the machine is not Ready or
-Allocated.
+*HTTP Status Code* : 404
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/ op=unmount`
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=remove_tag``</summary>
+
+------------------------------------------------------------------------
+
+Remove a tag from block device on a given machine.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**tag** (*String*): Optional. The tag being removed.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "used_for": "Unused",
+        "serial": "serial-SE3O1p",
+        "used_size": 0,
+        "partitions": [],
+        "block_size": 4096,
+        "available_size": 2173730816,
+        "type": "physical",
+        "path": "/dev/disk/by-dname/newname",
+        "storage_pool": "pool_id-QkOjON",
+        "id": 20,
+        "partition_table_type": null,
+        "model": "model-5btVsu",
+        "uuid": null,
+        "filesystem": null,
+        "name": "newname",
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "id_path": "",
+        "size": 2173730816,
+        "system_id": "thr3am",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to remove a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=set_boot_disk``</summary>
+
+------------------------------------------------------------------------
+
+Set a block device as the boot disk for the machine.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content*
+
+    OK
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The block device is a virtual block device.
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to set the boot disk.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=unformat``</summary>
+
+------------------------------------------------------------------------
+
+Unformat a previously formatted block device.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "used_size": 0,
+        "uuid": null,
+        "system_id": "thr3am",
+        "id": 20,
+        "type": "physical",
+        "model": "model-5btVsu",
+        "id_path": "",
+        "size": 2173730816,
+        "available_size": 2173730816,
+        "path": "/dev/disk/by-dname/newname",
+        "used_for": "Unused",
+        "filesystem": null,
+        "partition_table_type": null,
+        "name": "newname",
+        "storage_pool": "pool_id-QkOjON",
+        "partitions": [],
+        "serial": "serial-SE3O1p",
+        "block_size": 4096,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The block device is not formatted, currently mounted, or
+part of a filesystem group.
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to unformat the block
+device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/?op=unmount``</summary>
+
+------------------------------------------------------------------------
 
 Unmount the filesystem on block device.
 
-Returns 400 if the block device is not formatted or not currently
-mounted. Returns 403 when the user doesn't have the ability to unmount
-the block device. Returns 404 if the machine or block device is not
-found. Returns 409 if the machine is not Ready or Allocated.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/`
+------------------------------------------------------------------------
 
-Update block device on a machine.
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**{id}** (*String*): Required. The block device's id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "model": "model-5btVsu",
+        "size": 2173730816,
+        "partition_table_type": null,
+        "available_size": 0,
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "id_path": "",
+        "name": "newname",
+        "id": 20,
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "9a5860a2-497d-433b-98c3-e0059ad1545e",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "partitions": [],
+        "storage_pool": "pool_id-QkOjON",
+        "used_size": 2173730816,
+        "block_size": 4096,
+        "system_id": "thr3am",
+        "serial": "serial-SE3O1p",
+        "type": "physical",
+        "path": "/dev/disk/by-dname/newname",
+        "uuid": null,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The block device is not formatted or currently mounted.
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to mount the filesystem.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/blockdevices/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update block device on a given machine.
 
 Machines must have a status of Ready to have access to all options.
 Machines with Deployed status can only have the name, model, serial,
 and/or id\_path updated for a block device. This is intented to allow a
 bad block device to be replaced while the machine remains deployed.
 
-Fields for physical block device:
+**Parameters**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the block device.
+**{system\_id}** (*String*): Required. The machine system\_id.
 
-param model
+**{id}** (*String*): Required. The block device's id.
 
-:   Model of the block device.
+**name** (*String*): Optional. (Physical devices) Name of the block
+device.
 
-param serial
+**model** (*String*): Optional. (Physical devices) Model of the block
+device.
 
-:   Serial number of the block device.
+**serial** (*String*): Optional. (Physical devices) Serial number of the
+block device.
 
-param id\_path
+**id\_path** (*String*): Optional. (Physical devices) Only used if model
+and serial cannot be provided. This should be a path that is fixed and
+doesn't change depending on the boot order or kernel version.
 
-:   (optional) Only used if model and serial cannot be provided. This
-    should be a path that is fixed and doesn't change depending on the
-    boot order or kernel version.
+**size** (*String*): Optional. (Physical devices) Size of the block
+device.
 
-param size
+**block\_size** (*String*): Optional. (Physical devices) Block size of
+the block device.
 
-:   Size of the block device.
+**name** (*String*): Optional. (Virtual devices) Name of the block
+device.
 
-param block\_size
+**uuid** (*String*): Optional. (Virtual devices) UUID of the block
+device.
 
-:   Block size of the block device.
+**size** (*String*): Optional. (Virtual devices) Size of the block
+device. (Only allowed for logical volumes.)
 
-Fields for virtual block device:
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the block device.
+*HTTP Status Code* : 200
 
-param uuid
+*JSON*
 
-:   UUID of the block device.
+    {
+        "firmware_version": "firmware_version-WJ46L3",
+        "storage_pool": "pool_id-QkOjON",
+        "uuid": null,
+        "system_id": "thr3am",
+        "block_size": 4096,
+        "id_path": "",
+        "filesystem": null,
+        "used_for": "Unused",
+        "model": "model-5btVsu",
+        "used_size": 0,
+        "partition_table_type": null,
+        "id": 20,
+        "serial": "serial-SE3O1p",
+        "size": 2173730816,
+        "type": "physical",
+        "available_size": 2173730816,
+        "path": "/dev/disk/by-dname/newname",
+        "partitions": [],
+        "tags": [
+            "tag-WAlxSu",
+            "tag-p05xzW",
+            "tag-dwLYRY"
+        ],
+        "name": "newname",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
+    }
 
-param size
+**Error**
 
-:   Size of the block device. (Only allowed for logical volumes.)
+------------------------------------------------------------------------
 
-Returns 404 if the machine or block device is not found. Returns 403 if
-the user is not allowed to update the block device. Returns 409 if the
-machine is not Ready.
+*HTTP Status Code* : 403
 
+*Content* : The user does not have permissions to update the block
+device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Block devices
 
 Manage block devices on a machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/``</summary>
+
+------------------------------------------------------------------------
 
 List all block devices belonging to a machine.
 
-Returns 404 if the machine is not found.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "id_path": null,
+            "size": 3698265088,
+            "block_size": 512,
+            "tags": [
+                "tag-BGt1BR",
+                "tag-1Fm39m",
+                "tag-Hqbbak"
+            ],
+            "uuid": null,
+            "id": 1,
+            "available_size": 3698265088,
+            "filesystem": null,
+            "partitions": [],
+            "storage_pool": "pool_id-nHmvMI",
+            "used_size": 0,
+            "path": "/dev/disk/by-dname/name-86Ezga",
+            "partition_table_type": null,
+            "used_for": "Unused",
+            "type": "physical",
+            "name": "name-86Ezga",
+            "system_id": "y7388k",
+            "model": "model-sCuLNN",
+            "serial": "serial-ZKjZxn",
+            "resource_uri": "/MAAS/api/2.0/nodes/y7388k/blockdevices/1/"
+        },
+        {
+            "id_path": null,
+            "size": 1392376320,
+            "block_size": 512,
+            "tags": [
+                "tag-hZPKgU",
+                "tag-ImIubs",
+                "tag-yRv0Vm"
+            ],
+            "uuid": null,
+            "id": 2,
+            "available_size": 1392376320,
+            "filesystem": null,
+            "partitions": [],
+            "storage_pool": "pool_id-nHmvMI",
+            "used_size": 0,
+            "path": "/dev/disk/by-dname/name-EIcGBl",
+            "partition_table_type": null,
+            "used_for": "Unused",
+            "type": "physical",
+            "name": "name-EIcGBl",
+            "system_id": "y7388k",
+            "model": "model-QhVkKT",
+            "serial": "serial-3TaTIG",
+            "resource_uri": "/MAAS/api/2.0/nodes/y7388k/blockdevices/2/"
+        }
+    ]
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/``</summary>
+
+------------------------------------------------------------------------
 
 Create a physical block device.
 
-param name
+**Parameters**
 
-:   Name of the block device.
+------------------------------------------------------------------------
 
-param model
+**{system\_id}** (*String*): Required. The machine system\_id.
 
-:   Model of the block device.
+**name** (*String*): Required. Name of the block device.
 
-param serial
+**model** (*String*): Optional. Model of the block device.
 
-:   Serial number of the block device.
+**serial** (*String*): Optional. Serial number of the block device.
 
-param id\_path
+**id\_path** (*String*): Optional. Only used if model and serial cannot
+be provided. This should be a path that is fixed and doesn't change
+depending on the boot order or kernel version.
 
-:   (optional) Only used if model and serial cannot be provided. This
-    should be a path that is fixed and doesn't change depending on the
-    boot order or kernel version.
+**size** (*String*): Required. Size of the block device.
 
-param size
+**block\_size** (*String*): Required. Block size of the block device.
 
-:   Size of the block device.
+**Success**
 
-param block\_size
+------------------------------------------------------------------------
 
-:   Block size of the block device.
+*HTTP Status Code* : 200
 
-Returns 404 if the node is not found.
+*JSON*
 
+    {
+        "firmware_version": null,
+        "uuid": null,
+        "used_for": "Unused",
+        "used_size": 0,
+        "storage_pool": null,
+        "system_id": "y7388k",
+        "type": "physical",
+        "path": "/dev/disk/by-dname/newblockdevice",
+        "filesystem": null,
+        "id_path": "",
+        "partitions": [],
+        "tags": [],
+        "available_size": 1000000000,
+        "block_size": 1024000,
+        "model": "fakemodel",
+        "partition_table_type": null,
+        "name": "newblockdevice",
+        "size": 1000000000,
+        "serial": "123",
+        "id": 73,
+        "resource_uri": "/MAAS/api/2.0/nodes/y7388k/blockdevices/73/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Boot resource
 
 Manage a boot resource.
@@ -4007,7 +5049,7 @@ A machine is identified by its system\_id.
 
 ------------------------------------------------------------------------
 
-Deletes a machine with the given system ID.
+Deletes a machine with the given system\_id.
 
 Note: A machine cannot be deleted if it hosts pod virtual machines. Use
 `force` to override this behavior. Forcing deletion will also remove
@@ -4017,7 +5059,7 @@ hosted pods. E.g. `/machines/abc123/?force=1`.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -4585,7 +5627,7 @@ Return the rendered curtin configuration for the machine.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -4733,7 +5775,7 @@ Abort a node's current operation.
 
 ------------------------------------------------------------------------
 
-Clear any set default gateways on a machine with the given system ID.
+Clear any set default gateways on a machine with the given system\_id.
 
 This will clear both IPv4 and IPv6 gateways on the machine. This will
 transition the logic of identifing the best gateway to MAAS. This logic
@@ -4754,7 +5796,7 @@ deployed with the interfaces set-default-gateway API.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -5703,7 +6745,7 @@ commissioning tests were changed after it previously commissioned.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the
 commissioning environment using the user's SSH key(s). '1' == True, '0'
@@ -6008,13 +7050,13 @@ testing script names and tags to be run. By default all tests tagged
 
 ------------------------------------------------------------------------
 
-Deploys an operating system to a machine with the given system ID.
+Deploys an operating system to a machine with the given system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **user\_data** (*String*): Optional. If present, this blob of
 base64-encoded user-data to be made available to the machines through
@@ -6531,7 +7573,7 @@ IP addresses available on the relevant cluster interface.
 
 ------------------------------------------------------------------------
 
-Exits the rescue mode process on a machine with the given system ID.
+Exits the rescue mode process on a machine with the given system\_id.
 
 A machine in the 'rescue mode' state may exit the rescue mode process.
 
@@ -6539,7 +7581,7 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -6823,13 +7865,13 @@ machine.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system ID as 'Locked' to prevent changes.
+Mark a machine with the given system\_id as 'Locked' to prevent changes.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -7781,7 +8823,7 @@ Mark a machine with the given system ID as 'Locked' to prevent changes.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system ID as 'Broken'.
+Mark a machine with the given system\_id as 'Broken'.
 
 If the node is allocated, release it first.
 
@@ -7789,7 +8831,7 @@ If the node is allocated, release it first.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 Will be displayed on the node as an error description until marked
@@ -8181,13 +9223,13 @@ fixed.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system ID as 'Fixed'.
+Mark a machine with the given system\_id as 'Fixed'.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -8584,7 +9626,7 @@ given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **fstype** (*String*): Required. The filesystem type. This must be a
 filesystem that does not require a block special device.
@@ -10437,8 +11479,8 @@ cluster interface.
 
 ------------------------------------------------------------------------
 
-Releases a machine with the given system ID. Note that this operation is
-the opposite of allocating a machine.
+Releases a machine with the given system\_id. Note that this operation
+is the opposite of allocating a machine.
 
 **Erasing drives**:
 
@@ -10458,7 +11500,7 @@ disk with null bytes. This can be very slow.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **comment** (*String*): Required. Optional comment for the event log.
 
@@ -11412,7 +12454,7 @@ released.
 
 ------------------------------------------------------------------------
 
-Begins the rescue mode process on a machine with the given system ID.
+Begins the rescue mode process on a machine with the given system\_id.
 
 A machine in the 'deployed' or 'broken' state may initiate the rescue
 mode process.
@@ -11421,7 +12463,7 @@ mode process.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -11706,13 +12748,13 @@ the machine.
 ------------------------------------------------------------------------
 
 Restores the default configuration options on a machine with the given
-system ID.
+system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -12102,13 +13144,13 @@ on this machine.
 ------------------------------------------------------------------------
 
 Restores networking options to their initial state on a machine with the
-given system ID.
+given system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -12498,13 +13540,13 @@ options on this machine.
 ------------------------------------------------------------------------
 
 Restores storage configuration options to their initial state on a
-machine with the given system ID.
+machine with the given system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **Success**
 
@@ -12933,7 +13975,7 @@ is no longer allocated to a user.
 
 ------------------------------------------------------------------------
 
-Changes the storage layout on machine with the given system ID.
+Changes the storage layout on machine with the given system\_id.
 
 This operation can only be performed on a machine with a status of
 'Ready'.
@@ -12945,7 +13987,7 @@ configuration and replace it will the new layout.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **storage\_layout** (*String*): Required. Storage layout for the
 machine: `flat`, `lvm`, and `bcache`.
@@ -13698,13 +14740,13 @@ testing script names and tags to be run. By default all tests tagged
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system ID as 'Unlocked' to allow changes.
+Mark a machine with the given system\_id as 'Unlocked' to allow changes.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -14657,13 +15699,13 @@ Mark a machine with the given system ID as 'Unlocked' to allow changes.
 ------------------------------------------------------------------------
 
 Unmount a special-purpose filesystem, like tmpfs, on a machine with the
-given system ID.
+given system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **mount\_point** (*String*): Required. Path on the filesystem to
 unmount.
@@ -15611,13 +16653,13 @@ filesystem on this machine.
 
 ------------------------------------------------------------------------
 
-Updates a machine with the given system ID.
+Updates a machine with the given system\_id.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system ID.
+**{system\_id}** (*String*): Required. The machines's system\_id.
 
 **hostname** (*String*): Optional. The new hostname for this machine.
 
@@ -16798,8 +17840,8 @@ accepting one that is already allocated, broken, etc. is.
 
 ------------------------------------------------------------------------
 
-**machines** (*String*): Optional. System IDs of the machines whose
-enlistment is to be accepted. (An empty list is acceptable).
+**machines** (*String*): Optional. A list of system\_ids of the machines
+whose enlistment is to be accepted. (An empty list is acceptable).
 
 **Success**
 
@@ -16961,7 +18003,7 @@ semantics.
 If a FQDN is specified, both the domain and the hostname portions must
 match.
 
-**system\_id** (*String*): Optional. System ID of the desired machine.
+**system\_id** (*String*): Optional. system\_id of the desired machine.
 
 **arch** (*String*): Optional. Architecture of the returned machine
 (e.g. 'i386/generic', 'amd64', 'armhf/highbank', etc.).
@@ -18091,8 +19133,8 @@ to be reallocated.
 
 ------------------------------------------------------------------------
 
-**machines** (*String*): Required. System IDs of the machines which are
-to be released. (An empty list is acceptable).
+**machines** (*String*): Required. A list of system\_ids of the machines
+which are to be released. (An empty list is acceptable).
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
