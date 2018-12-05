@@ -1,5 +1,25 @@
 Title: Install from Packages
 
+# Installation methods
+
+To best fit your requirements, MAAS offers several installation options:
+
+- **[Packages][install-from-packages]**. The recommended way to install MAAS.
+  Versatile *deb*-based installation with manual control over where specific
+  components are placed, when upgrades are applied, and where packages are
+  installed from
+- **[Snap][install-from-snap]**. Benefits from autonomous upgrades and direct
+  access to beta and developmental versions
+- **[Ubuntu Server ISO][install-from-iso]**. Conveniently install MAAS as you provision a new
+  server
+
+Additionally, you may want to consider an installation within
+[LXD containers][install-with-lxd]. This allows MAAS nodes to also run as
+local containers and is ideal for testing and experimenting with MAAS.
+
+!!! Note:
+    See [MAAS HA][maas-ha] for more information about installing MAAS via Snaps
+    in high-availability environments.
 
 # Install from Packages
 
@@ -79,3 +99,7 @@ sudo maas-rack register
 [maas-ha]: manage-ha.md
 [ppa_maas-stable]: https://launchpad.net/~maas/+archive/ubuntu/stable
 [ppa_maas-next]: https://launchpad.net/~maas/+archive/ubuntu/next
+[install-from-iso]: installconfig-iso-install.md
+[install-from-packages]: installconfig-package-install.md
+[install-from-snap]: #install-from-snap
+[install-with-lxd]: installconfig-lxd-install.md
