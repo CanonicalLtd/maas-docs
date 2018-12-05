@@ -72,13 +72,7 @@ or `{prefix}_{node_arch}`
 
 1. `generic`
 
-The *node* needs to be the node name, as shown in the web UI URL or the [system
-ID][system-id] as output from the API. For example, the following web UI URL
-displays a node name of `7gan3t`:
-
-```bash
-http://<MAAS-IP>:5240/MAAS/#/node/7gan3t
-```
+The *node* needs to be the node name, as shown in the web UI URL.
 
 The prefix can be either `enlist`, `enlist_userdata`, `commissioning`,
 `curtin`, `curtin_userdata` or `preseed_master`. Alternatively, the prefix and
