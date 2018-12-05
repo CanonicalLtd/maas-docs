@@ -1,13 +1,13 @@
-Title: Pods
+Title: Composable machines
 TODO:  
 table_of_contents: True
 
-# Pods
+# Composable machines
 
-Pods, or composable hardware, allow for the dynamic composition of nodes from a
-pool of available hardware resources (e.g. disk space, memory, cores).
+Composable machines allow for the dynamic composition of nodes from a pool of
+available hardware resources (e.g. disk space, memory, cores).
 
-MAAS currently supports two pod architectures:
+MAAS currently supports two architectures:
 
 - Virsh: KVM hosts
 - Intel Rack Scale Design: RSD (validated to work with release v.1.2.5, based on

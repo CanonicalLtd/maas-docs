@@ -79,6 +79,7 @@ on the same or multiple subnets). There is no load balancing at the rack level
 so further independent rack controllers will be needed with each one servicing
 its own subnet(s).
 
+
 [concepts-controllers]: intro-concepts.md#controllers
 [manage-ha]: manage-ha.md
 [load-balancing]: manage-ha.md#load-balancing-(optional)

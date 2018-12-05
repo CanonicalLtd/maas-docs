@@ -23,7 +23,7 @@ navigation:
           location: intro-requirements.md
 
         - title: Installation
-          location: installconfig-snap-install.md
+          location: installconfig-package-install.md
 
         - title: Accessing MAAS
           location: installconfig-webui.md
@@ -32,6 +32,9 @@ navigation:
       children:
         - title: Introduction
           location: intro-controllers.md
+
+        - title: Communication
+          location: intro-communication.md
 
         - title: Adding rack controllers
           location: installconfig-rack.md
@@ -90,7 +93,7 @@ navigation:
             - title: Ubuntu kernels
               location: nodes-kernels.md
 
-    - title: Pods
+    - title: Composable machines (KVM/RSD)
       children:
 
         - title: Introduction
@@ -99,10 +102,10 @@ navigation:
         - title: KVM host networking
           location: manage-kvm-pods-networking.md
 
-        - title: Manage pods
+        - title: Manage composable machines
           location: manage-pods-webui.md
 
-        - title: CLI pod management
+        - title: CLI composable machine management
           location: manage-cli-comp-hw.md
 
     - title: Images

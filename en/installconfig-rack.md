@@ -7,18 +7,6 @@ A rack controller can be connected to multiple VLANs, each from a different
 network interface. This provides a scaling factor that can help as a network
 architecture grows in size.
 
-## Communication with the region controller
-
-Each rack controller must be able to initiate TCP connections on the following
-ports:
-
-| Port(s)         | Description                            |
-| --------------- | -------------------------------------- |
-| `5240`          | HTTP communication with each region controller. Note that port `80` is typically used in high-availability environments. See [MAAS HA][manage-ha]. |
-| `5241` - `5247` | Reserved for internal MAAS services.   |
-| `5248`          | Reserved for rack HTTP communication.  |
-| `5250` - `5270` | Reserved for region workers (RPC).     |
-
 ## Install a rack controller
 
 Installing a rack controller consists of installing the rack controller
@@ -56,6 +44,11 @@ high availability. See [MAAS HA][manage-ha].
     rack controller can communicate with the KVM host. See
     [KVM guest nodes][add-nodes-kvm-guest-nodes].
 
+## Configuration for multiple API servers
+
+Please see [Multiple region endpoints][multi-region-endpoints] in the [High
+availability section][manage-ha] for more information about how to add another API server
+(region endpoint).
 
 ## Unregister a rack controller
 
@@ -79,13 +72,14 @@ Here, you are deleting a machine that is a part of MAAS itself.
 
 ## Region/Rack/Machine communication and high-availability environments
 
-Please see [Controllers][machine-comms] for more information about how rack
+Please see [Communication][machine-comms] for more information about how rack
 controllers communicate with region controllers and machines as well as how to
 use rack controllers in an HA environment.
 
 <!-- LINKS -->
 
-[machine-comms]: intro-controllers.md#how-region-and-rack-controllers-and-machines-communicate
+[multi-region-endpoints]: manage-ha.md#multiple-region-endpoints
+[machine-comms]: intro-communication.md
 [manage-ha]: manage-ha.md
 [install-from-iso]: installconfig-iso-install.md
 [install-from-iso-rackd]: installconfig-iso-install.md#rack-controller
