@@ -3,25 +3,6 @@ TODO:  Track bug: https://goo.gl/Yifghb
 table_of_contents: True
 
 
-# Install MAAS
-
-To best fit your requirements, MAAS offers several installation options:
-
-- **[Snap][install-from-snap]**. The quickest and easiest way to install MAAS. Benefits from
-  autonomous upgrades and direct access to beta and developmental versions
-- **[Packages][install-from-packages]**. Versatile *deb*-based installation
-  with manual control over where specific components are placed, when upgrades
-  are applied, and where packages are installed from
-- **[Ubuntu Server ISO][install-from-iso]**. Conveniently install MAAS as you provision a new
-  server
-
-Additionally, you may want to consider an installation within
-[LXD containers][install-with-lxd]. This allows MAAS nodes to also run as
-local containers and is ideal for testing and experimenting with MAAS.
-
-!!! Note:
-    See [MAAS HA][maas-ha] for more information about installing MAAS via Snaps
-    in high-availability environments.
 
 ## Install from snap
 
@@ -171,10 +152,6 @@ browser. See [Access the web UI][webui] for further details.
 [insights.ubuntu.com-snappy]: https://insights.ubuntu.com/2016/06/14/universal-snap-packages-launch-on-multiple-linux-distros/
 [maas-ha]: manage-ha.md
 [launchpad-bugs-maas]: https://bugs.launchpad.net/maas/+filebug
-[install-from-iso]: installconfig-iso-install.md
-[install-from-packages]: installconfig-package-install.md
-[install-from-snap]: #install-from-snap
-[install-with-lxd]: installconfig-lxd-install.md
 [launchpad]: https://launchpad.net/
 [github]: https://github.com
 [webui]: installconfig-webui.md#access-the-web-ui

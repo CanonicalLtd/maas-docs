@@ -2,7 +2,7 @@ Title: CLI Composable Hardware
 table_of_contents: True
 
 
-# CLI pod management
+# CLI composable machines management
 
 This is a list of examples of pod-management tasks performed with the MAAS CLI.
 See [MAAS CLI][manage-cli] for how to get started with the CLI and

@@ -65,7 +65,7 @@ will return the machine back to the default resource pool.
 [createpod]: nodes-comp-hw.md#add-a-pod
 [webui]: installconfig-webui.md
 
-[img__pod-to-pool]: ../media/nodes-comp-hw__2.5_pod_to_pool.png
+[img__pod-to-pool]: ../media/nodes-resource-pools__2.5_pod_to_pool.png
 [img__add-pool]: ../media/nodes-resource-pools__2.5_add-pool.png
 [img__delete-pool]: ../media/nodes-resource-pools__2.5_delete-pool.png
 [img__add-machine]: ../media/nodes-resource-pools__2.5_add-machine.png

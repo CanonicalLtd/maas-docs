@@ -9,45 +9,6 @@ rack-controller level and the region-controller level. See [Concepts and
 terms][concepts-controllers] for detailed information on what services are
 provided by each of those levels.
 
-## Communication between machines and rack controllers
-
-In multi-region/rack clusters (i.e. HA clusters), all machine communication
-with MAAS is proxied through rack controllers, including HTTP metadata, DNS,
-syslog and APT (proxying via Squid).  Note that in single-region/rack clusters,
-the region controller manages communication.
-
-Proxying through rack controllers is useful in environments where communication
-between machines and region controllers is restricted.
-
-MAAS creates an internal DNS domain, not manageable by the user, and a special
-DNS resource for each subnet that is managed by MAAS.  Each subnet includes all
-rack controllers that have an IP on that subnet. Booting machines use the subnet
-DNS resource to resolve the rack controller available for communication. If
-multiple rack controllers belong to the same subnet, MAAS uses a round-robin
-algorithm to balance the load across multiple rack controllers.  This ensures
-that machines always have a rack controller.
-
-Machines use this internal domain for HTTP metadata queries, APT (proxying via
-Squid), and Syslog. DNS queries, PXE booting, and NTP polls use IP addresses.
-
-The rack controller installs and configures `bind` as a forwarder. All machines
-communicate via the rack controller directly.
-
-
-!!! Note:
-    Zone management and maintenance still happen within the region controller.
-
-### HTTP
-
-The rack controller installs `nginx`, which serves as a proxy and as an HTTP
-server, binding to port 5248. Machines contact the metadata server via the rack
-controller.
-
-### Syslog
-
-See [Syslog][syslog] for more information about MAAS syslog communication as well as how
-to set up a remote syslog server.
-
 ## Rack controller HA
 
 Multiple rack controllers are necessary to achieve high availability. Please see
@@ -136,60 +97,11 @@ PostgreSQL.
     requires that `max_connections` be adjusted to add 40 more connections per
     extra region controller added to the HA configuration.
 
-### Secondary API server
+### Secondary API server(s)
 
-This section assumes that PostgreSQL HA has been set up.
-
-!!! Note:
-    Any number of API servers can be present as long as each connects to
-    the same PostgreSQL database and allows the required number of connections.
-
-On the primary database host, edit file `/etc/postgresql/9.5/main/pg_hba.conf`
-to allow the eventual secondary API server to contact the primary PostgreSQL
-database. Include the below line, replacing $SECONDARY_API_SERVER_IP with the
-IP address of the host that will contain the secondary API server:
-
-```no-highlight
-host    maasdb          maas	$SECONDARY_API_SERVER_IP/32         md5
-```
-
-!!! Note:
-    The primary database and API servers often reside on the same host.
-
-Apply this change by restarting the database:
-
-```bash
-sudo systemctl restart postgresql
-```
-
-On a secondary host, add the new API server by installing `maas-region-api`:
-
-```bash
-sudo apt install maas-region-api
-```
-
-The `/etc/maas/regiond.conf` file from the primary API server will be needed.
-Below, we assume it can be copied (scp) from the 'ubuntu' account home
-directory using password authentication (adjust otherwise). The
-`local_config_set` command will edit that file by pointing to the host that
-contains the primary PostgreSQL database. DNS (`bind9`) configuration options
-are also rationalized between bind9 itself and the same options within MAAS:
-
-```bash
-sudo systemctl stop maas-regiond
-sudo scp ubuntu@$PRIMARY_API_SERVER:regiond.conf /etc/maas/regiond.conf
-sudo chown root:maas /etc/maas/regiond.conf
-sudo chmod 640 /etc/maas/regiond.conf
-sudo maas-region local_config_set --database-host $PRIMARY_PG_SERVER
-sudo systemctl restart bind9
-sudo systemctl start maas-regiond
-```
-
-Check the log files for any errors:
-
-- `/var/log/maas/regiond.log`
-- `/var/log/maas/maas.log`
-- `/var/log/syslog`
+Please see [Region controllers][install-region] and [Multiple region
+endpoints][multi-region-endpoints] for more information about how to install
+and configure rack controllers for multiple region controllers.
 
 ### Load balancing with HAProxy (optional)
 
@@ -280,6 +192,8 @@ IP][virtualip] for more information.
 [snap-install]: installconfig-snap-install.md#install-from-snap
 [concepts-controllers]: intro-concepts.md#controllers
 [rackd-communication]: installconfig-rack.md#communication-between-machines-and-rack-controllers
+[multi-region-endpoints]: #multiple-region-endpoints
+[install-region]: installconfig-region.md
 [install-rackd]: installconfig-rack.md#install-a-rack-controller
 [enabling-dhcp]: installconfig-network-dhcp.md#enabling-dhcp
 [keepalived-man-page]: http://manpages.ubuntu.com/cgi-bin/search.py?q=keepalived.conf

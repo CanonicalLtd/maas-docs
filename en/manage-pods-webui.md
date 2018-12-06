@@ -1,8 +1,8 @@
-Title: Manage pods
+Title: Manage composable machines
 TODO:  
 table_of_contents: True
 
-# Manage pods
+# Manage composable machines
 
 See [Web UI][webui] for how to get started with the web UI.
 
