@@ -165,6 +165,25 @@ the MAAS environment:
 - `HAS_STARTED`: When True MAAS has run the script once before but not to
   completion. Indicates the machine has been rebooted.
 
+## Results
+
+A script can output its results to a YAML file and those results will be associated
+with the hardware type defined within the script. The path for the results file
+is provided by MAAS in an environment variable, `RESULT_PATH`. Scripts should
+write YAML to this file before exiting.
+
+If the hardware type is *storage*, for example, and the script accepts a
+*storage type* parameter, the result will be associated with a specific storage
+device.
+
+The YAML file must represent a dictionary with the following fields:
+
+- `result`: The completion status of the script. This can be either `passed`,
+  `failed` or `degraded`. If no status is defined, an exit code of `0`
+  indicates a pass while a non-zero value indicates a failure.
+- `results`: A dictionary of results. The key may map to a results key defined
+  as embedded YAML within the script. The value of each result must be a string
+  or a list of strings.
 
 ## Script examples
 
@@ -270,23 +289,6 @@ Similarly, scripts selected by tag on the [command line][maas-scripts-cli]
 which specify the `for_hardware` field will only run on matching hardware.
 
 
-## Results
-
-A script can output its results to a YAML file and those results will be associated
-with the hardware type defined within the script. 
-
-If the hardware type is *storage*, for example, and the script accepts a
-*storage type* parameter, the result will be associated with a specific storage
-device.
-
-The YAML file must represent a dictionary with the following fields:
-
-- `result`: The completion status of the script. This can be either `passed`,
-  `failed` or `degraded`. If no status is defined, an exit code of `0`
-  indicates a pass while a non-zero value indicates a failure.
-- `results`: A dictionary of results. The key may map to a results key defined
-  as embedded YAML within the script. The value of each result must be a string
-  or a list of strings.
 
 ## Upload procedure
 
