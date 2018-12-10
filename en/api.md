@@ -1526,188 +1526,774 @@ depending on the boot order or kernel version.
 
 Manage a boot resource.
 
-#### `DELETE /MAAS/api/2.0/boot-resources/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/boot-resources/{id}/``</summary>
 
-Delete boot resource.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/boot-resources/{id}/`
+Delete a boot resource by id.
 
-Read a boot resource.
+**Parameters**
 
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The boot resource id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-resources/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Reads a boot resource by id
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The boot resource id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "id": 7,
+        "type": "Uploaded",
+        "name": "newresource",
+        "architecture": "amd64/generic",
+        "resource_uri": "/MAAS/api/2.0/boot-resources/7/",
+        "subarches": "generic",
+        "title": "",
+        "sets": {
+            "20181203": {
+                "version": "20181203",
+                "label": "uploaded",
+                "size": 4000000000,
+                "complete": false,
+                "progress": 0,
+                "files": {
+                    "root-tgz": {
+                        "filename": "root-tgz",
+                        "filetype": "root-tgz",
+                        "sha256": "aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f",
+                        "size": 4000000000,
+                        "complete": false,
+                        "progress": 0,
+                        "upload_uri": "/MAAS/api/2.0/boot-resources/7/upload/18/"
+                    }
+                }
+            }
+        }
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Boot resources
 
 Manage the boot resources.
 
-#### `GET /MAAS/api/2.0/boot-resources/`
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-resources/``</summary>
 
-List all boot resources.
+------------------------------------------------------------------------
 
-param type
+List all boot resources
 
-:   Type of boot resources to list. Default: all
+**Parameters**
 
-#### `GET /MAAS/api/2.0/boot-resources/ op=is_importing`
+------------------------------------------------------------------------
 
-Return import status.
+**type** (*String*): Optional. Type of boot resources to list. If not
+provided, returns all types.
 
-#### `POST /MAAS/api/2.0/boot-resources/`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "id": 3,
+            "type": "Synced",
+            "name": "grub-efi-signed/uefi",
+            "architecture": "amd64/generic",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/3/"
+        },
+        {
+            "id": 4,
+            "type": "Synced",
+            "name": "grub-efi/uefi",
+            "architecture": "arm64/generic",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/4/"
+        },
+        {
+            "id": 5,
+            "type": "Synced",
+            "name": "grub-ieee1275/open-firmware",
+            "architecture": "ppc64el/generic",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/5/"
+        },
+        {
+            "id": 6,
+            "type": "Synced",
+            "name": "pxelinux/pxe",
+            "architecture": "i386/generic",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/6/"
+        },
+        {
+            "id": 1,
+            "type": "Synced",
+            "name": "ubuntu/bionic",
+            "architecture": "amd64/ga-18.04",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/1/",
+            "subarches": "generic,hwe-p,hwe-q,hwe-r,hwe-s,hwe-t,hwe-u,hwe-v,hwe-w,ga-16.04,ga-16.10,ga-17.04,ga-17.10,ga-18.04"
+        },
+        {
+            "id": 2,
+            "type": "Synced",
+            "name": "ubuntu/bionic",
+            "architecture": "amd64/ga-18.04-lowlatency",
+            "resource_uri": "/MAAS/api/2.0/boot-resources/2/",
+            "subarches": "generic,hwe-p,hwe-q,hwe-r,hwe-s,hwe-t,hwe-u,hwe-v,hwe-w,ga-16.04,ga-16.10,ga-17.04,ga-17.10,ga-18.04"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-resources/?op=is_importing``</summary>
+
+------------------------------------------------------------------------
+
+Get the status of importing resources.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content* : true
+
+*Content* : false
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/boot-resources/``</summary>
+
+------------------------------------------------------------------------
 
 Uploads a new boot resource.
 
-param name
+**Parameters**
 
-:   Name of the boot resource.
+------------------------------------------------------------------------
 
-param title
+**name** (*String*): Required. Name of the boot resource.
 
-:   Title for the boot resource.
+**architecture** (*String*): Required. Architecture the boot resource
+supports.
 
-param architecture
+**sha256** (*String*): Required. The `sha256` hash of the resource.
 
-:   Architecture the boot resource supports.
+**size** (*String*): Required. The size of the resource in bytes.
 
-param filetype
+**title** (*String*): Optional. Title for the boot resource.
 
-:   Filetype for uploaded content. (Default: tgz, Supported: tgz, ddtgz,
-    ddtbz, ddtxz, ddtar, ddbz2, ddgz, ddxz, ddraw
+**filetype** (*String*): Optional. Filetype for uploaded content.
+(Default: `tgz`. Supported: `tgz`, `ddtgz`, `ddtbz`, `ddtxz`, `ddtar`,
+`ddbz2`, `ddgz`, `ddxz`, `ddraw`)
 
-param content
+**content** (*String*): Optional. Image content. Note: this is not a
+normal parameter, but an `application/octet-stream` file upload.
 
-:   Image content. Note: this is not a normal parameter, but a file
-    upload.
+**Success**
 
-#### `POST /MAAS/api/2.0/boot-resources/ op=import`
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 201
+
+*JSON*
+
+    {
+        "id": 7,
+        "type": "Uploaded",
+        "name": "newresource",
+        "architecture": "amd64/generic",
+        "resource_uri": "/MAAS/api/2.0/boot-resources/7/",
+        "subarches": "generic",
+        "title": "",
+        "sets": {
+            "20181203": {
+                "version": "20181203",
+                "label": "uploaded",
+                "size": 4000000000,
+                "complete": false,
+                "progress": 0,
+                "files": {
+                    "root-tgz": {
+                        "filename": "root-tgz",
+                        "filetype": "root-tgz",
+                        "sha256": "aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f",
+                        "size": 4000000000,
+                        "complete": false,
+                        "progress": 0,
+                        "upload_uri": "/MAAS/api/2.0/boot-resources/7/upload/18/"
+                    }
+                }
+            }
+        }
+    }
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/boot-resources/?op=import``</summary>
+
+------------------------------------------------------------------------
 
 Import the boot resources.
 
-#### `POST /MAAS/api/2.0/boot-resources/ op=stop_import`
+**Success**
 
-Stop import of boot resources.
+------------------------------------------------------------------------
 
+*HTTP Status Code* : 200
+
+*Content* : Import of boot resources started
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/boot-resources/?op=stop_import``</summary>
+
+------------------------------------------------------------------------
+
+Stop import the boot resources.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content* : Import of boot resources is being stopped.
+
+<p>&nbsp;</p>
+</details>
 ### Boot source
 
 Manage a boot source.
 
-#### `DELETE /MAAS/api/2.0/boot-sources/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/boot-sources/{id}/``</summary>
 
-Delete a specific boot source.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/boot-sources/{id}/`
+Delete a boot source with the given id.
 
-Read a boot source.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/boot-sources/{id}/`
+------------------------------------------------------------------------
 
-Update a specific boot source.
+**{id}** (*String*): Required. A boot-source id.
 
-param url
+**Success**
 
-:   The URL of the BootSource.
+------------------------------------------------------------------------
 
-param keyring\_filename
+*HTTP Status Code* : 204
 
-:   The path to the keyring file for this BootSource.
+**Error**
 
-param keyring\_data
+------------------------------------------------------------------------
 
-:   The GPG keyring for this BootSource, base64-encoded data.
+*HTTP Status Code* : 404
 
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-sources/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a boot source with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*String*): Required. A boot-source id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "created": "2018-12-04T18:11:31.894",
+        "updated": "2018-12-04T18:11:31.894",
+        "url": "http://images.maas.io/ephemeral-v3/daily/",
+        "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
+        "id": 1,
+        "keyring_data": "",
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/boot-sources/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a boot source with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*String*): Required. A boot-source id.
+
+**url** (*String*): Optional. The URL of the BootSource.
+
+**keyring\_filename** (*String*): Optional. The path to the keyring file
+for this BootSource.
+
+**keyring\_data** (*String*): Optional. The GPG keyring for this
+BootSource, base64-encoded data.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "created": "2018-12-04T18:11:31.894",
+        "updated": "2018-12-04T18:20:08.070",
+        "url": "http://my.domain.com/ephemeral-v3/daily/",
+        "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
+        "keyring_data": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Boot source selection
 
 Manage a boot source selection.
 
-#### `DELETE /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/``</summary>
 
-Delete a specific boot source.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+Delete a boot source with the given id.
 
-Read a boot source selection.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/`
+------------------------------------------------------------------------
 
-Update a specific boot source selection.
+**{boot\_source\_id}** (*String*): Required. A boot-source id.
 
-param os
+**{id}** (*String*): Required. A boot-source selection id.
 
-:   The OS (e.g. ubuntu, centos) for which to import resources.
+**Success**
 
-param release
+------------------------------------------------------------------------
 
-:   The release for which to import resources.
+*HTTP Status Code* : 204
 
-param arches
+**Error**
 
-:   The list of architectures for which to import resources.
+------------------------------------------------------------------------
 
-param subarches
+*HTTP Status Code* : 404
 
-:   The list of subarchitectures for which to import resources.
+*Content*
 
-param labels
+    Not Found
 
-:   The list of labels for which to import resources.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/``</summary>
 
+------------------------------------------------------------------------
+
+Read a boot source selection with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{boot\_source\_id}** (*String*): Required. A boot-source id.
+
+**{id}** (*String*): Required. A boot-source selection id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "os": "ubuntu",
+        "release": "bionic",
+        "arches": [
+            "amd64"
+        ],
+        "subarches": [
+            "*"
+        ],
+        "labels": [
+            "*"
+        ],
+        "id": 1,
+        "boot_source_id": 1,
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/selections/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a boot source selection with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{boot\_source\_id}** (*String*): Required. A boot-source id.
+
+**{id}** (*String*): Required. A boot-source selection id.
+
+**os** (*String*): Optional. The OS (e.g. ubuntu, centos) for which to
+import resources.
+
+**release** (*String*): Optional. The release for which to import
+resources.
+
+**arches** (*String*): Optional. The list of architectures for which to
+import resources.
+
+**subarches** (*String*): Optional. The list of sub-architectures for
+which to import resources.
+
+**labels** (*String*): Optional. The list of labels for which to import
+resources.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "os": "ubuntu",
+        "release": "bionic",
+        "arches": [
+            "amd64"
+        ],
+        "subarches": [
+            "*"
+        ],
+        "labels": [
+            "*"
+        ],
+        "id": 1,
+        "boot_source_id": 1,
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/selections/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Boot source selections
 
 Manage the collection of boot source selections.
 
-#### `GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/`
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/``</summary>
 
-List boot source selections.
+------------------------------------------------------------------------
 
-Get a listing of a boot source's selections.
+List all available boot-source selections.
 
-#### `POST /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/`
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{boot\_source\_id}** (*String*): Required. A boot-source id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "os": "ubuntu",
+        "release": "bionic",
+        "arches": [
+            "amd64"
+        ],
+        "subarches": [
+            "*"
+        ],
+        "labels": [
+            "*"
+        ],
+        "id": 1,
+        "boot_source_id": 1,
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/selections/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/boot-sources/{boot_source_id}/selections/``</summary>
+
+------------------------------------------------------------------------
 
 Create a new boot source selection.
 
-param os
+**Parameters**
 
-:   The OS (e.g. ubuntu, centos) for which to import resources.
+------------------------------------------------------------------------
 
-param release
+**{boot\_source\_id}** (*String*): Required. A boot-source id.
 
-:   The release for which to import resources.
+**os** (*String*): Optional. The OS (e.g. ubuntu, centos) for which to
+import resources.
 
-param arches
+**release** (*String*): Optional. The release for which to import
+resources.
 
-:   The architecture list for which to import resources.
+**arches** (*String*): Optional. The architecture list for which to
+import resources.
 
-param subarches
+**subarches** (*String*): Optional. The subarchitecture list for which
+to import resources.
 
-:   The subarchitecture list for which to import resources.
+**labels** (*String*): Optional. The label lists for which to import
+resources.
 
-param labels
+**Success**
 
-:   The label lists for which to import resources.
+------------------------------------------------------------------------
 
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "os": "ubuntu",
+        "release": "bionic",
+        "arches": [
+            "amd64"
+        ],
+        "subarches": [
+            "*"
+        ],
+        "labels": [
+            "*"
+        ],
+        "id": 1,
+        "boot_source_id": 1,
+        "resource_uri": "/MAAS/api/2.0/boot-sources/1/selections/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Boot sources
 
 Manage the collection of boot sources.
 
-#### `GET /MAAS/api/2.0/boot-sources/`
+<details>
+  <summary>``GET /MAAS/api/2.0/boot-sources/``</summary>
 
-List boot sources.
+------------------------------------------------------------------------
 
-Get a listing of boot sources.
+List all boot sources.
 
-#### `POST /MAAS/api/2.0/boot-sources/`
+**Success**
 
-Create a new boot source.
+------------------------------------------------------------------------
 
-param url
+*HTTP Status Code* : 200
 
-:   The URL of the BootSource.
+*JSON*
 
-param keyring\_filename
+    [
+        {
+            "created": "2018-12-04T18:11:31.894",
+            "updated": "2018-12-04T18:20:08.070",
+            "url": "http://my.domain.com/ephemeral-v3/daily/",
+            "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
+            "keyring_data": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/boot-sources/1/"
+        }
+    ]
 
-:   The path to the keyring file for this BootSource.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/boot-sources/``</summary>
 
-param keyring\_data
+------------------------------------------------------------------------
 
-:   The GPG keyring for this BootSource, base64-encoded.
+Create a new boot source. Note that in addition to `url`, you must
+supply either `keyring_data` or `keyring_filename`.
 
+**Parameters**
+
+------------------------------------------------------------------------
+
+**url** (*String*): Required. The URL of the BootSource.
+
+**keyring\_filename** (*String*): Optional. The path to the keyring file
+for this BootSource.
+
+**keyring\_data** (*String*): Optional. The GPG keyring for this
+BootSource, base64-encoded.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 201
+
+*JSON*
+
+    {
+        "created": "2018-12-04T18:34:59.543",
+        "updated": "2018-12-04T18:34:59.543",
+        "url": "http://foo.com/bleh",
+        "keyring_filename": "/bleh/foo.gpg",
+        "id": 2,
+        "keyring_data": "",
+        "resource_uri": "/MAAS/api/2.0/boot-sources/2/"
+    }
+
+<p>&nbsp;</p>
+</details>
 ### Commissioning script
 
 Manage a custom commissioning script.
@@ -1784,177 +2370,640 @@ param content
 
 Manage an individual DHCP snippet.
 
-> The DHCP snippet is identified by its id.
+The DHCP snippet is identified by its id.
 
-#### `DELETE /MAAS/api/2.0/dhcp-snippets/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/dhcp-snippets/{id}/``</summary>
 
-Delete a DHCP snippet.
+------------------------------------------------------------------------
 
-Returns 404 if the DHCP snippet is not found.
+Delete a DHCP snippet with the given id.
 
-#### `GET /MAAS/api/2.0/dhcp-snippets/{id}/`
+**Parameters**
 
-Read DHCP snippet.
+------------------------------------------------------------------------
 
-Returns 404 if the snippet is not found.
+**{id}** (*Int*): Required. A DHCP snippet id.
 
-#### `POST /MAAS/api/2.0/dhcp-snippets/{id}/ op=revert`
+**Success**
 
-Revert the value of a DHCP snippet to an earlier revision.
+------------------------------------------------------------------------
 
-param to
+*HTTP Status Code* : 204
 
-:   What revision in the DHCP snippet's history to revert to. This can
-    either be an ID or a negative number representing how far back to
-    go.
+**Error**
 
-type to
+------------------------------------------------------------------------
 
-:   integer
+*HTTP Status Code* : 404
 
-Returns 404 if the DHCP snippet is not found.
+*Content*
 
-#### `PUT /MAAS/api/2.0/dhcp-snippets/{id}/`
+    Not Found
 
-Update a DHCP snippet.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/dhcp-snippets/{id}/``</summary>
 
-param name
+------------------------------------------------------------------------
 
-:   The name of the DHCP snippet.
+Read a DHCP snippet with the given id.
 
-type name
+**Parameters**
 
-:   unicode
+------------------------------------------------------------------------
 
-param value
+**{id}** (*Int*): Required. A DHCP snippet id.
 
-:   The new value of the DHCP snippet to be used in dhcpd.conf. Previous
-    values are stored and can be reverted.
+**Success**
 
-type value
+------------------------------------------------------------------------
 
-:   unicode
+*HTTP Status Code* : 200
 
-param description
+*JSON*
 
-:   A description of what the DHCP snippet does.
+    {
+        "name": "boot from other server",
+        "description": "instructs device to boot from other server",
+        "enabled": true,
+        "node": {
+            "created": "2018-12-04T19:21:11.134",
+            "updated": "2018-12-04T19:21:11.164",
+            "hostname": "free-orca",
+            "pool": null,
+            "domain": {
+                "authoritative": true,
+                "ttl": null,
+                "name": "maas",
+                "is_default": true,
+                "id": 0,
+                "resource_record_count": 0,
+                "resource_uri": "/MAAS/api/2.0/domains/0/"
+            },
+            "address_ttl": null,
+            "status": 0,
+            "previous_status": 0,
+            "status_expires": null,
+            "bios_boot_method": null,
+            "osystem": "",
+            "distro_series": "",
+            "architecture": null,
+            "min_hwe_kernel": null,
+            "hwe_kernel": null,
+            "node_type": 1,
+            "parent": null,
+            "agent_name": "",
+            "error_description": "",
+            "zone": {
+                "name": "default",
+                "description": "",
+                "id": 1,
+                "resource_uri": "/MAAS/api/2.0/zones/default/"
+            },
+            "cpu_count": 0,
+            "cpu_speed": 0,
+            "memory": 0,
+            "swap_size": null,
+            "bmc": null,
+            "instance_power_parameters": "",
+            "power_state": "unknown",
+            "power_state_queried": null,
+            "power_state_updated": null,
+            "last_image_sync": null,
+            "token": null,
+            "error": "",
+            "netboot": true,
+            "license_key": null,
+            "creation_type": 1,
+            "boot_interface": null,
+            "boot_cluster_ip": null,
+            "boot_disk": null,
+            "gateway_link_ipv4": null,
+            "gateway_link_ipv6": null,
+            "default_user": "",
+            "install_rackd": false,
+            "install_kvm": false,
+            "enable_ssh": false,
+            "skip_bmc_config": false,
+            "skip_networking": false,
+            "skip_storage": false,
+            "url": "",
+            "dns_process": null,
+            "managing_process": null,
+            "current_commissioning_script_set": null,
+            "current_installation_script_set": null,
+            "current_testing_script_set": null,
+            "locked": false,
+            "owner": null,
+            "resource_uri": "/MAAS/api/2.0/nodes/shqe4g/"
+        },
+        "subnet": null,
+        "global_snippet": false,
+        "value": "filename \"test-boot\";\nserver-name \"boot.from.me\";\n",
+        "history": [
+            {
+                "id": 20,
+                "value": "filename \"test-boot\";\nserver-name \"boot.from.me\";\n",
+                "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+            }
+        ],
+        "id": 5,
+        "resource_uri": "/MAAS/api/2.0/dhcp-snippets/5/"
+    }
 
-type description
+**Error**
 
-:   unicode
+------------------------------------------------------------------------
 
-param enabled
+*HTTP Status Code* : 404
 
-:   Whether or not the DHCP snippet is currently enabled.
+*Content*
 
-type enabled
+    Not Found
 
-:   boolean
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/dhcp-snippets/{id}/?op=revert``</summary>
 
-param node
+------------------------------------------------------------------------
 
-:   The node the DHCP snippet is to be used for. Can not be set if
-    subnet is set.
+Revert the value of a DHCP snippet with the given id to an earlier
+revision.
 
-type node
+**Parameters**
 
-:   unicode
+------------------------------------------------------------------------
 
-param subnet
+**{id}** (*Int*): Required. A DHCP snippet id.
 
-:   The subnet the DHCP snippet is to be used for. Can not be set if
-    node is set.
+**to** (*Int*): Required. What revision in the DHCP snippet's history to
+revert to. This can either be an ID or a negative number representing
+how far back to go.
 
-type subnet
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param global\_snippet
+*HTTP Status Code* : 200
 
-:   Set the DHCP snippet to be a global option. This removes any node or
-    subnet links.
+*JSON*
 
-type global\_snippet
+    {
+        "name": "600 lease time",
+        "description": "changes lease time to 600 secs.",
+        "enabled": true,
+        "node": null,
+        "subnet": {
+            "name": "name-rLI3eq",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "id": 5001,
+                "name": "untagged",
+                "fabric": "fabric-0",
+                "space": "management",
+                "fabric_id": 0,
+                "primary_rack": "7xtf67",
+                "secondary_rack": "76y7pg",
+                "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+            },
+            "cidr": "172.16.1.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.1.1",
+            "dns_servers": [
+                "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "id": 1,
+            "space": "management",
+            "resource_uri": "/MAAS/api/2.0/subnets/1/"
+        },
+        "id": 3,
+        "history": [
+            {
+                "id": 18,
+                "value": "default-lease-time 600;",
+                "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+            }
+        ],
+        "value": "default-lease-time 600;",
+        "global_snippet": false,
+        "resource_uri": "/MAAS/api/2.0/dhcp-snippets/3/"
+    }
 
-:   boolean
+**Error**
 
-Returns 404 if the DHCP snippet is not found.
+------------------------------------------------------------------------
 
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/dhcp-snippets/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a DHCP snippet with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. A DHCP snippet id.
+
+**name** (*String*): Optional. The name of the DHCP snippet.
+
+**value** (*String*): Optional. The new value of the DHCP snippet to be
+used in dhcpd.conf. Previous values are stored and can be reverted.
+
+**description** (*String*): Optional. A description of what the DHCP
+snippet does.
+
+**enabled** (*Boolean*): Optional. Whether or not the DHCP snippet is
+currently enabled.
+
+**node** (*String*): Optional. The node the DHCP snippet is to be used
+for. Can not be set if subnet is set.
+
+**subnet** (*String*): Optional. The subnet the DHCP snippet is to be
+used for. Can not be set if node is set.
+
+**global\_snippet** (*Boolean*): Optional. Set the DHCP snippet to be a
+global option. This removes any node or subnet links.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "boot from other server",
+        "description": "instructs device to boot from other server",
+        "enabled": true,
+        "node": {
+            "created": "2018-12-04T19:21:11.134",
+            "updated": "2018-12-04T19:21:11.164",
+            "hostname": "free-orca",
+            "pool": null,
+            "domain": {
+                "authoritative": true,
+                "ttl": null,
+                "name": "maas",
+                "is_default": true,
+                "id": 0,
+                "resource_record_count": 0,
+                "resource_uri": "/MAAS/api/2.0/domains/0/"
+            },
+            "address_ttl": null,
+            "status": 0,
+            "previous_status": 0,
+            "status_expires": null,
+            "bios_boot_method": null,
+            "osystem": "",
+            "distro_series": "",
+            "architecture": null,
+            "min_hwe_kernel": null,
+            "hwe_kernel": null,
+            "node_type": 1,
+            "parent": null,
+            "agent_name": "",
+            "error_description": "",
+            "zone": {
+                "name": "default",
+                "description": "",
+                "id": 1,
+                "resource_uri": "/MAAS/api/2.0/zones/default/"
+            },
+            "cpu_count": 0,
+            "cpu_speed": 0,
+            "memory": 0,
+            "swap_size": null,
+            "bmc": null,
+            "instance_power_parameters": "",
+            "power_state": "unknown",
+            "power_state_queried": null,
+            "power_state_updated": null,
+            "last_image_sync": null,
+            "token": null,
+            "error": "",
+            "netboot": true,
+            "license_key": null,
+            "creation_type": 1,
+            "boot_interface": null,
+            "boot_cluster_ip": null,
+            "boot_disk": null,
+            "gateway_link_ipv4": null,
+            "gateway_link_ipv6": null,
+            "default_user": "",
+            "install_rackd": false,
+            "install_kvm": false,
+            "enable_ssh": false,
+            "skip_bmc_config": false,
+            "skip_networking": false,
+            "skip_storage": false,
+            "url": "",
+            "dns_process": null,
+            "managing_process": null,
+            "current_commissioning_script_set": null,
+            "current_installation_script_set": null,
+            "current_testing_script_set": null,
+            "locked": false,
+            "owner": null,
+            "resource_uri": "/MAAS/api/2.0/nodes/shqe4g/"
+        },
+        "subnet": null,
+        "global_snippet": false,
+        "value": "filename \"test-boot\";\nserver-name \"boot.from.me\";\n",
+        "history": [
+            {
+                "id": 20,
+                "value": "filename \"test-boot\";\nserver-name \"boot.from.me\";\n",
+                "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+            }
+        ],
+        "id": 5,
+        "resource_uri": "/MAAS/api/2.0/dhcp-snippets/5/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### DHCP Snippets
 
 Manage the collection of all DHCP snippets in MAAS.
 
-#### `GET /MAAS/api/2.0/dhcp-snippets/`
+<details>
+  <summary>``GET /MAAS/api/2.0/dhcp-snippets/``</summary>
 
-List all DHCP snippets.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/dhcp-snippets/`
+List all available DHCP snippets.
 
-Create a DHCP snippet.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   The name of the DHCP snippet. This is required to create a new DHCP
-    snippet.
+*HTTP Status Code* : 200
 
-type name
+*JSON*
 
-:   unicode
+    [
+        {
+            "name": "foo class",
+            "description": "adds class for vender 'foo'",
+            "enabled": true,
+            "node": null,
+            "subnet": null,
+            "value": "class \"foo\" {\n    match if substring (\n        option vendor-class-identifier, 0, 3) = \"foo\";\n}\n",
+            "history": [
+                {
+                    "id": 16,
+                    "value": "class \"foo\" {\n    match if substring (\n        option vendor-class-identifier, 0, 3) = \"foo\";\n}\n",
+                    "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+                }
+            ],
+            "id": 1,
+            "global_snippet": true,
+            "resource_uri": "/MAAS/api/2.0/dhcp-snippets/1/"
+        },
+        {
+            "name": "bar class",
+            "description": "adds class for vender 'bar'",
+            "enabled": false,
+            "node": null,
+            "subnet": null,
+            "value": "class \"bar\" {\n    match if substring (\n        option vendor-class-identifier, 0, 3) = \"bar\";\n}\n",
+            "history": [
+                {
+                    "id": 17,
+                    "value": "class \"bar\" {\n    match if substring (\n        option vendor-class-identifier, 0, 3) = \"bar\";\n}\n",
+                    "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+                }
+            ],
+            "id": 2,
+            "global_snippet": true,
+            "resource_uri": "/MAAS/api/2.0/dhcp-snippets/2/"
+        },
+        {
+            "name": "600 lease time",
+            "description": "changes lease time to 600 secs.",
+            "enabled": true,
+            "node": null,
+            "subnet": {
+                "name": "name-rLI3eq",
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-0",
+                    "id": 5001,
+                    "fabric_id": 0,
+                    "secondary_rack": "76y7pg",
+                    "primary_rack": "7xtf67",
+                    "name": "untagged",
+                    "space": "management",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+                },
+                "cidr": "172.16.1.0/24",
+                "rdns_mode": 2,
+                "gateway_ip": "172.16.1.1",
+                "dns_servers": [
+                    "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+                ],
+                "allow_dns": true,
+                "allow_proxy": true,
+                "active_discovery": false,
+                "managed": true,
+                "id": 1,
+                "space": "management",
+                "resource_uri": "/MAAS/api/2.0/subnets/1/"
+            },
+            "value": "default-lease-time 600;",
+            "history": [
+                {
+                    "id": 18,
+                    "value": "default-lease-time 600;",
+                    "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+                }
+            ],
+            "id": 3,
+            "global_snippet": false,
+            "resource_uri": "/MAAS/api/2.0/dhcp-snippets/3/"
+        },
+        {
+            "name": "7200 max lease time",
+            "description": "changes max lease time to 7200 secs.",
+            "enabled": false,
+            "node": null,
+            "subnet": {
+                "name": "name-v5djzQ",
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-1",
+                    "id": 5003,
+                    "fabric_id": 1,
+                    "secondary_rack": "76y7pg",
+                    "primary_rack": "7xtf67",
+                    "name": "untagged",
+                    "space": "management",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                },
+                "cidr": "172.16.2.0/24",
+                "rdns_mode": 2,
+                "gateway_ip": "172.16.2.1",
+                "dns_servers": [
+                    "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                    "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                    "120.129.237.29"
+                ],
+                "allow_dns": true,
+                "allow_proxy": true,
+                "active_discovery": false,
+                "managed": true,
+                "id": 2,
+                "space": "management",
+                "resource_uri": "/MAAS/api/2.0/subnets/2/"
+            },
+            "value": "max-lease-time 7200;",
+            "history": [
+                {
+                    "id": 19,
+                    "value": "max-lease-time 7200;",
+                    "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+                }
+            ],
+            "id": 4,
+            "global_snippet": false,
+            "resource_uri": "/MAAS/api/2.0/dhcp-snippets/4/"
+        }
+    ]
 
-param value
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/dhcp-snippets/``</summary>
 
-:   The snippet of config inserted into dhcpd.conf. This is required to
-    create a new DHCP snippet.
+------------------------------------------------------------------------
 
-type value
+Creates a DHCP snippet.
 
-:   unicode
+**Parameters**
 
-param description
+------------------------------------------------------------------------
 
-:   A description of what the snippet does.
+**name** (*String*): Required. The name of the DHCP snippet.
 
-type description
+**value** (*String*): Required. The snippet of config inserted into
+dhcpd.conf.
 
-:   unicode
+**description** (*String*): Optional. A description of what the snippet
+does.
 
-param enabled
+**enabled** (*Boolean*): Optional. Whether or not the snippet is
+currently enabled.
 
-:   Whether or not the snippet is currently enabled.
+**node** (*String*): Optional. The node this snippet applies to. Cannot
+be used with subnet or global\_snippet.
 
-type enabled
+**subnet** (*String*): Optional. The subnet this snippet applies to.
+Cannot be used with node or global\_snippet.
 
-:   boolean
+**global\_snippet** (*Boolean*): Optional. Whether or not this snippet
+is to be applied globally. Cannot be used with node or subnet.
 
-param node
+**Success**
 
-:   The node this snippet applies to. Cannot be used with subnet or
-    global\_snippet.
+------------------------------------------------------------------------
 
-type node
+*HTTP Status Code* : 200
 
-:   unicode
+*JSON*
 
-param subnet
+    {
+        "name": "7200 max lease time",
+        "description": "changes max lease time to 7200 secs.",
+        "enabled": false,
+        "node": null,
+        "subnet": {
+            "name": "name-v5djzQ",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "fabric": "fabric-1",
+                "id": 5003,
+                "fabric_id": 1,
+                "secondary_rack": "76y7pg",
+                "primary_rack": "7xtf67",
+                "name": "untagged",
+                "space": "management",
+                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+            },
+            "cidr": "172.16.2.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.2.1",
+            "dns_servers": [
+                "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                "120.129.237.29"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "id": 2,
+            "space": "management",
+            "resource_uri": "/MAAS/api/2.0/subnets/2/"
+        },
+        "value": "max-lease-time 7200;",
+        "history": [
+            {
+                "id": 19,
+                "value": "max-lease-time 7200;",
+                "created": "Tue, 04 Dec 2018 19:21:11 -0000"
+            }
+        ],
+        "id": 4,
+        "global_snippet": false,
+        "resource_uri": "/MAAS/api/2.0/dhcp-snippets/4/"
+    }
 
-:   The subnet this snippet applies to. Cannot be used with node or
-    global\_snippet.
-
-type subnet
-
-:   unicode
-
-param global\_snippet
-
-:   Whether or not this snippet is to be applied globally. Cannot be
-    used with node or subnet.
-
-type global\_snippet
-
-:   boolean
-
-Returns 404 if the DHCP snippet is not found.
-
+<p>&nbsp;</p>
+</details>
 ### DNSResource
 
 Manage dnsresource.
@@ -2126,16 +3175,44 @@ param ip\_addresses
 
 Manage an individual device.
 
-> The device is identified by its system\_id.
+The device is identified by its system\_id.
 
-#### `DELETE /MAAS/api/2.0/devices/{system_id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/devices/{system_id}/``</summary>
 
-Delete a specific Device.
+------------------------------------------------------------------------
 
-Returns 404 if the device is not found. Returns 403 if the user does not
-have permission to delete the device. Returns 204 if the device is
-successfully deleted.
+Delete a device with the given system\_id.
 
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A device system\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to delete
+the device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 <details>
   <summary>``GET /MAAS/api/2.0/devices/{system_id}/``</summary>
 
@@ -2701,20 +3778,234 @@ the user is not one.
 
 <p>&nbsp;</p>
 </details>
-#### `POST /MAAS/api/2.0/devices/{system_id}/ op=restore_default_configuration`
+<details>
+  <summary>``POST /MAAS/api/2.0/devices/{system_id}/?op=restore_default_configuration``</summary>
 
-Reset a device's configuration to its initial state.
+------------------------------------------------------------------------
 
-Returns 404 if the device is not found. Returns 403 if the user does not
-have permission to reset the device.
+Restore the configuration options of a device with the given system\_id
+to default values.
 
-#### `POST /MAAS/api/2.0/devices/{system_id}/ op=restore_networking_configuration`
+**Parameters**
 
-Reset a device's network options.
+------------------------------------------------------------------------
 
-Returns 404 if the device is not found Returns 403 if the user does not
-have permission to reset the device.
+**{system\_id}** (*String*): Required. A device system\_id.
 
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "owner_data": {},
+        "node_type": 1,
+        "parent": null,
+        "ip_addresses": [],
+        "system_id": "shqe4g",
+        "tag_names": [],
+        "interface_set": [
+            {
+                "discovered": null,
+                "firmware_version": null,
+                "name": "eth-jBhEqB",
+                "system_id": "shqe4g",
+                "parents": [],
+                "effective_mtu": 1500,
+                "children": [],
+                "links": [
+                    {
+                        "id": 71,
+                        "mode": "dhcp"
+                    }
+                ],
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "fabric_id": 12,
+                    "id": 5016,
+                    "space": "undefined",
+                    "secondary_rack": null,
+                    "fabric": "fabric-12",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5016/"
+                },
+                "enabled": true,
+                "vendor": null,
+                "type": "physical",
+                "tags": [
+                    "tag-Vg3OLy",
+                    "tag-KY66Uo",
+                    "tag-jh3fOB"
+                ],
+                "product": null,
+                "id": 134,
+                "params": "",
+                "mac_address": "4d:2f:6f:d3:b7:6d",
+                "resource_uri": "/MAAS/api/2.0/nodes/shqe4g/interfaces/134/"
+            }
+        ],
+        "domain": {
+            "authoritative": true,
+            "ttl": null,
+            "resource_record_count": 0,
+            "name": "maas",
+            "is_default": true,
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "owner": null,
+        "address_ttl": null,
+        "fqdn": "newhostname.maas",
+        "hostname": "newhostname",
+        "node_type_name": "Device",
+        "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to update
+the device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/devices/{system_id}/?op=restore_networking_configuration``</summary>
+
+------------------------------------------------------------------------
+
+Restore the networking options of a device with the given system\_id to
+default values.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A device system\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "interface_set": [
+            {
+                "system_id": "shqe4g",
+                "mac_address": "4d:2f:6f:d3:b7:6d",
+                "type": "physical",
+                "enabled": true,
+                "links": [
+                    {
+                        "id": 70,
+                        "mode": "dhcp"
+                    }
+                ],
+                "firmware_version": null,
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-12",
+                    "space": "undefined",
+                    "name": "untagged",
+                    "fabric_id": 12,
+                    "id": 5016,
+                    "secondary_rack": null,
+                    "primary_rack": null,
+                    "resource_uri": "/MAAS/api/2.0/vlans/5016/"
+                },
+                "discovered": null,
+                "tags": [
+                    "tag-Vg3OLy",
+                    "tag-KY66Uo",
+                    "tag-jh3fOB"
+                ],
+                "parents": [],
+                "name": "eth-jBhEqB",
+                "params": "",
+                "children": [],
+                "effective_mtu": 1500,
+                "id": 134,
+                "product": null,
+                "vendor": null,
+                "resource_uri": "/MAAS/api/2.0/nodes/shqe4g/interfaces/134/"
+            }
+        ],
+        "system_id": "shqe4g",
+        "node_type": 1,
+        "tag_names": [],
+        "address_ttl": null,
+        "ip_addresses": [],
+        "owner_data": {},
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "owner": null,
+        "node_type_name": "Device",
+        "domain": {
+            "authoritative": true,
+            "ttl": null,
+            "name": "maas",
+            "is_default": true,
+            "resource_record_count": 0,
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        "parent": null,
+        "fqdn": "newhostname.maas",
+        "hostname": "newhostname",
+        "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to update
+the device.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 <details>
   <summary>``POST /MAAS/api/2.0/devices/{system_id}/?op=set_owner_data``</summary>
 
@@ -2755,47 +4046,125 @@ is no longer allocated to a user.
 
 <p>&nbsp;</p>
 </details>
-#### `PUT /MAAS/api/2.0/devices/{system_id}/`
+<details>
+  <summary>``PUT /MAAS/api/2.0/devices/{system_id}/``</summary>
 
-Update a specific device.
+------------------------------------------------------------------------
 
-param hostname
+Update a device with a given system\_id.
 
-:   The new hostname for this device.
+**Parameters**
 
-type hostname
+------------------------------------------------------------------------
 
-:   unicode
+**{system\_id}** (*String*): Required. A device system\_id.
 
-param domain
+**hostname** (*String*): Optional. The hostname for this device.
 
-:   The domain for this device.
+**domain** (*String*): Optional. The domain for this device.
 
-type domain
+**parent** (*String*): Optional. Optional system\_id to indicate this
+device's parent. If the parent is already set and this parameter is
+omitted, the parent will be unchanged.
 
-:   unicode
+**zone** (*String*): Optional. Name of a valid physical zone in which to
+place this node.
 
-param parent
+**Success**
 
-:   Optional system\_id to indicate this device's parent. If the parent
-    is already set and this parameter is omitted, the parent will be
-    unchanged.
+------------------------------------------------------------------------
 
-type parent
+*HTTP Status Code* : 200
 
-:   unicode
+*JSON*
 
-param zone
+    {
+        "domain": {
+            "authoritative": true,
+            "ttl": null,
+            "is_default": true,
+            "resource_record_count": 0,
+            "name": "maas",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        "owner": null,
+        "address_ttl": null,
+        "node_type_name": "Device",
+        "fqdn": "newhostname.maas",
+        "owner_data": {},
+        "parent": null,
+        "interface_set": [
+            {
+                "product": null,
+                "discovered": null,
+                "links": [],
+                "name": "eth-jBhEqB",
+                "enabled": true,
+                "firmware_version": null,
+                "type": "physical",
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "secondary_rack": null,
+                    "space": "undefined",
+                    "fabric": "fabric-12",
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5016,
+                    "fabric_id": 12,
+                    "resource_uri": "/MAAS/api/2.0/vlans/5016/"
+                },
+                "parents": [],
+                "params": "",
+                "effective_mtu": 1500,
+                "children": [],
+                "id": 134,
+                "vendor": null,
+                "mac_address": "4d:2f:6f:d3:b7:6d",
+                "system_id": "shqe4g",
+                "tags": [
+                    "tag-Vg3OLy",
+                    "tag-KY66Uo",
+                    "tag-jh3fOB"
+                ],
+                "resource_uri": "/MAAS/api/2.0/nodes/shqe4g/interfaces/134/"
+            }
+        ],
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "node_type": 1,
+        "ip_addresses": [],
+        "hostname": "newhostname",
+        "tag_names": [],
+        "system_id": "shqe4g",
+        "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
+    }
 
-:   Name of a valid physical zone in which to place this node.
+**Error**
 
-type zone
+------------------------------------------------------------------------
 
-:   unicode
+*HTTP Status Code* : 403
 
-Returns 404 if the device is not found. Returns 403 if the user does not
-have permission to update the device.
+*Content* : The user does not have the permissions required to update
+the device.
 
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Devices
 
 Manage the collection of all the devices in the MAAS.
@@ -3165,42 +4534,98 @@ checked.
 
 <p>&nbsp;</p>
 </details>
-#### `POST /MAAS/api/2.0/devices/`
+<details>
+  <summary>``POST /MAAS/api/2.0/devices/``</summary>
+
+------------------------------------------------------------------------
 
 Create a new device.
 
-param hostname
+**Parameters**
 
-:   A hostname. If not given, one will be generated.
+------------------------------------------------------------------------
 
-type hostname
+**hostname** (*String*): Optional. A hostname. If not given, one will be
+generated.
 
-:   unicode
+**domain** (*String*): Optional. The domain of the device. If not given
+the default domain is used.
 
-param domain
+**mac\_addresses** (*String*): Required. One or more MAC addresses for
+the device.
 
-:   The domain of the device. If not given the default domain is used.
+**parent** (*String*): Optional. The system id of the parent.
 
-type domain
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param mac\_addresses
+*HTTP Status Code* : 200
 
-:   One or more MAC addresses for the device.
+*JSON*
 
-type mac\_addresses
+    {
+        "address_ttl": null,
+        "fqdn": "moral-buck.maas",
+        "interface_set": [
+            {
+                "discovered": null,
+                "product": null,
+                "name": "eth0",
+                "children": [],
+                "effective_mtu": 1500,
+                "firmware_version": null,
+                "vendor": null,
+                "id": 136,
+                "type": "physical",
+                "tags": [],
+                "links": [],
+                "enabled": true,
+                "params": "",
+                "vlan": null,
+                "system_id": "kas8m6",
+                "mac_address": "00:00:00:00:00:00",
+                "parents": [],
+                "resource_uri": "/MAAS/api/2.0/nodes/kas8m6/interfaces/136/"
+            }
+        ],
+        "owner": "admin",
+        "hostname": "moral-buck",
+        "parent": null,
+        "node_type_name": "Device",
+        "ip_addresses": [],
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "owner_data": {},
+        "system_id": "kas8m6",
+        "domain": {
+            "authoritative": true,
+            "ttl": null,
+            "is_default": true,
+            "name": "maas",
+            "id": 0,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        "tag_names": [],
+        "node_type": 1,
+        "resource_uri": "/MAAS/api/2.0/devices/kas8m6/"
+    }
 
-:   unicode
+**Error**
 
-param parent
+------------------------------------------------------------------------
 
-:   The system id of the parent. Optional.
+*HTTP Status Code* : 400
 
-type parent
+*Content* : There was a problem with the given parameters.
 
-:   unicode
-
+<p>&nbsp;</p>
+</details>
 <details>
   <summary>``POST /MAAS/api/2.0/devices/?op=set_zone``</summary>
 
@@ -3448,63 +4873,122 @@ param serial
 
 Retrieve filtered node events.
 
-> A specific Node's events is identified by specifying one or more ids,
-> hostnames, or mac addresses as a list.
+A specific Node's events is identified by specifying one or more ids,
+hostnames, or mac addresses as a list.
 
-#### `GET /MAAS/api/2.0/events/ op=query`
+<details>
+  <summary>``GET /MAAS/api/2.0/events/?op=query``</summary>
 
-List Node events, optionally filtered by various criteria via URL query
+------------------------------------------------------------------------
+
+List node events, optionally filtered by various criteria via URL query
 parameters.
 
-param hostname
+**Parameters**
 
-:   An optional hostname. Only events relating to the node with the
-    matching hostname will be returned. This can be specified multiple
-    times to get events relating to more than one node.
+------------------------------------------------------------------------
 
-param mac\_address
+**hostname** (*String*): Optional. An optional hostname. Only events
+relating to the node with the matching hostname will be returned. This
+can be specified multiple times to get events relating to more than one
+node.
 
-:   An optional list of MAC addresses. Only nodes with matching MAC
-    addresses will be returned.
+**mac\_address** (*String*): Optional. An optional list of MAC
+addresses. Only nodes with matching MAC addresses will be returned.
 
-param id
+**id** (*String*): Optional. An optional list of system ids. Only nodes
+with matching system ids will be returned.
 
-:   An optional list of system ids. Only nodes with matching system ids
-    will be returned.
+**zone** (*String*): Optional. An optional name for a physical zone.
+Only nodes in the zone will be returned.
 
-param zone
+**agent\_name** (*String*): Optional. An optional agent name. Only nodes
+with matching agent names will be returned.
 
-:   An optional name for a physical zone. Only nodes in the zone will be
-    returned.
+**level** (*String*): Optional. Desired minimum log level of returned
+events. Returns this level of events and greater. Choose from: AUDIT,
+CRITICAL, DEBUG, ERROR, INFO, WARNING. The default is INFO.
 
-param agent\_name
+**limit** (*String*): Optional. Optional number of events to return.
+Default 100. Maximum: 1000.
 
-:   An optional agent name. Only nodes with matching agent names will be
-    returned.
+**before** (*String*): Optional. Optional event id. Defines where to
+start returning older events.
 
-param level
+**after** (*String*): Optional. Optional event id. Defines where to
+start returning newer events.
 
-:   Desired minimum log level of returned events. Returns this level of
-    events and greater. Choose from: AUDIT, CRITICAL, DEBUG, ERROR,
-    INFO, WARNING. The default is INFO.
+**owner** (*String*): Optional. If specified, filters the list to show
+only events owned by the specified username.
 
-param limit
+**Success**
 
-:   Optional number of events to return. Default 100. Maximum: 1000.
+------------------------------------------------------------------------
 
-param before
+*HTTP Status Code* : 200
 
-:   Optional event id. Defines where to start returning older events.
+*JSON*
 
-param after
+    {
+        "count": 5,
+        "events": [
+            {
+                "username": "unknown",
+                "node": "7xtf67",
+                "hostname": "spence-devmaas",
+                "id": 1667,
+                "level": "WARNING",
+                "created": "Fri, 07 Dec. 2018 20:11:08",
+                "type": "Rack import warning",
+                "description": "Finished importing boot images, the region does not have any boot images available."
+            },
+            {
+                "username": "unknown",
+                "node": "7xtf67",
+                "hostname": "spence-devmaas",
+                "id": 1666,
+                "level": "INFO",
+                "created": "Fri, 07 Dec. 2018 20:11:08",
+                "type": "Rack import info",
+                "description": "Starting rack boot image import"
+            },
+            {
+                "username": "unknown",
+                "node": "7xtf67",
+                "hostname": "spence-devmaas",
+                "id": 1665,
+                "level": "INFO",
+                "created": "Fri, 07 Dec. 2018 20:11:00",
+                "type": "Starting refresh of controller hardware and networking information",
+                "description": "(MAAS)"
+            },
+            {
+                "username": "unknown",
+                "node": "7xtf67",
+                "hostname": "spence-devmaas",
+                "id": 1664,
+                "level": "INFO",
+                "created": "Fri, 07 Dec. 2018 16:37:18",
+                "type": "Starting refresh of controller hardware and networking information",
+                "description": "(MAAS)"
+            },
+            {
+                "username": "unknown",
+                "node": "7xtf67",
+                "hostname": "spence-devmaas",
+                "id": 1663,
+                "level": "INFO",
+                "created": "Fri, 07 Dec. 2018 16:36:15",
+                "type": "Starting refresh of controller hardware and networking information",
+                "description": "(MAAS)"
+            }
+        ],
+        "next_uri": "/MAAS/api/2.0/events/?op=query&limit=5&after=1667",
+        "prev_uri": "/MAAS/api/2.0/events/?op=query&limit=5&before=1663"
+    }
 
-:   Optional event id. Defines where to start returning newer events.
-
-param owner
-
-:   If specified, filters the list to show only events owned by the
-    specified username.
-
+<p>&nbsp;</p>
+</details>
 ### Fabric
 
 Manage fabric.
