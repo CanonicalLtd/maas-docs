@@ -276,8 +276,6 @@ git push origin $SERIES_BRANCH               # Sync your GitHub branch with your
 
 	`git add en/manage-ha.md`
 
-	`git add media/add-zone.png`
-
 1. Make a *commit* to save your changes locally:
 
 	`git commit -m "a message which describes the change"`
@@ -381,5 +379,5 @@ Below are a few helpful aliases that have been suggested:
 [contributing-build]: contributing-build.md
 [stackoverflow-git-push-warning]: http://stackoverflow.com/questions/13148066/warning-push-default-is-unset-its-implicit-value-is-changing-in-git-2-0
 
-[img__github-maas-docs-fork]: ../media/contributing-git__github-maas-docs-fork.png
-[img__github-maas-docs-new-pull-request]: ../media/contributing-git__github-maas-docs-new-pull-request.png
+[img__github-maas-docs-fork]: https://assets.ubuntu.com/v1/44a6628d-contributing-git__github-maas-docs-fork.png
+[img__github-maas-docs-new-pull-request]: https://assets.ubuntu.com/v1/2eeb3478-contributing-git__github-maas-docs-new-pull-request.png

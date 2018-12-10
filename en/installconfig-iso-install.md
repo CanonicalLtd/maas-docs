@@ -117,10 +117,10 @@ to do next.
 [checklist]: installconfig-checklist.md 
 [ipv6]: installconfig-network-ipv6.md
 
-[img__iso-install-1604-01]: ../media/iso-install_01.png
-[img__iso-install-regiond-01]: ../media/iso-install-region_01.png
-[img__iso-install-regiond-02]: ../media/iso-install-region_02.png
-[img__iso-install-regiond-03]: ../media/iso-install-region_03.png
-[img__iso-install-rackd-01]: ../media/iso-install-rack_01.png
-[img__iso-install-rackd-02]: ../media/iso-install-rack_02.png
-[img__iso-install-rackd-03]: ../media/iso-install-rack_03.png
+[img__iso-install-1604-01]: https://assets.ubuntu.com/v1/82e04c4c-iso-install_01.png
+[img__iso-install-regiond-01]: https://assets.ubuntu.com/v1/c6c52498-iso-install-region_01.png
+[img__iso-install-regiond-02]: https://assets.ubuntu.com/v1/b31e69aa-iso-install-region_02.png
+[img__iso-install-regiond-03]: https://assets.ubuntu.com/v1/0b9e34b5-iso-install-region_03.png
+[img__iso-install-rackd-01]: https://assets.ubuntu.com/v1/c9074cf9-iso-install-rack_01.png
+[img__iso-install-rackd-02]: https://assets.ubuntu.com/v1/e6ec9b9b-iso-install-rack_02.png
+[img__iso-install-rackd-03]: https://assets.ubuntu.com/v1/4edce87a-iso-install-rack_03.png

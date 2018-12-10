@@ -105,5 +105,5 @@ the OS (e.g. 'Ubuntu 18.04 LTS').
 [ubuntu-kernels]: nodes-kernels.md
 [preseed]: nodes-custom.md
 
-[img__deploy]: ../media/nodes-deploy__2.4_deploy.png
-[img__deploy-confirm]: ../media/nodes-deploy__2.4_deploy-confirm.png
+[img__deploy]: https://assets.ubuntu.com/v1/56958753-nodes-deploy__2.4_deploy.png
+[img__deploy-confirm]: https://assets.ubuntu.com/v1/9d590f42-nodes-deploy__2.4_deploy-confirm.png

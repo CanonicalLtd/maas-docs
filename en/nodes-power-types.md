@@ -99,7 +99,7 @@ currently supported by MAAS.
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 [pods]: nodes-comp-hw.md
 
-[img__power-types-undefined]: ../media/nodes-power-types__2.4_undefined.png
-[img__power-types-selection]: ../media/nodes-power-types__2.4_selection.png
-[img__power-types-example-virsh]: ../media/nodes-power-types__2.4_example-virsh.png
-[img__power-types-power-error]: ../media/nodes-power-types__2.4_power-error.png
+[img__power-types-undefined]: https://assets.ubuntu.com/v1/4fae5977-nodes-power-types__2.4_undefined.png
+[img__power-types-selection]: https://assets.ubuntu.com/v1/b53c6613-nodes-power-types__2.4_selection.png
+[img__power-types-example-virsh]: https://assets.ubuntu.com/v1/c75e00a8-nodes-power-types__2.4_example-virsh.png
+[img__power-types-power-error]: https://assets.ubuntu.com/v1/3bd5e93b-nodes-power-types__2.4_power-error.png

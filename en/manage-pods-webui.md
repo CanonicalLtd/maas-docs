@@ -235,20 +235,20 @@ the 'Take action' dropdown menu. Click 'Delete 1 pod' to confirm the action:
 <!-- LINKS -->
 
 
-[img__pod-initial-page]: ../media/manage-kvm-pods__2.5_pod-initial-page.png
-[img__pod-add-rsd]: ../media/nodes-comp-hw__2.4_pod-add-rsd.png
-[img__pod-add-virsh]: ../media/manage-kvm-pods__2.5_pod-add-virsh.png
-[img__pod-list]: ../media/manage-kvm-pods__2.5_pod-list.png
-[img__pod-details]: ../media/manage-kvm-pods__2.5_pod-details.png
-[img__pod-compose-config]: ../media/manage-kvm-pods__2.5_pod-compose-config.png
-[img__pod-compose-machine]: ../media/manage-kvm-pods__2.5_pod-compose-machine.png
-[img__pod-compose-machine-commissioning]: ../media/manage-kvm-pods__2.5_pod-compose-machine-commissioning.png
-[img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
-[img__pod-delete]: ../media/manage-kvm-pods__2.5_pod-delete.png
-[img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
-[img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
-[img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
-[img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
+[img__pod-initial-page]: https://assets.ubuntu.com/v1/c1698d33-manage-kvm-pods__2.5_pod-initial-page.png
+[img__pod-add-rsd]: https://assets.ubuntu.com/v1/2604a48b-nodes-comp-hw__2.4_pod-add-rsd.png
+[img__pod-add-virsh]: https://assets.ubuntu.com/v1/ca39b7a1-manage-kvm-pods__2.5_pod-add-virsh.png
+[img__pod-list]: https://assets.ubuntu.com/v1/6a1e0fc2-manage-kvm-pods__2.5_pod-list.png
+[img__pod-details]: https://assets.ubuntu.com/v1/458b90b6-manage-kvm-pods__2.5_pod-details.png
+[img__pod-compose-config]: https://assets.ubuntu.com/v1/50c94029-manage-kvm-pods__2.5_pod-compose-config.png
+[img__pod-compose-machine]: https://assets.ubuntu.com/v1/62316284-manage-kvm-pods__2.5_pod-compose-machine.png
+[img__pod-compose-machine-commissioning]: https://assets.ubuntu.com/v1/0047fe3d-manage-kvm-pods__2.5_pod-compose-machine-commissioning.png
+[img__pod-decompose-machine]: https://assets.ubuntu.com/v1/613c1d7b-manage-kvm-pods__2.5_pod-decompose-machine.png
+[img__pod-delete]: https://assets.ubuntu.com/v1/55498a64-manage-kvm-pods__2.5_pod-delete.png
+[img__kvmpoddeploy]: https://assets.ubuntu.com/v1/d7271011-manage-kvm-pods__2.5_kvm-pod-deploy.png
+[img__kvmpoddeploy]: https://assets.ubuntu.com/v1/d7271011-manage-kvm-pods__2.5_kvm-pod-deploy.png
+[img__storagepoolusage]: https://assets.ubuntu.com/v1/984dcd91-manage-kvm-pods__2.5_libvirt_storage_usage.png
+[img__storagepoolavail]: https://assets.ubuntu.com/v1/a026986c-manage-kvm-pods__2.5_libvirt_storage.png
 
 [composevm]: manage-kvm-pods-webui.md#compose-a-virtual-machine
 [cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-virtual-machines

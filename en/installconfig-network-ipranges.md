@@ -54,4 +54,4 @@ button at the far right of the row corresponding to the subnet in question.
 [dhcp]: installconfig-network-dhcp.md
 [cli-create-a-reserved-ip-range]: manage-cli-common.md#create-a-reserved-ip-range
 
-[img__add-reserved-iprange]: ../media/installconfig-network-ipranges__2.4_add-reserved-iprange.png
+[img__add-reserved-iprange]: https://assets.ubuntu.com/v1/be85b7d6-installconfig-network-ipranges__2.4_add-reserved-iprange.png

@@ -296,7 +296,7 @@ For example:
 
 ...
 
-[img__2.1_enable-dhcp]: ../media/installconfig-networking-dhcp__2.1_enable-dhcp.png
+[img__2.1_enable-dhcp]: https://assets.ubuntu.com/v1/da9ff022-installconfig-networking-dhcp__2.1_enable-dhcp.png
 [img__enable-fire-alarm]: ../media/installconfig-networking-dhcp__enable-fire-alarm.png
 ```
 

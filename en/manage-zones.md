@@ -77,4 +77,4 @@ It is possible, though not usually useful, to combine the `zone` and
 
 [concepts-zones]: intro-concepts.md#zones
 
-[img__add-zone]: ../media/manage-zones__2.4_add-zone.png
+[img__add-zone]: https://assets.ubuntu.com/v1/f4032f39-manage-zones__2.4_add-zone.png

@@ -94,4 +94,4 @@ use rack controllers in an HA environment.
 [cli-list-rackd]: manage-cli-advanced.md#list-rack-controllers
 [add-nodes-kvm-guest-nodes]: nodes-add.md#kvm-guest-nodes
 
-[img__install-rackd]: ../media/installconfig-rack__2.4_install-rackd.png
+[img__install-rackd]: https://assets.ubuntu.com/v1/b718e775-installconfig-rack__2.4_install-rackd.png

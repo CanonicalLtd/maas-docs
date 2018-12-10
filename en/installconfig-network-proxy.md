@@ -65,4 +65,4 @@ To disable proxying completely, enable the 'Don't use a proxy' checkbox.
 
 [cli-configure-proxying]: manage-cli-common.md#configure-proxying
 
-[img__configure-proxy]: ../media/installconfig-network-proxy__2.4_configure-proxy.png
+[img__configure-proxy]: https://assets.ubuntu.com/v1/55800a33-installconfig-network-proxy__2.4_configure-proxy.png

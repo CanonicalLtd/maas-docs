@@ -225,10 +225,10 @@ allocation time using the API.
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
 [manage-cli-interfaces]: manage-cli-interfaces.md
 
-[img__commission]: ../media/nodes-commission__2.4_commission.png
-[img__commission-confirm]: ../media/nodes-commission__2.4_commission-confirm.png
-[img__configure-interface]: ../media/nodes-commission__2.4_configure-interface.png
-[img__edit-interface]: ../media/nodes-commission__2.4_edit-interface.png
-[img__configure-setbond]: ../media/nodes-commission__2.4_configure-setbond.png
-[img__configure-bond]: ../media/nodes-commission__2.4_configure-bond.png
-[img__configure-bridge]: ../media/nodes-commission__2.4_configure-bridge.png
+[img__commission]: https://assets.ubuntu.com/v1/6f8a67ed-nodes-commission__2.4_commission.png
+[img__commission-confirm]: https://assets.ubuntu.com/v1/8a21a6bb-nodes-commission__2.4_commission-confirm.png
+[img__configure-interface]: https://assets.ubuntu.com/v1/e41e1787-nodes-commission__2.4_configure-interface.png
+[img__edit-interface]: https://assets.ubuntu.com/v1/52305ba3-nodes-commission__2.4_edit-interface.png
+[img__configure-setbond]: https://assets.ubuntu.com/v1/1ea95498-nodes-commission__2.4_configure-setbond.png
+[img__configure-bond]: https://assets.ubuntu.com/v1/1e0f7eec-nodes-commission__2.4_configure-bond.png
+[img__configure-bridge]: https://assets.ubuntu.com/v1/faea9ef6-nodes-commission__2.4_configure-bridge.png

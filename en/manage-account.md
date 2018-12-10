@@ -89,7 +89,7 @@ password' to finish.
 [manage-cli]: manage-cli.md
 [juju-maas-cloud]: https://jujucharms.com/docs/stable/clouds-maas
 
-[img__current-users]: ../media/manage-user-accounts__2.4_current-users.png
-[img__add-user]: ../media/manage-user-accounts__2.4_add-user.png
-[img__add-user-ssh-key]: ../media/manage-user-accounts__2.4_add-user-ssh-key.png
-[img__change-user-password]: ../media/manage-user-accounts__2.4_change-user-password.png
+[img__current-users]: https://assets.ubuntu.com/v1/76402e4b-manage-user-accounts__2.4_current-users.png
+[img__add-user]: https://assets.ubuntu.com/v1/1c59c2c5-manage-user-accounts__2.4_add-user.png
+[img__add-user-ssh-key]: https://assets.ubuntu.com/v1/fc95765e-manage-user-accounts__2.4_add-user-ssh-key.png
+[img__change-user-password]: https://assets.ubuntu.com/v1/289ef578-manage-user-accounts__2.4_change-user-password.png

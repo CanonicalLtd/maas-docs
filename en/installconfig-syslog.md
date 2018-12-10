@@ -38,4 +38,4 @@ using the CLI.
 
 [cli-remote-syslog]: manage-cli-advanced.md#add-or-update-a-remote-syslog-server
 
-[img__remote_syslog]: ../media/installconfig-syslog__2.5_remote-syslog.png
+[img__remote_syslog]: https://assets.ubuntu.com/v1/4be73b1c-installconfig-syslog__2.5_remote-syslog.png

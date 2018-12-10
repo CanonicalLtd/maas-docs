@@ -171,7 +171,7 @@ Juju integration is also covered there.
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
 [cli-tags]: manage-cli-tags.md 
 
-[img__tags-search]: ../media/nodes-tags__2.4_tags-filter.png
-[img__tags-add-remove]: ../media/nodes-tags__2.4_tags-add_remove.png
-[img__tags-net-interface]: ../media/nodes-tags__2.4_tags-net-interface.png
-[img__tags-storage]: ../media/nodes-tags__2.4_tags-storage.png
+[img__tags-search]: https://assets.ubuntu.com/v1/28f0336b-nodes-tags__2.4_tags-filter.png
+[img__tags-add-remove]: https://assets.ubuntu.com/v1/311fcd3f-nodes-tags__2.4_tags-add_remove.png
+[img__tags-net-interface]: https://assets.ubuntu.com/v1/79b84b85-nodes-tags__2.4_tags-net-interface.png
+[img__tags-storage]: https://assets.ubuntu.com/v1/ad7cef13-nodes-tags__2.4_tags-storage.png
