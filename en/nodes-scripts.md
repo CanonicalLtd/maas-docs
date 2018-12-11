@@ -10,9 +10,8 @@ or perform other tasks during commissioning, such as updating firmware, whereas
 status.
 
 !!! Note:
-    MAAS runs built-in commissioning scripts only during enlistment. This means
-    custom commission scripts will have access to data collected during
-    enlistment by the built-in scripts.
+    MAAS runs built-in commissioning scripts only during enlistment. Custom
+    commissioning scripts are only run when commissioning is explicitly run.
 
 Scripts can be selected to run from web UI [during
 commissioning][maas-commission], by [testing hardware][hardware-testing] or from
@@ -32,7 +31,7 @@ examples of both commissioning and hardware testing scripts.
 A typical administrator workflow (with node states) using customised
 commissioning scripts is represented here:
 
-Add node -> Enlistment (runs built-in commissioning scripts) -> New ->
+Add node -> Enlistment (runs built-in commissioning scripts MAAS) -> New ->
 Commission (runs built-in and custom commissioning scripts) -> Ready -> Deploy
 
 !!! Note:
@@ -71,6 +70,7 @@ and what information a script is gathering. A script can have the following fiel
     - `any`: Runs in parallel alongside any other scripts with *parallel* set
       to *any*.
 - `parameters`: What [parameters](#parameters) the script accepts.
+- `results`: What [results](#results) the script will return.
 - `packages`: List of packages to be installed or extracted before running the
   script. Packages may be specified as a JSON string, a list of strings, or as
   a dictionary. For example, `packages: {apt: stress-ng}`, would ask `apt` to
@@ -102,9 +102,9 @@ and what information a script is gathering. A script can have the following fiel
 
 ## Parameters
 
-Scripts can accept values defined within the `parameters` field.  Parameter values
-can then be set by users before commissioning or before testing. The default
-values are used if they are run as a group action, or automatically by MAAS.
+Scripts can accept values defined within the `parameters` field. Parameters are
+automatically filled by MAAS to allow one test to be run against multiple
+devices at once while keeping seperate logs.
 
 Parameters may only be defined within the embedded YAML of the script, and they
 take the form of a dictionary of dictionaries.
@@ -120,16 +120,9 @@ The value is a dictionary with the following fields:
    following:
     - `storage`: Allows the selection of a strong device on the node being
       run.
-    - `runtime`: The amount of time the script should run for. This will be
-      passed to the script in seconds.
-- `min`: The minimum numeric value an input is allowed to have. Only
-  applicable to runtime and defaults to 0.
-- `max`: The maximum numeric value an input is allowed to have. Only applicable
-  to runtime. The default is unlimited.
 - `title`: The title of the parameter field when displayed in the UI. The
   following types have the following default values:
     - `storage`: Storage device.
-    - `runtime`: Runtime.
 - `argument-format`: Specifies how the argument should be passed to the script.
   Input is described as `{input}`.
    The storage type may also use `{name}`, `{path}`, `{model}` or
@@ -137,18 +130,55 @@ The value is a dictionary with the following fields:
    user selection. For storage, `{input}` is synonymous with `{path}`.
    The following types have the following default values:
     - `storage`: `--storage={path}`
-    - `runtime`: `--runtime={input}`
 - `default`: The default value of the parameter. The following types have
   the following default values. Setting these to '' or *None* will override
   these values:
     - `storage`: all.
-    - `runtime`: If set, the runtime value of the script.
 - `required`: Whether or not user input is required. If set to *false*, no default
   is set and no user input will mean the parameter is not passed to the script.
   Defaults to `true`.
 - `results`: What results the script will return on completion. This may only
   be defined within the embedded YAML of the script. Results may be a list of
   strings or a dictionary of dictionaries.
+
+Example script using default values:
+```python
+#!/usr/bin/env python3
+                                                                                
+# --- Start MAAS 1.0 script metadata ---
+# name: example
+# parallel: instance
+# parameters:
+#   storage: {type: storage}
+# --- End MAAS 1.0 script metadata ---
+
+import argparse
+
+parser = argparse.ArgumentParser(description='')
+parser.add_argument(
+    '--storage', dest='storage', required=True,
+    help='path to storage device you want to test. e.g. /dev/sda')
+args = parser.parse_args()
+
+print("Testing: %s" % args.storage)
+```
+
+Example script using customized paramaters:
+```bash
+#!/bin/bash
+                                                                               
+# --- Start MAAS 1.0 script metadata ---
+# name: example
+# parallel: instance
+# parameters:
+#   storage:
+#     type: storage
+#     argument-format: '{model}' '{serial}'
+# --- End MAAS 1.0 script metadata ---
+
+echo "Model: $1"
+echo "Serial: $2"
+```
 
 ## Environment variables
 
@@ -179,13 +209,63 @@ device.
 The YAML file must represent a dictionary with the following fields:
 
 - `result`: The completion status of the script. This can be either `passed`,
-  `failed` or `degraded`. If no status is defined, an exit code of `0`
+  `failed`, `degraded`, or skipped. If no status is defined, an exit code of `0`
   indicates a pass while a non-zero value indicates a failure.
 - `results`: A dictionary of results. The key may map to a results key defined
   as embedded YAML within the script. The value of each result must be a string
   or a list of strings.
 
+Optionally, a script may define what results will be returned in the YAML file in the
+[Metadata fields](#Metadata fields). The `results` field should contain a dictionary
+of dictionaries. The key for each dictionary is a name which will be returns by the
+results YAML. In each dictionary the following fields may be defined:
+
+- `title` - The title for the result which will be used in the UI
+- `description` - The description of the field used as a tooltip in the UI.
+
+Example degrade detection:
+```python
+#!/usr/bin/env python3
+                                                                                
+# --- Start MAAS 1.0 script metadata ---
+# name: example
+# results:
+#   memspeed:
+#     title: Memory Speed
+#     description: Bandwidth speed of memory while performing random read writes
+# --- End MAAS 1.0 script metadata ---
+
+import os
+import yaml
+
+memspeed = some_test()
+
+print('Memspeed: %s' % memspeed)
+results = {
+    'results': {
+        'memspeed': memspeed,
+    }
+}
+if memspeed < 100:
+    print('WARN: Memory test passed but performance is low!')
+    results['status'] = 'degraded'
+
+result_path = os.environ.get("RESULT_PATH")
+if result_path is not None:
+    with open(result_path, 'w') as results_file:
+        yaml.safe_dump(results, results_file)
+```
+
 ## Script examples
+
+### Builtin scripts
+The source to all commissioning and test scripts can be downloaded at any time over the API
+
+```bash
+maas $PROFILE node-script download $SCRIPT_NAME
+```
+
+The source code to all builtin scripts is available on [launchpad](https://git.launchpad.net/maas/tree/src/metadataserver/builtin_scripts).
 
 ### Commissioning script: Configure HPA
 
