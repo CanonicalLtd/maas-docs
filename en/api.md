@@ -1,6 +1,6 @@
-Title: API | MaaS
-TODO:  
+Title: API | MAAS
 table_of_contents: True
+
 
 MAAS API
 ========
@@ -3008,169 +3008,477 @@ is to be applied globally. Cannot be used with node or subnet.
 
 Manage dnsresource.
 
-#### `DELETE /MAAS/api/2.0/dnsresources/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/dnsresources/{id}/``</summary>
 
-Delete dnsresource.
+------------------------------------------------------------------------
 
-Returns 403 if the user does not have permission to delete the
-dnsresource. Returns 404 if the dnsresource is not found.
+Delete a DNS resource with the given id.
 
-#### `GET /MAAS/api/2.0/dnsresources/{id}/`
+**Parameters**
 
-Read dnsresource.
+------------------------------------------------------------------------
 
-Returns 404 if the dnsresource is not found.
+**{id}** (*Int*): Required. The DNS resource id.
 
-#### `PUT /MAAS/api/2.0/dnsresources/{id}/`
+**Success**
 
-Update dnsresource.
+------------------------------------------------------------------------
 
-param fqdn
+*HTTP Status Code* : 204
 
-:   Hostname (with domain) for the dnsresource.
+**Error**
 
-param ip\_address
+------------------------------------------------------------------------
 
-:   Address to assign to the dnsresource.
+*HTTP Status Code* : 403
 
-Returns 403 if the user does not have permission to update the
-dnsresource. Returns 404 if the dnsresource is not found.
+*Content* : The user does not have permission to update the requested
+DNS resource.
 
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/dnsresources/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a DNS resource by id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The DNS resource id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "address_ttl": null,
+        "fqdn": "sample-machine.ubnt",
+        "resource_records": [],
+        "ip_addresses": [],
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/dnsresources/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/dnsresources/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a DNS resource with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The DNS resource id.
+
+**fqdn** (*String*): Optional. Hostname (with domain) for the
+dnsresource.
+
+**ip\_address** (*String*): Optional. Address to assign to the
+dnsresource.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "address_ttl": null,
+        "fqdn": "sample-machine.ubnt",
+        "resource_records": [],
+        "ip_addresses": [],
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/dnsresources/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permission to update the requested
+DNS resource.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### DNSResourceRecord
 
 Manage dnsresourcerecord.
 
-#### `DELETE /MAAS/api/2.0/dnsresourcerecords/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/dnsresourcerecords/{id}/``</summary>
 
-Delete dnsresourcerecord.
+------------------------------------------------------------------------
 
-Returns 403 if the user does not have permission to delete the
-dnsresourcerecord. Returns 404 if the dnsresourcerecord is not found.
+Delete a DNS resource record with the given id.
 
-#### `GET /MAAS/api/2.0/dnsresourcerecords/{id}/`
+**Parameters**
 
-Read dnsresourcerecord.
+------------------------------------------------------------------------
 
-Returns 404 if the dnsresourcerecord is not found.
+**{id}** (*Int*): Required. The DNS resource record id.
 
-#### `PUT /MAAS/api/2.0/dnsresourcerecords/{id}/`
+**Success**
 
-Update dnsresourcerecord.
+------------------------------------------------------------------------
 
-param rrtype
+*HTTP Status Code* : 204
 
-:   Resource Type
+**Error**
 
-param rrdata
+------------------------------------------------------------------------
 
-:   Resource Data (everything to the right of Type.)
+*HTTP Status Code* : 403
 
-Returns 403 if the user does not have permission to update the
-dnsresourcerecord. Returns 404 if the dnsresourcerecord is not found.
+*Content* : The user does not have permission to delete the requested
+DNS resource record.
 
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/dnsresourcerecords/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a DNS resource record description Read a DNS resource record with
+the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The DNS resource record id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "ttl": null,
+        "rrtype": "CNAME",
+        "rrdata": "172.16.0.0",
+        "fqdn": "sample-machine-new.ubnt",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/dnsresourcerecords/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/dnsresourcerecords/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a DNS resource record with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The DNS resource record id.
+
+**rrtype** (*String*): Optional. Resource type.
+
+**rrdata** (*String*): Optional. Resource data (everything to the right
+of type.)
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "ttl": null,
+        "rrtype": "TXT",
+        "rrdata": "172.16.0.0",
+        "fqdn": "sample-machine-new.ubnt",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/dnsresourcerecords/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permission to update the requested
+DNS resource record.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### DNSResourceRecords
 
 Manage DNS resource records (e.g. CNAME, MX, NS, SRV, TXT)
 
-#### `GET /MAAS/api/2.0/dnsresourcerecords/`
+<details>
+  <summary>``GET /MAAS/api/2.0/dnsresourcerecords/``</summary>
 
-List all dnsresourcerecords.
+------------------------------------------------------------------------
 
-param domain
+List all DNS resource records.
 
-:   restrict the listing to entries for the domain.
+**Parameters**
 
-param name
+------------------------------------------------------------------------
 
-:   restrict the listing to entries of the given name.
+**domain** (*String*): Optional. Restricts the listing to entries for
+the domain.
 
-param rrtype
+**name** (*String*): Optional. Restricts the listing to entries of the
+given name.
 
-:   restrict the listing to entries which have records of the given
-    rrtype.
+**rrtype** (*String*): Optional. Restricts the listing to entries which
+have records of the given rrtype.
 
-#### `POST /MAAS/api/2.0/dnsresourcerecords/`
+**Success**
 
-Create a DNS resource record.
+------------------------------------------------------------------------
 
-param fqdn
+*HTTP Status Code* : 200
 
-:   Hostname (with domain) for the dnsresource. Either fqdn or (name,
-    domain) must be specified. Fqdn is ignored if either name or domain
-    is given (e.g. www.your-maas.maas).
+*JSON*
 
-param name
+    [
+        {
+            "ttl": null,
+            "rrtype": "CNAME",
+            "rrdata": "172.16.0.0",
+            "fqdn": "sample-machine-new.ubnt",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/dnsresourcerecords/1/"
+        }
+    ]
 
-:   The name (or hostname without a domain) of the DNS resource record
-    (e.g. www.your-maas)
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/dnsresourcerecords/``</summary>
 
-param domain
+------------------------------------------------------------------------
 
-:   The domain (name or id) where to create the DNS resource record
-    (Domain (e.g. 'maas')
+Create a new DNS resource record.
 
-param rrtype
+**Parameters**
 
-:   The resource record type (e.g 'cname', 'mx', 'ns', 'srv', 'sshfp',
-    'txt')
+------------------------------------------------------------------------
 
-param rrdata
+**fqdn** (*String*): Optional. Hostname (with domain) for the
+dnsresource. Either `fqdn` or `name` and `domain` must be specified.
+`fqdn` is ignored if either name or domain is given (e.g.
+www.your-maas.maas).
 
-:   The resource record data (e.g. 'your-maas', '10
-    mail.your-maas.maas')
+**name** (*String*): Optional. The name (or hostname without a domain)
+of the DNS resource record (e.g. www.your-maas)
 
+**domain** (*String*): Optional. The domain (name or id) where to create
+the DNS resource record (Domain (e.g. 'maas')
+
+**rrtype** (*String*): Optional. The resource record type (e.g `cname`,
+`mx`, `ns`, `srv`, `sshfp`, `txt`).
+
+**rrdata** (*String*): Optional. The resource record data (e.g.
+'your-maas', '10 mail.your-maas.maas')
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "ttl": null,
+        "rrtype": "TXT",
+        "rrdata": "172.16.0.0",
+        "fqdn": "sample-machine-new.ubnt",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/dnsresourcerecords/1/"
+    }
+
+<p>&nbsp;</p>
+</details>
 ### DNSResources
 
 Manage dnsresources.
 
-#### `GET /MAAS/api/2.0/dnsresources/`
+<details>
+  <summary>``GET /MAAS/api/2.0/dnsresources/``</summary>
+
+------------------------------------------------------------------------
 
 List all resources for the specified criteria.
 
-param domain
+**Parameters**
 
-:   restrict the listing to entries for the domain.
+------------------------------------------------------------------------
 
-param name
+**domain** (*String*): Optional. Restricts the listing to entries for
+the domain.
 
-:   restrict the listing to entries of the given name.
+**name** (*String*): Optional. Restricts the listing to entries of the
+given name.
 
-param rrtype
+**rrtype** (*String*): Optional. Restricts the listing to entries which
+have records of the given rrtype.
 
-:   restrict the listing to entries which have records of the given
-    rrtype.
+**all** (*Boolean*): Optional. Include implicit DNS records created for
+nodes registered in MAAS if true.
 
-param all
+**Success**
 
-:   if True, also include implicit DNS records created for nodes
-    registered in MAAS.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/dnsresources/`
+*HTTP Status Code* : 200
 
-Create a dnsresource.
+*JSON*
 
-param fqdn
+    [
+        {
+            "address_ttl": null,
+            "id": -1,
+            "ip_addresses": null,
+            "resource_records": [
+                {
+                    "system_id": "ydpcwh",
+                    "node_type": 0,
+                    "user_id": null,
+                    "dnsresource_id": null,
+                    "ttl": null,
+                    "rrtype": "A",
+                    "rrdata": "172.16.2.111",
+                    "dnsdata_id": null
+                }
+            ],
+            "fqdn": "divine-buck.ubnt",
+            "resource_uri": "/MAAS/api/2.0/dnsresources/-1/"
+        }
+    ]
 
-:   Hostname (with domain) for the dnsresource. Either fqdn or (name,
-    domain) must be specified. Fqdn is ignored if either name or domain
-    is given.
+**Error**
 
-param name
+------------------------------------------------------------------------
 
-:   Hostname (without domain)
+*HTTP Status Code* : 404
 
-param domain
+*Content*
 
-:   Domain (name or id)
+    Not Found
 
-param address\_ttl
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/dnsresources/``</summary>
 
-:   Default ttl for entries in this zone.
+------------------------------------------------------------------------
 
-param ip\_addresses
+Create a DNS resource.
 
-:   (optional) Address (ip or id) to assign to the dnsresource.
+**Parameters**
 
+------------------------------------------------------------------------
+
+**fqdn** (*String*): Optional. Hostname (with domain) for the
+dnsresource. Either `fqdn` or `name` and `domain` must be specified.
+`fqdn` is ignored if either `name` or `domain` is given.
+
+**name** (*String*): Required. Hostname (without domain).
+
+**domain** (*String*): Required. Domain (name or id).
+
+**address\_ttl** (*String*): Optional. Default TTL for entries in this
+zone.
+
+**ip\_addresses** (*String*): Optional. Address (ip or id) to assign to
+the dnsresource.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "address_ttl": null,
+        "fqdn": "sample-machine.ubnt",
+        "resource_records": [],
+        "id": 1,
+        "ip_addresses": [],
+        "resource_uri": "/MAAS/api/2.0/dnsresources/1/"
+    }
+
+<p>&nbsp;</p>
+</details>
 ### Device
 
 Manage an individual device.
@@ -4667,64 +4975,274 @@ Assigns a given node to a given zone.
 
 Query observed discoveries.
 
-#### `GET /MAAS/api/2.0/discovery/`
+<details>
+  <summary>``GET /MAAS/api/2.0/discovery/``</summary>
 
-Lists all the devices MAAS has discovered.
+------------------------------------------------------------------------
 
-Discoveries are listed in the order they were last observed on the
-network (most recent first).
+Lists all the devices MAAS has discovered. Discoveries are listed in the
+order they were last observed on the network (most recent first).
 
-#### `GET /MAAS/api/2.0/discovery/ op=by_unknown_ip`
+**Success**
 
-Lists all discovered devices which have an unknown IP address.
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "discovery_id": "MTcyLjE2LjIuNzAsMjk6ZTU6Mjc6OWQ6YmY6OGQ=",
+            "ip": "172.16.2.70",
+            "mac_address": "29:e5:27:9d:bf:8d",
+            "last_seen": "2018-12-10T19:56:34.299",
+            "hostname": null,
+            "fabric_name": "fabric-1",
+            "vid": 1844,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 8,
+                "interface_name": "eth2"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjIuNzAsMjk6ZTU6Mjc6OWQ6YmY6OGQ=/"
+        },
+        {
+            "discovery_id": "MTcyLjE2LjIuMzUsMjA6NDk6Mzc6OGE6YTk6MGY=",
+            "ip": "172.16.2.35",
+            "mac_address": "20:49:37:8a:a9:0f",
+            "last_seen": "2018-12-10T19:56:34.212",
+            "hostname": null,
+            "fabric_name": "fabric-1",
+            "vid": 1100,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 8,
+                "interface_name": "eth2"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjIuMzUsMjA6NDk6Mzc6OGE6YTk6MGY=/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/discovery/?op=by_unknown_ip``</summary>
+
+------------------------------------------------------------------------
+
+Lists all discovered devices with an unknown IP address.
 
 Filters the list of discovered devices by excluding any discoveries
-where a known MAAS node is configured with the IP address of the
+where a known MAAS node is configured with the IP address of a
 discovery, or has been observed using it after it was assigned by a
 MAAS-managed DHCP server.
 
 Discoveries are listed in the order they were last observed on the
 network (most recent first).
 
-#### `GET /MAAS/api/2.0/discovery/ op=by_unknown_ip_and_mac`
+**Success**
 
-Lists all discovered devices which are completely unknown to MAAS.
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "discovery_id": "MTcyLjE2LjIuMTgwLDk1Ojg2OjY4OjhiOjdhOjVk",
+            "ip": "172.16.2.180",
+            "mac_address": "95:86:68:8b:7a:5d",
+            "last_seen": "2018-12-10T19:56:28.440",
+            "hostname": "host-cyp092",
+            "fabric_name": "fabric-1",
+            "vid": 1641,
+            "mac_organization": null,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 8,
+                "interface_name": "eth2"
+            },
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjIuMTgwLDk1Ojg2OjY4OjhiOjdhOjVk/"
+        },
+        {
+            "discovery_id": "MTcyLjE2LjEuMTM1LGUwOmQ3OjVmOjBiOmM4OjMx",
+            "ip": "172.16.1.135",
+            "mac_address": "e0:d7:5f:0b:c8:31",
+            "last_seen": "2018-12-10T19:56:28.280",
+            "hostname": null,
+            "fabric_name": "fabric-0",
+            "vid": 3883,
+            "mac_organization": null,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 7,
+                "interface_name": "eth1"
+            },
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjEuMTM1LGUwOmQ3OjVmOjBiOmM4OjMx/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/discovery/?op=by_unknown_ip_and_mac``</summary>
+
+------------------------------------------------------------------------
+
+Lists all discovered devices completely unknown to MAAS.
 
 Filters the list of discovered devices by excluding any discoveries
 where a known MAAS node is configured with either the MAC address or the
-IP address of the discovery.
+IP address of a discovery.
 
 Discoveries are listed in the order they were last observed on the
 network (most recent first).
 
-#### `GET /MAAS/api/2.0/discovery/ op=by_unknown_mac`
+**Success**
 
-Lists all discovered devices which have an unknown IP address.
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "discovery_id": "MTcyLjE2LjIuMTgwLDk1Ojg2OjY4OjhiOjdhOjVk",
+            "ip": "172.16.2.180",
+            "mac_address": "95:86:68:8b:7a:5d",
+            "last_seen": "2018-12-10T19:56:28.440",
+            "hostname": "host-cyp092",
+            "fabric_name": "fabric-1",
+            "vid": 1641,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 8,
+                "interface_name": "eth2"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjIuMTgwLDk1Ojg2OjY4OjhiOjdhOjVk/"
+        },
+        {
+            "discovery_id": "MTcyLjE2LjEuMTM1LGUwOmQ3OjVmOjBiOmM4OjMx",
+            "ip": "172.16.1.135",
+            "mac_address": "e0:d7:5f:0b:c8:31",
+            "last_seen": "2018-12-10T19:56:28.280",
+            "hostname": null,
+            "fabric_name": "fabric-0",
+            "vid": 3883,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 7,
+                "interface_name": "eth1"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjEuMTM1LGUwOmQ3OjVmOjBiOmM4OjMx/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/discovery/?op=by_unknown_mac``</summary>
+
+------------------------------------------------------------------------
 
 Filters the list of discovered devices by excluding any discoveries
-where an interface known to MAAS is configured with MAC address of the
-discovery.
+where an interface known to MAAS is configured with a discovered MAC
+address.
 
 Discoveries are listed in the order they were last observed on the
 network (most recent first).
 
-#### `POST /MAAS/api/2.0/discovery/ op=clear`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "discovery_id": "MTcyLjE2LjEuNCw2YjoyMTphYzoxYjowMjpkOQ==",
+            "ip": "172.16.1.43",
+            "mac_address": "6b:21:ac:1b:02:d9",
+            "last_seen": "2018-12-10T19:56:27.225",
+            "hostname": null,
+            "fabric_name": "fabric-0",
+            "vid": 1214,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 6,
+                "interface_name": "eth0"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjEuNCw2YjoyMTphYzoxYjowMjpkOQ==/"
+        },
+        {
+            "discovery_id": "MTcyLjE2LjQuMjEsODY6NjE6ZTQ6ZWY6ZmY6YmQ=",
+            "ip": "172.16.4.212",
+            "mac_address": "86:61:e4:ef:ff:bd",
+            "last_seen": "2018-12-10T19:56:27.162",
+            "hostname": "host-n1b7n1",
+            "fabric_name": "fabric-0",
+            "vid": 480,
+            "observer": {
+                "system_id": "76y7pg",
+                "hostname": "happy-rack",
+                "interface_id": 10,
+                "interface_name": "vlan10"
+            },
+            "mac_organization": null,
+            "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjQuMjEsODY6NjE6ZTQ6ZWY6ZmY6YmQ=/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/discovery/?op=clear``</summary>
+
+------------------------------------------------------------------------
 
 Deletes all discovered neighbours and/or mDNS entries.
 
-param mdns
+Note: One of `mdns`, `neighbours`, or `all` parameters must be supplied.
 
-:   if True, deletes all mDNS entries.
+**Parameters**
 
-param neighbours
+------------------------------------------------------------------------
 
-:   if True, deletes all neighbour entries.
+**mdns** (*Boolean*): Optional. Delete all mDNS entries.
 
-param all
+**neighbours** (*Boolean*): Optional. Delete all neighbour entries.
 
-:   if True, deletes all discovery data.
+**all** (*Boolean*): Optional. Delete all discovery data.
 
-#### `POST /MAAS/api/2.0/discovery/ op=scan`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/discovery/?op=scan``</summary>
+
+------------------------------------------------------------------------
 
 Immediately run a neighbour discovery scan on all rack networks.
 
@@ -4740,135 +5258,453 @@ on rack controllers that do not have 'nmap' installed and are connected
 to large networks.
 
 If the call is a success, this method will return a dictionary of
-results as follows:
+results with the following keys:
 
-result: A human-readable string summarizing the results.
-scan\_attempted\_on: A list of rack 'system\_id' values where a scan was
+`result`: A human-readable string summarizing the results.
+
+`scan_attempted_on`: A list of rack system\_id values where a scan was
 attempted. (That is, an RPC connection was successful and a subsequent
 call was intended.)
 
-failed\_to\_connect\_to: A list of rack 'system\_id' values where the
-RPC connection failed.
+`failed_to_connect_to`: A list of rack system\_id values where the RPC
+connection failed.
 
-scan\_started\_on: A list of rack 'system\_id' values where a scan was
+`scan_started_on`: A list of rack system\_id values where a scan was
 successfully started.
 
-scan\_failed\_on: A list of rack 'system\_id' values where a scan was
+`scan_failed_on`: A list of rack system\_id values where a scan was
 attempted, but failed because a scan was already in progress.
 
-rpc\_call\_timed\_out\_on: A list of rack 'system\_id' values where the
-RPC connection was made, but the call timed out before a ten second
-timeout elapsed.
+`rpc_call_timed_out_on`: A list of rack system\_id values where the RPC
+connection was made, but the call timed out before a ten second timeout
+elapsed.
 
-param cidr
+**Parameters**
 
-:   The subnet CIDR(s) to scan (can be specified multiple times). If not
-    specified, defaults to all networks.
+------------------------------------------------------------------------
 
-param force
+**cidr** (*String*): Optional. The subnet CIDR(s) to scan (can be
+specified multiple times). If not specified, defaults to all networks.
 
-:   If True, will force the scan, even if all networks are specified.
-    (This may not be the best idea, depending on acceptable use
-    agreements, and the politics of the organization that owns the
-    network.) Default: False.
+**force** (*Boolean*): Optional. If True, will force the scan, even if
+all networks are specified. (This may not be the best idea, depending on
+acceptable use agreements, and the politics of the organization that
+owns the network.) Note that this parameter is required if all networks
+are specified. Default: False.
 
-param always\_use\_ping
+**always\_use\_ping** (*String*): Optional. If True, will force the scan
+to use 'ping' even if 'nmap' is installed. Default: False.
 
-:   If True, will force the scan to use 'ping' even if 'nmap' is
-    installed. Default: False.
+**slow** (*String*): Optional. If True, and 'nmap' is being used, will
+limit the scan to nine packets per second. If the scanner is 'ping',
+this option has no effect. Default: False.
 
-param slow
+**threads** (*String*): Optional. The number of threads to use during
+scanning. If 'nmap' is the scanner, the default is one thread per 'nmap'
+process. If 'ping' is the scanner, the default is four threads per CPU.
 
-:   If True, and 'nmap' is being used, will limit the scan to nine
-    packets per second. If the scanner is 'ping', this option has no
-    effect. Default: False.
+**Success**
 
-param threads
+------------------------------------------------------------------------
 
-:   The number of threads to use during scanning. If 'nmap' is the
-    scanner, the default is one thread per 'nmap' process. If 'ping' is
-    the scanner, the default is four threads per CPU.
+*HTTP Status Code* : 200
 
+*JSON*
+
+    {
+        "result": "Scanning is in-progress on all rack controllers.",
+        "scan_started_on": [
+            {
+                "system_id": "6gsym8",
+                "hostname": "dev-runmaas"
+            }
+        ],
+        "scan_failed_on": [],
+        "scan_attempted_on": [
+            {
+                "system_id": "6gsym8",
+                "hostname": "dev-runmaas"
+            }
+        ],
+        "failed_to_connect_to": [],
+        "rpc_call_timed_out_on": [],
+        "failures": []
+    }
+
+<p>&nbsp;</p>
+</details>
 ### Discovery
 
 Read or delete an observed discovery.
 
-#### `GET /MAAS/api/2.0/discovery/{discovery_id}/`
+<details>
+  <summary>``GET /MAAS/api/2.0/discovery/{discovery_id}/``</summary>
 
+------------------------------------------------------------------------
+
+Read a discovery with the given discovery\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{discovery\_id** (*String*): Required. A discovery\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "discovery_id": "MTcyLjE2LjEuNCw2YjoyMTphYzoxYjowMjpkOQ==",
+        "ip": "172.16.1.43",
+        "mac_address": "6b:21:ac:1b:02:d9",
+        "last_seen": "2018-12-10T19:56:27.225",
+        "hostname": null,
+        "fabric_name": "fabric-0",
+        "vid": 1214,
+        "mac_organization": null,
+        "observer": {
+            "system_id": "76y7pg",
+            "hostname": "happy-rack",
+            "interface_id": 6,
+            "interface_name": "eth0"
+        },
+        "resource_uri": "/MAAS/api/2.0/discovery/MTcyLjE2LjEuNCw2YjoyMTphYzoxYjowMjpkOQ==/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Domain
 
 Manage domain.
 
-#### `DELETE /MAAS/api/2.0/domains/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/domains/{id}/``</summary>
 
-Delete domain.
+------------------------------------------------------------------------
 
-Returns 403 if the user does not have permission to update the domain.
-Returns 404 if the domain is not found.
+Delete a domain with the given id.
 
-#### `GET /MAAS/api/2.0/domains/{id}/`
+**Parameters**
 
-Read domain.
+------------------------------------------------------------------------
 
-Returns 404 if the domain is not found.
+**{id}** (*Int*): Required. A domain id.
 
-#### `POST /MAAS/api/2.0/domains/{id}/ op=set_default`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to update
+the domain.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/domains/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a domain with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. A domain id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 0,
+            "name": "maas",
+            "is_default": true,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 1,
+            "name": "sample",
+            "is_default": false,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/1/"
+        },
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 2,
+            "name": "ubnt",
+            "is_default": false,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/2/"
+        }
+    ]
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/domains/{id}/?op=set_default``</summary>
+
+------------------------------------------------------------------------
 
 Set the specified domain to be the default.
 
-If any unallocated nodes are using the previous default domain, changes
-them to use the new default domain.
+**Parameters**
 
-Returns 403 if the user does not have permission to update the default
-domain. Returns 404 if the domain is not found.
+------------------------------------------------------------------------
 
-#### `PUT /MAAS/api/2.0/domains/{id}/`
+**{id}** (*Int*): Required. A domain id. If any unallocated nodes are
+using the previous default domain, changes them to use the new default
+domain.
 
-Update domain.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the domain.
+*HTTP Status Code* : 200
 
-param authoritative
+*JSON*
 
-:   True if we are authoritative for this domain.
+    {
+        "authoritative": true,
+        "ttl": null,
+        "resource_record_count": 0,
+        "name": "newdomain",
+        "id": 3,
+        "is_default": true,
+        "resource_uri": "/MAAS/api/2.0/domains/3/"
+    }
 
-param ttl
+**Error**
 
-:   The default TTL for this domain.
+------------------------------------------------------------------------
 
-Returns 403 if the user does not have permission to update the
-dnsresource. Returns 404 if the domain is not found.
+*HTTP Status Code* : 403
 
+*Content* : The user does not have the permissions required to update
+the domain.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/domains/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a domain with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. A domain id.
+
+**name** (*String*): Required. Name of the domain.
+
+**authoritative** (*String*): Optional. True if we are authoritative for
+this domain.
+
+**ttl** (*String*): Optional. The default TTL for this domain.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "authoritative": true,
+        "ttl": null,
+        "is_default": false,
+        "id": 3,
+        "name": "newdomain",
+        "resource_record_count": 0,
+        "resource_uri": "/MAAS/api/2.0/domains/3/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to update
+the domain.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Domains
 
 Manage domains.
 
-#### `GET /MAAS/api/2.0/domains/`
+<details>
+  <summary>``GET /MAAS/api/2.0/domains/``</summary>
+
+------------------------------------------------------------------------
 
 List all domains.
 
-#### `POST /MAAS/api/2.0/domains/`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 0,
+            "name": "maas",
+            "is_default": true,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/0/"
+        },
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 1,
+            "name": "sample",
+            "is_default": false,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/1/"
+        },
+        {
+            "authoritative": true,
+            "ttl": null,
+            "id": 2,
+            "name": "ubnt",
+            "is_default": false,
+            "resource_record_count": 0,
+            "resource_uri": "/MAAS/api/2.0/domains/2/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/domains/``</summary>
+
+------------------------------------------------------------------------
 
 Create a domain.
 
-param name
+**Parameters**
 
-:   Name of the domain.
+------------------------------------------------------------------------
 
-param authoritative
+**name** (*String*): Required. Name of the domain.
 
-:   Class type of the domain.
+**authoritative** (*String*): Optional. Class type of the domain.
 
-#### `POST /MAAS/api/2.0/domains/ op=set_serial`
+**Success**
 
-Set the SOA serial number (for all DNS zones.)
+------------------------------------------------------------------------
 
-param serial
+*HTTP Status Code* : 200
 
-:   serial number to use next.
+*JSON*
 
+    {
+        "authoritative": true,
+        "ttl": null,
+        "name": "newdomain",
+        "resource_record_count": 0,
+        "is_default": false,
+        "id": 3,
+        "resource_uri": "/MAAS/api/2.0/domains/3/"
+    }
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/domains/?op=set_serial``</summary>
+
+------------------------------------------------------------------------
+
+Set the SOA serial number for all DNS zones.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**serial** (*Int*): Required. Serial number to use next.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content* : No content returned.
+
+<p>&nbsp;</p>
+</details>
 ### Events
 
 Retrieve filtered node events.
@@ -4993,60 +5829,599 @@ only events owned by the specified username.
 
 Manage fabric.
 
-#### `DELETE /MAAS/api/2.0/fabrics/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/fabrics/{id}/``</summary>
 
-Delete fabric.
+------------------------------------------------------------------------
 
-Returns 404 if the fabric is not found.
+Delete a fabric with the given id.
 
-#### `GET /MAAS/api/2.0/fabrics/{id}/`
+**Parameters**
 
-Read fabric.
+------------------------------------------------------------------------
 
-Returns 404 if the fabric is not found.
+**{id}** (*Int*): Required. A fabric id.
 
-#### `PUT /MAAS/api/2.0/fabrics/{id}/`
+**Success**
 
-Update fabric.
+------------------------------------------------------------------------
 
-param name
+*HTTP Status Code* : 204
 
-:   Name of the fabric.
+**Error**
 
-param description
+------------------------------------------------------------------------
 
-:   Description of the fabric.
+*HTTP Status Code* : 404
 
-param class\_type
+*Content*
 
-:   Class type of the fabric.
+    Not Found
 
-Returns 404 if the fabric is not found.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/fabrics/{id}/``</summary>
 
+------------------------------------------------------------------------
+
+Read a fabric with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. A fabric id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "class_type": null,
+        "name": "fabric-14",
+        "id": 14,
+        "vlans": [
+            {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "fabric_id": 14,
+                "space": "undefined",
+                "fabric": "fabric-14",
+                "id": 5018,
+                "secondary_rack": null,
+                "primary_rack": null,
+                "name": "untagged",
+                "resource_uri": "/MAAS/api/2.0/vlans/5018/"
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/fabrics/14/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/fabrics/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a fabric with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. A fabric id.
+
+**name** (*String*): Optional. Name of the fabric.
+
+**description** (*String*): Optional. Description of the fabric.
+
+**class\_type** (*String*): Optional. Class type of the fabric.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "class_type": null,
+        "vlans": [
+            {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "secondary_rack": null,
+                "fabric_id": 14,
+                "fabric": "fabric-14",
+                "id": 5018,
+                "primary_rack": null,
+                "name": "untagged",
+                "space": "undefined",
+                "resource_uri": "/MAAS/api/2.0/vlans/5018/"
+            }
+        ],
+        "name": "fabric-14",
+        "id": 14,
+        "resource_uri": "/MAAS/api/2.0/fabrics/14/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Fabrics
 
 Manage fabrics.
 
-#### `GET /MAAS/api/2.0/fabrics/`
+<details>
+  <summary>``GET /MAAS/api/2.0/fabrics/``</summary>
+
+------------------------------------------------------------------------
 
 List all fabrics.
 
-#### `POST /MAAS/api/2.0/fabrics/`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "class_type": null,
+            "id": 0,
+            "name": "fabric-0",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-0",
+                    "secondary_rack": "fcka3t",
+                    "fabric_id": 0,
+                    "name": "untagged",
+                    "primary_rack": "7xtf67",
+                    "id": 5001,
+                    "space": "management",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+                },
+                {
+                    "vid": 10,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-0",
+                    "secondary_rack": "fcka3t",
+                    "fabric_id": 0,
+                    "name": "10",
+                    "primary_rack": "7xtf67",
+                    "id": 5002,
+                    "space": "internal",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5002/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/0/"
+        },
+        {
+            "class_type": null,
+            "id": 1,
+            "name": "fabric-1",
+            "vlans": [
+                {
+                    "vid": 42,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-1",
+                    "secondary_rack": null,
+                    "fabric_id": 1,
+                    "name": "42",
+                    "primary_rack": null,
+                    "id": 5004,
+                    "space": "ipv6-testbed",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                },
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-1",
+                    "secondary_rack": "fcka3t",
+                    "fabric_id": 1,
+                    "name": "untagged",
+                    "primary_rack": "7xtf67",
+                    "id": 5003,
+                    "space": "management",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/1/"
+        },
+        {
+            "class_type": null,
+            "id": 2,
+            "name": "fabric-2",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-2",
+                    "secondary_rack": null,
+                    "fabric_id": 2,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5005,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5005/"
+                },
+                {
+                    "vid": 567,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-2",
+                    "secondary_rack": null,
+                    "fabric_id": 2,
+                    "name": "567",
+                    "primary_rack": null,
+                    "id": 5006,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5006/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/2/"
+        },
+        {
+            "class_type": null,
+            "id": 3,
+            "name": "fabric-3",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-3",
+                    "secondary_rack": null,
+                    "fabric_id": 3,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5007,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5007/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/3/"
+        },
+        {
+            "class_type": null,
+            "id": 4,
+            "name": "fabric-4",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-4",
+                    "secondary_rack": null,
+                    "fabric_id": 4,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5008,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5008/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/4/"
+        },
+        {
+            "class_type": null,
+            "id": 5,
+            "name": "fabric-5",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-5",
+                    "secondary_rack": null,
+                    "fabric_id": 5,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5009,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5009/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/5/"
+        },
+        {
+            "class_type": null,
+            "id": 6,
+            "name": "fabric-6",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-6",
+                    "secondary_rack": null,
+                    "fabric_id": 6,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5010,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5010/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/6/"
+        },
+        {
+            "class_type": null,
+            "id": 7,
+            "name": "fabric-7",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-7",
+                    "secondary_rack": null,
+                    "fabric_id": 7,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5011,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5011/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/7/"
+        },
+        {
+            "class_type": null,
+            "id": 8,
+            "name": "fabric-8",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-8",
+                    "secondary_rack": null,
+                    "fabric_id": 8,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5012,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5012/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/8/"
+        },
+        {
+            "class_type": null,
+            "id": 9,
+            "name": "fabric-9",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-9",
+                    "secondary_rack": null,
+                    "fabric_id": 9,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5013,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5013/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/9/"
+        },
+        {
+            "class_type": null,
+            "id": 10,
+            "name": "fabric-10",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-10",
+                    "secondary_rack": null,
+                    "fabric_id": 10,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5014,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5014/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/10/"
+        },
+        {
+            "class_type": null,
+            "id": 11,
+            "name": "fabric-11",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-11",
+                    "secondary_rack": null,
+                    "fabric_id": 11,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5015,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5015/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/11/"
+        },
+        {
+            "class_type": null,
+            "id": 12,
+            "name": "fabric-12",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-12",
+                    "secondary_rack": null,
+                    "fabric_id": 12,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5016,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5016/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/12/"
+        },
+        {
+            "class_type": null,
+            "id": 13,
+            "name": "fabric-13",
+            "vlans": [
+                {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-13",
+                    "secondary_rack": null,
+                    "fabric_id": 13,
+                    "name": "untagged",
+                    "primary_rack": null,
+                    "id": 5017,
+                    "space": "undefined",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5017/"
+                }
+            ],
+            "resource_uri": "/MAAS/api/2.0/fabrics/13/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/fabrics/``</summary>
+
+------------------------------------------------------------------------
 
 Create a fabric.
 
-param name
+**Parameters**
 
-:   Name of the fabric.
+------------------------------------------------------------------------
 
-param description
+**name** (*String*): Optional. Name of the fabric.
 
-:   Description of the fabric.
+**description** (*String*): Optional. Description of the fabric.
 
-param class\_type
+**class\_type** (*String*): Optional. Class type of the fabric.
 
-:   Class type of the fabric.
+**Success**
 
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "class_type": null,
+        "name": "fabric-14",
+        "id": 14,
+        "vlans": [
+            {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "fabric": "fabric-14",
+                "primary_rack": null,
+                "fabric_id": 14,
+                "space": "undefined",
+                "name": "untagged",
+                "id": 5018,
+                "secondary_rack": null,
+                "resource_uri": "/MAAS/api/2.0/vlans/5018/"
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/fabrics/14/"
+    }
+
+<p>&nbsp;</p>
+</details>
 ### Fan Network
 
 Manage Fan Network.
@@ -5672,7 +7047,8 @@ param bond\_lacp\_rate
 param bond\_xmit\_hash\_policy
 
 :   The transmit hash policy to use for slave selection in balance-xor,
-    802.3ad, and tlb modes.
+    802.3ad, and tlb modes. Possible values are: 'layer2', 'layer2+3',
+    'layer3+4', 'encap2+3', 'encap3+4'.
 
 Supported bonding modes (bond-mode):
 
@@ -5780,7 +7156,8 @@ param bond\_lacp\_rate
 param bond\_xmit\_hash\_policy
 
 :   The transmit hash policy to use for slave selection in balance-xor,
-    802.3ad, and tlb modes. (Default: layer2)
+    802.3ad, and tlb modes. Possible values are: 'layer2', 'layer2+3',
+    'layer3+4', 'encap2+3', 'encap3+4'. (Default: layer2)
 
 param bond\_num\_grat\_arp
 
@@ -21424,515 +22801,2305 @@ type name
 
 Manage or view a custom script.
 
-#### `DELETE /MAAS/api/2.0/scripts/{name}`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/scripts/{name}``</summary>
+
+------------------------------------------------------------------------
+
+Deletes a script with the given name.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{name}** (*String*): Required. The script's name.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/scripts/{name}``</summary>
+
+------------------------------------------------------------------------
+
+Return metadata belonging to the script with the given name.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{name}** (*String*): Required. The script's name.
+
+**include\_script** (*String*): Optional. Include the base64 encoded
+script content if any value is given for include\_script.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "fio",
+        "title": "Storage benchmark",
+        "description": "Run Fio benchmarking against selected storage devices.",
+        "tags": [
+            "storage",
+            "destructive"
+        ],
+        "hardware_type": 3,
+        "parallel": 1,
+        "results": {
+            "random_read": {
+                "description": "Read speed when reading randomly from the disk.",
+                "title": "Random read"
+            },
+            "random_read_iops": {
+                "description": "IOPS when reading randomly from the disk.",
+                "title": "Random read IOPS"
+            },
+            "random_write": {
+                "description": "Write speed when reading randomly from the disk.",
+                "title": "Random write"
+            },
+            "random_write_iops": {
+                "description": "IOPS when reading randomly from the disk.",
+                "title": "Random write IOPS"
+            },
+            "sequential_read": {
+                "description": "Read speed when reading sequentialy from the disk.",
+                "title": "Sequential read"
+            },
+            "sequential_read_iops": {
+                "description": "IOPS when reading sequentialy from the disk.",
+                "title": "Sequential read IOPS"
+            },
+            "sequential_write": {
+                "description": "Write speed when reading sequentialy from the disk.",
+                "title": "Sequential write"
+            },
+            "sequential_write_iops": {
+                "description": "IOPS when reading sequentialy from the disk.",
+                "title": "Sequential write IOPS"
+            }
+        },
+        "parameters": {
+            "storage": {
+                "argument_format": "{path}",
+                "type": "storage"
+            }
+        },
+        "packages": {
+            "apt": [
+                "fio"
+            ]
+        },
+        "timeout": "0:00:00",
+        "destructive": true,
+        "default": true,
+        "for_hardware": [],
+        "may_reboot": false,
+        "recommission": false,
+        "id": 15,
+        "history": [
+            {
+                "id": 15,
+                "comment": "Created by maas-",
+                "created": "Thu, 06 Dec 2018 20:41:47 -0000"
+            }
+        ],
+        "type_name": "Testing script",
+        "hardware_type_name": "Storage",
+        "parallel_name": "Run along other instances of this script",
+        "type": 2,
+        "resource_uri": "/MAAS/api/2.0/scripts/fio"
+    }
 
-Delete a script.
+**Error**
 
-#### `GET /MAAS/api/2.0/scripts/{name}`
+------------------------------------------------------------------------
 
-Return a script's metadata.
+*HTTP Status Code* : 404
 
-param include\_script
+*Content*
 
-:   Include the base64 encoded script content.
+    Not Found
 
-type include\_script
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/scripts/{name}?op=download``</summary>
 
-:   bool
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/scripts/{name} op=download`
+Download a script with the given name.
 
-Download a script.
+**Parameters**
 
-param revision
+------------------------------------------------------------------------
 
-:   What revision to download, latest by default. Can use rev as a
-    shortcut.
+**{name}** (*String*): Required. The name of the script.
 
-type revision
+**revision** (*Int*): Optional. What revision to download, latest by
+default. Can use rev as a shortcut.
 
-:   integer
+**Success**
 
-#### `POST /MAAS/api/2.0/scripts/{name} op=add_tag`
+------------------------------------------------------------------------
 
-Add a single tag to a script.
+*HTTP Status Code* : 200
 
-param tag
+*Content*
 
-:   The tag being added.
+    "#!/bin/bash\n\necho 'fake script'\n"
 
-type tag
+**Error**
 
-:   unicode
+------------------------------------------------------------------------
 
-Returns 404 if the script is not found.
+*HTTP Status Code* : 404
 
-#### `POST /MAAS/api/2.0/scripts/{name} op=remove_tag`
+*Content*
 
-Remove a single tag to a script.
+    Not Found
 
-param tag
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/scripts/{name}?op=add_tag``</summary>
 
-:   The tag being removed.
+------------------------------------------------------------------------
 
-type tag
+Add a single tag to a script with the given name.
 
-:   unicode
+**Parameters**
 
-Returns 404 if the script is not found.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/scripts/{name} op=revert`
+**{name}** (*String*): Required. The name of the script.
 
-Revert a script to an earlier version.
+**tag** (*String*): Optional. The tag being added.
 
-param to
+**Success**
 
-:   What revision in the script's history to revert to. This can either
-    be an ID or a negative number representing how far back to go.
+------------------------------------------------------------------------
 
-type to
+*HTTP Status Code* : 200
 
-:   integer
+*JSON*
 
-Returns 404 if the script is not found.
+    {
+        "name": "foobar",
+        "title": "",
+        "description": "",
+        "tags": [
+            "node",
+            "mytag"
+        ],
+        "hardware_type": 0,
+        "parallel": 0,
+        "results": {},
+        "parameters": {},
+        "packages": {},
+        "timeout": "0:00:00",
+        "destructive": false,
+        "default": false,
+        "for_hardware": [],
+        "may_reboot": true,
+        "recommission": false,
+        "type": 2,
+        "type_name": "Testing script",
+        "history": [
+            {
+                "id": 24,
+                "comment": null,
+                "created": "Thu, 06 Dec 2018 21:54:38 -0000"
+            }
+        ],
+        "id": 17,
+        "parallel_name": "Disabled",
+        "hardware_type_name": "Node",
+        "resource_uri": "/MAAS/api/2.0/scripts/foobar"
+    }
 
-#### `PUT /MAAS/api/2.0/scripts/{name}`
+**Error**
 
-Update a commissioning script.
+------------------------------------------------------------------------
 
-param name
+*HTTP Status Code* : 404
 
-:   The name of the script.
+*Content*
 
-type name
+    Not Found
 
-:   unicode
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/scripts/{name}?op=remove_tag``</summary>
 
-param title
+------------------------------------------------------------------------
 
-:   The title of the script.
+Remove a tag from a script with the given name.
 
-type title
+**Parameters**
 
-:   unicode
+------------------------------------------------------------------------
 
-param description
+**{name}** (*String*): Required. The name of the script.
 
-:   A description of what the script does.
+**tag** (*String*): Optional. The tag being removed.
 
-type description
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param tags
+*HTTP Status Code* : 200
 
-:   A comma seperated list of tags for this script.
+*JSON*
 
-type tags
+    {
+        "name": "foobar",
+        "title": "",
+        "description": "",
+        "tags": [
+            "node"
+        ],
+        "hardware_type": 0,
+        "parallel": 0,
+        "results": {},
+        "parameters": {},
+        "packages": {},
+        "timeout": "0:00:00",
+        "destructive": false,
+        "default": false,
+        "for_hardware": [],
+        "may_reboot": true,
+        "recommission": false,
+        "hardware_type_name": "Node",
+        "type": 2,
+        "parallel_name": "Disabled",
+        "type_name": "Testing script",
+        "id": 17,
+        "history": [
+            {
+                "id": 24,
+                "comment": null,
+                "created": "Thu, 06 Dec 2018 21:54:38 -0000"
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/scripts/foobar"
+    }
 
-:   unicode
+**Error**
 
-param type
+------------------------------------------------------------------------
 
-:   The type defines when the script should be used. Can be testing or
-    commissioning, defaults to testing.
+*HTTP Status Code* : 404
 
-type script\_type
+*Content*
 
-:   unicode
+    Not Found
 
-param hardware\_type
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/scripts/{name}?op=revert``</summary>
 
-:   The hardware\_type defines what type of hardware the script is
-    assoicated with. May be CPU, memory, storage, or node.
+------------------------------------------------------------------------
 
-type hardware\_type
+Revert a script with the given name to an earlier version.
 
-:   unicode
+**Parameters**
 
-param parallel
+------------------------------------------------------------------------
 
-:   Whether the script may be run in parallel with other scripts. May be
-    disabled to run by itself, instance to run along scripts with the
-    same name, or any to run along any script.
+**{name}** (*String*): Required. The name of the script.
 
-type parallel
+**to** (*Int*): Optional. What revision in the script's history to
+revert to. This can either be an ID or a negative number representing
+how far back to go.
 
-:   unicode
+**Success**
 
-param timeout
+------------------------------------------------------------------------
 
-:   How long the script is allowed to run before failing. 0 gives
-    unlimited time, defaults to 0.
+*HTTP Status Code* : 200
 
-type timeout
+*JSON*
 
-:   unicode
+    {
+        "name": "foobar",
+        "title": "",
+        "description": "",
+        "tags": [
+            "node"
+        ],
+        "hardware_type": 0,
+        "parallel": 0,
+        "results": {},
+        "parameters": {},
+        "packages": {},
+        "timeout": "0:00:00",
+        "destructive": false,
+        "default": false,
+        "for_hardware": [],
+        "may_reboot": true,
+        "recommission": false,
+        "parallel_name": "Disabled",
+        "history": [
+            {
+                "id": 24,
+                "comment": null,
+                "created": "Thu, 06 Dec 2018 21:54:38 -0000"
+            }
+        ],
+        "type": 2,
+        "hardware_type_name": "Node",
+        "type_name": "Testing script",
+        "id": 17,
+        "resource_uri": "/MAAS/api/2.0/scripts/foobar"
+    }
 
-param timeout
+**Error**
 
-:   How long the script is allowed to run before failing. 0 gives
-    unlimited time, defaults to 0.
+------------------------------------------------------------------------
 
-type timeout
+*HTTP Status Code* : 404
 
-:   unicode
+*Content*
 
-param destructive
+    Not Found
 
-:   Whether or not the script overwrites data on any drive on the
-    running system. Destructive scripts can not be run on deployed
-    systems. Defaults to false.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/scripts/{name}``</summary>
 
-type destructive
+------------------------------------------------------------------------
 
-:   boolean
+Update a script with the given name.
 
-param script
+**Parameters**
 
-:   The content of the script to be uploaded in binary form. note: this
-    is not a normal parameter, but a file upload. Its filename is
-    ignored; MAAS will know it by the name you pass to the request.
-    Optionally you can ignore the name and script parameter in favor of
-    uploading a single file as part of the request.
+------------------------------------------------------------------------
 
-param comment
+**{name}** (*String*): Required. The name of the script.
 
-:   A comment about what this change does.
+**title** (*String*): Optional. The title of the script.
 
-type comment
+**description** (*String*): Optional. A description of what the script
+does.
 
-:   unicode
+**tags** (*String*): Optional. A comma seperated list of tags for this
+script.
 
-param for\_hardware
+**type** (*String*): Optional. The type defines when the script should
+be used. Can be `testing` or `commissioning`, defaults to `testing`.
 
-:   A list of modalias, PCI IDs, and/or USB IDs the script will
-    automatically run on. Must start with modalias:, pci:, or usb:.
+**hardware\_type** (*String*): Optional. The hardware\_type defines what
+type of hardware the script is assoicated with. May be `cpu`, `memory`,
+`storage`, or `node`.
 
-type for\_hardware
+**parallel** (*Int*): Optional. Whether the script may be run in
+parallel with other scripts. May be disabled to run by itself, instance
+to run along scripts with the same name, or any to run along any script.
+`1` == True, `0` == False.
 
-:   unicode
+**timeout** (*Int*): Optional. How long the script is allowed to run
+before failing. 0 gives unlimited time, defaults to 0.
 
-param may\_reboot
+**destructive** (*Boolean*): Optional. Whether or not the script
+overwrites data on any drive on the running system. Destructive scripts
+can not be run on deployed systems. Defaults to false.
 
-:   Whether or not the script may reboot the system while running.
+**script** (*String*): Optional. The content of the script to be
+uploaded in binary form. Note: this is not a normal parameter, but a
+file upload. Its filename is ignored; MAAS will know it by the name you
+pass to the request. Optionally you can ignore the name and script
+parameter in favor of uploading a single file as part of the request.
 
-type may\_reboot
+**comment** (*String*): Optional. A comment about what this change does.
 
-:   boolean
+**for\_hardware** (*String*): Optional. A list of modalias, PCI IDs,
+and/or USB IDs the script will automatically run on. Must start with
+`modalias:`, `pci:`, or `usb:`.
 
-param recommission
+**may\_reboot** (*Boolean*): Optional. Whether or not the script may
+reboot the system while running.
 
-:   Whether builtin commissioning scripts should be rerun after
-    successfully running this scripts.
+**recommission** (*Boolean*): Optional. Whether built-in commissioning
+scripts should be rerun after successfully running this scripts.
 
-type recommission
+**Success**
 
-:   boolean
+------------------------------------------------------------------------
 
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "foobar",
+        "title": "",
+        "description": "",
+        "tags": [
+            "node"
+        ],
+        "hardware_type": 0,
+        "parallel": 0,
+        "results": {},
+        "parameters": {},
+        "packages": {},
+        "timeout": "0:00:00",
+        "destructive": false,
+        "default": false,
+        "for_hardware": [],
+        "may_reboot": true,
+        "recommission": false,
+        "type_name": "Testing script",
+        "parallel_name": "Disabled",
+        "id": 17,
+        "type": 2,
+        "hardware_type_name": "Node",
+        "history": [
+            {
+                "id": 24,
+                "comment": null,
+                "created": "Thu, 06 Dec 2018 21:54:38 -0000"
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/scripts/foobar"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Node Script Result
 
 Manage node script results.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/results/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/results/{id}/``</summary>
 
-Delete a set of results.
+------------------------------------------------------------------------
 
-id can either by the script set id, current-commissioning,
-current-testing, or current-installation.
+Delete script results from the given system\_id with the given id.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/`
+"id" can either by the script set id, `current-commissioning`,
+`current-testing`, or `current-installation`.
 
-View a specific set of results.
+**Parameters**
 
-id can either by the script set id, current-commissioning,
-current-testing, or current-installation.
+------------------------------------------------------------------------
 
-param hardware\_type
+**{system\_id}** (*String*): Required. The machine's system\_id.
 
-:   Only return scripts for the given hardware type. Can be node, cpu,
-    memory, or storage. Defaults to all.
+**{id}** (*String*): Required. The script result id.
 
-type script\_type
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param include\_output
+*HTTP Status Code* : 204
 
-:   Include base64 encoded output from the script.
+**Error**
 
-type include\_output
+------------------------------------------------------------------------
 
-:   bool
+*HTTP Status Code* : 404
 
-param filters
+*Content*
 
-:   A comma seperated list to show only results that ran with a script
-    name, tag, or id.
+    Not Found
 
-type filters
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/``</summary>
 
-:   unicode
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/ op=download`
+View a set of test results for a given system\_id and script id.
 
-Download a compressed tar containing all results.
+"id" can either by the script set id, `current-commissioning`,
+`current-testing`, or `current-installation`.
 
-id can either by the script set id, current-commissioning,
-current-testing, or current-installation.
+**Parameters**
 
-param hardware\_type
+------------------------------------------------------------------------
 
-:   Only return scripts for the given hardware type. Can be node, cpu,
-    memory, or storage. Defaults to all.
+**{system\_id}** (*String*): Required. The machine's system\_id.
 
-type script\_type
+**{id}** (*String*): Required. The script result id.
 
-:   unicode
+**hardware\_type** (*String*): Optional. Only return scripts for the
+given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
+Defaults to all.
 
-param filters
+**include\_output** (*String*): Optional. Include the base64 encoded
+output from the script if any value for include\_output is given.
 
-:   A comma seperated list to show only results that ran with a script
-    name or tag.
+**filters** (*String*): Optional. A comma seperated list to show only
+results that ran with a script name, tag, or id.
 
-type filters
+**Success**
 
-:   unicode
+------------------------------------------------------------------------
 
-param output
+*HTTP Status Code* : 200
 
-:   Can be either combined, stdout, stderr, or all. By default only the
-    combined output is returned.
+*JSON*
 
-type output
+    {
+        "status": 2,
+        "type_name": "Testing",
+        "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+        "type": 2,
+        "id": 22,
+        "system_id": "thr3am",
+        "status_name": "Passed",
+        "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+        "runtime": "348 days, 6:51:37",
+        "last_ping": null,
+        "results": [
+            {
+                "id": 374,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "7z",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 19 Mar 2017 23:33:01 -0000",
+                "ended": "Mon, 20 Mar 2017 01:16:59 -0000",
+                "runtime": "1:43:58",
+                "starttime": 1489966381,
+                "endtime": 1489972619,
+                "estimated_runtime": "1:43:58",
+                "parameters": {},
+                "script_id": 14,
+                "script_revision_id": null
+            },
+            {
+                "id": 368,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 10 Jan 2017 00:25:57 -0000",
+                "ended": "Tue, 10 Jan 2017 02:26:53 -0000",
+                "runtime": "2:00:56",
+                "starttime": 1484007957,
+                "endtime": 1484015213,
+                "estimated_runtime": "2:00:56",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 370,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Mon, 03 Jul 2017 18:26:21 -0000",
+                "ended": "Mon, 03 Jul 2017 18:50:59 -0000",
+                "runtime": "0:24:38",
+                "starttime": 1499106381,
+                "endtime": 1499107859,
+                "estimated_runtime": "0:24:38",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 369,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+                "ended": "Wed, 04 Jan 2017 18:06:45 -0000",
+                "runtime": "0:34:41",
+                "starttime": 1483551124,
+                "endtime": 1483553205,
+                "estimated_runtime": "0:34:41",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 373,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 04 Oct 2017 03:19:13 -0000",
+                "ended": "Wed, 04 Oct 2017 05:19:30 -0000",
+                "runtime": "2:00:17",
+                "starttime": 1507087153,
+                "endtime": 1507094370,
+                "estimated_runtime": "2:00:17",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 372,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 23 Jul 2017 20:55:47 -0000",
+                "ended": "Sun, 23 Jul 2017 23:38:04 -0000",
+                "runtime": "2:42:17",
+                "starttime": 1500843347,
+                "endtime": 1500853084,
+                "estimated_runtime": "2:42:17",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 371,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Mon, 18 Dec 2017 22:06:01 -0000",
+                "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+                "runtime": "2:17:40",
+                "starttime": 1513634761,
+                "endtime": 1513643021,
+                "estimated_runtime": "2:17:40",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 365,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "internet-connectivity",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 01 Apr 2017 03:04:52 -0000",
+                "ended": "Sat, 01 Apr 2017 03:12:08 -0000",
+                "runtime": "0:07:16",
+                "starttime": 1491015892,
+                "endtime": 1491016328,
+                "estimated_runtime": "0:07:16",
+                "parameters": {},
+                "script_id": 6,
+                "script_revision_id": null
+            },
+            {
+                "id": 364,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "memtester",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 19 Apr 2017 09:22:38 -0000",
+                "ended": "Wed, 19 Apr 2017 10:43:25 -0000",
+                "runtime": "1:20:47",
+                "starttime": 1492593758,
+                "endtime": 1492598605,
+                "estimated_runtime": "1:20:47",
+                "parameters": {},
+                "script_id": 5,
+                "script_revision_id": null
+            },
+            {
+                "id": 361,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 18 Mar 2017 10:19:52 -0000",
+                "ended": "Sat, 18 Mar 2017 12:47:57 -0000",
+                "runtime": "2:28:05",
+                "starttime": 1489832392,
+                "endtime": 1489841277,
+                "estimated_runtime": "2:28:05",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 362,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Thu, 07 Sep 2017 01:11:18 -0000",
+                "ended": "Thu, 07 Sep 2017 03:02:21 -0000",
+                "runtime": "1:51:03",
+                "starttime": 1504746678,
+                "endtime": 1504753341,
+                "estimated_runtime": "1:51:03",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 363,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Fri, 15 Sep 2017 21:40:34 -0000",
+                "ended": "Fri, 15 Sep 2017 23:16:21 -0000",
+                "runtime": "1:35:47",
+                "starttime": 1505511634,
+                "endtime": 1505517381,
+                "estimated_runtime": "1:35:47",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 358,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Fri, 20 Jan 2017 06:36:01 -0000",
+                "ended": "Fri, 20 Jan 2017 07:21:22 -0000",
+                "runtime": "0:45:21",
+                "starttime": 1484894161,
+                "endtime": 1484896882,
+                "estimated_runtime": "0:45:21",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 359,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 20 Jun 2017 19:17:09 -0000",
+                "ended": "Tue, 20 Jun 2017 19:59:22 -0000",
+                "runtime": "0:42:13",
+                "starttime": 1497986229,
+                "endtime": 1497988762,
+                "estimated_runtime": "0:42:13",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 360,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 26 Feb 2017 09:37:07 -0000",
+                "ended": "Sun, 26 Feb 2017 09:44:53 -0000",
+                "runtime": "0:07:46",
+                "starttime": 1488101827,
+                "endtime": 1488102293,
+                "estimated_runtime": "0:07:46",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 355,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 26 Aug 2017 12:32:16 -0000",
+                "ended": "Sat, 26 Aug 2017 14:45:18 -0000",
+                "runtime": "2:13:02",
+                "starttime": 1503750736,
+                "endtime": 1503758718,
+                "estimated_runtime": "2:13:02",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 356,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 06 Jun 2017 13:03:30 -0000",
+                "ended": "Tue, 06 Jun 2017 13:47:00 -0000",
+                "runtime": "0:43:30",
+                "starttime": 1496754210,
+                "endtime": 1496756820,
+                "estimated_runtime": "0:43:30",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 357,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 16 Jul 2017 19:10:54 -0000",
+                "ended": "Sun, 16 Jul 2017 21:35:40 -0000",
+                "runtime": "2:24:46",
+                "starttime": 1500232254,
+                "endtime": 1500240940,
+                "estimated_runtime": "2:24:46",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 366,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "stress-ng-memory-long",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 08 Apr 2017 03:39:23 -0000",
+                "ended": "Sat, 08 Apr 2017 03:50:36 -0000",
+                "runtime": "0:11:13",
+                "starttime": 1491622763,
+                "endtime": 1491623436,
+                "estimated_runtime": "0:11:13",
+                "parameters": {},
+                "script_id": 9,
+                "script_revision_id": null
+            },
+            {
+                "id": 367,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "stress-ng-memory-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Thu, 19 Oct 2017 19:45:46 -0000",
+                "ended": "Thu, 19 Oct 2017 22:18:36 -0000",
+                "runtime": "2:32:50",
+                "starttime": 1508442346,
+                "endtime": 1508451516,
+                "estimated_runtime": "2:32:50",
+                "parameters": {},
+                "script_id": 10,
+                "script_revision_id": null
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/results/22/"
+    }
 
-:   unicode
+**Error**
 
-param filetype
+------------------------------------------------------------------------
 
-:   Filetype to output, can be txt or tar.xz
+*HTTP Status Code* : 404
 
-type format
+*Content*
 
-:   unicode
+    Not Found
 
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/results/{id}/?op=download``</summary>
+
+------------------------------------------------------------------------
+
+Download a compressed tar containing all results from the given
+system\_id with the given id.
+
+"id" can either by the script set id, `current-commissioning`,
+`current-testing`, or `current-installation`.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**{id}** (*String*): Required. The script result id.
+
+**hardware\_type** (*String*): Optional. Only return scripts for the
+given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
+Defaults to all.
+
+**filters** (*String*): Optional. A comma seperated list to show only
+results that ran with a script name or tag.
+
+**output** (*String*): Optional. Can be either `combined`, `stdout`,
+`stderr`, or `all`. By default only the combined output is returned.
+
+**filetype** (*String*): Optional. Filetype to output, can be `txt` or
+`tar.xz`.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content*
+
+    "-------------------------------------- 7z --------------------------------------\nnLX2OJjxTJ\n------------------------- badblocks - /dev/name-xE9mtJ -------------------------\nmqKpKVY4SD\n------------------------- badblocks - /dev/name-VhlrVi -------------------------\nAn5Wf3mKNf------------------------- badblocks - /dev/name-EjgNwC -------------------------\nRB6wrhLVig------------------- badblocks-destructive - /dev/name-VhlrVi -------------------\n3w8FM0ay86\n------------------- badblocks-destructive - /dev/name-EjgNwC -------------------\nTd5OcAHN1x\n------------------- badblocks-destructive - /dev/name-xE9mtJ -------------------\nxLlKiIZbbm---------------------------- internet-connectivity ----------------------------\nNGlqZsnaEY---------------------------------- memtester ----------------------------------\nOJs6jkSHgZ-------------------- smartctl-conveyance - /dev/name-xE9mtJ --------------------\nVdr90lwPs3-------------------- smartctl-conveyance - /dev/name-EjgNwC --------------------\ns61LmxCBgg\n-------------------- smartctl-conveyance - /dev/name-VhlrVi --------------------\nmaH7kZaKcM\n---------------------- smartctl-short - /dev/name-xE9mtJ ----------------------\nUwzxx2OK3h\n---------------------- smartctl-short - /dev/name-EjgNwC ----------------------\nuYOiKPN31W\n---------------------- smartctl-short - /dev/name-VhlrVi ----------------------\nyAlm61zZUv\n--------------------- smartctl-validate - /dev/name-xE9mtJ ---------------------\nALXC7IYXXj\n--------------------- smartctl-validate - /dev/name-EjgNwC ---------------------\nTzqR5BdPLJ\n--------------------- smartctl-validate - /dev/name-VhlrVi ---------------------\naPkNW4SqQV\n---------------------------- stress-ng-memory-long ----------------------------\nYq119nrmEz\n---------------------------- stress-ng-memory-short ----------------------------\nl7b0YoZgB2\n"
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Node Script Result
 
 Manage node script results.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/results/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/results/``</summary>
 
-Return a list of script results grouped by run.
+------------------------------------------------------------------------
 
-param type
+Return a list of script results grouped by run for the given system\_id.
 
-:   Only return scripts with the given type. This can be commissioning,
-    testing, or installion. Defaults to showing all.
+**Parameters**
 
-type type
+------------------------------------------------------------------------
 
-:   unicode
+**{system\_id}** (*String*): Required. The machine's system\_id.
 
-param hardware\_type
+**type** (*String*): Optional. Only return scripts with the given type.
+This can be `commissioning`, `testing`, or `installion`. Defaults to
+showing all.
 
-:   Only return scripts for the given hardware type. Can be node, cpu,
-    memory, or storage. Defaults to all.
+**hardware\_type** (*String*): Optional. Only return scripts for the
+given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
+Defaults to all.
 
-type script\_type
+**include\_output** (*String*): Optional. Include base64 encoded output
+from the script. Note that any value of include\_output will include the
+encoded output from the script.
 
-:   unicode
+**filters** (*String*): Optional. A comma seperated list to show only
+results with a script name or tag.
 
-param include\_output
+**Success**
 
-:   Include base64 encoded output from the script.
+------------------------------------------------------------------------
 
-type include\_output
+*HTTP Status Code* : 200
 
-:   bool
+*JSON*
 
-param filters
+    [
+        {
+            "status_name": "Passed",
+            "status": 2,
+            "type_name": "Commissioning",
+            "id": 21,
+            "runtime": "306 days, 20:34:46",
+            "ended": "Tue, 07 Nov 2017 15:59:57 -0000",
+            "type": 0,
+            "results": [
+                {
+                    "id": 342,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-00-support-info",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 19 Mar 2017 20:38:06 -0000",
+                    "ended": "Sun, 19 Mar 2017 21:41:34 -0000",
+                    "runtime": "1:03:28",
+                    "starttime": 1489955886,
+                    "endtime": 1489959694,
+                    "estimated_runtime": "1:03:28",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 344,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-01-cpuinfo",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 11 Jan 2017 23:18:54 -0000",
+                    "ended": "Thu, 12 Jan 2017 00:03:24 -0000",
+                    "runtime": "0:44:30",
+                    "starttime": 1484176734,
+                    "endtime": 1484179404,
+                    "estimated_runtime": "0:44:30",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 343,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-01-lshw",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 15 Oct 2017 08:12:05 -0000",
+                    "ended": "Sun, 15 Oct 2017 10:07:54 -0000",
+                    "runtime": "1:55:49",
+                    "starttime": 1508055125,
+                    "endtime": 1508062074,
+                    "estimated_runtime": "1:55:49",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 345,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-02-virtuality",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 09 May 2017 14:02:19 -0000",
+                    "ended": "Tue, 09 May 2017 15:08:21 -0000",
+                    "runtime": "1:06:02",
+                    "starttime": 1494338539,
+                    "endtime": 1494342501,
+                    "estimated_runtime": "1:06:02",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 346,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-03-install-lldpd",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 07 Nov 2017 15:05:05 -0000",
+                    "ended": "Tue, 07 Nov 2017 15:59:57 -0000",
+                    "runtime": "0:54:52",
+                    "starttime": 1510067105,
+                    "endtime": 1510070397,
+                    "estimated_runtime": "0:54:52",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 347,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-04-list-modaliases",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Fri, 20 Oct 2017 03:01:06 -0000",
+                    "ended": "Fri, 20 Oct 2017 05:21:25 -0000",
+                    "runtime": "2:20:19",
+                    "starttime": 1508468466,
+                    "endtime": 1508476885,
+                    "estimated_runtime": "2:20:19",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 348,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-05-dhcp-unconfigured-ifaces",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 05 Jul 2017 10:52:49 -0000",
+                    "ended": "Wed, 05 Jul 2017 10:53:55 -0000",
+                    "runtime": "0:01:06",
+                    "starttime": 1499251969,
+                    "endtime": 1499252035,
+                    "estimated_runtime": "0:01:06",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 349,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-06-get-fruid-api-data",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 04 Jan 2017 19:25:11 -0000",
+                    "ended": "Wed, 04 Jan 2017 19:33:04 -0000",
+                    "runtime": "0:07:53",
+                    "starttime": 1483557911,
+                    "endtime": 1483558384,
+                    "estimated_runtime": "0:07:53",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 350,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-07-block-devices",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sat, 06 May 2017 05:07:50 -0000",
+                    "ended": "Sat, 06 May 2017 06:05:59 -0000",
+                    "runtime": "0:58:09",
+                    "starttime": 1494047270,
+                    "endtime": 1494050759,
+                    "estimated_runtime": "0:58:09",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 351,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "00-maas-08-serial-ports",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Thu, 02 Mar 2017 01:01:37 -0000",
+                    "ended": "Thu, 02 Mar 2017 03:35:40 -0000",
+                    "runtime": "2:34:03",
+                    "starttime": 1488416497,
+                    "endtime": 1488425740,
+                    "estimated_runtime": "2:34:03",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 352,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "99-maas-02-capture-lldp",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 04 Oct 2017 09:27:49 -0000",
+                    "ended": "Wed, 04 Oct 2017 09:34:31 -0000",
+                    "runtime": "0:06:42",
+                    "starttime": 1507109269,
+                    "endtime": 1507109671,
+                    "estimated_runtime": "0:06:42",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 353,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "99-maas-03-network-interfaces",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 14 Mar 2017 12:40:35 -0000",
+                    "ended": "Tue, 14 Mar 2017 15:06:36 -0000",
+                    "runtime": "2:26:01",
+                    "starttime": 1489495235,
+                    "endtime": 1489503996,
+                    "estimated_runtime": "2:26:01",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 354,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "99-maas-04-network-interfaces-with-sriov",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 05 Sep 2017 14:09:44 -0000",
+                    "ended": "Tue, 05 Sep 2017 14:53:53 -0000",
+                    "runtime": "0:44:09",
+                    "starttime": 1504620584,
+                    "endtime": 1504623233,
+                    "estimated_runtime": "0:44:09",
+                    "parameters": {},
+                    "script_id": null,
+                    "script_revision_id": null
+                }
+            ],
+            "started": "Wed, 04 Jan 2017 19:25:11 -0000",
+            "last_ping": null,
+            "system_id": "thr3am",
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/results/21/"
+        },
+        {
+            "status_name": "Passed",
+            "status": 2,
+            "type_name": "Testing",
+            "id": 22,
+            "runtime": "348 days, 6:51:37",
+            "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+            "type": 2,
+            "results": [
+                {
+                    "id": 374,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "7z",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 19 Mar 2017 23:33:01 -0000",
+                    "ended": "Mon, 20 Mar 2017 01:16:59 -0000",
+                    "runtime": "1:43:58",
+                    "starttime": 1489966381,
+                    "endtime": 1489972619,
+                    "estimated_runtime": "1:43:58",
+                    "parameters": {},
+                    "script_id": 14,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 368,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 10 Jan 2017 00:25:57 -0000",
+                    "ended": "Tue, 10 Jan 2017 02:26:53 -0000",
+                    "runtime": "2:00:56",
+                    "starttime": 1484007957,
+                    "endtime": 1484015213,
+                    "estimated_runtime": "2:00:56",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-mSnL9L",
+                                "name": "name-xE9mtJ",
+                                "physical_blockdevice_id": 18,
+                                "serial": "serial-jBitFU"
+                            }
+                        }
+                    },
+                    "script_id": 12,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 370,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Mon, 03 Jul 2017 18:26:21 -0000",
+                    "ended": "Mon, 03 Jul 2017 18:50:59 -0000",
+                    "runtime": "0:24:38",
+                    "starttime": 1499106381,
+                    "endtime": 1499107859,
+                    "estimated_runtime": "0:24:38",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-5btVsu",
+                                "name": "name-VhlrVi",
+                                "physical_blockdevice_id": 20,
+                                "serial": "serial-SE3O1p"
+                            }
+                        }
+                    },
+                    "script_id": 12,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 369,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+                    "ended": "Wed, 04 Jan 2017 18:06:45 -0000",
+                    "runtime": "0:34:41",
+                    "starttime": 1483551124,
+                    "endtime": 1483553205,
+                    "estimated_runtime": "0:34:41",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-OHzOYI",
+                                "name": "name-EjgNwC",
+                                "physical_blockdevice_id": 19,
+                                "serial": "serial-5EZFik"
+                            }
+                        }
+                    },
+                    "script_id": 12,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 373,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks-destructive",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 04 Oct 2017 03:19:13 -0000",
+                    "ended": "Wed, 04 Oct 2017 05:19:30 -0000",
+                    "runtime": "2:00:17",
+                    "starttime": 1507087153,
+                    "endtime": 1507094370,
+                    "estimated_runtime": "2:00:17",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-5btVsu",
+                                "name": "name-VhlrVi",
+                                "physical_blockdevice_id": 20,
+                                "serial": "serial-SE3O1p"
+                            }
+                        }
+                    },
+                    "script_id": 13,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 372,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks-destructive",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 23 Jul 2017 20:55:47 -0000",
+                    "ended": "Sun, 23 Jul 2017 23:38:04 -0000",
+                    "runtime": "2:42:17",
+                    "starttime": 1500843347,
+                    "endtime": 1500853084,
+                    "estimated_runtime": "2:42:17",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-OHzOYI",
+                                "name": "name-EjgNwC",
+                                "physical_blockdevice_id": 19,
+                                "serial": "serial-5EZFik"
+                            }
+                        }
+                    },
+                    "script_id": 13,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 371,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "badblocks-destructive",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Mon, 18 Dec 2017 22:06:01 -0000",
+                    "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+                    "runtime": "2:17:40",
+                    "starttime": 1513634761,
+                    "endtime": 1513643021,
+                    "estimated_runtime": "2:17:40",
+                    "parameters": {
+                        "storage": {
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-mSnL9L",
+                                "name": "name-xE9mtJ",
+                                "physical_blockdevice_id": 18,
+                                "serial": "serial-jBitFU"
+                            }
+                        }
+                    },
+                    "script_id": 13,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 365,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "internet-connectivity",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sat, 01 Apr 2017 03:04:52 -0000",
+                    "ended": "Sat, 01 Apr 2017 03:12:08 -0000",
+                    "runtime": "0:07:16",
+                    "starttime": 1491015892,
+                    "endtime": 1491016328,
+                    "estimated_runtime": "0:07:16",
+                    "parameters": {},
+                    "script_id": 6,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 364,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "memtester",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Wed, 19 Apr 2017 09:22:38 -0000",
+                    "ended": "Wed, 19 Apr 2017 10:43:25 -0000",
+                    "runtime": "1:20:47",
+                    "starttime": 1492593758,
+                    "endtime": 1492598605,
+                    "estimated_runtime": "1:20:47",
+                    "parameters": {},
+                    "script_id": 5,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 361,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-conveyance",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sat, 18 Mar 2017 10:19:52 -0000",
+                    "ended": "Sat, 18 Mar 2017 12:47:57 -0000",
+                    "runtime": "2:28:05",
+                    "starttime": 1489832392,
+                    "endtime": 1489841277,
+                    "estimated_runtime": "2:28:05",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-mSnL9L",
+                                "name": "name-xE9mtJ",
+                                "physical_blockdevice_id": 18,
+                                "serial": "serial-jBitFU"
+                            }
+                        }
+                    },
+                    "script_id": 4,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 362,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-conveyance",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Thu, 07 Sep 2017 01:11:18 -0000",
+                    "ended": "Thu, 07 Sep 2017 03:02:21 -0000",
+                    "runtime": "1:51:03",
+                    "starttime": 1504746678,
+                    "endtime": 1504753341,
+                    "estimated_runtime": "1:51:03",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-OHzOYI",
+                                "name": "name-EjgNwC",
+                                "physical_blockdevice_id": 19,
+                                "serial": "serial-5EZFik"
+                            }
+                        }
+                    },
+                    "script_id": 4,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 363,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-conveyance",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Fri, 15 Sep 2017 21:40:34 -0000",
+                    "ended": "Fri, 15 Sep 2017 23:16:21 -0000",
+                    "runtime": "1:35:47",
+                    "starttime": 1505511634,
+                    "endtime": 1505517381,
+                    "estimated_runtime": "1:35:47",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-5btVsu",
+                                "name": "name-VhlrVi",
+                                "physical_blockdevice_id": 20,
+                                "serial": "serial-SE3O1p"
+                            }
+                        }
+                    },
+                    "script_id": 4,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 358,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-short",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Fri, 20 Jan 2017 06:36:01 -0000",
+                    "ended": "Fri, 20 Jan 2017 07:21:22 -0000",
+                    "runtime": "0:45:21",
+                    "starttime": 1484894161,
+                    "endtime": 1484896882,
+                    "estimated_runtime": "0:45:21",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-mSnL9L",
+                                "name": "name-xE9mtJ",
+                                "physical_blockdevice_id": 18,
+                                "serial": "serial-jBitFU"
+                            }
+                        }
+                    },
+                    "script_id": 2,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 359,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-short",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 20 Jun 2017 19:17:09 -0000",
+                    "ended": "Tue, 20 Jun 2017 19:59:22 -0000",
+                    "runtime": "0:42:13",
+                    "starttime": 1497986229,
+                    "endtime": 1497988762,
+                    "estimated_runtime": "0:42:13",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-OHzOYI",
+                                "name": "name-EjgNwC",
+                                "physical_blockdevice_id": 19,
+                                "serial": "serial-5EZFik"
+                            }
+                        }
+                    },
+                    "script_id": 2,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 360,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-short",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 26 Feb 2017 09:37:07 -0000",
+                    "ended": "Sun, 26 Feb 2017 09:44:53 -0000",
+                    "runtime": "0:07:46",
+                    "starttime": 1488101827,
+                    "endtime": 1488102293,
+                    "estimated_runtime": "0:07:46",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-5btVsu",
+                                "name": "name-VhlrVi",
+                                "physical_blockdevice_id": 20,
+                                "serial": "serial-SE3O1p"
+                            }
+                        }
+                    },
+                    "script_id": 2,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 355,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-validate",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sat, 26 Aug 2017 12:32:16 -0000",
+                    "ended": "Sat, 26 Aug 2017 14:45:18 -0000",
+                    "runtime": "2:13:02",
+                    "starttime": 1503750736,
+                    "endtime": 1503758718,
+                    "estimated_runtime": "2:13:02",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-mSnL9L",
+                                "name": "name-xE9mtJ",
+                                "physical_blockdevice_id": 18,
+                                "serial": "serial-jBitFU"
+                            }
+                        }
+                    },
+                    "script_id": 1,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 356,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-validate",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Tue, 06 Jun 2017 13:03:30 -0000",
+                    "ended": "Tue, 06 Jun 2017 13:47:00 -0000",
+                    "runtime": "0:43:30",
+                    "starttime": 1496754210,
+                    "endtime": 1496756820,
+                    "estimated_runtime": "0:43:30",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-OHzOYI",
+                                "name": "name-EjgNwC",
+                                "physical_blockdevice_id": 19,
+                                "serial": "serial-5EZFik"
+                            }
+                        }
+                    },
+                    "script_id": 1,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 357,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "smartctl-validate",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sun, 16 Jul 2017 19:10:54 -0000",
+                    "ended": "Sun, 16 Jul 2017 21:35:40 -0000",
+                    "runtime": "2:24:46",
+                    "starttime": 1500232254,
+                    "endtime": 1500240940,
+                    "estimated_runtime": "2:24:46",
+                    "parameters": {
+                        "storage": {
+                            "argument_format": "{path}",
+                            "type": "storage",
+                            "value": {
+                                "id_path": null,
+                                "model": "model-5btVsu",
+                                "name": "name-VhlrVi",
+                                "physical_blockdevice_id": 20,
+                                "serial": "serial-SE3O1p"
+                            }
+                        }
+                    },
+                    "script_id": 1,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 366,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "stress-ng-memory-long",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Sat, 08 Apr 2017 03:39:23 -0000",
+                    "ended": "Sat, 08 Apr 2017 03:50:36 -0000",
+                    "runtime": "0:11:13",
+                    "starttime": 1491622763,
+                    "endtime": 1491623436,
+                    "estimated_runtime": "0:11:13",
+                    "parameters": {},
+                    "script_id": 9,
+                    "script_revision_id": null
+                },
+                {
+                    "id": 367,
+                    "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                    "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                    "name": "stress-ng-memory-short",
+                    "status": 2,
+                    "status_name": "Passed",
+                    "exit_status": 0,
+                    "started": "Thu, 19 Oct 2017 19:45:46 -0000",
+                    "ended": "Thu, 19 Oct 2017 22:18:36 -0000",
+                    "runtime": "2:32:50",
+                    "starttime": 1508442346,
+                    "endtime": 1508451516,
+                    "estimated_runtime": "2:32:50",
+                    "parameters": {},
+                    "script_id": 10,
+                    "script_revision_id": null
+                }
+            ],
+            "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+            "last_ping": null,
+            "system_id": "thr3am",
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/results/22/"
+        }
+    ]
 
-:   A comma seperated list to show only results with a script name or
-    tag.
+**Error**
 
-type filters
+------------------------------------------------------------------------
 
-:   unicode
+*HTTP Status Code* : 404
 
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Node Scripts
 
 Manage custom scripts.
 
-> This functionality is only available to administrators.
+This functionality is only available to administrators.
 
-#### `GET /MAAS/api/2.0/scripts/`
+<details>
+  <summary>``GET /MAAS/api/2.0/scripts/``</summary>
+
+------------------------------------------------------------------------
 
 Return a list of stored scripts.
 
-param type
+Note that parameters should be passed in the URI. E.g.
+`/script/?type=testing`.
 
-:   Only return scripts with the given type. This can be testing or
-    commissioning. Defaults to showing both.
+**Parameters**
 
-type type
+------------------------------------------------------------------------
 
-:   unicode
+**type** (*String*): Optional. Only return scripts with the given type.
+This can be `testing` or `commissioning`. Defaults to showing both.
 
-param hardware\_type
+**hardware\_type** (*String*): Optional. Only return scripts for the
+given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
+Defaults to all.
 
-:   Only return scripts for the given hardware type. Can be node, cpu,
-    memory, or storage. Defaults to all.
+**include\_script** (*String*): Optional. Include the base64- encoded
+script content.
 
-type hardware\_type
+**filters** (*String*): Optional. A comma seperated list to show only
+results with a script name or tag.
 
-:   unicode
+**Success**
 
-param include\_script
+------------------------------------------------------------------------
 
-:   Include the base64 encoded script content.
+*HTTP Status Code* : 200
 
-type include\_script
+*JSON*
 
-:   bool
+    [
+        {
+            "name": "memtester",
+            "title": "Memory integrity",
+            "description": "Run memtester against all available userspace memory.",
+            "tags": [
+                "memory"
+            ],
+            "hardware_type": 2,
+            "parallel": 0,
+            "results": {},
+            "parameters": {},
+            "packages": {
+                "apt": [
+                    "memtester"
+                ]
+            },
+            "timeout": "0:00:00",
+            "destructive": false,
+            "default": true,
+            "for_hardware": [],
+            "may_reboot": false,
+            "recommission": false,
+            "history": [
+                {
+                    "id": 5,
+                    "comment": "Created by maas-",
+                    "created": "Thu, 06 Dec 2018 20:41:47 -0000"
+                }
+            ],
+            "id": 5,
+            "hardware_type_name": "Memory",
+            "type_name": "Testing script",
+            "parallel_name": "Disabled",
+            "type": 2,
+            "resource_uri": "/MAAS/api/2.0/scripts/memtester"
+        },
+        {
+            "name": "stress-ng-memory-long",
+            "title": "Memory integrity",
+            "description": "Run stress-ng memory tests for 12 hours.",
+            "tags": [
+                "memory"
+            ],
+            "hardware_type": 2,
+            "parallel": 0,
+            "results": {},
+            "parameters": {},
+            "packages": {
+                "apt": [
+                    "stress-ng"
+                ]
+            },
+            "timeout": "12:00:00",
+            "destructive": false,
+            "default": true,
+            "for_hardware": [],
+            "may_reboot": false,
+            "recommission": false,
+            "history": [
+                {
+                    "id": 9,
+                    "comment": "Created by maas-",
+                    "created": "Thu, 06 Dec 2018 20:41:47 -0000"
+                }
+            ],
+            "id": 9,
+            "hardware_type_name": "Memory",
+            "type_name": "Testing script",
+            "parallel_name": "Disabled",
+            "type": 2,
+            "resource_uri": "/MAAS/api/2.0/scripts/stress-ng-memory-long"
+        },
+        {
+            "name": "stress-ng-memory-short",
+            "title": "Memory integrity",
+            "description": "Run stress-ng memory tests for 5 minutes.",
+            "tags": [
+                "memory"
+            ],
+            "hardware_type": 2,
+            "parallel": 0,
+            "results": {},
+            "parameters": {},
+            "packages": {
+                "apt": [
+                    "stress-ng"
+                ]
+            },
+            "timeout": "0:05:00",
+            "destructive": false,
+            "default": true,
+            "for_hardware": [],
+            "may_reboot": false,
+            "recommission": false,
+            "history": [
+                {
+                    "id": 10,
+                    "comment": "Created by maas-",
+                    "created": "Thu, 06 Dec 2018 20:41:47 -0000"
+                }
+            ],
+            "id": 10,
+            "hardware_type_name": "Memory",
+            "type_name": "Testing script",
+            "parallel_name": "Disabled",
+            "type": 2,
+            "resource_uri": "/MAAS/api/2.0/scripts/stress-ng-memory-short"
+        }
+    ]
 
-param filters
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/scripts/``</summary>
 
-:   A comma seperated list to show only results with a script name or
-    tag.
-
-type filters
-
-:   unicode
-
-#### `POST /MAAS/api/2.0/scripts/`
+------------------------------------------------------------------------
 
 Create a new script.
 
-param name
+**Parameters**
 
-:   The name of the script.
+------------------------------------------------------------------------
 
-type name
+**name** (*String*): Required. The name of the script.
 
-:   unicode
+**title** (*String*): Optional. The title of the script.
 
-param title
+**description** (*String*): Optional. A description of what the script
+does.
 
-:   The title of the script.
+**tags** (*String*): Optional. A comma seperated list of tags for this
+script.
 
-type title
+**type** (*String*): Optional. The script\_type defines when the script
+should be used: `testing` or `commissioning`. Defaults to `testing`.
 
-:   unicode
+**hardware\_type** (*String*): Optional. The hardware\_type defines what
+type of hardware the script is assoicated with. May be CPU, memory,
+storage, or node.
 
-param description
+**parallel** (*Int*): Optional. Whether the script may be run in
+parallel with other scripts. May be disabled to run by itself, instance
+to run along scripts with the same name, or any to run along any script.
+1 == True, 0 == False.
 
-:   A description of what the script does.
+**timeout** (*Int*): Optional. How long the script is allowed to run
+before failing. 0 gives unlimited time, defaults to 0.
 
-type description
+**destructive** (*Boolean*): Optional. Whether or not the script
+overwrites data on any drive on the running system. Destructive scripts
+can not be run on deployed systems. Defaults to false.
 
-:   unicode
+**script** (*String*): Optional. The content of the script to be
+uploaded in binary form. Note: this is not a normal parameter, but a
+file upload. Its filename is ignored; MAAS will know it by the name you
+pass to the request. Optionally you can ignore the name and script
+parameter in favor of uploading a single file as part of the request.
 
-param tags
+**comment** (*String*): Optional. A comment about what this change does.
 
-:   A comma seperated list of tags for this script.
+**for\_hardware** (*String*): Optional. A list of modalias, PCI IDs,
+and/or USB IDs the script will automatically run on. Must start with
+`modalias:`, `pci:`, or `usb:`.
 
-type tags
+**may\_reboot** (*Boolean*): Optional. Whether or not the script may
+reboot the system while running.
 
-:   unicode
+**recommission** (*String*): Optional. Whether builtin commissioning
+scripts should be rerun after successfully running this scripts.
 
-param type
+**Success**
 
-:   The script\_type defines when the script should be used. Can be
-    testing or commissioning, defaults to testing.
+------------------------------------------------------------------------
 
-type script\_type
+*HTTP Status Code* : 200
 
-:   unicode
+*JSON*
 
-param hardware\_type
+    {
+        "name": "foobar",
+        "title": "",
+        "description": "",
+        "tags": [
+            "node"
+        ],
+        "hardware_type": 0,
+        "parallel": 0,
+        "results": {},
+        "parameters": {},
+        "packages": {},
+        "timeout": "0:00:00",
+        "destructive": false,
+        "default": false,
+        "for_hardware": [],
+        "may_reboot": false,
+        "recommission": false,
+        "type": 2,
+        "type_name": "Testing script",
+        "id": 16,
+        "history": [
+            {
+                "id": 22,
+                "comment": null,
+                "created": "Thu, 06 Dec 2018 21:26:18 -0000"
+            }
+        ],
+        "hardware_type_name": "Node",
+        "parallel_name": "Disabled",
+        "resource_uri": "/MAAS/api/2.0/scripts/foobar"
+    }
 
-:   The hardware\_type defines what type of hardware the script is
-    assoicated with. May be CPU, memory, storage, or node.
-
-type hardware\_type
-
-:   unicode
-
-param parallel
-
-:   Whether the script may be run in parallel with other scripts. May be
-    disabled to run by itself, instance to run along scripts with the
-    same name, or any to run along any script.
-
-type parallel
-
-:   unicode
-
-param timeout
-
-:   How long the script is allowed to run before failing. 0 gives
-    unlimited time, defaults to 0.
-
-type timeout
-
-:   unicode
-
-param destructive
-
-:   Whether or not the script overwrites data on any drive on the
-    running system. Destructive scripts can not be run on deployed
-    systems. Defaults to false.
-
-type destructive
-
-:   boolean
-
-param script
-
-:   The content of the script to be uploaded in binary form. note: this
-    is not a normal parameter, but a file upload. Its filename is
-    ignored; MAAS will know it by the name you pass to the request.
-    Optionally you can ignore the name and script parameter in favor of
-    uploading a single file as part of the request.
-
-type script
-
-:   unicode
-
-param comment
-
-:   A comment about what this change does.
-
-type comment
-
-:   unicode
-
-param for\_hardware
-
-:   A list of modalias, PCI IDs, and/or USB IDs the script will
-    automatically run on. Must start with modalias:, pci:, or usb:.
-
-type for\_hardware
-
-:   unicode
-
-param may\_reboot
-
-:   Whether or not the script may reboot the system while running.
-
-type may\_reboot
-
-:   boolean
-
-param recommission
-
-:   Whether builtin commissioning scripts should be rerun after
-    successfully running this scripts.
-
-type recommission
-
-:   boolean
-
+<p>&nbsp;</p>
+</details>
 ### Nodes
 
 Manage the collection of all the nodes in the MAAS.
