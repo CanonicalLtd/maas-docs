@@ -144,7 +144,7 @@ The value is a dictionary with the following fields:
 Example script using default values:
 ```python
 #!/usr/bin/env python3
-                                                                                
+
 # --- Start MAAS 1.0 script metadata ---
 # name: example
 # parallel: instance
@@ -166,7 +166,7 @@ print("Testing: %s" % args.storage)
 Example script using customized paramaters:
 ```bash
 #!/bin/bash
-                                                                               
+
 # --- Start MAAS 1.0 script metadata ---
 # name: example
 # parallel: instance
@@ -209,7 +209,7 @@ device.
 The YAML file must represent a dictionary with the following fields:
 
 - `result`: The completion status of the script. This can be either `passed`,
-  `failed`, `degraded`, or skipped. If no status is defined, an exit code of `0`
+  `failed`, `degraded`, or `skipped`. If no status is defined, an exit code of `0`
   indicates a pass while a non-zero value indicates a failure.
 - `results`: A dictionary of results. The key may map to a results key defined
   as embedded YAML within the script. The value of each result must be a string
@@ -224,9 +224,10 @@ results YAML. In each dictionary the following fields may be defined:
 - `description` - The description of the field used as a tooltip in the UI.
 
 Example degrade detection:
+
 ```python
 #!/usr/bin/env python3
-                                                                                
+
 # --- Start MAAS 1.0 script metadata ---
 # name: example
 # results:
@@ -258,14 +259,14 @@ if result_path is not None:
 
 ## Script examples
 
-### Builtin scripts
+### Built-in scripts
 The source to all commissioning and test scripts can be downloaded at any time over the API
 
 ```bash
 maas $PROFILE node-script download $SCRIPT_NAME
 ```
 
-The source code to all builtin scripts is available on [launchpad](https://git.launchpad.net/maas/tree/src/metadataserver/builtin_scripts).
+The source code to all built-in scripts is available on [launchpad](https://git.launchpad.net/maas/tree/src/metadataserver/builtin_scripts).
 
 ### Commissioning script: Configure HPA
 
