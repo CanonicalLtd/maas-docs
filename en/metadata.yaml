@@ -93,20 +93,39 @@ navigation:
             - title: Ubuntu kernels
               location: nodes-kernels.md
 
-    - title: Composable machines (KVM/RSD)
+    - title: KVM
       children:
 
         - title: Introduction
-          location: manage-pods-intro.md
+          location: manage-kvm-intro.md
+
+        - title: Add a KVM host
+          location: manage-kvm-add-host.md
+
+        - title: Storage pools
+          location: manage-kvm-storage.md
 
         - title: KVM host networking
-          location: manage-kvm-pods-networking.md
+          location: manage-kvm-host-networking.md
 
-        - title: Manage composable machines
-          location: manage-pods-webui.md
+        - title: Creating and deleting VMs
+          location: manage-kvm-create-vms.md
 
-        - title: CLI composable machine management
-          location: manage-cli-comp-hw.md
+    - title: RSD
+      children:
+
+        - title: Introduction
+          location: manage-rsd-intro.md
+
+        - title: Add an RSD
+          location: manage-rsd-add.md
+
+        - title: RSD Storage
+          location: manage-rsd-storage.md
+
+        - title: Creating and deleting machines
+          location: manage-rsd-create.md
+
 
     - title: Images
       location: installconfig-images.md
