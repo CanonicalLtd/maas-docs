@@ -81,7 +81,7 @@ navigation:
         - title: Kernel boot options
           location: nodes-kernel-options.md
 
-        - title: Organize Machines (Resource pools)
+        - title: Organize machines (resource pools)
           location: nodes-resource-pools.md
 
         - title: Advanced features
@@ -93,20 +93,39 @@ navigation:
             - title: Ubuntu kernels
               location: nodes-kernels.md
 
-    - title: Composable machines (KVM/RSD)
+    - title: KVM
       children:
 
         - title: Introduction
-          location: manage-pods-intro.md
+          location: manage-kvm-intro.md
+
+        - title: Add a KVM host
+          location: manage-kvm-add-host.md
+
+        - title: Storage pools
+          location: manage-kvm-storage.md
 
         - title: KVM host networking
-          location: manage-kvm-pods-networking.md
+          location: manage-kvm-host-networking.md
 
-        - title: Manage composable machines
-          location: manage-pods-webui.md
+        - title: Creating and deleting VMs
+          location: manage-kvm-create-vms.md
 
-        - title: CLI composable machine management
-          location: manage-cli-comp-hw.md
+    - title: RSD
+      children:
+
+        - title: Introduction
+          location: manage-rsd-intro.md
+
+        - title: Add an RSD host
+          location: manage-rsd-add.md
+
+        - title: RSD storage
+          location: manage-rsd-storage.md
+
+        - title: Creating and deleting machines
+          location: manage-rsd-create.md
+
 
     - title: Images
       location: installconfig-images.md
@@ -197,8 +216,8 @@ navigation:
         - title: Common tasks
           location: manage-cli-common.md
 
-        - title: Audit Event Logs
-          location: manage-audit-events.md 
+        - title: Audit event logs
+          location: manage-audit-events.md
 
         - title: Kernel management
           location: manage-cli-kernels.md
