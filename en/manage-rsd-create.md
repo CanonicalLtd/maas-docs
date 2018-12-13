@@ -9,9 +9,7 @@ menu to compose a machine.
 
 ![pod compose machine][img__pod-compose-machine]
 
-You can choose which storage pool to use from a drop-down list:
-
-![storagepoolavail][img__storagepoolavail]
+You can choose which storage to use from a drop-down list.
 
 Click the 'Compose machine' button when you're finished. MAAS will present the pod
 detail view. In a few moments, your new machine will be auto-commissioned. The
@@ -38,7 +36,6 @@ Action' menu.
 <!-- LINKS -->
 
 [img__pod-compose-machine]: ../media/manage-kvm-pods__2.5_pod-compose-machine.png
-[img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
 [img__pod-compose-machine-commissioning]: ../media/manage-kvm-pods__2.5_pod-compose-machine-commissioning.png
 [img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
 
