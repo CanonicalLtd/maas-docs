@@ -1,9 +1,9 @@
-Title: Audit Event Logs
+Title: Audit event logs
 TODO:  Update when all audit event logs have landed in MAAS master.
 table_of_contents: True
 
 
-# Audit Event Logs
+# Audit event logs
 
 There are many user initiated events in MAAS that an administrator or a user
 may want to audit. These include someone updating the settings or changing a

@@ -122,7 +122,7 @@ easier to configure and more likely to result in successful communication.
 
 <!-- LINKS -->
 
-[findpodid]: manage-cli-comp-hw.md#find-pod-ids
-[interface-constraints]: manage-cli-comp-hw.md#interfaces
-[deploykvm]: manage-pods-webui.md#add-a-kvm-host
+[findpodid]: manage-kvm-create-vms.md#find-pod-ids
+[interface-constraints]: manage-kvm-create-vms.md#interfaces
+[deploykvm]: manage-kvm-add-host.md
 
