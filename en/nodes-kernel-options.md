@@ -30,6 +30,29 @@ Per-node kernel boot options are set using the CLI. See
 
 Note that per-node boot options take precedence to global ones.
 
+### CLI
+
+To specify kernel boot options for an individual machine a tag needs to be
+created:
+
+```bash
+maas $PROFILE tags create name='$TAG_NAME' \
+	comment='$COMMENT' kernel_opts='$KERNEL_OPTIONS'
+```
+
+For example:
+
+```bash
+maas $PROFILE tags create name='nomodeset' \
+	comment='nomodeset kernel option' kernel_opts='nomodeset vga'
+```
+
+The tag must then be assigned to the machine in question. This can be done
+with the web UI or with the CLI. For the latter, see
+[CLI - Manual tag assignment][cli-manual-tag-assignment].
+
+If multiple tags attached to a node have the `kernel_opts` defined, the first
+one (ordered alphabetically) is used.
 
 <!-- LINKS -->
 
