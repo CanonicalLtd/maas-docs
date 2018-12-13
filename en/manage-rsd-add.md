@@ -2,10 +2,10 @@ Title: Add RSD pod
 TODO:  
 table_of_contents: True
 
-# Add an RSD pod
+# Add an RSD host
 
-Add an RSD Pod by using the 'Add pod' button. Choose 'Rack Scale Design' from
-the Pod type drop-down menu.
+Add an RSD host by using the 'Add pod' button. Choose 'Rack Scale Design' from
+the pod type drop-down menu.
 
 ![add RSD pod][img__pod-add-rsd]
 

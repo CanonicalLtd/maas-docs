@@ -81,7 +81,7 @@ navigation:
         - title: Kernel boot options
           location: nodes-kernel-options.md
 
-        - title: Organize Machines (Resource pools)
+        - title: Organize machines (resource pools)
           location: nodes-resource-pools.md
 
         - title: Advanced features
@@ -117,10 +117,10 @@ navigation:
         - title: Introduction
           location: manage-rsd-intro.md
 
-        - title: Add an RSD
+        - title: Add an RSD host
           location: manage-rsd-add.md
 
-        - title: RSD Storage
+        - title: RSD storage
           location: manage-rsd-storage.md
 
         - title: Creating and deleting machines
@@ -216,8 +216,8 @@ navigation:
         - title: Common tasks
           location: manage-cli-common.md
 
-        - title: Audit Event Logs
-          location: manage-audit-events.md 
+        - title: Audit event logs
+          location: manage-audit-events.md
 
         - title: Kernel management
           location: manage-cli-kernels.md
