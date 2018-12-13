@@ -22,31 +22,6 @@ To set kernel boot options that will be applied to all machines:
 maas $PROFILE maas set-config name=kernel_opts value='$KERNEL_OPTIONS'
 ```
 
-## Specify per-node kernel boot options
-
-To specify kernel boot options for an individual machine a tag needs to be
-created:
-
-```bash
-maas $PROFILE tags create name='$TAG_NAME' \
-	comment='$COMMENT' kernel_opts='$KERNEL_OPTIONS'
-```
-
-For example:
-
-```bash
-maas $PROFILE tags create name='nomodeset' \
-	comment='nomodeset kernel option' kernel_opts='nomodeset vga'
-```
-
-The tag must then be assigned to the machine in question. This can be done
-with the web UI or with the CLI. For the latter, see
-[CLI - Manual tag assignment][cli-manual-tag-assignment].
-
-If multiple tags attached to a node have the `kernel_opts` defined, the first
-one (ordered alphabetically) is used.
-
-
 ## Set a default minimum kernel for enlistment and commissioning
 
 To set a default minimum kernel for all new and commissioned machines:
