@@ -14,14 +14,6 @@ helpful:
 - [Kernel boot options][kernel-boot-options] for help on kernel boot options.
 
 
-## Set global kernel boot options
-
-To set kernel boot options that will be applied to all machines:
-
-```bash
-maas $PROFILE maas set-config name=kernel_opts value='$KERNEL_OPTIONS'
-```
-
 ## Set a default minimum kernel for enlistment and commissioning
 
 To set a default minimum kernel for all new and commissioned machines:
