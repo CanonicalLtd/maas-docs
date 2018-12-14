@@ -9,7 +9,7 @@ v.1.0 and RSD PODM API v.1.0.
 
 ## Next steps
 
-- [Add an RSD pod][addrsd]
+- [Add an RSD host][addrsd]
 
 <!-- LINKS -->
 
