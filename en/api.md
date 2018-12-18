@@ -1,6 +1,5 @@
-Title: API | MAAS
+Title: API
 table_of_contents: True
-
 
 MAAS API
 ========
@@ -6426,194 +6425,485 @@ Create a fabric.
 
 Manage Fan Network.
 
-#### `DELETE /MAAS/api/2.0/fannetworks/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/fannetworks/{id}/``</summary>
 
-Delete fannetwork.
+------------------------------------------------------------------------
 
-Returns 404 if the fannetwork is not found.
+Deletes a fan network with the given id.
 
-#### `GET /MAAS/api/2.0/fannetworks/{id}/`
+**Parameters**
 
-Read fannetwork.
+------------------------------------------------------------------------
 
-Returns 404 if the fannetwork is not found.
+**{id}** (*Int*): Required. The fan network id.
 
-#### `PUT /MAAS/api/2.0/fannetworks/{id}/`
+**Success**
 
-Update fannetwork.
+------------------------------------------------------------------------
 
-param name
+*HTTP Status Code* : 204
 
-:   Name of the fannetwork.
+**Error**
 
-param overlay
+------------------------------------------------------------------------
 
-:   Overlay network
+*HTTP Status Code* : 404
 
-param underlay
+*Content*
 
-:   Underlay network
+    Not Found
 
-param dhcp
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/fannetworks/{id}/``</summary>
 
-:   confiugre dhcp server for overlay net
+------------------------------------------------------------------------
 
-param host\_reserve
+Read a fan network with the given id.
 
-:   number of IP addresses to reserve for host
+**Parameters**
 
-param bridge
+------------------------------------------------------------------------
 
-:   override bridge name
+**{id}** (*Int*): Required. The fan network id.
 
-param off
+**Success**
 
-:   put this int he config, but disable it.
+------------------------------------------------------------------------
 
-Returns 404 if the fannetwork is not found.
+*HTTP Status Code* : 200
 
+*JSON*
+
+    {
+        "name": "fannetwork",
+        "overlay": "172.0.0.0/8",
+        "underlay": "172.16.0.0/16",
+        "dhcp": null,
+        "host_reserve": 1,
+        "bridge": null,
+        "off": false,
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/fannetworks/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/fannetworks/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a fan network with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The fan network id.
+
+**name** (*String*): Optional. Name of the fan network.
+
+**overlay** (*String*): Optional. The overlay network.
+
+**underlay** (*String*): Optional. The underlay network.
+
+**dhcp** (*Boolean*): Optional. Configure DHCP server for overlay
+network.
+
+**host\_reserve** (*Int*): Optional. The number of IP addresses to
+reserve for host.
+
+**bridge** (*String*): Optional. Override bridge name.
+
+**off** (*Boolean*): Optional. Put this fan network in the
+configuration, but disable it.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "fannetwork",
+        "overlay": "172.0.0.0/8",
+        "underlay": "172.16.0.0/16",
+        "dhcp": null,
+        "host_reserve": 1,
+        "bridge": "br1",
+        "off": false,
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/fannetworks/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Fan Networks
 
 Manage Fan Networks.
 
-#### `GET /MAAS/api/2.0/fannetworks/`
+<details>
+  <summary>``GET /MAAS/api/2.0/fannetworks/``</summary>
 
-List all fannetworks.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/fannetworks/`
+List all fan networks.
 
-Create a fannetwork.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the fannetwork.
+*HTTP Status Code* : 200
 
-param overlay
+*JSON*
 
-:   Overlay network
+    [
+        {
+            "name": "fannetwork",
+            "overlay": "172.0.0.0/8",
+            "underlay": "172.16.0.0/16",
+            "dhcp": null,
+            "host_reserve": 1,
+            "bridge": null,
+            "off": false,
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/fannetworks/1/"
+        }
+    ]
 
-param underlay
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/fannetworks/``</summary>
 
-:   Underlay network
+------------------------------------------------------------------------
 
-param dhcp
+Create a fan network
 
-:   confiugre dhcp server for overlay net
+**Parameters**
 
-param host\_reserve
+------------------------------------------------------------------------
 
-:   number of IP addresses to reserve for host
+**name** (*String*): Required. Name of the fan network.
 
-param bridge
+**overlay** (*String*): Required. The overlay network.
 
-:   override bridge name
+**underlay** (*String*): Required. The underlay network.
 
-param off
+**dhcp** (*Boolean*): Optional. Configure DHCP server for overlay
+network.
 
-:   put this int he config, but disable it.
+**host\_reserve** (*Int*): Optional. The number of IP addresses to
+reserve for host.
 
+**bridge** (*String*): Optional. Override bridge name.
+
+**off** (*Boolean*): Optional. Put this fan network in the
+configuration, but disable it.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "name": "fannetwork",
+            "overlay": "172.0.0.0/8",
+            "underlay": "172.16.0.0/16",
+            "dhcp": null,
+            "host_reserve": 1,
+            "bridge": null,
+            "off": false,
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/fannetworks/1/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
 ### File
 
 Manage a FileStorage object.
 
-> The file is identified by its filename and owner.
+The file is identified by its filename and owner.
 
-#### `DELETE /MAAS/api/2.0/files/{filename}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/files/{filename}/``</summary>
 
-Delete a FileStorage object.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/files/{filename}/`
+Delete a file with the given file name.
 
-GET a FileStorage object as a json object.
+**Parameters**
 
-The 'content' of the file is base64-encoded.
+------------------------------------------------------------------------
 
+**{filename}** (*String*): Required. The name of the file.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/files/{filename}/``</summary>
+
+------------------------------------------------------------------------
+
+Reads a stored file with the given file name.
+
+The content of the file is base64-encoded.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{filename}** (*String*): Required. The name of the file.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Files
 
 Manage the collection of all the files in this MAAS.
 
-#### `DELETE /MAAS/api/2.0/files/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/files/``</summary>
 
-Delete a FileStorage object.
+------------------------------------------------------------------------
 
-param filename
+Delete a stored file.
 
-:   The filename of the object to be deleted.
+**Parameters**
 
-type filename
+------------------------------------------------------------------------
 
-:   unicode
+**filename** (*String*): Required. The filename of the object to be
+deleted.
 
-#### `GET /MAAS/api/2.0/files/`
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/files/``</summary>
+
+------------------------------------------------------------------------
 
 List the files from the file storage.
 
 The returned files are ordered by file name and the content is excluded.
 
-param prefix
+**Parameters**
 
-:   Optional prefix used to filter out the returned files.
+------------------------------------------------------------------------
 
-type prefix
+**prefix** (*String*): Optional. Prefix used to filter returned files.
 
-:   string
+**Success**
 
-#### `GET /MAAS/api/2.0/files/ op=get`
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/files/?op=get``</summary>
+
+------------------------------------------------------------------------
 
 Get a named file from the file storage.
 
-param filename
+**Parameters**
 
-:   The exact name of the file you want to get.
+------------------------------------------------------------------------
 
-type filename
+**filename** (*String*): Required. The name of the file.
 
-:   string
+**Success**
 
-return
+------------------------------------------------------------------------
 
-:   The file is returned in the response content.
+*HTTP Status Code* : 200
 
-#### `GET /MAAS/api/2.0/files/ op=get_by_key`
+*JSON*
 
-Get a file from the file storage using its key.
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
-param key
+**Error**
 
-:   The exact key of the file you want to get.
+------------------------------------------------------------------------
 
-type key
+*HTTP Status Code* : 404
 
-:   string
+*Content*
 
-return
+    Not Found
 
-:   The file is returned in the response content.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/files/?op=get_by_key``</summary>
 
-#### `POST /MAAS/api/2.0/files/`
+------------------------------------------------------------------------
+
+Get a file from the file storage with the given key.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**key** (*String*): Required. The file's key.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/files/``</summary>
+
+------------------------------------------------------------------------
 
 Add a new file to the file storage.
 
-param filename
+**Parameters**
 
-:   The file name to use in the storage.
+------------------------------------------------------------------------
 
-type filename
+**filename** (*String*): Required. The file name to use in storage.
 
-:   string
+**file** (*String*): Required. File data. Content type must be
+`application/octet-stream`.
 
-param file
+**Success**
 
-:   Actual file data with content type application/octet-stream
+------------------------------------------------------------------------
 
-<!-- -->
+*HTTP Status Code* : 200
 
-Returns 400 if any of these conditions apply:
+*JSON*
 
-:   -   The filename is missing from the parameters
-    -   The file data is missing
-    -   More than one file is supplied
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The filename is missing, the file data is missing or more
+than one file is supplied.
+
+<p>&nbsp;</p>
+</details>
 ### IP Addresses
 
 Manage IP addresses allocated by MAAS.
@@ -6729,656 +7019,2324 @@ found. Returns 503 if there are no more IP addresses available.
 
 Manage IP range.
 
-#### `DELETE /MAAS/api/2.0/ipranges/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/ipranges/{id}/``</summary>
 
-Delete IP range.
+------------------------------------------------------------------------
 
-Returns 403 if not owner of IP range. Returns 404 if the IP range is not
-found.
+Delete an IP range with the given id.
 
-#### `GET /MAAS/api/2.0/ipranges/{id}/`
+**Parameters**
 
-Read IP range.
+------------------------------------------------------------------------
 
-Returns 404 if the IP range is not found.
+**{id}** (*Int*): Required. An IP range id.
 
-#### `PUT /MAAS/api/2.0/ipranges/{id}/`
+**Success**
 
-Update IP range.
+------------------------------------------------------------------------
 
-param start\_ip
+*HTTP Status Code* : 204
 
-:   Start IP address of this range (inclusive).
+**Error**
 
-param end\_ip
+------------------------------------------------------------------------
 
-:   End IP address of this range (inclusive).
+*HTTP Status Code* : 403
 
-param comment
+*Content* : The user does not have the permissions required to delete
+the IP range.
 
-:   A description of this range. (optional)
+*HTTP Status Code* : 404
 
-Returns 403 if not owner of IP range. Returns 404 if the IP Range is not
-found.
+*Content*
 
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/ipranges/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read an IP range with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. An IP range id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "subnet": {
+            "name": "name-rLI3eq",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "id": 5001,
+                "secondary_rack": "fcka3t",
+                "fabric": "fabric-0",
+                "fabric_id": 0,
+                "name": "untagged",
+                "space": "management",
+                "primary_rack": "7xtf67",
+                "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+            },
+            "cidr": "172.16.1.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.1.1",
+            "dns_servers": [
+                "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "id": 1,
+            "space": "management",
+            "resource_uri": "/MAAS/api/2.0/subnets/1/"
+        },
+        "type": "reserved",
+        "start_ip": "172.16.1.200",
+        "end_ip": "172.16.1.210",
+        "user": {
+            "is_superuser": true,
+            "username": "admin",
+            "email": "NN7ER2rH6x@example.com",
+            "is_local": true,
+            "resource_uri": "/MAAS/api/2.0/users/admin/"
+        },
+        "comment": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/ipranges/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update an IP range with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. An IP range id.
+
+**start\_ip** (*String*): Optional. Start IP address of this range
+(inclusive).
+
+**end\_ip** (*String*): Optional. End IP address of this range
+(inclusive).
+
+**comment** (*String*): Optional. A description of this range.
+(optional)
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "subnet": {
+            "name": "name-rLI3eq",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "id": 5001,
+                "space": "management",
+                "fabric_id": 0,
+                "primary_rack": "7xtf67",
+                "fabric": "fabric-0",
+                "secondary_rack": "fcka3t",
+                "name": "untagged",
+                "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+            },
+            "cidr": "172.16.1.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.1.1",
+            "dns_servers": [
+                "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "id": 1,
+            "space": "management",
+            "resource_uri": "/MAAS/api/2.0/subnets/1/"
+        },
+        "type": "reserved",
+        "start_ip": "172.16.1.200",
+        "end_ip": "172.16.1.210",
+        "user": {
+            "is_superuser": true,
+            "username": "admin",
+            "email": "NN7ER2rH6x@example.com",
+            "is_local": true,
+            "resource_uri": "/MAAS/api/2.0/users/admin/"
+        },
+        "comment": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to update
+the IP range.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### IP Ranges
 
 Manage IP ranges.
 
-#### `GET /MAAS/api/2.0/ipranges/`
+<details>
+  <summary>``GET /MAAS/api/2.0/ipranges/``</summary>
 
-List all IP ranges.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/ipranges/`
+List all available IP ranges.
 
-Create an IP range.
+**Success**
 
-param type
+------------------------------------------------------------------------
 
-:   Type of this range. (dynamic or reserved)
+*HTTP Status Code* : 200
 
-param start\_ip
+*JSON*
 
-:   Start IP address of this range (inclusive).
+    [
+        {
+            "subnet": {
+                "name": "name-rLI3eq",
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "name": "untagged",
+                    "space": "management",
+                    "secondary_rack": "fcka3t",
+                    "fabric_id": 0,
+                    "id": 5001,
+                    "fabric": "fabric-0",
+                    "primary_rack": "7xtf67",
+                    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+                },
+                "cidr": "172.16.1.0/24",
+                "rdns_mode": 2,
+                "gateway_ip": "172.16.1.1",
+                "dns_servers": [
+                    "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+                ],
+                "allow_dns": true,
+                "allow_proxy": true,
+                "active_discovery": false,
+                "managed": true,
+                "space": "management",
+                "id": 1,
+                "resource_uri": "/MAAS/api/2.0/subnets/1/"
+            },
+            "type": "reserved",
+            "start_ip": "172.16.1.200",
+            "end_ip": "172.16.1.210",
+            "user": {
+                "is_superuser": true,
+                "username": "admin",
+                "email": "NN7ER2rH6x@example.com",
+                "is_local": true,
+                "resource_uri": "/MAAS/api/2.0/users/admin/"
+            },
+            "comment": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+        }
+    ]
 
-param end\_ip
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/ipranges/``</summary>
 
-:   End IP address of this range (inclusive).
+------------------------------------------------------------------------
 
-param subnet
+Create a new IP range.
 
-:   Subnet this range is associated with. (optional)
+**Parameters**
 
-param comment
+------------------------------------------------------------------------
 
-:   A description of this range. (optional)
+**type** (*String*): Required. Type of this range. (`dynamic` or
+`reserved`)
 
-Returns 403 if standard users tries to create a dynamic IP range.
+**start\_ip** (*String*): Required. Start IP address of this range
+(inclusive).
 
+**end\_ip** (*String*): Required. End IP address of this range
+(inclusive).
+
+**subnet** (*String*): Required. Subnet associated with this range.
+
+**comment** (*String*): Optional. A description of this range.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "subnet": {
+            "name": "name-rLI3eq",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "untagged",
+                "space": "management",
+                "secondary_rack": "fcka3t",
+                "fabric_id": 0,
+                "id": 5001,
+                "fabric": "fabric-0",
+                "primary_rack": "7xtf67",
+                "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+            },
+            "cidr": "172.16.1.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.1.1",
+            "dns_servers": [
+                "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "space": "management",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/subnets/1/"
+        },
+        "type": "reserved",
+        "start_ip": "172.16.1.200",
+        "end_ip": "172.16.1.210",
+        "user": {
+            "is_superuser": true,
+            "username": "admin",
+            "email": "NN7ER2rH6x@example.com",
+            "is_local": true,
+            "resource_uri": "/MAAS/api/2.0/users/admin/"
+        },
+        "comment": "",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have the permissions required to create an
+IP range.
+
+<p>&nbsp;</p>
+</details>
 ### Interface
 
 Manage a node's or device's interface.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/``</summary>
 
-Delete interface on node.
+------------------------------------------------------------------------
 
-Returns 404 if the node or interface is not found.
+Delete an interface with the given system\_id and interface id.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
+**Parameters**
 
-Read interface on node.
+------------------------------------------------------------------------
 
-Returns 404 if the node or interface is not found.
+**{system\_id}** (*String*): Required. A system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=add_tag`
+**{id}** (*Int*): Required. An interface id.
 
-Add a tag to interface on a node.
+**Success**
 
-param tag
+------------------------------------------------------------------------
 
-:   The tag being added.
+*HTTP Status Code* : 204
 
-Returns 404 if the node or interface is not found. Returns 403 if the
-user is not allowed to update the interface.
+**Error**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=disconnect`
+------------------------------------------------------------------------
 
-Disconnect an interface.
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read an interface with the given system\_id and interface id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A system\_id.
+
+**{id}** (*Int*): Required. An interface id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "eth0",
+        "children": [
+            "newbond"
+        ],
+        "mac_address": "00:01:02:03:04:55",
+        "links": [],
+        "product": null,
+        "parents": [],
+        "enabled": true,
+        "vlan": null,
+        "firmware_version": null,
+        "system_id": "thr3am",
+        "tags": [],
+        "params": {},
+        "type": "physical",
+        "discovered": null,
+        "effective_mtu": 1500,
+        "vendor": null,
+        "id": 138,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/138/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=add_tag``</summary>
+
+------------------------------------------------------------------------
+
+Add a tag to an interface with the given system\_id and interface id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A system\_id.
+
+**{id}** (*Int*): Required. An interface id.
+
+**tag** (*String*): Optional. The tag to add.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "fabric_id": 1,
+            "space": "management",
+            "primary_rack": "7xtf67",
+            "name": "untagged",
+            "id": 5003,
+            "fabric": "fabric-1",
+            "secondary_rack": "76y7pg",
+            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+        },
+        "effective_mtu": 1500,
+        "vendor": null,
+        "product": null,
+        "enabled": true,
+        "children": [
+            "eth-lKRYAa.42"
+        ],
+        "links": [
+            {
+                "id": 14,
+                "mode": "auto",
+                "subnet": {
+                    "name": "name-v5djzQ",
+                    "vlan": {
+                        "vid": 0,
+                        "mtu": 1500,
+                        "dhcp_on": false,
+                        "external_dhcp": null,
+                        "relay_vlan": null,
+                        "fabric_id": 1,
+                        "space": "management",
+                        "primary_rack": "7xtf67",
+                        "name": "untagged",
+                        "id": 5003,
+                        "fabric": "fabric-1",
+                        "secondary_rack": "76y7pg",
+                        "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                    },
+                    "cidr": "172.16.2.0/24",
+                    "rdns_mode": 2,
+                    "gateway_ip": "172.16.2.1",
+                    "dns_servers": [
+                        "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                        "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                        "120.129.237.29"
+                    ],
+                    "allow_dns": true,
+                    "allow_proxy": true,
+                    "active_discovery": false,
+                    "managed": true,
+                    "space": "management",
+                    "id": 2,
+                    "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                }
+            }
+        ],
+        "name": "eth-lKRYAa",
+        "discovered": null,
+        "id": 37,
+        "tags": [
+            "tag-oplxjR",
+            "tag-QAxfJH",
+            "tag-VOqx2b",
+            "mytag"
+        ],
+        "parents": [],
+        "firmware_version": null,
+        "params": "",
+        "mac_address": "cb:93:ac:d1:ed:65",
+        "system_id": "thr3am",
+        "type": "physical",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : If the user does not have the permission to add a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=disconnect``</summary>
+
+------------------------------------------------------------------------
+
+Disconnect an interface with the given system\_id and interface id.
 
 Deletes any linked subnets and IP addresses, and disconnects the
 interface from any associated VLAN.
 
-Returns 404 if the node or interface is not found.
+**Success**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=link_subnet`
+------------------------------------------------------------------------
 
-Link interface to a subnet.
+*HTTP Status Code* : 200
 
-param mode
+*JSON*
 
-:   AUTO, DHCP, STATIC or LINK\_UP connection to subnet.
+    {
+        "enabled": true,
+        "system_id": "thr3am",
+        "tags": [],
+        "vendor": null,
+        "type": "physical",
+        "product": null,
+        "links": [],
+        "vlan": null,
+        "firmware_version": null,
+        "parents": [],
+        "params": {},
+        "effective_mtu": 1500,
+        "discovered": null,
+        "mac_address": "00:01:02:03:04:77",
+        "children": [
+            "br1"
+        ],
+        "name": "eth1",
+        "id": 140,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/140/"
+    }
 
-param subnet
+**Error**
 
-:   Subnet linked to interface.
+------------------------------------------------------------------------
 
-param ip\_address
+*HTTP Status Code* : 404
 
-:   IP address for the interface in subnet. Only used when mode is
-    STATIC. If not provided an IP address from subnet will be auto
-    selected.
+*Content*
 
-param force
+    Not Found
 
-:   If True, allows LINK\_UP to be set on the interface even if other
-    links already exist. Also allows the selection of any VLAN, even a
-    VLAN MAAS does not believe the interface to currently be on. Using
-    this option will cause all other links on the interface to be
-    deleted. (Defaults to False.)
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=link_subnet``</summary>
 
-param default\_gateway
+------------------------------------------------------------------------
 
-:   True sets the gateway IP address for the subnet as the default
-    gateway for the node this interface belongs to. Option can only be
-    used with the AUTO and STATIC modes.
+Link an interface with the given system\_id and interface id to a
+subnet.
 
-Mode definitions: AUTO - Assign this interface a static IP address from
-the provided subnet. The subnet must be a managed subnet. The IP address
-will not be assigned until the node goes to be deployed.
+**Parameters**
 
-DHCP - Bring this interface up with DHCP on the given subnet. Only one
-subnet can be set to DHCP. If the subnet is managed this interface will
-pull from the dynamic IP range.
+------------------------------------------------------------------------
 
-STATIC - Bring this interface up with a STATIC IP address on the given
-subnet. Any number of STATIC links can exist on an interface.
+**{system\_id}** (*String*): Required. A system\_id.
 
-LINK\_UP - Bring this interface up only on the given subnet. No IP
-address will be assigned to this interface. The interface cannot have
-any current AUTO, DHCP or STATIC links.
+**{id}** (*Int*): Required. An interface id.
 
-Returns 404 if the node or interface is not found.
+**mode** (*String*): Required. `AUTO`, `DHCP`, `STATIC` or `LINK_UP`
+connection to subnet.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=remove_tag`
+Mode definitions:
 
-Remove a tag from interface on a node.
+-   `AUTO`: Assign this interface a static IP address from the provided
+    subnet. The subnet must be a managed subnet. The IP address will not
+    be assigned until the node goes to be deployed.
+-   `DHCP`: Bring this interface up with DHCP on the given subnet. Only
+    one subnet can be set to `DHCP`. If the subnet is managed this
+    interface will pull from the dynamic IP range.
+-   `STATIC`: Bring this interface up with a static IP address on the
+    given subnet. Any number of static links can exist on an interface.
+-   `LINK_UP`: Bring this interface up only on the given subnet. No IP
+    address will be assigned to this interface. The interface cannot
+    have any current `AUTO`, `DHCP` or `STATIC` links.
 
-param tag
+**subnet** (*Int*): Required. Subnet id linked to interface.
 
-:   The tag being removed.
+**ip\_address** (*String*): Optional. IP address for the interface in
+subnet. Only used when mode is `STATIC`. If not provided an IP address
+from subnet will be auto selected.
 
-Returns 404 if the node or interface is not found. Returns 403 if the
-user is not allowed to update the interface.
+**force** (*Boolean*): Optional. If True, allows `LINK_UP` to be set on
+the interface even if other links already exist. Also allows the
+selection of any VLAN, even a VLAN MAAS does not believe the interface
+to currently be on. Using this option will cause all other links on the
+interface to be deleted. (Defaults to False.)
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=set_default_gateway`
+**default\_gateway** (*String*): Optional. True sets the gateway IP
+address for the subnet as the default gateway for the node this
+interface belongs to. Option can only be used with the `AUTO` and
+`STATIC` modes.
 
-Set the node to use this interface as the default gateway.
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "tags": [],
+        "system_id": "thr3am",
+        "parents": [],
+        "enabled": true,
+        "params": {},
+        "product": null,
+        "discovered": null,
+        "effective_mtu": 1500,
+        "firmware_version": null,
+        "type": "physical",
+        "vendor": null,
+        "id": 140,
+        "mac_address": "00:01:02:03:04:77",
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "primary_rack": "7xtf67",
+            "secondary_rack": "76y7pg",
+            "space": "management",
+            "id": 5001,
+            "fabric": "fabric-0",
+            "fabric_id": 0,
+            "name": "untagged",
+            "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+        },
+        "children": [
+            "br1"
+        ],
+        "name": "eth1",
+        "links": [
+            {
+                "id": 70,
+                "mode": "auto",
+                "subnet": {
+                    "name": "name-rLI3eq",
+                    "vlan": {
+                        "vid": 0,
+                        "mtu": 1500,
+                        "dhcp_on": false,
+                        "external_dhcp": null,
+                        "relay_vlan": null,
+                        "primary_rack": "7xtf67",
+                        "secondary_rack": "76y7pg",
+                        "space": "management",
+                        "id": 5001,
+                        "fabric": "fabric-0",
+                        "fabric_id": 0,
+                        "name": "untagged",
+                        "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+                    },
+                    "cidr": "172.16.1.0/24",
+                    "rdns_mode": 2,
+                    "gateway_ip": "172.16.1.1",
+                    "dns_servers": [
+                        "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+                    ],
+                    "allow_dns": true,
+                    "allow_proxy": true,
+                    "active_discovery": false,
+                    "managed": true,
+                    "space": "management",
+                    "id": 1,
+                    "resource_uri": "/MAAS/api/2.0/subnets/1/"
+                }
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/140/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=remove_tag``</summary>
+
+------------------------------------------------------------------------
+
+Remove a tag from an interface with the given system\_id and interface
+id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A system\_id.
+
+**{id}** (*Int*): Required. An interface id.
+
+**tag** (*String*): Optional. The tag to remove.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "fabric_id": 1,
+            "space": "management",
+            "primary_rack": "7xtf67",
+            "name": "untagged",
+            "id": 5003,
+            "fabric": "fabric-1",
+            "secondary_rack": "76y7pg",
+            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+        },
+        "effective_mtu": 1500,
+        "vendor": null,
+        "product": null,
+        "enabled": true,
+        "children": [
+            "eth-lKRYAa.42"
+        ],
+        "links": [
+            {
+                "id": 14,
+                "mode": "auto",
+                "subnet": {
+                    "name": "name-v5djzQ",
+                    "vlan": {
+                        "vid": 0,
+                        "mtu": 1500,
+                        "dhcp_on": false,
+                        "external_dhcp": null,
+                        "relay_vlan": null,
+                        "fabric_id": 1,
+                        "space": "management",
+                        "primary_rack": "7xtf67",
+                        "name": "untagged",
+                        "id": 5003,
+                        "fabric": "fabric-1",
+                        "secondary_rack": "76y7pg",
+                        "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                    },
+                    "cidr": "172.16.2.0/24",
+                    "rdns_mode": 2,
+                    "gateway_ip": "172.16.2.1",
+                    "dns_servers": [
+                        "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                        "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                        "120.129.237.29"
+                    ],
+                    "allow_dns": true,
+                    "allow_proxy": true,
+                    "active_discovery": false,
+                    "managed": true,
+                    "space": "management",
+                    "id": 2,
+                    "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                }
+            }
+        ],
+        "name": "eth-lKRYAa",
+        "discovered": null,
+        "id": 37,
+        "tags": [
+            "tag-oplxjR",
+            "tag-QAxfJH",
+            "tag-VOqx2b"
+        ],
+        "parents": [],
+        "firmware_version": null,
+        "params": "",
+        "mac_address": "cb:93:ac:d1:ed:65",
+        "system_id": "thr3am",
+        "type": "physical",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : If the user does not have the permission to add a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=set_default_gateway``</summary>
+
+------------------------------------------------------------------------
+
+Set the given interface id on the given system\_id as the default
+gateway.
 
 If this interface has more than one subnet with a gateway IP in the same
 IP address family then specifying the ID of the link on this interface
 is required.
 
-param link\_id
+**Parameters**
 
-:   ID of the link on this interface to select the default gateway IP
-    address from.
+------------------------------------------------------------------------
 
-Returns 400 if the interface has not AUTO or STATIC links. Returns 404
-if the node or interface is not found.
+**{system\_id}** (*String*): Required. A system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/ op=unlink_subnet`
+**{id}** (*Int*): Required. An interface id.
 
-Unlink interface to a subnet.
+**link\_id** (*Int*): Optional. ID of the link on this interface to
+select the default gateway IP address from.
 
-param id
+**Success**
 
-:   ID of the link on the interface to remove.
+------------------------------------------------------------------------
 
-Returns 404 if the node or interface is not found.
+*HTTP Status Code* : 200
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/`
+*JSON*
 
-Update interface on node.
+    {
+        "effective_mtu": 1500,
+        "id": 37,
+        "children": [
+            "eth-lKRYAa.42"
+        ],
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "secondary_rack": "76y7pg",
+            "id": 5003,
+            "fabric_id": 1,
+            "name": "untagged",
+            "space": "management",
+            "fabric": "fabric-1",
+            "primary_rack": "7xtf67",
+            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+        },
+        "name": "eth-lKRYAa",
+        "parents": [],
+        "enabled": true,
+        "type": "physical",
+        "system_id": "thr3am",
+        "mac_address": "cb:93:ac:d1:ed:65",
+        "links": [
+            {
+                "id": 14,
+                "mode": "auto",
+                "subnet": {
+                    "name": "name-v5djzQ",
+                    "vlan": {
+                        "vid": 0,
+                        "mtu": 1500,
+                        "dhcp_on": false,
+                        "external_dhcp": null,
+                        "relay_vlan": null,
+                        "secondary_rack": "76y7pg",
+                        "id": 5003,
+                        "fabric_id": 1,
+                        "name": "untagged",
+                        "space": "management",
+                        "fabric": "fabric-1",
+                        "primary_rack": "7xtf67",
+                        "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                    },
+                    "cidr": "172.16.2.0/24",
+                    "rdns_mode": 2,
+                    "gateway_ip": "172.16.2.1",
+                    "dns_servers": [
+                        "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                        "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                        "120.129.237.29"
+                    ],
+                    "allow_dns": true,
+                    "allow_proxy": true,
+                    "active_discovery": false,
+                    "managed": true,
+                    "id": 2,
+                    "space": "management",
+                    "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                }
+            }
+        ],
+        "tags": [
+            "tag-oplxjR",
+            "tag-QAxfJH",
+            "tag-VOqx2b"
+        ],
+        "params": "",
+        "vendor": null,
+        "firmware_version": null,
+        "discovered": null,
+        "product": null,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+    }
 
-Machines must have a status of Ready or Broken to have access to all
-options. Machines with Deployed status can only have the name and/or
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : If the interface has no `AUTO` or `STATIC` links.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/?op=unlink_subnet``</summary>
+
+------------------------------------------------------------------------
+
+Unlink an interface with the given system\_id and interface id from a
+subnet.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A system\_id.
+
+**{id}** (*Int*): Required. An interface id.
+
+**id** (*Int*): Optional. ID of the subnet link on the interface to
+remove.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "type": "physical",
+        "product": null,
+        "name": "eth1",
+        "system_id": "thr3am",
+        "links": [
+            {
+                "id": 71,
+                "mode": "link_up"
+            }
+        ],
+        "children": [
+            "br1"
+        ],
+        "id": 140,
+        "mac_address": "00:01:02:03:04:77",
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "primary_rack": "7xtf67",
+            "fabric_id": 0,
+            "space": "management",
+            "name": "untagged",
+            "secondary_rack": "76y7pg",
+            "id": 5001,
+            "fabric": "fabric-0",
+            "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+        },
+        "parents": [],
+        "enabled": true,
+        "params": {},
+        "discovered": null,
+        "firmware_version": null,
+        "effective_mtu": 1500,
+        "tags": [],
+        "vendor": null,
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/140/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update an interface with the given system\_id and interface id.
+
+Note: machines must have a status of Ready or Broken to have access to
+all options. Machines with Deployed status can only have the name and/or
 mac\_address updated for an interface. This is intented to allow a bad
 interface to be replaced while the machine remains deployed.
 
-Fields for physical interface:
+**Parameters**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the interface.
+**{system\_id}** (*String*): Required. A system\_id.
 
-param mac\_address
+**{id}** (*Int*): Required. An interface id.
 
-:   MAC address of the interface.
+**name** (*String*): Optional. (Physical interfaces) Name of the
+interface.
 
-param tags
+**mac\_address** (*String*): Optional. (Physical interfaces) MAC address
+of the interface.
 
-:   Tags for the interface.
+**tags** (*String*): Optional. (Physical interfaces) Tags for the
+interface.
 
-param vlan
+**vlan** (*Int*): Optional. (Physical interfaces) Untagged VLAN id the
+interface is connected to. If not set then the interface is considered
+disconnected.
 
-:   Untagged VLAN the interface is connected to. If not set then the
-    interface is considered disconnected.
+**name** (*String*): Optional. (Bond interfaces) Name of the interface.
 
-Fields for bond interface:
+**mac\_address** (*String*): Optional. (Bond interfaces) MAC address of
+the interface.
 
-param name
+**tags** (*String*): Optional. (Bond interfaces) Tags for the interface.
 
-:   Name of the interface.
+**vlan** (*Int*): Optional. (Bond interfaces) Untagged VLAN id the
+interface is connected to. If not set then the interface is considered
+disconnected.
 
-param mac\_address
+**parents** (*Int*): Optional. (Bond interfaces) Parent interface ids
+that make this bond.
 
-:   MAC address of the interface.
+**tags** (*String*): Optional. (VLAN interfaces) Tags for the interface.
 
-param tags
+**vlan** (*Int*): Optional. (VLAN interfaces) Tagged VLAN id the
+interface is connected to.
 
-:   Tags for the interface.
+**parent** (*Int*): Optional. (VLAN interfaces) Parent interface ids for
+the VLAN interface.
 
-param vlan
+**name** (*String*): Optional. (Bridge interfaces) Name of the
+interface.
 
-:   Untagged VLAN the interface is connected to. If not set then the
-    interface is considered disconnected.
+**mac\_address** (*String*): Optional. (Bridge interfaces) MAC address
+of the interface.
 
-param parents
+**tags** (*String*): Optional. (Bridge interfaces) Tags for the
+interface.
 
-:   Parent interfaces that make this bond.
+**vlan** (*Int*): Optional. (Bridge interfaces) VLAN id the interface is
+connected to.
 
-Fields for VLAN interface:
+**parent** (*Int*): Optional. (Bridge interfaces) Parent interface ids
+for this bridge interface.
 
-param tags
+**bridge\_stp** (*Boolean*): Optional. (Bridge interfaces) Turn spanning
+tree protocol on or off. (Default: False).
 
-:   Tags for the interface.
+**bridge\_fd** (*Int*): Optional. (Bridge interfaces) Set bridge forward
+delay to time seconds. (Default: 15).
 
-param vlan
+**bond\_miimon** (*Int*): Optional. (Bonds) The link monitoring
+freqeuncy in milliseconds. (Default: 100).
 
-:   Tagged VLAN the interface is connected to.
+**bond\_downdelay** (*Int*): Optional. (Bonds) Specifies the time, in
+milliseconds, to wait before disabling a slave after a link failure has
+been detected.
 
-param parent
+**bond\_updelay** (*Int*): Optional. (Bonds) Specifies the time, in
+milliseconds, to wait before enabling a slave after a link recovery has
+been detected.
 
-:   Parent interface for this VLAN interface.
+**bond\_lacp\_rate** (*String*): Optional. (Bonds) Option specifying the
+rate in which we'll ask our link partner to transmit LACPDU packets in
+802.3ad mode. Available options are `fast` or `slow`. (Default: `slow`).
 
-Fields for bridge interface:
+**bond\_xmit\_hash\_policy** (*String*): Optional. (Bonds) The transmit
+hash policy to use for slave selection in balance-xor, 802.3ad, and tlb
+modes. Possible values are: `layer2`, `layer2+3`, `layer3+4`,
+`encap2+3`, `encap3+4`.
 
-param name
-
-:   Name of the interface.
-
-param mac\_address
-
-:   MAC address of the interface.
-
-param tags
-
-:   Tags for the interface.
-
-param vlan
-
-:   VLAN the interface is connected to.
-
-param parent
-
-:   Parent interface for this bridge interface.
-
-Following are extra parameters that can be set on all interface types:
-
-param mtu
-
-:   Maximum transmission unit.
-
-param accept\_ra
-
-:   Accept router advertisements. (IPv6 only)
-
-param autoconf
-
-:   Perform stateless autoconfiguration. (IPv6 only)
-
-Following are parameters specific to bonds:
-
-param bond\_mode
-
-:   The operating mode of the bond. (Default: active-backup).
-
-param bond\_miimon
-
-:   The link monitoring freqeuncy in milliseconds. (Default: 100).
-
-param bond\_downdelay
-
-:   Specifies the time, in milliseconds, to wait before disabling a
-    slave after a link failure has been detected.
-
-param bond\_updelay
-
-:   Specifies the time, in milliseconds, to wait before enabling a slave
-    after a link recovery has been detected.
-
-param bond\_lacp\_rate
-
-:   Option specifying the rate in which we'll ask our link partner to
-    transmit LACPDU packets in 802.3ad mode. Available options are fast
-    or slow. (Default: slow).
-
-param bond\_xmit\_hash\_policy
-
-:   The transmit hash policy to use for slave selection in balance-xor,
-    802.3ad, and tlb modes. Possible values are: 'layer2', 'layer2+3',
-    'layer3+4', 'encap2+3', 'encap3+4'.
+**bond\_mode** (*String*): Optional. (Bonds) The operating mode of the
+bond. (Default: `active-backup`).
 
 Supported bonding modes (bond-mode):
 
-balance-rr - Transmit packets in sequential order from the first
-available slave through the last. This mode provides load balancing and
-fault tolerance.
+-   `balance-rr`: Transmit packets in sequential order from the first
+    available slave through the last. This mode provides load balancing
+    and fault tolerance.
+-   `active-backup`: Only one slave in the bond is active. A different
+    slave becomes active if, and only if, the active slave fails. The
+    bond's MAC address is externally visible on only one port (network
+    adapter) to avoid confusing the switch.
+-   `balance-xor`: Transmit based on the selected transmit hash policy.
+    The default policy is a simple \[(source MAC address XOR'd with
+    destination MAC address XOR packet type ID) modulo slave count\].
+-   `broadcast`: Transmits everything on all slave interfaces. This mode
+    provides fault tolerance.
+-   `802.3ad`: IEEE 802.3ad Dynamic link aggregation. Creates
+    aggregation groups that share the same speed and duplex settings.
+    Utilizes all slaves in the active aggregator according to the
+    802.3ad specification.
+-   `balance-tlb`: Adaptive transmit load balancing: channel bonding
+    that does not require any special switch support.
+-   `balance-alb`: Adaptive load balancing: includes balance-tlb plus
+    receive load balancing (rlb) for IPV4 traffic, and does not require
+    any special switch support. The receive load balancing is achieved
+    by ARP negotiation.
 
-active-backup - Only one slave in the bond is active. A different slave
-becomes active if, and only if, the active slave fails. The bond's MAC
-address is externally visible on only one port (network adapter) to
-avoid confusing the switch.
+**mtu** (*String*): Optional. Maximum transmission unit.
 
-balance-xor - Transmit based on the selected transmit hash policy. The
-default policy is a simple \[(source MAC address XOR'd with destination
-MAC address XOR packet type ID) modulo slave count\].
+**accept\_ra** (*String*): Optional. Accept router advertisements. (IPv6
+only)
 
-broadcast - Transmits everything on all slave interfaces. This mode
-provides fault tolerance.
+**autoconf** (*String*): Optional. Perform stateless autoconfiguration.
+(IPv6 only)
 
-802.3ad - IEEE 802.3ad Dynamic link aggregation. Creates aggregation
-groups that share the same speed and duplex settings. Utilizes all
-slaves in the active aggregator according to the 802.3ad specification.
+**Success**
 
-balance-tlb - Adaptive transmit load balancing: channel bonding that
-does not require any special switch support.
+------------------------------------------------------------------------
 
-balance-alb - Adaptive load balancing: includes balance-tlb plus receive
-load balancing (rlb) for IPV4 traffic, and does not require any special
-switch support. The receive load balancing is achieved by ARP
-negotiation.
+*HTTP Status Code* : 200
 
-Following are parameters specific to bridges:
+*JSON*
 
-param bridge\_stp
+    {
+        "mac_address": "00:01:02:03:04:55",
+        "type": "physical",
+        "enabled": true,
+        "parents": [],
+        "vendor": null,
+        "vlan": null,
+        "tags": [],
+        "links": [],
+        "params": {},
+        "discovered": null,
+        "effective_mtu": 1500,
+        "id": 138,
+        "product": null,
+        "name": "eth0",
+        "firmware_version": null,
+        "system_id": "thr3am",
+        "children": [
+            "newbond"
+        ],
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/138/"
+    }
 
-:   Turn spanning tree protocol on or off. (Default: False).
+**Error**
 
-param bridge\_fd
+------------------------------------------------------------------------
 
-:   Set bridge forward delay to time seconds. (Default: 15).
+*HTTP Status Code* : 404
 
-Returns 404 if the node or interface is not found.
+*Content*
 
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Interfaces
 
 Manage interfaces on a node.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/interfaces/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/interfaces/``</summary>
+
+------------------------------------------------------------------------
 
 List all interfaces belonging to a machine, device, or rack controller.
 
-Returns 404 if the node is not found.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_bond`
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. A system\_id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "name": "eth-lKRYAa",
+            "parents": [],
+            "product": null,
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "untagged",
+                "space": "management",
+                "secondary_rack": "76y7pg",
+                "primary_rack": "7xtf67",
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5003,
+                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+            },
+            "type": "physical",
+            "enabled": true,
+            "params": "",
+            "mac_address": "cb:93:ac:d1:ed:65",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-oplxjR",
+                "tag-QAxfJH",
+                "tag-VOqx2b"
+            ],
+            "discovered": null,
+            "id": 37,
+            "links": [
+                {
+                    "id": 14,
+                    "mode": "auto",
+                    "subnet": {
+                        "name": "name-v5djzQ",
+                        "vlan": {
+                            "vid": 0,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "untagged",
+                            "space": "management",
+                            "secondary_rack": "76y7pg",
+                            "primary_rack": "7xtf67",
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5003,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                        },
+                        "cidr": "172.16.2.0/24",
+                        "rdns_mode": 2,
+                        "gateway_ip": "172.16.2.1",
+                        "dns_servers": [
+                            "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                            "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                            "120.129.237.29"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "management",
+                        "id": 2,
+                        "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [
+                "eth-lKRYAa.42"
+            ],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
+        },
+        {
+            "name": "eth-3ookc5",
+            "parents": [],
+            "product": null,
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "untagged",
+                "space": "management",
+                "secondary_rack": "76y7pg",
+                "primary_rack": "7xtf67",
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5003,
+                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+            },
+            "type": "physical",
+            "enabled": true,
+            "params": "",
+            "mac_address": "bc:d3:d5:28:88:dc",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-LddZkA",
+                "tag-EDi2sp",
+                "tag-RwynT2"
+            ],
+            "discovered": null,
+            "id": 38,
+            "links": [
+                {
+                    "id": 15,
+                    "mode": "auto",
+                    "subnet": {
+                        "name": "name-v5djzQ",
+                        "vlan": {
+                            "vid": 0,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "untagged",
+                            "space": "management",
+                            "secondary_rack": "76y7pg",
+                            "primary_rack": "7xtf67",
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5003,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                        },
+                        "cidr": "172.16.2.0/24",
+                        "rdns_mode": 2,
+                        "gateway_ip": "172.16.2.1",
+                        "dns_servers": [
+                            "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                            "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                            "120.129.237.29"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "management",
+                        "id": 2,
+                        "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [
+                "eth-3ookc5.42"
+            ],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
+        },
+        {
+            "name": "eth-W8E8f0",
+            "parents": [],
+            "product": null,
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "untagged",
+                "space": "management",
+                "secondary_rack": "76y7pg",
+                "primary_rack": "7xtf67",
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5003,
+                "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+            },
+            "type": "physical",
+            "enabled": true,
+            "params": "",
+            "mac_address": "ad:5a:3e:a3:68:13",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-dc12B9",
+                "tag-D71Hh0",
+                "tag-PnEfvN"
+            ],
+            "discovered": null,
+            "id": 39,
+            "links": [
+                {
+                    "id": 16,
+                    "mode": "auto",
+                    "subnet": {
+                        "name": "name-v5djzQ",
+                        "vlan": {
+                            "vid": 0,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "untagged",
+                            "space": "management",
+                            "secondary_rack": "76y7pg",
+                            "primary_rack": "7xtf67",
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5003,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5003/"
+                        },
+                        "cidr": "172.16.2.0/24",
+                        "rdns_mode": 2,
+                        "gateway_ip": "172.16.2.1",
+                        "dns_servers": [
+                            "fcb0:c682:8c15:817d:7d80:2713:e225:5624",
+                            "fd66:86c9:6a50:27cd:de13:3f1c:40d1:8aac",
+                            "120.129.237.29"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "management",
+                        "id": 2,
+                        "resource_uri": "/MAAS/api/2.0/subnets/2/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [
+                "eth-W8E8f0.42"
+            ],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
+        },
+        {
+            "name": "eth-lKRYAa.42",
+            "parents": [
+                "eth-lKRYAa"
+            ],
+            "product": null,
+            "vlan": {
+                "vid": 42,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "42",
+                "space": "ipv6-testbed",
+                "secondary_rack": null,
+                "primary_rack": null,
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5004,
+                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+            },
+            "type": "vlan",
+            "enabled": true,
+            "params": "",
+            "mac_address": "cb:93:ac:d1:ed:65",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-u0TLLj",
+                "tag-C09Efp",
+                "tag-QK7j09"
+            ],
+            "discovered": null,
+            "id": 40,
+            "links": [
+                {
+                    "id": 17,
+                    "mode": "auto",
+                    "subnet": {
+                        "name": "name-m3vYqT",
+                        "vlan": {
+                            "vid": 42,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "42",
+                            "space": "ipv6-testbed",
+                            "secondary_rack": null,
+                            "primary_rack": null,
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5004,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                        },
+                        "cidr": "2001:db8:42::/64",
+                        "rdns_mode": 2,
+                        "gateway_ip": null,
+                        "dns_servers": [
+                            "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                            "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "ipv6-testbed",
+                        "id": 5,
+                        "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
+        },
+        {
+            "name": "eth-3ookc5.42",
+            "parents": [
+                "eth-3ookc5"
+            ],
+            "product": null,
+            "vlan": {
+                "vid": 42,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "42",
+                "space": "ipv6-testbed",
+                "secondary_rack": null,
+                "primary_rack": null,
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5004,
+                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+            },
+            "type": "vlan",
+            "enabled": true,
+            "params": "",
+            "mac_address": "bc:d3:d5:28:88:dc",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-EFzacM",
+                "tag-dxAebl",
+                "tag-GsPX3m"
+            ],
+            "discovered": null,
+            "id": 41,
+            "links": [
+                {
+                    "id": 18,
+                    "mode": "static",
+                    "ip_address": "2001:db8:42:0:6556:13fa:7452:70da",
+                    "subnet": {
+                        "name": "name-m3vYqT",
+                        "vlan": {
+                            "vid": 42,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "42",
+                            "space": "ipv6-testbed",
+                            "secondary_rack": null,
+                            "primary_rack": null,
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5004,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                        },
+                        "cidr": "2001:db8:42::/64",
+                        "rdns_mode": 2,
+                        "gateway_ip": null,
+                        "dns_servers": [
+                            "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                            "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "ipv6-testbed",
+                        "id": 5,
+                        "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
+        },
+        {
+            "name": "eth-W8E8f0.42",
+            "parents": [
+                "eth-W8E8f0"
+            ],
+            "product": null,
+            "vlan": {
+                "vid": 42,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "name": "42",
+                "space": "ipv6-testbed",
+                "secondary_rack": null,
+                "primary_rack": null,
+                "fabric": "fabric-1",
+                "fabric_id": 1,
+                "id": 5004,
+                "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+            },
+            "type": "vlan",
+            "enabled": true,
+            "params": "",
+            "mac_address": "ad:5a:3e:a3:68:13",
+            "effective_mtu": 1500,
+            "system_id": "thr3am",
+            "firmware_version": null,
+            "tags": [
+                "tag-cyexYi",
+                "tag-nnoi80",
+                "tag-xhApes"
+            ],
+            "discovered": null,
+            "id": 42,
+            "links": [
+                {
+                    "id": 19,
+                    "mode": "static",
+                    "ip_address": "2001:db8:42:0:cf29:e368:ba5b:9977",
+                    "subnet": {
+                        "name": "name-m3vYqT",
+                        "vlan": {
+                            "vid": 42,
+                            "mtu": 1500,
+                            "dhcp_on": false,
+                            "external_dhcp": null,
+                            "relay_vlan": null,
+                            "name": "42",
+                            "space": "ipv6-testbed",
+                            "secondary_rack": null,
+                            "primary_rack": null,
+                            "fabric": "fabric-1",
+                            "fabric_id": 1,
+                            "id": 5004,
+                            "resource_uri": "/MAAS/api/2.0/vlans/5004/"
+                        },
+                        "cidr": "2001:db8:42::/64",
+                        "rdns_mode": 2,
+                        "gateway_ip": null,
+                        "dns_servers": [
+                            "fd15:6cb0:a55c:235f:e78f:ba4f:2eb4:6b3",
+                            "fcc5:8b5e:c55b:90e0:8be:6b87:eb5:f4c7"
+                        ],
+                        "allow_dns": true,
+                        "allow_proxy": true,
+                        "active_discovery": false,
+                        "managed": true,
+                        "space": "ipv6-testbed",
+                        "id": 5,
+                        "resource_uri": "/MAAS/api/2.0/subnets/5/"
+                    }
+                }
+            ],
+            "vendor": null,
+            "children": [],
+            "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
+        }
+    ]
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/?op=create_bond``</summary>
+
+------------------------------------------------------------------------
 
 Create a bond interface on a machine.
 
-param name
+**Parameters**
 
-:   Name of the interface.
+------------------------------------------------------------------------
 
-param mac\_address
+**{system\_id}** (*String*): Required. A system\_id.
 
-:   MAC address of the interface.
+**name** (*String*): Required. Name of the interface.
 
-param tags
+**mac\_address** (*String*): Optional. MAC address of the interface.
 
-:   Tags for the interface.
+**tags** (*String*): Optional. Tags for the interface.
 
-param vlan
+**vlan** (*String*): Optional. VLAN the interface is connected to. If
+not provided then the interface is considered disconnected.
 
-:   VLAN the interface is connected to. If not provided then the
-    interface is considered disconnected.
+**parents** (*Int*): Required. Parent interface ids that make this bond.
 
-param parents
+**bond\_mode** (*String*): Optional. The operating mode of the bond.
+(Default: active-backup).
 
-:   Parent interfaces that make this bond.
+Supported bonding modes:
 
-Following are parameters specific to bonds:
+-   `balance-rr`: Transmit packets in sequential order from the first
+    available slave through the last. This mode provides load balancing
+    and fault tolerance.
+-   `active-backup`: Only one slave in the bond is active. A different
+    slave becomes active if, and only if, the active slave fails. The
+    bond's MAC address is externally visible on only one port (network
+    adapter) to avoid confusing the switch.
+-   `balance-xor`: Transmit based on the selected transmit hash policy.
+    The default policy is a simple \[(source MAC address XOR'd with
+    destination MAC address XOR packet type ID) modulo slave count\].
+-   `broadcast`: Transmits everything on all slave interfaces. This mode
+    provides fault tolerance.
+-   `802.3ad`: IEEE 802.3ad dynamic link aggregation. Creates
+    aggregation groups that share the same speed and duplex settings.
+    Uses all slaves in the active aggregator according to the 802.3ad
+    specification.
+-   `balance-tlb`: Adaptive transmit load balancing: channel bonding
+    that does not require any special switch support.
+-   `balance-alb`: Adaptive load balancing: includes balance-tlb plus
+    receive load balancing (rlb) for IPV4 traffic, and does not require
+    any special switch support. The receive load balancing is achieved
+    by ARP negotiation.
 
-param bond\_mode
+**bond\_miimon** (*Int*): Optional. The link monitoring freqeuncy in
+milliseconds. (Default: 100).
 
-:   The operating mode of the bond. (Default: active-backup).
+**bond\_downdelay** (*Int*): Optional. Specifies the time, in
+milliseconds, to wait before disabling a slave after a link failure has
+been detected.
 
-param bond\_miimon
+**bond\_updelay** (*Int*): Optional. Specifies the time, in
+milliseconds, to wait before enabling a slave after a link recovery has
+been detected.
 
-:   The link monitoring freqeuncy in milliseconds. (Default: 100).
+**bond\_lacp\_rate** (*String*): Optional. Option specifying the rate at
+which to ask the link partner to transmit LACPDU packets in 802.3ad
+mode. Available options are `fast` or `slow`. (Default: `slow`).
 
-param bond\_downdelay
+**bond\_xmit\_hash\_policy** (*String*): Optional. The transmit hash
+policy to use for slave selection in balance-xor, 802.3ad, and tlb
+modes. Possible values are: `layer2`, `layer2+3`, `layer3+4`,
+`encap2+3`, `encap3+4`. (Default: `layer2`)
 
-:   Specifies the time, in milliseconds, to wait before disabling a
-    slave after a link failure has been detected.
+**bond\_num\_grat\_arp** (*Int*): Optional. The number of peer
+notifications (IPv4 ARP or IPv6 Neighbour Advertisements) to be issued
+after a failover. (Default: 1)
 
-param bond\_updelay
+**mtu** (*Int*): Optional. Maximum transmission unit.
 
-:   Specifies the time, in milliseconds, to wait before enabling a slave
-    after a link recovery has been detected.
+**accept\_ra** (*Boolean*): Optional. Accept router advertisements.
+(IPv6 only)
 
-param bond\_lacp\_rate
+**autoconf** (*Boolean*): Optional. Perform stateless autoconfiguration.
+(IPv6 only)
 
-:   Option specifying the rate in which we'll ask our link partner to
-    transmit LACPDU packets in 802.3ad mode. Available options are fast
-    or slow. (Default: slow).
+**Success**
 
-param bond\_xmit\_hash\_policy
+------------------------------------------------------------------------
 
-:   The transmit hash policy to use for slave selection in balance-xor,
-    802.3ad, and tlb modes. Possible values are: 'layer2', 'layer2+3',
-    'layer3+4', 'encap2+3', 'encap3+4'. (Default: layer2)
+*HTTP Status Code* : 200
 
-param bond\_num\_grat\_arp
+*JSON*
 
-:   The number of peer notifications (IPv4 ARP or IPv6 Neighbour
-    Advertisements) to be issued after a failover. (Default: 1)
+    {
+        "system_id": "thr3am",
+        "mac_address": "00:01:02:03:04:66",
+        "children": [],
+        "name": "newbond",
+        "effective_mtu": 1500,
+        "firmware_version": null,
+        "params": {
+            "bond_downdelay": 0,
+            "bond_lacp_rate": "fast",
+            "bond_miimon": 100,
+            "bond_mode": "balance-rr",
+            "bond_num_grat_arp": 1,
+            "bond_updelay": 0,
+            "bond_xmit_hash_policy": "layer2"
+        },
+        "links": [],
+        "id": 139,
+        "tags": [],
+        "product": null,
+        "enabled": true,
+        "discovered": null,
+        "vendor": null,
+        "type": "bond",
+        "vlan": null,
+        "parents": [
+            "eth0"
+        ],
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/139/"
+    }
 
-Supported bonding modes (bond-mode): balance-rr - Transmit packets in
-sequential order from the first available slave through the last. This
-mode provides load balancing and fault tolerance.
+**Error**
 
-active-backup - Only one slave in the bond is active. A different slave
-becomes active if, and only if, the active slave fails. The bond's MAC
-address is externally visible on only one port (network adapter) to
-avoid confusing the switch.
+------------------------------------------------------------------------
 
-balance-xor - Transmit based on the selected transmit hash policy. The
-default policy is a simple \[(source MAC address XOR'd with destination
-MAC address XOR packet type ID) modulo slave count\].
+*HTTP Status Code* : 404
 
-broadcast - Transmits everything on all slave interfaces. This mode
-provides fault tolerance.
+*Content*
 
-802.3ad - IEEE 802.3ad Dynamic link aggregation. Creates aggregation
-groups that share the same speed and duplex settings. Utilizes all
-slaves in the active aggregator according to the 802.3ad specification.
+    Not Found
 
-balance-tlb - Adaptive transmit load balancing: channel bonding that
-does not require any special switch support.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/?op=create_bridge``</summary>
 
-balance-alb - Adaptive load balancing: includes balance-tlb plus receive
-load balancing (rlb) for IPV4 traffic, and does not require any special
-switch support. The receive load balancing is achieved by ARP
-negotiation.
-
-Following are extra parameters that can be set on the interface:
-
-param mtu
-
-:   Maximum transmission unit.
-
-param accept\_ra
-
-:   Accept router advertisements. (IPv6 only)
-
-param autoconf
-
-:   Perform stateless autoconfiguration. (IPv6 only)
-
-Returns 404 if the node is not found.
-
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_bridge`
+------------------------------------------------------------------------
 
 Create a bridge interface on a machine.
 
-param name
+**Parameters**
 
-:   Name of the interface.
+------------------------------------------------------------------------
 
-param mac\_address
+**{system\_id}** (*String*): Required. A system\_id.
 
-:   MAC address of the interface.
+**name** (*String*): Optional. Name of the interface.
 
-param tags
+**mac\_address** (*String*): Optional. MAC address of the interface.
 
-:   Tags for the interface.
+**tags** (*String*): Optional. Tags for the interface.
 
-param vlan
+**vlan** (*String*): Optional. VLAN the interface is connected to.
 
-:   VLAN the interface is connected to.
+**parent** (*Int*): Optional. Parent interface id for this bridge
+interface.
 
-param parent
+**bridge\_stp** (*Boolean*): Optional. Turn spanning tree protocol on or
+off. (Default: False).
 
-:   Parent interface for this bridge interface.
+**bridge\_fd** (*Int*): Optional. Set bridge forward delay to time
+seconds. (Default: 15).
 
-Following are parameters specific to bridges:
+**mtu** (*Int*): Optional. Maximum transmission unit.
 
-param bridge\_stp
+**accept\_ra** (*Boolean*): Optional. Accept router advertisements.
+(IPv6 only)
 
-:   Turn spanning tree protocol on or off. (Default: False).
+**autoconf** (*Boolean*): Optional. Perform stateless autoconfiguration.
+(IPv6 only)
 
-param bridge\_fd
+**Success**
 
-:   Set bridge forward delay to time seconds. (Default: 15).
+------------------------------------------------------------------------
 
-Following are extra parameters that can be set on the interface:
+*HTTP Status Code* : 200
 
-param mtu
+*JSON*
 
-:   Maximum transmission unit.
+    {
+        "name": "br1",
+        "id": 141,
+        "enabled": true,
+        "parents": [
+            "eth1"
+        ],
+        "vlan": null,
+        "effective_mtu": 1500,
+        "product": null,
+        "system_id": "thr3am",
+        "firmware_version": null,
+        "children": [],
+        "mac_address": "00:11:22:33:44:55",
+        "params": {
+            "bridge_fd": 15,
+            "bridge_stp": false
+        },
+        "discovered": null,
+        "links": [],
+        "vendor": null,
+        "tags": [],
+        "type": "bridge",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/141/"
+    }
 
-param accept\_ra
+**Error**
 
-:   Accept router advertisements. (IPv6 only)
+------------------------------------------------------------------------
 
-param autoconf
+*HTTP Status Code* : 404
 
-:   Perform stateless autoconfiguration. (IPv6 only)
+*Content*
 
-Returns 404 if the node is not found.
+    Not Found
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_physical`
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/?op=create_physical``</summary>
+
+------------------------------------------------------------------------
 
 Create a physical interface on a machine and device.
 
-param name
+**Parameters**
 
-:   Name of the interface.
+------------------------------------------------------------------------
 
-param mac\_address
+**{system\_id}** (*String*): Required. A system\_id.
 
-:   MAC address of the interface.
+**name** (*String*): Optional. Name of the interface.
 
-param tags
+**mac\_address** (*String*): Required. MAC address of the interface.
 
-:   Tags for the interface.
+**tags** (*String*): Optional. Tags for the interface.
 
-param vlan
+**vlan** (*String*): Optional. Untagged VLAN the interface is connected
+to. If not provided then the interface is considered disconnected.
 
-:   Untagged VLAN the interface is connected to. If not provided then
-    the interface is considered disconnected.
+**mtu** (*Int*): Optional. Maximum transmission unit.
 
-Following are extra parameters that can be set on the interface:
+**accept\_ra** (*Boolean*): Optional. Accept router advertisements.
+(IPv6 only)
 
-param mtu
+**autoconf** (*Boolean*): Optional. Perform stateless autoconfiguration.
+(IPv6 only)
 
-:   Maximum transmission unit.
+**Success**
 
-param accept\_ra
+------------------------------------------------------------------------
 
-:   Accept router advertisements. (IPv6 only)
+*HTTP Status Code* : 200
 
-param autoconf
+*JSON*
 
-:   Perform stateless autoconfiguration. (IPv6 only)
+    {
+        "product": null,
+        "id": 138,
+        "system_id": "thr3am",
+        "enabled": true,
+        "vlan": null,
+        "type": "physical",
+        "mac_address": "00:01:02:03:04:55",
+        "vendor": null,
+        "params": {},
+        "discovered": null,
+        "children": [],
+        "effective_mtu": 1500,
+        "parents": [],
+        "firmware_version": null,
+        "links": [],
+        "tags": [],
+        "name": "eth0",
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/138/"
+    }
 
-Returns 404 if the node is not found.
+**Error**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/interfaces/ op=create_vlan`
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/interfaces/?op=create_vlan``</summary>
+
+------------------------------------------------------------------------
 
 Create a VLAN interface on a machine.
 
-param tags
+**Parameters**
 
-:   Tags for the interface.
+------------------------------------------------------------------------
 
-param vlan
+**{system\_id}** (*String*): Required. A system\_id.
 
-:   Tagged VLAN the interface is connected to.
+**tags** (*String*): Optional. Tags for the interface.
 
-param parent
+**vlan** (*String*): Required. Tagged VLAN the interface is connected
+to.
 
-:   Parent interface for this VLAN interface.
+**parent** (*Int*): Required. Parent interface id for this VLAN
+interface.
 
-Following are extra parameters that can be set on the interface:
+**mtu** (*Int*): Optional. Maximum transmission unit.
 
-param mtu
+**accept\_ra** (*Boolean*): Optional. Accept router advertisements.
+(IPv6 only)
 
-:   Maximum transmission unit.
+**autoconf** (*Boolean*): Optional. Perform stateless autoconfiguration.
+(IPv6 only)
 
-param accept\_ra
+**Success**
 
-:   Accept router advertisements. (IPv6 only)
+------------------------------------------------------------------------
 
-param autoconf
+*HTTP Status Code* : 200
 
-:   Perform stateless autoconfiguration. (IPv6 only)
+*JSON*
 
-Returns 404 if the node is not found.
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### License Key
 
 Manage a license key.
 
-#### `DELETE /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/license-key/{osystem}/{distro_series}``</summary>
 
-Delete license key.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
+Delete license key for the given operation system and distro series.
 
-Read license key.
+**Parameters**
 
-#### `PUT /MAAS/api/2.0/license-key/{osystem}/{distro_series}`
+------------------------------------------------------------------------
 
-Update license key.
+**{osystem}** (*String*): Optional. Operating system that the key
+belongs to.
 
-param osystem
+**{distro\_series}** (*String*): Optional. OS release that the key
+belongs to.
 
-:   Operating system that the key belongs to.
+**Success**
 
-param distro\_series
+------------------------------------------------------------------------
 
-:   OS release that the key belongs to.
+*HTTP Status Code* : 204
 
-param license\_key
+**Error**
 
-:   License key for osystem/distro\_series combo.
+------------------------------------------------------------------------
 
+*HTTP Status Code* : 404
+
+*Content*
+
+    Unknown API endpoint: /MAAS/api/2.0/license-key/windows/win2012/.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/license-key/{osystem}/{distro_series}``</summary>
+
+------------------------------------------------------------------------
+
+Read a license key for the given operating sytem and distro series.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{osystem}** (*String*): Required. Operating system that the key
+belongs to.
+
+**{distro\_series}** (*String*): Required. OS release that the key
+belongs to.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Unknown API endpoint: /MAAS/api/2.0/license-key/windows/win2012/.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/license-key/{osystem}/{distro_series}``</summary>
+
+------------------------------------------------------------------------
+
+Update a license key for the given operating system and distro series.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{osystem}** (*String*): Required. Operating system that the key
+belongs to.
+
+**{distro\_series}** (*String*): Required. OS release that the key
+belongs to.
+
+**license\_key** (*String*): Optional. License key for
+osystem/distro\_series combo.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Unknown API endpoint: /MAAS/api/2.0/license-key/windows/win2012/.
+
+<p>&nbsp;</p>
+</details>
 ### License Keys
 
 Manage the license keys.
 
-#### `GET /MAAS/api/2.0/license-keys/`
+<details>
+  <summary>``GET /MAAS/api/2.0/license-keys/``</summary>
 
-List license keys.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/license-keys/`
+List all available license keys.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/license-keys/``</summary>
+
+------------------------------------------------------------------------
 
 Define a license key.
 
-param osystem
+**Parameters**
 
-:   Operating system that the key belongs to.
+------------------------------------------------------------------------
 
-param distro\_series
+**osystem** (*String*): Required. Operating system that the key belongs
+to.
 
-:   OS release that the key belongs to.
+**distro\_series** (*String*): Required. OS release that the key belongs
+to.
 
-param license\_key
+**license\_key** (*String*): Required. License key for
+osystem/distro\_series combo.
 
-:   License key for osystem/distro\_series combo.
+**Success**
 
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+<p>&nbsp;</p>
+</details>
 ### MAAS server
 
 Manage the MAAS server.
@@ -38069,6 +40027,15 @@ Power parameters:
 -   power\_port (Power port).
 -   power\_user (Power user).
 -   power\_pass (Power password).
+
+### redfish (Redfish)
+
+Power parameters:
+
+-   power\_address (Redfish address).
+-   power\_user (Redfish user).
+-   power\_pass (Redfish password).
+-   node\_id (Node ID).
 
 ### sm15k (SeaMicro 15000)
 
