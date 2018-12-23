@@ -1,4 +1,5 @@
-Title: API
+Title: MAAS API
+TODO:  
 table_of_contents: True
 
 MAAS API
@@ -6908,113 +6909,233 @@ than one file is supplied.
 
 Manage IP addresses allocated by MAAS.
 
-#### `GET /MAAS/api/2.0/ipaddresses/`
+<details>
+  <summary>``GET /MAAS/api/2.0/ipaddresses/``</summary>
 
-List IP addresses known to MAAS.
+------------------------------------------------------------------------
+
+List all IP addresses known to MAAS.
 
 By default, gets a listing of all IP addresses allocated to the
 requesting user.
 
-param ip
+**Parameters**
 
-:   If specified, will only display information for the specified IP
-    address.
+------------------------------------------------------------------------
 
-type ip
+**ip** (*String*): Optional. If specified, will only display information
+for the specified IP address.
 
-:   unicode (must be an IPv4 or IPv6 address)
+**all** (*Boolean*): Optional. (Admin users only) If True, all reserved
+IP addresses will be shown. (By default, only addresses of type 'User
+reserved' that are assigned to the requesting user are shown.)
 
-If the requesting user is a MAAS administrator, the following options
-may also be supplied:
+**owner** (*String*): Optional. (Admin users only) If specified, filters
+the list to show only IP addresses owned by the specified username.
 
-param all
+**Success**
 
-:   If True, all reserved IP addresses will be shown. (By default, only
-    addresses of type 'User reserved' that are assigned to the
-    requesting user are shown.)
+------------------------------------------------------------------------
 
-type all
+*HTTP Status Code* : 200
 
-:   bool
+*JSON*
 
-param owner
+    [
+        {
+            "created": "2018-12-14T20:11:27.187",
+            "ip": "172.16.1.234",
+            "alloc_type": 4,
+            "subnet": {
+                "name": "name-rLI3eq",
+                "vlan": {
+                    "vid": 0,
+                    "mtu": 1500,
+                    "dhcp_on": false,
+                    "external_dhcp": null,
+                    "relay_vlan": null,
+                    "fabric": "fabric-0",
+                    "name": "untagged",
+                    "secondary_rack": "76y7pg",
+                    "primary_rack": "7xtf67",
+                    "space": "management",
+                    "fabric_id": 0,
+                    "id": 5001,
+                    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+                },
+                "cidr": "172.16.1.0/24",
+                "rdns_mode": 2,
+                "gateway_ip": "172.16.1.1",
+                "dns_servers": [
+                    "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+                ],
+                "allow_dns": true,
+                "allow_proxy": true,
+                "active_discovery": false,
+                "managed": true,
+                "space": "management",
+                "id": 1,
+                "resource_uri": "/MAAS/api/2.0/subnets/1/"
+            },
+            "alloc_type_name": "User reserved",
+            "owner": {
+                "is_superuser": true,
+                "username": "admin",
+                "email": "NN7ER2rH6x@example.com",
+                "is_local": true,
+                "resource_uri": "/MAAS/api/2.0/users/admin/"
+            },
+            "interface_set": [],
+            "resource_uri": "/MAAS/api/2.0/ipaddresses/"
+        }
+    ]
 
-:   If specified, filters the list to show only IP addresses owned by
-    the specified username.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/ipaddresses/?op=release``</summary>
 
-type user
-
-:   unicode
-
-#### `POST /MAAS/api/2.0/ipaddresses/ op=release`
+------------------------------------------------------------------------
 
 Release an IP address that was previously reserved by the user.
 
-param ip
+**Parameters**
 
-:   The IP address to release.
+------------------------------------------------------------------------
 
-type ip
+**ip** (*String*): Required. The IP address to release.
 
-:   unicode
+**force** (*Boolean*): Optional. If True, allows a MAAS administrator to
+force an IP address to be released, even if it is not a user-reserved IP
+address or does not belong to the requesting user. Use with caution.
 
-param force
+**discovered** (*Boolean*): Optional. If True, allows a MAAS
+administrator to release a discovered address. Only valid if 'force' is
+specified. If not specified, MAAS will attempt to release any type of
+address except for discovered addresses.
 
-:   If True, allows a MAAS administrator to force an IP address to be
-    released, even if it is not a user-reserved IP address or does not
-    belong to the requesting user. Use with caution.
+**Success**
 
-type force
+------------------------------------------------------------------------
 
-:   bool
+*HTTP Status Code* : 204
 
-param discovered
+**Error**
 
-:   If True, allows a MAAS administrator to release a discovered
-    address. Only valid if 'force' is specified. If not specified, MAAS
-    will attempt to release any type of address except for discovered
-    addresses.
+------------------------------------------------------------------------
 
-Returns 404 if the provided IP address is not found.
+*HTTP Status Code* : 404
 
-#### `POST /MAAS/api/2.0/ipaddresses/ op=reserve`
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/ipaddresses/?op=reserve``</summary>
+
+------------------------------------------------------------------------
 
 Reserve an IP address for use outside of MAAS.
 
-Returns an IP adddress, which MAAS will not allow any of its known nodes
+Returns an IP adddress that MAAS will not allow any of its known nodes
 to use; it is free for use by the requesting user until released by the
 user.
 
-The user may supply either a subnet or a specific IP address within a
+The user must supply either a subnet or a specific IP address within a
 subnet.
 
-param subnet
+**Parameters**
 
-:   CIDR representation of the subnet on which the IP reservation is
-    required. e.g. 10.1.2.0/24
+------------------------------------------------------------------------
 
-param ip
+**subnet** (*String*): Optional. CIDR representation of the subnet on
+which the IP reservation is required. E.g. 10.1.2.0/24
 
-:   The IP address, which must be within a known subnet.
+**ip** (*String*): Optional. The IP address, which must be within a
+known subnet.
 
-param ip\_address
+**ip\_address** (*String*): Optional. (Deprecated.) Alias for 'ip'
+parameter. Provided for backward compatibility.
 
-:   (Deprecated.) Alias for 'ip' parameter. Provided for backward
-    compatibility.
+**hostname** (*String*): Optional. The hostname to use for the specified
+IP address. If no domain component is given, the default domain will be
+used.
 
-param hostname
+**mac** (*String*): Optional. The MAC address that should be linked to
+this reservation.
 
-:   The hostname to use for the specified IP address. If no domain
-    component is given, the default domain will be used.
+**Success**
 
-param mac
+------------------------------------------------------------------------
 
-:   The MAC address that should be linked to this reservation.
+*HTTP Status Code* : 200
 
-Returns 400 if there is no subnet in MAAS matching the provided one, or
-a ip\_address is supplied, but a corresponding subnet could not be
-found. Returns 503 if there are no more IP addresses available.
+*JSON*
 
+    {
+        "created": "2018-12-14T20:01:45.856",
+        "ip": "172.16.1.234",
+        "alloc_type": 4,
+        "subnet": {
+            "name": "name-rLI3eq",
+            "vlan": {
+                "vid": 0,
+                "mtu": 1500,
+                "dhcp_on": false,
+                "external_dhcp": null,
+                "relay_vlan": null,
+                "fabric": "fabric-0",
+                "space": "management",
+                "name": "untagged",
+                "fabric_id": 0,
+                "id": 5001,
+                "secondary_rack": "76y7pg",
+                "primary_rack": "7xtf67",
+                "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+            },
+            "cidr": "172.16.1.0/24",
+            "rdns_mode": 2,
+            "gateway_ip": "172.16.1.1",
+            "dns_servers": [
+                "fd89:8724:81f1:5512:557f:99c3:6967:8d63"
+            ],
+            "allow_dns": true,
+            "allow_proxy": true,
+            "active_discovery": false,
+            "managed": true,
+            "space": "management",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/subnets/1/"
+        },
+        "alloc_type_name": "User reserved",
+        "owner": {
+            "is_superuser": true,
+            "username": "admin",
+            "email": "NN7ER2rH6x@example.com",
+            "is_local": true,
+            "resource_uri": "/MAAS/api/2.0/users/admin/"
+        },
+        "interface_set": [],
+        "resource_uri": "/MAAS/api/2.0/ipaddresses/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : No subnet in MAAS matching the provided one, or an
+ip\_address was supplied, but a corresponding subnet could not be found.
+
+*HTTP Status Code* : 503
+
+*Content* : No more IP addresses are available.
+
+<p>&nbsp;</p>
+</details>
 ### IP Range
 
 Manage IP range.
@@ -9341,13 +9462,19 @@ osystem/distro\_series combo.
 
 Manage the MAAS server.
 
-#### `GET /MAAS/api/2.0/maas/ op=get_config`
+<details>
+  <summary>``GET /MAAS/api/2.0/maas/?op=get_config``</summary>
 
-Get a config value.
+------------------------------------------------------------------------
 
-param name
+Get a configuration value.
 
-:   The name of the config item to be retrieved.
+**Parameters**
+
+------------------------------------------------------------------------
+
+**name** (*String*): Required. The name of the configuration item to be
+retrieved.
 
 Available configuration items:
 
@@ -9597,17 +9724,34 @@ windows\_kms\_host
     provides the KMS Windows activation service. (Only needed for
     Windows deployments using KMS activation.)
 
-#### `POST /MAAS/api/2.0/maas/ op=set_config`
+**Success**
 
-Set a config value.
+------------------------------------------------------------------------
 
-param name
+*HTTP Status Code* : 200
 
-:   The name of the config item to be set.
+*Content*
 
-param value
+    "bionic"
 
-:   The value of the config item to be set.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/maas/?op=set_config``</summary>
+
+------------------------------------------------------------------------
+
+Set a configuration value.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**value** (*String*): Optional. The value of the configuration item to
+be set.
+
+**name** (*String*): Required. The name of the configuration item to be
+set.
 
 Available configuration items:
 
@@ -9857,6 +10001,18 @@ windows\_kms\_host
     provides the KMS Windows activation service. (Only needed for
     Windows deployments using KMS activation.)
 
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*Content*
+
+    OK
+
+<p>&nbsp;</p>
+</details>
 ### Machine
 
 Manage an individual machine.
@@ -24722,39 +24878,95 @@ the user is not one.
 </details>
 ### Commissioning results
 
-Read the collection of NodeResult in the MAAS.
+Read the collection of commissioning script results.
 
-#### `GET /MAAS/api/2.0/installation-results/`
+<details>
+  <summary>``GET /MAAS/api/2.0/installation-results/``</summary>
 
-List NodeResult visible to the user, optionally filtered.
+------------------------------------------------------------------------
 
-param system\_id
+Read the commissioning results per node visible to the user, optionally
+filtered.
 
-:   An optional list of system ids. Only the results related to the
-    nodes with these system ids will be returned.
+**Parameters**
 
-type system\_id
+------------------------------------------------------------------------
 
-:   iterable
+**system\_id** (*String*): Optional. An optional list of system ids.
+Only the results related to the nodes with these system ids will be
+returned.
 
-param name
+**name** (*String*): Optional. An optional list of names. Only the
+results with the specified names will be returned.
 
-:   An optional list of names. Only the results with the specified names
-    will be returned.
+**result\_type** (*String*): Optional. An optional result\_type. Only
+the results with the specified result\_type will be returned.
 
-type name
+**Success**
 
-:   iterable
+------------------------------------------------------------------------
 
-param result\_type
+*HTTP Status Code* : 200
 
-:   An optional result\_type. Only the results with the specified
-    result\_type will be returned.
+*JSON*
 
-type name
+    [
+        {
+            "created": "2018-12-20T18:26:14.285",
+            "updated": "2018-12-20T18:26:14.779",
+            "id": 241,
+            "name": "stress-ng-memory-short",
+            "script_result": 0,
+            "result_type": 2,
+            "node": {
+                "system_id": "p3nbg8"
+            },
+            "data": "d2Y5SUZFb1RUYg==",
+            "resource_uri": "/MAAS/api/2.0/commissioning-scripts/"
+        },
+        {
+            "created": "2018-12-20T18:26:14.285",
+            "updated": "2018-12-20T18:26:14.779",
+            "id": 241,
+            "name": "stress-ng-memory-short.err",
+            "script_result": 0,
+            "result_type": 2,
+            "node": {
+                "system_id": "p3nbg8"
+            },
+            "data": "RzJqWU5kakhYZQ==",
+            "resource_uri": "/MAAS/api/2.0/commissioning-scripts/"
+        },
+        {
+            "created": "2018-12-20T18:26:14.287",
+            "updated": "2018-12-20T18:26:14.778",
+            "id": 242,
+            "name": "7z",
+            "script_result": 0,
+            "result_type": 2,
+            "node": {
+                "system_id": "p3nbg8"
+            },
+            "data": "UHZCYzNxSlowVw==",
+            "resource_uri": "/MAAS/api/2.0/commissioning-scripts/"
+        },
+        {
+            "created": "2018-12-20T18:26:14.287",
+            "updated": "2018-12-20T18:26:14.778",
+            "id": 242,
+            "name": "7z.err",
+            "script_result": 0,
+            "result_type": 2,
+            "node": {
+                "system_id": "p3nbg8"
+            },
+            "data": "Q1k0bXFRek4yMA==",
+            "resource_uri": "/MAAS/api/2.0/commissioning-scripts/"
+        }
+    ]
 
-:   iterable
-
+<p>&nbsp;</p>
+</details>
 ### Node Script
 
 Manage or view a custom script.
@@ -27468,356 +27680,1308 @@ Assigns a given node to a given zone.
 
 Manage an individual notification.
 
-#### `DELETE /MAAS/api/2.0/notifications/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/notifications/{id}/``</summary>
 
-Delete a specific notification.
+------------------------------------------------------------------------
 
-#### `GET /MAAS/api/2.0/notifications/{id}/`
+Delete a notification with a given id.
 
-Read a specific notification.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/notifications/{id}/ op=dismiss`
+------------------------------------------------------------------------
 
-Dismiss a specific notification.
+**{id}** (*Int*): Required. The notification id.
 
-Returns HTTP 403 FORBIDDEN if this notification is not relevant
-(targeted) to the invoking user.
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/notifications/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a notification with the given id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The notification id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "ident": null,
+        "user": null,
+        "users": true,
+        "admins": false,
+        "message": "This is a test message.",
+        "context": {},
+        "category": "info",
+        "id": 1414,
+        "resource_uri": "/MAAS/api/2.0/notifications/1414/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/notifications/{id}/?op=dismiss``</summary>
+
+------------------------------------------------------------------------
+
+Dismiss a notification with the given id.
 
 It is safe to call multiple times for the same notification.
 
-#### `PUT /MAAS/api/2.0/notifications/{id}/`
+**Parameters**
 
-Update a specific notification.
+------------------------------------------------------------------------
 
-See NotificationsHandler.create for field information.
+**{id}** (*Int*): Required. The notification id.
 
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The notification is not relevant to the invoking user.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/notifications/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a notification with a given id.
+
+This is available to admins *only*.
+
+Note: One of the `user`, `users` or `admins` parameters must be set to
+True for the notification to be visible to anyone.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The notification id.
+
+**message** (*String*): Required. The message for this notification. May
+contain basic HTML, such as formatting. This string will be sanitised
+before display so that it doesn't break MAAS HTML.
+
+**context** (*String*): Optional. Optional JSON context. The root object
+*must* be an object (i.e. a mapping). The values herein can be
+referenced by `message` with Python's "format" (not %) codes.
+
+**category** (*String*): Optional. Choose from: `error`, `warning`,
+`success`, or `info`. Defaults to `info`.
+
+**ident** (*String*): Optional. Unique identifier for this notification.
+
+**user** (*String*): Optional. User ID this notification is intended
+for. By default it will not be targeted to any individual user.
+
+**users** (*Boolean*): Optional. True to notify all users, defaults to
+false, i.e. not targeted to all users.
+
+**admins** (*Boolean*): Optional. True to notify all admins, defaults to
+false, i.e. not targeted to all admins.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "ident": null,
+        "user": null,
+        "users": true,
+        "admins": false,
+        "message": "This is an updated test message.",
+        "context": {},
+        "category": "info",
+        "id": 1414,
+        "resource_uri": "/MAAS/api/2.0/notifications/1414/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Notifications
 
 Manage the collection of all the notifications in MAAS.
 
-#### `GET /MAAS/api/2.0/notifications/`
+<details>
+  <summary>``GET /MAAS/api/2.0/notifications/``</summary>
+
+------------------------------------------------------------------------
 
 List notifications relevant to the invoking user.
 
 Notifications that have been dismissed are *not* returned.
 
-#### `POST /MAAS/api/2.0/notifications/`
+**Success**
 
-Create a notification.
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "ident": "dhcp_disabled_all_vlans",
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "DHCP is not enabled on any VLAN.  This will prevent machines from being able to PXE boot, unless an external DHCP server is being used.",
+            "context": {},
+            "category": "warning",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/notifications/1/"
+        },
+        {
+            "ident": null,
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "Attention admins! Core critical! Meltdown imminent! Evacuate habitat immediately!",
+            "context": {
+                "name-oeIkwE": "value-cY9eNX"
+            },
+            "category": "error",
+            "id": 2,
+            "resource_uri": "/MAAS/api/2.0/notifications/2/"
+        },
+        {
+            "ident": null,
+            "user": {
+                "is_superuser": true,
+                "username": "admin",
+                "email": "NN7ER2rH6x@example.com",
+                "is_local": true,
+                "resource_uri": "/MAAS/api/2.0/users/admin/"
+            },
+            "users": false,
+            "admins": false,
+            "message": "Greetings, {name}! Get away from the habitat for the weekend and visit the Mare Nubium with MAAS Tours. Use the code METAL to claim a special gift!",
+            "context": {
+                "name": "Admin"
+            },
+            "category": "info",
+            "id": 5,
+            "resource_uri": "/MAAS/api/2.0/notifications/5/"
+        },
+        {
+            "ident": "maas-import-pxe-files script",
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "Boot image import process not started. Machines will not be able to\nprovision without boot images. Visit the\n<a href=\"http://localhost:5240/MAAS/#/images\">boot images</a> page to start the import.\n",
+            "context": {},
+            "category": "error",
+            "id": 1409,
+            "resource_uri": "/MAAS/api/2.0/notifications/1409/"
+        },
+        {
+            "ident": "clusters",
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "One rack controller is not yet connected to the region. Visit the <a href=\"/MAAS/#/controllers\">rack controllers page</a> for more information.",
+            "context": {},
+            "category": "error",
+            "id": 1410,
+            "resource_uri": "/MAAS/api/2.0/notifications/1410/"
+        },
+        {
+            "ident": "controller_out_of_date_mfhrw8",
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "Controller <a href='#/node/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
+            "context": {
+                "hostname": "happy-region",
+                "latest_version": "",
+                "system_id": "mfhrw8"
+            },
+            "category": "warning",
+            "id": 1411,
+            "resource_uri": "/MAAS/api/2.0/notifications/1411/"
+        },
+        {
+            "ident": "controller_out_of_date_ekf6cn",
+            "user": null,
+            "users": false,
+            "admins": true,
+            "message": "Controller <a href='#/node/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
+            "context": {
+                "hostname": "happy-rack",
+                "latest_version": "",
+                "system_id": "ekf6cn"
+            },
+            "category": "warning",
+            "id": 1412,
+            "resource_uri": "/MAAS/api/2.0/notifications/1412/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/notifications/``</summary>
+
+------------------------------------------------------------------------
+
+Create a new notification.
 
 This is available to admins *only*.
 
-param message
+Note: One of the `user`, `users` or `admins` parameters must be set to
+True for the notification to be visible to anyone.
 
-:   The message for this notification. May contain basic HTML; this will
-    be sanitised before display.
+**Parameters**
 
-param context
+------------------------------------------------------------------------
 
-:   Optional JSON context. The root object *must* be an object (i.e. a
-    mapping). The values herein can be referenced by message with
-    Python's "format" (not %) codes.
+**message** (*String*): Required. The message for this notification. May
+contain basic HTML, such as formatting. This string will be sanitised
+before display so that it doesn't break MAAS HTML.
 
-param category
+**context** (*String*): Optional. Optional JSON context. The root object
+*must* be an object (i.e. a mapping). The values herein can be
+referenced by `message` with Python's "format" (not %) codes.
 
-:   Optional category. Choose from: error, warning, success, or info.
-    Defaults to info.
+**category** (*String*): Optional. Choose from: `error`, `warning`,
+`success`, or `info`. Defaults to `info`.
 
-param ident
+**ident** (*String*): Optional. Unique identifier for this notification.
 
-:   Optional unique identifier for this notification.
+**user** (*String*): Optional. User ID this notification is intended
+for. By default it will not be targeted to any individual user.
 
-param user
+**users** (*Boolean*): Optional. True to notify all users, defaults to
+false, i.e. not targeted to all users.
 
-:   Optional user ID this notification is intended for. By default it
-    will not be targeted to any individual user.
+**admins** (*Boolean*): Optional. True to notify all admins, defaults to
+false, i.e. not targeted to all admins.
 
-param users
+**Success**
 
-:   Optional boolean, true to notify all users, defaults to false, i.e.
-    not targeted to all users.
+------------------------------------------------------------------------
 
-param admins
+*HTTP Status Code* : 200
 
-:   Optional boolean, true to notify all admins, defaults to false, i.e.
-    not targeted to all admins.
+*JSON*
 
-Note: if neither user nor users nor admins is set, the notification will
-not be seen by anyone.
+    {
+        "ident": null,
+        "user": null,
+        "users": true,
+        "admins": false,
+        "message": "This is a test message.",
+        "context": {},
+        "category": "info",
+        "id": 1413,
+        "resource_uri": "/MAAS/api/2.0/notifications/1413/"
+    }
 
+<p>&nbsp;</p>
+</details>
 ### Package Repositories
 
 Manage the collection of all Package Repositories in MAAS.
 
-#### `GET /MAAS/api/2.0/package-repositories/`
+<details>
+  <summary>``GET /MAAS/api/2.0/package-repositories/``</summary>
 
-List all Package Repositories.
+------------------------------------------------------------------------
 
-#### `POST /MAAS/api/2.0/package-repositories/`
+List all available package repositories.
 
-Create a Package Repository.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   The name of the Package Repository.
+*HTTP Status Code* : 200
 
-type name
+*JSON*
 
-:   unicode
+    {
+        "name": "ports_archive",
+        "url": "http://ports.ubuntu.com/ubuntu-ports",
+        "distributions": [],
+        "disabled_pockets": [],
+        "disabled_components": [],
+        "disable_sources": true,
+        "components": [],
+        "arches": [
+            "armhf",
+            "arm64",
+            "ppc64el",
+            "s390x"
+        ],
+        "key": "",
+        "enabled": true,
+        "id": 2,
+        "resource_uri": "/MAAS/api/2.0/package-repositories/2/"
+    }
 
-param url
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/package-repositories/``</summary>
 
-:   The url of the Package Repository.
+------------------------------------------------------------------------
 
-type url
+Create a new package repository.
 
-:   unicode
+**Parameters**
 
-param distributions
+------------------------------------------------------------------------
 
-:   Which package distributions to include.
+**name** (*String*): Required. The name of the package repository.
 
-type distributions
+**url** (*String*): Required. The url of the package repository.
 
-:   unicode
+**distributions** (*String*): Optional. Which package distributions to
+include.
 
-param disabled\_pockets
+**disabled\_pockets** (*String*): Optional. The list of pockets to
+disable.
 
-:   The list of pockets to disable.
+**disabled\_components** (*String*): Optional. The list of components to
+disable. Only applicable to the default Ubuntu repositories.
 
-param disabled\_components
+**components** (*String*): Optional. The list of components to enable.
+Only applicable to custom repositories.
 
-:   The list of components to disable. Only applicable to the default
-    Ubuntu repositories.
+**arches** (*String*): Optional. The list of supported architectures.
 
-param components
+**key** (*String*): Optional. The authentication key to use with the
+repository.
 
-:   The list of components to enable. Only applicable to custom
-    repositories.
+**enabled** (*Boolean*): Optional. Whether or not the repository is
+enabled.
 
-param arches
+**Success**
 
-:   The list of supported architectures.
+------------------------------------------------------------------------
 
-param key
+*HTTP Status Code* : 200
 
-:   The authentication key to use with the repository.
+*JSON*
 
-type key
+    {
+        "name": "ports_archive",
+        "url": "http://ports.ubuntu.com/ubuntu-ports",
+        "distributions": [],
+        "disabled_pockets": [],
+        "disabled_components": [],
+        "disable_sources": true,
+        "components": [],
+        "arches": [
+            "armhf",
+            "arm64",
+            "ppc64el",
+            "s390x"
+        ],
+        "key": "",
+        "enabled": true,
+        "id": 2,
+        "resource_uri": "/MAAS/api/2.0/package-repositories/2/"
+    }
 
-:   unicode
-
-param enabled
-
-:   Whether or not the repository is enabled.
-
-type enabled
-
-:   boolean
-
+<p>&nbsp;</p>
+</details>
 ### Package Repository
 
-Manage an individual Package Repository.
+Manage an individual package repository.
 
-> The Package Repository is identified by its id.
+A package repository is identified by its id.
 
-#### `DELETE /MAAS/api/2.0/package-repositories/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/package-repositories/{id}/``</summary>
 
-Delete a Package Repository.
+------------------------------------------------------------------------
 
-Returns 404 if the Package Repository is not found.
+Delete a package repository with the given id.
 
-#### `GET /MAAS/api/2.0/package-repositories/{id}/`
+**Parameters**
 
-Read Package Repository.
+------------------------------------------------------------------------
 
-Returns 404 if the repository is not found.
+**{id}** (*Int*): Required. A package repository id.
 
-#### `PUT /MAAS/api/2.0/package-repositories/{id}/`
+**Success**
 
-Update a Package Repository.
+------------------------------------------------------------------------
 
-param name
+*HTTP Status Code* : 204
 
-:   The name of the Package Repository.
+**Error**
 
-type name
+------------------------------------------------------------------------
 
-:   unicode
+*HTTP Status Code* : 404
 
-param url
+*Content*
 
-:   The url of the Package Repository.
+    Not Found
 
-type url
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/package-repositories/{id}/``</summary>
 
-:   unicode
+------------------------------------------------------------------------
 
-param distributions
+Read a package repository with the given id.
 
-:   Which package distributions to include.
+**Parameters**
 
-type distributions
+------------------------------------------------------------------------
 
-:   unicode
+**{id}** (*Int*): Required. A package repository id.
 
-param disabled\_pockets
+**Success**
 
-:   The list of pockets to disable.
+------------------------------------------------------------------------
 
-param disabled\_components
+*HTTP Status Code* : 200
 
-:   The list of components to disable. Only applicable to the default
-    Ubuntu repositories.
+*JSON*
 
-param disable\_sources
+    {
+        "name": "ports_archive",
+        "url": "http://ports.ubuntu.com/ubuntu-ports",
+        "distributions": [],
+        "disabled_pockets": [],
+        "disabled_components": [],
+        "disable_sources": true,
+        "components": [],
+        "arches": [
+            "armhf",
+            "arm64",
+            "ppc64el",
+            "s390x"
+        ],
+        "key": "",
+        "enabled": true,
+        "id": 2,
+        "resource_uri": "/MAAS/api/2.0/package-repositories/2/"
+    }
 
-:   Disable deb-src lines.
+**Error**
 
-param components
+------------------------------------------------------------------------
 
-:   The list of components to enable. Only applicable to custom
-    repositories.
+*HTTP Status Code* : 404
 
-param arches
+*Content*
 
-:   The list of supported architectures.
+    Not Found
 
-param key
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/package-repositories/{id}/``</summary>
 
-:   The authentication key to use with the repository.
+------------------------------------------------------------------------
 
-type key
+Update the package repository with the given id.
 
-:   unicode
+**Parameters**
 
-param enabled
+------------------------------------------------------------------------
 
-:   Whether or not the repository is enabled.
+**{id}** (*Int*): Required. A package repository id.
 
-type enabled
+**name** (*String*): Optional. The name of the package repository.
 
-:   boolean
+**url** (*String*): Optional. The url of the package repository.
 
-Returns 404 if the Package Repository is not found.
+**distributions** (*String*): Optional. Which package distributions to
+include.
 
+**disabled\_pockets** (*String*): Optional. The list of pockets to
+disable.
+
+**disabled\_components** (*String*): Optional. The list of components to
+disable. Only applicable to the default Ubuntu repositories.
+
+**disable\_sources** (*String*): Optional. Disable deb-src lines.
+
+**components** (*String*): Optional. The list of components to enable.
+Only applicable to custom repositories.
+
+**arches** (*String*): Optional. The list of supported architectures.
+
+**key** (*String*): Optional. The authentication key to use with the
+repository.
+
+**enabled** (*Boolean*): Optional. Whether or not the repository is
+enabled.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "ports_archive",
+        "url": "http://ports.ubuntu.com/ubuntu-ports",
+        "distributions": [],
+        "disabled_pockets": [],
+        "disabled_components": [],
+        "disable_sources": true,
+        "components": [],
+        "arches": [
+            "armhf",
+            "arm64",
+            "ppc64el",
+            "s390x"
+        ],
+        "key": "",
+        "enabled": true,
+        "id": 2,
+        "resource_uri": "/MAAS/api/2.0/package-repositories/2/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Partitions
 
 Manage partition on a block device.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}``</summary>
 
-Delete partition.
+------------------------------------------------------------------------
 
-Returns 404 if the node, block device, or partition are not found.
+Delete the partition from machine system\_id and device device\_id with
+the given partition id.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}`
+**Parameters**
 
-Read partition.
+------------------------------------------------------------------------
 
-Returns 404 if the node, block device, or partition are not found.
+**{system\_id}** (*String*): Required. The system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=add_tag`
+**{device\_id}** (*Int*): Required. The block device\_id.
 
-Add a tag to partition.
+**{id}** (*Int*): Required. The partition id.
 
-param tag
+**Success**
 
-:   The tag being added.
+------------------------------------------------------------------------
 
-Returns 403 when the user doesn't have the ability to add tag. Returns
-404 if the node, block device, or partition is not found.
+*HTTP Status Code* : 204
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=format`
+**Error**
 
-Format a partition.
+------------------------------------------------------------------------
 
-param fstype
+*HTTP Status Code* : 404
 
-:   Type of filesystem.
+*Content*
 
-param uuid
+    Not Found
 
-:   The UUID for the filesystem.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}``</summary>
 
-param label
+------------------------------------------------------------------------
 
-:   The label for the filesystem.
+Read the partition from machine system\_id and device device\_id with
+the given partition id.
 
-Returns 403 when the user doesn't have the ability to format the
-partition. Returns 404 if the node, block device, or partition is not
-found.
+**Parameters**
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=mount`
+------------------------------------------------------------------------
 
-Mount the filesystem on partition.
+**{system\_id}** (*String*): Required. The system\_id.
 
-param mount\_point
+**{device\_id}** (*Int*): Required. The block device\_id.
 
-:   Path on the filesystem to mount.
+**{id}** (*Int*): Required. The partition id.
 
-param mount\_options
+**Success**
 
-:   Options to pass to mount(8).
+------------------------------------------------------------------------
 
-Returns 403 when the user doesn't have the ability to mount the
-partition. Returns 404 if the node, block device, or partition is not
-found.
+*HTTP Status Code* : 200
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=remove_tag`
+*JSON*
 
-Remove a tag from partition.
+    [
+        {
+            "id_path": "/dev/vda",
+            "size": 8000000000,
+            "block_size": 4096,
+            "tags": [
+                "rotary"
+            ],
+            "path": "/dev/disk/by-dname/vda",
+            "system_id": "ccrfnk",
+            "uuid": null,
+            "used_size": 7999586304,
+            "used_for": "MBR partitioned with 1 partition",
+            "partitions": [
+                {
+                    "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+                    "size": 7994343424,
+                    "bootable": false,
+                    "tags": [],
+                    "path": "/dev/disk/by-dname/vda-part1",
+                    "system_id": "ccrfnk",
+                    "used_for": "ext4 formatted filesystem mounted at /",
+                    "filesystem": {
+                        "fstype": "ext4",
+                        "label": "root",
+                        "uuid": "f698b5ee-d53c-4538-86cf-ee4b23d37db6",
+                        "mount_point": "/",
+                        "mount_options": null
+                    },
+                    "id": 1,
+                    "type": "partition",
+                    "device_id": 1,
+                    "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+                }
+            ],
+            "filesystem": null,
+            "id": 1,
+            "partition_table_type": "MBR",
+            "storage_pool": "18afd485-1491-43c9-a876-7af737d03698",
+            "type": "physical",
+            "name": "vda",
+            "serial": "",
+            "available_size": 0,
+            "model": "",
+            "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/"
+        }
+    ]
 
-param tag
+**Error**
 
-:   The tag being removed.
+------------------------------------------------------------------------
 
-Returns 403 when the user doesn't have the ability to add tag. Returns
-404 if the node, block device, or partition is not found.
+*HTTP Status Code* : 404
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unformat`
+*Content*
 
-Unformat a partition.
+    Not Found
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id} op=unmount`
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=add_tag``</summary>
 
-Unmount the filesystem on partition.
+------------------------------------------------------------------------
 
-Returns 400 if the partition is not formatted or not currently mounted.
-Returns 403 when the user doesn't have the ability to unmount the
-partition. Returns 404 if the node, block device, or partition is not
-found.
+Add a tag to a partition on machine system\_id, device device\_id and
+partition id.
 
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**tag** (*String*): Required. The tag being added.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [
+            "mytag"
+        ],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "a73c0701-9216-40ca-857f-63c65b4e7059",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "type": "partition",
+        "id": 1,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to add a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=format``</summary>
+
+------------------------------------------------------------------------
+
+Format the partition on machine system\_id and device device\_id with
+the given partition id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**fstype** (*String*): Required. Type of filesystem.
+
+**uuid** (*String*): Optional. The UUID for the filesystem.
+
+**label** (*String*): Optional. The label for the filesystem.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "ad185012-fa9e-486d-8869-16bf297272c8",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "type": "partition",
+        "id": 1,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to format the partition.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=mount``</summary>
+
+------------------------------------------------------------------------
+
+Mount a filesystem on machine system\_id, device device\_id and
+partition id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**mount\_point** (*String*): Required. Path on the filesystem to mount.
+
+**mount\_options** (*String*): Optional. Options to pass to mount(8).
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "a73c0701-9216-40ca-857f-63c65b4e7059",
+            "mount_point": "/",
+            "mount_options": ""
+        },
+        "used_for": "ext4 formatted filesystem mounted at /",
+        "type": "partition",
+        "id": 1,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to mount the filesystem.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=remove_tag``</summary>
+
+------------------------------------------------------------------------
+
+Remove a tag from a partition on machine system\_id, device device\_id
+and partition id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**tag** (*String*): Required. The tag being removed.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "a73c0701-9216-40ca-857f-63c65b4e7059",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "type": "partition",
+        "id": 1,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to remove a tag.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=unformat``</summary>
+
+------------------------------------------------------------------------
+
+Unformat the partition on machine system\_id and device device\_id with
+the given partition id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "used_for": "Unused",
+        "filesystem": null,
+        "system_id": "ccrfnk",
+        "path": "/dev/disk/by-dname/vda-part1",
+        "type": "partition",
+        "id": 1,
+        "device_id": 1,
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partition/{id}?op=unmount``</summary>
+
+------------------------------------------------------------------------
+
+Unmount a filesystem on machine system\_id, device device\_id and
+partition id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**{id}** (*Int*): Required. The partition id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": {
+            "fstype": "ext4",
+            "label": "",
+            "uuid": "a73c0701-9216-40ca-857f-63c65b4e7059",
+            "mount_point": null,
+            "mount_options": null
+        },
+        "used_for": "Unmounted ext4 formatted filesystem",
+        "type": "partition",
+        "id": 1,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : The partition is not formatted or not currently mounted.
+
+*HTTP Status Code* : 403
+
+*Content* : The user does not have permissions to unmount the
+filesystem.
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Partitions
 
 Manage partitions on a block device.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/``</summary>
 
-List all partitions on the block device.
+------------------------------------------------------------------------
 
-Returns 404 if the node or the block device are not found.
+List partitions on a device with the given system\_id and device\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/`
+**Parameters**
 
-Create a partition on the block device.
+------------------------------------------------------------------------
 
-param size
+**{system\_id}** (*String*): Required. The system\_id.
 
-:   The size of the partition. If not specified, all available space
-    will be used.
+**{device\_id}** (*Int*): Required. The block device\_id.
 
-param uuid
+**Success**
 
-:   UUID for the partition. Only used if the partition table type for
-    the block device is GPT.
+------------------------------------------------------------------------
 
-param bootable
+*HTTP Status Code* : 200
 
-:   If the partition should be marked bootable.
+*JSON*
 
-Returns 404 if the node or the block device are not found.
+    [
+        {
+            "id_path": "/dev/vda",
+            "size": 8000000000,
+            "block_size": 4096,
+            "tags": [
+                "rotary"
+            ],
+            "path": "/dev/disk/by-dname/vda",
+            "system_id": "ccrfnk",
+            "uuid": null,
+            "used_size": 7999586304,
+            "used_for": "MBR partitioned with 1 partition",
+            "partitions": [
+                {
+                    "uuid": "95f5d47d-0abd-408b-b3f1-c3f4df152609",
+                    "size": 7994343424,
+                    "bootable": false,
+                    "tags": [],
+                    "path": "/dev/disk/by-dname/vda-part1",
+                    "system_id": "ccrfnk",
+                    "used_for": "ext4 formatted filesystem mounted at /",
+                    "filesystem": {
+                        "fstype": "ext4",
+                        "label": "root",
+                        "uuid": "f698b5ee-d53c-4538-86cf-ee4b23d37db6",
+                        "mount_point": "/",
+                        "mount_options": null
+                    },
+                    "id": 1,
+                    "type": "partition",
+                    "device_id": 1,
+                    "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/1"
+                }
+            ],
+            "filesystem": null,
+            "id": 1,
+            "partition_table_type": "MBR",
+            "storage_pool": "18afd485-1491-43c9-a876-7af737d03698",
+            "type": "physical",
+            "name": "vda",
+            "serial": "",
+            "available_size": 0,
+            "model": "",
+            "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/"
+        }
+    ]
 
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/blockdevices/{device_id}/partitions/``</summary>
+
+------------------------------------------------------------------------
+
+Create a partition on a block device.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id.
+
+**{device\_id}** (*Int*): Required. The block device\_id.
+
+**size** (*Int*): Optional. The size of the partition. If not specified,
+all available space will be used.
+
+**uuid** (*String*): Optional. UUID for the partition. Only used if the
+partition table type for the block device is GPT.
+
+**bootable** (*Boolean*): Optional. If the partition should be marked
+bootable.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "uuid": "ecfa7d5b-bb76-4443-83ab-ad600c23b4de",
+        "size": 7994343424,
+        "bootable": false,
+        "tags": [],
+        "device_id": 1,
+        "system_id": "ccrfnk",
+        "filesystem": null,
+        "used_for": "Unused",
+        "type": "partition",
+        "id": 2,
+        "path": "/dev/disk/by-dname/vda-part1",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/2"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Pod
 
 Manage an individual pod.
@@ -31819,113 +32983,261 @@ Assigns a given node to a given zone.
 </details>
 ### RAID Device
 
-Manage a specific RAID device on a machine.
+Manage a specific RAID (Redundant Array of Independent Disks) on a
+machine.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/raid/{id}/``</summary>
 
-Delete RAID on a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or RAID is not found. Returns 409 if the
-machine is not Ready.
+Delete a RAID with the given id on a machine with the given system\_id.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
+**Parameters**
 
-Read RAID device on a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or RAID is not found.
+**{system\_id}** (*String*): Required. The system\_id of the machine
+containing the RAID.
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/raid/{id}/`
+**{id}** (*Int*): Required. A RAID id.
 
-Update RAID on a machine.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the RAID.
+*HTTP Status Code* : 204
 
-param uuid
+**Error**
 
-:   UUID of the RAID.
+------------------------------------------------------------------------
 
-param add\_block\_devices
+*HTTP Status Code* : 404
 
-:   Block devices to add to the RAID.
+*Content*
 
-param remove\_block\_devices
+    Not Found
 
-:   Block devices to remove from the RAID.
+*HTTP Status Code* : 409
 
-param add\_spare\_devices
+*Content* : The requested machine is not ready.
 
-:   Spare block devices to add to the RAID.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/raid/{id}/``</summary>
 
-param remove\_spare\_devices
+------------------------------------------------------------------------
 
-:   Spare block devices to remove from the RAID.
+Read RAID with the given id on a machine with the given system\_id.
 
-param add\_partitions
+**Parameters**
 
-:   Partitions to add to the RAID.
+------------------------------------------------------------------------
 
-param remove\_partitions
+**{system\_id}** (*String*): Required. The system\_id of the machine
+containing the RAID.
 
-:   Partitions to remove from the RAID.
+**{id}** (*Int*): Required. A RAID id.
 
-param add\_spare\_partitions
+**Success**
 
-:   Spare partitions to add to the RAID.
+------------------------------------------------------------------------
 
-param remove\_spare\_partitions
+*HTTP Status Code* : 200
 
-:   Spare partitions to remove from the RAID.
+*JSON*
 
-Returns 404 if the machine or RAID is not found. Returns 409 if the
-machine is not Ready.
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/raid/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a RAID with the given id on a machine with the given system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id of the machine
+containing the RAID.
+
+**{id}** (*Int*): Required. A RAID id.
+
+**name** (*String*): Optional. Name of the RAID.
+
+**uuid** (*String*): Optional. UUID of the RAID.
+
+**add\_block\_devices** (*String*): Optional. Block devices to add to
+the RAID.
+
+**remove\_block\_devices** (*String*): Optional. Block devices to remove
+from the RAID.
+
+**add\_spare\_devices** (*String*): Optional. Spare block devices to add
+to the RAID.
+
+**remove\_spare\_devices** (*String*): Optional. Spare block devices to
+remove from the RAID.
+
+**add\_partitions** (*String*): Optional. Partitions to add to the RAID.
+
+**remove\_partitions** (*String*): Optional. Partitions to remove from
+the RAID.
+
+**add\_spare\_partitions** (*String*): Optional. Spare partitions to add
+to the RAID.
+
+**remove\_spare\_partitions** (*String*): Optional. Spare partitions to
+remove from the RAID.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### RAID Devices
 
-Manage all RAID devices on a machine.
+Manage all RAIDs (Redundant Array of Independent Disks) on a machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/raids/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/raids/``</summary>
 
-List all RAID devices belonging to a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine is not found.
+List all RAIDs belonging to a machine with the given system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/raids/`
+**Parameters**
 
-Creates a RAID
+------------------------------------------------------------------------
 
-param name
+**{system\_id}** (*String*): Required. The system\_id of the machine
+containing the RAIDs.
 
-:   Name of the RAID.
+**Success**
 
-param uuid
+------------------------------------------------------------------------
 
-:   UUID of the RAID.
+*HTTP Status Code* : 200
 
-param level
+*JSON*
 
-:   RAID level.
+    {
+        "message": "Information about this object is not available at this time."
+    }
 
-param block\_devices
+**Error**
 
-:   Block devices to add to the RAID.
+------------------------------------------------------------------------
 
-param spare\_devices
+*HTTP Status Code* : 404
 
-:   Spare block devices to add to the RAID.
+*Content*
 
-param partitions
+    Not Found
 
-:   Partitions to add to the RAID.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/raids/``</summary>
 
-param spare\_partitions
+------------------------------------------------------------------------
 
-:   Spare partitions to add to the RAID.
+Set up a RAID on a machine with the given system\_id.
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+**Parameters**
 
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The system\_id of the machine on
+which to set up the RAID.
+
+**name** (*String*): Optional. Name of the RAID.
+
+**uuid** (*String*): Optional. UUID of the RAID.
+
+**level** (*Int*): Required. RAID level.
+
+**block\_devices** (*String*): Optional. Block devices to add to the
+RAID.
+
+**spare\_devices** (*String*): Optional. Spare block devices to add to
+the RAID.
+
+**partitions** (*String*): Optional. Partitions to add to the RAID.
+
+**spare\_partitions** (*String*): Optional. Spare partitions to add to
+the RAID.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "message": "Information about this object is not available at this time."
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content*
+
+    Cannot create RAID because the machine is not Ready.
+
+<p>&nbsp;</p>
+</details>
 ### RegionController
 
 Manage an individual region controller.
@@ -39294,19 +40606,39 @@ an administrator. ('0' == False, '1' == True)
 
 Information about this MAAS instance.
 
-> This returns a JSON dictionary with information about this MAAS
-> instance:
->
->     {
->         'version': '1.8.0',
->         'subversion': 'alpha10+bzr3750',
->         'capabilities': ['capability1', 'capability2', ...]
->     }
+<details>
+  <summary>``GET /MAAS/api/2.0/version/``</summary>
 
-#### `GET /MAAS/api/2.0/version/`
+------------------------------------------------------------------------
 
-Version and capabilities of this MAAS instance.
+Read version and capabilities of this MAAS instance.
 
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "capabilities": [
+            "networks-management",
+            "static-ipaddresses",
+            "ipv6-deployment-ubuntu",
+            "devices-management",
+            "storage-deployment-ubuntu",
+            "network-deployment-ubuntu",
+            "bridging-interface-ubuntu",
+            "bridging-automatic-ubuntu",
+            "authenticate-api"
+        ],
+        "version": "2.5.0 from source",
+        "subversion": "git+2f25a2cc0930c0e411106f119bc455c161d75b1a"
+    }
+
+<p>&nbsp;</p>
+</details>
 ### VLAN
 
 Manage a VLAN on a fabric.
@@ -39594,113 +40926,480 @@ VLAN to be placed in the 'undefined' space.
 
 Manage volume group on a machine.
 
-#### `DELETE /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/``</summary>
 
-Delete volume group on a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or volume group is not found. Returns 409 if
-the machine is not Ready.
+Delete a volume group with the given id from the machine with the given
+system\_id.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
+**Parameters**
 
-Read volume group on a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine or volume group is not found.
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the volume group.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/ op=create_logical_volume`
+**{id}** (*Int*): Required. The id of the volume group.
 
-Create a logical volume in the volume group.
+**Success**
 
-param name
+------------------------------------------------------------------------
 
-:   Name of the logical volume.
+*HTTP Status Code* : 204
 
-param uuid
+**Error**
 
-:   (optional) UUID of the logical volume.
+------------------------------------------------------------------------
 
-param size
+*HTTP Status Code* : 404
 
-:   Size of the logical volume.
+*Content*
 
-Returns 404 if the machine or volume group is not found. Returns 409 if
-the machine is not Ready.
+    Not Found
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/ op=delete_logical_volume`
+*HTTP Status Code* : 409
 
-Delete a logical volume in the volume group.
+*Content* : The requested machine is not ready.
 
-param id
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/``</summary>
 
-:   ID of the logical volume.
+------------------------------------------------------------------------
 
-Returns 403 if no logical volume with id. Returns 404 if the machine or
-volume group is not found. Returns 409 if the machine is not Ready.
+Read a volume group with the given id on the machine with the given
+system\_id.
 
-#### `PUT /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/`
+**Parameters**
 
-Read volume group on a machine.
+------------------------------------------------------------------------
 
-param name
+**{system\_id}** (*String*): Required. The machine system\_id on which
+to create the volume group.
 
-:   Name of the volume group.
+**{id}** (*Int*): Required. The id of the volume group.
 
-param uuid
+**Success**
 
-:   UUID of the volume group.
+------------------------------------------------------------------------
 
-param add\_block\_devices
+*HTTP Status Code* : 200
 
-:   Block devices to add to the volume group.
+*JSON*
 
-param remove\_block\_devices
+    {
+        "human_used_size": "0 bytes",
+        "uuid": "36f9585d-3ae0-429c-abb7-9d584bc6f941",
+        "human_available_size": "8.0 GB",
+        "system_id": "ccrfnk",
+        "id": 1,
+        "logical_volumes": [],
+        "size": 7990149120,
+        "devices": [
+            {
+                "uuid": "ecfa7d5b-bb76-4443-83ab-ad600c23b4de",
+                "size": 7994343424,
+                "bootable": false,
+                "tags": [],
+                "system_id": "ccrfnk",
+                "id": 2,
+                "used_for": "LVM volume for my_volume_group",
+                "type": "partition",
+                "path": "/dev/disk/by-dname/vda-part1",
+                "device_id": 1,
+                "filesystem": {
+                    "fstype": "lvm-pv",
+                    "label": null,
+                    "uuid": "cad18fde-2fc7-4aa5-a15b-739f88c3b671",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/2"
+            }
+        ],
+        "available_size": 7990149120,
+        "used_size": 0,
+        "human_size": "8.0 GB",
+        "name": "my_volume_group",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/volume-group/1/"
+    }
 
-:   Block devices to remove from the volume group.
+**Error**
 
-param add\_partitions
+------------------------------------------------------------------------
 
-:   Partitions to add to the volume group.
+*HTTP Status Code* : 404
 
-param remove\_partitions
+*Content*
 
-:   Partitions to remove from the volume group.
+    Not Found
 
-Returns 404 if the machine or volume group is not found. Returns 409 if
-the machine is not Ready.
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/?op=create_logical_volume``</summary>
 
+------------------------------------------------------------------------
+
+Create a logical volume in the volume group with the given id on the
+machine with the given system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the volume group.
+
+**{id}** (*Int*): Required. The id of the volume group.
+
+**name** (*String*): Required. Name of the logical volume.
+
+**uuid** (*String*): Optional. (optional) UUID of the logical volume.
+
+**size** (*String*): Required. Size of the logical volume. Must be
+larger than or equal to 4,194,304 bytes. E.g. `4194304`.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "system_id": "ccrfnk",
+        "uuid": "5b805aa2-3614-4b70-b99c-9c3ff65df4c3",
+        "used_size": 0,
+        "name": "my_volume_group-my_logical_volume",
+        "size": 4194304,
+        "available_size": 4194304,
+        "id": 2,
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/2/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/?op=delete_logical_volume``</summary>
+
+------------------------------------------------------------------------
+
+Delete a logical volume in the volume group with the given id on the
+machine with the given system\_id.
+
+Note: this operation returns HTTP status code 204 even if the logical
+volume id does not exist.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the volume group.
+
+**{id}** (*Int*): Required. The id of the volume group.
+
+**id** (*Int*): Required. The logical volume id.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/volume-group/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a volume group with the given id on the machine with the given
+system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the volume group.
+
+**{id}** (*Int*): Required. The id of the volume group.
+
+**name** (*String*): Optional. Name of the volume group.
+
+**uuid** (*String*): Optional. UUID of the volume group.
+
+**add\_block\_devices** (*String*): Optional. Block devices to add to
+the volume group.
+
+**remove\_block\_devices** (*String*): Optional. Block devices to remove
+from the volume group.
+
+**add\_partitions** (*String*): Optional. Partitions to add to the
+volume group.
+
+**remove\_partitions** (*String*): Optional. Partitions to remove from
+the volume group.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "human_used_size": "0 bytes",
+        "uuid": "36f9585d-3ae0-429c-abb7-9d584bc6f941",
+        "human_available_size": "8.0 GB",
+        "system_id": "ccrfnk",
+        "id": 1,
+        "logical_volumes": [],
+        "size": 7990149120,
+        "devices": [
+            {
+                "uuid": "ecfa7d5b-bb76-4443-83ab-ad600c23b4de",
+                "size": 7994343424,
+                "bootable": false,
+                "tags": [],
+                "system_id": "ccrfnk",
+                "id": 2,
+                "used_for": "LVM volume for my_volume_group",
+                "type": "partition",
+                "path": "/dev/disk/by-dname/vda-part1",
+                "device_id": 1,
+                "filesystem": {
+                    "fstype": "lvm-pv",
+                    "label": null,
+                    "uuid": "cad18fde-2fc7-4aa5-a15b-739f88c3b671",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/2"
+            }
+        ],
+        "available_size": 7990149120,
+        "used_size": 0,
+        "human_size": "8.0 GB",
+        "name": "my_volume_group",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/volume-group/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Volume groups
 
 Manage volume groups on a machine.
 
-#### `GET /MAAS/api/2.0/nodes/{system_id}/volume-groups/`
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/volume-groups/``</summary>
 
-List all volume groups belonging to a machine.
+------------------------------------------------------------------------
 
-Returns 404 if the machine is not found.
+List all volume groups belonging to a machine with the given system\_id.
 
-#### `POST /MAAS/api/2.0/nodes/{system_id}/volume-groups/`
+**Parameters**
 
-Create a volume group belonging to machine.
+------------------------------------------------------------------------
 
-param name
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the volume groups.
 
-:   Name of the volume group.
+**Success**
 
-param uuid
+------------------------------------------------------------------------
 
-:   (optional) UUID of the volume group.
+*HTTP Status Code* : 200
 
-param block\_devices
+*JSON*
 
-:   Block devices to add to the volume group.
+    [
+        {
+            "logical_volumes": [],
+            "system_id": "ccrfnk",
+            "human_size": "8.0 GB",
+            "human_used_size": "0 bytes",
+            "uuid": "36f9585d-3ae0-429c-abb7-9d584bc6f941",
+            "human_available_size": "8.0 GB",
+            "used_size": 0,
+            "name": "my_volume_group",
+            "size": 7990149120,
+            "devices": [
+                {
+                    "uuid": "ecfa7d5b-bb76-4443-83ab-ad600c23b4de",
+                    "size": 7994343424,
+                    "bootable": false,
+                    "tags": [],
+                    "system_id": "ccrfnk",
+                    "filesystem": {
+                        "fstype": "lvm-pv",
+                        "label": null,
+                        "uuid": "cad18fde-2fc7-4aa5-a15b-739f88c3b671",
+                        "mount_point": null,
+                        "mount_options": null
+                    },
+                    "used_for": "LVM volume for my_volume_group",
+                    "type": "partition",
+                    "path": "/dev/disk/by-dname/vda-part1",
+                    "id": 2,
+                    "device_id": 1,
+                    "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/2"
+                }
+            ],
+            "available_size": 7990149120,
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/volume-group/1/"
+        }
+    ]
 
-param partitions
+**Error**
 
-:   Partitions to add to the volume group.
+------------------------------------------------------------------------
 
-Returns 404 if the machine is not found. Returns 409 if the machine is
-not Ready.
+*HTTP Status Code* : 404
 
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/volume-groups/``</summary>
+
+------------------------------------------------------------------------
+
+Create a volume group belonging to a machine with the given system\_id.
+
+Note that at least one valid block device or partition is required.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id on which
+to create the volume group.
+
+**name** (*String*): Required. Name of the volume group.
+
+**uuid** (*String*): Optional. (optional) UUID of the volume group.
+
+**block\_devices** (*String*): Optional. Block devices to add to the
+volume group.
+
+**partitions** (*String*): Optional. Partitions to add to the volume
+group.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "available_size": 7990149120,
+        "size": 7990149120,
+        "human_used_size": "0 bytes",
+        "devices": [
+            {
+                "uuid": "ecfa7d5b-bb76-4443-83ab-ad600c23b4de",
+                "size": 7994343424,
+                "bootable": false,
+                "tags": [],
+                "used_for": "LVM volume for my_volume_group",
+                "device_id": 1,
+                "path": "/dev/disk/by-dname/vda-part1",
+                "id": 2,
+                "filesystem": {
+                    "fstype": "lvm-pv",
+                    "label": null,
+                    "uuid": "cad18fde-2fc7-4aa5-a15b-739f88c3b671",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "type": "partition",
+                "system_id": "ccrfnk",
+                "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/blockdevices/1/partition/2"
+            }
+        ],
+        "logical_volumes": [],
+        "id": 1,
+        "used_size": 0,
+        "human_size": "8.0 GB",
+        "human_available_size": "8.0 GB",
+        "system_id": "ccrfnk",
+        "uuid": "36f9585d-3ae0-429c-abb7-9d584bc6f941",
+        "name": "my_volume_group",
+        "resource_uri": "/MAAS/api/2.0/nodes/ccrfnk/volume-group/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Zone
 
 Manage a physical zone.
