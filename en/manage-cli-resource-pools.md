@@ -47,6 +47,11 @@ maas $PROFILE resource-pool update $RESOURCE_POOL_ID name=newname description="A
 maas $PROFILE resource-pool delete $RESOURCE_POOL_ID
 ```
 
+## Add a machine to a resource pool
+
+```bash
+maas $PROFILE machine update $SYSTEM_ID pool=$POOL_NAME
+```
 
 <!-- LINKS -->
 
