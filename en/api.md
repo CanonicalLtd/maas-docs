@@ -1,6 +1,4 @@
-Title: MAAS API
-TODO:  
-table_of_contents: True
+Title: API
 
 MAAS API
 ========
@@ -9584,6 +9582,11 @@ enable\_third\_party\_drivers
 
 :   Enable the installation of proprietary drivers (i.e. HPVSA).
 
+enlist\_commissioning
+
+:   Whether to run commissioning during enlistment.. Enables running all
+    built-in commissioning scripts during enlistment.
+
 http\_proxy
 
 :   Proxy for APT or YUM and HTTP/HTTPS. This will be passed onto
@@ -9860,6 +9863,11 @@ enable\_http\_proxy
 enable\_third\_party\_drivers
 
 :   Enable the installation of proprietary drivers (i.e. HPVSA).
+
+enlist\_commissioning
+
+:   Whether to run commissioning during enlistment.. Enables running all
+    built-in commissioning scripts during enlistment.
 
 http\_proxy
 
@@ -21663,6 +21671,10 @@ the new power parameters for this machine should be checked against the
 expected power parameters for the machine's power type ('true' or
 'false'). The default is 'false'.
 
+**pool** (*String*): Optional. The resource pool to which the machine
+should belong. All machines belong to the 'default' resource pool if
+they do not belong to any other resource pool.
+
 **zone** (*String*): Optional. Name of a valid physical zone in which to
 place this machine.
 
@@ -22641,6 +22653,10 @@ for the power\_type. Note that this is dynamic as the available
 parameters depend on the selected value of the Machine's power\_type.
 [Power types]() section for a list of the available power parameters for
 each power type.
+
+**commission** (*Boolean*): Optional. Request the newly created machine
+to be created with status set to COMMISSIONING. Machines will wait for
+COMMISSIONING results and not time out.
 
 **Success**
 
