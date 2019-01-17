@@ -101,5 +101,5 @@ sudo maas-rack register
 [ppa_maas-next]: https://launchpad.net/~maas/+archive/ubuntu/next
 [install-from-iso]: installconfig-iso-install.md
 [install-from-packages]: installconfig-package-install.md
-[install-from-snap]: #install-from-snap
+[install-from-snap]: installconfig-snap-install.md
 [install-with-lxd]: installconfig-lxd-install.md
