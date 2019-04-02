@@ -148,7 +148,6 @@ maas $PROFILE node-script-results update \
 
 where `$SUPPRESSED` is either `True` or `False`.  The JSON formatted output to
 the above command will include 'results' dictionary with an entry for `suppressed`:
-those modifications:
 
 ```json
 "results": [
