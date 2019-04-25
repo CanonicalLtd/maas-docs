@@ -160,6 +160,49 @@ If set to true no partition will be created and the raw cache device will be
 used as the cache.
 
 
+### VMFS6 layout
+
+The VMFS6 layout is used for VMware ESXi deployments only. It is required when
+configuring VMware VMFS Datastores. The layout creates all operating system
+partitions in addition to the default datastore. The datastore may be modified
+and new datastores may be created or extended to include other storage
+devices. The base operating system partitions may not be modified as they are
+required for VMware ESXi use. Once applied another storage layout must be
+applied to remove the operating system partitions.
+
+| Name      | Size        | Type    | Use               |
+|:----------|-------------|---------|-------------------|
+| sda       | -           | disk    |                   |
+| sda1      | 3 MB        | part    | EFI               |
+| sda2      | 4 GB        | part    | Basic Data        |
+| sda3      | Remaining   | part    | VMFS Datastore 1  |
+| sda4      | -           | skipped |                   |
+| sda5      | 249 MB      | part    | Basic Data        |
+| sda6      | 249 MB      | part    | Basic Data        |
+| sda7      | 109 MB      | part    | VMware Diagnostic |
+| sda8      | 285 MB      | part    | Basic Data        |
+| sda9      | 2.5 GB      | part    | VMware Diagnostic |
+
+The following options are supported:
+
+`root_device`: The block device to place the root partition on. Default is the
+boot disk.
+
+`root_size`: Size of the default VMFS Datastore. Default is 100%, meaning the
+remaining size of the root disk.
+
+
+### Blank layout
+
+The blank layout removes all storage configuration from all storage devices. It
+is useful when needing to apply a custom storage configuration.
+
+!!! Negative "Warning":
+Machines with the blank layout applied are not deployable. Storage must be
+manually configured first.
+
+
+
 ## Setting layouts
 
 Layouts can be set globally and on a per-node basis.
