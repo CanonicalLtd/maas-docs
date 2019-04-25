@@ -197,6 +197,10 @@ remaining size of the root disk.
 The blank layout removes all storage configuration from all storage devices. It
 is useful when needing to apply a custom storage configuration.
 
+!!! Negative "Warning":
+Machines with the blank layout applied are not deployable. Storage must be
+manually configured first.
+
 
 
 ## Setting layouts
