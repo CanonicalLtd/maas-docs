@@ -24,8 +24,17 @@ Prometheus endpoints are exposed over HTTP by the `rackd` and `regiond`
 processes under the default `/metrics` path, whenever the
 `python3-prometheus-client` library is installed.
 
-After installing the library on each MAAS node, the `rackd` and `regiond`
-services must be restarted.
+For a snap-based MAAS installation, the library is already included in the
+snap, so metrics will be available out of the box.
+
+For a Debian-based MAAS installation, install the library and restart MAAS
+services as follows:
+
+```
+sudo apt install python3-prometheus-client
+sudo systemctl restart maas-rackd
+sudo systemctl restart maas-regiond
+```
 
 
 ## Configuring Prometheus
@@ -44,8 +53,10 @@ stanza like the following to the prometheus configuration:
       scheme: http
       static_configs:
         - targets:
-          - <maas-IP>:5239  # for regiond
-          - <maas-IP>:5249  # for rackd
+          - <maas-host1-IP>:5239  # for regiond
+          - <maas-host1-IP>:5249  # for rackd
+          - <maas-host2-IP>:5239  # regiond-only
+          - <maas-host3-IP>:5249  # rackd-only
 ```
 
 If the MAAS installation includes multiple nodes, the `targets` entries must be
