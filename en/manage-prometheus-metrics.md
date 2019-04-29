@@ -1,0 +1,96 @@
+Title: Prometheus metrics
+TODO:
+table_of_contents: True
+
+# Prometheus metrics
+
+MAAS services can provide [Prometheus][prometheus] endpoints for collecting
+performance metrics.
+
+These include:
+
+- TFTP server file transfer latency
+- HTTP requests latency
+- Websocket requests latency
+- RPC calls (beween MAAS services) latency
+- Per request DB queries counts
+
+All available metrics are prefixed with `maas_`, to make it easier to look them
+up in Prometheus and Grafana UIs.
+
+## Enabling Prometheus endpoints
+
+Prometheus endpoints are exposed over HTTP by the `rackd` and `regiond`
+processes under the default `/metrics` path, whenever the
+`python3-prometheus-client` library is installed.
+
+After installing the library on each MAAS node, the `rackd` and `regiond`
+services must be restarted.
+
+
+## Configuring Prometheus
+
+
+Once the `/metrics` endpoint is available in MAAS services, Prometheus can be
+confiured to scrape metric values from these.  This can be done by adding a
+stanza like the following to the prometheus configuration:
+
+
+```yaml
+    - job_name: maas
+      scrape_interval: 30s
+      scrape_timeout: 10s
+      metrics_path: /metrics
+      scheme: http
+      static_configs:
+        - targets:
+          - <maas-IP>:5239  # for regiond
+          - <maas-IP>:5249  # for rackd
+```
+
+If the MAAS installation includes multiple nodes, the `targets` entries must be
+adjusted accordingly, to match services deployed on each node.
+
+
+## Deploying Prometheus and Grafana
+
+
+[Grafana][grafana] and Prometheus can be easily deployed using [Juju][juju].
+
+The [MAAS performance repo][maasperformance] repository provides a sample
+`deploy-stack` script that will deploy and configure the stack on LXD
+containers.
+
+First, juju must be installed via
+
+```
+sudo snap install --classic juju
+```
+
+Then, the script from the repo can be run as
+
+```
+grafana/deploy-stack <MAAS-IP>
+```
+
+To follow the progress of the deployment, run
+
+```
+watch -c juju status --color
+```
+
+Once everything is deployed, the the Grafana UI will be accessible on port
+`3000` with the credentials `admin`/`grafana`.  The Prometheus UI will be
+accessible on port `9090`.
+
+The repository also provides some sample dashboard covering the most common use
+cases for graphs. These are available under `grafana/dashboards` and can be
+imported from the Grafana UI or API.
+
+
+<!-- LINKS -->
+
+[grafana]: https://grafana.com/
+[juju]: https://jujucharms.com/
+[prometheus]: https://prometheus.io/
+[maasperformance]: https://git.launchpad.net/~maas-committers/maas/+git/maas-performance
