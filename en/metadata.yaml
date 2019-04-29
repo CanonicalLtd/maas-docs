@@ -183,6 +183,9 @@ navigation:
         - title: MAAS security
           location: manage-maas-security.md
 
+        - title: Prometheus metrics
+          location: manage-prometheus-metrics.md
+
         - title: Package repositories
           location: manage-repos.md
 
