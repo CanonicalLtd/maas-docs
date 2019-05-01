@@ -14,7 +14,7 @@ To use the CLI, first make sure you are [logged in][maas-cli-login].
 
 !!! Note:
     For further details on which metadata fields can be used within scripts,
-    and what they do, see 
+    and what they do, see
     [Commissioning and Hardware Testing Scripts][maas-scripts-fields].
 
 ## Script management
@@ -42,7 +42,7 @@ A [script's metadata][script-example], and even the script itself, can be
 updated from the command line:
 
 ```bash
-maas $PROFILE node-script update \ 
+maas $PROFILE node-script update \
  $SCRIPT_NAME script=$PATH_TO_SCRIPT comment=$COMMENT
 ```
 
@@ -103,14 +103,14 @@ MAAS runs all commissioning scripts by default. However, you can select which
 custom scripts to run during commissioning by name or tag:
 
 ```bash
-maas $PROFILE machine commission \ 
+maas $PROFILE machine commission \
  commissioning_scripts=$SCRIPT_NAME,$SCRIPT_TAG
 ```
 
 You can also select which testing scripts to run by name or tag:
 
 ```bash
-maas $PROFILE machine commission \ 
+maas $PROFILE machine commission \
  testing_scripts=$SCRIPT_NAME,$SCRIPT_TAG
 ```
 
@@ -134,10 +134,57 @@ You can also limit which results are returned by type (*commissioning*,
 *testing*, or *installation*), script name, or script run:
 
 ```bash
-maas $PROFILE node-script-results read \ 
+maas $PROFILE node-script-results read \
  $SYSTEM_ID type=$SCRIPT_TYPE filters=$SCRIPT_NAME,$TAGS
 ```
- 
+
+You can also update whether or not results that have failed should be suppressed.
+This is useful in the event that you would like to ignore a known failure:
+
+```bash
+maas $PROFILE node-script-results update \
+ $SYSTEM_ID type=$SCRIPT_TYPE filters=$SCRIPT_NAME,$TAGS suppressed=$SUPPRESSED
+```
+
+where `$SUPPRESSED` is either `True` or `False`.  The JSON formatted output to
+the above command will include 'results' dictionary with an entry for `suppressed`:
+
+```json
+"results": [
+    {
+        "id": 21,
+        "created": "Tue, 02 Apr 2019 17:00:36 -0000",
+        "updated": "Tue, 02 Apr 2019 20:56:41 -0000",
+        "name": "smartctl-validate",
+        "status": 5,
+        "status_name": "Aborted",
+        "exit_status": null,
+        "started": "Tue, 02 Apr 2019 20:56:41 -0000",
+        "ended": "Tue, 02 Apr 2019 20:56:41 -0000",
+        "runtime": "0:00:00",
+        "starttime": 1554238601.765214,
+        "endtime": 1554238601.765214,
+        "estimated_runtime": "0:00:00",
+        "parameters": {
+            "storage": {
+                "argument_format": "{path}",
+                "type": "storage",
+                "value": {
+                    "id_path": "/dev/vda",
+                    "model": "",
+                    "name": "sda",
+                    "physical_blockdevice_id": 1,
+                    "serial": ""
+                }
+            }
+        },
+        "script_id": 1,
+        "script_revision_id": null,
+        "suppressed": true
+    }
+]
+```
+
 Finally, results can be downloaded, either to stdout, stderr, as combined output or as a tar.xz:
 
 ```bash
