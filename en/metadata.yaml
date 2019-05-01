@@ -11,7 +11,7 @@ navigation:
         - title: Explore MAAS
           location: intro-explore.md
 
-        - title: What's new in 2.5
+        - title: What's new in 2.6
           location: intro-new.md
 
         - title: Quick start
