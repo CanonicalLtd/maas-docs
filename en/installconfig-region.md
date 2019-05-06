@@ -77,4 +77,4 @@ num_workers: 8
 ```
 
 !!! Note:
-    Modifying the number of workers will increase the number of database connections. This requires PostgreSQL to have an increased number of allowed connections. Please see [High Availability][PostgreSQL HA] for more information.
+    Modifying the number of workers will increase the number of database connections. This requires PostgreSQL to have an increased number of allowed connections of 11 connections per extra regiond worker. Please see [High Availability][PostgreSQL HA] for more information.
