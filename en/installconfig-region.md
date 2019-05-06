@@ -85,4 +85,4 @@ num_workers: 8
     
 <!-- LINKS -->
 
-[manage-ha-region]: manage-ha#region-controller-ha
+[manage-ha-region]: manage-ha.md#region-controller-ha
