@@ -59,3 +59,22 @@ Check the log files for any errors:
 - `/var/log/maas/regiond.log`
 - `/var/log/maas/maas.log`
 - `/var/log/syslog`
+
+## Increasing the number of regiond daemon workers for improved performance
+
+!!! Note:
+    This functionality is available starting from MAAS 2.4.
+
+The MAAS Region Controller is a daemon collection of 4 workers that are in charge of handling all the internals of MAAS. The regiond workers handle the UI, API and the internal communication between Region and Rack controllers.
+
+Increasing the number of worker in larger environments where there are multiple rack controllers should increase the performance of the Region by allowing more workers to handle internal communication between the Region and the Rack controllers.
+
+This is possible by customizing ```regiond.conf (/etc/maas/regiond.conf)``` and setting ```num_workers```. For example:
+
+```
+[...]
+num_workers: 8
+```
+
+!!! Note:
+    Modifying the number of workers will increase the number of database connections. This requires PostgreSQL to have an increased number of allowed connections. Please see [High Availability][PostgreSQL HA] for more information.
