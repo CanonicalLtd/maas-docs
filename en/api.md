@@ -3893,6 +3893,7 @@ Reads a node with the given system\_id.
         "owner_data": {},
         "bcaches": [],
         "hostname": "causal-quagga",
+        "description": "Optional description for the node.",
         "raids": [],
         "other_test_status": 2,
         "status_action": "action-BqENyW",
@@ -4177,6 +4178,7 @@ to default values.
         "address_ttl": null,
         "fqdn": "newhostname.maas",
         "hostname": "newhostname",
+        "description": "Optional description for the device.",
         "node_type_name": "Device",
         "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
     }
@@ -4292,6 +4294,7 @@ default values.
         "parent": null,
         "fqdn": "newhostname.maas",
         "hostname": "newhostname",
+        "description": "Optional description for the device.",
         "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
     }
 
@@ -4366,6 +4369,9 @@ Update a device with a given system\_id.
 **{system\_id}** (*String*): Required. A device system\_id.
 
 **hostname** (*String*): Optional. The hostname for this device.
+
+**description** (*String*): Optional. The optional description for this
+machine.
 
 **domain** (*String*): Optional. The domain for this device.
 
@@ -4449,6 +4455,7 @@ place this node.
         "node_type": 1,
         "ip_addresses": [],
         "hostname": "newhostname",
+        "description": "Optional description for the device.",
         "tag_names": [],
         "system_id": "shqe4g",
         "resource_uri": "/MAAS/api/2.0/devices/shqe4g/"
@@ -4531,6 +4538,7 @@ with matching agent names will be returned.
             "storage_test_status": -1,
             "cpu_count": 4,
             "hostname": "mymaas",
+            "description": "Optional description for the node.",
             "domain": {
                 "authoritative": true,
                 "ttl": null,
@@ -4854,6 +4862,8 @@ Create a new device.
 **hostname** (*String*): Optional. A hostname. If not given, one will be
 generated.
 
+**description** (*String*): Optional. A optional description.
+
 **domain** (*String*): Optional. The domain of the device. If not given
 the default domain is used.
 
@@ -4897,6 +4907,7 @@ the device.
         ],
         "owner": "admin",
         "hostname": "moral-buck",
+        "description": "Optional description for the device.",
         "parent": null,
         "node_type_name": "Device",
         "ip_addresses": [],
@@ -5228,6 +5239,30 @@ Note: One of `mdns`, `neighbours`, or `all` parameters must be supplied.
 **neighbours** (*Boolean*): Optional. Delete all neighbour entries.
 
 **all** (*Boolean*): Optional. Delete all discovery data.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/discovery/?op=clear_by_mac_and_ip``</summary>
+
+------------------------------------------------------------------------
+
+Deletes all discovered neighbours (and associated reverse DNS entries)
+associated with the given IP address and MAC address.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**ip** (*String*): Required. IP address
+
+**mac** (*String*): Required. MAC address
 
 **Success**
 
@@ -9534,7 +9569,8 @@ default\_storage\_layout
 
 :   Default storage layout. Storage layout that is applied to a node
     when it is commissioned. Available choices are: 'bcache' (Bcache
-    layout), 'flat' (Flat layout), 'lvm' (LVM layout).
+    layout), 'blank' (No storage (blank) layout), 'flat' (Flat layout),
+    'lvm' (LVM layout), 'vmfs6' (VMFS6 layout).
 
 disk\_erase\_with\_quick\_erase
 
@@ -9586,6 +9622,12 @@ enlist\_commissioning
 
 :   Whether to run commissioning during enlistment.. Enables running all
     built-in commissioning scripts during enlistment.
+
+force\_v1\_network\_yaml
+
+:   Always use the legacy v1 YAML (rather than Netplan format, also
+    known as v2 YAML) when composing the network configuration for a
+    machine..
 
 http\_proxy
 
@@ -9720,6 +9762,26 @@ use\_rack\_proxy
     machine is booted.. All DNS and HTTP metadata traffic will flow
     through the rack controller that a machine is booting from. This
     isolated region controllers from machines.
+
+vcenter\_datacenter
+
+:   VMware vCenter datacenter.. VMware vCenter datacenter which is
+    passed to a deployed VMware ESXi host.
+
+vcenter\_password
+
+:   VMware vCenter password.. VMware vCenter server password which is
+    passed to a deployed VMware ESXi host.
+
+vcenter\_server
+
+:   VMware vCenter server FQDN or IP address.. VMware vCenter server
+    FQDN or IP address which is passed to a deployed VMware ESXi host.
+
+vcenter\_username
+
+:   VMware vCenter username.. VMware vCenter server username which is
+    passed to a deployed VMware ESXi host.
 
 windows\_kms\_host
 
@@ -9816,7 +9878,8 @@ default\_storage\_layout
 
 :   Default storage layout. Storage layout that is applied to a node
     when it is commissioned. Available choices are: 'bcache' (Bcache
-    layout), 'flat' (Flat layout), 'lvm' (LVM layout).
+    layout), 'blank' (No storage (blank) layout), 'flat' (Flat layout),
+    'lvm' (LVM layout), 'vmfs6' (VMFS6 layout).
 
 disk\_erase\_with\_quick\_erase
 
@@ -9868,6 +9931,12 @@ enlist\_commissioning
 
 :   Whether to run commissioning during enlistment.. Enables running all
     built-in commissioning scripts during enlistment.
+
+force\_v1\_network\_yaml
+
+:   Always use the legacy v1 YAML (rather than Netplan format, also
+    known as v2 YAML) when composing the network configuration for a
+    machine..
 
 http\_proxy
 
@@ -10002,6 +10071,26 @@ use\_rack\_proxy
     machine is booted.. All DNS and HTTP metadata traffic will flow
     through the rack controller that a machine is booting from. This
     isolated region controllers from machines.
+
+vcenter\_datacenter
+
+:   VMware vCenter datacenter.. VMware vCenter datacenter which is
+    passed to a deployed VMware ESXi host.
+
+vcenter\_password
+
+:   VMware vCenter password.. VMware vCenter server password which is
+    passed to a deployed VMware ESXi host.
+
+vcenter\_server
+
+:   VMware vCenter server FQDN or IP address.. VMware vCenter server
+    FQDN or IP address which is passed to a deployed VMware ESXi host.
+
+vcenter\_username
+
+:   VMware vCenter username.. VMware vCenter server username which is
+    passed to a deployed VMware ESXi host.
 
 windows\_kms\_host
 
@@ -10444,6 +10533,7 @@ Reads a node with the given system\_id.
         "owner_data": {},
         "bcaches": [],
         "hostname": "causal-quagga",
+        "description": "Optional description for the node.",
         "raids": [],
         "other_test_status": 2,
         "status_action": "action-BqENyW",
@@ -11680,6 +11770,7 @@ deployed with the interfaces set-default-gateway API.
         "system_id": "thr3am",
         "status_name": "Ready",
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "hardware_info": {
             "system_vendor": "Unknown",
             "system_product": "Unknown",
@@ -11824,6 +11915,7 @@ testing script names and tags to be run. By default all tests tagged
             "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
         },
         "hostname": "clever-turkey",
+        "description": "Optional description for the machine.",
         "locked": false,
         "testing_status": 0,
         "zone": {
@@ -12072,6 +12164,12 @@ will be installed on this machine.
 
 **install\_kvm** (*Boolean*): Optional. If true, KVM will be installed
 on this machine and added to MAAS.
+
+**ephemeral\_deploy** (*Boolean*): Optional. If true, machine will be
+deployed ephemerally even if it has disks.
+
+**vcenter\_registration** (*Boolean*): Optional. If false, do not send
+globally defined VMware vCenter credentials to the machine.
 
 **Success**
 
@@ -12526,6 +12624,7 @@ on this machine and added to MAAS.
         "status_message": "desc-9blXOT",
         "cpu_test_status_name": "Failed",
         "hostname": "newname",
+        "description": "Optional description for the machine.",
         "testing_status_name": "Failed",
         "resource_uri": "/MAAS/api/2.0/machines/d8n3re/"
     }
@@ -12634,6 +12733,7 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
             "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
         },
         "hostname": "new-tuna",
+        "description": "Optional description for the machine.",
         "locked": false,
         "testing_status": -1,
         "zone": {
@@ -13534,6 +13634,7 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
         "cpu_speed": 0,
         "owner": "admin",
         "hostname": "aware-elk",
+        "description": "Optional description for the machine.",
         "ip_addresses": [
             "172.16.1.81",
             "172.16.1.50",
@@ -13830,6 +13931,7 @@ fixed.
 
     {
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "cpu_speed": 0,
         "current_testing_result_id": 22,
         "status_action": "",
@@ -14229,6 +14331,7 @@ Mark a machine with the given system\_id as 'Fixed'.
         "memory_test_status_name": "Passed",
         "storage_test_status_name": "Passed",
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "current_testing_result_id": 22,
         "testing_status": 2,
         "cpu_count": 3,
@@ -15536,6 +15639,7 @@ filesystem that does not require a block special device.
         "memory": 8192,
         "power_state": "on",
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -15623,6 +15727,7 @@ power off occurs immediately without any warning to the OS.
         "cpu_count": 1,
         "fqdn": "node2.maas",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "power_state": "on",
         "cpu_test_status": -1,
         "storage": 8000,
@@ -16051,6 +16156,7 @@ made available to the nodes through the metadata service.
         "cpu_count": 1,
         "fqdn": "node2.maas",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "power_state": "on",
         "cpu_test_status": -1,
         "storage": 8000,
@@ -16497,6 +16603,10 @@ overwriting themselves so this could still be slow.
 **quick\_erase** (*Boolean*): Optional. Wipe 2MiB at the start and at
 the end of the drive to make data recovery inconvenient and unlikely to
 happen by accident. This is not secure.
+
+**force** (*Boolean*): Optional. Will force the release of a machine. If
+the machine was deployed as a KVM host, this will be deleted as well as
+all machines inside the KVM host. USE WITH CAUTION.
 
 **Success**
 
@@ -17389,6 +17499,7 @@ happen by accident. This is not secure.
         "virtualblockdevice_set": [],
         "status_message": "desc-SRem4v",
         "hostname": "pretty-jackal",
+        "description": "Optional description for the machine.",
         "power_state": "on",
         "pod": {
             "id": 5,
@@ -17516,6 +17627,7 @@ mode process.
             "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
         },
         "hostname": "new-tuna",
+        "description": "Optional description for the machine.",
         "locked": false,
         "testing_status": -1,
         "zone": {
@@ -17984,6 +18096,7 @@ system\_id.
         "osystem": "",
         "memory_test_status": 2,
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "pool": {
             "name": "default",
             "description": "Default pool",
@@ -18278,6 +18391,7 @@ given system\_id.
         "status": 4,
         "virtualblockdevice_set": [],
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "testing_status_name": "Passed",
         "cpu_test_status": 2,
         "memory_test_status": 2,
@@ -18636,6 +18750,7 @@ machine with the given system\_id.
         "memory": 8192,
         "volume_groups": [],
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "cpu_count": 3,
         "power_type": "virsh",
         "osystem": "",
@@ -18973,7 +19088,7 @@ configuration and replace it will the new layout.
 **{system\_id}** (*String*): Required. The machines's system\_id.
 
 **storage\_layout** (*String*): Required. Storage layout for the
-machine: `flat`, `lvm`, and `bcache`.
+machine: `flat`, `lvm`, `bcache`, `vmfs6`, or `blank`.
 
 **boot\_size** (*String*): Optional. All layouts. Size of the boot
 partition (e.g. 512M, 1G).
@@ -19073,6 +19188,7 @@ partition on the cache device. Use the entire disk as the cache device.
             "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
         },
         "hostname": "clever-turkey",
+        "description": "Optional description for the machine.",
         "locked": false,
         "testing_status": 0,
         "zone": {
@@ -19331,6 +19447,7 @@ testing script names and tags to be run. By default all tests tagged
         "netboot": false,
         "power_type": "virsh",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "node_type": 0,
         "testing_status": 0,
         "default_gateways": {
@@ -20409,6 +20526,7 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
         "cpu_speed": 0,
         "owner": "admin",
         "hostname": "aware-elk",
+        "description": "Optional description for the machine.",
         "ip_addresses": [
             "172.16.1.81",
             "172.16.1.50",
@@ -21611,6 +21729,7 @@ unmount.
         "memory": 8192,
         "power_state": "on",
         "hostname": "above-robin",
+        "description": "Optional description for the machine.",
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -21645,6 +21764,9 @@ Updates a machine with the given system\_id.
 **{system\_id}** (*String*): Required. The machines's system\_id.
 
 **hostname** (*String*): Optional. The new hostname for this machine.
+
+**description** (*String*): Optional. The new description for this
+machine.
 
 **domain** (*String*): Optional. The domain for this machine. If not
 given the default domain is used.
@@ -22145,6 +22267,7 @@ kilobytes, megabytes, gigabytes and terabytes.
         "status_message": "desc-9blXOT",
         "cpu_test_status_name": "Failed",
         "hostname": "newname",
+        "description": "Optional description for the machine.",
         "testing_status_name": "Failed",
         "resource_uri": "/MAAS/api/2.0/machines/d8n3re/"
     }
@@ -22225,6 +22348,7 @@ with matching agent names will be returned.
             "storage_test_status": -1,
             "cpu_count": 4,
             "hostname": "mymaas",
+            "description": "Optional description for the node.",
             "domain": {
                 "authoritative": true,
                 "ttl": null,
@@ -22642,6 +22766,8 @@ mac\_addresses=02:03:04:05:06:07")
 **hostname** (*String*): Optional. A hostname. If not given, one will be
 generated.
 
+**description** (*String*): Optional. A optional description.
+
 **domain** (*String*): Optional. The domain of the machine. If not given
 the default domain is used.
 
@@ -22657,6 +22783,32 @@ each power type.
 **commission** (*Boolean*): Optional. Request the newly created machine
 to be created with status set to COMMISSIONING. Machines will wait for
 COMMISSIONING results and not time out.
+
+**enable\_ssh** (*Int*): Optional. Whether to enable SSH for the
+commissioning environment using the user's SSH key(s). '1' == True, '0'
+== False.
+
+**skip\_bmc\_config** (*Int*): Optional. Whether to skip
+re-configuration of the BMC for IPMI based machines. '1' == True, '0' ==
+False.
+
+**skip\_networking** (*Int*): Optional. Whether to skip re-configuring
+the networking on the machine after the commissioning has completed. '1'
+== True, '0' == False.
+
+**skip\_storage** (*Int*): Optional. Whether to skip re-configuring the
+storage on the machine after the commissioning has completed. '1' ==
+True, '0' == False.
+
+**commissioning\_scripts** (*String*): Optional. A comma seperated list
+of commissioning script names and tags to be run. By default all custom
+commissioning scripts are run. Built-in commissioning scripts always
+run. Selecting 'update\_firmware' or 'configure\_hba' will run firmware
+updates or configure HBA's on matching machines.
+
+**testing\_scripts** (*String*): Optional. A comma seperated list of
+testing script names and tags to be run. By default all tests tagged
+'commissioning' will be run. Set to 'none' to disable running tests.
 
 **Success**
 
@@ -22802,6 +22954,7 @@ COMMISSIONING results and not time out.
         "bcaches": [],
         "memory": 0,
         "hostname": "ready-badger",
+        "description": "Optional description for the machine.",
         "testing_status_name": "Pending",
         "memory_test_status": -1,
         "raids": [],
@@ -23378,6 +23531,7 @@ data structure that indicates which machine(s) matched).
         "swap_size": null,
         "cpu_count": 3,
         "hostname": "calm-cod",
+        "description": "Optional description for the machine.",
         "current_installation_result_id": null,
         "architecture": "i386/generic",
         "fqdn": "calm-cod.sample",
@@ -24113,6 +24267,56 @@ data structure that indicates which machine(s) matched).
 <p>&nbsp;</p>
 </details>
 <details>
+  <summary>``POST /MAAS/api/2.0/machines/?op=clone``</summary>
+
+------------------------------------------------------------------------
+
+Clone storage and/or interface configurations
+
+A machine storage and/or interface configuration can be cloned to a set
+of destination machines.
+
+For storage configuration, cloning the destination machine must have at
+least the same number of physical block devices or more, along with the
+physical block devices being the same size or greater.
+
+For interface configuration, cloning the destination machine must have
+at least the same number of interfaces with the same names. The
+destination machine can have more interfaces than the source, as long as
+the subset of interfaces on the destination have the same matching names
+as the source.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**source** (*String*): Required. The system\_id of the machine that is
+the source of the configuration.
+
+**destination** (*String*): Required. A list of system\_ids to clone the
+configuration to.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 400
+
+*Content* : Source and/or destinations are not found.
+
+*HTTP Status Code* : 403
+
+*Content* : The user not authenticated.
+
+<p>&nbsp;</p>
+</details>
+<details>
   <summary>``POST /MAAS/api/2.0/machines/?op=release``</summary>
 
 ------------------------------------------------------------------------
@@ -24701,6 +24905,7 @@ Reads a node with the given system\_id.
         "owner_data": {},
         "bcaches": [],
         "hostname": "causal-quagga",
+        "description": "Optional description for the node.",
         "raids": [],
         "other_test_status": 2,
         "status_action": "action-BqENyW",
@@ -26178,6 +26383,607 @@ results that ran with a script name or tag.
 
 <p>&nbsp;</p>
 </details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/results/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a set of test results for a given system\_id and script id.
+
+"id" can either be the script set id, `current-commissioning`,
+`current-testing`, or `current-installation`.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine's system\_id.
+
+**{id}** (*String*): Required. The script result id.
+
+**hardware\_type** (*String*): Optional. Only return scripts for the
+given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
+Defaults to all.
+
+**filters** (*String*): Optional. A comma seperated list to show only
+results that ran with a script name, tag, or id.
+
+**include\_output** (*String*): Optional. Include the base64 encoded
+output from the script if any value for include\_output is given.
+
+**suppressed** (*Boolean*): Optional. Set whether or not this script
+result should be suppressed using 'true' or 'false'.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "status": 2,
+        "type_name": "Testing",
+        "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+        "type": 2,
+        "id": 22,
+        "system_id": "thr3am",
+        "status_name": "Passed",
+        "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+        "runtime": "348 days, 6:51:37",
+        "last_ping": null,
+        "results": [
+            {
+                "id": 374,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "7z",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 19 Mar 2017 23:33:01 -0000",
+                "ended": "Mon, 20 Mar 2017 01:16:59 -0000",
+                "runtime": "1:43:58",
+                "starttime": 1489966381,
+                "endtime": 1489972619,
+                "estimated_runtime": "1:43:58",
+                "parameters": {},
+                "script_id": 14,
+                "script_revision_id": null
+            },
+            {
+                "id": 368,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 10 Jan 2017 00:25:57 -0000",
+                "ended": "Tue, 10 Jan 2017 02:26:53 -0000",
+                "runtime": "2:00:56",
+                "starttime": 1484007957,
+                "endtime": 1484015213,
+                "estimated_runtime": "2:00:56",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 370,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Mon, 03 Jul 2017 18:26:21 -0000",
+                "ended": "Mon, 03 Jul 2017 18:50:59 -0000",
+                "runtime": "0:24:38",
+                "starttime": 1499106381,
+                "endtime": 1499107859,
+                "estimated_runtime": "0:24:38",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 369,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 04 Jan 2017 17:32:04 -0000",
+                "ended": "Wed, 04 Jan 2017 18:06:45 -0000",
+                "runtime": "0:34:41",
+                "starttime": 1483551124,
+                "endtime": 1483553205,
+                "estimated_runtime": "0:34:41",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 12,
+                "script_revision_id": null
+            },
+            {
+                "id": 373,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 04 Oct 2017 03:19:13 -0000",
+                "ended": "Wed, 04 Oct 2017 05:19:30 -0000",
+                "runtime": "2:00:17",
+                "starttime": 1507087153,
+                "endtime": 1507094370,
+                "estimated_runtime": "2:00:17",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 372,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 23 Jul 2017 20:55:47 -0000",
+                "ended": "Sun, 23 Jul 2017 23:38:04 -0000",
+                "runtime": "2:42:17",
+                "starttime": 1500843347,
+                "endtime": 1500853084,
+                "estimated_runtime": "2:42:17",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 371,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "badblocks-destructive",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Mon, 18 Dec 2017 22:06:01 -0000",
+                "ended": "Tue, 19 Dec 2017 00:23:41 -0000",
+                "runtime": "2:17:40",
+                "starttime": 1513634761,
+                "endtime": 1513643021,
+                "estimated_runtime": "2:17:40",
+                "parameters": {
+                    "storage": {
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 13,
+                "script_revision_id": null
+            },
+            {
+                "id": 365,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "internet-connectivity",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 01 Apr 2017 03:04:52 -0000",
+                "ended": "Sat, 01 Apr 2017 03:12:08 -0000",
+                "runtime": "0:07:16",
+                "starttime": 1491015892,
+                "endtime": 1491016328,
+                "estimated_runtime": "0:07:16",
+                "parameters": {},
+                "script_id": 6,
+                "script_revision_id": null
+            },
+            {
+                "id": 364,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "memtester",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Wed, 19 Apr 2017 09:22:38 -0000",
+                "ended": "Wed, 19 Apr 2017 10:43:25 -0000",
+                "runtime": "1:20:47",
+                "starttime": 1492593758,
+                "endtime": 1492598605,
+                "estimated_runtime": "1:20:47",
+                "parameters": {},
+                "script_id": 5,
+                "script_revision_id": null
+            },
+            {
+                "id": 361,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 18 Mar 2017 10:19:52 -0000",
+                "ended": "Sat, 18 Mar 2017 12:47:57 -0000",
+                "runtime": "2:28:05",
+                "starttime": 1489832392,
+                "endtime": 1489841277,
+                "estimated_runtime": "2:28:05",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 362,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Thu, 07 Sep 2017 01:11:18 -0000",
+                "ended": "Thu, 07 Sep 2017 03:02:21 -0000",
+                "runtime": "1:51:03",
+                "starttime": 1504746678,
+                "endtime": 1504753341,
+                "estimated_runtime": "1:51:03",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 363,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-conveyance",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Fri, 15 Sep 2017 21:40:34 -0000",
+                "ended": "Fri, 15 Sep 2017 23:16:21 -0000",
+                "runtime": "1:35:47",
+                "starttime": 1505511634,
+                "endtime": 1505517381,
+                "estimated_runtime": "1:35:47",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 4,
+                "script_revision_id": null
+            },
+            {
+                "id": 358,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Fri, 20 Jan 2017 06:36:01 -0000",
+                "ended": "Fri, 20 Jan 2017 07:21:22 -0000",
+                "runtime": "0:45:21",
+                "starttime": 1484894161,
+                "endtime": 1484896882,
+                "estimated_runtime": "0:45:21",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 359,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 20 Jun 2017 19:17:09 -0000",
+                "ended": "Tue, 20 Jun 2017 19:59:22 -0000",
+                "runtime": "0:42:13",
+                "starttime": 1497986229,
+                "endtime": 1497988762,
+                "estimated_runtime": "0:42:13",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 360,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 26 Feb 2017 09:37:07 -0000",
+                "ended": "Sun, 26 Feb 2017 09:44:53 -0000",
+                "runtime": "0:07:46",
+                "starttime": 1488101827,
+                "endtime": 1488102293,
+                "estimated_runtime": "0:07:46",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 2,
+                "script_revision_id": null
+            },
+            {
+                "id": 355,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 26 Aug 2017 12:32:16 -0000",
+                "ended": "Sat, 26 Aug 2017 14:45:18 -0000",
+                "runtime": "2:13:02",
+                "starttime": 1503750736,
+                "endtime": 1503758718,
+                "estimated_runtime": "2:13:02",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-mSnL9L",
+                            "name": "name-xE9mtJ",
+                            "physical_blockdevice_id": 18,
+                            "serial": "serial-jBitFU"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 356,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Tue, 06 Jun 2017 13:03:30 -0000",
+                "ended": "Tue, 06 Jun 2017 13:47:00 -0000",
+                "runtime": "0:43:30",
+                "starttime": 1496754210,
+                "endtime": 1496756820,
+                "estimated_runtime": "0:43:30",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-OHzOYI",
+                            "name": "name-EjgNwC",
+                            "physical_blockdevice_id": 19,
+                            "serial": "serial-5EZFik"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 357,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "smartctl-validate",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sun, 16 Jul 2017 19:10:54 -0000",
+                "ended": "Sun, 16 Jul 2017 21:35:40 -0000",
+                "runtime": "2:24:46",
+                "starttime": 1500232254,
+                "endtime": 1500240940,
+                "estimated_runtime": "2:24:46",
+                "parameters": {
+                    "storage": {
+                        "argument_format": "{path}",
+                        "type": "storage",
+                        "value": {
+                            "id_path": null,
+                            "model": "model-5btVsu",
+                            "name": "name-VhlrVi",
+                            "physical_blockdevice_id": 20,
+                            "serial": "serial-SE3O1p"
+                        }
+                    }
+                },
+                "script_id": 1,
+                "script_revision_id": null
+            },
+            {
+                "id": 366,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "stress-ng-memory-long",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Sat, 08 Apr 2017 03:39:23 -0000",
+                "ended": "Sat, 08 Apr 2017 03:50:36 -0000",
+                "runtime": "0:11:13",
+                "starttime": 1491622763,
+                "endtime": 1491623436,
+                "estimated_runtime": "0:11:13",
+                "parameters": {},
+                "script_id": 9,
+                "script_revision_id": null
+            },
+            {
+                "id": 367,
+                "created": "Thu, 06 Dec 2018 20:41:55 -0000",
+                "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
+                "name": "stress-ng-memory-short",
+                "status": 2,
+                "status_name": "Passed",
+                "exit_status": 0,
+                "started": "Thu, 19 Oct 2017 19:45:46 -0000",
+                "ended": "Thu, 19 Oct 2017 22:18:36 -0000",
+                "runtime": "2:32:50",
+                "starttime": 1508442346,
+                "endtime": 1508451516,
+                "estimated_runtime": "2:32:50",
+                "parameters": {},
+                "script_id": 10,
+                "script_revision_id": null
+            }
+        ],
+        "resource_uri": "/MAAS/api/2.0/nodes/thr3am/results/22/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
 ### Node Script Result
 
 Manage node script results.
@@ -26244,7 +27050,8 @@ results with a script name or tag.
                     "estimated_runtime": "1:03:28",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": false
                 },
                 {
                     "id": 344,
@@ -26262,7 +27069,8 @@ results with a script name or tag.
                     "estimated_runtime": "0:44:30",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": false
                 },
                 {
                     "id": 343,
@@ -26280,16 +27088,17 @@ results with a script name or tag.
                     "estimated_runtime": "1:55:49",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": false
                 },
                 {
                     "id": 345,
                     "created": "Thu, 06 Dec 2018 20:41:55 -0000",
                     "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
                     "name": "00-maas-02-virtuality",
-                    "status": 2,
-                    "status_name": "Passed",
-                    "exit_status": 0,
+                    "status": 3,
+                    "status_name": "Failed",
+                    "exit_status": 1,
                     "started": "Tue, 09 May 2017 14:02:19 -0000",
                     "ended": "Tue, 09 May 2017 15:08:21 -0000",
                     "runtime": "1:06:02",
@@ -26298,16 +27107,17 @@ results with a script name or tag.
                     "estimated_runtime": "1:06:02",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": true
                 },
                 {
                     "id": 346,
                     "created": "Thu, 06 Dec 2018 20:41:55 -0000",
                     "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
                     "name": "00-maas-03-install-lldpd",
-                    "status": 2,
-                    "status_name": "Passed",
-                    "exit_status": 0,
+                    "status": 3,
+                    "status_name": "Failed",
+                    "exit_status": 1,
                     "started": "Tue, 07 Nov 2017 15:05:05 -0000",
                     "ended": "Tue, 07 Nov 2017 15:59:57 -0000",
                     "runtime": "0:54:52",
@@ -26316,7 +27126,8 @@ results with a script name or tag.
                     "estimated_runtime": "0:54:52",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": true
                 },
                 {
                     "id": 347,
@@ -26334,7 +27145,8 @@ results with a script name or tag.
                     "estimated_runtime": "2:20:19",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": false
                 },
                 {
                     "id": 348,
@@ -26352,16 +27164,17 @@ results with a script name or tag.
                     "estimated_runtime": "0:01:06",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": false
                 },
                 {
                     "id": 349,
                     "created": "Thu, 06 Dec 2018 20:41:55 -0000",
                     "updated": "Thu, 06 Dec 2018 20:41:56 -0000",
                     "name": "00-maas-06-get-fruid-api-data",
-                    "status": 2,
-                    "status_name": "Passed",
-                    "exit_status": 0,
+                    "status": 3,
+                    "status_name": "Failed",
+                    "exit_status": 1,
                     "started": "Wed, 04 Jan 2017 19:25:11 -0000",
                     "ended": "Wed, 04 Jan 2017 19:33:04 -0000",
                     "runtime": "0:07:53",
@@ -26370,7 +27183,8 @@ results with a script name or tag.
                     "estimated_runtime": "0:07:53",
                     "parameters": {},
                     "script_id": null,
-                    "script_revision_id": null
+                    "script_revision_id": null,
+                    "suppressed": true
                 },
                 {
                     "id": 350,
@@ -27346,6 +28160,7 @@ with matching agent names will be returned.
             "storage_test_status": -1,
             "cpu_count": 4,
             "hostname": "mymaas",
+            "description": "Optional description for the node.",
             "domain": {
                 "authoritative": true,
                 "ttl": null,
@@ -29561,10 +30376,10 @@ with this pod -- composed machines will be assigned to this resource
 pool by default.
 
 **cpu\_over\_commit\_ratio** (*Int*): Optional. CPU overcommit ratio
-(1-10)
+(0-10)
 
 **memory\_over\_commit\_ratio** (*Int*): Optional. CPU overcommit ratio
-(1-10)
+(0-10)
 
 **default\_storage\_pool** (*String*): Optional. Default KVM storage
 pool to use when the pod has storage pools.
@@ -29582,12 +30397,6 @@ for pods that use it: bridge, passthru, private, vepa.
 
 **tags** (*String*): Optional. Tag or tags (command separated)
 associated with the pod.
-
-**console\_log** (*Boolean*): Optional. If 'True', VMs composed in this
-pod will have console output logged (Note: this will automatically
-create a tag named 'pod-console-logging' and apply it to the pod). If
-'False', MAAS deletes the 'pod-console-logging' tag, if any, which turns
-off console logging.
 
 **Success**
 
@@ -30342,6 +31151,7 @@ Reads a node with the given system\_id.
         "owner_data": {},
         "bcaches": [],
         "hostname": "causal-quagga",
+        "description": "Optional description for the node.",
         "raids": [],
         "other_test_status": 2,
         "status_action": "action-BqENyW",
@@ -30737,6 +31547,7 @@ power off occurs immediately without any warning to the OS.
         "cpu_count": 1,
         "fqdn": "node2.maas",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "power_state": "on",
         "cpu_test_status": -1,
         "storage": 8000,
@@ -31165,6 +31976,7 @@ made available to the nodes through the metadata service.
         "cpu_count": 1,
         "fqdn": "node2.maas",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "power_state": "on",
         "cpu_test_status": -1,
         "storage": 8000,
@@ -31616,6 +32428,7 @@ testing script names and tags to be run. By default all tests tagged
         "netboot": false,
         "power_type": "virsh",
         "hostname": "node2",
+        "description": "Optional description for the node.",
         "node_type": 0,
         "testing_status": 0,
         "default_gateways": {
@@ -32014,6 +32827,9 @@ Updates a rack controller with the given system\_id.
 
 ------------------------------------------------------------------------
 
+**description** (*String*): Optional. The new description for this given
+rack controller.
+
 **power\_type** (*String*): Optional. The new power type for the given
 rack controller. If you use the default value, power\_parameters will be
 set to an empty string. See the [Power types]() section for a list of
@@ -32052,6 +32868,7 @@ place the given rack controller.
         "cpu_speed": 0,
         "architecture": "i386/generic",
         "hostname": "happy-rack",
+        "description": "Optional description for the controller.",
         "osystem": "",
         "power_state": "error",
         "commissioning_status": -1,
@@ -32550,6 +33367,7 @@ with matching agent names will be returned.
             "storage_test_status": -1,
             "cpu_count": 4,
             "hostname": "mymaas",
+            "description": "Optional description for the node.",
             "domain": {
                 "authoritative": true,
                 "ttl": null,
@@ -33682,6 +34500,7 @@ Reads a node with the given system\_id.
         "owner_data": {},
         "bcaches": [],
         "hostname": "causal-quagga",
+        "description": "Optional description for the node.",
         "raids": [],
         "other_test_status": 2,
         "status_action": "action-BqENyW",
@@ -33887,6 +34706,9 @@ Updates a region controller with the given system\_id.
 **{system\_id}** (*String*): Required. The region controller's
 system\_id.
 
+**description** (*String*): Optional. The new description for this given
+region controller.
+
 **power\_type** (*String*): Optional. The new power type for this region
 controller. If you use the default value, power\_parameters will be set
 to the empty string. Available to admin users. See the [Power types]()
@@ -33946,6 +34768,7 @@ place this region controller.
             "172.16.99.11"
         ],
         "hostname": "maas-run",
+        "description": "Optional description for the controller.",
         "tag_names": [
             "virtual"
         ],
@@ -34239,6 +35062,7 @@ with matching agent names will be returned.
             "storage_test_status": -1,
             "cpu_count": 4,
             "hostname": "mymaas",
+            "description": "Optional description for the node.",
             "domain": {
                 "authoritative": true,
                 "ttl": null,
@@ -40938,6 +41762,411 @@ VLAN to be placed in the 'undefined' space.
 
 <p>&nbsp;</p>
 </details>
+### VMFS datastore
+
+Manage VMFS datastore on a machine.
+
+<details>
+  <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/vmfs-datastore/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Delete a VMFS datastore with the given id from the machine with the
+given system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the VMFS datastore.
+
+**{id}** (*Int*): Required. The id of the VMFS datastore.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/vmfs-datastore/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Read a VMFS datastore with the given id on the machine with the given
+system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id on which
+to create the VMFS datastore.
+
+**{id}** (*Int*): Required. The id of the VMFS datastore.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "datastore1",
+        "system_id": "8f86dk",
+        "uuid": "7fb744d3-ff7b-4235-8a2b-aeecf96ad3d0",
+        "devices": [
+            {
+                "uuid": "b376683f-27b6-4ee9-b51a-ec1b1bf3493d",
+                "size": 45248151552,
+                "bootable": false,
+                "tags": [],
+                "used_for": "VMFS extent for datastore1",
+                "device_id": 24,
+                "path": "/dev/disk/by-dname/sda-part9",
+                "system_id": "8f86dk",
+                "type": "partition",
+                "filesystem": {
+                    "fstype": "vmfs6",
+                    "label": null,
+                    "uuid": "ad5a77ad-27bb-4144-9c38-29a51a8f966c",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "id": 75,
+                "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/24/partition/75"
+            }
+        ],
+        "human_size": "45.2 GB",
+        "id": 25,
+        "size": 45248151552,
+        "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/vmfs-datastore/25/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/nodes/{system_id}/vmfs-datastore/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a VMFS datastore with the given id on the machine with the given
+system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the VMFS datastore.
+
+**{id}** (*Int*): Required. The id of the VMFS datastore.
+
+**name** (*String*): Optional. Name of the VMFS datastore.
+
+**uuid** (*String*): Optional. UUID of the VMFS datastore.
+
+**add\_block\_devices** (*String*): Optional. Block devices to add to
+the VMFS datastore.
+
+**add\_partitions** (*String*): Optional. Partitions to add to the VMFS
+datastore.
+
+**remove\_partitions** (*String*): Optional. Partitions to remove from
+the VMFS datastore.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "name": "datastore1",
+        "system_id": "8f86dk",
+        "uuid": "7fb744d3-ff7b-4235-8a2b-aeecf96ad3d0",
+        "devices": [
+            {
+                "uuid": "b376683f-27b6-4ee9-b51a-ec1b1bf3493d",
+                "size": 45248151552,
+                "bootable": false,
+                "tags": [],
+                "used_for": "VMFS extent for datastore1",
+                "device_id": 24,
+                "path": "/dev/disk/by-dname/sda-part9",
+                "system_id": "8f86dk",
+                "type": "partition",
+                "filesystem": {
+                    "fstype": "vmfs6",
+                    "label": null,
+                    "uuid": "ad5a77ad-27bb-4144-9c38-29a51a8f966c",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "id": 75,
+                "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/24/partition/75"
+            }
+        ],
+        "human_size": "45.2 GB",
+        "id": 25,
+        "size": 45248151552,
+        "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/vmfs-datastore/25/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
+### VMFS datastores
+
+Manage VMFS datastores on a machine.
+
+<details>
+  <summary>``GET /MAAS/api/2.0/nodes/{system_id}/vmfs-datastores/``</summary>
+
+------------------------------------------------------------------------
+
+List all VMFS datastores belonging to a machine with the given
+system\_id.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id containing
+the VMFS datastores.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "id": 22,
+            "system_id": "8f86dk",
+            "devices": [
+                {
+                    "uuid": "b376683f-27b6-4ee9-b51a-ec1b1bf3493d",
+                    "size": 45248151552,
+                    "bootable": false,
+                    "tags": [],
+                    "id": 75,
+                    "system_id": "8f86dk",
+                    "type": "partition",
+                    "device_id": 24,
+                    "filesystem": {
+                        "fstype": "vmfs6",
+                        "label": null,
+                        "uuid": "0894f25f-9514-488f-b5c8-e7eb4e8a7b88",
+                        "mount_point": null,
+                        "mount_options": null
+                    },
+                    "used_for": "VMFS extent for datastore1",
+                    "path": "/dev/disk/by-dname/sda-part9",
+                    "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/24/partition/75"
+                }
+            ],
+            "name": "datastore1",
+            "size": 45248151552,
+            "human_size": "45.2 GB",
+            "uuid": "930a9453-e419-44e2-a7b9-b4541d94eb98",
+            "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/vmfs-datastore/22/"
+        },
+        {
+            "id": 23,
+            "system_id": "8f86dk",
+            "devices": [
+                {
+                    "uuid": "1a456f4d-f204-459e-bba5-2e35f4ee6007",
+                    "size": 21466447872,
+                    "bootable": false,
+                    "tags": [],
+                    "id": 79,
+                    "system_id": "8f86dk",
+                    "type": "partition",
+                    "device_id": 25,
+                    "filesystem": {
+                        "fstype": "vmfs6",
+                        "label": null,
+                        "uuid": "69afdece-307a-4cd2-bd85-fbbfccddaa20",
+                        "mount_point": null,
+                        "mount_options": null
+                    },
+                    "used_for": "VMFS extent for datastore2",
+                    "path": "/dev/disk/by-dname/sdb-part2",
+                    "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/25/partition/79"
+                }
+            ],
+            "name": "datastore2",
+            "size": 21466447872,
+            "human_size": "21.5 GB",
+            "uuid": "c6c28390-f341-4a7d-97d7-19e5b816a07b",
+            "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/vmfs-datastore/23/"
+        }
+    ]
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/nodes/{system_id}/vmfs-datastores/``</summary>
+
+------------------------------------------------------------------------
+
+Create a VMFS datastore belonging to a machine with the given
+system\_id.
+
+Note that at least one valid block device or partition is required.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{system\_id}** (*String*): Required. The machine system\_id on which
+to create the VMFS datastore.
+
+**name** (*String*): Required. Name of the VMFS datastore.
+
+**uuid** (*String*): Optional. (optional) UUID of the VMFS group.
+
+**block\_devices** (*String*): Optional. Block devices to add to the
+VMFS datastore.
+
+**partitions** (*String*): Optional. Partitions to add to the VMFS
+datastore.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "devices": [
+            {
+                "uuid": "b376683f-27b6-4ee9-b51a-ec1b1bf3493d",
+                "size": 45248151552,
+                "bootable": false,
+                "tags": [],
+                "type": "partition",
+                "path": "/dev/disk/by-dname/sda-part9",
+                "device_id": 24,
+                "filesystem": {
+                    "fstype": "vmfs6",
+                    "label": null,
+                    "uuid": "3016ad2d-cb05-4640-bb2e-b6d3e0e244b0",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "used_for": "VMFS extent for datastore1",
+                "id": 75,
+                "system_id": "8f86dk",
+                "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/24/partition/75"
+            },
+            {
+                "uuid": "58259c3c-5bd1-4cab-8c5e-31a5fa10c314",
+                "size": 21466447872,
+                "bootable": false,
+                "tags": [],
+                "type": "partition",
+                "path": "/dev/disk/by-dname/sdb-part2",
+                "device_id": 25,
+                "filesystem": {
+                    "fstype": "vmfs6",
+                    "label": null,
+                    "uuid": "7ce3af06-b734-4a30-a65a-81e8d8ff948e",
+                    "mount_point": null,
+                    "mount_options": null
+                },
+                "used_for": "VMFS extent for datastore1",
+                "id": 80,
+                "system_id": "8f86dk",
+                "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/blockdevices/25/partition/80"
+            }
+        ],
+        "size": 66714599424,
+        "uuid": "da2b83e5-8922-47f6-9498-0da5cd25e6ca",
+        "name": "datastore1",
+        "human_size": "66.7 GB",
+        "id": 24,
+        "system_id": "8f86dk",
+        "resource_uri": "/MAAS/api/2.0/nodes/8f86dk/vmfs-datastore/24/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 409
+
+*Content* : The requested machine is not ready.
+
+<p>&nbsp;</p>
+</details>
 ### Volume group
 
 Manage volume group on a machine.
@@ -41732,6 +42961,14 @@ Power parameters:
 -   os\_username (Username).
 -   os\_password (Password).
 -   os\_authurl (Auth URL).
+
+### openbmc (OpenBMC Power Driver)
+
+Power parameters:
+
+-   power\_address (OpenBMC address).
+-   power\_user (OpenBMC user).
+-   power\_pass (OpenBMC password).
 
 ### recs\_box (Christmann RECS|Box Power Driver)
 
