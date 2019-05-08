@@ -137,6 +137,9 @@ navigation:
         - title: Local image mirror
           location: installconfig-images-mirror.md
 
+        - title: VMWare images
+          location: installconfig-images-vmware.md
+
     - title: Networks
       location: installconfig-networking.md
       children:
