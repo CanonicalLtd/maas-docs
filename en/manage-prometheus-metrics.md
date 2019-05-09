@@ -36,6 +36,21 @@ sudo systemctl restart maas-rackd
 sudo systemctl restart maas-regiond
 ```
 
+MAAS also provides optional stats about resources registered with the MAAS server itself.
+
+These include:
+
+- Number of nodes by type, arch, ...
+- Number of networks, spaces, fabrics, vlans and subnets
+- Total counts for machines CPU cores, memory and storage
+- Counters for KVM pods resources
+
+After installing the `python3-prometheus-client` library as describe above, run
+the following to enable stats:
+
+```
+maas $PROFILE maas set-config name=prometheus_enabled value=true
+```
 
 ## Configuring Prometheus
 
@@ -47,10 +62,6 @@ stanza like the following to the prometheus configuration:
 
 ```yaml
     - job_name: maas
-      scrape_interval: 30s
-      scrape_timeout: 10s
-      metrics_path: /metrics
-      scheme: http
       static_configs:
         - targets:
           - <maas-host1-IP>:5239  # for regiond
@@ -61,6 +72,18 @@ stanza like the following to the prometheus configuration:
 
 If the MAAS installation includes multiple nodes, the `targets` entries must be
 adjusted accordingly, to match services deployed on each node.
+
+If MAAS stats have also been enabled, an additional Prometheus job must added to the config:
+
+```yaml
+    - job_name: maas
+      metrics_path: /MAAS/metrics
+      static_configs:
+        - targets:
+          - <maas-host1-IP>:5240
+          - <maas-host2-IP>:5240
+          - <maas-host3-IP>:5240
+```
 
 
 ## Deploying Prometheus and Grafana
