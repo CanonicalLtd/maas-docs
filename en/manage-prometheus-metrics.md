@@ -36,7 +36,8 @@ sudo systemctl restart maas-rackd
 sudo systemctl restart maas-regiond
 ```
 
-MAAS also provides optional stats about resources registered with the MAAS server itself.
+MAAS also provides optional stats about resources registered with the MAAS
+server itself.
 
 These include:
 
@@ -73,17 +74,19 @@ stanza like the following to the prometheus configuration:
 If the MAAS installation includes multiple nodes, the `targets` entries must be
 adjusted accordingly, to match services deployed on each node.
 
-If MAAS stats have also been enabled, an additional Prometheus job must added to the config:
+If MAAS stats have also been enabled, an additional Prometheus job must added
+to the config:
 
 ```yaml
     - job_name: maas
       metrics_path: /MAAS/metrics
       static_configs:
         - targets:
-          - <maas-host1-IP>:5240
-          - <maas-host2-IP>:5240
-          - <maas-host3-IP>:5240
+          - <maas-host-IP>:5240
 ```
+
+In case of a multi-host deploy, adding a single IP for any of the MAAS hosts
+running `regiond` will suffice.
 
 
 ## Deploying Prometheus and Grafana
