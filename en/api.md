@@ -9765,22 +9765,22 @@ use\_rack\_proxy
 
 vcenter\_datacenter
 
-:   VMware vCenter datacenter.. VMware vCenter datacenter which is
-    passed to a deployed VMware ESXi host.
+:   VMware vCenter datacenter. VMware vCenter datacenter which is passed
+    to a deployed VMware ESXi host.
 
 vcenter\_password
 
-:   VMware vCenter password.. VMware vCenter server password which is
+:   VMware vCenter password. VMware vCenter server password which is
     passed to a deployed VMware ESXi host.
 
 vcenter\_server
 
-:   VMware vCenter server FQDN or IP address.. VMware vCenter server
-    FQDN or IP address which is passed to a deployed VMware ESXi host.
+:   VMware vCenter server FQDN or IP address. VMware vCenter server FQDN
+    or IP address which is passed to a deployed VMware ESXi host.
 
 vcenter\_username
 
-:   VMware vCenter username.. VMware vCenter server username which is
+:   VMware vCenter username. VMware vCenter server username which is
     passed to a deployed VMware ESXi host.
 
 windows\_kms\_host
@@ -10074,22 +10074,22 @@ use\_rack\_proxy
 
 vcenter\_datacenter
 
-:   VMware vCenter datacenter.. VMware vCenter datacenter which is
-    passed to a deployed VMware ESXi host.
+:   VMware vCenter datacenter. VMware vCenter datacenter which is passed
+    to a deployed VMware ESXi host.
 
 vcenter\_password
 
-:   VMware vCenter password.. VMware vCenter server password which is
+:   VMware vCenter password. VMware vCenter server password which is
     passed to a deployed VMware ESXi host.
 
 vcenter\_server
 
-:   VMware vCenter server FQDN or IP address.. VMware vCenter server
-    FQDN or IP address which is passed to a deployed VMware ESXi host.
+:   VMware vCenter server FQDN or IP address. VMware vCenter server FQDN
+    or IP address which is passed to a deployed VMware ESXi host.
 
 vcenter\_username
 
-:   VMware vCenter username.. VMware vCenter server username which is
+:   VMware vCenter username. VMware vCenter server username which is
     passed to a deployed VMware ESXi host.
 
 windows\_kms\_host
@@ -24295,6 +24295,12 @@ the source of the configuration.
 
 **destination** (*String*): Required. A list of system\_ids to clone the
 configuration to.
+
+**interfaces** (*String*): Optional. Whether to clone interface
+configuration. Defaults to False.
+
+**storage** (*String*): Optional. Whether to clone storage
+configuration. Defaults to False.
 
 **Success**
 
