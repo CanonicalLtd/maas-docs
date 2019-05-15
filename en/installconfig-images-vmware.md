@@ -118,7 +118,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
                 <label for="Consent_to_Processing__c" class="mktoLabel p-form__label" >I agree to be contacted by Canonical about my experience with ESXi images in MAAS.</label>
                 <label for="Consent_to_Processing__c"></label>
               </div>
-              <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/data-privacy#privacy-notices">Canonical&rsquo;s Privacy Notice</a> and <a href="https://www.ubuntu.com/legal/data-privacy">Privacy Policy</a>.
+              <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/data-privacy">Canonical&rsquo;s Privacy Notice</a> and <a href="https://www.ubuntu.com/legal/data-privacy/esxi">Privacy Policy</a>.
               <div class="p-form__group mktField">
                 <button type="button" class="mktoButton p-button--neutral close-modal">Cancel</button>
                 <button type="submit" class="mktoButton p-button--positive">Download template</button>
@@ -126,7 +126,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
               <input type="hidden" name="formid" class="mktoField" value="3392">
               <input type="hidden" name="formVid" class="mktoField" value="3392">
               <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-              <input type="hidden" name="download_asset_url" class="mktoField" value="file.js">
+              <input type="hidden" name="download_asset_url" class="mktoField" value="https://private-fileshare.canonical.com/~ltrager/packer-maas-1.0.0.tar.xz">
               <input type="hidden" name="returnURL" value="">
               <input type="hidden" name="retURL" value="">
             </form>
@@ -137,7 +137,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
             <h2>Thank you for registering</h2>
             <p>
               <strong>Your download should start</strong><br>
-              Problems? try <a href="#">download 'ESXi.iso.packer.template'</a>
+              Problems? try <a href="https://private-fileshare.canonical.com/~ltrager/packer-maas-1.0.0.tar.xz" target="_blank">download 'ESXi.iso.packer.template'</a>
             </p>
             <div class="u-align--right large-margin--top">
               <button type="button" class="p-button--neutral close-modal">Close</button>
