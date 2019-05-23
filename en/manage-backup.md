@@ -130,5 +130,8 @@ As such, it is required to re-create the DB triggers (or upgrade the db and run 
 sudo maas-region dbupgrade
 ```
 
+!!! Note: 
+    Please note this is only required to be run in *one* of the Region Controllers (if this is a multi-region MAAS cluster).
+
 Now either restart your system(s) or the stopped services. You'll find your
 MAAS deployment fully restored. 
