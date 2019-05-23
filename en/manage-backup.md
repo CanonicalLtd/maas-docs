@@ -119,8 +119,12 @@ has regenerated the  `/var/lib/maas/secret` file, you'll need to make sure this
 secret is updated on each rack controller to allow them to re-connect to the
 newly restored region controller.
 
-### Recreating db triggers
-MAAS relies on various DB triggers for multiple operations. As such, it is always recommend to re-create those after restoring from a backup. This can be done by running the following:
+### Recreating/updating the DB
+After retoring a backup, it is required to "upgrade" the DB schema to either re-create DB triggers or ensure it the schema matches the current running version (and so runs all migrations).
+
+MAAS relies on various DB triggers for multiple operations. As such, it is always required to re-create those after restoring from a backup. Similarly, newer versions of MAAS may have new migrations, and simply restoring a backup may not be enough to restore normal operation.
+
+As such, it is required to re-create the DB triggers (or upgrade the db and run new migrations if so) with the following command:
 
 ```bash
 sudo maas-region dbupgrade
