@@ -259,6 +259,20 @@ All storage sizes are currently required to be specified in bytes.
 !!! Warning
     This will remove the configuration that may exist on any block device.
 
+## Create an A or AAAA record in DNS
+
+An administrator can create an A record when creating a DNS resource with an IPv4 address.
+
+```bash
+mass $PROFILE dnsresources create fqdn=$HOSTNAME.$DOMAIN ip_addresses=$IPV4ADDRESS
+```
+
+An administrator can create an AAAA record when creating a DNS resource with an IPv6 address.
+
+```bash
+mass $PROFILE dnsresources create fqdn=$HOSTNAME.$DOMAIN ip_addresses=$IPV6ADDRESS
+```
+
 ## Create an alias (CNAME) record in DNS
 
 An administrator can set a DNS Alias (CNAME record) to an already existing DNS entry of a node. 
