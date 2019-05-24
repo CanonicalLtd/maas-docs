@@ -110,7 +110,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
               </div>
               <div class="p-form__group mktField">
                 <input name="Marketing_opt_in__c" id="Marketing_opt_in__c" type="checkbox" value="yes" class="mktoField">
-                <label for="Marketing_opt_in__c" class="mktoLabel p-form__label" >I agree to receive information about Canonical's products and services.</label>
+                <label for="Marketing_opt_in__c" class="mktoLabel p-form__label" >I agree to receive information about Canonical's products and services. (Optional)</label>
                 <label for="Marketing_opt_in__c"></label>
               </div>
               <div class="p-form__group mktFormReq mktField">
@@ -126,7 +126,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
               <input type="hidden" name="formid" class="mktoField" value="3392">
               <input type="hidden" name="formVid" class="mktoField" value="3392">
               <input type="hidden" name="munchkinId" class="mktoField" value="066-EOV-335">
-              <input type="hidden" name="download_asset_url" class="mktoField" value="https://private-fileshare.canonical.com/~ltrager/packer-maas-1.0.0.tar.xz">
+              <input type="hidden" name="download_asset_url" class="mktoField" value="https://private-fileshare.canonical.com/~ltrager/packer-maas/packer-maas-1.0.2.tar.xz">
               <input type="hidden" name="returnURL" value="">
               <input type="hidden" name="retURL" value="">
             </form>
@@ -137,7 +137,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
             <h2>Thank you for registering</h2>
             <p>
               <strong>Your download should start</strong><br>
-              Problems? try <a href="https://private-fileshare.canonical.com/~ltrager/packer-maas-1.0.0.tar.xz" target="_blank">download 'ESXi.iso.packer.template'</a>
+              Problems? try <a href="https://private-fileshare.canonical.com/~ltrager/packer-maas/packer-maas-1.0.2.tar.xz" target="_blank">download 'ESXi.iso.packer.template'</a>
             </p>
             <div class="u-align--right large-margin--top">
               <button type="button" class="p-button--neutral close-modal">Close</button>
