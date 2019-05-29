@@ -137,7 +137,7 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
             <h2>Thank you for registering</h2>
             <p>
               <strong>Your download should start</strong><br>
-              Problems? <a href="https://assets.ubuntu.com/v1/f8e9fa9d-packer-maas-1.0.2.tar.xz">Download 'ESXi.iso.packer.template'</a>
+              Problems? <a href="https://assets.ubuntu.com/v1/f8e9fa9d-packer-maas-1.0.2.tar.xz" class="no-icon">Download 'ESXi.iso.packer.template'</a>
             </p>
             <div class="u-align--right large-margin--top">
               <button type="button" class="p-button--neutral u-no-margin--bottom close-modal">Close</button>
@@ -148,6 +148,11 @@ VMware has [very specific hardware requirements](https://www.vmware.com/resource
     </div>
   </div>
 </div>
+<style>
+  .no-icon:after {
+    display: none;
+  }
+</style>
 <script src="https://assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
 <script src="https://assets.ubuntu.com/v1/ec520d10-XMLHttpRequest.min.js"></script>
 <script src="https://assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
