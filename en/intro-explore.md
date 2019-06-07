@@ -11,7 +11,7 @@ The following overview covers a typical virtual machine installation, with a
 focus on the web-based user-interface. It's a non-exhaustive introduction, but
 does provide a typical working outline of how MAAS is used and what it's
 capable of. The same and more advanced configuration can be accomplished from
-both the [CLI][manage-cli] and the [REST API][rest-api]. 
+both the [CLI][manage-cli] and the [REST API][rest-api].
 
 The [User Manual][installation] offers a more comprehensive guide to
 installation, configuration and usage.
@@ -32,10 +32,10 @@ but *libvirt* can also be operated from the command line.
 !!! Note:
     MAAS will also work within a Linux virtual machine running from Oracle's
     [VirtualBox][virtualbox], which may be useful if you want to test MAAS from
-    a Microsoft Windows or macOS environment. 
+    a Microsoft Windows or macOS environment.
 
 Assuming a base installation of [Ubuntu 18.04 LTS(Bionic) server][bionic-link]
-running on a fresh *libvirt* instance or real hardware, matching the 
+running on a fresh *libvirt* instance or real hardware, matching the
 [minimum requirements][requirements], MAAS is installed with the following
 command:
 
@@ -192,7 +192,7 @@ having a specific machine pre-built.
 
 To add a pod of virtual machines, click the 'Add pod' button on the *Pods* page
 of the web UI, give the pod a name and select *Virsh* as the pod type, entering
-the address for the libvirt controlled pool below. 
+the address for the libvirt controlled pool below.
 
 See [Pods][kvm-nodes] for further details on on adding *libvirt*
 virtual machines to MAAS.
@@ -231,13 +231,13 @@ table.logos th, table.logos td{
 <tr>
 
 <td align="center" valign="center" border-width="0px" >
-<img src="../media/intro-explore__2.4_pods1.png" alt="List pod machines" />
+<img src="../media/intro-explore__2.6-pod.png" alt="List pod machines" />
 <br />
 Pods abstract multiple resources...
 </td>
 
 <td align="center" valign="center" border-width="0px">
-<img src="../media/intro-explore__2.4_pods2.png" alt="Compose a pod machine" />
+<img src="../media/intro-explore__2.6-pod-compose.png" alt="Compose a pod machine" />
 <br />
 ...into pools of composable hardware
 </td>
@@ -249,12 +249,12 @@ Pods abstract multiple resources...
 
 <!-- IMAGES -->
 
-[img__login]: ../media/intro-explore__2.4_login.png
-[img__disco]: ../media/intro-explore__2.4_disco.png
+[img__login]: ../media/intro-explore__2.6-login.png
+[img__disco]: ../media/intro-explore__2.6-network-discovery.png
 [img__netconcepts]: ../media/intro-concepts__fabrics-spaces.png
 [img__subnets]: ../media/intro-explore__2.4_subnets.png
-[img__images]: ../media/intro-explore__2.4_images.png
-[img__deploy]: ../media/intro-explore__2.4_deploy.png
+[img__images]: ../media/intro-explore__2.6-images.png
+[img__deploy]: ../media/intro-explore__2.6-deploy.png
 
 <!-- LINKS -->
 

@@ -1,7 +1,7 @@
 Title: Subnet Management
 
 
-# Subnet Management 
+# Subnet Management
 
 The topic of subnet management pertains to whether MAAS is in full control of a
 subnet or not. When a subnet is *managed*, all aspects of IP address allocation
@@ -62,4 +62,4 @@ from managed or unmanaged subnets.
 [post-commission-configuration]: nodes-commission.md#post-commission-configuration
 [cli-control-subnet-management]: manage-cli-common.md#control-subnet-management
 
-[img__subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.4_management-toggle.png
+[img__subnet-management-toggle]: ../media/installconfig-network-subnet-management__2.6-management-toggle.png

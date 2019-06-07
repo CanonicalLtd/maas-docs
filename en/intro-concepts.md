@@ -42,7 +42,7 @@ A region controller consists of:
 
 A region controller can be thought of as being responsible for a data centre,
 or a single region. Multiple *fabrics* are used by MAAS to accommodate
-subdivisions within a single region, such as multiple floors in a data centre. 
+subdivisions within a single region, such as multiple floors in a data centre.
 
 A rack controller provides:
 
@@ -177,7 +177,7 @@ supports IPv4 and IPv6 subnets. Examples:
 IP addresses can be reserved by adding one or more reserved ranges to a
 subnet configuration. There are two types of ranges that can be defined:
 
-- **Reserved range**  
+- **Reserved range**
   Mode operates differently depending on whether the subnet is managed or
   unmanaged:
     - **Managed (subnet)**:
@@ -186,13 +186,13 @@ subnet configuration. There are two types of ranges that can be defined:
       external DHCP, or the namespace for an OpenStack cloud you will be building).
     - **Unmanaged (subnet)**:
       MAAS will only assign IP addresses inside this range.
-- **Reserved dynamic range**  
+- **Reserved dynamic range**
   An IP range that MAAS will use for enlisting, commissioning and, if
   MAAS-managed DHCP is enabled on the node's VLAN during commissioning,
   deploying. An initial range is created as part of the DHCP enablement process
   if done with the web UI. For an unmanaged subnet, this range is never used.
 
-See [IP ranges][ip-ranges] for how these ranges get created and 
+See [IP ranges][ip-ranges] for how these ranges get created and
 [Commission nodes][post-commission-configuration] for how they get used and
 [Subnet management][subnet-management] for information on managed vs. unmanaged
 subnets.
@@ -226,7 +226,7 @@ A DHCP relay, or relay agent, is a network device that forwards requests and
 replies between a DHCP client and a DHCP server when both are not on the same
 physical subnet.
 
-Two common software implementations are [isc-dhcp-relay][isc-dhcp-relay] and 
+Two common software implementations are [isc-dhcp-relay][isc-dhcp-relay] and
 [dhcp-helper][dhcp-helper].
 
 
@@ -286,7 +286,7 @@ Commissions a node. Changes a node's status from 'New' to 'Commissioning' to
 
 Commissioning enables MAAS to build a detailed inventory of RAM, CPU, storage,
 NICs and accelerators like GPUs. These are itemised and usable as constraints
-for machine selection. 
+for machine selection.
 
 If commissioning is unsuccessful, the status becomes 'Failed commissioning'.
 
@@ -329,7 +329,7 @@ the source of the problem.
 This action can also be used to indicate that hardware maintenance is being, or
 will be, performed that would affect MAAS, such as modifications at the
 networking or disk subsystem level. In this case, the original status would be
-'Deployed'. 
+'Deployed'.
 
 A newly-commissioned node ('Ready') can also be marked broken.
 
@@ -347,7 +347,7 @@ selected and within the machine list.
 ![machine locked state][img__machine-lock]
 
 ### Override failed
-Allows a machine marked as ‘Failed testing’ to be usable. 
+Allows a machine marked as ‘Failed testing’ to be usable.
 
 ### Power off
 Turns a node's underlying machine off.
@@ -372,7 +372,7 @@ done for a Deployed or Broken node as well as for a node that failed to deploy.
 Authentication and access to the node's storage works the same way it would as
 if the node was deployed. The fact that Ubuntu is running ephemerally is
 completely transparent to the user.
- 
+
 The node status is changed to the 'Entering rescue mode' transitory status and
 then to 'Rescue mode' when the operation is complete.
 
@@ -437,7 +437,7 @@ The node failed to deploy.
 
 ### Locked
 It's not strictly a status, but a machine showing a 'padlock' symbol adjacent to its name
-is in a *locked* state. 
+is in a *locked* state.
 
 ### New
 The first stage of a node's life in MAAS. Typically, a node with this status
@@ -458,7 +458,7 @@ action 'Rescue mode'.
 <!-- IMAGES -->
 
 [img__fabrics-spaces]: ../media/intro-concepts__fabrics-spaces.png
-[img__machine-lock]: ../media/intro-concepts__2.4_machine-lock.png
+[img__machine-lock]: ../media/intro-concepts__2.6-machine-lock.png
 
 <!-- LINKS -->
 

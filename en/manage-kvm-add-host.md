@@ -1,5 +1,5 @@
 Title: Add a KVM h ost
-TODO:  
+TODO:
 table_of_contents: True
 
 # Add a KVM host
@@ -178,7 +178,7 @@ the benefits of MAAS-managed VMs without over-taxing your host.
 
 [img__pod-compose-config]: ../media/manage-kvm-pods__2.5_pod-compose-config.png
 [img__pod-initial-page]: ../media/manage-kvm-pods__2.5_pod-initial-page.png
-[img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
+[img__kvmpoddeploy]: ../media/manage-kvm-add-host__2.6-kvm-pod-deploy.png
 [img__pod-add-virsh]: ../media/manage-kvm-pods__2.5_pod-add-virsh.png
 
 [over-commit]: #overcommit-resources

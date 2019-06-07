@@ -92,13 +92,13 @@ requires in order to satisfy any client requests relayed from another VLAN.
 
 To relay from one VLAN (source) to another VLAN (target):
 
-1.  Ensure the target VLAN has DHCP enabled  
+1.  Ensure the target VLAN has DHCP enabled
 
-1.  Set up the external relay  
+1.  Set up the external relay
     This is done independently from MAAS. See [DHCP relay][concepts-dhcp-relay]
     for software suggestions.
 
-1.  Configure MAAS-managed DHCP  
+1.  Configure MAAS-managed DHCP
     Navigate to the source VLAN page and select the 'Relay DHCP' action. Fill in the
     fields in the resulting form. The crucial setting is the target VLAN ('Relay
     VLAN'). Press the 'Relay DHCP' button to finish. See
@@ -116,7 +116,7 @@ to all VLANs, subnets, and nodes. All three types end up in
 `/var/lib/maas/dhcpd.conf` or `/var/lib/maas/dhcpd6.conf`. For information on
 what options to use refer to the [`dhcpd.conf` man page][dhcpd.conf-man-page].
 
-!!! Note: 
+!!! Note:
     Modifications made directly to `dhcpd.conf.template` or
     `dhcpd6.conf.template` are not supported.
 
@@ -145,6 +145,6 @@ See [MAAS CLI][cli-dhcp-snippets] for doing this with the CLI.
 [cli-relay-dhcp]: manage-cli-advanced.md#relay-dhcp
 [cli-dhcp-snippets]: manage-cli-dhcp-snippets.md
 
-[img__enable-dhcp]: ../media/installconfig-networking-dhcp__2.4_enable-dhcp.png
-[img__relay-dhcp]: ../media/installconfig-networking-dhcp__2.4_relay-dhcp.png
+[img__enable-dhcp]: ../media/installconfig-network-dhcp__2.6-enable-dhcp.png
+[img__relay-dhcp]: ../media/installconfig-networking-dhcp__2.6-relay-dhcp.png
 [img__dhcp-snippets]: ../media/installconfig-networking-dhcp__2.4_dhcp-snippets.png
