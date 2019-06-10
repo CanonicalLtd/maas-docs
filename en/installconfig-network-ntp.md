@@ -34,5 +34,5 @@ Apply any changes by pressing the 'Save' button.
 
 <!-- LINKS -->
 
-[img__configure-ntp]: ../media/installconfig-network-ntp__2.4_configure-ntp.png
+[img__configure-ntp]: ../media/installconfig-network-ntp__2.6-configure-ntp.png
 [chrony]: https://chrony.tuxfamily.org/

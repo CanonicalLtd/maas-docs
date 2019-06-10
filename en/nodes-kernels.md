@@ -38,7 +38,7 @@ enables more hardware. Hence, HWE is an acronym for HardWare Enablement.
 Clearly, any kernel improvements and new features are also gained by installing
 an HWE kernel.
 
-!!! Note: 
+!!! Note:
     There is the notion of an HWE *stack*. This refers to the (graphical)
     X portion (in addition to the kernel) when the Ubuntu host is running a desktop
     environment. This is not the case with MAAS as nodes are provisioned strictly
@@ -46,7 +46,7 @@ an HWE kernel.
 
 Note that these backported/HWE kernels are only available for LTS releases
 (e.g. Trusty, Xenial, etc). For example, the first available HWE kernel for
-Ubuntu 16.04 LTS (Xenial) will be the GA kernel from Ubuntu 16.10 (Yakkety). 
+Ubuntu 16.04 LTS (Xenial) will be the GA kernel from Ubuntu 16.10 (Yakkety).
 
 In MAAS, prior to MAAS 2.1 on Xenial, HWE kernels are referred to by the
 notation `hwe-<release letter>`. So, to install the Yakkety HWE kernel on
@@ -135,7 +135,7 @@ in the (third) kernel field. Hit 'Deploy machine' to initiate the deployment.
 ![machine during deploy kernel][img__machine-during-deploy-kernel]
 
 MAAS verifies that the specified kernel is available for the given Ubuntu
-release (series) before deploying the node. 
+release (series) before deploying the node.
 
 
 <!-- LINKS -->
@@ -146,6 +146,6 @@ release (series) before deploying the node.
 [wikipedia-real-time-computing]: https://en.wikipedia.org/wiki/Real-time_computing#Criteria_for_real-time_computing
 [cli-set-a-default-minimum-kernel-for-enlistment-and-commissioning]: manage-cli-kernels.md#set-a-default-minimum-kernel-for-enlistment-and-commissioning
 
-[img__default-minimum-kernel]: ../media/nodes-kernels__2.4_default-minimum-kernel.png
-[img__machine-minimum-kernel]: ../media/nodes-kernels__2.4_machine-minimum-kernel.png
-[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.4_machine-during-deploy-kernel.png
+[img__default-minimum-kernel]: ../media/nodes-kernels__2.6-default-minimum-kernel.png
+[img__machine-minimum-kernel]: ../media/nodes-kernels__2.6-machine-minimum-kernel.png
+[img__machine-during-deploy-kernel]: ../media/nodes-kernels__2.6-machine-during-deploy-kernel.png
