@@ -53,7 +53,7 @@ These options include:
 
 - **Configure HBA**: Runs scripts tagged with 'configure_hba'. As above,
   see [Testing scripts][hardware-type] for further details.
- 
+
 ![confirm commission][img__commission-confirm]
 
 Click the *Hardware tests* field to reveal a drop-down list of tests to add and
@@ -135,7 +135,7 @@ appear.
 
 From the bond configuration pane, you can rename the bond, select a bond mode
 (see below), assign a MAC address to the aggregate device and attach one or
-more tags. 
+more tags.
 
 The interfaces aggregated into the bond interface are listed below the 'Tags'
 field. Use the 'Primary' column to select the interface to act as the
@@ -176,7 +176,7 @@ menu:
 
 Press the 'Save' button when you're done.
 
-!!! Note: 
+!!! Note:
     The MAC address defaults to the MAC address of the primary interface.
 
 
@@ -192,7 +192,7 @@ Press the 'Save' button when you're done.
 
 !!! Positive "Pro tip":
     A network bridge may be useful if virtual machines or containers are to be
-    put on the node. 
+    put on the node.
 
 See [CLI Interface Management][manage-cli-interfaces] for details on how
 interfaces can be configured from the command line.
@@ -225,10 +225,10 @@ allocation time using the API.
 [cli-change-ip-assignment-mode]: manage-cli-advanced.md#change-the-ip-assignment-mode-of-a-network-interface
 [manage-cli-interfaces]: manage-cli-interfaces.md
 
-[img__commission]: ../media/nodes-commission__2.4_commission.png
-[img__commission-confirm]: ../media/nodes-commission__2.4_commission-confirm.png
-[img__configure-interface]: ../media/nodes-commission__2.4_configure-interface.png
-[img__edit-interface]: ../media/nodes-commission__2.4_edit-interface.png
-[img__configure-setbond]: ../media/nodes-commission__2.4_configure-setbond.png
-[img__configure-bond]: ../media/nodes-commission__2.4_configure-bond.png
-[img__configure-bridge]: ../media/nodes-commission__2.4_configure-bridge.png
+[img__commission]: ../media/nodes-commission__2.6-commission.png
+[img__commission-confirm]: ../media/nodes-commission__2.6-commission-confirm.png
+[img__configure-interface]: ../media/nodes-commission__2.6-configure-interface.png
+[img__edit-interface]: ../media/nodes-commission__2.6-edit-physical.png
+[img__configure-setbond]: ../media/nodes-commission__2.6-create-bond.png
+[img__configure-bond]: ../media/nodes-commission__2.6-configure-bond.png
+[img__configure-bridge]: ../media/nodes-commission__2.6-configure-bridge.png

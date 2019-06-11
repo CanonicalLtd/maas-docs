@@ -1,5 +1,5 @@
 Title: Syslog
-TODO:  
+TODO:
 table_of_contents: True
 
 
@@ -38,4 +38,4 @@ using the CLI.
 
 [cli-remote-syslog]: manage-cli-advanced.md#add-or-update-a-remote-syslog-server
 
-[img__remote_syslog]: ../media/installconfig-syslog__2.5_remote-syslog.png
+[img__remote_syslog]: ../media/installconfig-syslog__2.6-remote-syslog.png

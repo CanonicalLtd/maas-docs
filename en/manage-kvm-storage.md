@@ -1,5 +1,5 @@
 Title: Storage pools
-TODO:  
+TODO:
 table_of_contents: True
 
 # KVM host storage pools
@@ -15,4 +15,4 @@ your resource usage at a glance:
 
 <!-- LINKS -->
 
-[img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
+[img__storagepoolusage]: ../media/manage-kvm-storage__2.6-libvert-storage-usage.png

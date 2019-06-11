@@ -1,5 +1,5 @@
 Title: Deploy Nodes
-TODO:  
+TODO:
 
 # Deploy Nodes
 
@@ -106,4 +106,4 @@ the OS (e.g. 'Ubuntu 18.04 LTS').
 [preseed]: nodes-custom.md
 
 [img__deploy]: ../media/nodes-deploy__2.4_deploy.png
-[img__deploy-confirm]: ../media/nodes-deploy__2.4_deploy-confirm.png
+[img__deploy-confirm]: ../media/nodes-deploy__2.6-deploy-confirm.png

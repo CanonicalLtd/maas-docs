@@ -28,7 +28,7 @@ A *tag definition* is the criteria by which nodes are auto-labelled by the
 corresponding tag. During node enlistment MAAS collects hardware information
 (using the [lshw][upstream-lshw] utility). The definition used in creating a
 tag is then constructed using an *XPath expression* based on that information.
-See [w3schools documentation][upstream-w3schools] for details on XPath. 
+See [w3schools documentation][upstream-w3schools] for details on XPath.
 
 The collected data for each node, viewable (in both XML and YAML) in the web
 UI, is inspected by you for the desired property. Building on the example
@@ -162,6 +162,8 @@ At this time, other than simple tag assignemts as demonstrated above, the best
 way to manage MAAS tags is by using the CLI (see [CLI Tag management][cli-tags]).
 Juju integration is also covered there.
 
+![tags: multiple][img__tags-multiple]
+
 <!-- LINKS -->
 
 [tag-manage]: #tag-management
@@ -169,9 +171,10 @@ Juju integration is also covered there.
 [upstream-lshw]: http://ezix.org/project/wiki/HardwareLiSter
 [upstream-w3schools]: https://www.w3schools.com/xml/xpath_intro.asp
 [cli-example-tag-creation-and-auto-assignment]: manage-cli-tags.md#tag-creation-and-auto-assignment
-[cli-tags]: manage-cli-tags.md 
+[cli-tags]: manage-cli-tags.md
 
-[img__tags-search]: ../media/nodes-tags__2.4_tags-filter.png
-[img__tags-add-remove]: ../media/nodes-tags__2.4_tags-add_remove.png
-[img__tags-net-interface]: ../media/nodes-tags__2.4_tags-net-interface.png
-[img__tags-storage]: ../media/nodes-tags__2.4_tags-storage.png
+[img__tags-search]: ../media/nodes-tags__2.6-tags-filter.png
+[img__tags-add-remove]: ../media/nodes-tags__2.6-tags-add_remove.png
+[img__tags-net-interface]: ../media/nodes-tags__2.6-tags-net-interfaces.png
+[img__tags-storage]: ../media/nodes-tags__2.6-tags-storage.png
+[img__tags-multiple]: ../media/node-tags__2.6-tag-multiple.png

@@ -1,5 +1,5 @@
 Title: Creating and deleting new VMs
-TODO:  
+TODO:
 table_of_contents: True
 
 
@@ -51,12 +51,12 @@ maas $PROFILE pod compose $POD_ID $RESOURCES
 
 Where RESOURCES is a space-separated list from:
 
-**cores=**requested cores  
-**cpu_speed=**requested minimum cpu speed in MHz  
-**memory=**requested memory in MB  
-**architecture=** See [Architecture][architecture] below  
-**storage=** See [Storage][storage] below  
-**interfaces=** See [Interfaces][interfaceconstraints] below  
+**cores=**requested cores
+**cpu_speed=**requested minimum cpu speed in MHz
+**memory=**requested memory in MB
+**architecture=** See [Architecture][architecture] below
+**storage=** See [Storage][storage] below
+**interfaces=** See [Interfaces][interfaceconstraints] below
 
 #### Architecture
 
@@ -243,8 +243,8 @@ VMs.
 <!-- LINKS -->
 
 [img__pod-compose-machine]: ../media/manage-kvm-pods__2.5_pod-compose-machine.png
-[img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
-[img__pod-compose-machine-commissioning]: ../media/manage-kvm-pods__2.5_pod-compose-machine-commissioning.png
+[img__storagepoolavail]: ../media/manage-kvm-create-vms__2.6-libvirt_storage.png
+[img__pod-compose-machine-commissioning]: ../media/manage-kvm-create-vms__2.6-pod.png
 [img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
 
 [jq]: https://stedolan.github.io/jq/
