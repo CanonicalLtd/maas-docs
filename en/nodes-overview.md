@@ -82,7 +82,7 @@ The menu includes links to the following:
 
 [node-actions]: intro-concepts.md#node-actions
 
-[img__nodes-action]: ../media/nodes-manage__2.6-take-action.png
-[img__nodes-table]: ../media/nodes-manage__2.6-table.png
+[img__nodes-action]: ../media/nodes-overview__2.6-take-action.png
+[img__nodes-table]: ../media/nodes-overview__2.6-table.png
 [img__node-details]: ../media/nodes-manage__2.4_details.png
 [img__node-menu]: ../media/nodes-manage__2.4_node-menu.png

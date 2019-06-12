@@ -174,7 +174,7 @@ Juju integration is also covered there.
 [cli-tags]: manage-cli-tags.md
 
 [img__tags-search]: ../media/nodes-tags__2.6-tags-filter.png
-[img__tags-add-remove]: ../media/nodes-tags__2.6-tags-add_remove.png
-[img__tags-net-interface]: ../media/nodes-tags__2.6-tags-net-interfaces.png
-[img__tags-storage]: ../media/nodes-tags__2.6-tags-storage.png
-[img__tags-multiple]: ../media/node-tags__2.6-tag-multiple.png
+[img__tags-add-remove]: ../media/nodes-tags__2.6-tags-add-remove.png
+[img__tags-net-interface]: ../media/nodes-tags__2.6-tag-net-interfaces.png
+[img__tags-storage]: ../media/nodes-tags__2.6-tag-storage.png
+[img__tags-multiple]: ../media/nodes-tags__2.6-tag-multiple.png
