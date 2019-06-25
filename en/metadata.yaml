@@ -91,7 +91,7 @@ navigation:
               location: installconfig-storage.md
 
             - title: VMware VMFS Datastores
-	      location: installconfig-vmfs-datastores.md
+              location: installconfig-vmfs-datastores.md
 
             - title: Ubuntu kernels
               location: nodes-kernels.md
