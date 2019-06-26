@@ -1,5 +1,5 @@
-~^/(|en/?|2.5.0/?)?$ /2.5/en/;
-~^/en/(?<page>.+)$ /2.5/en/${page};
+~^/(|en/?|2.6.0/?)?$ /2.6/en/;
+~^/en/(?<page>.+)$ /2.6/en/${page};
 ~^/(?<version>[0-9-\._]+|devel)(/|/index)?$ /${version}/en/;
 ~^/(?<version>[0-9-\._]+|devel)/(?<language>[a-zA-Z]+)(/index)?$ /${version}/${language}/;
 
