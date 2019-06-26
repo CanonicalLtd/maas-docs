@@ -28,6 +28,10 @@ comprehensive review of the changes in this release, including known issues,
 workarounds and bug fixes, take a look at the detailed release notes in the
 following MAAS Discourse topics:
 
++ [MAAS 2.6.0 (final)][release-notes-final]
++ [MAAS 2.6.0 RC][release-notes-rc]
++ [MAAS 2.6.0 beta 4][release-notes-beta-4]
++ [MAAS 2.6.0 beta 3][release-notes-beta-3]
 + [MAAS 2.6.0 beta 2][release-notes-beta-2]
 + [MAAS 2.6.0 beta 1][release-notes-beta-1]
 + [MAAS 2.6.0 alpha 2][release-notes-alpha-2]
@@ -41,4 +45,9 @@ following MAAS Discourse topics:
 [release-notes-alpha-2]: https://discourse.maas.io/t/maas-2-6-0-alpha-2-released/460
 [release-notes-beta-1]: https://discourse.maas.io/t/2-6-0-beta-1-released/495
 [release-notes-beta-2]: https://discourse.maas.io/t/2-6-0-beta-2-released/523
+[release-notes-beta-2]: https://discourse.maas.io/t/2-6-0-beta-2-released/523
+[release-notes-beta-3]: https://discourse.maas.io/t/maas-2-6-0-beta-3-released/533
+[release-notes-beta-4]: https://discourse.maas.io/t/maas-2-6-0-beta-4-released/537
+[release-notes-rc]: https://discourse.maas.io/t/maas-2-6-0-rc-released/598
+[release-notes-final]: https://discourse.maas.io/t/maas-2-6-0-released/724
 
