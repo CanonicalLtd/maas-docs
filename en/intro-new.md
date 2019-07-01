@@ -45,7 +45,6 @@ following MAAS Discourse topics:
 [release-notes-alpha-2]: https://discourse.maas.io/t/maas-2-6-0-alpha-2-released/460
 [release-notes-beta-1]: https://discourse.maas.io/t/2-6-0-beta-1-released/495
 [release-notes-beta-2]: https://discourse.maas.io/t/2-6-0-beta-2-released/523
-[release-notes-beta-2]: https://discourse.maas.io/t/2-6-0-beta-2-released/523
 [release-notes-beta-3]: https://discourse.maas.io/t/maas-2-6-0-beta-3-released/533
 [release-notes-beta-4]: https://discourse.maas.io/t/maas-2-6-0-beta-4-released/537
 [release-notes-rc]: https://discourse.maas.io/t/maas-2-6-0-rc-released/598

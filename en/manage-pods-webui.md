@@ -246,7 +246,6 @@ the 'Take action' dropdown menu. Click 'Delete 1 pod' to confirm the action:
 [img__pod-decompose-machine]: ../media/manage-kvm-pods__2.5_pod-decompose-machine.png
 [img__pod-delete]: ../media/manage-kvm-pods__2.5_pod-delete.png
 [img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
-[img__kvmpoddeploy]: ../media/manage-kvm-pods__2.5_kvm-pod-deploy.png
 [img__storagepoolusage]: ../media/manage-kvm-pods__2.5_libvirt_storage_usage.png
 [img__storagepoolavail]: ../media/manage-kvm-pods__2.5_libvirt_storage.png
 
@@ -256,6 +255,5 @@ the 'Take action' dropdown menu. Click 'Delete 1 pod' to confirm the action:
 [setup-ssh]: manage-kvm-pods-add.html#set-up-ssh
 [kvmdeploy]: manage-kvm-pods-add.md
 [manualkvm]: manage-kvm-pods-add.md#manual/pre-2.5
-[cli-compose-with-storage]: manage-cli-comp-hw.md#compose-pod-machines
 [storagepools]: manage-kvm-pods-storage-pools.md
 [webui]: installconfig-webui.md

@@ -474,7 +474,6 @@ Scripts][maas-scripts-cli].
 [maas-nodes]: nodes-overview.md 
 [maas-commission]: nodes-commission.md
 [script-selection]: nodes-scripts.md#automatic-script-selection-by-hardware-type
-[maas-scripts-cli]: nodes-scripts-cli.md
 
 <!-- IMAGES -->
 [nodes-hw-scripts__select]: ../media/nodes-hw-scripts__2.4_select.png
