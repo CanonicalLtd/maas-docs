@@ -1,8 +1,3 @@
-~^/(|en/?|2.6.0/?)?$ /2.6/en/;
-~^/en/(?<page>.+)$ /2.6/en/${page};
-~^/(?<version>[0-9-\._]+|devel)(/|/index)?$ /${version}/en/;
-~^/(?<version>[0-9-\._]+|devel)/(?<language>[a-zA-Z]+)(/index)?$ /${version}/${language}/;
-
 /devel/en/intel-rsd /devel/en/nodes-comp-hw;
 /2.1/en/installconfig-deploy-nodes /2.1/en/installconfig-nodes-deploy;
 /2.1/en/installconfig-gui /2.1/en/installconfig-webui;
@@ -17,3 +12,6 @@
 /2.2/en/installconfig-nodes-deploy /2.2/en/nodes-deploy;
 /2.2/en/installconfig-nodes-power-types /2.2/en/nodes-power-types;
 /2.2/en/intel-rsd /2.2/en/nodes-comp-hw;
+~^/(?<version>2.5|2.4|2.3|2.2|2.1|2.0|1.9)(/|/en|/index|/en/index)?$ /${version}/en/;
+~^(/devel/en|/2.6/en)(?<page>(/.*)?)$ https://maas.io/docs${page};
+~^(/|/devel|/2.6|/devel/en|/2.6/en)(?<page>(/.*)?)$ https://maas.io/docs${page};
