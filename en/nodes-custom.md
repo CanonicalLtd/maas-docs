@@ -148,7 +148,7 @@ external machine to signal that the installation is about to start:
 
 ```bash
 early_commands:
-  signal: [wget, "--no-proxy", "http://example.com/", "--post-data", "system_id=&signal=starting_install", "-O", "/dev/null"]
+  signal: ["wget", "--no-proxy", "http://example.com/", "--post-data", "system_id=&signal=starting_install", "-O", "/dev/null"]
 ```
 
 The following is an example of two late commands that will run after the
