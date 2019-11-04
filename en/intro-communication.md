@@ -1,6 +1,6 @@
 Title: Communication
 
-# MAAS communcation
+# MAAS communication
 
 ## Machine/rack
 
