@@ -6,21 +6,22 @@ MAAS API
 Restful MAAS API.
 
 This is the documentation for the API that lets you control and query
-MAAS. The API is "Restful", which means that you access it through
+MAAS. The API is \"Restful\", which means that you access it through
 normal HTTP requests.
 
 API versions
 ------------
 
 At any given time, MAAS may support multiple versions of its API. The
-version number is included in the API's URL, e.g. /api/2.0/
+version number is included in the API\'s URL, e.g. /api/2.0/
 
 For now, 2.0 is the only supported version.
 
 The current API version number can be retrieved by issuing a GET to
-"/api/version/". Accessing an old or unknown API version URL will result
-in a "410 GONE" being returned, along with a descriptive error message.
-Both the error message and the api version are returned as plaintext.
+\"/api/version/\". Accessing an old or unknown API version URL will
+result in a \"410 GONE\" being returned, along with a descriptive error
+message. Both the error message and the api version are returned as
+plaintext.
 
 HTTP methods and parameter-passing
 ----------------------------------
@@ -34,24 +35,24 @@ The following HTTP methods are available for accessing the API:
 
 All methods except DELETE may take parameters, but they are not all
 passed in the same way. GET parameters are passed in the URL, as is
-normal with a GET: "/item/?foo=bar" passes parameter "foo" with value
-"bar".
+normal with a GET: \"/item/?foo=bar\" passes parameter \"foo\" with
+value \"bar\".
 
 POST and PUT are different. Your request should have MIME type
-"multipart/form-data"; each part represents one parameter (for POST) or
-attribute (for PUT). Each part is named after the parameter or attribute
-it contains, and its contents are the conveyed value.
+\"multipart/form-data\"; each part represents one parameter (for POST)
+or attribute (for PUT). Each part is named after the parameter or
+attribute it contains, and its contents are the conveyed value.
 
 All parameters are in text form. If you need to submit binary data to
-the API, don't send it as any MIME binary format; instead, send it as a
+the API, don\'t send it as any MIME binary format; instead, send it as a
 plain text part containing base64-encoded data.
 
 Most resources offer a choice of GET or POST operations. In those cases
-these methods will take one special parameter, called op, to indicate
-what it is you want to do.
+these methods will take one special parameter, called [op]{.title-ref},
+to indicate what it is you want to do.
 
 For example, to list all machines, you might GET
-"/MAAS/api/2.0/machines".
+\"/MAAS/api/2.0/machines\".
 
 Operations
 ----------
@@ -166,6 +167,7 @@ key.
 
 <p>&nbsp;</p>
 </details>
+
 ### Bcache Cache Set
 
 Manage bcache cache set on a machine.
@@ -302,6 +304,7 @@ current one.
 
 <p>&nbsp;</p>
 </details>
+
 ### Bcache Cache Sets
 
 Manage bcache cache sets on a machine.
@@ -391,6 +394,7 @@ allowed.
 
 <p>&nbsp;</p>
 </details>
+
 ### Bcache Device
 
 Manage bcache device on a machine.
@@ -406,7 +410,7 @@ Delete bcache on a machine.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The bcache id.
 
@@ -443,7 +447,7 @@ Read bcache device on a machine.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The bcache id.
 
@@ -485,7 +489,7 @@ backing) is not allowed.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The bcache id.
 
@@ -532,6 +536,7 @@ replace current one.
 
 <p>&nbsp;</p>
 </details>
+
 ### Bcache Devices
 
 Manage bcache devices on a machine.
@@ -547,7 +552,7 @@ List all bcache devices belonging to a machine.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **Success**
 
@@ -587,7 +592,7 @@ backing) is not allowed.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **name** (*String*): Optional. Name of the Bcache.
 
@@ -630,6 +635,7 @@ backing) is not allowed.
 
 <p>&nbsp;</p>
 </details>
+
 ### Block device
 
 Manage a block device on a machine.
@@ -647,7 +653,7 @@ Delete block device on a given machine.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **Success**
 
@@ -689,7 +695,7 @@ Read a block device on a given machine.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **Success**
 
@@ -748,7 +754,7 @@ Add a tag to block device on a given machine.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **tag** (*String*): Required. The tag being added.
 
@@ -822,7 +828,7 @@ Format block device with filesystem.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **fstype** (*String*): Required. Type of filesystem.
 
@@ -904,7 +910,7 @@ Mount the filesystem on block device.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **mount\_point** (*String*): Required. Path on the filesystem to mount.
 
@@ -985,7 +991,7 @@ Remove a tag from block device on a given machine.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **tag** (*String*): Optional. The tag being removed.
 
@@ -1058,7 +1064,7 @@ Set a block device as the boot disk for the machine.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **Success**
 
@@ -1107,7 +1113,7 @@ Unformat a previously formatted block device.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **Success**
 
@@ -1184,7 +1190,7 @@ Unmount the filesystem on block device.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **Success**
 
@@ -1270,7 +1276,7 @@ bad block device to be replaced while the machine remains deployed.
 
 **{system\_id}** (*String*): Required. The machine system\_id.
 
-**{id}** (*String*): Required. The block device's id.
+**{id}** (*String*): Required. The block device\'s id.
 
 **name** (*String*): Optional. (Physical devices) Name of the block
 device.
@@ -1283,7 +1289,7 @@ block device.
 
 **id\_path** (*String*): Optional. (Physical devices) Only used if model
 and serial cannot be provided. This should be a path that is fixed and
-doesn't change depending on the boot order or kernel version.
+doesn\'t change depending on the boot order or kernel version.
 
 **size** (*String*): Optional. (Physical devices) Size of the block
 device.
@@ -1357,6 +1363,7 @@ device.
 
 <p>&nbsp;</p>
 </details>
+
 ### Block devices
 
 Manage block devices on a machine.
@@ -1469,7 +1476,7 @@ Create a physical block device.
 **serial** (*String*): Optional. Serial number of the block device.
 
 **id\_path** (*String*): Optional. Only used if model and serial cannot
-be provided. This should be a path that is fixed and doesn't change
+be provided. This should be a path that is fixed and doesn\'t change
 depending on the boot order or kernel version.
 
 **size** (*String*): Required. Size of the block device.
@@ -1520,6 +1527,7 @@ depending on the boot order or kernel version.
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot resource
 
 Manage a boot resource.
@@ -1618,6 +1626,7 @@ Reads a boot resource by id
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot resources
 
 Manage the boot resources.
@@ -1735,8 +1744,8 @@ supports.
 **title** (*String*): Optional. Title for the boot resource.
 
 **filetype** (*String*): Optional. Filetype for uploaded content.
-(Default: `tgz`. Supported: `tgz`, `ddtgz`, `ddtbz`, `ddtxz`, `ddtar`,
-`ddbz2`, `ddgz`, `ddxz`, `ddraw`)
+(Default: `tgz`. Supported: `tgz`, `tbz`, `txz`, `ddtgz`, `ddtbz`,
+`ddtxz`, `ddtar`, `ddbz2`, `ddgz`, `ddxz`, `ddraw`)
 
 **content** (*String*): Optional. Image content. Note: this is not a
 normal parameter, but an `application/octet-stream` file upload.
@@ -1815,6 +1824,7 @@ Stop import the boot resources.
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot source
 
 Manage a boot source.
@@ -1944,6 +1954,7 @@ BootSource, base64-encoded data.
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot source selection
 
 Manage a boot source selection.
@@ -2100,6 +2111,7 @@ resources.
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot source selections
 
 Manage the collection of boot source selections.
@@ -2219,6 +2231,7 @@ resources.
 
 <p>&nbsp;</p>
 </details>
+
 ### Boot sources
 
 Manage the collection of boot sources.
@@ -2292,6 +2305,7 @@ BootSource, base64-encoded.
 
 <p>&nbsp;</p>
 </details>
+
 ### Commissioning script
 
 Manage a custom commissioning script.
@@ -2334,7 +2348,7 @@ Each commissioning script is identified by a unique name.
 
 By convention the name should consist of a two-digit number, a dash, and
 a brief descriptive identifier consisting only of ASCII characters. You
-don't need to follow this convention, but not doing so opens you up to
+don\'t need to follow this convention, but not doing so opens you up to
 risks w.r.t. encoding and ordering. The name must not contain any
 whitespace, quotes, or apostrophes.
 
@@ -2343,8 +2357,8 @@ order. There are no promises about how non-ASCII characters are sorted,
 or even how upper-case letters are sorted relative to lower-case
 letters. So where ordering matters, use unique numbers.
 
-Scripts built into MAAS will have names starting with "00-maas" or
-"99-maas" to ensure that they run first or last, respectively.
+Scripts built into MAAS will have names starting with \"00-maas\" or
+\"99-maas\" to ensure that they run first or last, respectively.
 
 Usually a commissioning script will be just that, a script. Ideally a
 script should be ASCII text to avoid any confusion over encoding. But in
@@ -2355,8 +2369,8 @@ commissioning machine in the exact form in which it was uploaded.
 param name
 
 :   Unique identifying name for the script. Names should follow the
-    pattern of "25-burn-in-hard-disk" (all ASCII, and with numbers
-    greater than zero, and generally no "weird" characters).
+    pattern of \"25-burn-in-hard-disk\" (all ASCII, and with numbers
+    greater than zero, and generally no \"weird\" characters).
 
 param content
 
@@ -2537,8 +2551,8 @@ revision.
 
 **{id}** (*Int*): Required. A DHCP snippet id.
 
-**to** (*Int*): Required. What revision in the DHCP snippet's history to
-revert to. This can either be an ID or a negative number representing
+**to** (*Int*): Required. What revision in the DHCP snippet\'s history
+to revert to. This can either be an ID or a negative number representing
 how far back to go.
 
 **Success**
@@ -2752,6 +2766,7 @@ global option. This removes any node or subnet links.
 
 <p>&nbsp;</p>
 </details>
+
 ### DHCP Snippets
 
 Manage the collection of all DHCP snippets in MAAS.
@@ -3002,6 +3017,7 @@ is to be applied globally. Cannot be used with node or subnet.
 
 <p>&nbsp;</p>
 </details>
+
 ### DNSResource
 
 Manage dnsresource.
@@ -3098,10 +3114,19 @@ Update a DNS resource with the given id.
 **{id}** (*Int*): Required. The DNS resource id.
 
 **fqdn** (*String*): Optional. Hostname (with domain) for the
-dnsresource.
+dnsresource. Either `fqdn` or `name` and `domain` must be specified.
+`fqdn` is ignored if either `name` or `domain` is given.
 
-**ip\_address** (*String*): Optional. Address to assign to the
-dnsresource.
+**name** (*String*): Optional. Hostname (without domain).
+
+**domain** (*String*): Optional. Domain (name or id).
+
+**address\_ttl** (*String*): Optional. Default TTL for entries in this
+zone.
+
+**ip\_addresses** (*String*): Optional. Address (ip or id) to assign to
+the dnsresource. This creates an A or AAAA record, for each of the
+supplied ip\_addresses, IPv4 or IPv6, respectively.
 
 **Success**
 
@@ -3137,6 +3162,7 @@ DNS resource.
 
 <p>&nbsp;</p>
 </details>
+
 ### DNSResourceRecord
 
 Manage dnsresourcerecord.
@@ -3272,6 +3298,7 @@ DNS resource record.
 
 <p>&nbsp;</p>
 </details>
+
 ### DNSResourceRecords
 
 Manage DNS resource records (e.g. CNAME, MX, NS, SRV, TXT)
@@ -3337,13 +3364,13 @@ www.your-maas.maas).
 of the DNS resource record (e.g. www.your-maas)
 
 **domain** (*String*): Optional. The domain (name or id) where to create
-the DNS resource record (Domain (e.g. 'maas')
+the DNS resource record (Domain (e.g. \'maas\')
 
 **rrtype** (*String*): Optional. The resource record type (e.g `cname`,
 `mx`, `ns`, `srv`, `sshfp`, `txt`).
 
 **rrdata** (*String*): Optional. The resource record data (e.g.
-'your-maas', '10 mail.your-maas.maas')
+\'your-maas\', \'10 mail.your-maas.maas\')
 
 **Success**
 
@@ -3364,6 +3391,7 @@ the DNS resource record (Domain (e.g. 'maas')
 
 <p>&nbsp;</p>
 </details>
+
 ### DNSResources
 
 Manage dnsresources.
@@ -3456,7 +3484,8 @@ dnsresource. Either `fqdn` or `name` and `domain` must be specified.
 zone.
 
 **ip\_addresses** (*String*): Optional. Address (ip or id) to assign to
-the dnsresource.
+the dnsresource. This creates an A or AAAA record, for each of the
+supplied ip\_addresses, IPv4 or IPv6, respectively.
 
 **Success**
 
@@ -3477,6 +3506,7 @@ the dnsresource.
 
 <p>&nbsp;</p>
 </details>
+
 ### Device
 
 Manage an individual device.
@@ -3530,7 +3560,7 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -3541,6 +3571,7 @@ Reads a node with the given system\_id.
 *JSON*
 
     {
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "system_id": "g8xyqs",
             "name": "eth-jJ5ZwN",
@@ -3579,6 +3610,9 @@ Reads a node with the given system\_id.
             "links": [],
             "effective_mtu": 1500,
             "product": null,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
         },
         "memory": 8192,
@@ -3765,6 +3799,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
             },
             {
@@ -3805,6 +3842,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/113/"
             },
             {
@@ -3845,6 +3885,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/114/"
             },
             {
@@ -3887,6 +3930,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/115/"
             }
         ],
@@ -3981,6 +4027,8 @@ Reads a node with the given system\_id.
         "other_test_status_name": "Passed",
         "virtualblockdevice_set": [],
         "cpu_speed": 0,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/g8xyqs/"
     }
 
@@ -4001,13 +4049,13 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-Returns system details -- for example, LLDP and `lshw` XML dumps.
+Returns system details \-- for example, LLDP and `lshw` XML dumps.
 
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is
-something like "lldp" or "lshw".
+something like \"lldp\" or \"lshw\".
 
 Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
+but mainly because JSON can\'t do binary content without applying
 additional encoding like base-64. The example output below is
 represented in ASCII using `bsondump example.bson` and is for
 demonstrative purposes.
@@ -4016,7 +4064,7 @@ demonstrative purposes.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The node's system\_id.
+**{system\_id}** (*String*): Required. The node\'s system\_id.
 
 **Success**
 
@@ -4376,7 +4424,7 @@ machine.
 **domain** (*String*): Optional. The domain for this device.
 
 **parent** (*String*): Optional. Optional system\_id to indicate this
-device's parent. If the parent is already set and this parameter is
+device\'s parent. If the parent is already set and this parameter is
 omitted, the parent will be unchanged.
 
 **zone** (*String*): Optional. Name of a valid physical zone in which to
@@ -4478,6 +4526,7 @@ the device.
 
 <p>&nbsp;</p>
 </details>
+
 ### Devices
 
 Manage the collection of all the devices in the MAAS.
@@ -4499,6 +4548,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 the matching hostname will be returned. This can be specified multiple
 times to see multiple nodes.
 
+**cpu\_count** (*Int*): Optional. Only nodes with the specified minimum
+number of CPUs will be included.
+
+**mem** (*String*): Optional. Only nodes with the specified minimum
+amount of RAM (in MiB) will be included.
+
 **mac\_address** (*String*): Optional. Only nodes relating to the node
 owning the specified MAC address will be returned. This can be specified
 multiple times to see multiple nodes.
@@ -4517,6 +4572,42 @@ returned.
 
 **agent\_name** (*String*): Optional. Only nodes relating to the nodes
 with matching agent names will be returned.
+
+**fabrics** (*String*): Optional. Only nodes with interfaces in
+specified fabrics will be returned.
+
+**not\_fabrics** (*String*): Optional. Only nodes with interfaces not in
+specified fabrics will be returned.
+
+**vlans** (*String*): Optional. Only nodes with interfaces in specified
+VLANs will be returned.
+
+**not\_vlans** (*String*): Optional. Only nodes with interfaces not in
+specified VLANs will be returned.
+
+**subnets** (*String*): Optional. Only nodes with interfaces in
+specified subnets will be returned.
+
+**not\_subnets** (*String*): Optional. Only nodes with interfaces not in
+specified subnets will be returned.
+
+**link\_speed** (*String*): Optional. Only nodes with interfaces with
+link speeds greater than or equal to link\_speed will be returned.
+
+**status** (*String*): Optional. Only nodes with specified status will
+be returned.
+
+**pod** (*String*): Optional. Only nodes that belong to a specified pod
+will be returned.
+
+**not\_pod** (*String*): Optional. Only nodes that don\'t belong to a
+specified pod will be returned.
+
+**pod\_type** (*String*): Optional. Only nodes that belong to a pod of
+the specified type will be returned.
+
+**not\_pod\_type** (*String*): Optional. Only nodes that don\'t belong a
+pod of the specified type will be returned.
 
 **Success**
 
@@ -4704,6 +4795,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/1/"
                 },
                 {
@@ -4773,6 +4867,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/17/"
                 }
             ],
@@ -4805,6 +4902,8 @@ with matching agent names will be returned.
             "storage_test_status_name": "Unknown",
             "architecture": "amd64/generic",
             "cpu_test_status_name": "Unknown",
+            "interface_test_status_name": "Unknown",
+            "interface_test_status": -1,
             "resource_uri": "/MAAS/api/2.0/rackcontrollers/6gsym8/"
         }
     ]
@@ -4980,6 +5079,7 @@ Assigns a given node to a given zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### Discoveries
 
 Query observed discoveries.
@@ -5280,15 +5380,15 @@ associated with the given IP address and MAC address.
 Immediately run a neighbour discovery scan on all rack networks.
 
 This command causes each connected rack controller to execute the
-'maas-rack scan-network' command, which will scan all CIDRs configured
-on the rack controller using 'nmap' (if it is installed) or 'ping'.
+\'maas-rack scan-network\' command, which will scan all CIDRs configured
+on the rack controller using \'nmap\' (if it is installed) or \'ping\'.
 
-Network discovery must not be set to 'disabled' for this command to be
+Network discovery must not be set to \'disabled\' for this command to be
 useful.
 
 Scanning will be started in the background, and could take a long time
-on rack controllers that do not have 'nmap' installed and are connected
-to large networks.
+on rack controllers that do not have \'nmap\' installed and are
+connected to large networks.
 
 If the call is a success, this method will return a dictionary of
 results with the following keys:
@@ -5326,15 +5426,16 @@ owns the network.) Note that this parameter is required if all networks
 are specified. Default: False.
 
 **always\_use\_ping** (*String*): Optional. If True, will force the scan
-to use 'ping' even if 'nmap' is installed. Default: False.
+to use \'ping\' even if \'nmap\' is installed. Default: False.
 
-**slow** (*String*): Optional. If True, and 'nmap' is being used, will
-limit the scan to nine packets per second. If the scanner is 'ping',
+**slow** (*String*): Optional. If True, and \'nmap\' is being used, will
+limit the scan to nine packets per second. If the scanner is \'ping\',
 this option has no effect. Default: False.
 
 **threads** (*String*): Optional. The number of threads to use during
-scanning. If 'nmap' is the scanner, the default is one thread per 'nmap'
-process. If 'ping' is the scanner, the default is four threads per CPU.
+scanning. If \'nmap\' is the scanner, the default is one thread per
+\'nmap\' process. If \'ping\' is the scanner, the default is four
+threads per CPU.
 
 **Success**
 
@@ -5366,6 +5467,7 @@ process. If 'ping' is the scanner, the default is four threads per CPU.
 
 <p>&nbsp;</p>
 </details>
+
 ### Discovery
 
 Read or delete an observed discovery.
@@ -5421,6 +5523,7 @@ Read a discovery with the given discovery\_id.
 
 <p>&nbsp;</p>
 </details>
+
 ### Domain
 
 Manage domain.
@@ -5629,6 +5732,7 @@ the domain.
 
 <p>&nbsp;</p>
 </details>
+
 ### Domains
 
 Manage domains.
@@ -5738,11 +5842,12 @@ Set the SOA serial number for all DNS zones.
 
 <p>&nbsp;</p>
 </details>
+
 ### Events
 
 Retrieve filtered node events.
 
-A specific Node's events is identified by specifying one or more ids,
+A specific Node\'s events is identified by specifying one or more ids,
 hostnames, or mac addresses as a list.
 
 <details>
@@ -5858,6 +5963,7 @@ only events owned by the specified username.
 
 <p>&nbsp;</p>
 </details>
+
 ### Fabric
 
 Manage fabric.
@@ -6013,6 +6119,7 @@ Update a fabric with the given id.
 
 <p>&nbsp;</p>
 </details>
+
 ### Fabrics
 
 Manage fabrics.
@@ -6455,6 +6562,7 @@ Create a fabric.
 
 <p>&nbsp;</p>
 </details>
+
 ### Fan Network
 
 Manage Fan Network.
@@ -6597,6 +6705,7 @@ configuration, but disable it.
 
 <p>&nbsp;</p>
 </details>
+
 ### Fan Networks
 
 Manage Fan Networks.
@@ -6684,6 +6793,7 @@ configuration, but disable it.
 
 <p>&nbsp;</p>
 </details>
+
 ### File
 
 Manage a FileStorage object.
@@ -6760,6 +6870,7 @@ The content of the file is base64-encoded.
 
 <p>&nbsp;</p>
 </details>
+
 ### Files
 
 Manage the collection of all the files in this MAAS.
@@ -6873,7 +6984,7 @@ Get a file from the file storage with the given key.
 
 ------------------------------------------------------------------------
 
-**key** (*String*): Required. The file's key.
+**key** (*String*): Required. The file\'s key.
 
 **Success**
 
@@ -6938,6 +7049,7 @@ than one file is supplied.
 
 <p>&nbsp;</p>
 </details>
+
 ### IP Addresses
 
 Manage IP addresses allocated by MAAS.
@@ -6960,8 +7072,8 @@ requesting user.
 for the specified IP address.
 
 **all** (*Boolean*): Optional. (Admin users only) If True, all reserved
-IP addresses will be shown. (By default, only addresses of type 'User
-reserved' that are assigned to the requesting user are shown.)
+IP addresses will be shown. (By default, only addresses of type \'User
+reserved\' that are assigned to the requesting user are shown.)
 
 **owner** (*String*): Optional. (Admin users only) If specified, filters
 the list to show only IP addresses owned by the specified username.
@@ -7043,8 +7155,8 @@ force an IP address to be released, even if it is not a user-reserved IP
 address or does not belong to the requesting user. Use with caution.
 
 **discovered** (*Boolean*): Optional. If True, allows a MAAS
-administrator to release a discovered address. Only valid if 'force' is
-specified. If not specified, MAAS will attempt to release any type of
+administrator to release a discovered address. Only valid if \'force\'
+is specified. If not specified, MAAS will attempt to release any type of
 address except for discovered addresses.
 
 **Success**
@@ -7089,7 +7201,7 @@ which the IP reservation is required. E.g. 10.1.2.0/24
 **ip** (*String*): Optional. The IP address, which must be within a
 known subnet.
 
-**ip\_address** (*String*): Optional. (Deprecated.) Alias for 'ip'
+**ip\_address** (*String*): Optional. (Deprecated.) Alias for \'ip\'
 parameter. Provided for backward compatibility.
 
 **hostname** (*String*): Optional. The hostname to use for the specified
@@ -7169,6 +7281,7 @@ ip\_address was supplied, but a corresponding subnet could not be found.
 
 <p>&nbsp;</p>
 </details>
+
 ### IP Range
 
 Manage IP range.
@@ -7383,6 +7496,7 @@ the IP range.
 
 <p>&nbsp;</p>
 </details>
+
 ### IP Ranges
 
 Manage IP ranges.
@@ -7543,9 +7657,10 @@ IP range.
 
 <p>&nbsp;</p>
 </details>
+
 ### Interface
 
-Manage a node's or device's interface.
+Manage a node\'s or device\'s interface.
 
 <details>
   <summary>``DELETE /MAAS/api/2.0/nodes/{system_id}/interfaces/{id}/``</summary>
@@ -8353,6 +8468,9 @@ connected to.
 **parent** (*Int*): Optional. (Bridge interfaces) Parent interface ids
 for this bridge interface.
 
+**bridge\_type** (*String*): Optional. (Bridge interfaces) Type of
+bridge to create. Possible values are: `standard`, `ovs`.
+
 **bridge\_stp** (*Boolean*): Optional. (Bridge interfaces) Turn spanning
 tree protocol on or off. (Default: False).
 
@@ -8371,7 +8489,7 @@ milliseconds, to wait before enabling a slave after a link recovery has
 been detected.
 
 **bond\_lacp\_rate** (*String*): Optional. (Bonds) Option specifying the
-rate in which we'll ask our link partner to transmit LACPDU packets in
+rate in which we\'ll ask our link partner to transmit LACPDU packets in
 802.3ad mode. Available options are `fast` or `slow`. (Default: `slow`).
 
 **bond\_xmit\_hash\_policy** (*String*): Optional. (Bonds) The transmit
@@ -8389,10 +8507,10 @@ Supported bonding modes (bond-mode):
     and fault tolerance.
 -   `active-backup`: Only one slave in the bond is active. A different
     slave becomes active if, and only if, the active slave fails. The
-    bond's MAC address is externally visible on only one port (network
+    bond\'s MAC address is externally visible on only one port (network
     adapter) to avoid confusing the switch.
 -   `balance-xor`: Transmit based on the selected transmit hash policy.
-    The default policy is a simple \[(source MAC address XOR'd with
+    The default policy is a simple \[(source MAC address XOR\'d with
     destination MAC address XOR packet type ID) modulo slave count\].
 -   `broadcast`: Transmits everything on all slave interfaces. This mode
     provides fault tolerance.
@@ -8414,6 +8532,16 @@ only)
 
 **autoconf** (*String*): Optional. Perform stateless autoconfiguration.
 (IPv6 only)
+
+**link\_connected** (*Boolean*): Optional. (Physical interfaces) Whether
+or not the interface is physically conntected to an uplink. (Default:
+True).
+
+**interface\_speed** (*Int*): Optional. (Physical interfaces) The speed
+of the interface in Mbit/s. (Default: 0).
+
+**link\_speed** (*Int*): Optional. (Physical interfaces) The speed of
+the link in Mbit/s. (Default: 0).
 
 **Success**
 
@@ -8458,6 +8586,7 @@ only)
 
 <p>&nbsp;</p>
 </details>
+
 ### Interfaces
 
 Manage interfaces on a node.
@@ -8999,10 +9128,10 @@ Supported bonding modes:
     and fault tolerance.
 -   `active-backup`: Only one slave in the bond is active. A different
     slave becomes active if, and only if, the active slave fails. The
-    bond's MAC address is externally visible on only one port (network
+    bond\'s MAC address is externally visible on only one port (network
     adapter) to avoid confusing the switch.
 -   `balance-xor`: Transmit based on the selected transmit hash policy.
-    The default policy is a simple \[(source MAC address XOR'd with
+    The default policy is a simple \[(source MAC address XOR\'d with
     destination MAC address XOR packet type ID) modulo slave count\].
 -   `broadcast`: Transmits everything on all slave interfaces. This mode
     provides fault tolerance.
@@ -9124,6 +9253,9 @@ Create a bridge interface on a machine.
 **parent** (*Int*): Optional. Parent interface id for this bridge
 interface.
 
+**bridge\_type** (*String*): Optional. The type of bridge to create.
+Possible values are: `standard`, `ovs`.
+
 **bridge\_stp** (*Boolean*): Optional. Turn spanning tree protocol on or
 off. (Default: False).
 
@@ -9161,6 +9293,7 @@ seconds. (Default: 15).
         "children": [],
         "mac_address": "00:11:22:33:44:55",
         "params": {
+            "bridge_type": "standard",
             "bridge_fd": 15,
             "bridge_stp": false
         },
@@ -9308,6 +9441,7 @@ interface.
 
 <p>&nbsp;</p>
 </details>
+
 ### License Key
 
 Manage a license key.
@@ -9432,6 +9566,7 @@ osystem/distro\_series combo.
 
 <p>&nbsp;</p>
 </details>
+
 ### License Keys
 
 Manage the license keys.
@@ -9491,6 +9626,7 @@ osystem/distro\_series combo.
 
 <p>&nbsp;</p>
 </details>
+
 ### MAAS server
 
 Manage the MAAS server.
@@ -9527,7 +9663,7 @@ boot\_images\_no\_proxy
     (or set with) a proxy.. By default, when MAAS is behind (and set
     with) a proxy, it is used to download images from the image
     repository. In some situations (e.g. when using a local image
-    repository) it doesn't make sense for MAAS to use the proxy to
+    repository) it doesn\'t make sense for MAAS to use the proxy to
     download images because it can access them directly. Setting this
     option allows MAAS to access the (local) image repository directly
     by setting the no\_proxy variable for the MAAS env with the address
@@ -9568,9 +9704,9 @@ default\_osystem
 default\_storage\_layout
 
 :   Default storage layout. Storage layout that is applied to a node
-    when it is commissioned. Available choices are: 'bcache' (Bcache
-    layout), 'blank' (No storage (blank) layout), 'flat' (Flat layout),
-    'lvm' (LVM layout), 'vmfs6' (VMFS6 layout).
+    when it is commissioned. Available choices are: \'bcache\' (Bcache
+    layout), \'blank\' (No storage (blank) layout), \'flat\' (Flat
+    layout), \'lvm\' (LVM layout), \'vmfs6\' (VMFS6 layout).
 
 disk\_erase\_with\_quick\_erase
 
@@ -9596,7 +9732,7 @@ dnssec\_validation
 
 :   Enable DNSSEC validation of upstream zones. Only used when MAAS is
     running its own DNS server. This value is used as the value of
-    'dnssec\_validation' in the DNS server config.
+    \'dnssec\_validation\' in the DNS server config.
 
 enable\_analytics
 
@@ -9605,7 +9741,7 @@ enable\_analytics
 
 enable\_disk\_erasing\_on\_release
 
-:   Erase nodes' disks prior to releasing. Forces users to always erase
+:   Erase nodes\' disks prior to releasing. Forces users to always erase
     disks when releasing.
 
 enable\_http\_proxy
@@ -9695,15 +9831,15 @@ ntp\_external\_only
     refer directly to the configured external NTP servers. Otherwise
     only region controller hosts will be configured to use those
     external NTP servers, rack contoller hosts will in turn refer to the
-    regions' NTP servers, and deployed machines will refer to the racks'
-    NTP servers.
+    regions\' NTP servers, and deployed machines will refer to the
+    racks\' NTP servers.
 
 ntp\_servers
 
 :   Addresses of NTP servers. NTP servers, specified as IP addresses or
     hostnames delimited by commas and/or spaces, to be used as time
     references for MAAS itself, the machines MAAS deploys, and devices
-    that make use of MAAS's DHCP services.
+    that make use of MAAS\'s DHCP services.
 
 prefer\_v4\_proxy
 
@@ -9715,7 +9851,7 @@ prometheus\_enabled
 
 :   Enable sending stats to a prometheus gateway.. Allows MAAS to send
     statistics to Prometheus. This requires the
-    'prometheus\_push\_gateway' to be set.
+    \'prometheus\_push\_gateway\' to be set.
 
 prometheus\_push\_gateway
 
@@ -9746,7 +9882,7 @@ upstream\_dns
 
 :   Upstream DNS used to resolve domains not managed by this MAAS
     (space-separated IP addresses). Only used when MAAS is running its
-    own DNS server. This value is used as the value of 'forwarders' in
+    own DNS server. This value is used as the value of \'forwarders\' in
     the DNS server config.
 
 use\_peer\_proxy
@@ -9836,7 +9972,7 @@ boot\_images\_no\_proxy
     (or set with) a proxy.. By default, when MAAS is behind (and set
     with) a proxy, it is used to download images from the image
     repository. In some situations (e.g. when using a local image
-    repository) it doesn't make sense for MAAS to use the proxy to
+    repository) it doesn\'t make sense for MAAS to use the proxy to
     download images because it can access them directly. Setting this
     option allows MAAS to access the (local) image repository directly
     by setting the no\_proxy variable for the MAAS env with the address
@@ -9877,9 +10013,9 @@ default\_osystem
 default\_storage\_layout
 
 :   Default storage layout. Storage layout that is applied to a node
-    when it is commissioned. Available choices are: 'bcache' (Bcache
-    layout), 'blank' (No storage (blank) layout), 'flat' (Flat layout),
-    'lvm' (LVM layout), 'vmfs6' (VMFS6 layout).
+    when it is commissioned. Available choices are: \'bcache\' (Bcache
+    layout), \'blank\' (No storage (blank) layout), \'flat\' (Flat
+    layout), \'lvm\' (LVM layout), \'vmfs6\' (VMFS6 layout).
 
 disk\_erase\_with\_quick\_erase
 
@@ -9905,7 +10041,7 @@ dnssec\_validation
 
 :   Enable DNSSEC validation of upstream zones. Only used when MAAS is
     running its own DNS server. This value is used as the value of
-    'dnssec\_validation' in the DNS server config.
+    \'dnssec\_validation\' in the DNS server config.
 
 enable\_analytics
 
@@ -9914,7 +10050,7 @@ enable\_analytics
 
 enable\_disk\_erasing\_on\_release
 
-:   Erase nodes' disks prior to releasing. Forces users to always erase
+:   Erase nodes\' disks prior to releasing. Forces users to always erase
     disks when releasing.
 
 enable\_http\_proxy
@@ -10004,15 +10140,15 @@ ntp\_external\_only
     refer directly to the configured external NTP servers. Otherwise
     only region controller hosts will be configured to use those
     external NTP servers, rack contoller hosts will in turn refer to the
-    regions' NTP servers, and deployed machines will refer to the racks'
-    NTP servers.
+    regions\' NTP servers, and deployed machines will refer to the
+    racks\' NTP servers.
 
 ntp\_servers
 
 :   Addresses of NTP servers. NTP servers, specified as IP addresses or
     hostnames delimited by commas and/or spaces, to be used as time
     references for MAAS itself, the machines MAAS deploys, and devices
-    that make use of MAAS's DHCP services.
+    that make use of MAAS\'s DHCP services.
 
 prefer\_v4\_proxy
 
@@ -10024,7 +10160,7 @@ prometheus\_enabled
 
 :   Enable sending stats to a prometheus gateway.. Allows MAAS to send
     statistics to Prometheus. This requires the
-    'prometheus\_push\_gateway' to be set.
+    \'prometheus\_push\_gateway\' to be set.
 
 prometheus\_push\_gateway
 
@@ -10055,7 +10191,7 @@ upstream\_dns
 
 :   Upstream DNS used to resolve domains not managed by this MAAS
     (space-separated IP addresses). Only used when MAAS is running its
-    own DNS server. This value is used as the value of 'forwarders' in
+    own DNS server. This value is used as the value of \'forwarders\' in
     the DNS server config.
 
 use\_peer\_proxy
@@ -10110,6 +10246,7 @@ windows\_kms\_host
 
 <p>&nbsp;</p>
 </details>
+
 ### Machine
 
 Manage an individual machine.
@@ -10131,7 +10268,7 @@ hosted pods. E.g. `/machines/abc123/?force=1`.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -10170,7 +10307,7 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -10181,6 +10318,7 @@ Reads a node with the given system\_id.
 *JSON*
 
     {
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "system_id": "g8xyqs",
             "name": "eth-jJ5ZwN",
@@ -10219,6 +10357,9 @@ Reads a node with the given system\_id.
             "links": [],
             "effective_mtu": 1500,
             "product": null,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
         },
         "memory": 8192,
@@ -10405,6 +10546,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
             },
             {
@@ -10445,6 +10589,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/113/"
             },
             {
@@ -10485,6 +10632,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/114/"
             },
             {
@@ -10527,6 +10677,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/115/"
             }
         ],
@@ -10621,6 +10774,8 @@ Reads a node with the given system\_id.
         "other_test_status_name": "Passed",
         "virtualblockdevice_set": [],
         "cpu_speed": 0,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/g8xyqs/"
     }
 
@@ -10641,13 +10796,13 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-Returns system details -- for example, LLDP and `lshw` XML dumps.
+Returns system details \-- for example, LLDP and `lshw` XML dumps.
 
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is
-something like "lldp" or "lshw".
+something like \"lldp\" or \"lshw\".
 
 Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
+but mainly because JSON can\'t do binary content without applying
 additional encoding like base-64. The example output below is
 represented in ASCII using `bsondump example.bson` and is for
 demonstrative purposes.
@@ -10656,7 +10811,7 @@ demonstrative purposes.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The node's system\_id.
+**{system\_id}** (*String*): Required. The node\'s system\_id.
 
 **Success**
 
@@ -10700,7 +10855,7 @@ Return the rendered curtin configuration for the machine.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -10772,10 +10927,10 @@ the user is not one.
 
 ------------------------------------------------------------------------
 
-Gets the power state of a given node. MAAS sends a request to the node's
-power controller, which asks it about the node's state. The reply to
-this could be delayed by up to 30 seconds while waiting for the power
-controller to respond. Use this method sparingly as it ties up an
+Gets the power state of a given node. MAAS sends a request to the
+node\'s power controller, which asks it about the node\'s state. The
+reply to this could be delayed by up to 30 seconds while waiting for the
+power controller to respond. Use this method sparingly as it ties up an
 appserver thread while waiting.
 
 **Parameters**
@@ -10813,7 +10968,7 @@ appserver thread while waiting.
 
 ------------------------------------------------------------------------
 
-Abort a node's current operation.
+Abort a node\'s current operation.
 
 **Parameters**
 
@@ -10856,20 +11011,20 @@ is determined based the following criteria:
 
 1.  Managed subnets over unmanaged subnets.
 2.  Bond interfaces over physical interfaces.
-3.  Machine's boot interface over all other interfaces except bonds.
+3.  Machine\'s boot interface over all other interfaces except bonds.
 4.  Physical interfaces over VLAN interfaces.
 5.  Sticky IP links over user reserved IP links.
 6.  User reserved IP links over auto IP links.
 
 If the default gateways need to be specific for this machine you can set
-which interface and subnet's gateway to use when this machine is
-deployed with the interfaces set-default-gateway API.
+which interface and subnet\'s gateway to use when this machine is
+deployed with the [interfaces set-default-gateway]{.title-ref} API.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -10883,6 +11038,7 @@ deployed with the interfaces set-default-gateway API.
         "raids": [],
         "other_test_status": 2,
         "memory_test_status_name": "Passed",
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "type": "physical",
             "vlan": {
@@ -10959,6 +11115,9 @@ deployed with the interfaces set-default-gateway API.
             ],
             "mac_address": "cb:93:ac:d1:ed:65",
             "effective_mtu": 1500,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
         },
         "locked": false,
@@ -11180,6 +11339,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "cb:93:ac:d1:ed:65",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
             },
             {
@@ -11258,6 +11420,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "bc:d3:d5:28:88:dc",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
             },
             {
@@ -11336,6 +11501,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "ad:5a:3e:a3:68:13",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
             },
             {
@@ -11413,6 +11581,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "cb:93:ac:d1:ed:65",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
             },
             {
@@ -11491,6 +11662,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "bc:d3:d5:28:88:dc",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
             },
             {
@@ -11569,6 +11743,9 @@ deployed with the interfaces set-default-gateway API.
                 ],
                 "mac_address": "ad:5a:3e:a3:68:13",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
             }
         ],
@@ -11782,6 +11959,8 @@ deployed with the interfaces set-default-gateway API.
             "mainboard_firmware_version": "Unknown",
             "mainboard_firmware_date": "Unknown"
         },
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -11809,43 +11988,49 @@ on this machine.
 
 Begin commissioning process for a machine.
 
-A machine in the 'ready', 'declared' or 'failed test' state may initiate
-a commissioning cycle where it is checked out and tested in preparation
-for transitioning to the 'ready' state. If it is already in the 'ready'
-state this is considered a re-commissioning process which is useful if
-commissioning tests were changed after it previously commissioned.
+A machine in the \'ready\', \'declared\' or \'failed test\' state may
+initiate a commissioning cycle where it is checked out and tested in
+preparation for transitioning to the \'ready\' state. If it is already
+in the \'ready\' state this is considered a re-commissioning process
+which is useful if commissioning tests were changed after it previously
+commissioned.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the
-commissioning environment using the user's SSH key(s). '1' == True, '0'
-== False.
+commissioning environment using the user\'s SSH key(s). \'1\' == True,
+\'0\' == False.
 
 **skip\_bmc\_config** (*Int*): Optional. Whether to skip
-re-configuration of the BMC for IPMI based machines. '1' == True, '0' ==
-False.
+re-configuration of the BMC for IPMI based machines. \'1\' == True,
+\'0\' == False.
 
 **skip\_networking** (*Int*): Optional. Whether to skip re-configuring
-the networking on the machine after the commissioning has completed. '1'
-== True, '0' == False.
+the networking on the machine after the commissioning has completed.
+\'1\' == True, \'0\' == False.
 
 **skip\_storage** (*Int*): Optional. Whether to skip re-configuring the
-storage on the machine after the commissioning has completed. '1' ==
-True, '0' == False.
+storage on the machine after the commissioning has completed. \'1\' ==
+True, \'0\' == False.
 
 **commissioning\_scripts** (*String*): Optional. A comma seperated list
 of commissioning script names and tags to be run. By default all custom
 commissioning scripts are run. Built-in commissioning scripts always
-run. Selecting 'update\_firmware' or 'configure\_hba' will run firmware
-updates or configure HBA's on matching machines.
+run. Selecting \'update\_firmware\' or \'configure\_hba\' will run
+firmware updates or configure HBA\'s on matching machines.
 
 **testing\_scripts** (*String*): Optional. A comma seperated list of
 testing script names and tags to be run. By default all tests tagged
-'commissioning' will be run. Set to 'none' to disable running tests.
+\'commissioning\' will be run. Set to \'none\' to disable running tests.
+
+**parameters** (*String*): Optional. Scripts selected to run may define
+their own parameters. These parameters may be passed using the parameter
+name. Optionally a parameter may have the script name prepended to have
+that parameter only apply to that specific script.
 
 **Success**
 
@@ -11950,6 +12135,7 @@ testing script names and tags to be run. By default all tests tagged
                 "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/blockdevices/1/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "children": [],
             "discovered": null,
@@ -11982,6 +12168,9 @@ testing script names and tags to be run. By default all tests tagged
             "tags": [],
             "parents": [],
             "system_id": "8bk8nn",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/interfaces/4/"
         },
         "interface_set": [
@@ -12017,6 +12206,9 @@ testing script names and tags to be run. By default all tests tagged
                 "tags": [],
                 "parents": [],
                 "system_id": "8bk8nn",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/interfaces/4/"
             }
         ],
@@ -12105,6 +12297,8 @@ testing script names and tags to be run. By default all tests tagged
             "system_id": "8bk8nn",
             "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/blockdevices/1/"
         },
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/8bk8nn/"
     }
 
@@ -12131,11 +12325,14 @@ Deploys an operating system to a machine with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **user\_data** (*String*): Optional. If present, this blob of
 base64-encoded user-data to be made available to the machines through
 the metadata service.
+
+**osystem** (*String*): Optional. If present, this parameter specifies
+the OS the machine will use.
 
 **distro\_series** (*String*): Optional. If present, this parameter
 specifies the OS release the machine will use.
@@ -12149,6 +12346,9 @@ to the acquired machine.
 **bridge\_all** (*Boolean*): Optional. Optionally create a bridge
 interface for every configured interface on the machine. The created
 bridges will be removed once the machine is released. (Default: false)
+
+**bridge\_type** (*String*): Optional. Optionally create the bridges
+with this type. Possible values are: `standard`, `ovs`.
 
 **bridge\_stp** (*Boolean*): Optional. Optionally turn spanning tree
 protocol on or off for the bridges created on every configured
@@ -12229,6 +12429,9 @@ globally defined VMware vCenter credentials to the machine.
                 "links": [],
                 "id": 69,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/69/"
             },
             {
@@ -12269,6 +12472,9 @@ globally defined VMware vCenter credentials to the machine.
                 "links": [],
                 "id": 70,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/70/"
             },
             {
@@ -12309,6 +12515,9 @@ globally defined VMware vCenter credentials to the machine.
                 "links": [],
                 "id": 71,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/71/"
             },
             {
@@ -12351,6 +12560,9 @@ globally defined VMware vCenter credentials to the machine.
                     "eth-D6eWMG",
                     "eth-jazQFg"
                 ],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/72/"
             }
         ],
@@ -12568,6 +12780,7 @@ globally defined VMware vCenter credentials to the machine.
         "architecture": "amd64/generic",
         "min_hwe_kernel": "",
         "virtualblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "type": "physical",
             "vlan": {
@@ -12606,6 +12819,9 @@ globally defined VMware vCenter credentials to the machine.
             "links": [],
             "id": 69,
             "parents": [],
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/69/"
         },
         "default_gateways": {
@@ -12626,6 +12842,8 @@ globally defined VMware vCenter credentials to the machine.
         "hostname": "newname",
         "description": "Optional description for the machine.",
         "testing_status_name": "Failed",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/d8n3re/"
     }
 
@@ -12657,13 +12875,13 @@ IP addresses available on the relevant cluster interface.
 
 Exits the rescue mode process on a machine with the given system\_id.
 
-A machine in the 'rescue mode' state may exit the rescue mode process.
+A machine in the \'rescue mode\' state may exit the rescue mode process.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -12768,6 +12986,7 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
                 "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/blockdevices/3/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "children": [],
             "discovered": null,
@@ -12800,6 +13019,9 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
             "tags": [],
             "parents": [],
             "system_id": "a8m7sr",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/interfaces/6/"
         },
         "interface_set": [
@@ -12835,6 +13057,9 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
                 "tags": [],
                 "parents": [],
                 "system_id": "a8m7sr",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/interfaces/6/"
             }
         ],
@@ -12923,6 +13148,8 @@ A machine in the 'rescue mode' state may exit the rescue mode process.
             "system_id": "a8m7sr",
             "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/blockdevices/3/"
         },
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/a8m7sr/"
     }
 
@@ -12948,13 +13175,14 @@ machine.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system\_id as 'Locked' to prevent changes.
+Mark a machine with the given system\_id as \'Locked\' to prevent
+changes.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -13088,6 +13316,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 46,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/46/"
             },
             {
@@ -13165,6 +13396,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 47,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/47/"
             },
             {
@@ -13242,6 +13476,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 48,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/48/"
             },
             {
@@ -13321,6 +13558,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 49,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/49/"
             },
             {
@@ -13400,6 +13640,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 50,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/50/"
             },
             {
@@ -13479,10 +13722,14 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 51,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/51/"
             }
         ],
         "raids": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "parents": [],
             "name": "eth-xMPy44",
@@ -13558,6 +13805,9 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
             "discovered": null,
             "vendor": null,
             "id": 46,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/46/"
         },
         "status_message": "(admin)",
@@ -13883,6 +14133,8 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/blockdevices/24/"
             }
         ],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/recrwg/"
     }
 
@@ -13907,7 +14159,7 @@ Mark a machine with the given system\_id as 'Locked' to prevent changes.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system\_id as 'Broken'.
+Mark a machine with the given system\_id as \'Broken\'.
 
 If the node is allocated, release it first.
 
@@ -13915,7 +14167,7 @@ If the node is allocated, release it first.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 Will be displayed on the node as an error description until marked
@@ -14282,8 +14534,11 @@ fixed.
         "fqdn": "above-robin.sample",
         "hwe_kernel": null,
         "other_test_status": 2,
+        "bios_boot_method": "pxe",
         "boot_interface": null,
         "virtualblockdevice_set": [],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -14308,13 +14563,13 @@ fixed.
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system\_id as 'Fixed'.
+Mark a machine with the given system\_id as \'Fixed\'.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -14421,6 +14676,7 @@ Mark a machine with the given system\_id as 'Fixed'.
         "locked": false,
         "other_test_status_name": "Passed",
         "owner_data": {},
+        "bios_boot_method": "pxe",
         "boot_interface": null,
         "osystem": "",
         "current_commissioning_result_id": 21,
@@ -14681,6 +14937,8 @@ Mark a machine with the given system\_id as 'Fixed'.
         "netboot": true,
         "status_name": "Ready",
         "iscsiblockdevice_set": [],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -14712,7 +14970,7 @@ given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **fstype** (*String*): Required. The filesystem type. This must be a
 filesystem that does not require a block special device.
@@ -14920,6 +15178,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 37,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
             },
             {
@@ -14998,6 +15259,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 38,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
             },
             {
@@ -15076,6 +15340,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 39,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
             },
             {
@@ -15153,6 +15420,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 40,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
             },
             {
@@ -15231,6 +15501,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 41,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
             },
             {
@@ -15309,6 +15582,9 @@ filesystem that does not require a block special device.
                 "product": null,
                 "id": 42,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
             }
         ],
@@ -15380,6 +15656,7 @@ filesystem that does not require a block special device.
         "tag_names": [],
         "memory_test_status": 2,
         "testing_status": 2,
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "parents": [],
             "params": "",
@@ -15456,6 +15733,9 @@ filesystem that does not require a block special device.
             "product": null,
             "id": 37,
             "type": "physical",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
         },
         "raids": [],
@@ -15640,6 +15920,8 @@ filesystem that does not require a block special device.
         "power_state": "on",
         "hostname": "above-robin",
         "description": "Optional description for the machine.",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -15706,12 +15988,12 @@ Powers off a given node.
 
 ------------------------------------------------------------------------
 
-**stop\_mode** (*String*): Optional. Power-off mode. If 'soft', perform
-a soft power down if the node's power type supports it, otherwise
-perform a hard power off. For all values other than 'soft', and by
-default, perform a hard power off. A soft power off generally asks the
-OS to shutdown the system gracefully before powering off, while a hard
-power off occurs immediately without any warning to the OS.
+**stop\_mode** (*String*): Optional. Power-off mode. If \'soft\',
+perform a soft power down if the node\'s power type supports it,
+otherwise perform a hard power off. For all values other than \'soft\',
+and by default, perform a hard power off. A soft power off generally
+asks the OS to shutdown the system gracefully before powering off, while
+a hard power off occurs immediately without any warning to the OS.
 
 **comment** (*String*): Optional. Comment for the event log.
 
@@ -15735,6 +16017,7 @@ power off occurs immediately without any warning to the OS.
         "cpu_test_status_name": "Unknown",
         "testing_status": 2,
         "iscsiblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "vlan": {
                 "vid": 0,
@@ -15802,6 +16085,9 @@ power off occurs immediately without any warning to the OS.
             "tags": [],
             "type": "physical",
             "params": "",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "boot_disk": {
@@ -16023,6 +16309,9 @@ power off occurs immediately without any warning to the OS.
                 "tags": [],
                 "type": "physical",
                 "params": "",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
@@ -16109,6 +16398,8 @@ power off occurs immediately without any warning to the OS.
         "status_name": "Deployed",
         "storage_test_status_name": "Passed",
         "owner": "admin",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -16164,6 +16455,7 @@ made available to the nodes through the metadata service.
         "cpu_test_status_name": "Unknown",
         "testing_status": 2,
         "iscsiblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "vlan": {
                 "vid": 0,
@@ -16231,6 +16523,9 @@ made available to the nodes through the metadata service.
             "tags": [],
             "type": "physical",
             "params": "",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "boot_disk": {
@@ -16452,6 +16747,9 @@ made available to the nodes through the metadata service.
                 "tags": [],
                 "type": "physical",
                 "params": "",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
@@ -16538,6 +16836,8 @@ made available to the nodes through the metadata service.
         "status_name": "Deployed",
         "storage_test_status_name": "Passed",
         "owner": "admin",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -16589,13 +16889,13 @@ disk with null bytes. This can be very slow.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **comment** (*String*): Required. Optional comment for the event log.
 
 **erase** (*Boolean*): Optional. Erase the disk when releasing.
 
-**secure\_erase** (*Boolean*): Optional. Use the drive's secure erase
+**secure\_erase** (*Boolean*): Optional. Use the drive\'s secure erase
 feature if available. In some cases, this can be much faster than
 overwriting the drive. Some drives implement secure erasure by
 overwriting themselves so this could still be slow.
@@ -16684,6 +16984,7 @@ all machines inside the KVM host. USE WITH CAUTION.
         "raids": [],
         "node_type_name": "Machine",
         "memory_test_status_name": "Passed",
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "discovered": null,
             "vlan": {
@@ -16760,6 +17061,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                 "tag-VOqx2b"
             ],
             "type": "physical",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
         },
         "hardware_info": {
@@ -16894,6 +17198,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-VOqx2b"
                 ],
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
             },
             {
@@ -16972,6 +17279,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-RwynT2"
                 ],
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
             },
             {
@@ -17050,6 +17360,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-PnEfvN"
                 ],
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
             },
             {
@@ -17127,6 +17440,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-QK7j09"
                 ],
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
             },
             {
@@ -17205,6 +17521,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-GsPX3m"
                 ],
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
             },
             {
@@ -17283,6 +17602,9 @@ all machines inside the KVM host. USE WITH CAUTION.
                     "tag-xhApes"
                 ],
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
             }
         ],
@@ -17519,6 +17841,8 @@ all machines inside the KVM host. USE WITH CAUTION.
         "owner": null,
         "address_ttl": null,
         "swap_size": null,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -17550,14 +17874,14 @@ released.
 
 Begins the rescue mode process on a machine with the given system\_id.
 
-A machine in the 'deployed' or 'broken' state may initiate the rescue
-mode process.
+A machine in the \'deployed\' or \'broken\' state may initiate the
+rescue mode process.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -17662,6 +17986,7 @@ mode process.
                 "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/blockdevices/3/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "children": [],
             "discovered": null,
@@ -17694,6 +18019,9 @@ mode process.
             "tags": [],
             "parents": [],
             "system_id": "a8m7sr",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/interfaces/6/"
         },
         "interface_set": [
@@ -17729,6 +18057,9 @@ mode process.
                 "tags": [],
                 "parents": [],
                 "system_id": "a8m7sr",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/interfaces/6/"
             }
         ],
@@ -17817,6 +18148,8 @@ mode process.
             "system_id": "a8m7sr",
             "resource_uri": "/MAAS/api/2.0/nodes/a8m7sr/blockdevices/3/"
         },
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/a8m7sr/"
     }
 
@@ -17849,7 +18182,7 @@ system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -17889,6 +18222,7 @@ system\_id.
             "mainboard_firmware_version": "Unknown",
             "mainboard_firmware_date": "Unknown"
         },
+        "bios_boot_method": "pxe",
         "boot_interface": null,
         "physicalblockdevice_set": [
             {
@@ -18214,6 +18548,8 @@ system\_id.
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/blockdevices/20/"
             }
         ],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -18246,7 +18582,7 @@ given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -18271,6 +18607,7 @@ given system\_id.
         "current_testing_result_id": 22,
         "node_type": 0,
         "distro_series": "",
+        "bios_boot_method": "pxe",
         "boot_interface": null,
         "node_type_name": "Machine",
         "blockdevice_set": [
@@ -18611,6 +18948,8 @@ given system\_id.
         "other_test_status": 2,
         "storage_test_status_name": "Passed",
         "cpu_count": 3,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -18643,7 +18982,7 @@ machine with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **Success**
 
@@ -18660,6 +18999,7 @@ machine with the given system\_id.
         "raids": [],
         "status_name": "Ready",
         "storage": 9204.621312000001,
+        "bios_boot_method": "pxe",
         "boot_interface": null,
         "boot_disk": {
             "firmware_version": "firmware_version-Jf2fDS",
@@ -19008,6 +19348,8 @@ machine with the given system\_id.
         "commissioning_status_name": "Passed",
         "locked": false,
         "virtualblockdevice_set": [],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -19076,7 +19418,7 @@ is no longer allocated to a user.
 Changes the storage layout on machine with the given system\_id.
 
 This operation can only be performed on a machine with a status of
-'Ready'.
+\'Ready\'.
 
 Note: This will clear the current storage layout and any extra
 configuration and replace it will the new layout.
@@ -19085,7 +19427,7 @@ configuration and replace it will the new layout.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **storage\_layout** (*String*): Required. Storage layout for the
 machine: `flat`, `lvm`, `bcache`, `vmfs6`, or `blank`.
@@ -19117,7 +19459,7 @@ device: `writeback`, `writethrough`, `writearound`.
 **cache\_size** (*String*): Optional. Bcache only. Size of the cache
 partition to create on the cache device (e.g. 48G).
 
-**cache\_no\_part** (*Boolean*): Optional. Bcache only. Don't create a
+**cache\_no\_part** (*Boolean*): Optional. Bcache only. Don\'t create a
 partition on the cache device. Use the entire disk as the cache device.
 
 **Success**
@@ -19223,6 +19565,7 @@ partition on the cache device. Use the entire disk as the cache device.
                 "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/blockdevices/1/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "children": [],
             "discovered": null,
@@ -19255,6 +19598,9 @@ partition on the cache device. Use the entire disk as the cache device.
             "tags": [],
             "parents": [],
             "system_id": "8bk8nn",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/interfaces/4/"
         },
         "interface_set": [
@@ -19290,6 +19636,9 @@ partition on the cache device. Use the entire disk as the cache device.
                 "tags": [],
                 "parents": [],
                 "system_id": "8bk8nn",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/interfaces/4/"
             }
         ],
@@ -19378,6 +19727,8 @@ partition on the cache device. Use the entire disk as the cache device.
             "system_id": "8bk8nn",
             "resource_uri": "/MAAS/api/2.0/nodes/8bk8nn/blockdevices/1/"
         },
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/8bk8nn/"
     }
 
@@ -19409,22 +19760,27 @@ of this machine.
 
 Begins the testing process for a given node.
 
-A node in the 'ready', 'allocated', 'deployed', 'broken', or any failed
-state may run tests. If testing is started and successfully passes from
-'broken' or any failed state besides 'failed commissioning' the node
-will be returned to a ready state. Otherwise the node will return to the
-state it was when testing started.
+A node in the \'ready\', \'allocated\', \'deployed\', \'broken\', or any
+failed state may run tests. If testing is started and successfully
+passes from \'broken\' or any failed state besides \'failed
+commissioning\' the node will be returned to a ready state. Otherwise
+the node will return to the state it was when testing started.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the testing
-environment using the user's SSH key(s). 0 == false. 1 == true.
+environment using the user\'s SSH key(s). 0 == false. 1 == true.
 
 **testing\_scripts** (*String*): Optional. A comma-separated list of
 testing script names and tags to be run. By default all tests tagged
-'commissioning' will be run.
+\'commissioning\' will be run.
+
+**parameters** (*String*): Optional. Scripts selected to run may define
+their own parameters. These parameters may be passed using the parameter
+name. Optionally a parameter may have the script name prepended to have
+that parameter only apply to that specific script.
 
 **Success**
 
@@ -19522,6 +19878,7 @@ testing script names and tags to be run. By default all tests tagged
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/blockdevices/2/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "firmware_version": null,
             "vlan": {
@@ -19589,6 +19946,9 @@ testing script names and tags to be run. By default all tests tagged
             "system_id": "e8xa8m",
             "enabled": true,
             "name": "ens4",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "pod": {
@@ -19816,10 +20176,15 @@ testing script names and tags to be run. By default all tests tagged
                 "system_id": "e8xa8m",
                 "enabled": true,
                 "name": "ens4",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
         "commissioning_status_name": "Passed",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -19840,13 +20205,14 @@ testing script names and tags to be run. By default all tests tagged
 
 ------------------------------------------------------------------------
 
-Mark a machine with the given system\_id as 'Unlocked' to allow changes.
+Mark a machine with the given system\_id as \'Unlocked\' to allow
+changes.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **comment** (*String*): Optional. Optional comment for the event log.
 
@@ -19980,6 +20346,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 46,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/46/"
             },
             {
@@ -20057,6 +20426,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 47,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/47/"
             },
             {
@@ -20134,6 +20506,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 48,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/48/"
             },
             {
@@ -20213,6 +20588,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 49,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/49/"
             },
             {
@@ -20292,6 +20670,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 50,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/50/"
             },
             {
@@ -20371,10 +20752,14 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "discovered": null,
                 "vendor": null,
                 "id": 51,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/51/"
             }
         ],
         "raids": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "parents": [],
             "name": "eth-xMPy44",
@@ -20450,6 +20835,9 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
             "discovered": null,
             "vendor": null,
             "id": 46,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/recrwg/interfaces/46/"
         },
         "status_message": "(admin)",
@@ -20775,6 +21163,8 @@ Mark a machine with the given system\_id as 'Unlocked' to allow changes.
                 "resource_uri": "/MAAS/api/2.0/nodes/recrwg/blockdevices/24/"
             }
         ],
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/recrwg/"
     }
 
@@ -20806,7 +21196,7 @@ given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **mount\_point** (*String*): Required. Path on the filesystem to
 unmount.
@@ -21010,6 +21400,9 @@ unmount.
                 "product": null,
                 "id": 37,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
             },
             {
@@ -21088,6 +21481,9 @@ unmount.
                 "product": null,
                 "id": 38,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
             },
             {
@@ -21166,6 +21562,9 @@ unmount.
                 "product": null,
                 "id": 39,
                 "type": "physical",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
             },
             {
@@ -21243,6 +21642,9 @@ unmount.
                 "product": null,
                 "id": 40,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
             },
             {
@@ -21321,6 +21723,9 @@ unmount.
                 "product": null,
                 "id": 41,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
             },
             {
@@ -21399,6 +21804,9 @@ unmount.
                 "product": null,
                 "id": 42,
                 "type": "vlan",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
             }
         ],
@@ -21470,6 +21878,7 @@ unmount.
         "tag_names": [],
         "memory_test_status": 2,
         "testing_status": 2,
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "parents": [],
             "params": "",
@@ -21546,6 +21955,9 @@ unmount.
             "product": null,
             "id": 37,
             "type": "physical",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
         },
         "raids": [],
@@ -21730,6 +22142,8 @@ unmount.
         "power_state": "on",
         "hostname": "above-robin",
         "description": "Optional description for the machine.",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -21761,7 +22175,7 @@ Updates a machine with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machines's system\_id.
+**{system\_id}** (*String*): Required. The machines\'s system\_id.
 
 **hostname** (*String*): Optional. The new hostname for this machine.
 
@@ -21779,22 +22193,23 @@ minimum kernel version allowed to be ran on this machine.
 
 **power\_type** (*String*): Optional. The new power type for this
 machine. If you use the default value, power\_parameters will be set to
-the empty string. Available to admin users. See the [Power types]()
-section for a list of the available power types.
+the empty string. Available to admin users. See the [Power
+types](#power-types) section for a list of the available power types.
 
-**[power\_parameters](){param1}** (*String*): Optional. The new value
-for the 'param1' power parameter. Note that this is dynamic as the
-available parameters depend on the selected value of the Machine's
-power\_type. Available to admin users. See the [Power types]() section
-for a list of the available power parameters for each power type.
+**power\_parameters\_{param1}** (*String*): Optional. The new value for
+the \'param1\' power parameter. Note that this is dynamic as the
+available parameters depend on the selected value of the Machine\'s
+power\_type. Available to admin users. See the [Power
+types](#power-types) section for a list of the available power
+parameters for each power type.
 
 **power\_parameters\_skip\_check** (*Boolean*): Optional. Whether or not
 the new power parameters for this machine should be checked against the
-expected power parameters for the machine's power type ('true' or
-'false'). The default is 'false'.
+expected power parameters for the machine\'s power type (\'true\' or
+\'false\'). The default is \'false\'.
 
 **pool** (*String*): Optional. The resource pool to which the machine
-should belong. All machines belong to the 'default' resource pool if
+should belong. All machines belong to the \'default\' resource pool if
 they do not belong to any other resource pool.
 
 **zone** (*String*): Optional. Name of a valid physical zone in which to
@@ -21872,6 +22287,9 @@ kilobytes, megabytes, gigabytes and terabytes.
                 "links": [],
                 "id": 69,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/69/"
             },
             {
@@ -21912,6 +22330,9 @@ kilobytes, megabytes, gigabytes and terabytes.
                 "links": [],
                 "id": 70,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/70/"
             },
             {
@@ -21952,6 +22373,9 @@ kilobytes, megabytes, gigabytes and terabytes.
                 "links": [],
                 "id": 71,
                 "parents": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/71/"
             },
             {
@@ -21994,6 +22418,9 @@ kilobytes, megabytes, gigabytes and terabytes.
                     "eth-D6eWMG",
                     "eth-jazQFg"
                 ],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/72/"
             }
         ],
@@ -22211,6 +22638,7 @@ kilobytes, megabytes, gigabytes and terabytes.
         "architecture": "amd64/generic",
         "min_hwe_kernel": "",
         "virtualblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "type": "physical",
             "vlan": {
@@ -22249,6 +22677,9 @@ kilobytes, megabytes, gigabytes and terabytes.
             "links": [],
             "id": 69,
             "parents": [],
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/d8n3re/interfaces/69/"
         },
         "default_gateways": {
@@ -22269,6 +22700,8 @@ kilobytes, megabytes, gigabytes and terabytes.
         "hostname": "newname",
         "description": "Optional description for the machine.",
         "testing_status_name": "Failed",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/d8n3re/"
     }
 
@@ -22288,6 +22721,7 @@ kilobytes, megabytes, gigabytes and terabytes.
 
 <p>&nbsp;</p>
 </details>
+
 ### Machines
 
 Manage the collection of all the machines in the MAAS.
@@ -22309,6 +22743,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 the matching hostname will be returned. This can be specified multiple
 times to see multiple nodes.
 
+**cpu\_count** (*Int*): Optional. Only nodes with the specified minimum
+number of CPUs will be included.
+
+**mem** (*String*): Optional. Only nodes with the specified minimum
+amount of RAM (in MiB) will be included.
+
 **mac\_address** (*String*): Optional. Only nodes relating to the node
 owning the specified MAC address will be returned. This can be specified
 multiple times to see multiple nodes.
@@ -22327,6 +22767,42 @@ returned.
 
 **agent\_name** (*String*): Optional. Only nodes relating to the nodes
 with matching agent names will be returned.
+
+**fabrics** (*String*): Optional. Only nodes with interfaces in
+specified fabrics will be returned.
+
+**not\_fabrics** (*String*): Optional. Only nodes with interfaces not in
+specified fabrics will be returned.
+
+**vlans** (*String*): Optional. Only nodes with interfaces in specified
+VLANs will be returned.
+
+**not\_vlans** (*String*): Optional. Only nodes with interfaces not in
+specified VLANs will be returned.
+
+**subnets** (*String*): Optional. Only nodes with interfaces in
+specified subnets will be returned.
+
+**not\_subnets** (*String*): Optional. Only nodes with interfaces not in
+specified subnets will be returned.
+
+**link\_speed** (*String*): Optional. Only nodes with interfaces with
+link speeds greater than or equal to link\_speed will be returned.
+
+**status** (*String*): Optional. Only nodes with specified status will
+be returned.
+
+**pod** (*String*): Optional. Only nodes that belong to a specified pod
+will be returned.
+
+**not\_pod** (*String*): Optional. Only nodes that don\'t belong to a
+specified pod will be returned.
+
+**pod\_type** (*String*): Optional. Only nodes that belong to a pod of
+the specified type will be returned.
+
+**not\_pod\_type** (*String*): Optional. Only nodes that don\'t belong a
+pod of the specified type will be returned.
 
 **Success**
 
@@ -22514,6 +22990,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/1/"
                 },
                 {
@@ -22583,6 +23062,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/17/"
                 }
             ],
@@ -22615,6 +23097,8 @@ with matching agent names will be returned.
             "storage_test_status_name": "Unknown",
             "architecture": "amd64/generic",
             "cpu_test_status_name": "Unknown",
+            "interface_test_status_name": "Unknown",
+            "interface_test_status": -1,
             "resource_uri": "/MAAS/api/2.0/rackcontrollers/6gsym8/"
         }
     ]
@@ -22735,33 +23219,33 @@ Create a new machine.
 Adding a server to MAAS wipes its disks and re-installs its operating
 system, in the event that it PXE boots. In anonymous enlistment (and
 when the enlistment is done by a non-admin), the machine is held in the
-"New" state for approval by a MAAS admin.
+\"New\" state for approval by a MAAS admin.
 
 The minimum data required is:
 
-architecture=&lt;arch string&gt; (e.g. "i386/generic")
-mac\_addresses=&lt;value&gt; (e.g. "aa:bb:cc:dd:ee:ff")
+architecture=\<arch string\> (e.g. \"i386/generic\")
+mac\_addresses=\<value\> (e.g. \"aa:bb:cc:dd:ee:ff\")
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
 **architecture** (*String*): Required. A string containing the
-architecture type of the machine. (For example, "i386", or "amd64".) To
-:type architecture: unicode
+architecture type of the machine. (For example, \"i386\", or \"amd64\".)
+To :type architecture: unicode
 
 **min\_hwe\_kernel** (*String*): Optional. A string containing the
 minimum kernel version allowed to be ran on this machine.
 
 **subarchitecture** (*String*): Optional. A string containing the
-subarchitecture type of the machine. (For example, "generic" or
-"hwe-t".) To determine the supported subarchitectures, use the
+subarchitecture type of the machine. (For example, \"generic\" or
+\"hwe-t\".) To determine the supported subarchitectures, use the
 boot-resources endpoint.
 
 **mac\_addresses** (*String*): Required. One or more MAC addresses for
 the machine. To specify more than one MAC address, the parameter must be
-specified twice. (such as "machines new mac\_addresses=01:02:03:04:05:06
-mac\_addresses=02:03:04:05:06:07")
+specified twice. (such as \"machines new
+mac\_addresses=01:02:03:04:05:06 mac\_addresses=02:03:04:05:06:07\")
 
 **hostname** (*String*): Optional. A hostname. If not given, one will be
 generated.
@@ -22772,43 +23256,43 @@ generated.
 the default domain is used.
 
 **power\_type** (*String*): Optional. A power management type, if
-applicable (e.g. "virsh", "ipmi").
+applicable (e.g. \"virsh\", \"ipmi\").
 
-**[power\_parameters](){param}** (*String*): Optional. The parameter(s)
+**power\_parameters\_{param}** (*String*): Optional. The parameter(s)
 for the power\_type. Note that this is dynamic as the available
-parameters depend on the selected value of the Machine's power\_type.
-[Power types]() section for a list of the available power parameters for
-each power type.
+parameters depend on the selected value of the Machine\'s power\_type.
+[Power types](#power-types) section for a list of the available power
+parameters for each power type.
 
 **commission** (*Boolean*): Optional. Request the newly created machine
 to be created with status set to COMMISSIONING. Machines will wait for
 COMMISSIONING results and not time out.
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the
-commissioning environment using the user's SSH key(s). '1' == True, '0'
-== False.
+commissioning environment using the user\'s SSH key(s). \'1\' == True,
+\'0\' == False.
 
 **skip\_bmc\_config** (*Int*): Optional. Whether to skip
-re-configuration of the BMC for IPMI based machines. '1' == True, '0' ==
-False.
+re-configuration of the BMC for IPMI based machines. \'1\' == True,
+\'0\' == False.
 
 **skip\_networking** (*Int*): Optional. Whether to skip re-configuring
-the networking on the machine after the commissioning has completed. '1'
-== True, '0' == False.
+the networking on the machine after the commissioning has completed.
+\'1\' == True, \'0\' == False.
 
 **skip\_storage** (*Int*): Optional. Whether to skip re-configuring the
-storage on the machine after the commissioning has completed. '1' ==
-True, '0' == False.
+storage on the machine after the commissioning has completed. \'1\' ==
+True, \'0\' == False.
 
 **commissioning\_scripts** (*String*): Optional. A comma seperated list
 of commissioning script names and tags to be run. By default all custom
 commissioning scripts are run. Built-in commissioning scripts always
-run. Selecting 'update\_firmware' or 'configure\_hba' will run firmware
-updates or configure HBA's on matching machines.
+run. Selecting \'update\_firmware\' or \'configure\_hba\' will run
+firmware updates or configure HBA\'s on matching machines.
 
 **testing\_scripts** (*String*): Optional. A comma seperated list of
 testing script names and tags to be run. By default all tests tagged
-'commissioning' will be run. Set to 'none' to disable running tests.
+\'commissioning\' will be run. Set to \'none\' to disable running tests.
 
 **Success**
 
@@ -22839,6 +23323,7 @@ testing script names and tags to be run. By default all tests tagged
             "id": 0,
             "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
         },
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "children": [],
             "tags": [],
@@ -22857,6 +23342,9 @@ testing script names and tags to be run. By default all tests tagged
             "enabled": true,
             "firmware_version": null,
             "name": "eth0",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/p37gqk/interfaces/137/"
         },
         "cache_sets": [],
@@ -22890,6 +23378,9 @@ testing script names and tags to be run. By default all tests tagged
                 "enabled": true,
                 "firmware_version": null,
                 "name": "eth0",
+                "link_connected": false,
+                "interface_speed": 0,
+                "link_speed": 0,
                 "resource_uri": "/MAAS/api/2.0/nodes/p37gqk/interfaces/137/"
             }
         ],
@@ -22959,6 +23450,8 @@ testing script names and tags to be run. By default all tests tagged
         "memory_test_status": -1,
         "raids": [],
         "hwe_kernel": null,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/p37gqk/"
     }
 
@@ -23055,7 +23548,7 @@ Add special hardware types.
 -   `mscm`: Moonshot Chassis Manager.
 -   `msftocs`: Microsoft OCS Chassis Manager.
 -   `powerkvm`: Virtual Machines on Power KVM, managed by Virsh.
--   `recs_box`: Christmann RECS|Box servers.
+-   `recs_box`: Christmann RECS\|Box servers.
 -   `seamicro15k`: Seamicro 1500 Chassis.
 -   `ucsm`: Cisco UCS Manager.
 -   `virsh`: virtual machines managed by Virsh.
@@ -23136,7 +23629,7 @@ Allocates an available machine for deployment.
 
 Constraints parameters can be used to allocate a machine that possesses
 certain characteristics. All the constraints are optional and when
-multiple constraints are provided, they are combined using 'AND'
+multiple constraints are provided, they are combined using \'AND\'
 semantics.
 
 **Parameters**
@@ -23150,7 +23643,7 @@ match.
 **system\_id** (*String*): Optional. system\_id of the desired machine.
 
 **arch** (*String*): Optional. Architecture of the returned machine
-(e.g. 'i386/generic', 'amd64', 'armhf/highbank', etc.).
+(e.g. \'i386/generic\', \'amd64\', \'armhf/highbank\', etc.).
 
 If multiple architectures are specified, the machine to acquire may
 match any of the given architectures. To request multiple architectures,
@@ -23160,12 +23653,12 @@ this parameter must be repeated in the request with each value.
 machine must have.
 
 A machine with additional CPUs may be allocated if there is no exact
-match, or if the 'mem' constraint is not also specified.
+match, or if the \'mem\' constraint is not also specified.
 
 **mem** (*Int*): Optional. The minimum amount of memory (expressed in
 MB) the returned machine must have. A machine with additional memory may
-be allocated if there is no exact match, or the 'cpu\_count' constraint
-is not also specified.
+be allocated if there is no exact match, or the \'cpu\_count\'
+constraint is not also specified.
 
 **tags** (*String*): Optional. Tags the machine must match in order to
 be acquired.
@@ -23211,7 +23704,7 @@ be located in.
 **subnets** (*String*): Optional. Subnets that must be linked to the
 machine.
 
-"Linked to" means the node must be configured to acquire an address in
+\"Linked to\" means the node must be configured to acquire an address in
 the specified subnet, have a static IP address in the specified subnet,
 or have been observed to DHCP from the specified subnet during
 commissioning time (which implies that it *could* have an address on the
@@ -23219,21 +23712,21 @@ specified subnet).
 
 Subnets can be specified by one of the following criteria:
 
--   &lt;id&gt;: Match the subnet by its 'id' field
--   fabric:&lt;fabric-spec&gt;: Match all subnets in a given fabric.
--   ip:&lt;ip-address&gt;: Match the subnet containing
-    &lt;ip-address&gt; with the with the longest-prefix match.
--   name:&lt;subnet-name&gt;: Match a subnet with the given name.
--   space:&lt;space-spec&gt;: Match all subnets in a given space.
--   vid:&lt;vid-integer&gt;: Match a subnet on a VLAN with the specified
+-   \<id\>: Match the subnet by its \'id\' field
+-   fabric:\<fabric-spec\>: Match all subnets in a given fabric.
+-   ip:\<ip-address\>: Match the subnet containing \<ip-address\> with
+    the with the longest-prefix match.
+-   name:\<subnet-name\>: Match a subnet with the given name.
+-   space:\<space-spec\>: Match all subnets in a given space.
+-   vid:\<vid-integer\>: Match a subnet on a VLAN with the specified
     VID. Valid values range from 0 through 4094 (inclusive). An untagged
-    VLAN can be specified by using the value "0".
--   vlan:&lt;vlan-spec&gt;: Match all subnets on the given VLAN.
+    VLAN can be specified by using the value \"0\".
+-   vlan:\<vlan-spec\>: Match all subnets on the given VLAN.
 
-Note that (as of this writing), the 'fabric', 'space', 'vid', and 'vlan'
-specifiers are only useful for the 'not\_spaces' version of this
-constraint, because they will most likely force the query to match ALL
-the subnets in each fabric, space, or VLAN, and thus not return any
+Note that (as of this writing), the \'fabric\', \'space\', \'vid\', and
+\'vlan\' specifiers are only useful for the \'not\_spaces\' version of
+this constraint, because they will most likely force the query to match
+ALL the subnets in each fabric, space, or VLAN, and thus not return any
 nodes. (This is not a particularly useful behavior, so may be changed in
 the future.)
 
@@ -23241,12 +23734,12 @@ If multiple subnets are specified, the machine must be associated with
 all of them. To request multiple subnets, this parameter must be
 repeated in the request with each value.
 
-Note that this replaces the legacy 'networks' constraint in MAAS 1.x.
+Note that this replaces the legacy \'networks\' constraint in MAAS 1.x.
 
 **not\_subnets** (*String*): Optional. Subnets that must NOT be linked
 to the machine.
 
-See the 'subnets' constraint documentation above for more information
+See the \'subnets\' constraint documentation above for more information
 about how each subnet can be specified.
 
 If multiple subnets are specified, the machine must NOT be associated
@@ -23254,7 +23747,7 @@ with ANY of them. To request multiple subnets to exclude, this parameter
 must be repeated in the request with each value. (Or a fabric, space, or
 VLAN specifier may be used to match multiple subnets).
 
-Note that this replaces the legacy 'not\_networks' constraint in MAAS
+Note that this replaces the legacy \'not\_networks\' constraint in MAAS
 1.x.
 
 **storage** (*String*): Optional. A list of storage constraint
@@ -23275,20 +23768,22 @@ Each key can be one of the following:
 -   `ip`: Matches an interface with the specified IP address assigned to
     it.
 -   `mode`: Matches an interface with the specified mode. (Currently,
-    the only supported mode is "unconfigured".)
+    the only supported mode is \"unconfigured\".)
 -   `name`: Matches an interface with the specified name. (For example,
-    "eth0".)
+    \"eth0\".)
 -   `hostname`: Matches an interface attached to the node with the
     specified hostname.
 -   `subnet`: Matches an interface attached to the specified subnet.
 -   `space`: Matches an interface attached to the specified space.
 -   `subnet_cidr`: Matches an interface attached to the specified subnet
-    CIDR. (For example, "192.168.0.0/24".)
+    CIDR. (For example, \"192.168.0.0/24\".)
 -   `type`: Matches an interface of the specified type. (Valid types:
-    "physical", "vlan", "bond", "bridge", or "unknown".)
+    \"physical\", \"vlan\", \"bond\", \"bridge\", or \"unknown\".)
 -   `vlan`: Matches an interface on the specified VLAN.
 -   `vid`: Matches an interface on a VLAN with the specified VID.
 -   `tag`: Matches an interface tagged with the specified tag.
+-   `link_speed`: Matches an interface with link\_speed equal to or
+    greater than the specified speed.
 
 **fabrics** (*String*): Optional. Set of fabrics that the machine must
 be associated with in order to be acquired. If multiple fabrics names
@@ -23543,6 +24038,7 @@ data structure that indicates which machine(s) matched).
         ],
         "node_type": 0,
         "special_filesystems": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "firmware_version": null,
             "vlan": {
@@ -23619,6 +24115,9 @@ data structure that indicates which machine(s) matched).
             "id": 37,
             "params": "",
             "name": "eth-lKRYAa",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
         },
         "osystem": "",
@@ -23816,6 +24315,9 @@ data structure that indicates which machine(s) matched).
                 "id": 37,
                 "params": "",
                 "name": "eth-lKRYAa",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/37/"
             },
             {
@@ -23894,6 +24396,9 @@ data structure that indicates which machine(s) matched).
                 "id": 38,
                 "params": "",
                 "name": "eth-3ookc5",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/38/"
             },
             {
@@ -23972,6 +24477,9 @@ data structure that indicates which machine(s) matched).
                 "id": 39,
                 "params": "",
                 "name": "eth-W8E8f0",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/39/"
             },
             {
@@ -24049,6 +24557,9 @@ data structure that indicates which machine(s) matched).
                 "id": 40,
                 "params": "",
                 "name": "eth-lKRYAa.42",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/40/"
             },
             {
@@ -24127,6 +24638,9 @@ data structure that indicates which machine(s) matched).
                 "id": 41,
                 "params": "",
                 "name": "eth-3ookc5.42",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/41/"
             },
             {
@@ -24205,6 +24719,9 @@ data structure that indicates which machine(s) matched).
                 "id": 42,
                 "params": "",
                 "name": "eth-W8E8f0.42",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/thr3am/interfaces/42/"
             }
         ],
@@ -24253,6 +24770,8 @@ data structure that indicates which machine(s) matched).
         "cpu_speed": 0,
         "cache_sets": [],
         "owner_data": {},
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/thr3am/"
     }
 
@@ -24296,10 +24815,10 @@ the source of the configuration.
 **destination** (*String*): Required. A list of system\_ids to clone the
 configuration to.
 
-**interfaces** (*String*): Optional. Whether to clone interface
+**interfaces** (*Boolean*): Optional. Whether to clone interface
 configuration. Defaults to False.
 
-**storage** (*String*): Optional. Whether to clone storage
+**storage** (*Boolean*): Optional. Whether to clone storage
 configuration. Defaults to False.
 
 **Success**
@@ -24407,17 +24926,19 @@ Assigns a given node to a given zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### Network
 
 Manage a network.
 
-> This endpoint is deprecated. Use the new 'subnet' endpoint instead.
+> This endpoint is deprecated. Use the new \'subnet\' endpoint instead.
 
 #### `DELETE /MAAS/api/2.0/networks/{name}/`
 
 Delete network definition.
 
-This endpoint is no longer available. Use the 'subnet' endpoint instead.
+This endpoint is no longer available. Use the \'subnet\' endpoint
+instead.
 
 #### `GET /MAAS/api/2.0/networks/{name}/`
 
@@ -24434,19 +24955,22 @@ returned.
 
 Connect the given MAC addresses to this network.
 
-This endpoint is no longer available. Use the 'subnet' endpoint instead.
+This endpoint is no longer available. Use the \'subnet\' endpoint
+instead.
 
 #### `POST /MAAS/api/2.0/networks/{name}/ op=disconnect_macs`
 
 Disconnect the given MAC addresses from this network.
 
-This endpoint is no longer available. Use the 'subnet' endpoint instead.
+This endpoint is no longer available. Use the \'subnet\' endpoint
+instead.
 
 #### `PUT /MAAS/api/2.0/networks/{name}/`
 
 Update network definition.
 
-This endpoint is no longer available. Use the 'subnet' endpoint instead.
+This endpoint is no longer available. Use the \'subnet\' endpoint
+instead.
 
 param name
 
@@ -24455,13 +24979,13 @@ param name
 
 param ip
 
-:   Base IP address for the network, e.g. 10.1.0.0. The host bits will
-    be zeroed.
+:   Base IP address for the network, e.g. [10.1.0.0]{.title-ref}. The
+    host bits will be zeroed.
 
 param netmask
 
 :   Subnet mask to indicate which parts of an IP address are part of the
-    network address. For example, 255.255.255.0.
+    network address. For example, [255.255.255.0]{.title-ref}.
 
 param vlan\_tag
 
@@ -24477,7 +25001,7 @@ param description
 
 Manage the networks.
 
-> This endpoint is deprecated. Use the new 'subnets' endpoint instead.
+> This endpoint is deprecated. Use the new \'subnets\' endpoint instead.
 
 #### `GET /MAAS/api/2.0/networks/`
 
@@ -24493,7 +25017,7 @@ param node
 
 Define a network.
 
-This endpoint is no longer available. Use the 'subnets' endpoint
+This endpoint is no longer available. Use the \'subnets\' endpoint
 instead.
 
 ### Node
@@ -24513,7 +25037,7 @@ Deletes a node with a given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -24548,7 +25072,7 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -24559,6 +25083,7 @@ Reads a node with the given system\_id.
 *JSON*
 
     {
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "system_id": "g8xyqs",
             "name": "eth-jJ5ZwN",
@@ -24597,6 +25122,9 @@ Reads a node with the given system\_id.
             "links": [],
             "effective_mtu": 1500,
             "product": null,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
         },
         "memory": 8192,
@@ -24783,6 +25311,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
             },
             {
@@ -24823,6 +25354,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/113/"
             },
             {
@@ -24863,6 +25397,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/114/"
             },
             {
@@ -24905,6 +25442,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/115/"
             }
         ],
@@ -24999,6 +25539,8 @@ Reads a node with the given system\_id.
         "other_test_status_name": "Passed",
         "virtualblockdevice_set": [],
         "cpu_speed": 0,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/g8xyqs/"
     }
 
@@ -25019,13 +25561,13 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-Returns system details -- for example, LLDP and `lshw` XML dumps.
+Returns system details \-- for example, LLDP and `lshw` XML dumps.
 
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is
-something like "lldp" or "lshw".
+something like \"lldp\" or \"lshw\".
 
 Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
+but mainly because JSON can\'t do binary content without applying
 additional encoding like base-64. The example output below is
 represented in ASCII using `bsondump example.bson` and is for
 demonstrative purposes.
@@ -25034,7 +25576,7 @@ demonstrative purposes.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The node's system\_id.
+**{system\_id}** (*String*): Required. The node\'s system\_id.
 
 **Success**
 
@@ -25103,6 +25645,7 @@ the user is not one.
 
 <p>&nbsp;</p>
 </details>
+
 ### Commissioning results
 
 Read the collection of commissioning script results.
@@ -25194,6 +25737,7 @@ the results with the specified result\_type will be returned.
 
 <p>&nbsp;</p>
 </details>
+
 ### Node Script
 
 Manage or view a custom script.
@@ -25209,7 +25753,7 @@ Deletes a script with the given name.
 
 ------------------------------------------------------------------------
 
-**{name}** (*String*): Required. The script's name.
+**{name}** (*String*): Required. The script\'s name.
 
 **Success**
 
@@ -25240,7 +25784,7 @@ Return metadata belonging to the script with the given name.
 
 ------------------------------------------------------------------------
 
-**{name}** (*String*): Required. The script's name.
+**{name}** (*String*): Required. The script\'s name.
 
 **include\_script** (*String*): Optional. Include the base64 encoded
 script content if any value is given for include\_script.
@@ -25529,7 +26073,7 @@ Revert a script with the given name to an earlier version.
 
 **{name}** (*String*): Required. The name of the script.
 
-**to** (*Int*): Optional. What revision in the script's history to
+**to** (*Int*): Optional. What revision in the script\'s history to
 revert to. This can either be an ID or a negative number representing
 how far back to go.
 
@@ -25612,7 +26156,7 @@ be used. Can be `testing` or `commissioning`, defaults to `testing`.
 
 **hardware\_type** (*String*): Optional. The hardware\_type defines what
 type of hardware the script is assoicated with. May be `cpu`, `memory`,
-`storage`, or `node`.
+`storage`, `network`, or `node`.
 
 **parallel** (*Int*): Optional. Whether the script may be run in
 parallel with other scripts. May be disabled to run by itself, instance
@@ -25643,6 +26187,9 @@ reboot the system while running.
 
 **recommission** (*Boolean*): Optional. Whether built-in commissioning
 scripts should be rerun after successfully running this scripts.
+
+**apply\_configured\_networking** (*Boolean*): Optional. Whether to
+apply the provided network configuration before the script runs.
 
 **Success**
 
@@ -25697,6 +26244,7 @@ scripts should be rerun after successfully running this scripts.
 
 <p>&nbsp;</p>
 </details>
+
 ### Node Script Result
 
 Manage node script results.
@@ -25708,14 +26256,14 @@ Manage node script results.
 
 Delete script results from the given system\_id with the given id.
 
-"id" can either by the script set id, `current-commissioning`,
+\"id\" can either by the script set id, `current-commissioning`,
 `current-testing`, or `current-installation`.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The script result id.
 
@@ -25744,14 +26292,14 @@ Delete script results from the given system\_id with the given id.
 
 View a set of test results for a given system\_id and script id.
 
-"id" can either by the script set id, `current-commissioning`,
+\"id\" can either by the script set id, `current-commissioning`,
 `current-testing`, or `current-installation`.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The script result id.
 
@@ -26343,14 +26891,14 @@ results that ran with a script name, tag, or id.
 Download a compressed tar containing all results from the given
 system\_id with the given id.
 
-"id" can either by the script set id, `current-commissioning`,
+\"id\" can either by the script set id, `current-commissioning`,
 `current-testing`, or `current-installation`.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The script result id.
 
@@ -26396,14 +26944,14 @@ results that ran with a script name or tag.
 
 Update a set of test results for a given system\_id and script id.
 
-"id" can either be the script set id, `current-commissioning`,
+\"id\" can either be the script set id, `current-commissioning`,
 `current-testing`, or `current-installation`.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **{id}** (*String*): Required. The script result id.
 
@@ -26418,7 +26966,7 @@ results that ran with a script name, tag, or id.
 output from the script if any value for include\_output is given.
 
 **suppressed** (*Boolean*): Optional. Set whether or not this script
-result should be suppressed using 'true' or 'false'.
+result should be suppressed using \'true\' or \'false\'.
 
 **Success**
 
@@ -26990,6 +27538,7 @@ result should be suppressed using 'true' or 'false'.
 
 <p>&nbsp;</p>
 </details>
+
 ### Node Script Result
 
 Manage node script results.
@@ -27005,7 +27554,7 @@ Return a list of script results grouped by run for the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The machine's system\_id.
+**{system\_id}** (*String*): Required. The machine\'s system\_id.
 
 **type** (*String*): Optional. Only return scripts with the given type.
 This can be `commissioning`, `testing`, or `installion`. Defaults to
@@ -27851,6 +28400,7 @@ results with a script name or tag.
 
 <p>&nbsp;</p>
 </details>
+
 ### Node Scripts
 
 Manage custom scripts.
@@ -27875,8 +28425,8 @@ Note that parameters should be passed in the URI. E.g.
 This can be `testing` or `commissioning`. Defaults to showing both.
 
 **hardware\_type** (*String*): Optional. Only return scripts for the
-given hardware type. Can be `node`, `cpu`, `memory`, or `storage`.
-Defaults to all.
+given hardware type. Can be `cpu`, `memory`, `storage`, `network`, or
+`node`. Defaults to all.
 
 **include\_script** (*String*): Optional. Include the base64- encoded
 script content.
@@ -28031,7 +28581,7 @@ should be used: `testing` or `commissioning`. Defaults to `testing`.
 
 **hardware\_type** (*String*): Optional. The hardware\_type defines what
 type of hardware the script is assoicated with. May be CPU, memory,
-storage, or node.
+storage, network, or node.
 
 **parallel** (*Int*): Optional. Whether the script may be run in
 parallel with other scripts. May be disabled to run by itself, instance
@@ -28106,6 +28656,7 @@ scripts should be rerun after successfully running this scripts.
 
 <p>&nbsp;</p>
 </details>
+
 ### Nodes
 
 Manage the collection of all the nodes in the MAAS.
@@ -28127,6 +28678,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 the matching hostname will be returned. This can be specified multiple
 times to see multiple nodes.
 
+**cpu\_count** (*Int*): Optional. Only nodes with the specified minimum
+number of CPUs will be included.
+
+**mem** (*String*): Optional. Only nodes with the specified minimum
+amount of RAM (in MiB) will be included.
+
 **mac\_address** (*String*): Optional. Only nodes relating to the node
 owning the specified MAC address will be returned. This can be specified
 multiple times to see multiple nodes.
@@ -28145,6 +28702,42 @@ returned.
 
 **agent\_name** (*String*): Optional. Only nodes relating to the nodes
 with matching agent names will be returned.
+
+**fabrics** (*String*): Optional. Only nodes with interfaces in
+specified fabrics will be returned.
+
+**not\_fabrics** (*String*): Optional. Only nodes with interfaces not in
+specified fabrics will be returned.
+
+**vlans** (*String*): Optional. Only nodes with interfaces in specified
+VLANs will be returned.
+
+**not\_vlans** (*String*): Optional. Only nodes with interfaces not in
+specified VLANs will be returned.
+
+**subnets** (*String*): Optional. Only nodes with interfaces in
+specified subnets will be returned.
+
+**not\_subnets** (*String*): Optional. Only nodes with interfaces not in
+specified subnets will be returned.
+
+**link\_speed** (*String*): Optional. Only nodes with interfaces with
+link speeds greater than or equal to link\_speed will be returned.
+
+**status** (*String*): Optional. Only nodes with specified status will
+be returned.
+
+**pod** (*String*): Optional. Only nodes that belong to a specified pod
+will be returned.
+
+**not\_pod** (*String*): Optional. Only nodes that don\'t belong to a
+specified pod will be returned.
+
+**pod\_type** (*String*): Optional. Only nodes that belong to a pod of
+the specified type will be returned.
+
+**not\_pod\_type** (*String*): Optional. Only nodes that don\'t belong a
+pod of the specified type will be returned.
 
 **Success**
 
@@ -28332,6 +28925,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/1/"
                 },
                 {
@@ -28401,6 +28997,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/17/"
                 }
             ],
@@ -28433,6 +29032,8 @@ with matching agent names will be returned.
             "storage_test_status_name": "Unknown",
             "architecture": "amd64/generic",
             "cpu_test_status_name": "Unknown",
+            "interface_test_status_name": "Unknown",
+            "interface_test_status": -1,
             "resource_uri": "/MAAS/api/2.0/rackcontrollers/6gsym8/"
         }
     ]
@@ -28513,6 +29114,7 @@ Assigns a given node to a given zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### Notification
 
 Manage an individual notification.
@@ -28650,11 +29252,11 @@ True for the notification to be visible to anyone.
 
 **message** (*String*): Required. The message for this notification. May
 contain basic HTML, such as formatting. This string will be sanitised
-before display so that it doesn't break MAAS HTML.
+before display so that it doesn\'t break MAAS HTML.
 
 **context** (*String*): Optional. Optional JSON context. The root object
 *must* be an object (i.e. a mapping). The values herein can be
-referenced by `message` with Python's "format" (not %) codes.
+referenced by `message` with Python\'s \"format\" (not %) codes.
 
 **category** (*String*): Optional. Choose from: `error`, `warning`,
 `success`, or `info`. Defaults to `info`.
@@ -28702,6 +29304,7 @@ false, i.e. not targeted to all admins.
 
 <p>&nbsp;</p>
 </details>
+
 ### Notifications
 
 Manage the collection of all the notifications in MAAS.
@@ -28841,11 +29444,11 @@ True for the notification to be visible to anyone.
 
 **message** (*String*): Required. The message for this notification. May
 contain basic HTML, such as formatting. This string will be sanitised
-before display so that it doesn't break MAAS HTML.
+before display so that it doesn\'t break MAAS HTML.
 
 **context** (*String*): Optional. Optional JSON context. The root object
 *must* be an object (i.e. a mapping). The values herein can be
-referenced by `message` with Python's "format" (not %) codes.
+referenced by `message` with Python\'s \"format\" (not %) codes.
 
 **category** (*String*): Optional. Choose from: `error`, `warning`,
 `success`, or `info`. Defaults to `info`.
@@ -28883,6 +29486,7 @@ false, i.e. not targeted to all admins.
 
 <p>&nbsp;</p>
 </details>
+
 ### Package Repositories
 
 Manage the collection of all Package Repositories in MAAS.
@@ -28989,6 +29593,7 @@ enabled.
 
 <p>&nbsp;</p>
 </details>
+
 ### Package Repository
 
 Manage an individual package repository.
@@ -29158,6 +29763,7 @@ enabled.
 
 <p>&nbsp;</p>
 </details>
+
 ### Partitions
 
 Manage partition on a block device.
@@ -29673,6 +30279,7 @@ filesystem.
 
 <p>&nbsp;</p>
 </details>
+
 ### Partitions
 
 Manage partitions on a block device.
@@ -29819,6 +30426,7 @@ bootable.
 
 <p>&nbsp;</p>
 </details>
+
 ### Pod
 
 Manage an individual pod.
@@ -29836,7 +30444,7 @@ Deletes a pod with the given pod ID.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The pod's ID.
+**{id}** (*Int*): Required. The pod\'s ID.
 
 **Success**
 
@@ -29862,6 +30470,7 @@ Deletes a pod with the given pod ID.
 
 <p>&nbsp;</p>
 </details>
+
 #### `GET /MAAS/api/2.0/pods/{id}/`
 
 <details>
@@ -29869,7 +30478,7 @@ Deletes a pod with the given pod ID.
 
 ------------------------------------------------------------------------
 
-This returns a pod's configuration parameters. For some types of pod,
+This returns a pod\'s configuration parameters. For some types of pod,
 this will include private information such as passwords and secret keys.
 
 Note: This method is reserved for admin users.
@@ -29878,7 +30487,7 @@ Note: This method is reserved for admin users.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The pod's ID.
+**{id}** (*Int*): Required. The pod\'s ID.
 
 **Success**
 
@@ -29921,7 +30530,7 @@ Adds a tag to a given pod.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The pod's ID.
+**{id}** (*Int*): Required. The pod\'s ID.
 
 **tag** (*String*): Required. The tag to add.
 
@@ -30078,17 +30687,17 @@ Keys:
     the given IP address, and allocates the specified IP address for the
     machine on that interface (if it is available).
 -   `mode`: Matches an interface with the specified mode. (Currently,
-    the only supported mode is "unconfigured".)
+    the only supported mode is \"unconfigured\".)
 -   `name`: Matches an interface with the specified name. (For example,
-    "eth0".)
+    \"eth0\".)
 -   `hostname`: Matches an interface attached to the node with the
     specified hostname.
 -   `subnet`: Matches an interface attached to the specified subnet.
 -   `space`: Matches an interface attached to the specified space.
 -   `subnet_cidr`: Matches an interface attached to the specified subnet
-    CIDR. (For example, "192.168.0.0/24".)
+    CIDR. (For example, \"192.168.0.0/24\".)
 -   `type`: Matches an interface of the specified type. (Valid types:
-    "physical", "vlan", "bond", "bridge", or "unknown".)
+    \"physical\", \"vlan\", \"bond\", \"bridge\", or \"unknown\".)
 -   `vlan`: Matches an interface on the specified VLAN.
 -   `vid`: Matches an interface on a VLAN with the specified VID.
 -   `tag`: Matches an interface tagged with the specified tag.
@@ -30148,7 +30757,7 @@ discovered machines.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Optional. The pod's ID.
+**{id}** (*Int*): Optional. The pod\'s ID.
 
 **Success**
 
@@ -30250,7 +30859,7 @@ Removes a given tag from a pod.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The pod's ID.
+**{id}** (*Int*): Required. The pod\'s ID.
 
 **tag** (*String*): Required. The tag to add.
 
@@ -30366,19 +30975,19 @@ Removes a given tag from a pod.
 
 Update a specific pod by ID.
 
-Note: A pod's 'type' cannot be updated. The pod must be deleted and
+Note: A pod\'s \'type\' cannot be updated. The pod must be deleted and
 re-added to change the type.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{id}** (*URL String*): Required. The pod's ID.
+**{id}** (*URL String*): Required. The pod\'s ID.
 
-**name** (*String*): Optional. The pod's name.
+**name** (*String*): Optional. The pod\'s name.
 
 **pool** (*String*): Optional. The name of the resource pool associated
-with this pod -- composed machines will be assigned to this resource
+with this pod \-- composed machines will be assigned to this resource
 pool by default.
 
 **cpu\_over\_commit\_ratio** (*Int*): Optional. CPU overcommit ratio
@@ -30396,7 +31005,7 @@ the pod.
 **power\_pass** (*String*): Optional. Password for access to power
 control of the pod.
 
-**zone** (*String*): Optional. The pod's zone.
+**zone** (*String*): Optional. The pod\'s zone.
 
 **default\_macvlan\_mode** (*String*): Optional. Default macvlan mode
 for pods that use it: bridge, passthru, private, vepa.
@@ -30481,13 +31090,14 @@ associated with the pod.
 
 ------------------------------------------------------------------------
 
-*HTTP Status Code* : 404 -- The pod's ID was not found.
+*HTTP Status Code* : 404 \-- The pod\'s ID was not found.
 
-*HTTP Status Code* : 403 -- The current user does not have permission to
-update the pod.
+*HTTP Status Code* : 403 \-- The current user does not have permission
+to update the pod.
 
 <p>&nbsp;</p>
 </details>
+
 ### Pods
 
 Manage the collection of all the pod in the MAAS.
@@ -30605,7 +31215,7 @@ Create or discover a new pod.
 `virsh`.
 
 **power\_address** (*String*): Required. Address that gives MAAS access
-to the pod's power control. For example:
+to the pod\'s power control. For example:
 `qemu+ssh://172.16.99.2/system`.
 
 **power\_user** (*String*): Required. Username to use for power control
@@ -30616,9 +31226,9 @@ set up for public-key authentication.
 of the pod. Required for `rsd` pods or `virsh` pods that do not have SSH
 set up for public-key authentication.
 
-**name** (*String*): Optional. The new pod's name.
+**name** (*String*): Optional. The new pod\'s name.
 
-**zone** (*String*): Optional. The new pod's zone.
+**zone** (*String*): Optional. The new pod\'s zone.
 
 **pool** (*String*): Optional. The name of the resource pool the new pod
 will belong to. Machines composed from this pod will be assigned to this
@@ -30724,6 +31334,7 @@ to assign to the new pod.
 
 <p>&nbsp;</p>
 </details>
+
 ### RackController
 
 Manage an individual rack controller.
@@ -30736,12 +31347,12 @@ The rack controller is identified by its system\_id.
 ------------------------------------------------------------------------
 
 Deletes a rack controller with the given system\_id. A rack controller
-cannot be deleted if it is set to primary\_rack on a VLAN and another
-rack controller cannot be used to provide DHCP for said VLAN. Use force
-to override this behavior.
+cannot be deleted if it is set to [primary\_rack]{.title-ref} on a
+[VLAN]{.title-ref} and another rack controller cannot be used to provide
+DHCP for said VLAN. Use [force]{.title-ref} to override this behavior.
 
-Using force will also allow deleting a rack controller that is hosting
-pod virtual machines. The pod will also be deleted.
+Using [force]{.title-ref} will also allow deleting a rack controller
+that is hosting pod virtual machines. The pod will also be deleted.
 
 Rack controllers that are also region controllers will be converted to a
 region controller (and hosted pods will not be affected).
@@ -30751,8 +31362,9 @@ region controller (and hosted pods will not be affected).
 ------------------------------------------------------------------------
 
 **force** (*Boolean*): Optional. Always delete the rack controller even
-if it is the primary\_rack on a VLAN and another rack controller cannot
-provide DHCP on that VLAN. This will disable DHCP on those VLANs.
+if it is the [primary\_rack]{.title-ref} on a [VLAN]{.title-ref} and
+another rack controller cannot provide DHCP on that VLAN. This will
+disable DHCP on those VLANs.
 
 **Success**
 
@@ -30777,7 +31389,7 @@ controller.
 
 *HTTP Status Code* : 400
 
-*Content* : Unable to delete 'maas-run'; it is currently set as a
+*Content* : Unable to delete \'maas-run\'; it is currently set as a
 primary rack controller on VLANs fabric-0.untagged and no other rack
 controller can provide DHCP.
 
@@ -30794,7 +31406,7 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -30805,6 +31417,7 @@ Reads a node with the given system\_id.
 *JSON*
 
     {
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "system_id": "g8xyqs",
             "name": "eth-jJ5ZwN",
@@ -30843,6 +31456,9 @@ Reads a node with the given system\_id.
             "links": [],
             "effective_mtu": 1500,
             "product": null,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
         },
         "memory": 8192,
@@ -31029,6 +31645,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
             },
             {
@@ -31069,6 +31688,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/113/"
             },
             {
@@ -31109,6 +31731,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/114/"
             },
             {
@@ -31151,6 +31776,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/115/"
             }
         ],
@@ -31245,6 +31873,8 @@ Reads a node with the given system\_id.
         "other_test_status_name": "Passed",
         "virtualblockdevice_set": [],
         "cpu_speed": 0,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/g8xyqs/"
     }
 
@@ -31265,13 +31895,13 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-Returns system details -- for example, LLDP and `lshw` XML dumps.
+Returns system details \-- for example, LLDP and `lshw` XML dumps.
 
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is
-something like "lldp" or "lshw".
+something like \"lldp\" or \"lshw\".
 
 Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
+but mainly because JSON can\'t do binary content without applying
 additional encoding like base-64. The example output below is
 represented in ASCII using `bsondump example.bson` and is for
 demonstrative purposes.
@@ -31280,7 +31910,7 @@ demonstrative purposes.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The node's system\_id.
+**{system\_id}** (*String*): Required. The node\'s system\_id.
 
 **Success**
 
@@ -31381,10 +32011,10 @@ the user is not one.
 
 ------------------------------------------------------------------------
 
-Gets the power state of a given node. MAAS sends a request to the node's
-power controller, which asks it about the node's state. The reply to
-this could be delayed by up to 30 seconds while waiting for the power
-controller to respond. Use this method sparingly as it ties up an
+Gets the power state of a given node. MAAS sends a request to the
+node\'s power controller, which asks it about the node\'s state. The
+reply to this could be delayed by up to 30 seconds while waiting for the
+power controller to respond. Use this method sparingly as it ties up an
 appserver thread while waiting.
 
 **Parameters**
@@ -31422,7 +32052,7 @@ appserver thread while waiting.
 
 ------------------------------------------------------------------------
 
-Abort a node's current operation.
+Abort a node\'s current operation.
 
 **Parameters**
 
@@ -31471,8 +32101,7 @@ Import boot images on a given rack controller or all rack controllers.
 
 *HTTP Status Code* : 200
 
-*Content* : Import of boot images started on &lt;rack controller
-name&gt;
+*Content* : Import of boot images started on \<rack controller name\>
 
 **Error**
 
@@ -31532,12 +32161,12 @@ Powers off a given node.
 
 ------------------------------------------------------------------------
 
-**stop\_mode** (*String*): Optional. Power-off mode. If 'soft', perform
-a soft power down if the node's power type supports it, otherwise
-perform a hard power off. For all values other than 'soft', and by
-default, perform a hard power off. A soft power off generally asks the
-OS to shutdown the system gracefully before powering off, while a hard
-power off occurs immediately without any warning to the OS.
+**stop\_mode** (*String*): Optional. Power-off mode. If \'soft\',
+perform a soft power down if the node\'s power type supports it,
+otherwise perform a hard power off. For all values other than \'soft\',
+and by default, perform a hard power off. A soft power off generally
+asks the OS to shutdown the system gracefully before powering off, while
+a hard power off occurs immediately without any warning to the OS.
 
 **comment** (*String*): Optional. Comment for the event log.
 
@@ -31561,6 +32190,7 @@ power off occurs immediately without any warning to the OS.
         "cpu_test_status_name": "Unknown",
         "testing_status": 2,
         "iscsiblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "vlan": {
                 "vid": 0,
@@ -31628,6 +32258,9 @@ power off occurs immediately without any warning to the OS.
             "tags": [],
             "type": "physical",
             "params": "",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "boot_disk": {
@@ -31849,6 +32482,9 @@ power off occurs immediately without any warning to the OS.
                 "tags": [],
                 "type": "physical",
                 "params": "",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
@@ -31935,6 +32571,8 @@ power off occurs immediately without any warning to the OS.
         "status_name": "Deployed",
         "storage_test_status_name": "Passed",
         "owner": "admin",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -31990,6 +32628,7 @@ made available to the nodes through the metadata service.
         "cpu_test_status_name": "Unknown",
         "testing_status": 2,
         "iscsiblockdevice_set": [],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "vlan": {
                 "vid": 0,
@@ -32057,6 +32696,9 @@ made available to the nodes through the metadata service.
             "tags": [],
             "type": "physical",
             "params": "",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "boot_disk": {
@@ -32278,6 +32920,9 @@ made available to the nodes through the metadata service.
                 "tags": [],
                 "type": "physical",
                 "params": "",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
@@ -32364,6 +33009,8 @@ made available to the nodes through the metadata service.
         "status_name": "Deployed",
         "storage_test_status_name": "Passed",
         "owner": "admin",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -32396,22 +33043,27 @@ cluster interface.
 
 Begins the testing process for a given node.
 
-A node in the 'ready', 'allocated', 'deployed', 'broken', or any failed
-state may run tests. If testing is started and successfully passes from
-'broken' or any failed state besides 'failed commissioning' the node
-will be returned to a ready state. Otherwise the node will return to the
-state it was when testing started.
+A node in the \'ready\', \'allocated\', \'deployed\', \'broken\', or any
+failed state may run tests. If testing is started and successfully
+passes from \'broken\' or any failed state besides \'failed
+commissioning\' the node will be returned to a ready state. Otherwise
+the node will return to the state it was when testing started.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the testing
-environment using the user's SSH key(s). 0 == false. 1 == true.
+environment using the user\'s SSH key(s). 0 == false. 1 == true.
 
 **testing\_scripts** (*String*): Optional. A comma-separated list of
 testing script names and tags to be run. By default all tests tagged
-'commissioning' will be run.
+\'commissioning\' will be run.
+
+**parameters** (*String*): Optional. Scripts selected to run may define
+their own parameters. These parameters may be passed using the parameter
+name. Optionally a parameter may have the script name prepended to have
+that parameter only apply to that specific script.
 
 **Success**
 
@@ -32509,6 +33161,7 @@ testing script names and tags to be run. By default all tests tagged
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/blockdevices/2/"
             }
         ],
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "firmware_version": null,
             "vlan": {
@@ -32576,6 +33229,9 @@ testing script names and tags to be run. By default all tests tagged
             "system_id": "e8xa8m",
             "enabled": true,
             "name": "ens4",
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
         },
         "pod": {
@@ -32803,10 +33459,15 @@ testing script names and tags to be run. By default all tests tagged
                 "system_id": "e8xa8m",
                 "enabled": true,
                 "name": "ens4",
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/e8xa8m/interfaces/5/"
             }
         ],
         "commissioning_status_name": "Passed",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/e8xa8m/"
     }
 
@@ -32838,23 +33499,26 @@ rack controller.
 
 **power\_type** (*String*): Optional. The new power type for the given
 rack controller. If you use the default value, power\_parameters will be
-set to an empty string. See the [Power types]() section for a list of
-available power types. Note that only admin users can set this
+set to an empty string. See the [Power types](#power-types) section for
+a list of available power types. Note that only admin users can set this
 parameter.
 
-**[power\_parameters](){param}** (*String*): Required. The new value for
-the 'param' power parameter. This is a dynamic parameter that depends on
-the rack controller's power\_type. See the [Power types]() section for a
-list of available parameters based on power type. Note that only admin
-users can set these parameters.
+**power\_parameters\_{param}** (*String*): Required. The new value for
+the \'param\' power parameter. This is a dynamic parameter that depends
+on the rack controller\'s power\_type. See the [Power
+types](#power-types) section for a list of available parameters based on
+power type. Note that only admin users can set these parameters.
 
 **power\_parameters\_skip\_check** (*Boolean*): Optional. If true, the
 new power parameters for the given rack controller will be checked
-against the expected parameters for the rack controller's power type.
+against the expected parameters for the rack controller\'s power type.
 Default is false.
 
 **zone** (*String*): Optional. The name of a valid zone in which to
 place the given rack controller.
+
+**domain** (*String*): Optional. The domain for this controller. If not
+given the default domain is used.
 
 **Success**
 
@@ -32919,6 +33583,9 @@ place the given rack controller.
                 "mac_address": "f9:d6:ff:1b:a9:64",
                 "system_id": "fcka3t",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/fcka3t/interfaces/6/"
             },
             {
@@ -32959,6 +33626,9 @@ place the given rack controller.
                 "mac_address": "4f:e6:e6:df:61:ec",
                 "system_id": "fcka3t",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/fcka3t/interfaces/7/"
             },
             {
@@ -33036,6 +33706,9 @@ place the given rack controller.
                 "mac_address": "ac:8e:44:fc:d0:97",
                 "system_id": "fcka3t",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/fcka3t/interfaces/8/"
             },
             {
@@ -33116,6 +33789,9 @@ place the given rack controller.
                 "mac_address": "b6:b4:a9:23:a9:af",
                 "system_id": "fcka3t",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/fcka3t/interfaces/9/"
             },
             {
@@ -33195,6 +33871,9 @@ place the given rack controller.
                 "mac_address": "b6:b4:a9:23:a9:af",
                 "system_id": "fcka3t",
                 "effective_mtu": 1500,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/fcka3t/interfaces/10/"
             }
         ],
@@ -33294,6 +33973,8 @@ place the given rack controller.
         },
         "cpu_count": 0,
         "commissioning_status_name": "Unknown",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/rackcontrollers/fcka3t/"
     }
 
@@ -33313,6 +33994,7 @@ place the given rack controller.
 
 <p>&nbsp;</p>
 </details>
+
 ### RackControllers
 
 Manage the collection of all rack controllers in MAAS.
@@ -33334,6 +34016,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 the matching hostname will be returned. This can be specified multiple
 times to see multiple nodes.
 
+**cpu\_count** (*Int*): Optional. Only nodes with the specified minimum
+number of CPUs will be included.
+
+**mem** (*String*): Optional. Only nodes with the specified minimum
+amount of RAM (in MiB) will be included.
+
 **mac\_address** (*String*): Optional. Only nodes relating to the node
 owning the specified MAC address will be returned. This can be specified
 multiple times to see multiple nodes.
@@ -33352,6 +34040,42 @@ returned.
 
 **agent\_name** (*String*): Optional. Only nodes relating to the nodes
 with matching agent names will be returned.
+
+**fabrics** (*String*): Optional. Only nodes with interfaces in
+specified fabrics will be returned.
+
+**not\_fabrics** (*String*): Optional. Only nodes with interfaces not in
+specified fabrics will be returned.
+
+**vlans** (*String*): Optional. Only nodes with interfaces in specified
+VLANs will be returned.
+
+**not\_vlans** (*String*): Optional. Only nodes with interfaces not in
+specified VLANs will be returned.
+
+**subnets** (*String*): Optional. Only nodes with interfaces in
+specified subnets will be returned.
+
+**not\_subnets** (*String*): Optional. Only nodes with interfaces not in
+specified subnets will be returned.
+
+**link\_speed** (*String*): Optional. Only nodes with interfaces with
+link speeds greater than or equal to link\_speed will be returned.
+
+**status** (*String*): Optional. Only nodes with specified status will
+be returned.
+
+**pod** (*String*): Optional. Only nodes that belong to a specified pod
+will be returned.
+
+**not\_pod** (*String*): Optional. Only nodes that don\'t belong to a
+specified pod will be returned.
+
+**pod\_type** (*String*): Optional. Only nodes that belong to a pod of
+the specified type will be returned.
+
+**not\_pod\_type** (*String*): Optional. Only nodes that don\'t belong a
+pod of the specified type will be returned.
 
 **Success**
 
@@ -33539,6 +34263,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/1/"
                 },
                 {
@@ -33608,6 +34335,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/17/"
                 }
             ],
@@ -33640,6 +34370,8 @@ with matching agent names will be returned.
             "storage_test_status_name": "Unknown",
             "architecture": "amd64/generic",
             "cpu_test_status_name": "Unknown",
+            "interface_test_status_name": "Unknown",
+            "interface_test_status": -1,
             "resource_uri": "/MAAS/api/2.0/rackcontrollers/6gsym8/"
         }
     ]
@@ -33821,6 +34553,7 @@ Assigns a given node to a given zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### RAID Device
 
 Manage a specific RAID (Redundant Array of Independent Disks) on a
@@ -33975,6 +34708,7 @@ remove from the RAID.
 
 <p>&nbsp;</p>
 </details>
+
 ### RAID Devices
 
 Manage all RAIDs (Redundant Array of Independent Disks) on a machine.
@@ -34078,6 +34812,7 @@ the RAID.
 
 <p>&nbsp;</p>
 </details>
+
 ### RegionController
 
 Manage an individual region controller.
@@ -34092,14 +34827,14 @@ The region controller is identified by its system\_id.
 Deletes a region controller with the given system\_id.
 
 A region controller cannot be deleted if it hosts pod virtual machines.
-Use force to override this behavior. Forcing deletion will also remove
-hosted pods.
+Use [force]{.title-ref} to override this behavior. Forcing deletion will
+also remove hosted pods.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The region controller's
+**{system\_id}** (*String*): Required. The region controller\'s
 system\_id.
 
 **force** (*Boolean*): Optional. Tells MAAS to override disallowing
@@ -34143,7 +34878,7 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. A node's system\_id.
+**{system\_id}** (*String*): Required. A node\'s system\_id.
 
 **Success**
 
@@ -34154,6 +34889,7 @@ Reads a node with the given system\_id.
 *JSON*
 
     {
+        "bios_boot_method": "pxe",
         "boot_interface": {
             "system_id": "g8xyqs",
             "name": "eth-jJ5ZwN",
@@ -34192,6 +34928,9 @@ Reads a node with the given system\_id.
             "links": [],
             "effective_mtu": 1500,
             "product": null,
+            "link_connected": true,
+            "interface_speed": 1000,
+            "link_speed": 1000,
             "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
         },
         "memory": 8192,
@@ -34378,6 +35117,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/112/"
             },
             {
@@ -34418,6 +35160,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/113/"
             },
             {
@@ -34458,6 +35203,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/114/"
             },
             {
@@ -34500,6 +35248,9 @@ Reads a node with the given system\_id.
                 "links": [],
                 "effective_mtu": 1500,
                 "product": null,
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/g8xyqs/interfaces/115/"
             }
         ],
@@ -34594,6 +35345,8 @@ Reads a node with the given system\_id.
         "other_test_status_name": "Passed",
         "virtualblockdevice_set": [],
         "cpu_speed": 0,
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/machines/g8xyqs/"
     }
 
@@ -34614,13 +35367,13 @@ Reads a node with the given system\_id.
 
 ------------------------------------------------------------------------
 
-Returns system details -- for example, LLDP and `lshw` XML dumps.
+Returns system details \-- for example, LLDP and `lshw` XML dumps.
 
 Returns a `{detail_type: xml, ...}` map, where `detail_type` is
-something like "lldp" or "lshw".
+something like \"lldp\" or \"lshw\".
 
 Note that this is returned as BSON and not JSON. This is for efficiency,
-but mainly because JSON can't do binary content without applying
+but mainly because JSON can\'t do binary content without applying
 additional encoding like base-64. The example output below is
 represented in ASCII using `bsondump example.bson` and is for
 demonstrative purposes.
@@ -34629,7 +35382,7 @@ demonstrative purposes.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The node's system\_id.
+**{system\_id}** (*String*): Required. The node\'s system\_id.
 
 **Success**
 
@@ -34709,7 +35462,7 @@ Updates a region controller with the given system\_id.
 
 ------------------------------------------------------------------------
 
-**{system\_id}** (*String*): Required. The region controller's
+**{system\_id}** (*String*): Required. The region controller\'s
 system\_id.
 
 **description** (*String*): Optional. The new description for this given
@@ -34717,20 +35470,20 @@ region controller.
 
 **power\_type** (*String*): Optional. The new power type for this region
 controller. If you use the default value, power\_parameters will be set
-to the empty string. Available to admin users. See the [Power types]()
-section for a list of the available power types.
+to the empty string. Available to admin users. See the [Power
+types](#power-types) section for a list of the available power types.
 
-**[power\_parameters](){param1}** (*String*): Required. The new value
-for the 'param1' power parameter. Note that this is dynamic as the
+**power\_parameters\_{param1}** (*String*): Required. The new value for
+the \'param1\' power parameter. Note that this is dynamic as the
 available parameters depend on the selected value of the region
-controller's power\_type. Available to admin users. See the [Power
-types]() section for a list of the available power parameters for each
-power type.
+controller\'s power\_type. Available to admin users. See the [Power
+types](#power-types) section for a list of the available power
+parameters for each power type.
 
 **power\_parameters\_skip\_check** (*Boolean*): Optional. Whether or not
 the new power parameters for this region controller should be checked
-against the expected power parameters for the region controller's power
-type ('true' or 'false'). The default is 'false'.
+against the expected power parameters for the region controller\'s power
+type (\'true\' or \'false\'). The default is \'false\'.
 
 **zone** (*String*): Optional. Name of a valid physical zone in which to
 place this region controller.
@@ -34846,6 +35599,9 @@ place this region controller.
                 },
                 "system_id": "ccfqya",
                 "children": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/ccfqya/interfaces/1/"
             },
             {
@@ -34882,6 +35638,9 @@ place this region controller.
                 "children": [
                     "br0"
                 ],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/ccfqya/interfaces/2/"
             },
             {
@@ -34953,6 +35712,9 @@ place this region controller.
                 },
                 "system_id": "ccfqya",
                 "children": [],
+                "link_connected": true,
+                "interface_speed": 1000,
+                "link_speed": 1000,
                 "resource_uri": "/MAAS/api/2.0/nodes/ccfqya/interfaces/3/"
             }
         ],
@@ -34987,6 +35749,8 @@ place this region controller.
         "other_test_status": -1,
         "cpu_test_status_name": "Unknown",
         "system_id": "ccfqya",
+        "interface_test_status_name": "Unknown",
+        "interface_test_status": -1,
         "resource_uri": "/MAAS/api/2.0/rackcontrollers/ccfqya/"
     }
 
@@ -35008,6 +35772,7 @@ place this region controller.
 
 <p>&nbsp;</p>
 </details>
+
 ### RegionControllers
 
 Manage the collection of all region controllers in MAAS.
@@ -35029,6 +35794,12 @@ Nodes are sorted by id (i.e. most recent last) and grouped by type.
 the matching hostname will be returned. This can be specified multiple
 times to see multiple nodes.
 
+**cpu\_count** (*Int*): Optional. Only nodes with the specified minimum
+number of CPUs will be included.
+
+**mem** (*String*): Optional. Only nodes with the specified minimum
+amount of RAM (in MiB) will be included.
+
 **mac\_address** (*String*): Optional. Only nodes relating to the node
 owning the specified MAC address will be returned. This can be specified
 multiple times to see multiple nodes.
@@ -35047,6 +35818,42 @@ returned.
 
 **agent\_name** (*String*): Optional. Only nodes relating to the nodes
 with matching agent names will be returned.
+
+**fabrics** (*String*): Optional. Only nodes with interfaces in
+specified fabrics will be returned.
+
+**not\_fabrics** (*String*): Optional. Only nodes with interfaces not in
+specified fabrics will be returned.
+
+**vlans** (*String*): Optional. Only nodes with interfaces in specified
+VLANs will be returned.
+
+**not\_vlans** (*String*): Optional. Only nodes with interfaces not in
+specified VLANs will be returned.
+
+**subnets** (*String*): Optional. Only nodes with interfaces in
+specified subnets will be returned.
+
+**not\_subnets** (*String*): Optional. Only nodes with interfaces not in
+specified subnets will be returned.
+
+**link\_speed** (*String*): Optional. Only nodes with interfaces with
+link speeds greater than or equal to link\_speed will be returned.
+
+**status** (*String*): Optional. Only nodes with specified status will
+be returned.
+
+**pod** (*String*): Optional. Only nodes that belong to a specified pod
+will be returned.
+
+**not\_pod** (*String*): Optional. Only nodes that don\'t belong to a
+specified pod will be returned.
+
+**pod\_type** (*String*): Optional. Only nodes that belong to a pod of
+the specified type will be returned.
+
+**not\_pod\_type** (*String*): Optional. Only nodes that don\'t belong a
+pod of the specified type will be returned.
 
 **Success**
 
@@ -35234,6 +36041,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/1/"
                 },
                 {
@@ -35303,6 +36113,9 @@ with matching agent names will be returned.
                             }
                         }
                     ],
+                    "link_connected": true,
+                    "interface_speed": 1000,
+                    "link_speed": 1000,
                     "resource_uri": "/MAAS/api/2.0/nodes/6gsym8/interfaces/17/"
                 }
             ],
@@ -35335,6 +36148,8 @@ with matching agent names will be returned.
             "storage_test_status_name": "Unknown",
             "architecture": "amd64/generic",
             "cpu_test_status_name": "Unknown",
+            "interface_test_status_name": "Unknown",
+            "interface_test_status": -1,
             "resource_uri": "/MAAS/api/2.0/rackcontrollers/6gsym8/"
         }
     ]
@@ -35415,6 +36230,7 @@ Assigns a given node to a given zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### Resource pool
 
 Manage a resource pool.
@@ -35499,7 +36315,7 @@ Returns a resource pool.
 
 ------------------------------------------------------------------------
 
-Updates a resource pool's name or description.
+Updates a resource pool\'s name or description.
 
 Note that any other given parameters are silently ignored.
 
@@ -35512,7 +36328,7 @@ Note that any other given parameters are silently ignored.
 **description** (*String*): Optional. A brief description of the
 resource pool.
 
-**name** (*String*): Optional. The resource pool's new name.
+**name** (*String*): Optional. The resource pool\'s new name.
 
 **Success**
 
@@ -35541,6 +36357,7 @@ resource pool.
 
 <p>&nbsp;</p>
 </details>
+
 ### Resource pools
 
 Manage resource pools.
@@ -35584,7 +36401,7 @@ Creates a new resource pool.
 
 ------------------------------------------------------------------------
 
-**name** (*String*): Required. The new resource pool's name.
+**name** (*String*): Required. The new resource pool\'s name.
 
 **description** (*String*): Optional. A brief description of the new
 resource pool.
@@ -35616,6 +36433,7 @@ resource pool.
 
 <p>&nbsp;</p>
 </details>
+
 ### SSH Key
 
 Manage an SSH key.
@@ -35699,6 +36517,7 @@ Retrieves an SSH key with the given ID.
 
 <p>&nbsp;</p>
 </details>
+
 ### SSH Keys
 
 Manage the collection of all the SSH keys in this MAAS.
@@ -35740,16 +36559,16 @@ List all keys belonging to the requesting user.
 
 ------------------------------------------------------------------------
 
-Add a new SSH key to the requesting or supplied user's account.
+Add a new SSH key to the requesting or supplied user\'s account.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
 **key** (*String*): Required. A public SSH key should be provided in the
-request payload as form data with the name 'key':
+request payload as form data with the name \'key\':
 
-> key: "key-type public-key-data"
+> key: \"key-type public-key-data\"
 
 -   `key-type`: ecdsa-sha2-nistp256, ecdsa-sha2-nistp384,
     ecdsa-sha2-nistp521, ssh-dss, ssh-ed25519, ssh-rsa
@@ -35776,7 +36595,7 @@ request payload as form data with the name 'key':
 
 ------------------------------------------------------------------------
 
-Import the requesting user's SSH keys for a given protocol and
+Import the requesting user\'s SSH keys for a given protocol and
 authorization ID in protocol:auth\_id format.
 
 **Parameters**
@@ -35818,6 +36637,7 @@ E.g.
 
 <p>&nbsp;</p>
 </details>
+
 ### SSL Key
 
 Manage an SSL key.
@@ -35905,6 +36725,7 @@ Retrieves an SSL key with the given ID.
 
 <p>&nbsp;</p>
 </details>
+
 ### SSL Keys
 
 Operations on multiple keys.
@@ -35939,16 +36760,16 @@ List all keys belonging to the requesting user.
 
 ------------------------------------------------------------------------
 
-Add a new SSL key to the requesting user's account.
+Add a new SSL key to the requesting user\'s account.
 
 **Parameters**
 
 ------------------------------------------------------------------------
 
 **key** (*String*): Required. An SSL key should be provided in the
-request payload as form data with the name 'key':
+request payload as form data with the name \'key\':
 
-> key: "key data"
+> key: \"key data\"
 
 -   `key data`: The contents of a pem file.
 
@@ -35967,6 +36788,7 @@ request payload as form data with the name 'key':
 
 <p>&nbsp;</p>
 </details>
+
 ### Space
 
 Manage space.
@@ -35982,7 +36804,7 @@ Deletes a space with the given ID.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The space's ID.
+**{id}** (*Int*): Required. The space\'s ID.
 
 **Success**
 
@@ -36013,7 +36835,7 @@ Gets a space with the given ID.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The space's ID.
+**{id}** (*Int*): Required. The space\'s ID.
 
 **Success**
 
@@ -36054,7 +36876,7 @@ Updates a space with the given ID.
 
 ------------------------------------------------------------------------
 
-**{id}** (*Int*): Required. The space's ID.
+**{id}** (*Int*): Required. The space\'s ID.
 
 **name** (*String*): Required. The name of the new space.
 
@@ -36088,6 +36910,7 @@ Updates a space with the given ID.
 
 <p>&nbsp;</p>
 </details>
+
 ### Spaces
 
 Manage spaces.
@@ -36655,6 +37478,7 @@ Create a new space.
 
 <p>&nbsp;</p>
 </details>
+
 ### Static route
 
 Manage static route.
@@ -36908,6 +37732,7 @@ source subnet.
 
 <p>&nbsp;</p>
 </details>
+
 ### Static routes
 
 Manage static routes.
@@ -37174,6 +37999,7 @@ source subnet.
 
 <p>&nbsp;</p>
 </details>
+
 ### Subnet
 
 Manage subnet.
@@ -37285,16 +38111,16 @@ Returns a summary of IP addresses assigned to this subnet.
 
 **{id}** (*Int*): Required. A subnet ID.
 
-**with\_username** (*Int*): Optional. If '0', suppresses the display of
-usernames associated with each address. '1' == True, '0' == False.
-(Default: '1')
+**with\_username** (*Int*): Optional. If \'0\', suppresses the display
+of usernames associated with each address. \'1\' == True, \'0\' ==
+False. (Default: \'1\')
 
-**with\_summary** (*Int*): Optional. If '0', suppresses the display of
-nodes, BMCs, and and DNS records associated with each address. '1' ==
-True, '0' == False. (Default: True)
+**with\_summary** (*Int*): Optional. If \'0\', suppresses the display of
+nodes, BMCs, and and DNS records associated with each address. \'1\' ==
+True, \'0\' == False. (Default: True)
 
 **with\_node\_summary** (*Int*): Optional. Deprecated. Use
-'with\_summary'.
+\'with\_summary\'.
 
 **Success**
 
@@ -37696,12 +38522,13 @@ them to the request URI: e.g.
 
 **{id}** (*Int*): Required. A subnet ID.
 
-**include\_ranges** (*Int*): Optional. If '1', includes detailed
-information about the usage of this range. '1' == True, '0' == False.
+**include\_ranges** (*Int*): Optional. If \'1\', includes detailed
+information about the usage of this range. \'1\' == True, \'0\' ==
+False.
 
-**include\_suggestions** (*Int*): Optional. If '1', includes the
+**include\_suggestions** (*Int*): Optional. If \'1\', includes the
 suggested gateway and dynamic range for this subnet, if it were to be
-configured. '1' == True, '0' == False.
+configured. \'1\' == True, \'0\' == False.
 
 **Success**
 
@@ -37862,9 +38689,9 @@ Update a subnet with the given ID.
 
 **cidr** (*String*): Optional. The network CIDR for this subnet.
 
-**name** (*String*): Optional. The subnet's name.
+**name** (*String*): Optional. The subnet\'s name.
 
-**description** (*String*): Optional. The subnet's description.
+**description** (*String*): Optional. The subnet\'s description.
 
 **vlan** (*String*): Optional. VLAN this subnet belongs to. Defaults to
 the default VLAN for the provided fabric or defaults to the default VLAN
@@ -37888,15 +38715,15 @@ subnet. One of:
 
 -   `0` Disabled: No reverse zone is created.
 -   `1` Enabled: Generate reverse zone.
--   `2` RFC2317: Extends '1' to create the necessary parent zone with
+-   `2` RFC2317: Extends \'1\' to create the necessary parent zone with
     the appropriate CNAME resource records for the network, if the the
     network is small enough to require the support described in RFC2317.
 
 **allow\_dns** (*Int*): Optional. Configure MAAS DNS to allow DNS
-resolution from this subnet. '0' == False,'1' == True.
+resolution from this subnet. \'0\' == False,\'1\' == True.
 
 **allow\_proxy** (*Int*): Optional. Configure maas-proxy to allow
-requests from this subnet. '0' == False, '1' == True.
+requests from this subnet. \'0\' == False, \'1\' == True.
 
 **dns\_servers** (*String*): Optional. Comma-seperated list of DNS
 servers for this subnet.
@@ -37905,15 +38732,16 @@ servers for this subnet.
 be managed by default.
 
 Only managed subnets allow DHCP to be enabled on their related dynamic
-ranges. (Thus, dynamic ranges become "informational only"; an indication
-that another DHCP server is currently handling them, or that MAAS will
-handle them when the subnet is enabled for management.)
+ranges. (Thus, dynamic ranges become \"informational only\"; an
+indication that another DHCP server is currently handling them, or that
+MAAS will handle them when the subnet is enabled for management.)
 
 Managed subnets do not allow IP allocation by default. The meaning of a
-"reserved" IP range is reversed for an unmanaged subnet. (That is, for
-managed subnets, "reserved" means "MAAS cannot allocate any IP address
-within this reserved block". For unmanaged subnets, "reserved" means
-"MAAS must allocate IP addresses only from reserved IP ranges."
+\"reserved\" IP range is reversed for an unmanaged subnet. (That is, for
+managed subnets, \"reserved\" means \"MAAS cannot allocate any IP
+address within this reserved block\". For unmanaged subnets,
+\"reserved\" means \"MAAS must allocate IP addresses only from reserved
+IP ranges.\"
 
 **Success**
 
@@ -37965,6 +38793,7 @@ within this reserved block". For unmanaged subnets, "reserved" means
 
 <p>&nbsp;</p>
 </details>
+
 ### Subnets
 
 Manage subnets.
@@ -38222,9 +39051,9 @@ Creates a new subnet.
 
 **cidr** (*String*): Required. The network CIDR for this subnet.
 
-**name** (*String*): Optional. The subnet's name.
+**name** (*String*): Optional. The subnet\'s name.
 
-**description** (*String*): Optional. The subnet's description.
+**description** (*String*): Optional. The subnet\'s description.
 
 **vlan** (*String*): Optional. VLAN this subnet belongs to. Defaults to
 the default VLAN for the provided fabric or defaults to the default VLAN
@@ -38248,15 +39077,15 @@ subnet. One of:
 
 -   `0` Disabled: No reverse zone is created.
 -   `1` Enabled: Generate reverse zone.
--   `2` RFC2317: Extends '1' to create the necessary parent zone with
+-   `2` RFC2317: Extends \'1\' to create the necessary parent zone with
     the appropriate CNAME resource records for the network, if the the
     network is small enough to require the support described in RFC2317.
 
 **allow\_dns** (*Int*): Optional. Configure MAAS DNS to allow DNS
-resolution from this subnet. '0' == False,'1' == True.
+resolution from this subnet. \'0\' == False,\'1\' == True.
 
 **allow\_proxy** (*Int*): Optional. Configure maas-proxy to allow
-requests from this subnet. '0' == False, '1' == True.
+requests from this subnet. \'0\' == False, \'1\' == True.
 
 **dns\_servers** (*String*): Optional. Comma-seperated list of DNS
 servers for this subnet.
@@ -38265,15 +39094,16 @@ servers for this subnet.
 be managed by default.
 
 Only managed subnets allow DHCP to be enabled on their related dynamic
-ranges. (Thus, dynamic ranges become "informational only"; an indication
-that another DHCP server is currently handling them, or that MAAS will
-handle them when the subnet is enabled for management.)
+ranges. (Thus, dynamic ranges become \"informational only\"; an
+indication that another DHCP server is currently handling them, or that
+MAAS will handle them when the subnet is enabled for management.)
 
 Managed subnets do not allow IP allocation by default. The meaning of a
-"reserved" IP range is reversed for an unmanaged subnet. (That is, for
-managed subnets, "reserved" means "MAAS cannot allocate any IP address
-within this reserved block". For unmanaged subnets, "reserved" means
-"MAAS must allocate IP addresses only from reserved IP ranges."
+\"reserved\" IP range is reversed for an unmanaged subnet. (That is, for
+managed subnets, \"reserved\" means \"MAAS cannot allocate any IP
+address within this reserved block\". For unmanaged subnets,
+\"reserved\" means \"MAAS must allocate IP addresses only from reserved
+IP ranges.\"
 
 **Success**
 
@@ -38315,6 +39145,7 @@ within this reserved block". For unmanaged subnets, "reserved" means
 
 <p>&nbsp;</p>
 </details>
+
 ### Tag
 
 Tags are properties that can be associated with a Node and serve as
@@ -39064,6 +39895,7 @@ name.
             "current_commissioning_result_id": 152,
             "status": 16,
             "hwe_kernel": null,
+            "bios_boot_method": "pxe",
             "boot_interface": {
                 "id": 94,
                 "name": "eth-x2dFvx",
@@ -40117,6 +40949,7 @@ Get a JSON list containing node objects that match the given tag name.
             "current_commissioning_result_id": 152,
             "status": 16,
             "hwe_kernel": null,
+            "bios_boot_method": "pxe",
             "boot_interface": {
                 "id": 94,
                 "name": "eth-x2dFvx",
@@ -41182,6 +42015,7 @@ against the hardware\_details stored for all nodes (i.e. the output of
 
 <p>&nbsp;</p>
 </details>
+
 ### Tags
 
 Manage all tags known to MAAS.
@@ -41266,6 +42100,7 @@ picked. For example, `01-my-tag` will be chosen instead of
 
 <p>&nbsp;</p>
 </details>
+
 ### User
 
 Manage a user account.
@@ -41283,6 +42118,12 @@ Deletes a given username.
 
 **{username}** (*String*): Required. The username to delete.
 
+**transfer\_resources\_to** (*String*): Optional. An optional username.
+If supplied, the allocated resources of the user being deleted will be
+transferred to this user. A user can\'t be removed unless its resources
+(machines, IP addresses, \...), are released or transfered to another
+user.
+
 **Success**
 
 ------------------------------------------------------------------------
@@ -41296,7 +42137,7 @@ Deletes a given username.
 
 ------------------------------------------------------------------------
 
-Retrieve a user's details.
+Retrieve a user\'s details.
 
 **Parameters**
 
@@ -41332,6 +42173,7 @@ Retrieve a user's details.
 
 <p>&nbsp;</p>
 </details>
+
 ### Users
 
 Manage the user accounts of this MAAS.
@@ -41418,7 +42260,7 @@ user.
 **password** (*String*): Required. Password for the new user.
 
 **is\_superuser** (*Boolean*): Required. Whether the new user is to be
-an administrator. ('0' == False, '1' == True)
+an administrator. (\'0\' == False, \'1\' == True)
 
 **Success**
 
@@ -41448,6 +42290,7 @@ an administrator. ('0' == False, '1' == True)
 
 <p>&nbsp;</p>
 </details>
+
 ### MAAS version
 
 Information about this MAAS instance.
@@ -41485,6 +42328,7 @@ Read version and capabilities of this MAAS instance.
 
 <p>&nbsp;</p>
 </details>
+
 ### VLAN
 
 Manage a VLAN on a fabric.
@@ -41611,8 +42455,8 @@ be configured to proxy reqests to the primary and/or secondary rack
 controller interfaces for the VLAN specified in this field.
 
 **space** (*String*): Optional. The space this VLAN should be placed in.
-Passing in an empty string (or the string 'undefined') will cause the
-VLAN to be placed in the 'undefined' space.
+Passing in an empty string (or the string \'undefined\') will cause the
+VLAN to be placed in the \'undefined\' space.
 
 **Success**
 
@@ -41650,6 +42494,7 @@ VLAN to be placed in the 'undefined' space.
 
 <p>&nbsp;</p>
 </details>
+
 ### VLANs
 
 Manage VLANs on a fabric.
@@ -41729,8 +42574,8 @@ new VLAN.
 **mtu** (*Int*): Optional. The MTU to use on the VLAN.
 
 **space** (*String*): Optional. The space this VLAN should be placed in.
-Passing in an empty string (or the string 'undefined') will cause the
-VLAN to be placed in the 'undefined' space.
+Passing in an empty string (or the string \'undefined\') will cause the
+VLAN to be placed in the \'undefined\' space.
 
 **Success**
 
@@ -41768,6 +42613,7 @@ VLAN to be placed in the 'undefined' space.
 
 <p>&nbsp;</p>
 </details>
+
 ### VMFS datastore
 
 Manage VMFS datastore on a machine.
@@ -41966,6 +42812,7 @@ the VMFS datastore.
 
 <p>&nbsp;</p>
 </details>
+
 ### VMFS datastores
 
 Manage VMFS datastores on a machine.
@@ -42173,6 +43020,7 @@ datastore.
 
 <p>&nbsp;</p>
 </details>
+
 ### Volume group
 
 Manage volume group on a machine.
@@ -42487,6 +43335,7 @@ the volume group.
 
 <p>&nbsp;</p>
 </details>
+
 ### Volume groups
 
 Manage volume groups on a machine.
@@ -42651,11 +43500,12 @@ group.
 
 <p>&nbsp;</p>
 </details>
+
 ### Zone
 
 Manage a physical zone.
 
-Any node is in a physical zone, or "zone" for short. The meaning of a
+Any node is in a physical zone, or \"zone\" for short. The meaning of a
 physical zone is up to you: it could identify e.g. a server rack, a
 network, or a data centre. Users can then allocate nodes from specific
 physical zones, to suit their redundancy or performance requirements.
@@ -42743,10 +43593,10 @@ Returns a named zone.
 
 ------------------------------------------------------------------------
 
-Updates a zone's name or description.
+Updates a zone\'s name or description.
 
-Note that only 'name' and 'description' parameters are honored. Others,
-such as 'resource-uri' or 'id' will be ignored.
+Note that only \'name\' and \'description\' parameters are honored.
+Others, such as \'resource-uri\' or \'id\' will be ignored.
 
 **Parameters**
 
@@ -42757,7 +43607,7 @@ such as 'resource-uri' or 'id' will be ignored.
 **description** (*String*): Optional. A brief description of the new
 zone.
 
-**name** (*String*): Optional. The zone's new name.
+**name** (*String*): Optional. The zone\'s new name.
 
 **Success**
 
@@ -42786,6 +43636,7 @@ zone.
 
 <p>&nbsp;</p>
 </details>
+
 ### Zones
 
 Manage physical zones.
@@ -42829,7 +43680,7 @@ Creates a new zone.
 
 ------------------------------------------------------------------------
 
-**name** (*String*): Required. The new zone's name.
+**name** (*String*): Required. The new zone\'s name.
 
 **description** (*String*): Optional. A brief description of the new
 zone.
@@ -42861,6 +43712,7 @@ zone.
 
 <p>&nbsp;</p>
 </details>
+
 Power types
 -----------
 
@@ -42882,7 +43734,7 @@ Power parameters:
 
 -   power\_address (IP for APC PDU).
 -   node\_outlet (APC PDU node outlet number (1-16)).
--   power\_on\_delay (Power ON outlet delay (seconds)). Default: '5'.
+-   power\_on\_delay (Power ON outlet delay (seconds)). Default: \'5\'.
 
 ### dli (Digital Loggers, Inc. PDU)
 
@@ -42890,15 +43742,6 @@ Power parameters:
 
 -   outlet\_id (Outlet ID).
 -   power\_address (Power address).
--   power\_user (Power user).
--   power\_pass (Power password).
-
-### fence\_cdu (Sentry Switch CDU)
-
-Power parameters:
-
--   power\_address (Power address).
--   power\_id (Power ID).
 -   power\_user (Power user).
 -   power\_pass (Power password).
 
@@ -42916,10 +43759,10 @@ Power parameters:
 
 Power parameters:
 
--   power\_driver (Power driver). Choices: 'LAN' (LAN \[IPMI 1.5\]),
-    'LAN\_2\_0' (LAN\_2\_0 \[IPMI 2.0\]) Default: 'LAN\_2\_0'.
--   power\_boot\_type (Power boot type). Choices: 'auto' (Automatic),
-    'legacy' (Legacy boot), 'efi' (EFI boot) Default: 'auto'.
+-   power\_driver (Power driver). Choices: \'LAN\' (LAN \[IPMI 1.5\]),
+    \'LAN\_2\_0\' (LAN\_2\_0 \[IPMI 2.0\]) Default: \'LAN\_2\_0\'.
+-   power\_boot\_type (Power boot type). Choices: \'auto\' (Automatic),
+    \'legacy\' (Legacy boot), \'efi\' (EFI boot) Default: \'auto\'.
 -   power\_address (IP address).
 -   power\_user (Power user).
 -   power\_pass (Power password).
@@ -42976,7 +43819,7 @@ Power parameters:
 -   power\_user (OpenBMC user).
 -   power\_pass (OpenBMC password).
 
-### recs\_box (Christmann RECS|Box Power Driver)
+### recs\_box (Christmann RECS\|Box Power Driver)
 
 Power parameters:
 
@@ -43003,9 +43846,9 @@ Power parameters:
 -   power\_address (Power address).
 -   power\_user (Power user).
 -   power\_pass (Power password).
--   power\_control (Power control type). Choices: 'ipmi' (IPMI),
-    'restapi' (REST API v0.9), 'restapi2' (REST API v2.0) Default:
-    'ipmi'.
+-   power\_control (Power control type). Choices: \'ipmi\' (IPMI),
+    \'restapi\' (REST API v0.9), \'restapi2\' (REST API v2.0) Default:
+    \'ipmi\'.
 
 ### ucsm (Cisco UCS Manager)
 
@@ -43020,8 +43863,8 @@ Power parameters:
 
 Power parameters:
 
--   power\_address (Virsh address).
--   power\_pass (Virsh password (optional)).
+-   power\_address (Address).
+-   power\_pass (Password (optional)).
 -   power\_id (Virsh VM ID).
 
 ### vmware (VMware)
@@ -43030,13 +43873,13 @@ Power parameters:
 
 -   power\_vm\_name (VM Name (if UUID unknown)).
 -   power\_uuid (VM UUID (if known)).
--   power\_address (VMware hostname).
+-   power\_address (VMware IP).
 -   power\_user (VMware username).
 -   power\_pass (VMware password).
 -   power\_port (VMware API port (optional)).
 -   power\_protocol (VMware API protocol (optional)).
 
-### wedge (Facebook's Wedge)
+### wedge (Facebook\'s Wedge)
 
 Power parameters:
 
@@ -43048,9 +43891,9 @@ Power parameters:
 
 Power parameters:
 
--   power\_address (Pod address).
--   power\_user (Pod user).
--   power\_pass (Pod password).
+-   power\_address (Address).
+-   power\_user (User).
+-   power\_pass (Password).
 -   node\_id (Node ID).
 
 Pod types
@@ -43065,16 +43908,15 @@ question is from an older version of MAAS.
 
 Parameters:
 
--   power\_address (Pod address).
--   power\_user (Pod user).
--   power\_pass (Pod password).
+-   power\_address (Address).
+-   power\_user (User).
+-   power\_pass (Password).
 -   node\_id (Node ID).
 
 ### virsh (Virsh (virtual systems))
 
 Parameters:
 
--   power\_address (Virsh address).
--   power\_pass (Virsh password (optional)).
+-   power\_address (Address).
+-   power\_pass (Password (optional)).
 -   power\_id (Virsh VM ID).
-
