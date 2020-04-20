@@ -4,14 +4,10 @@ dist: trusty
 python:
   - "3.5"
 
-before_install:
-  - pip install requests
-
 install:
-  - git clone https://github.com/canonical-webteam/documentation-builder
-  - pip install ./documentation-builder
+  - pip3 install -r requirements.txt
  
 script:
-  - python3 ./documentation-builder/documentation-builder
+  - documentation-builder
 
 
