@@ -10,6 +10,7 @@ before_install:
 install:
   - git clone https://github.com/canonical-webteam/documentation-builder
   - pip install ./documentation-builder
+  - pip install gitdb2==3.0.1
  
 script:
   - python3 ./documentation-builder/documentation-builder
