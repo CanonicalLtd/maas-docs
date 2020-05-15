@@ -8,14 +8,14 @@ table_of_contents: True
 
 Tags are a convenient way to assign descriptive words to machines, interfaces, and storage devices. Using MAAS tags, you can easily select machines that meet certain criteria.
 
+Because [Juju][about-juju] is the recommended way to deploy services on machines
+managed by MAAS (see [below][tag-manage]), it supports MAAS tags for application
+deployments. By specifying MAAS tags as Juju "constraints", services can be deployed to machines that have particular user-defined characteristics.
+
 MAAS supports XPath expressions in tags (see below), which makes auto-assigning
 tags to matching hardware possible. For instance, you could tag nodes that
 possess fast GPUs and then deploy software that used GPU-accelerated CUDA or
 OpenCL libraries.
-
-Because [Juju][about-juju] is the recommended way to deploy services on machines
-managed by MAAS (see [below][tag-manage]), it supports MAAS tags for application
-deployments. By specifying MAAS tags as Juju "constraints", services can be deployed to machines that have particular user-defined characteristics.
 
 To understand the true power of MAAS tags, it is important to understand tag
 definitions.
