@@ -6,9 +6,7 @@ table_of_contents: True
 
 # Tags
 
-Using MAAS tags, you can easily deploy services on machines that meet certain
-criteria. Tags are a convenient way to assign descriptive words to machines,
-interfaces, and storage devices.
+Tags are a convenient way to assign descriptive words to machines, interfaces, and storage devices. Using MAAS tags, you can easily deploy services on machines that meet certain criteria.
 
 MAAS supports XPath expressions in tags (see below), which makes auto-assigning
 tags to matching hardware possible. For instance, you could tag nodes that
