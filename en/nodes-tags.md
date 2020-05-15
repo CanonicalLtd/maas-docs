@@ -8,6 +8,10 @@ table_of_contents: True
 
 Tags are a convenient way to assign descriptive words to machines, interfaces, and storage devices. Using MAAS tags, you can easily select machines that meet certain criteria.
 
+!!! Note:
+    Tag names can include any combination of letters, numbers, dashes (-) and
+	underscores (_), and be a maximum of 256 characters in length.
+
 Because [Juju][about-juju] is the recommended way to deploy services on machines
 managed by MAAS (see [below][tag-manage]), it supports MAAS tags for application
 deployments. By specifying MAAS tags as Juju "constraints", services can be deployed to machines that have particular user-defined characteristics.
