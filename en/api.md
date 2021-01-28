@@ -1,4 +1,5 @@
 Title: API
+table_of_contents: True
 
 MAAS API
 ========
@@ -1884,7 +1885,7 @@ Read a boot source with the given id.
     {
         "created": "2018-12-04T18:11:31.894",
         "updated": "2018-12-04T18:11:31.894",
-        "url": "http://images.maas.io/ephemeral-v3/daily/",
+        "url": "http://images.maas.io/ephemeral-v3/stable/",
         "keyring_filename": "/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg",
         "id": 1,
         "keyring_data": "",
@@ -9776,6 +9777,26 @@ kernel\_opts
 
 :   Boot parameters to pass to the kernel by default.
 
+maas\_auto\_ipmi\_k\_g\_bmc\_key
+
+:   The IPMI K\_g key to set during BMC configuration.. This IPMI K\_g
+    BMC key is used to encrypt all IPMI traffic to a BMC. Once set, all
+    clients will REQUIRE this key upon being commissioned. Any current
+    machines that were previously commissioned will not require this key
+    until they are recommissioned.
+
+maas\_auto\_ipmi\_user
+
+:   MAAS IPMI user.. The name of the IPMI user that MAAS automatically
+    creates during enlistment/commissioning.
+
+maas\_auto\_ipmi\_user\_privilege\_level
+
+:   MAAS IPMI privilege level. The default IPMI privilege level to use
+    when creating the MAAS user and talking IPMI BMCs Available choices
+    are: \'USER\' (User), \'OPERATOR\' (Operator), \'ADMIN\'
+    (Administrator).
+
 maas\_internal\_domain
 
 :   Domain name used by MAAS for internal mapping of MAAS provided
@@ -9864,6 +9885,10 @@ prometheus\_push\_interval
 :   Interval of how often to send data to Prometheus (default: to 60
     minutes).. The internal of how often MAAS will send stats to
     Prometheus in minutes.
+
+release\_notifications
+
+:   Enable or disable notifications for new MAAS releases..
 
 remote\_syslog
 
@@ -10085,6 +10110,26 @@ kernel\_opts
 
 :   Boot parameters to pass to the kernel by default.
 
+maas\_auto\_ipmi\_k\_g\_bmc\_key
+
+:   The IPMI K\_g key to set during BMC configuration.. This IPMI K\_g
+    BMC key is used to encrypt all IPMI traffic to a BMC. Once set, all
+    clients will REQUIRE this key upon being commissioned. Any current
+    machines that were previously commissioned will not require this key
+    until they are recommissioned.
+
+maas\_auto\_ipmi\_user
+
+:   MAAS IPMI user.. The name of the IPMI user that MAAS automatically
+    creates during enlistment/commissioning.
+
+maas\_auto\_ipmi\_user\_privilege\_level
+
+:   MAAS IPMI privilege level. The default IPMI privilege level to use
+    when creating the MAAS user and talking IPMI BMCs Available choices
+    are: \'USER\' (User), \'OPERATOR\' (Operator), \'ADMIN\'
+    (Administrator).
+
 maas\_internal\_domain
 
 :   Domain name used by MAAS for internal mapping of MAAS provided
@@ -10173,6 +10218,10 @@ prometheus\_push\_interval
 :   Interval of how often to send data to Prometheus (default: to 60
     minutes).. The internal of how often MAAS will send stats to
     Prometheus in minutes.
+
+release\_notifications
+
+:   Enable or disable notifications for new MAAS releases..
 
 remote\_syslog
 
@@ -23147,7 +23196,7 @@ checked.
 
 ------------------------------------------------------------------------
 
-List machines that were allocated to the User/oauth token.
+List machines that were allocated to the User.
 
 **Success**
 
@@ -23266,7 +23315,8 @@ parameters for each power type.
 
 **commission** (*Boolean*): Optional. Request the newly created machine
 to be created with status set to COMMISSIONING. Machines will wait for
-COMMISSIONING results and not time out.
+COMMISSIONING results and not time out. Machines created by
+administrators will be commissioned unless set to false.
 
 **enable\_ssh** (*Int*): Optional. Whether to enable SSH for the
 commissioning environment using the user\'s SSH key(s). \'1\' == True,
@@ -23549,7 +23599,7 @@ Add special hardware types.
 -   `msftocs`: Microsoft OCS Chassis Manager.
 -   `powerkvm`: Virtual Machines on Power KVM, managed by Virsh.
 -   `recs_box`: Christmann RECS\|Box servers.
--   `seamicro15k`: Seamicro 1500 Chassis.
+-   `sm15k`: Seamicro 1500 Chassis.
 -   `ucsm`: Cisco UCS Manager.
 -   `virsh`: virtual machines managed by Virsh.
 -   `vmware` is the type for virtual machines managed by VMware.
@@ -24812,8 +24862,8 @@ as the source.
 **source** (*String*): Required. The system\_id of the machine that is
 the source of the configuration.
 
-**destination** (*String*): Required. A list of system\_ids to clone the
-configuration to.
+**destinations** (*String*): Required. A list of system\_ids to clone
+the configuration to.
 
 **interfaces** (*Boolean*): Optional. Whether to clone interface
 configuration. Defaults to False.
@@ -29272,6 +29322,9 @@ false, i.e. not targeted to all users.
 **admins** (*Boolean*): Optional. True to notify all admins, defaults to
 false, i.e. not targeted to all admins.
 
+**dismissable** (*Boolean*): Optional. True to allow users dimissing the
+notification. Defaults to true.
+
 **Success**
 
 ------------------------------------------------------------------------
@@ -29375,7 +29428,7 @@ Notifications that have been dismissed are *not* returned.
             "user": null,
             "users": false,
             "admins": true,
-            "message": "Boot image import process not started. Machines will not be able to\nprovision without boot images. Visit the\n<a href=\"http://localhost:5240/MAAS/#/images\">boot images</a> page to start the import.\n",
+            "message": "Boot image import process not started. Machines will not be able to\nprovision without boot images. Visit the\n<a href=\"http://localhost:5240/MAAS/l/images\">boot images</a> page to start the import.\n",
             "context": {},
             "category": "error",
             "id": 1409,
@@ -29386,7 +29439,7 @@ Notifications that have been dismissed are *not* returned.
             "user": null,
             "users": false,
             "admins": true,
-            "message": "One rack controller is not yet connected to the region. Visit the <a href=\"/MAAS/#/controllers\">rack controllers page</a> for more information.",
+            "message": "One rack controller is not yet connected to the region. Visit the <a href=\"/MAAS/l/controllers\">rack controllers page</a> for more information.",
             "context": {},
             "category": "error",
             "id": 1410,
@@ -29397,7 +29450,7 @@ Notifications that have been dismissed are *not* returned.
             "user": null,
             "users": false,
             "admins": true,
-            "message": "Controller <a href='#/node/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
+            "message": "Controller <a href='l/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
             "context": {
                 "hostname": "happy-region",
                 "latest_version": "",
@@ -29412,7 +29465,7 @@ Notifications that have been dismissed are *not* returned.
             "user": null,
             "users": false,
             "admins": true,
-            "message": "Controller <a href='#/node/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
+            "message": "Controller <a href='l/controller/{system_id}'>{hostname}</a> is running an older version of MAAS (less than 2.3.0).",
             "context": {
                 "hostname": "happy-rack",
                 "latest_version": "",
@@ -30657,7 +30710,11 @@ Compose a new machine from a pod.
 **memory** (*Int*): Optional. The minimum amount of memory, specified in
 MiB (e.g. 2 MiB == 2\*1024\*1024).
 
-**cores** (*Int*): Optional. The minimum number of CPU cores.
+**hugepages\_backed** (*Boolean*): Optional. Whether to request
+hugepages backing for the machine.
+
+**pinned\_cores** (*Int*): Optional. List of host CPU cores to pin the
+VM to. If this is passed, the \"cores\" parameter is ignored.
 
 **cpu\_speed** (*Int*): Optional. The minimum CPU speed, specified in
 MHz.
@@ -42329,6 +42386,30 @@ Read version and capabilities of this MAAS instance.
 <p>&nbsp;</p>
 </details>
 
+### Virtual Machine
+
+Manage individual virtual machines.
+
+> A virtual machine is identified by its id.
+
+#### `GET /MAAS/api/2.0/virtual-machines/{id}`
+
+GET request. Return a single model instance.
+
+### Virtual Machines
+
+Manage a collection of virtual machines.
+
+> A virtual machine is identified by its id.
+
+#### `GET /MAAS/api/2.0/virtual-machines/`
+
+GET request. List all model instances ordered by name.
+
+#### `POST /MAAS/api/2.0/virtual-machines/`
+
+POST request. Create a new instance of the model.
+
 ### VLAN
 
 Manage a VLAN on a fabric.
@@ -42610,6 +42691,918 @@ VLAN to be placed in the \'undefined\' space.
 *Content*
 
     Not Found
+
+<p>&nbsp;</p>
+</details>
+
+### VmHost
+
+Manage an individual vm-host.
+
+A vm-host is identified by its id.
+
+<details>
+  <summary>``DELETE /MAAS/api/2.0/pods/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Deletes a pod with the given pod ID.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The pod\'s ID.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 204
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+
+#### `GET /MAAS/api/2.0/pods/{id}/`
+
+<details>
+  <summary>``GET /MAAS/api/2.0/pods/{id}/?op=parameters``</summary>
+
+------------------------------------------------------------------------
+
+This returns a pod\'s configuration parameters. For some types of pod,
+this will include private information such as passwords and secret keys.
+
+Note: This method is reserved for admin users.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The pod\'s ID.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "power_address": "qemu+ssh://ubuntu@172.16.2.42/system"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/pods/{id}/?op=add_tag``</summary>
+
+------------------------------------------------------------------------
+
+Adds a tag to a given pod.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The pod\'s ID.
+
+**tag** (*String*): Required. The tag to add.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "id": 3,
+        "architectures": [],
+        "available": {
+            "cores": 6,
+            "memory": 4096,
+            "local_storage": 89994823853
+        },
+        "memory_over_commit_ratio": 1.0,
+        "host": {
+            "system_id": null,
+            "__incomplete__": true
+        },
+        "capabilities": [
+            "dynamic_local_storage",
+            "composable"
+        ],
+        "default_macvlan_mode": null,
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "total": {
+            "cores": 17,
+            "memory": 17408,
+            "local_storage": 102193675437
+        },
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "name": "proud-cat",
+        "cpu_over_commit_ratio": 1.0,
+        "tags": [
+            "mytag"
+        ],
+        "used": {
+            "cores": 11,
+            "memory": 13312,
+            "local_storage": 12198851584
+        },
+        "storage_pools": [
+            {
+                "id": "pool_id-UuYjRR",
+                "name": "name-Xa03eb",
+                "type": "lvm",
+                "path": "/var/lib/name-Xa03eb",
+                "total": 55908000766,
+                "used": 0,
+                "available": 55908000766,
+                "default": true
+            },
+            {
+                "id": "pool_id-FkgXoP",
+                "name": "name-MBAlmH",
+                "type": "lvm",
+                "path": "/var/lib/name-MBAlmH",
+                "total": 30058152477,
+                "used": 7636928512,
+                "available": 22421223965,
+                "default": false
+            },
+            {
+                "id": "pool_id-YDEeSq",
+                "name": "name-TaXcCd",
+                "type": "dir",
+                "path": "/var/lib/name-TaXcCd",
+                "total": 16227522194,
+                "used": 4561923072,
+                "available": 11665599122,
+                "default": false
+            }
+        ],
+        "type": "virsh",
+        "resource_uri": "/MAAS/api/2.0/pods/3/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/pods/{id}/?op=compose``</summary>
+
+------------------------------------------------------------------------
+
+Compose a new machine from a pod.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**cores** (*Int*): Optional. The minimum number of CPU cores.
+
+**memory** (*Int*): Optional. The minimum amount of memory, specified in
+MiB (e.g. 2 MiB == 2\*1024\*1024).
+
+**hugepages\_backed** (*Boolean*): Optional. Whether to request
+hugepages backing for the machine.
+
+**pinned\_cores** (*Int*): Optional. List of host CPU cores to pin the
+VM to. If this is passed, the \"cores\" parameter is ignored.
+
+**cpu\_speed** (*Int*): Optional. The minimum CPU speed, specified in
+MHz.
+
+**architecture** (*String*): Optional. The architecture of the new
+machine (e.g. amd64). This must be an architecture the pod supports.
+
+**storage** (*String*): Optional. A list of storage constraint
+identifiers in the form
+`label:size(tag,tag,...), label:size(tag,tag,...)`. For more information
+please see the CLI pod management page of the official MAAS
+documentation.
+
+**interfaces** (*String*): Optional. A labeled constraint map
+associating constraint labels with desired interface properties. MAAS
+will assign interfaces that match the given interface properties.
+
+Format: `label:key=value,key=value,...`
+
+Keys:
+
+-   `id`: Matches an interface with the specific id
+-   `fabric`: Matches an interface attached to the specified fabric.
+-   `fabric_class`: Matches an interface attached to a fabric with the
+    specified class.
+-   `ip`: Matches an interface whose VLAN is on the subnet implied by
+    the given IP address, and allocates the specified IP address for the
+    machine on that interface (if it is available).
+-   `mode`: Matches an interface with the specified mode. (Currently,
+    the only supported mode is \"unconfigured\".)
+-   `name`: Matches an interface with the specified name. (For example,
+    \"eth0\".)
+-   `hostname`: Matches an interface attached to the node with the
+    specified hostname.
+-   `subnet`: Matches an interface attached to the specified subnet.
+-   `space`: Matches an interface attached to the specified space.
+-   `subnet_cidr`: Matches an interface attached to the specified subnet
+    CIDR. (For example, \"192.168.0.0/24\".)
+-   `type`: Matches an interface of the specified type. (Valid types:
+    \"physical\", \"vlan\", \"bond\", \"bridge\", or \"unknown\".)
+-   `vlan`: Matches an interface on the specified VLAN.
+-   `vid`: Matches an interface on a VLAN with the specified VID.
+-   `tag`: Matches an interface tagged with the specified tag.
+
+**hostname** (*String*): Optional. The hostname of the newly composed
+machine.
+
+**domain** (*Int*): Optional. The ID of the domain in which to put the
+newly composed machine.
+
+**zone** (*Int*): Optional. The ID of the zone in which to put the newly
+composed machine.
+
+**pool** (*Int*): Optional. The ID of the pool in which to put the newly
+composed machine.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "system_id": "wdpx3n",
+        "resource_uri": "/MAAS/api/2.0/machines/wdpx3n/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/pods/{id}/?op=refresh``</summary>
+
+------------------------------------------------------------------------
+
+Performs pod discovery and updates all discovered information and
+discovered machines.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Optional. The pod\'s ID.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*JSON*
+
+    {
+        "type": "virsh",
+        "name": "mypod",
+        "tags": [
+            "virtual"
+        ],
+        "architectures": [
+            "amd64/generic"
+        ],
+        "used": {
+            "cores": 1,
+            "memory": 1024,
+            "local_storage": 8000000000
+        },
+        "storage_pools": [
+            {
+                "id": "70e0f355-ea3b-4cdd-b4b4-20a01a35617d",
+                "name": "maas",
+                "type": "dir",
+                "path": "/var/lib/libvirt/maas-images",
+                "total": 47751942144,
+                "used": 8000000000,
+                "available": 39751942144,
+                "default": true
+            }
+        ],
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "id": 1,
+        "available": {
+            "cores": 7,
+            "memory": 14892,
+            "local_storage": 39751942144
+        },
+        "memory_over_commit_ratio": 1.0,
+        "capabilities": [
+            "composable",
+            "dynamic_local_storage",
+            "over_commit",
+            "storage_pools"
+        ],
+        "default_macvlan_mode": null,
+        "cpu_over_commit_ratio": 1.0,
+        "total": {
+            "cores": 8,
+            "memory": 15916,
+            "local_storage": 47751942144
+        },
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "host": {
+            "system_id": null,
+            "__incomplete__": true
+        },
+        "resource_uri": "/MAAS/api/2.0/pods/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/pods/{id}/?op=remove_tag``</summary>
+
+------------------------------------------------------------------------
+
+Removes a given tag from a pod.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*Int*): Required. The pod\'s ID.
+
+**tag** (*String*): Required. The tag to add.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "id": 3,
+        "architectures": [],
+        "available": {
+            "cores": 6,
+            "memory": 4096,
+            "local_storage": 89994823853
+        },
+        "memory_over_commit_ratio": 1.0,
+        "host": {
+            "system_id": null,
+            "__incomplete__": true
+        },
+        "capabilities": [
+            "dynamic_local_storage",
+            "composable"
+        ],
+        "default_macvlan_mode": null,
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "total": {
+            "cores": 17,
+            "memory": 17408,
+            "local_storage": 102193675437
+        },
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "name": "proud-cat",
+        "cpu_over_commit_ratio": 1.0,
+        "tags": [],
+        "used": {
+            "cores": 11,
+            "memory": 13312,
+            "local_storage": 12198851584
+        },
+        "storage_pools": [
+            {
+                "id": "pool_id-UuYjRR",
+                "name": "name-Xa03eb",
+                "type": "lvm",
+                "path": "/var/lib/name-Xa03eb",
+                "total": 55908000766,
+                "used": 0,
+                "available": 55908000766,
+                "default": true
+            },
+            {
+                "id": "pool_id-FkgXoP",
+                "name": "name-MBAlmH",
+                "type": "lvm",
+                "path": "/var/lib/name-MBAlmH",
+                "total": 30058152477,
+                "used": 7636928512,
+                "available": 22421223965,
+                "default": false
+            },
+            {
+                "id": "pool_id-YDEeSq",
+                "name": "name-TaXcCd",
+                "type": "dir",
+                "path": "/var/lib/name-TaXcCd",
+                "total": 16227522194,
+                "used": 4561923072,
+                "available": 11665599122,
+                "default": false
+            }
+        ],
+        "type": "virsh",
+        "resource_uri": "/MAAS/api/2.0/pods/3/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``PUT /MAAS/api/2.0/pods/{id}/``</summary>
+
+------------------------------------------------------------------------
+
+Update a specific pod by ID.
+
+Note: A pod\'s \'type\' cannot be updated. The pod must be deleted and
+re-added to change the type.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**{id}** (*URL String*): Required. The pod\'s ID.
+
+**name** (*String*): Optional. The pod\'s name.
+
+**pool** (*String*): Optional. The name of the resource pool associated
+with this pod \-- composed machines will be assigned to this resource
+pool by default.
+
+**cpu\_over\_commit\_ratio** (*Int*): Optional. CPU overcommit ratio
+(0-10)
+
+**memory\_over\_commit\_ratio** (*Int*): Optional. CPU overcommit ratio
+(0-10)
+
+**default\_storage\_pool** (*String*): Optional. Default KVM storage
+pool to use when the pod has storage pools.
+
+**power\_address** (*String*): Optional. Address for power control of
+the pod.
+
+**power\_pass** (*String*): Optional. Password for access to power
+control of the pod.
+
+**zone** (*String*): Optional. The pod\'s zone.
+
+**default\_macvlan\_mode** (*String*): Optional. Default macvlan mode
+for pods that use it: bridge, passthru, private, vepa.
+
+**tags** (*String*): Optional. Tag or tags (command separated)
+associated with the pod.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "cpu_over_commit_ratio": 1.0,
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "storage_pools": [
+            {
+                "id": "70e0f355-ea3b-4cdd-b4b4-20a01a35617d",
+                "name": "maas",
+                "type": "dir",
+                "path": "/var/lib/libvirt/maas-images",
+                "total": 47751942144,
+                "used": 8000000000,
+                "available": 39751942144,
+                "default": true
+            }
+        ],
+        "name": "newpodname",
+        "memory_over_commit_ratio": 1.0,
+        "type": "virsh",
+        "host": {
+            "system_id": null,
+            "__incomplete__": true
+        },
+        "architectures": [
+            "amd64/generic"
+        ],
+        "tags": [
+            "virtual"
+        ],
+        "default_macvlan_mode": "",
+        "used": {
+            "cores": 1,
+            "memory": 1024,
+            "local_storage": 8000000000
+        },
+        "available": {
+            "cores": 7,
+            "memory": 14892,
+            "local_storage": 39751942144
+        },
+        "id": 1,
+        "capabilities": [
+            "composable",
+            "dynamic_local_storage",
+            "over_commit",
+            "storage_pools"
+        ],
+        "total": {
+            "cores": 8,
+            "memory": 15916,
+            "local_storage": 47751942144
+        },
+        "resource_uri": "/MAAS/api/2.0/pods/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404 \-- The pod\'s ID was not found.
+
+*HTTP Status Code* : 403 \-- The current user does not have permission
+to update the pod.
+
+<p>&nbsp;</p>
+</details>
+
+### VmHosts
+
+Manage the collection of all the vm-hosts in the MAAS.
+
+<details>
+  <summary>``GET /MAAS/api/2.0/pods/``</summary>
+
+------------------------------------------------------------------------
+
+Get a listing of all pods.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    [
+        {
+            "id": 3,
+            "architectures": [],
+            "available": {
+                "cores": 6,
+                "memory": 4096,
+                "local_storage": 89994823853
+            },
+            "memory_over_commit_ratio": 1.0,
+            "host": {
+                "system_id": null,
+                "__incomplete__": true
+            },
+            "capabilities": [
+                "dynamic_local_storage",
+                "composable"
+            ],
+            "default_macvlan_mode": null,
+            "zone": {
+                "name": "default",
+                "description": "",
+                "id": 1,
+                "resource_uri": "/MAAS/api/2.0/zones/default/"
+            },
+            "total": {
+                "cores": 17,
+                "memory": 17408,
+                "local_storage": 102193675437
+            },
+            "pool": {
+                "name": "default",
+                "description": "Default pool",
+                "id": 0,
+                "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+            },
+            "name": "proud-cat",
+            "cpu_over_commit_ratio": 1.0,
+            "tags": [],
+            "used": {
+                "cores": 11,
+                "memory": 13312,
+                "local_storage": 12198851584
+            },
+            "storage_pools": [
+                {
+                    "id": "pool_id-UuYjRR",
+                    "name": "name-Xa03eb",
+                    "type": "lvm",
+                    "path": "/var/lib/name-Xa03eb",
+                    "total": 55908000766,
+                    "used": 0,
+                    "available": 55908000766,
+                    "default": true
+                },
+                {
+                    "id": "pool_id-FkgXoP",
+                    "name": "name-MBAlmH",
+                    "type": "lvm",
+                    "path": "/var/lib/name-MBAlmH",
+                    "total": 30058152477,
+                    "used": 7636928512,
+                    "available": 22421223965,
+                    "default": false
+                },
+                {
+                    "id": "pool_id-YDEeSq",
+                    "name": "name-TaXcCd",
+                    "type": "dir",
+                    "path": "/var/lib/name-TaXcCd",
+                    "total": 16227522194,
+                    "used": 4561923072,
+                    "available": 11665599122,
+                    "default": false
+                }
+            ],
+            "type": "virsh",
+            "resource_uri": "/MAAS/api/2.0/pods/3/"
+        }
+    ]
+
+<p>&nbsp;</p>
+</details>
+<details>
+  <summary>``POST /MAAS/api/2.0/pods/``</summary>
+
+------------------------------------------------------------------------
+
+Create or discover a new pod.
+
+**Parameters**
+
+------------------------------------------------------------------------
+
+**type** (*String*): Required. The type of pod to create: `rsd` or
+`virsh`.
+
+**power\_address** (*String*): Required. Address that gives MAAS access
+to the pod\'s power control. For example:
+`qemu+ssh://172.16.99.2/system`.
+
+**power\_user** (*String*): Required. Username to use for power control
+of the pod. Required for `rsd` pods or `virsh` pods that do not have SSH
+set up for public-key authentication.
+
+**power\_pass** (*String*): Required. Password to use for power control
+of the pod. Required for `rsd` pods or `virsh` pods that do not have SSH
+set up for public-key authentication.
+
+**name** (*String*): Optional. The new pod\'s name.
+
+**zone** (*String*): Optional. The new pod\'s zone.
+
+**pool** (*String*): Optional. The name of the resource pool the new pod
+will belong to. Machines composed from this pod will be assigned to this
+resource pool by default.
+
+**tags** (*String*): Optional. A tag or list of tags ( comma delimited)
+to assign to the new pod.
+
+**Success**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 200
+
+*JSON*
+
+    {
+        "cpu_over_commit_ratio": 1.0,
+        "zone": {
+            "name": "default",
+            "description": "",
+            "id": 1,
+            "resource_uri": "/MAAS/api/2.0/zones/default/"
+        },
+        "pool": {
+            "name": "default",
+            "description": "Default pool",
+            "id": 0,
+            "resource_uri": "/MAAS/api/2.0/resourcepool/0/"
+        },
+        "storage_pools": [
+            {
+                "id": "70e0f355-ea3b-4cdd-b4b4-20a01a35617d",
+                "name": "maas",
+                "type": "dir",
+                "path": "/var/lib/libvirt/maas-images",
+                "total": 47751942144,
+                "used": 0,
+                "available": 47751942144,
+                "default": true
+            }
+        ],
+        "name": "mypod",
+        "memory_over_commit_ratio": 1.0,
+        "type": "virsh",
+        "host": {
+            "system_id": null,
+            "__incomplete__": true
+        },
+        "architectures": [
+            "amd64/generic"
+        ],
+        "tags": [
+            "virtual"
+        ],
+        "default_macvlan_mode": null,
+        "used": {
+            "cores": 0,
+            "memory": 0,
+            "local_storage": 0
+        },
+        "available": {
+            "cores": 8,
+            "memory": 15916,
+            "local_storage": 47751942144
+        },
+        "id": 1,
+        "capabilities": [
+            "composable",
+            "dynamic_local_storage",
+            "over_commit",
+            "storage_pools"
+        ],
+        "total": {
+            "cores": 8,
+            "memory": 15916,
+            "local_storage": 47751942144
+        },
+        "resource_uri": "/MAAS/api/2.0/pods/1/"
+    }
+
+**Error**
+
+------------------------------------------------------------------------
+
+*HTTP Status Code* : 404
+
+*Content*
+
+    Not Found
+
+*HTTP Status Code* : 403
+
+*Content*
+
+    This method is reserved for admin users.
+
+*HTTP Status Code* : 503
+
+*Content*
+
+    Failed talking to pod: Failed to login to virsh console.
 
 <p>&nbsp;</p>
 </details>
@@ -43745,6 +44738,14 @@ Power parameters:
 -   power\_user (Power user).
 -   power\_pass (Power password).
 
+### eaton (Eaton PDU)
+
+Power parameters:
+
+-   power\_address (IP for Eaton PDU).
+-   node\_outlet (Eaton PDU node outlet number (1-24)).
+-   power\_on\_delay (Power ON outlet delay (seconds)). Default: \'5\'.
+
 ### hmc (IBM Hardware Management Console (HMC))
 
 Power parameters:
@@ -43766,6 +44767,15 @@ Power parameters:
 -   power\_address (IP address).
 -   power\_user (Power user).
 -   power\_pass (Power password).
+-   k\_g (K\_g BMC key).
+-   cipher\_suite\_id (Cipher Suite ID). Choices: \'17\' (17 -
+    HMAC-SHA256::HMAC\_SHA256\_128::AES-CBC-128), \'3\' (3 -
+    HMAC-SHA1::HMAC-SHA1-96::AES-CBC-128), \'\' (freeipmi-tools
+    default), \'8\' (8 - HMAC-MD5::HMAC-MD5-128::AES-CBC-128), \'12\'
+    (12 - HMAC-MD5::MD5-128::AES-CBC-128) Default: \'3\'.
+-   privilege\_level (Privilege Level). Choices: \'USER\' (User),
+    \'OPERATOR\' (Operator), \'ADMIN\' (Administrator) Default:
+    \'OPERATOR\'.
 -   mac\_address (Power MAC).
 
 ### manual (Manual)
@@ -43859,14 +44869,6 @@ Power parameters:
 -   power\_user (API user).
 -   power\_pass (API password).
 
-### virsh (Virsh (virtual systems))
-
-Power parameters:
-
--   power\_address (Address).
--   power\_pass (Password (optional)).
--   power\_id (Virsh VM ID).
-
 ### vmware (VMware)
 
 Power parameters:
@@ -43887,6 +44889,14 @@ Power parameters:
 -   power\_user (Power user).
 -   power\_pass (Power password).
 
+### lxd (LXD (virtual systems))
+
+Power parameters:
+
+-   power\_address (LXD address).
+-   instance\_name (Instance name).
+-   password (LXD password (optional)).
+
 ### rsd (Rack Scale Design)
 
 Power parameters:
@@ -43896,6 +44906,14 @@ Power parameters:
 -   power\_pass (Password).
 -   node\_id (Node ID).
 
+### virsh (Virsh (virtual systems))
+
+Power parameters:
+
+-   power\_address (Address).
+-   power\_pass (Password (optional)).
+-   power\_id (Virsh VM ID).
+
 Pod types
 ---------
 
@@ -43903,6 +44921,14 @@ This is the list of the supported pod types and their associated
 parameters. Note that the list of usable pod types for a particular rack
 controller might be a subset of this list if the rack controller in
 question is from an older version of MAAS.
+
+### lxd (LXD (virtual systems))
+
+Parameters:
+
+-   power\_address (LXD address).
+-   instance\_name (Instance name).
+-   password (LXD password (optional)).
 
 ### rsd (Rack Scale Design)
 
