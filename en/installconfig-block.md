@@ -25,7 +25,7 @@ physical and virtual block devices, as you can see in the output from the
 following command:
 
 ```bash
-maas admin block-devices read <node-id>
+maas admin block-devices read <system_id>
 ```
 
 Output:
@@ -106,12 +106,17 @@ Machine-readable output follows:
 ### Read Block Device
 
 If you want to read just one block device instead of listing all block devices
-the read operation on the block device endpoint provides that information. To
-display the details on device '11' from the previous output, for example, we
+the read operation on the block device endpoint provides that information. 
+
+```bash
+maas admin block-device read <system_id> <block_device_id>
+```
+
+To display the details on device '11' from the previous output, for example, we
 could enter:
 
 ```bash
-maas admin block-device read <node-id> 11
+maas admin block-device read <system_id> 11
 ```
 
 The above command generates the following output:
@@ -151,7 +156,7 @@ It is also possible to use the name of the block device, such as 'sda' or
 'vda', instead of its 'id':
 
 ```bash
-s admin block-device read <node-id> vda
+s admin block-device read <system_id> vda
 ``` 
 
 !!! Note: 
@@ -168,7 +173,7 @@ it is also possible - though not recommended - for an administrator to use the
 API to manually add a physical block device to a node. 
 
 ```bash
-maas admin block-devices create <node-id> name=vdb model="QEMU" serial="QM00001" size=21474836480 block_size=4096
+maas admin block-devices create <system_id> name=vdb model="QEMU" serial="QM00001" size=21474836480 block_size=4096
 ```
 Depending on your configuration, output should be similar to the following:
 ```nohighlight
@@ -208,7 +213,7 @@ An administrator can also update the details held on a physical block device,
 such as its name, from the API:
 
 ```bash
-maas admin block-device update <node-id> 12 name=newroot
+maas admin block-device update <system_id> 12 name=newroot
 ```
 
 Output from this command will show that the 'name' has changed:
@@ -243,7 +248,7 @@ Physical and virtual block devices can be deleted by an administrator, while
 ordinary users can only delete virtual block devices:
 
 ```bash
-maas admin block-device delete <node-id> 12
+maas admin block-device delete <system_id> <block_device_id>
 ```
 
 ### Format Block Device
@@ -252,7 +257,7 @@ An entire block device can be formatted by defining a filesystem with the
 'format' API call:
 
 ```bash
-maas admin block-device format <node-id> 11 fstype=ext4
+maas admin block-device format <system_id> 11 fstype=ext4
 ```
 
 Successful output from this command will look similar to this:
@@ -296,7 +301,7 @@ Machine-readable output follows:
 You can remove the filesystem from a block device with the 'unformat' API call:
 
 ```bash
-maas admin block-device unformat <node-id> 11
+maas admin block-device unformat <system_id> 11
 ```
 The output from this command should show the filesystem is now 'null':
 
@@ -330,7 +335,7 @@ If a block device has a filesystem, you can use the 'maas' command to mount a bl
 point:
 
 ```bash
-maas admin block-device mount <node-id> 11 mount_point=/srv
+maas admin block-device mount <system_id> 11 mount_point=/srv
 ```
 
 The mount point is included in the successful output from the command:
@@ -372,7 +377,7 @@ Machine-readable output follows:
 To remove the mount point from the block device, use the 'unmount' call:
 
 ```bash
-maas admin block-device unmount <node-id> 11 mount_point=/srv
+maas admin block-device unmount <system_id> 11 mount_point=/srv
 
 ```
 
@@ -418,7 +423,7 @@ boot disk needs to be set to another disk. This API allow setting which block
 device on a node MAAS should use as the boot disk.:
 
 ```bash
-maas admin block-device set-boot-disk <node-id> 10
+maas admin block-device set-boot-disk <system_id> <block_device_id>
 ```
 
 !!! Note: 
