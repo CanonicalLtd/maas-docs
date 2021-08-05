@@ -2,6 +2,16 @@
 
 # MAAS Documentation 
 
+---
+**NOTE**
+
+The official documentation of MAAS has moved to [maas.io/docs](https://maas.io/docs), see [Docs moving to maas.io/docs, content to Discourse](https://discourse.maas.io/t/docs-moving-to-maas-io-docs-content-to-discourse/890) for details.
+
+Contributions to the documentation can be made via [discourse.maas.io](https://discourse.maas.io/c/docs/5).
+
+---
+
+
 This is the official documentation for [MAAS][maas]. It is written in
 [GitHub Flavored Markdown][github-gfm] (GFM), generated into HTML (with
 [documentation-builder][github-documentation-builder]), and published at
