@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "watch-cli": "^0.2.2",
-    "lodash": "^4.17.13"
+    "lodash": "^4.17.21"
   },
   "devDependencyComments": {
     "lodash": "We need >4.17.13 to fix vulnerability: https://github.com/lodash/lodash/pull/4336"
