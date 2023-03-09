@@ -2,7 +2,7 @@
 
 # Build stage: Build docs
 # ===
-FROM ubuntu:focal AS build-docs
+FROM ubuntu:jammy AS build-docs
 
 WORKDIR /srv
 ADD . .
@@ -13,7 +13,7 @@ RUN /srv/build.sh
 
 # Build the production image
 # ===
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 # Set up environment
 ENV LANG C.UTF-8
